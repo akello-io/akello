@@ -1,6 +1,6 @@
 # [akello](https://www.akello.io)
 
-![Alt text](/assets/banner.jpg "akello-gpt")
+![Alt text](/assets/banner.png "akello")
 
 Akello is a developer platform that enables flexible and rapid development of population health apps
 
