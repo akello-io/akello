@@ -22,10 +22,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "s3-deploy-akello-io": "aws s3 cp ./build s3://akello.io --recursive",
-    "cloudfront-akello-io": "aws cloudfront create-invalidation --distribution-id E1Z4U56OM5TUCV --paths '/*'",
-    "deploy-akello-io": "npm run s3-deploy-akello-io && npm run cloudfront-akello-io",
-    "deploy": "react-scripts build && npm run deploy-akello-io"
   },
   "eslintConfig": {
     "extends": [
