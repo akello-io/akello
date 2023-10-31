@@ -4,14 +4,12 @@
 
 Akello is a developer platform that enables flexible and rapid development of population health apps
 
-- **Akello Registry** - Complete platform to run Collaborative Care Model.
+- **Akello Registry** - Complete platform to run Measurement Based Care (MBC) programs.
 - **Akello Insights** - Tools for analytics and insights into population models.
-- **Akello FHIR** - Interoperability with EHR's via FHIR.
-- **Akello API** - FHIR-based API's for sending, receiving, and manipulating data
+- **Akello API** - API's to help build personalized workflows
 - **Akello SDK** - Client libraries that simplify the process of interacting with the **Akello API**.
 - **Akello App** - Web application where you can view your data and perform basic editing tasks. You can also use the Akello App to manage basic workflows.
-- **Akello Bots** - Write and run application logic server-side without needing to set up your own server.
-- **UI Component Library** - React components designed to help you quickly develop custom healthcare applications.
+
 
 ## Docs
 - [Contributing](#contributing)
@@ -59,9 +57,16 @@ Here is a list of all the big technologies we use:
 
 ```sh
 akello/
-├── core
-│   ├── agent        # On-premise agent
-└── scripts          # Helper bash scripts
+├── packages
+│   ├── apps               # On-premise agent
+│   ├── cdk                # AWS CDK
+│   ├── cli                # cli
+│   ├── docs               # docs
+│   ├── examples           # run examples
+│   ├── react-components   # react components
+│   ├── react-core         # react core
+│   ├── server             # api's
+└── scripts                # scripts
 ```
 
 ## License
