@@ -52,17 +52,9 @@
     "yup": "^1.3.2"
   },
   "scripts": {
-    "start:dev": "env-cmd -f env/.env.development react-scripts start",
-    "start:prod": "env-cmd -f env/.env.production react-scripts start",
-    "start:demo": "env-cmd -f env/.env.demo react-scripts start",
-    "deploy-demo": "env-cmd -f env/.env.demo react-scripts build && aws s3 cp ./build s3://demo.akello.io --recursive && aws cloudfront create-invalidation --distribution-id E1OAC6NGWN9YTE --paths '/*'",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "s3-deploy-akello-io": "aws s3 cp ./build s3://app.akello.io --recursive",
-    "cloudfront-akello-io": "aws cloudfront create-invalidation --distribution-id E2FSIRBAMBXLM --paths '/*'",
-    "deploy-akello-io": "npm run s3-deploy-akello-io && npm run cloudfront-akello-io",
-    "deploy": "react-scripts build && npm run deploy-akello-io",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
