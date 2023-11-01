@@ -1,4 +1,4 @@
-# [akello](https://www.akello.io)
+# [akello](https://www.akello.io) &middot; [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=akello-io_akello&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=akello-io_akello)
 
 ![Alt text](/assets/banner.png "akello")
 
