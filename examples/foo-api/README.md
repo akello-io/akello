@@ -3,6 +3,18 @@
 
 This is an example app of how to run your own API using akello.
 
+## Quick Start
+
+If you already have **DynamoDB** running locally, an AWS account and the **environment variables** set (see below) then you just need to run the following commands.
+
+```commandline
+pip install -r requirements.text
+uvicorn main:app --reload
+```
+
+The server will be running on http://localhost:8000
+
+
 ## Install akello and integrate into your Fast API server
 
 ```commandline
