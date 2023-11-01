@@ -15,7 +15,7 @@ Akello is a developer platform that enables flexible and rapid development of po
 The best way to start working with akello and seeing how it works is by trying out one of our examples under /examples
 
 Example Docs
- * [Run your own custom API with akello](https://github.com/akello-io/akello/blob/main/examples/foo-api/README.md)
+ * [Run your own custom API with akello](https://github.com/akello-io/akello/blob/main/examples/foo-api)
 
 
 ## CoCM Registry App
