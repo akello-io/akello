@@ -3,28 +3,16 @@
 
 This is an example app of how to run your own API using akello.
 
-## Install Packages
-First install the akello package
+## Install akello and integrate into your Fast API server
+
 ```commandline
 pip install akello
 ```
 
-
-## Integrate into FastAPI
-
-Using FastAPI pull in the routes into your FastAPI server
+Add the API routes from akello into your FastAPI server (main.py)
 ```python
-from fastapi import FastAPI
-from mangum import Mangum
 from akello.api.v1.api import router as api_router
-
-app = FastAPI(docs_url="/docs")
-app.include_router(api_router, prefix="/v1")
-
-handler = Mangum(app)
-
 ```
-
 
 ## Setup NoSQL Workbench
 1. Download and install NoSQL Workbench over here: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.settingup.html
