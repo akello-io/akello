@@ -1,4 +1,4 @@
-# [akello](https://www.akello.io)
+# [akello](https://www.akello.io) &middot; [![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/akello-io/akello/blob/main/LICENSE)  [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=akello-io_akello&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=akello-io_akello)  [![Coverage Status](https://coveralls.io/repos/github/akello-io/akello/badge.svg?branch=main)](https://coveralls.io/github/akello-io/akello?branch=main)
 
 ![Alt text](/assets/banner.png "akello")
 
@@ -10,6 +10,21 @@ Akello is a developer platform that enables flexible and rapid development of po
 - **Akello SDK** - Client libraries that simplify the process of interacting with the **Akello API**.
 - **Akello App** - Web application where you can view your data and perform basic editing tasks. You can also use the Akello App to manage basic workflows.
 
+## Setup and run local
+
+Run the API Server, defaults to http://localhost:8000
+```console
+foo@bar:~$ cd packages/server
+foo@bar:~$ pip install -r requirements.text
+foo@bar:~$ uvicorn main:app --reload
+```
+
+Run the API Server, defaults to http://localhost:5432
+```console
+foo@bar:~$ cd packages/apps/cocm-registry
+foo@bar:~$ npm install
+foo@bar:~$ npm run start
+```
 
 ## Docs
 - [Contributing](#contributing)
@@ -58,15 +73,15 @@ Here is a list of all the big technologies we use:
 ```sh
 akello/
 ├── packages
-│   ├── apps               # On-premise agent
-│   ├── cdk                # AWS CDK
-│   ├── cli                # cli
-│   ├── docs               # docs
-│   ├── examples           # run examples
+│   ├── apps               # Client apps (mobile and web)
+│   ├── cdk                # AWS CDK scripts to setup infrastructure
+│   ├── cli                # CLI tools to manage running environments
+│   ├── docs               # docs hosted under docs.akello.io
+│   ├── examples           # Full end-to-end running examples 
 │   ├── react-components   # react components
 │   ├── react-core         # react core
-│   ├── server             # api's
-└── scripts                # scripts
+│   ├── server             # REST API's built with Python Fast API
+└── scripts                # General helper scripts (placeholder for now)
 ```
 
 ## License
