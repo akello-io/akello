@@ -58,15 +58,15 @@ Here is a list of all the big technologies we use:
 ```sh
 akello/
 ├── packages
-│   ├── apps               # On-premise agent
-│   ├── cdk                # AWS CDK
-│   ├── cli                # cli
-│   ├── docs               # docs
-│   ├── examples           # run examples
+│   ├── apps               # Client apps (mobile and web)
+│   ├── cdk                # AWS CDK scripts to setup infrastructure
+│   ├── cli                # CLI tools to manage running environments
+│   ├── docs               # docs hosted under docs.akello.io
+│   ├── examples           # Full end-to-end running examples 
 │   ├── react-components   # react components
 │   ├── react-core         # react core
-│   ├── server             # api's
-└── scripts                # scripts
+│   ├── server             # REST API's built with Python Fast API
+└── scripts                # General helper scripts (placeholder for now)
 ```
 
 ## License
