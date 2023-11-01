@@ -26,6 +26,10 @@ foo@bar:~$ npm install
 foo@bar:~$ npm run start
 ```
 
+## CoCM Registry App
+
+![Alt text](/assets/app-screenshot.png "akello")
+
 ## Docs
 - [Contributing](#contributing)
   - [Ground Rules](#ground-rules)
