@@ -10,6 +10,21 @@ Akello is a developer platform that enables flexible and rapid development of po
 - **Akello SDK** - Client libraries that simplify the process of interacting with the **Akello API**.
 - **Akello App** - Web application where you can view your data and perform basic editing tasks. You can also use the Akello App to manage basic workflows.
 
+## Setup and run local
+
+Run the API Server, defaults to http://localhost:8000
+```console
+foo@bar:~$ cd packages/server
+foo@bar:~$ pip install -r requirements.text
+foo@bar:~$ uvicorn main:app --reload
+```
+
+Run the API Server, defaults to http://localhost:5432
+```console
+foo@bar:~$ cd packages/apps/cocm-registry
+foo@bar:~$ npm install
+foo@bar:~$ npm run start
+```
 
 ## Docs
 - [Contributing](#contributing)
