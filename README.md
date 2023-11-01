@@ -80,10 +80,7 @@ akello/
 │   ├── apps               # Client apps (mobile and web)
 │   ├── cdk                # AWS CDK scripts to setup infrastructure
 │   ├── cli                # CLI tools to manage running environments
-│   ├── docs               # docs hosted under docs.akello.io
-│   ├── examples           # Full end-to-end running examples 
-│   ├── react-components   # react components
-│   ├── react-core         # react core
+│   ├── docs               # docs hosted under docs.akello.io 
 │   ├── server             # REST API's built with Python Fast API
 └── scripts                # General helper scripts (placeholder for now)
 ```
