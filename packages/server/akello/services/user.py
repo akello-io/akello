@@ -1,6 +1,6 @@
-from services import BaseService
-from dynamodb import registry_db
-from dynamodb.models.user import UserRegistry, UserModel, RegistryUser, UserEmail, UserRole
+from akello.services import BaseService
+from akello.dynamodb import registry_db
+from akello.dynamodb.models.user import UserRegistry, UserModel, RegistryUser, UserEmail, UserRole
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
 from decimal import Decimal

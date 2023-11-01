@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.2.6'
+VERSION = '0.0.0.12'
 DESCRIPTION = 'FastAPI server akello.io'
 LONG_DESCRIPTION = 'FastAPI server for running Measurement Based Care (MBC) programs'
 
@@ -17,7 +17,10 @@ setup(
     tests_require=[],
     install_requires=[
         'fastapi',
-        'boto3'
+        'boto3',
+        'pydantic',
+        'pydantic-settings',
+        'fastapi_cognito'
     ],
     classifiers= [
         'Development Status :: 3 - Alpha',

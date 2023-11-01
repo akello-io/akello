@@ -3,7 +3,7 @@ from pydantic.types import Any
 from typing import Optional
 from fastapi_cognito import CognitoAuth, CognitoSettings
 from pydantic import BaseModel, HttpUrl, Field
-from settings import AWS_REGION, AWS_COGNITO_USERPOOL_ID, AWS_COGNITO_APP_CLIENT_ID
+from akello.settings import AWS_REGION, AWS_COGNITO_USERPOOL_ID, AWS_COGNITO_APP_CLIENT_ID
 
 class Settings(BaseSettings):
     check_expiration: bool = True

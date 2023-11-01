@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
-from auth_settings import cognito_us
-from auth_settings import CognitoTokenCustom
-from dynamodb.models.user import UserInvite, RegistryUser
-from services.user import UserService
-from services.registry import RegistryService
+from akello.auth_settings import cognito_us
+from akello.auth_settings import CognitoTokenCustom
+from akello.dynamodb.models.user import UserInvite, RegistryUser
+from akello.services.user import UserService
+from akello.services.registry import RegistryService
 
 import logging
 logger = logging.getLogger('mangum')

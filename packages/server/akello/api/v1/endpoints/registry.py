@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends
-from dynamodb.models.user import UserInvite, UserRole
-from dynamodb.models.registry import TreatmentLog
-from dynamodb.models.registry import RegistryModel, PatientRegistry
-from services.registry import RegistryService
-from services.user import  UserService
-from services.reports import ReportsService
-from auth_settings import cognito_us
-from auth_settings import CognitoTokenCustom
+from akello.dynamodb.models.user import UserInvite, UserRole
+from akello.dynamodb.models.registry import TreatmentLog
+from akello.dynamodb.models.registry import RegistryModel, PatientRegistry
+from akello.services.registry import RegistryService
+from akello.services.user import  UserService
+from akello.services.reports import ReportsService
+from akello.auth_settings import cognito_us
+from akello.auth_settings import CognitoTokenCustom
 
 import logging
 logger = logging.getLogger('mangum')

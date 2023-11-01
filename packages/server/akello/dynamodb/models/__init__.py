@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from dynamodb import registry_db
+from akello.dynamodb import registry_db
 
 
 class RegistryDBBaseModel(BaseModel):

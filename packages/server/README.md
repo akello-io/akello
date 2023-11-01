@@ -26,3 +26,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
+
+
+## Publish a package
+python3 -m build
+twine upload dist/*

@@ -1,13 +1,12 @@
 from pydantic import BaseModel
 from typing import List, Optional
-from dynamodb import registry_db
-from dynamodb.models import RegistryDBBaseModel
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
 import datetime
 from decimal import Decimal
 from enum import Enum
-
+from akello.dynamodb import registry_db
+from akello.dynamodb.models import RegistryDBBaseModel
 
 class UserModel(RegistryDBBaseModel):
     cognito_user_id: int

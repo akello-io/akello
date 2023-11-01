@@ -1,5 +1,5 @@
 import boto3
-from settings import DYNAMODB_TABLE, AKELLO_ENV, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+from akello.settings import DYNAMODB_TABLE, AKELLO_ENV, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 if AKELLO_ENV != 'LOCAL':
     client = boto3.client('dynamodb', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)

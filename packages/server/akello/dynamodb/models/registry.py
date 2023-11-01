@@ -1,4 +1,4 @@
-from dynamodb.models import RegistryDBBaseModel
+from akello.dynamodb.models import RegistryDBBaseModel
 from enum import Enum
 from pydantic import BaseModel
 from typing import List, Optional

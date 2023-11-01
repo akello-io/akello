@@ -1,8 +1,8 @@
 import datetime, random, uuid, json
 from decimal import Decimal
-from dynamodb.models.registry import RegistryModel, ContactTypes, TreatmentLog, PatientRegistry
-from dynamodb import registry_db
-from services import BaseService
+from akello.dynamodb.models.registry import RegistryModel, ContactTypes, TreatmentLog, PatientRegistry
+from akello.dynamodb import registry_db
+from akello.services import BaseService
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
 

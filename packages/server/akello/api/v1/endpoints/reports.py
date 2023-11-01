@@ -1,10 +1,9 @@
 import logging
-
 from fastapi import APIRouter, Depends
-from services.user import  UserService
-from auth_settings import cognito_us
-from auth_settings import CognitoTokenCustom
-from services.reports import ReportsService
+from akello.services.user import  UserService
+from akello.auth_settings import cognito_us
+from akello.auth_settings import CognitoTokenCustom
+from akello.services.reports import ReportsService
 
 
 logger = logging.getLogger('mangum')

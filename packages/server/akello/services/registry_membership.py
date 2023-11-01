@@ -1,4 +1,4 @@
-from services import BaseService
+from akello.services import BaseService
 
 
 class RegistryMembershipService(BaseService):

@@ -1,10 +1,12 @@
 from fastapi import APIRouter
-from dynamodb.models.financial_model import FinancialModel, load_db_model, load_client_model
 from fastapi import Depends
-from auth_settings import cognito_us
-from dynamodb.query import FinancialModelQuery
 from typing import List
-from auth_settings import CognitoTokenCustom
+from akello.dynamodb.models.financial_model import FinancialModel, load_db_model, load_client_model
+from akello.auth_settings import cognito_us
+from akello.auth_settings import CognitoTokenCustom
+from akello.dynamodb.query import FinancialModelQuery
+
+
 
 router = APIRouter()
 

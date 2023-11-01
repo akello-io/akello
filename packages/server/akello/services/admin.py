@@ -1,7 +1,7 @@
-from services import BaseService
-from dynamodb import registry_db
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
+from akello.services import BaseService
+from akello.dynamodb import registry_db
 
 
 class AdminService(BaseService):

@@ -12,6 +12,9 @@ def get_secret():
     secret_name = os.getenv('AWS_SECRET_NAME')
     region_name = os.getenv('AWS_REGION')
 
+    assert secret_name != None
+    assert region_name != None
+
     # Create a Secrets Manager client
     session = boto3.session.Session()
     client = session.client(
