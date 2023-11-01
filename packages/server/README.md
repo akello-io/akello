@@ -27,6 +27,46 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
+### Call akello services
+
+Create a new registry
+```python
+from akello import registry
+moderate_depression = registry.create_registry('Moderate Depression')
+```
+
+Refer a patient
+```python
+from akello import registry
+from akello.dynamodb.models.registry import PatientRegistry
+
+# build a patient object using the PatientRegistry model
+patient_registry = PatientRegistry(
+    id='registry id',
+    # .. other attributes
+)
+
+registry.refer_patient(patient_registry)
+
+```
+
+
+Add a patient encounter
+```python
+from akello import registry
+from akello.dynamodb.models.registry import TreatmentLog
+
+treatment_log = TreatmentLog(
+    patient_mrn='<patients mrn>',
+    phq9_score=16,
+    gad7_score=12,
+    minutes=4,
+    # .. other required attributes
+)
+registry.add_treatment_log('<registry_id>', '<patient_id>', treatment_log)
+```
+
+
 
 ## Publish a package
 python3 -m build
