@@ -26,91 +26,94 @@ import {getUser} from "./api/user";
 
 // Configure Amplify in index file or root file
 
-/*
-Amplify.configure({
-    Auth: {
-        region: process.env.REACT_APP_TEST_AWS_REGION,
-        userPoolId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_ID,
-        userPoolWebClientId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_APP_CLIENT_ID
-    }
-})
-*/
-
+if(process.env.REACT_APP_MOCK != 'true') {
+    Amplify.configure({
+        Auth: {
+            region: process.env.REACT_APP_TEST_AWS_REGION,
+            userPoolId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_ID,
+            userPoolWebClientId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_APP_CLIENT_ID
+        }
+    })
+}
 
 
 function App() {
     const dispatch = useDispatch()
 
-    dispatch(setAuthToken('mock-token'))
 
-    return (
-        <>
-            <BrowserRouter>
-                <Routes>
-                    <Route index element={<RegistrySelector signOut={() => {}} />} />
-                    <Route path={"/profile"} element={<ProfileComponent />} />
-                    <Route path={"/registry/create"} element={<RegistryCreate />} />
-                    <Route path={"/dashboard"} element={<Dashboard />} />
-                    <Route path={"/calendar"} element={<CalendarComponent />} />
-                    <Route path={"/messages"} element={<MessagesComponent />} />
-                    <Route path={"/health"} element={<Dashboard />} />
-                    <Route path={"/team"} element={<TeamComponent />} />
-                    <Route path={"/reports"} element={<ReportsComponent />} />
-                    <Route path={"/reports/billing"} element={<BillingReport />} />
-                    <Route path={"/reports/registry"} element={<RegistryReport />} />
-                    <Route path={"/registry"} element={<RegistryComponent />} />
+    console.log(process.env)
+    if(process.env.REACT_APP_MOCK == 'true') {
+        dispatch(setAuthToken('mock-token'))
+        return (
+            <>
+                <BrowserRouter>
+                    <Routes>
+                        <Route index element={<RegistrySelector signOut={() => {}} />} />
+                        <Route path={"/profile"} element={<ProfileComponent />} />
+                        <Route path={"/registry/create"} element={<RegistryCreate />} />
+                        <Route path={"/dashboard"} element={<Dashboard />} />
+                        <Route path={"/calendar"} element={<CalendarComponent />} />
+                        <Route path={"/messages"} element={<MessagesComponent />} />
+                        <Route path={"/health"} element={<Dashboard />} />
+                        <Route path={"/team"} element={<TeamComponent />} />
+                        <Route path={"/reports"} element={<ReportsComponent />} />
+                        <Route path={"/reports/billing"} element={<BillingReport />} />
+                        <Route path={"/reports/registry"} element={<RegistryReport />} />
+                        <Route path={"/registry"} element={<RegistryComponent />} />
 
-                    <Route path={"/model"} element={<FinancialModelDetail />} />
-                    <Route path={"/models"} element={<FinancialModelList />} />
-                    <Route path={"/models/create"} element={<FinancialModelCreate />} />
-                    <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
+                        <Route path={"/model"} element={<FinancialModelDetail />} />
+                        <Route path={"/models"} element={<FinancialModelList />} />
+                        <Route path={"/models/create"} element={<FinancialModelCreate />} />
+                        <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
 
-                    <Route path={"/upgrade"} element={<UpgradeComponent />} />
-                </Routes>
-            </BrowserRouter>
-        </>
-    )
+                        <Route path={"/upgrade"} element={<UpgradeComponent />} />
+                    </Routes>
+                </BrowserRouter>
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
+                    {({ signOut, user }) => {
+                        Auth.currentSession().then((session) => {
 
-    return (
-        <>
-            <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
-                {({ signOut, user }) => {
-                    Auth.currentSession().then((session) => {
+                            let token = session.getIdToken().getJwtToken()
 
-                        let token = session.getIdToken().getJwtToken()
-                        dispatch(setAuthToken(token))
+                            dispatch(setAuthToken(token))
 
-                        pendo.initialize({
-                            visitor: {
-                                id: session.getIdToken().payload['sub'],
-                                email: user!.attributes!.email,
+                            pendo.initialize({
+                                visitor: {
+                                    id: session.getIdToken().payload['sub'],
+                                    email: user!.attributes!.email,
+                                }
+                            })
+
+                            getUser(token, (data) => {
+                                // just setting user activity and registering any user invites
+                                // get-user is not the ideal name here...
+                            })
+
+                            let stored_selection = localStorage.getItem("selectedRegistry")
+                            if(stored_selection) {
+                                dispatch(setSelectedRegistry(JSON.parse(stored_selection)))
+                            }
+
+                            dispatch(setUserProfile({
+                                first_name: session.getIdToken().payload['given_name'],
+                                last_name: session.getIdToken().payload['family_name'],
+                                email: session.getIdToken().payload['email'],
+                                profile_photo: session.getIdToken().payload['picture'],
+                            }))
+                        }).catch((resp) => {
+                            if(signOut) {
+                                signOut()
                             }
                         })
 
-                        getUser(token, (data) => {
-                            // just setting user activity and registering any user invites
-                            // get-user is not the ideal name here...
-                        })
-
-                        let stored_selection = localStorage.getItem("selectedRegistry")
-                        if(stored_selection) {
-                            dispatch(setSelectedRegistry(JSON.parse(stored_selection)))
-                        }
-
-                        dispatch(setUserProfile({
-                            first_name: session.getIdToken().payload['given_name'],
-                            last_name: session.getIdToken().payload['family_name'],
-                            email: session.getIdToken().payload['email'],
-                            profile_photo: session.getIdToken().payload['picture'],
-                        }))
-                    }).catch((resp) => {
-                        if(signOut) {
-                            signOut()
-                        }
-                    })
-
-                    return (
-                        <>
+                        return (
+                            <>
                                 <BrowserRouter>
                                     <Routes>
                                         <Route index element={<RegistrySelector signOut={signOut!} />} />
@@ -136,13 +139,14 @@ function App() {
                                     </Routes>
                                 </BrowserRouter>
 
-                        </>
-                    )
-                }}
-            </Authenticator>
-        </>
+                            </>
+                        )
+                    }}
+                </Authenticator>
+            </>
 
-    );
+        );
+    }
 }
 
 export default App;

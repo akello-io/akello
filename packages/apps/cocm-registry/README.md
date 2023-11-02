@@ -24,7 +24,7 @@ Run the mockserver
 mockserver -p 8000 -m mockserver/mocks
 ```
 
-Start the web app
+Start the web app with the mockserver
 ```shell
-npm run start
+npm run start:mock
 ```

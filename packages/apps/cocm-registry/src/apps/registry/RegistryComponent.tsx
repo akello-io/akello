@@ -38,7 +38,6 @@ export default function DataGridDemo() {
                 setRole(data['role'])
                 setIsLoading(false)
             }, (data) => {
-                debugger;
                 Auth.signOut()
                     .then(data => console.log(data))
                     .catch(err => console.log(err));

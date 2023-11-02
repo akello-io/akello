@@ -53,6 +53,7 @@
   },
   "scripts": {
     "start": "env-cmd react-scripts start",
+    "start:mock": "REACT_APP_MOCK=true env-cmd react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

@@ -71,7 +71,6 @@ const Section = () => {
         if(token) {
             setIsLoading(true)
             getUserRegistries(token, (data) => {
-                debugger;
                 setRegistries(data)
                 setIsLoading(false)
             })
