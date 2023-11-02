@@ -28,6 +28,7 @@
     "formik": "^2.4.5",
     "heroicons": "^2.0.18",
     "i": "^0.3.7",
+    "mockserver": "^3.1.1",
     "moment": "^2.29.4",
     "npm": "^10.2.1",
     "react": "^18.2.0",
@@ -52,6 +53,7 @@
   },
   "scripts": {
     "start": "env-cmd react-scripts start",
+    "start:mock": "REACT_APP_MOCK=true env-cmd react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
