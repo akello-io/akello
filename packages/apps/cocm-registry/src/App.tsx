@@ -26,7 +26,7 @@ import {getUser} from "./api/user";
 
 // Configure Amplify in index file or root file
 
-
+/*
 Amplify.configure({
     Auth: {
         region: process.env.REACT_APP_TEST_AWS_REGION,
@@ -34,12 +34,43 @@ Amplify.configure({
         userPoolWebClientId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_APP_CLIENT_ID
     }
 })
-
+*/
 
 
 
 function App() {
     const dispatch = useDispatch()
+
+    dispatch(setAuthToken('mock-token'))
+
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route index element={<RegistrySelector signOut={() => {}} />} />
+                    <Route path={"/profile"} element={<ProfileComponent />} />
+                    <Route path={"/registry/create"} element={<RegistryCreate />} />
+                    <Route path={"/dashboard"} element={<Dashboard />} />
+                    <Route path={"/calendar"} element={<CalendarComponent />} />
+                    <Route path={"/messages"} element={<MessagesComponent />} />
+                    <Route path={"/health"} element={<Dashboard />} />
+                    <Route path={"/team"} element={<TeamComponent />} />
+                    <Route path={"/reports"} element={<ReportsComponent />} />
+                    <Route path={"/reports/billing"} element={<BillingReport />} />
+                    <Route path={"/reports/registry"} element={<RegistryReport />} />
+                    <Route path={"/registry"} element={<RegistryComponent />} />
+
+                    <Route path={"/model"} element={<FinancialModelDetail />} />
+                    <Route path={"/models"} element={<FinancialModelList />} />
+                    <Route path={"/models/create"} element={<FinancialModelCreate />} />
+                    <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
+
+                    <Route path={"/upgrade"} element={<UpgradeComponent />} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    )
+
     return (
         <>
             <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
@@ -77,7 +108,6 @@ function App() {
                             signOut()
                         }
                     })
-
 
                     return (
                         <>

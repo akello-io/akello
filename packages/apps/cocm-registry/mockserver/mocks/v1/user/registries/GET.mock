@@ -1,0 +1,26 @@
+HTTP/1.1 200 OK
+Allow: OPTIONS, GET, HEAD, POST
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS, GET, HEAD, POST
+Access-Control-Allow-Headers: Authorization,content-type
+Access-Control-Allow-Credentials: true
+Content-Type: application/json
+
+[
+   {
+      "id": "1",
+      "name": "Registry - long delay",
+      "modified_date": 0,
+      "created_date": 0,
+      "members": 3,
+      "active_patients": 3
+   },
+   {
+         "id": "2",
+         "name": "Registry - short delay",
+         "modified_date": 0,
+         "created_date": 0,
+         "members": 3,
+         "active_patients": 3
+      }
+]
