@@ -1,5 +1,9 @@
 # CoCM Registry
 
+
+> **Warning**
+For local development you will need a free AWS account with cognito pools created. Please reference AWS docs.
+
 ## Setup .env
 
 Create your .env files under the env folder with the following environment variables

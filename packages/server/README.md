@@ -1,5 +1,7 @@
-
 ## Setup DynamoDB on your local environment
+
+> **Warning**
+For local development you will need a free AWS account with cognito pools created. Please reference AWS docs.
 
 
 ### Setup NoSQL Workbench
