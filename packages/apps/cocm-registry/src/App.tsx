@@ -95,12 +95,12 @@ function App() {
                                         <Route path={"/reports/billing"} element={<BillingReport />} />
                                         <Route path={"/reports/registry"} element={<RegistryReport />} />
                                         <Route path={"/registry"} element={<RegistryComponent />} />
-                                        {/*
-                                            <Route path={"/model"} element={<FinancialModelDetail />} />
-                                            <Route path={"/models"} element={<FinancialModelList />} />
-                                            <Route path={"/models/create"} element={<FinancialModelCreate />} />
-                                            <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
-                                        */}
+
+                                        <Route path={"/model"} element={<FinancialModelDetail />} />
+                                        <Route path={"/models"} element={<FinancialModelList />} />
+                                        <Route path={"/models/create"} element={<FinancialModelCreate />} />
+                                        <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
+
                                         <Route path={"/upgrade"} element={<UpgradeComponent />} />
                                         <Route path={"/settings"} element={<SettingsComponent user={user} signOut={signOut!} />} />
                                     </Routes>
