@@ -1,6 +1,7 @@
 
 ## Setup DynamoDB on your local environment
 
+
 ### Setup NoSQL Workbench
 1. Download and install NoSQL Workbench over here: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.settingup.html
 2. Once you installed NoSQL Workbench, run DynamoDB locally
