@@ -37,40 +37,42 @@ if(process.env.REACT_APP_MOCK != 'true') {
 }
 
 
+const routes = () => {
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route index element={<RegistrySelector signOut={() => {}} />} />
+                    <Route path={"/profile"} element={<ProfileComponent />} />
+                    <Route path={"/registry/create"} element={<RegistryCreate />} />
+                    <Route path={"/dashboard"} element={<Dashboard />} />
+                    <Route path={"/calendar"} element={<CalendarComponent />} />
+                    <Route path={"/messages"} element={<MessagesComponent />} />
+                    <Route path={"/health"} element={<Dashboard />} />
+                    <Route path={"/team"} element={<TeamComponent />} />
+                    <Route path={"/reports"} element={<ReportsComponent />} />
+                    <Route path={"/reports/billing"} element={<BillingReport />} />
+                    <Route path={"/reports/registry"} element={<RegistryReport />} />
+                    <Route path={"/registry"} element={<RegistryComponent />} />
+
+                    <Route path={"/model"} element={<FinancialModelDetail />} />
+                    <Route path={"/models"} element={<FinancialModelList />} />
+                    <Route path={"/models/create"} element={<FinancialModelCreate />} />
+                    <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
+
+                    <Route path={"/upgrade"} element={<UpgradeComponent />} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    )
+}
+
 function App() {
     const dispatch = useDispatch()
 
-
-    console.log(process.env)
     if(process.env.REACT_APP_MOCK == 'true') {
         dispatch(setAuthToken('mock-token'))
-        return (
-            <>
-                <BrowserRouter>
-                    <Routes>
-                        <Route index element={<RegistrySelector signOut={() => {}} />} />
-                        <Route path={"/profile"} element={<ProfileComponent />} />
-                        <Route path={"/registry/create"} element={<RegistryCreate />} />
-                        <Route path={"/dashboard"} element={<Dashboard />} />
-                        <Route path={"/calendar"} element={<CalendarComponent />} />
-                        <Route path={"/messages"} element={<MessagesComponent />} />
-                        <Route path={"/health"} element={<Dashboard />} />
-                        <Route path={"/team"} element={<TeamComponent />} />
-                        <Route path={"/reports"} element={<ReportsComponent />} />
-                        <Route path={"/reports/billing"} element={<BillingReport />} />
-                        <Route path={"/reports/registry"} element={<RegistryReport />} />
-                        <Route path={"/registry"} element={<RegistryComponent />} />
-
-                        <Route path={"/model"} element={<FinancialModelDetail />} />
-                        <Route path={"/models"} element={<FinancialModelList />} />
-                        <Route path={"/models/create"} element={<FinancialModelCreate />} />
-                        <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
-
-                        <Route path={"/upgrade"} element={<UpgradeComponent />} />
-                    </Routes>
-                </BrowserRouter>
-            </>
-        )
+        return routes()
     }
     else {
         return (
@@ -112,35 +114,7 @@ function App() {
                             }
                         })
 
-                        return (
-                            <>
-                                <BrowserRouter>
-                                    <Routes>
-                                        <Route index element={<RegistrySelector signOut={signOut!} />} />
-                                        <Route path={"/profile"} element={<ProfileComponent />} />
-                                        <Route path={"/registry/create"} element={<RegistryCreate />} />
-                                        <Route path={"/dashboard"} element={<Dashboard />} />
-                                        <Route path={"/calendar"} element={<CalendarComponent />} />
-                                        <Route path={"/messages"} element={<MessagesComponent />} />
-                                        <Route path={"/health"} element={<Dashboard />} />
-                                        <Route path={"/team"} element={<TeamComponent />} />
-                                        <Route path={"/reports"} element={<ReportsComponent />} />
-                                        <Route path={"/reports/billing"} element={<BillingReport />} />
-                                        <Route path={"/reports/registry"} element={<RegistryReport />} />
-                                        <Route path={"/registry"} element={<RegistryComponent />} />
-
-                                        <Route path={"/model"} element={<FinancialModelDetail />} />
-                                        <Route path={"/models"} element={<FinancialModelList />} />
-                                        <Route path={"/models/create"} element={<FinancialModelCreate />} />
-                                        <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
-
-                                        <Route path={"/upgrade"} element={<UpgradeComponent />} />
-                                        <Route path={"/settings"} element={<SettingsComponent user={user} signOut={signOut!} />} />
-                                    </Routes>
-                                </BrowserRouter>
-
-                            </>
-                        )
+                        return routes()
                     }}
                 </Authenticator>
             </>
