@@ -10,7 +10,13 @@ Akello is a developer platform that enables flexible and rapid development of po
 - **Akello SDK** - Client libraries that simplify the process of interacting with the **Akello API**.
 - **Akello App** - Web application where you can view your data and perform basic editing tasks. You can also use the Akello App to manage basic workflows.
 
+
+
 ## Quick start guide
+
+> **Warning**
+For local development you will need a free AWS account with cognito pools created. Please reference AWS docs.
+
 
 The best way to start working with akello and seeing how it works is by trying out one of our examples under /examples
 
