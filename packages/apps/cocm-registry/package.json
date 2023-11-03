@@ -54,7 +54,7 @@
   "scripts": {
     "start": "env-cmd react-scripts start",
     "start:mock": "REACT_APP_MOCK=true env-cmd react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
