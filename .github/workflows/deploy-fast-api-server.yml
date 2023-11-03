@@ -22,5 +22,5 @@ jobs:
         uses: int128/deploy-lambda-action@v1
         with:
           function-name: demo-akello-io
-          image-uri: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.REGION.amazonaws.com/demo-akello-io:latest
+          image-uri: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/demo-akello-io:latest
 
