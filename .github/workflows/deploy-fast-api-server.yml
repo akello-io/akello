@@ -1,6 +1,11 @@
 name: demo.akello.io deploy
 run-name: ${{ github.actor }} is deploying to demo 🚀
-on: [push]
+on:
+  workflow_run:
+    workflows: [ "Run API Server Tests" ]
+    branches: [ main ]
+    types:
+      - completed
 jobs:
   Deploy-FastAPI-Demo:
     runs-on: ubuntu-latest
