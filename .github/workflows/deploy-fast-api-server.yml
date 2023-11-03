@@ -1,4 +1,4 @@
-name: Deplooy Fast API Server
+name: demo.akello.io deploy
 run-name: ${{ github.actor }} is deploying to demo 🚀
 on: [push]
 jobs:
