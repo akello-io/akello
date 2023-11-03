@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is deploying to demo 🚀
 on: [push]
 jobs:
   Deploy-FastAPI-Demo:
-    runs-on: actuated-aarch64
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build Docker
