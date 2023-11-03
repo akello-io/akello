@@ -36,13 +36,12 @@ jobs:
 
       - uses: shallwefootball/s3-upload-action@master
         name: Upload S3
-        working-directory: packages/apps/cocm-registry
         id: S3
         with:
           aws_key_id: ${{ secrets.AWS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_bucket: ${{ secrets.AWS_BUCKET }}
-          source_dir: 'build'
+          source_dir: 'packages/apps/cocm-registry/build'
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
