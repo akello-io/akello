@@ -2,6 +2,6 @@ FROM public.ecr.aws/lambda/python:3.11
 ARG env
 COPY ./ ./
 COPY ./requirements.txt ./requirements.txt
-RUN pip install --upgrade pip
+RUN python -m pip install --upgrade pip
 RUN pip install -r ./requirements.txt
 CMD ["akello.main.handler"]
