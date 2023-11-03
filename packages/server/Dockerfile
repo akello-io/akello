@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/python:3.9
+FROM public.ecr.aws/lambda/python:3.11
 ARG env
 COPY ./ ./
 COPY ./requirements.txt ./requirements.txt
