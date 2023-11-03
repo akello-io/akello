@@ -11,7 +11,8 @@ AWS_COGNITO_USERPOOL_ID=os.getenv('AWS_COGNITO_USERPOOL_ID')
 AWS_COGNITO_APP_CLIENT_ID=os.getenv('AWS_COGNITO_APP_CLIENT_ID')
 
 
-if AKELLO_ENV != 'LOCAL':
+#TODO: We need a better way to do this...
+if AKELLO_ENV not in ['LOCAL', 'TEST']:
     secrets = get_secret()
     AWS_REGION=secrets['AWS_REGION']
     AWS_SECRET_NAME=secrets['AWS_SECRET_NAME']

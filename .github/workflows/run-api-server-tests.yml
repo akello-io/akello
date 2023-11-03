@@ -1,0 +1,18 @@
+name: Run API Server Tests
+on: [push]
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        working-directory: packages/server
+        run: pip install -r requirements.txt
+      - name: Run unit tests
+        working-directory: packages/server
+        run: python -m unittest discover tests
+
