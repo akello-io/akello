@@ -26,3 +26,28 @@ jobs:
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: demo-akello-io
           image_uri: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/demo-akello-io:latest
+  Deploy-Demo-App:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build node
+        working-directory: packages/apps/cocm-registry
+        run: npm run build
+
+      - uses: shallwefootball/s3-upload-action@master
+        name: Upload S3
+        working-directory: packages/apps/cocm-registry
+        id: S3
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: 'build'
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          PATHS: '/*'
+          AWS_REGION: 'us-east-1'
+          DISTRIBUTION: ${{ secrets.AWS_CLOUD_FRONT_DISTRIBUTION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
