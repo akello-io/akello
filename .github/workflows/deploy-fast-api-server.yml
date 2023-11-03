@@ -1,6 +1,5 @@
 name: Deplooy Fast API Server
 run-name: ${{ github.actor }} is deploying to demo 🚀
-on: [push]
 jobs:
   Deploy-FastAPI-Demo:
     runs-on: ubuntu-latest
@@ -18,8 +17,11 @@ jobs:
           region: us-east-1
           local-image: demo-akello-io
           image: demo-akello-io:latest
-      - name: Update Lambda
-        uses: int128/deploy-lambda-action@v1
+      - name: default deploy
+        uses: appleboy/lambda-action@v0.1.9
         with:
-          function-name: demo-akello-io
-          image-uri: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/demo-akello-io:latest
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ secrets.AWS_REGION }}
+          function_name: demo-akello-io
+          image_uri: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/demo-akello-io:latest          
