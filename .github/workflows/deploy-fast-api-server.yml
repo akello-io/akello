@@ -30,6 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install packages
+        working-directory: packages/apps/cocm-registry
+        run: npm install
+
       - name: Build node
         working-directory: packages/apps/cocm-registry
         run: npm run build
@@ -42,6 +46,7 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_bucket: ${{ secrets.AWS_BUCKET }}
           source_dir: 'packages/apps/cocm-registry/build'
+
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
