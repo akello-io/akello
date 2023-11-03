@@ -1,5 +1,4 @@
 name: Deplooy Fast API Server
-uses: jwalton/gh-ecr-push@v1.3.6
 run-name: ${{ github.actor }} is deploying to demo 🚀
 on: [push]
 jobs:
@@ -9,7 +8,7 @@ jobs:
       - run: docker build --t demo-akello-io .
       - name: Push to ECR
         id: ecr
-        uses: jwalton/gh-ecr-push@v1
+        uses: jwalton/gh-ecr-push@v1.3.6
         with:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
