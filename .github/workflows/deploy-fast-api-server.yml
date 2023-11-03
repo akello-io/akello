@@ -18,3 +18,9 @@ jobs:
           region: us-east-1
           local-image: demo-akello-io
           image: demo-akello-io:latest
+      - name: Update Lambda
+        uses: int128/deploy-lambda-action@v1
+        with:
+          function-name: demo-akello-io
+          image-uri: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.REGION.amazonaws.com/demo-akello-io:latest
+
