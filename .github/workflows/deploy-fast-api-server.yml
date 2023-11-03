@@ -1,5 +1,6 @@
 name: Deplooy Fast API Server
 run-name: ${{ github.actor }} is deploying to demo 🚀
+on: [push]
 jobs:
   Deploy-FastAPI-Demo:
     runs-on: ubuntu-latest
@@ -24,4 +25,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: demo-akello-io
-          image_uri: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/demo-akello-io:latest          
+          image_uri: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/demo-akello-io:latest
