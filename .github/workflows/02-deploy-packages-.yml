@@ -18,7 +18,6 @@ jobs:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
       # retrieve your distributions here
-      - uses: actions/checkout@v2
       - name: Publish package distributions to PyPI
-        working-directory: packages/server
         uses: pypa/gh-action-pypi-publish@release/v1
+
