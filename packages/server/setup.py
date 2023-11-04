@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.0.15'
+VERSION = '0.0.10'
 DESCRIPTION = 'FastAPI server akello.io'
 LONG_DESCRIPTION = 'FastAPI server for running Measurement Based Care (MBC) programs'
 
