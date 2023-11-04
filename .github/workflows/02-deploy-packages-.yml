@@ -18,6 +18,13 @@ jobs:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
       # retrieve your distributions here
+      - name: Install packages
+        working-directory: packages/server
+        run: pip install -r requirements.txt
+      - name: Build
+        working-directory: packages/server
+        run: python -m build
       - name: Publish package distributions to PyPI
+        working-directory: packages/server
         uses: pypa/gh-action-pypi-publish@release/v1
 
