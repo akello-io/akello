@@ -25,6 +25,7 @@ jobs:
         working-directory: packages/server
         run: python -m build
       - name: Publish package distributions to PyPI
-        working-directory: packages/server
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: packages/server/
 
