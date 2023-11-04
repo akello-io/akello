@@ -45,6 +45,11 @@ const columns: GridColDef[] = [
         headerName: 'Minutes',
         width: 160,
     },
+    {
+        field: 'no_show',
+        headerName: 'No Show',
+        width: 160,
+    },
 ];
 
 

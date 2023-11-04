@@ -60,7 +60,7 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
     const token = useSelector ((state: RootState) => state.app.token)
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
 
-
+    const [noShow, setNoShow] = useState(false)
 
     type ScreeningQuestionType = {
         id: number
@@ -203,6 +203,7 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                     phq9_score: phq9_score,
                                     gad7_score: gad7_score,
                                     minutes: mm,
+                                    no_show: noShow,
                                     date: Date.now() // UTC time
                                 }, (data) => {
                                     let treatment_logs = [...selectedPatient.treatment_logs!, data]
@@ -254,6 +255,17 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                     ]} setSelectedOption={(option) => {
                                     setContactTye(option)
                                 }}/>
+                            </div>
+                            <div className={"font-semibold"}>No Show</div>
+                            <div className={"text-right"}>
+                                <input
+                                    type="checkbox"
+                                    checked={noShow}
+                                    className="checkbox"
+                                    onChange={()=> {
+                                        setNoShow(!noShow)
+                                    }}
+                                />
                             </div>
                         </div>
                     </div>

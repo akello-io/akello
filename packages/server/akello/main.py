@@ -1,10 +1,9 @@
 from fastapi import FastAPI
 from akello.settings import *
+from akello.api.v1.api import router as api_router
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 from aws_lambda_powertools import Logger
-from akello.dynamodb import *
-from akello.api.v1.api import router as api_router
 
 
 logger = Logger(service="mangum")

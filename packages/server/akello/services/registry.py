@@ -99,6 +99,7 @@ class RegistryService(BaseService):
         if treatment_log.contact_type == ContactTypes.initial_assessment:
             UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
                                "flag = :flag," \
+                               "no_show = :no_show," \
                                "phq9_first = :phq9_first, " \
                                "phq9_last = :phq9_last, " \
                                "phq9_last_date = :phq9_last_date, " \
@@ -111,6 +112,7 @@ class RegistryService(BaseService):
             ExpressionAttributeValues = {
                 ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
                 ':flag': treatment_log.flag,
+                ':no_show': treatment_log.no_show,
                 ':phq9_first': treatment_log.phq9_score,
                 ':phq9_last': treatment_log.phq9_score,
                 ':phq9_last_date': Decimal(treatment_log.date),
@@ -124,6 +126,7 @@ class RegistryService(BaseService):
         if treatment_log.contact_type == ContactTypes.follow_up:
             UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
                                "flag = :flag," \
+                               "no_show = :no_show," \
                                "phq9_last = :phq9_last, " \
                                "phq9_last_date = :phq9_last_date, " \
                                "gad7_last = :gad7_last, " \
@@ -134,6 +137,7 @@ class RegistryService(BaseService):
             ExpressionAttributeValues = {
                 ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
                 ':flag': treatment_log.flag,
+                ':no_show': treatment_log.no_show,
                 ':phq9_last': treatment_log.phq9_score,
                 ':phq9_last_date': Decimal(treatment_log.date),
                 ':gad7_last': treatment_log.gad7_score,
@@ -145,6 +149,7 @@ class RegistryService(BaseService):
         if treatment_log.contact_type == ContactTypes.psychiatric_consultation:
             UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
                                "flag = :flag," \
+                               "no_show = :no_show," \
                                "phq9_last = :phq9_last, " \
                                "phq9_last_date = :phq9_last_date, " \
                                "gad7_last = :gad7_last, " \
@@ -155,6 +160,7 @@ class RegistryService(BaseService):
             ExpressionAttributeValues = {
                 ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
                 ':flag': treatment_log.flag,
+                ':no_show': treatment_log.no_show,
                 ':phq9_last': treatment_log.phq9_score,
                 ':phq9_last_date': Decimal(treatment_log.date),
                 ':gad7_last': treatment_log.gad7_score,
@@ -166,6 +172,7 @@ class RegistryService(BaseService):
         if treatment_log.contact_type == ContactTypes.relapse_prevention:
             UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
                                "flag = :flag," \
+                               "no_show = :no_show," \
                                "phq9_last = :phq9_last, " \
                                "phq9_last_date = :phq9_last_date, " \
                                "gad7_last = :gad7_last, " \
@@ -176,6 +183,7 @@ class RegistryService(BaseService):
             ExpressionAttributeValues = {
                 ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
                 ':flag': treatment_log.flag,
+                ':no_show': treatment_log.no_show,
                 ':phq9_last': treatment_log.phq9_score,
                 ':phq9_last_date': Decimal(treatment_log.date),
                 ':gad7_last': treatment_log.gad7_score,
