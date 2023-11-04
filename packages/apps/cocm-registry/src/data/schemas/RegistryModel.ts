@@ -8,6 +8,7 @@ export class TreatmentLog {
     gad7_score?: number
     minutes?: number
     date: number
+    no_show?: boolean
 
     constructor(
         contact_type: string,
@@ -16,7 +17,8 @@ export class TreatmentLog {
         phq9_score: number,
         gad7_score: number,
         minutes: number,
-        date: number
+        date: number,
+        no_show: boolean
     ) {
         this.id = contact_type + visit_type + date
         this.contact_type = contact_type
@@ -26,6 +28,7 @@ export class TreatmentLog {
         this.gad7_score = gad7_score
         this.minutes = minutes
         this.date = date
+        this.no_show = no_show
     }
 
 }

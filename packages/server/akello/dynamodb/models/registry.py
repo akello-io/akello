@@ -47,13 +47,38 @@ class VisitTypes(str, Enum):
 
 class TreatmentLog(BaseModel):
     patient_mrn: Optional[str] = None
-    contact_type: ContactTypes
+    provider: Optional[str] = None
+
+    #TODO: Add a UI to flag if a user was a no-show
+    no_show: Optional[bool] = False
+
     flag: Optional[FlagTypes] = None
     weeks_in_treatment: int
+    contact_type: ContactTypes
     visit_type: VisitTypes
+
     phq9_score: Optional[int] = None
+
+    # TODO: Needs to be automatically set based on Registry configurations
+    phq9_remission_met: Optional[bool] = False
     gad7_score: Optional[int] = None
+
+    # TODO: Needs to be automatically set based on Registry configurations
+    gad7_remission_met: Optional[bool] = False
+
     minutes: Optional[int] = None
+
+    # TODO: Need to implement a notification workflow
+    sms_reminder_sent_date: Optional[float] = None
+    sms_conformation_received_date: Optional[float] = None
+    total_sms_reminders_sent: Optional[int] = 0
+
+    # TODO: Need to implement a notification workflow
+    email_reminder_sent_date: Optional[float] = None
+    email_conformation_received_date: Optional[float] = None
+    total_email_reminders_sent: Optional[int] = 0
+
+    # TODO: Allow the ability to schedule future sessions
     date: float
 
 

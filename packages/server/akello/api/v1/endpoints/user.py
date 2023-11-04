@@ -12,6 +12,7 @@ router = APIRouter()
 
 @router.get("")
 async def get_user(auth: CognitoTokenCustom = Depends(cognito_us.auth_required)):
+
     logger.info('calling get_user: email:%s' % auth.email)
     user = UserService.get_user(auth.cognito_id)
     if not user:

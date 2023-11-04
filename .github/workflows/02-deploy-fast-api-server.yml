@@ -2,7 +2,7 @@ name: demo.akello.io deploy
 run-name: ${{ github.actor }} is deploying to demo 🚀
 on:
   workflow_run:
-    workflows: [ "Run API Server Tests" ]
+    workflows: [ "Run API Server Tests"]
     branches: [ main ]
     types:
       - completed
