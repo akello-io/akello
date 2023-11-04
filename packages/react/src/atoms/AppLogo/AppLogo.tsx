@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "./AppLogo.scss";
+
 
 export interface AppLogoProps {
     src: string;
@@ -7,7 +8,9 @@ export interface AppLogoProps {
 }
 
 const AppLogo = (props: AppLogoProps) => {
-    return <img  className={"w-12 h-12"} src={props.src} />
+
+
+    return <img className={props.size}  src={props.src} />
 };
 
 export default AppLogo;
