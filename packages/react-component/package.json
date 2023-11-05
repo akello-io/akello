@@ -1,8 +1,9 @@
 {
   "name": "@akello/react",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.3",
+  "private": false,
   "type": "module",
+  "license": "Apache-2.0",
   "dependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
     "@testing-library/jest-dom": "^5.17.0",
