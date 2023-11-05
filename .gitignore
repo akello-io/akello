@@ -2,5 +2,5 @@
 dist/
 .idea/
 venv
-env
+.env
 .DS_Store
