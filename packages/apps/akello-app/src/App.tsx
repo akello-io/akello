@@ -1,10 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 import '@aws-amplify/ui-react/styles.css';
 import {Amplify, Auth} from 'aws-amplify';
 import {Authenticator} from "@aws-amplify/ui-react";
 import {cognito_auth_components, cognito_auth_formFields} from "./cognito_auth";
+import {BrowserRouter, Routes} from "react-router-dom";
+import {Route} from "react-router";
+import AppLogo from '../src/images/logos/akello/akello-white-logo.png'
+
+import {HomePage} from '@akello/react';
 
 
 Amplify.configure({
@@ -15,21 +19,58 @@ Amplify.configure({
   }
 })
 
+
+const routes = () => {
+    return (
+        <>
+            <BrowserRouter>
+                <Routes><Route index element={<></>} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    )
+}
+
+
 function App() {
-  return (
-    <div>
-      <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
-          {({ signOut, user }) => {
-              return (
-                  <>
-                      <button onClick={signOut}>signout</button>
-                      Logged In
-                  </>
-              )
-          }}
-      </Authenticator>
-    </div>
-  );
+
+    const [token, setToken] = useState('')
+    const [first_name, setFirstName] = useState('')
+    const [email, setEmail] = useState('')
+    const [profile_photo, setProfilePhoto] = useState('')
+
+      return (
+        <div>
+          <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
+              {({ signOut, user }) => {
+
+                  Auth.currentSession().then((session) => {
+                      setToken(session.getIdToken().getJwtToken())
+                      setFirstName(session.getIdToken().payload['given_name'])
+                      setEmail(session.getIdToken().payload['email'])
+                      setProfilePhoto(session.getIdToken().payload['picture'])
+                  }).catch((resp) => {
+                      if(signOut) {
+                          signOut()
+                      }
+                  })
+
+
+                  if(token) {
+                      const Home = (<HomePage app_logo={AppLogo} first_name={first_name} email={email} profile_photo={profile_photo} token={token}/>)
+                      return (
+                          <BrowserRouter>
+                              <Routes>
+                                  <Route index element={Home} />
+                              </Routes>
+                          </BrowserRouter>
+                      )
+                  }
+                  return <>No token</>
+              }}
+          </Authenticator>
+        </div>
+      );
 }
 
 export default App;

@@ -44,4 +44,13 @@ interface WelcomeTemplateProps {
 }
 declare const WelcomeTemplate: (props: WelcomeTemplateProps) => React.JSX.Element;
 
-export { Button, RegistryMemberships, RegistrySelectRow, TopNavigation, WelcomeBanner, WelcomeTemplate };
+interface HomePageProps {
+    app_logo: string;
+    first_name: string;
+    email: string;
+    profile_photo: string;
+    token: string;
+}
+declare const HomePage: (props: HomePageProps) => React.JSX.Element;
+
+export { Button, HomePage, RegistryMemberships, RegistrySelectRow, TopNavigation, WelcomeBanner, WelcomeTemplate };
