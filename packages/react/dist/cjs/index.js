@@ -2902,20 +2902,16 @@ var TopNavigation = function (props) {
             React.createElement("div", { className: "flex-1" },
                 React.createElement("img", { src: props.logo, className: "w-12 h-auto" })),
             React.createElement("div", { className: "flex-none gap-2" },
-                React.createElement("button", { className: "btn btn-info rounded-md" }, "Create Registry"),
+                React.createElement("button", { className: "btn btn-info rounded-md", onClick: function () { return props.createRegistry(); } }, "Create Registry"),
                 React.createElement("div", { className: "dropdown dropdown-end" },
                     React.createElement("label", { tabIndex: 0, className: "btn btn-ghost btn-circle avatar" },
                         React.createElement("div", { className: "w-10 rounded-full" },
                             React.createElement("img", { src: props.profile_photo }))),
                     React.createElement("ul", { tabIndex: 0, className: "mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52" },
                         React.createElement("li", null,
-                            React.createElement("a", { className: "justify-between" },
-                                "Profile",
-                                React.createElement("span", { className: "badge" }, "New"))),
+                            React.createElement("a", { className: "justify-between" }, props.email)),
                         React.createElement("li", null,
-                            React.createElement("a", null, "Settings")),
-                        React.createElement("li", null,
-                            React.createElement("a", null, "Logout"))))))));
+                            React.createElement("button", { onClick: function () { return props.logout(); } }, "Logout"))))))));
 };
 
 var WelcomeBanner = function (props) {

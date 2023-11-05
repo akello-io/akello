@@ -36,6 +36,9 @@ export default function App() {
           <TopNavigation
               classNames={'px-24 bg-ak-dark-blue'}
               logo={AppLogo}
+              createRegistry={() => console.log('create registry clicked')}
+              logout={() => {console.log('logout clicked')}}
+              email={"test@gmail.com"}
               profile_photo={"https://pbs.twimg.com/profile_images/679362003652055040/e3WMaSAs_400x400.jpg"}
           />
           <div className="h-fit min-h-screen bg-ak-dark-blue">
