@@ -2799,9 +2799,93 @@ if (process.env.NODE_ENV === 'production') {
 var reactExports = react.exports;
 var React = /*@__PURE__*/getDefaultExportFromCjs(reactExports);
 
+var classnames = {exports: {}};
+
+/*!
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
+*/
+
+(function (module) {
+	/* global define */
+
+	(function () {
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames() {
+			var classes = [];
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					if (arg.length) {
+						var inner = classNames.apply(null, arg);
+						if (inner) {
+							classes.push(inner);
+						}
+					}
+				} else if (argType === 'object') {
+					if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+						classes.push(arg.toString());
+						continue;
+					}
+
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+
+			return classes.join(' ');
+		}
+
+		if (module.exports) {
+			classNames.default = classNames;
+			module.exports = classNames;
+		} else {
+			window.classNames = classNames;
+		}
+	}()); 
+} (classnames));
+
+var classnamesExports = classnames.exports;
+var classNames = /*@__PURE__*/getDefaultExportFromCjs(classnamesExports);
+
 var Button = function (props) {
-    return React.createElement("div", { className: "btn btn-sm btn-primary" }, props.label);
+    return React.createElement("div", { className: classNames({
+            "btn-sm": props.size == 'sm',
+            "btn-md": props.size == 'md',
+            "btn-lg": props.size == 'lg',
+            "btn-normal": props.type == 'normal',
+            "btn-primary": props.type == 'primary',
+            "btn-secondary": props.type == 'secondary',
+            "btn-accent": props.type == 'accent',
+            "btn-ghost": props.type == 'ghost',
+            "btn-link": props.type == 'link',
+        }, "btn btn-sm btn-primary") }, props.label);
 };
 
-export { Button };
+var WelcomeBanner = function (props) {
+    return (React.createElement("div", { className: classNames(props.classNames, 'text-4xl font-black') },
+        "\uD83C\uDF08 Welcome back, ",
+        props.first_name));
+};
+
+var WelcomeTemplate = function (props) {
+    return (React.createElement("div", { className: "p-4 mx-auto max-w-7xl pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-1 lg:gap-x-8 lg:px-8 lg:py-20 space-y-12" },
+        React.createElement(WelcomeBanner, { first_name: props.first_name, classNames: props.bannerStyles }),
+        props.children));
+};
+
+export { Button, WelcomeBanner, WelcomeTemplate };
 //# sourceMappingURL=index.js.map

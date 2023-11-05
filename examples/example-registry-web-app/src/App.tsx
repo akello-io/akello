@@ -1,17 +1,23 @@
 import React from 'react';
 import './App.css';
-import {Button} from '@akello/react'
+import {Button, WelcomeBanner, WelcomeTemplate} from '@akello/react'
+
+
+const data = {
+    first_name: 'Vijay',
+}
+
 
 export default function App() {
   return (
       <div>
-          <button
-              type="button"
-              className="rounded bg-indigo-300 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-              Button text
-          </button>
-          <Button label={"test"} />
+          <div className="h-fit min-h-screen bg-blue-800  ">
+              <WelcomeTemplate first_name={data.first_name} bannerStyles={"text-white"}>
+                  <div>
+                      Child
+                  </div>
+              </WelcomeTemplate>
+          </div>
       </div>
   )
 }
