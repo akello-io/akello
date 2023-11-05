@@ -23,12 +23,12 @@ jobs:
 
       - name: Upload to S3
         run: |
-          aws s3 sync packages/react s3://storybook.akello.io
+          aws s3 sync packages/react/storybook-static s3://storybook.akello.io
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: 'us-east-1'
-            
+
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
