@@ -2933,8 +2933,11 @@ var WelcomeTemplate = function (props) {
 };
 
 var HomePage = function (props) {
+    /*
+    make a API call to fetch the registries
+    */
     return (React.createElement(React.Fragment, null,
-        React.createElement(TopNavigation, { classNames: 'px-24 bg-ak-dark-blue', logo: props.app_logo, createRegistry: function () { return console.log('create registry clicked'); }, logout: function () { console.log('logout clicked'); }, email: props.email, profile_photo: props.profile_photo }),
+        React.createElement(TopNavigation, { classNames: 'px-24 bg-ak-dark-blue', logo: props.app_logo, createRegistry: function () { return console.log('create registry clicked'); }, logout: props.signOut, email: props.email, profile_photo: props.profile_photo }),
         React.createElement("div", { className: "h-fit min-h-screen bg-ak-dark-blue" },
             React.createElement(WelcomeTemplate, { first_name: props.first_name, bannerStyles: "text-white" }))));
 };

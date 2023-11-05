@@ -9,6 +9,7 @@ import {Route} from "react-router";
 import AppLogo from '../src/images/logos/akello/akello-white-logo.png'
 
 import {HomePage} from '@akello/react';
+import {CognitoUserSession} from "amazon-cognito-identity-js";
 
 
 Amplify.configure({
@@ -44,7 +45,7 @@ function App() {
           <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
               {({ signOut, user }) => {
 
-                  Auth.currentSession().then((session) => {
+                  Auth.currentSession().then((session: CognitoUserSession) => {
                       setToken(session.getIdToken().getJwtToken())
                       setFirstName(session.getIdToken().payload['given_name'])
                       setEmail(session.getIdToken().payload['email'])
@@ -55,9 +56,8 @@ function App() {
                       }
                   })
 
-
                   if(token) {
-                      const Home = (<HomePage app_logo={AppLogo} first_name={first_name} email={email} profile_photo={profile_photo} token={token}/>)
+                      const Home = (<HomePage app_logo={AppLogo} first_name={first_name} email={email} profile_photo={profile_photo} token={token} signOut={signOut}/>)
                       return (
                           <BrowserRouter>
                               <Routes>

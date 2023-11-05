@@ -50,6 +50,7 @@ interface HomePageProps {
     email: string;
     profile_photo: string;
     token: string;
+    signOut?: () => void;
 }
 declare const HomePage: (props: HomePageProps) => React.JSX.Element;
 
