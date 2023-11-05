@@ -31,7 +31,6 @@ jobs:
           skip-existing: true
           packages-dir: packages/server/dist/
 
-
   publish:
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +38,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "20"
+      - name: Install packages
+        working-directory: packages/react
+        run: npm install --force
+      - name: Build node
+        working-directory: packages/react
+        run: npm run build
       - uses: JS-DevTools/npm-publish@v3
         with:
-          package: './packages/apps/cocm-registry'
+          package: './packages/react'
           token: ${{ secrets.NPM_AUTH_TOKEN }}

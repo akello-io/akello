@@ -49,3 +49,7 @@ Run the local FastAPI server once DynamoDB is running and you have your envionrm
 ```commandline
 uvicorn main:app --reload
 ```
+
+## Support
+
+Feel free to reach out to us at **support@akello.io** or at our [Discord](https://discord.gg/36PRxDqq).
