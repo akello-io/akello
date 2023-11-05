@@ -16,9 +16,8 @@ const TopNavigation = (props: TopNavigationProps) => {
         <>
             <div className={classNames( "navbar", props.classNames)}>
                 <div className="flex-1">
-                    <img src={props.logo} className={"w-12 h-auto"} />
+                    <img src={props.logo} className={"h-8 w-auto"} />
                 </div>
-
                 <div className="flex-none gap-2">
                     <button className="btn btn-info rounded-md" onClick={() => props.createRegistry()}>Create Registry</button>
                     <div className="dropdown dropdown-end">

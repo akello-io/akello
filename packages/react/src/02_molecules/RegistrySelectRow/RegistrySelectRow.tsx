@@ -20,6 +20,7 @@ const RegistrySelectRow = (props: RegistrySelectRowProps) => {
                     <div>
                         <img src={props.logo} className={"w-28 h-auto rounded-lg cursor-pointer"}/>
                     </div>
+
                     <div className={"flex flex-col space-y-4"}>
                         <div className={"font-medium text-3xl"}>
                             {props.name}
