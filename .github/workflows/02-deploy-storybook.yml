@@ -27,7 +27,7 @@ jobs:
           aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_bucket: ${{ secrets.AWS_STORYBOOK_BUCKET }}
-          source_dir: 'packages/react/storybook-static'
+          source_dir: 'packages/react/storybook-static/'
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
