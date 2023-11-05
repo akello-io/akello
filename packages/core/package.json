@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@akello/fhirtypes": "^0.0.1"
+  }
+}

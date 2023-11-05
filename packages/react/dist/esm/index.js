@@ -2898,7 +2898,7 @@ var TopNavigation = function (props) {
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { className: classNames("navbar", props.classNames) },
             React.createElement("div", { className: "flex-1" },
-                React.createElement("img", { src: props.logo, className: "w-12 h-auto" })),
+                React.createElement("img", { src: props.logo, className: "h-8 w-auto" })),
             React.createElement("div", { className: "flex-none gap-2" },
                 React.createElement("button", { className: "btn btn-info rounded-md", onClick: function () { return props.createRegistry(); } }, "Create Registry"),
                 React.createElement("div", { className: "dropdown dropdown-end" },
