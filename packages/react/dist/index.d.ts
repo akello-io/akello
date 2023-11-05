@@ -7,11 +7,32 @@ interface ButtonProps {
 }
 declare const Button: (props: ButtonProps) => React.JSX.Element;
 
+interface RegistrySelectRowProps {
+    logo: string;
+    name: string;
+    members: number;
+    patients: number;
+    onClick: (registry_id: string) => void;
+}
+declare const RegistrySelectRow: (props: RegistrySelectRowProps) => React.JSX.Element;
+
+interface TopNavigationProps {
+    logo: string;
+    profile_photo: string;
+    classNames: string;
+}
+declare const TopNavigation: (props: TopNavigationProps) => React.JSX.Element;
+
 interface WelcomeBannerProps {
     first_name: string;
     classNames?: string;
 }
 declare const WelcomeBanner: (props: WelcomeBannerProps) => React.JSX.Element;
+
+interface RegistryMembershipsProps {
+    children: ReactNode;
+}
+declare const RegistryMemberships: (props: RegistryMembershipsProps) => React.JSX.Element;
 
 interface WelcomeTemplateProps {
     first_name: string;
@@ -20,4 +41,4 @@ interface WelcomeTemplateProps {
 }
 declare const WelcomeTemplate: (props: WelcomeTemplateProps) => React.JSX.Element;
 
-export { Button, WelcomeBanner, WelcomeTemplate };
+export { Button, RegistryMemberships, RegistrySelectRow, TopNavigation, WelcomeBanner, WelcomeTemplate };

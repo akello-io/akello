@@ -2875,10 +2875,59 @@ var Button = function (props) {
         }, "btn btn-sm btn-primary") }, props.label);
 };
 
+var RegistrySelectRow = function (props) {
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: "flex flex-row w-full justify-between bg-white py-8 px-12", onClick: function () {
+                props.onClick('registry-id');
+            } },
+            React.createElement("div", { className: " flex flex-row space-x-4" },
+                React.createElement("div", null,
+                    React.createElement("img", { src: props.logo, className: "w-28 h-auto rounded-lg cursor-pointer" })),
+                React.createElement("div", { className: "flex flex-col space-y-4" },
+                    React.createElement("div", { className: "font-medium text-3xl" }, props.name),
+                    React.createElement("div", null,
+                        props.members,
+                        " members | ",
+                        props.patients,
+                        " active patients"))),
+            React.createElement("div", { className: "my-auto" },
+                React.createElement("button", { className: "btn bg-ak-yellow rounded-lg text-xl" }, "LAUNCH")))));
+};
+
+var TopNavigation = function (props) {
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: classNames("navbar", props.classNames) },
+            React.createElement("div", { className: "flex-1" },
+                React.createElement("img", { src: props.logo, className: "w-12 h-auto" })),
+            React.createElement("div", { className: "flex-none gap-2" },
+                React.createElement("button", { className: "btn btn-info rounded-md" }, "Create Registry"),
+                React.createElement("div", { className: "dropdown dropdown-end" },
+                    React.createElement("label", { tabIndex: 0, className: "btn btn-ghost btn-circle avatar" },
+                        React.createElement("div", { className: "w-10 rounded-full" },
+                            React.createElement("img", { src: props.profile_photo }))),
+                    React.createElement("ul", { tabIndex: 0, className: "mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52" },
+                        React.createElement("li", null,
+                            React.createElement("a", { className: "justify-between" },
+                                "Profile",
+                                React.createElement("span", { className: "badge" }, "New"))),
+                        React.createElement("li", null,
+                            React.createElement("a", null, "Settings")),
+                        React.createElement("li", null,
+                            React.createElement("a", null, "Logout"))))))));
+};
+
 var WelcomeBanner = function (props) {
     return (React.createElement("div", { className: classNames(props.classNames, 'text-4xl font-black') },
         "\uD83C\uDF08 Welcome back, ",
         props.first_name));
+};
+
+var RegistryMemberships = function (props) {
+    return (React.createElement("div", { className: "w-full h-auto " },
+        React.createElement("div", { className: "rounded-t-xl flex justify-between bg-ak-light-blue w-full px-12 py-4 text-white" },
+            React.createElement("div", { className: "flex flex-row space-x-4 text-2xl my-auto" },
+                React.createElement("div", null, "Registries you are part of"))),
+        React.createElement("div", { className: "grid grid-cols-1 divide-y rounded-b-xl " }, props.children)));
 };
 
 var WelcomeTemplate = function (props) {
@@ -2887,5 +2936,5 @@ var WelcomeTemplate = function (props) {
         props.children));
 };
 
-export { Button, WelcomeBanner, WelcomeTemplate };
+export { Button, RegistryMemberships, RegistrySelectRow, TopNavigation, WelcomeBanner, WelcomeTemplate };
 //# sourceMappingURL=index.js.map
