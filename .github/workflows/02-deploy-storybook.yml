@@ -20,14 +20,18 @@ jobs:
         working-directory: packages/react
         run: npm run build-storybook
 
-      - uses: shallwefootball/s3-upload-action@master
+
+      - uses: noveto-com/s3-upload-sha256-action@main
         name: Upload S3
-        id: S3
         with:
-          aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: ${{ secrets.AWS_STORYBOOK_BUCKET }}
-          source_dir: 'packages/react/storybook-static/'
+          args: --acl public-read --follow-symlinks
+        env:
+          AWS_S3_BUCKET: 'storybook.akello.io'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
+          SOURCE_DIR: 'packages/react/storybook-static'
+
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
