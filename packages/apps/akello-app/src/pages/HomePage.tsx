@@ -2,6 +2,7 @@ import { TopNavigation, WelcomeTemplate, RegistrySelectRow, RegistryMemberships 
 import { AkelloAPIService } from '@akello/core'
 import {useEffect, useState} from "react";
 import AkelloLogo from '../../src/images/logos/akello/akello-corner-logo.svg'
+import AkelloWhite from '../../src/images/logos/akello/akello-white-logo.png'
 
 interface HomePageProps {
     token: string
@@ -25,7 +26,7 @@ const HomePage:React.FC<HomePageProps> = ({token}) => {
         <>
             <TopNavigation
                 classNames={'px-24 bg-ak-dark-blue'}
-                logo={''}
+                logo={AkelloWhite}
                 createRegistry={() => console.log('create registry clicked')}
                 logout={() => {}}
                 email={'vijay@g.com'}
