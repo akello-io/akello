@@ -1,9 +1,25 @@
-import { TopNavigation, WelcomeTemplate } from '@akello/react'
-import { Button, getUser } from '@akello/core'
+import { TopNavigation, WelcomeTemplate, RegistrySelectRow, RegistryMemberships } from '@akello/react'
+import { AkelloAPIService } from '@akello/core'
+import {useEffect, useState} from "react";
+import AkelloLogo from '../../src/images/logos/akello/akello-corner-logo.svg'
 
-const HomePage = () => {
+interface HomePageProps {
+    token: string
+}
 
-    getUser('', (data) => {})
+const HomePage:React.FC<HomePageProps> = ({token}) => {
+    const service = new AkelloAPIService(token)
+    const [registeries, setRegisteries] = useState([])
+
+    useEffect(() => {
+        service.getUserRegistries((data: any) => {
+            setRegisteries(data)
+        }, (data: any) => {
+
+        })
+    }, [token])
+
+
 
     return (
         <>
@@ -17,7 +33,21 @@ const HomePage = () => {
             />
             <div className="h-fit min-h-screen bg-ak-dark-blue">
                 <WelcomeTemplate first_name={'Vijay'} bannerStyles={"text-white"}>
-                    <Button label={"core"} />
+                    <RegistryMemberships>
+                        {
+                            registeries.map((registry) => {
+                                return (
+                                    <RegistrySelectRow
+                                        logo={AkelloLogo}
+                                        name={registry['name']}
+                                        members={registry['members']}
+                                        patients={registry['patients']}
+                                        onClick={() => console.log('click')}
+                                    />
+                                )
+                            })
+                        }
+                    </RegistryMemberships>
                 </WelcomeTemplate>
             </div>
         </>

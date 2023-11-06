@@ -17,7 +17,7 @@ export const createRegistry = async (token: string, payload: any, onSuccess: (da
 
 
 
-export const referPatient = async (registry_id: string, token: string, referral: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
+export const referPatient = async (token: string, registry_id: string, referral: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
     const endpoint =  "registry/" + registry_id + "/refer-patient";
     const resp = await apiRequest({
         method: 'post',
@@ -34,7 +34,7 @@ export const referPatient = async (registry_id: string, token: string, referral:
 
 
 
-export const getMembers = async (registry_id: string, token: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
+export const getMembers = async ( token: string, registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
     const endpoint =  "registry/" + registry_id + "/team-members";
     const resp = await apiRequest({
         method: 'get',
@@ -49,7 +49,7 @@ export const getMembers = async (registry_id: string, token: string, onSuccess: 
 
 
 
-export const getRegistryPatients = async (registry_id: string, token: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
+export const getRegistryPatients = async (token: string, registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
     const endpoint =  "registry/" + registry_id + '/patients' ;
     const resp = await apiRequest({
         method: 'get',
@@ -66,7 +66,7 @@ export const getRegistryPatients = async (registry_id: string, token: string, on
 }
 
 
-export const saveTreatmentSession = async (registry_id: string, token: string, session: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
+export const saveTreatmentSession = async (token: string, registry_id: string,  session: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
     const endpoint =  "registry/" + registry_id + "/record-session";
     const resp = await apiRequest({
         method: 'post',
@@ -80,7 +80,7 @@ export const saveTreatmentSession = async (registry_id: string, token: string, s
     });
 }
 
-export const setFlag = async (registry_id: string, token: string, mrn: string, flag: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
+export const setFlag = async (token: string, registry_id: string, mrn: string, flag: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
     const endpoint =  "registry/" + registry_id + "/patient-attribute";
     const resp = await apiRequest({
         method: 'post',
@@ -98,7 +98,7 @@ export const setFlag = async (registry_id: string, token: string, mrn: string, f
     });
 }
 
-export const setStatus = async (registry_id: string, token: string, mrn: string, status: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
+export const setStatus = async (token: string, registry_id: string,  mrn: string, status: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
     const endpoint =  "registry/" + registry_id + "/patient-attribute";
     const resp = await apiRequest({
         method: 'post',

@@ -60,7 +60,7 @@ function App() {
                       return (
                           <BrowserRouter>
                               <Routes>
-                                  <Route index element={<HomePage />} />
+                                  <Route index element={<HomePage  token={token}/>} />
                               </Routes>
                           </BrowserRouter>
                       )
