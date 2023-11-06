@@ -3,7 +3,6 @@ import { Button } from '@akello/core'
 
 const HomePage = () => {
 
-
     return (
         <>
             <TopNavigation
