@@ -8,7 +8,7 @@ import {BrowserRouter, Routes} from "react-router-dom";
 import {Route} from "react-router";
 import AppLogo from '../src/images/logos/akello/akello-white-logo.png'
 
-import {HomePage} from '@akello/react';
+import HomePage from './pages/HomePage';
 import {CognitoUserSession} from "amazon-cognito-identity-js";
 
 
@@ -57,11 +57,10 @@ function App() {
                   })
 
                   if(token) {
-                      const Home = (<HomePage app_logo={AppLogo} first_name={first_name} email={email} profile_photo={profile_photo} token={token} signOut={signOut}/>)
                       return (
                           <BrowserRouter>
                               <Routes>
-                                  <Route index element={Home} />
+                                  <Route index element={<HomePage />} />
                               </Routes>
                           </BrowserRouter>
                       )
