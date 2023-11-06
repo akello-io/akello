@@ -1,4 +1,5 @@
 import { TopNavigation, WelcomeTemplate } from '@akello/react'
+import { Button } from '@akello/core'
 
 const HomePage = () => {
 
@@ -15,7 +16,7 @@ const HomePage = () => {
             />
             <div className="h-fit min-h-screen bg-ak-dark-blue">
                 <WelcomeTemplate first_name={'Vijay'} bannerStyles={"text-white"}>
-
+                    <Button label={"core"} />
                 </WelcomeTemplate>
             </div>
         </>
