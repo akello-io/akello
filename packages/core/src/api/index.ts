@@ -1,1 +1,1 @@
-export { getUser } from './user'
+export { default as AkelloAPIService } from './services'

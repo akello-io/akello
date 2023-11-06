@@ -7,6 +7,8 @@
     "strict": true,
     "skipLibCheck": true,
 
+    "rootDir": "src",
+
     // Added
     "jsx": "react",
     "module": "ESNext",

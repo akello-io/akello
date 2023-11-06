@@ -1,7 +1,9 @@
 import { TopNavigation, WelcomeTemplate } from '@akello/react'
-import { Button } from '@akello/core'
+import { Button, getUser } from '@akello/core'
 
 const HomePage = () => {
+
+    getUser('', (data) => {})
 
     return (
         <>
