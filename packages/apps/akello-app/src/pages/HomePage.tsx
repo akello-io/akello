@@ -59,23 +59,7 @@ const HomePage:React.FC<HomePageProps> = () => {
                     </>
                 }
             />
-                <div className="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20">
-                    <div className="p-4 mx-auto max-w-7xl pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-40">
-                        <div className="flex flex-col items-start max-w-3xl text-neutral-900">
-                            <h1 className="pt-10 my-0 h-auto font-sans text-5xl font-extrabold tracking-normal text-black lg:text-7xl">
-                                The Developer Platform for Integrated Care
-                            </h1>
-                            <div className="overflow-hidden relative mt-8 mb-10">
-                                <p className="mb-0 font-sans text-2xl leading-normal xl:leading-normal font-medium">
-                                    Akello is the open source developer platform that helps you build, test, and deliver any population health product or service.
-                                </p>
-                            </div>
-                        </div>
-                        <div>
-                            <img src={''} className={" max-w-3xl"}/>
-                        </div>
-                    </div>
-                </div>
+
         </>
     )
 }

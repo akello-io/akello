@@ -16,7 +16,7 @@ const TopNavigation = (props: TopNavigationProps) => {
 
     return (
         <>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-100 sticky top-0">
                 {props.signed_in && (
                     <div className="flex-none">
                         <HamburgerMenu>
