@@ -7,6 +7,7 @@ export interface TopNavigationProps {
     profile_img: string
     github_url?: string
     signed_in: boolean
+    theme_swapper: ReactNode
 }
 
 const TopNavigation = (props: TopNavigationProps) => {
@@ -27,39 +28,29 @@ const TopNavigation = (props: TopNavigationProps) => {
                 </div>
                 <div className="flex-none gap-2">
                     { !props.signed_in && (
-                        <div className="btn btn-ghost" onClick={props.signIn}>
-                            Login
-                        </div>
+                        <>
+                            <button className="btn btn-ghost" onClick={props.signIn}>
+                                Sign In
+                            </button>
+                            <a className="btn btn-ghost" href={props.github_url}>
+                                GitHub
+                            </a>
+                        </>
                     )}
 
-                    <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar" onClick={() => {
-                            if(props.github_url) {
-                                window.location.href = props.github_url;
-                            }
-                        }}>
-                            <div className="w-10 rounded-full">
-                                <img src={props.profile_img} />
-                            </div>
-                        </label>
-                        {
-                            props.signed_in && (
-                                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                                    <li>
-                                        <a className="justify-between">
-                                            Profile
-                                            <span className="badge">New</span>
-                                        </a>
-                                    </li>
-                                    <li><a>Settings</a></li>
-                                    <li><a onClick={props.signOut}>Logout</a></li>
-                                </ul>
-                            )
-                        }
-                    </div>
+                    { props.signed_in && (
+                        <>
+                            <button className="btn btn-ghost" onClick={props.signOut}>
+                                Sign Out
+                            </button>
+
+                        </>
+                        )
+                    }
+                    { props.theme_swapper }
                 </div>
 
-                <div className="drawer-side">
+                <div className="drawer-side z-50">
                     <label htmlFor="nav-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                         {/* Sidebar content here */}
