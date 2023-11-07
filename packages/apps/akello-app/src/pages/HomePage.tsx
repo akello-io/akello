@@ -3,31 +3,30 @@ import {useEffect, useState} from "react";
 import {Amplify, Auth} from 'aws-amplify';
 import GithubLogo from '../../src/images/logos/github-logo-vector.svg'
 import {useNavigate} from "react-router";
+import {useScrollPosition} from "../hooks/scroll-position";
+import {useSelector} from "react-redux";
+import {RootState} from "../store";
 
 interface HomePageProps {
 }
 
 
 const HomePage:React.FC<HomePageProps> = () => {
+    const token = useSelector((state: RootState) => state.app.token)
+    const scrollPosition = useScrollPosition()
     const navigate = useNavigate()
-    const [token, setToken] = useState<string>()
     const local_theme = localStorage.getItem('theme')
-    const [theme, setTheme] = useState( local_theme ? local_theme : 'light')
+    const [theme, setTheme] = useState(local_theme)
+    console.log(theme)
 
-    // initially set the theme and "listen" for changes to apply them to the HTML tag
     useEffect(() => {
-        document.querySelector('html')!.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme)
+        const html = document.querySelector('html');
+        if(html && theme) {
+            html.setAttribute('data-theme', theme)
+        }
+        localStorage.setItem('theme', theme ? theme : '')
     }, [theme]);
 
-
-    Auth.currentSession().then((session: any) => {
-        setToken(session.getIdToken().getJwtToken())
-    }).catch(()=> {
-        console.log('error')
-    })
-
-    const instance = (<ThemeSwap theme={theme} setTheme={setTheme}/>)
 
     return (
         <>
@@ -49,7 +48,7 @@ const HomePage:React.FC<HomePageProps> = () => {
                 profile_img={GithubLogo}
                 github_url={token == undefined ? 'https://github.com/akello-io/akello': undefined}
                 signed_in={token != undefined}
-                theme_swapper={instance}
+                theme_swapper={<ThemeSwap theme={theme!} setTheme={setTheme}/>}
                 menu_items={
                     <>
                         <li><a>Dashboard</a></li>
@@ -58,8 +57,17 @@ const HomePage:React.FC<HomePageProps> = () => {
                         <li><a>Reports</a></li>
                     </>
                 }
+                y_scroll_position={scrollPosition}
             />
-
+            <div className={"bg-base-100 h-screen w-screen"}>
+                Hero Section
+            </div>
+            <div className={"bg-base-200 h-screen w-screen"}>
+                Who is Akello for?
+            </div>
+            <div className={"bg-base-100 h-screen w-screen"}>
+                Get started quickly
+            </div>
         </>
     )
 }

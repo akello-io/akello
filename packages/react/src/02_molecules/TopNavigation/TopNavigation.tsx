@@ -1,6 +1,7 @@
 import React, {ReactNode} from 'react';
 import HamburgerMenuButton from "../../01_atoms/HamburgerMenuButton";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
+import classNames from "classnames";
 
 export interface TopNavigationProps {
     signIn: () => void
@@ -10,13 +11,21 @@ export interface TopNavigationProps {
     signed_in: boolean
     menu_items: ReactNode
     theme_swapper: ReactNode
+    y_scroll_position?: number
+    sticky?: boolean
 }
 
 const TopNavigation = (props: TopNavigationProps) => {
 
     return (
         <>
-            <div className="navbar bg-base-100 sticky top-0">
+            <div className={classNames(
+                {
+                    'bg-base-200/40': props.y_scroll_position! > 100,
+                    'sticky': props.sticky
+                },
+                "navbar sticky top-0"
+            )}>
                 {props.signed_in && (
                     <div className="flex-none">
                         <HamburgerMenu>

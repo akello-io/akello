@@ -7,6 +7,7 @@ export interface ThemeSwapProps {
 }
 
 const ThemeSwap = (props: ThemeSwapProps) => {
+    console.log('theme-swap')
     const toggleTheme = () => {
         props.setTheme(props.theme === 'dark' ? 'light' : 'dark');
     };

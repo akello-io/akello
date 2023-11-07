@@ -4,15 +4,19 @@ import {CognitoUserSession} from "amazon-cognito-identity-js";
 import {Authenticator} from "@aws-amplify/ui-react";
 import React from "react";
 import {useNavigate} from "react-router";
+import {useDispatch} from "react-redux";
+import {setAuthToken} from "../reducers/appSlice";
 
 const Login = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     return (
         <>
             <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
                 {({ signOut, user }) => {
                     Auth.currentSession().then((session: CognitoUserSession) => {
-
+                        let token = session.getIdToken().getJwtToken()
+                        dispatch(setAuthToken(token))
                     })
                     return (
                         <>
