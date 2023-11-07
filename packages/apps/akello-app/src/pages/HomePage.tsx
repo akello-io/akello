@@ -60,7 +60,7 @@ const HomePage:React.FC<HomePageProps> = () => {
                 y_scroll_position={scrollPosition}
             />
             <div className={"bg-base-100 h-screen w-screen"}>
-                Hero Section
+                Hero
             </div>
             <div className={"bg-base-200 h-screen w-screen"}>
                 Who is Akello for?
