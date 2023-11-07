@@ -2,8 +2,8 @@ import React, {ReactNode} from 'react';
 import classNames from "classnames";
 
 export interface TopNavigationProps {
-    signIn?: () => void
-    signOut?: ((data?: any | undefined) => void) | undefined
+    signIn: () => void
+    signOut: ((data?: any | undefined) => void) | undefined
     profile_img: string
     github_url?: string
     signed_in: boolean
@@ -52,7 +52,7 @@ const TopNavigation = (props: TopNavigationProps) => {
                                         </a>
                                     </li>
                                     <li><a>Settings</a></li>
-                                    <li><a>Logout</a></li>
+                                    <li><a onClick={props.signOut}>Logout</a></li>
                                 </ul>
                             )
                         }
