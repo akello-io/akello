@@ -1,15 +1,13 @@
-import React, {useRef, useState} from 'react';
+import React, {ReactNode} from 'react';
 import './App.css';
 import '@aws-amplify/ui-react/styles.css';
-import {Amplify, Auth} from 'aws-amplify';
-import {Authenticator} from "@aws-amplify/ui-react";
-import {cognito_auth_components, cognito_auth_formFields} from "./cognito_auth";
-import {BrowserRouter, Routes} from "react-router-dom";
+import {Amplify} from 'aws-amplify';
+import {BrowserRouter, Navigate, Routes} from "react-router-dom";
 import {Route} from "react-router";
-import AppLogo from '../src/images/logos/akello/akello-white-logo.png'
-import { AppSidebarLayout } from '@akello/react'
 import HomePage from './pages/HomePage';
 import Login from "./pages/Login";
+import {Provider, useSelector} from "react-redux";
+import {RootState, store} from "./store";
 
 
 Amplify.configure({
@@ -20,17 +18,39 @@ Amplify.configure({
   }
 })
 
+interface ProtectedRouteProps {
+    redirectPath: string
+    children: ReactNode
+}
+
+const  ProtectedRoute:React.FC<ProtectedRouteProps> = ({ redirectPath = '/landing',  children }) => {
+    const token = useSelector((state: RootState) => state.app.token)
+    if(!token) {
+        return <Navigate to={redirectPath} replace />;
+    }
+    return <>{children}</>
+};
 
 function App() {
 
     return (
         <div>
-            <BrowserRouter>
-                <Routes>
-                    <Route index element={<HomePage />}/>
-                    <Route path={"/login"} element={<Login />} />
-                </Routes>
-            </BrowserRouter>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route index element={<HomePage />}/>
+                        <Route path={"/login"} element={<Login />} />
+
+                        <Route path={'/dashboard'} element={(
+                            <>
+                                <ProtectedRoute redirectPath={'/login'}>
+                                    <HomePage />
+                                </ProtectedRoute>
+                            </>
+                        )} />
+                    </Routes>
+                </BrowserRouter>
+            </Provider>
         </div>
     );
 }

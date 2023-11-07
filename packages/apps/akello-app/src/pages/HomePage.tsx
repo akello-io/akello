@@ -8,15 +8,6 @@ interface HomePageProps {
 }
 
 
-Amplify.configure({
-    Auth: {
-        region: process.env.REACT_APP_TEST_AWS_REGION,
-        userPoolId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_ID,
-        userPoolWebClientId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_APP_CLIENT_ID
-    }
-})
-
-
 const HomePage:React.FC<HomePageProps> = () => {
     const navigate = useNavigate()
     const [token, setToken] = useState<string>()
@@ -28,7 +19,6 @@ const HomePage:React.FC<HomePageProps> = () => {
         document.querySelector('html')!.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme)
     }, [theme]);
-
 
 
     Auth.currentSession().then((session: any) => {
