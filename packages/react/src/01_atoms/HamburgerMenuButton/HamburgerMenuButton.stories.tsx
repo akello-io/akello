@@ -1,19 +1,19 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import TopNavigation from './TopNavigation';
+import HamburgerMenuButton from './HamburgerMenuButton';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'Molecules/TopNavigation',
-    component: TopNavigation,
-} as ComponentMeta<typeof TopNavigation>;
+    title: 'Atoms/HamburgerMenu',
+    component: HamburgerMenuButton,
+} as ComponentMeta<typeof HamburgerMenuButton>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof TopNavigation> = (args) => <TopNavigation {...args} />;
+const Template: ComponentStory<typeof HamburgerMenuButton> = (args) => <HamburgerMenuButton {...args}/>;
 
-export const BasicExample = Template.bind({});
+export const HelloWorld = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-BasicExample.args = {
-
+HelloWorld.args = {
+    htmlFor: 'nav-drawer'
 };
