@@ -31,39 +31,42 @@ const PageContainer:React.FC<PageContainerProps> = ({children}) => {
 
     return (
         <>
-            <TopNavigation
-                signIn={() => navigate('/login') }
-                signOut={async () => {
-                    if (!Auth || typeof Auth.signOut !== 'function') {
-                        throw new Error('No Auth module found, please ensure @aws-amplify/auth is imported');
+            <div className={"flex flex-col"}>
+                <TopNavigation
+                    signIn={() => navigate('/login') }
+                    signOut={async () => {
+                        if (!Auth || typeof Auth.signOut !== 'function') {
+                            throw new Error('No Auth module found, please ensure @aws-amplify/auth is imported');
+                        }
+                        Auth.signOut()
+                            .then(() => {
+                                window.location.reload();
+                            })
+                            .catch(err => {
+                                debugger;
+                            });
+
+                    }}
+                    profile_img={GithubLogo}
+                    github_url={token == undefined ? 'https://github.com/akello-io/akello': undefined}
+                    signed_in={token != undefined}
+                    theme_swapper={<ThemeSwap theme={theme!} setTheme={setTheme}/>}
+                    menu_items={
+                        <>
+                            <li><a>Dashboard</a></li>
+                            <li><a>Registry</a></li>
+                            <li><a>Team</a></li>
+                            <li><a>Reports</a></li>
+                        </>
                     }
-                    Auth.signOut()
-                        .then(() => {
-                            window.location.reload();
-                        })
-                        .catch(err => {
-                            debugger;
-                        });
+                    y_scroll_position={scrollPosition}
+                />
 
-                }}
-                profile_img={GithubLogo}
-                github_url={token == undefined ? 'https://github.com/akello-io/akello': undefined}
-                signed_in={token != undefined}
-                theme_swapper={<ThemeSwap theme={theme!} setTheme={setTheme}/>}
-                menu_items={
-                    <>
-                        <li><a>Dashboard</a></li>
-                        <li><a>Registry</a></li>
-                        <li><a>Team</a></li>
-                        <li><a>Reports</a></li>
-                    </>
-                }
-                y_scroll_position={scrollPosition}
-            />
-
-            <div className={"-mt-20"}>
                 {children}
             </div>
+
+
+
 
         </>
     )

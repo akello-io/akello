@@ -1,23 +1,35 @@
 import PageContainer from "../containers/PageContainer";
-import React from "react";
-import {useSelector} from "react-redux";
-import {RootState} from "../store";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import LandingPage from "./LandingPage";
+import {Auth} from "aws-amplify";
+import {CognitoUserSession} from "amazon-cognito-identity-js";
+import {setAuthToken} from "../reducers/appSlice";
+import RegistryPage from "./RegistryPage";
 
 interface HomePageProps {
 }
 
 
 const HomePage:React.FC<HomePageProps> = () => {
-    const token = useSelector((state: RootState) => state.app.token)
+    const [loggedIn, setLoggedIn] = useState(false)
+    const dispatch = useDispatch()
+
+    Auth.currentSession().then((session: CognitoUserSession) => {
+        setLoggedIn(true)
+        let token = session.getIdToken().getJwtToken()
+        dispatch(setAuthToken(token))
+    }).catch((err)=> {
+
+    })
 
     return (
         <>
             <PageContainer>
-                {token && (
-                    <>logged in</>
+                {loggedIn && (
+                    <RegistryPage />
                 )}
-                {!token && (
+                {!loggedIn && (
                     <LandingPage />
                 )}
             </PageContainer>

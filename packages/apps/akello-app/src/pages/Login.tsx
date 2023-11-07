@@ -10,6 +10,9 @@ import {Navigate} from "react-router-dom";
 
 const Login = () => {
     const dispatch = useDispatch()
+
+    // Notes on how to customize the login
+    // https://docs.amplify.aws/guides/authentication/email-only-authentication/q/platform/js/#auth-class
     return (
         <>
             <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
@@ -25,7 +28,6 @@ const Login = () => {
                     )
                 }}
             </Authenticator>
-
         </>
     )
 }
