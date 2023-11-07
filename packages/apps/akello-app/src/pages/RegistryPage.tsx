@@ -1,10 +1,8 @@
-import { AppSidebarLayout } from '@akello/react'
-
 
 const RegistryPage = () => {
     return (
         <>
-
+            Registry Page
         </>
     )
 }
