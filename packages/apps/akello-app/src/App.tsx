@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import Login from "./pages/Login";
 import {Provider, useSelector} from "react-redux";
 import {RootState, store} from "./store";
+import DashboardPage from "./pages/DashboardPage";
 
 
 Amplify.configure({
@@ -18,18 +19,6 @@ Amplify.configure({
   }
 })
 
-interface ProtectedRouteProps {
-    redirectPath: string
-    children: ReactNode
-}
-
-const  ProtectedRoute:React.FC<ProtectedRouteProps> = ({ redirectPath = '/landing',  children }) => {
-    const token = useSelector((state: RootState) => state.app.token)
-    if(!token) {
-        return <Navigate to={redirectPath} replace />;
-    }
-    return <>{children}</>
-};
 
 function App() {
 
@@ -40,14 +29,7 @@ function App() {
                     <Routes>
                         <Route index element={<HomePage />}/>
                         <Route path={"/login"} element={<Login />} />
-
-                        <Route path={'/dashboard'} element={(
-                            <>
-                                <ProtectedRoute redirectPath={'/login'}>
-                                    <HomePage />
-                                </ProtectedRoute>
-                            </>
-                        )} />
+                        <Route path={'/dashboard'} element={<DashboardPage />} />
                     </Routes>
                 </BrowserRouter>
             </Provider>

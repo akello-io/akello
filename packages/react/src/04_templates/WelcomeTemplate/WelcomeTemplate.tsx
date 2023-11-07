@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import classNames from "classnames";
-import {WelcomeBanner} from "../../03_organisms";
+import {WelcomeBanner} from "../../02_molecules";
 
 export interface WelcomeTemplateProps {
     first_name: string

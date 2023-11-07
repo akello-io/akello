@@ -6,6 +6,8 @@ import {Auth} from "aws-amplify";
 import {CognitoUserSession} from "amazon-cognito-identity-js";
 import {setAuthToken} from "../reducers/appSlice";
 import RegistryPage from "./RegistryPage";
+import PublicPageContainer from "../containers/PublicPageContainer";
+
 
 interface HomePageProps {
 }
@@ -25,14 +27,17 @@ const HomePage:React.FC<HomePageProps> = () => {
 
     return (
         <>
-            <PageContainer>
-                {loggedIn && (
+            {loggedIn && (
+                <PageContainer>
                     <RegistryPage />
-                )}
-                {!loggedIn && (
+                </PageContainer>
+
+            )}
+            {!loggedIn && (
+                <PublicPageContainer>
                     <LandingPage />
-                )}
-            </PageContainer>
+                </PublicPageContainer>
+            )}
         </>
     )
 }
