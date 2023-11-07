@@ -6,9 +6,9 @@ import React from "react";
 import {useNavigate} from "react-router";
 import {useDispatch} from "react-redux";
 import {setAuthToken} from "../reducers/appSlice";
+import {Navigate} from "react-router-dom";
 
 const Login = () => {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     return (
         <>
@@ -20,10 +20,7 @@ const Login = () => {
                     })
                     return (
                         <>
-                            <div>
-                                You are logged in, go checkout your registry
-                                <button onClick={()=> navigate('/')}>enter</button>
-                            </div>
+                            <Navigate to={'/'}/>
                         </>
                     )
                 }}

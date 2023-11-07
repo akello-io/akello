@@ -21,10 +21,10 @@ const TopNavigation = (props: TopNavigationProps) => {
         <>
             <div className={classNames(
                 {
-                    'bg-base-200/40': props.y_scroll_position! > 100,
+                    'bg-base-200': props.y_scroll_position! > 100,
                     'sticky': props.sticky
                 },
-                "navbar sticky top-0  py-4 border-b border-slate-900/10 lg:border-0 dark:border-slate-300/10 "
+                "navbar sticky top-0  px-4 py-4 border-b bg-base-100 border-slate-900/10 lg:border-0 dark:border-slate-300/10 "
             )}>
                 {props.signed_in && (
                     <div className="flex-none">

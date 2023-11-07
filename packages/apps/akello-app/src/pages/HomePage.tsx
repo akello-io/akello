@@ -59,14 +59,16 @@ const HomePage:React.FC<HomePageProps> = () => {
                 }
                 y_scroll_position={scrollPosition}
             />
-            <div className={"bg-base-100 h-screen w-screen"}>
-                Hero
-            </div>
-            <div className={"bg-base-200 h-screen w-screen"}>
-                Who is Akello for?
-            </div>
-            <div className={"bg-base-100 h-screen w-screen"}>
-                Get started quickly
+            <div className="hero min-h-screen bg-base-200">
+                <div className="hero-content text-center">
+                    <div className="max-w-xl">
+                        <h1 className="text-7xl font-light">Fast and easy Population Health</h1>
+                        <p className="py-6">
+                            Akello is the open source population health platform that helps you build, test, and deliver any healthcare product or service.
+                        </p>
+                        <button className="btn btn-primary btn-xl">Get Started</button>
+                    </div>
+                </div>
             </div>
         </>
     )
