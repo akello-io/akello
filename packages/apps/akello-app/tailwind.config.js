@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ["./src/**/*.{html,js,tsx}"],
   daisyui: {
     themes: ["light", "dark", "cupcake"],
   },
@@ -18,7 +18,9 @@ module.exports = {
     }
 
   },
-  plugins: [require("daisyui")],
+  plugins: [
+      require("daisyui")
+  ],
   safelist: [
     {
       // TODO: was unable to get imported components to have the styles load. I believe this has to do

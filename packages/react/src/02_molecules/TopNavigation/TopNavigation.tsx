@@ -1,40 +1,63 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
+import HamburgerMenuButton from "../../01_atoms/HamburgerMenuButton";
+import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import classNames from "classnames";
 
 export interface TopNavigationProps {
-    logo: string
-    profile_photo: string
-    email: string
-    classNames: string
-    logout: () => void
-    createRegistry: () => void
+    signIn: () => void
+    signOut: ((data?: any | undefined) => void) | undefined
+    profile_img: string
+    github_url?: string
+    signed_in: boolean
+    menu_items: ReactNode
+    theme_swapper: ReactNode
+    y_scroll_position?: number
+    sticky?: boolean
 }
 
 const TopNavigation = (props: TopNavigationProps) => {
 
     return (
         <>
-            <div className={classNames( "navbar", props.classNames)}>
+            <div className={classNames(
+                {
+                    'bg-base-100 border-b border-slate-900/10 lg:border-0 dark:border-slate-300/10': props.y_scroll_position! > 30,
+                    'sticky': props.sticky
+                },
+                "navbar z-50 sticky top-0 p-4"
+            )}>
+                {props.signed_in && (
+                    <div className="flex-none">
+                        <HamburgerMenu>
+                            { props.menu_items }
+                        </HamburgerMenu>
+                    </div>
+                )}
                 <div className="flex-1">
-                    <img src={props.logo} className={"h-8 w-auto"} />
+                    <p className="font-semibold normal-case text-xl">akello.io</p>
                 </div>
                 <div className="flex-none gap-2">
-                    <button className="btn btn-info rounded-md" onClick={() => props.createRegistry()}>Create Registry</button>
-                    <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src={props.profile_photo} />
-                            </div>
-                        </label>
-                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                            <li>
-                                <a className="justify-between">
-                                    {props.email}
-                                </a>
-                            </li>
-                            <li><button onClick={() => props.logout()}>Logout</button></li>
-                        </ul>
-                    </div>
+                    { !props.signed_in && (
+                        <>
+                            <button className="btn btn-ghost" onClick={props.signIn}>
+                                Sign In
+                            </button>
+                            <a className="btn btn-ghost" href={props.github_url}>
+                                GitHub
+                            </a>
+                        </>
+                    )}
+
+                    { props.signed_in && (
+                        <>
+                            <button className="btn btn-ghost" onClick={props.signOut}>
+                                Sign Out
+                            </button>
+
+                        </>
+                        )
+                    }
+                    { props.theme_swapper }
                 </div>
             </div>
         </>
