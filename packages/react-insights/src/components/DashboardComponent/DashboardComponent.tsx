@@ -8,7 +8,7 @@ export interface DashboardComponentProps {
 
 const DashboardComponent = (props: DashboardComponentProps) => {
     return (
-        <div className={"w-full border border-1 bg-white"}>
+        <div className={"w-full border border-1 bg-base-100"}>
             <div className={"font-regular border-b border-1 p-2"}>
                 <p className={"text-xl"}>
                     {props.title}

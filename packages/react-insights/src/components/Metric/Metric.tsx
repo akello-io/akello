@@ -5,13 +5,13 @@ export interface MetricProps {
     description: string
 }
 
-const Metric:React.FC<MetricProps> = (props: MetricProps) => {
+const Metric = (props: MetricProps) => {
 
     return (
         <>
             <div className={"text-center space-y-4"}>
-                <div className={"font-black text-5xl"}>{props.value}</div>
-                <div>{props.description}</div>
+                <div className={"text-base-content text-5xl"}>{props.value}</div>
+                <div className={"text-base-content"}>{props.description}</div>
             </div>
         </>
     )
