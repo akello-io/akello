@@ -52,10 +52,7 @@ const PublicPageContainer:React.FC<PublicPageContainerProps> = ({children}) => {
                     theme_swapper={<ThemeSwap theme={theme!} setTheme={setTheme}/>}
                     menu_items={
                         <>
-                            <li><button onClick={()=> navigate('/dashboard')}>Dashboard</button></li>
-                            <li><a>Registry</a></li>
-                            <li><a>Team</a></li>
-                            <li><a>Reports</a></li>
+                            <li><button onClick={()=> navigate('/dashboard')}>Create a Registry</button></li>
                         </>
                     }
                     y_scroll_position={scrollPosition}

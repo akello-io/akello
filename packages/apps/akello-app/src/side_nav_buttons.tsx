@@ -1,7 +1,7 @@
 import * as React from "react";
 import {SideNavigationButton} from '@akello/react'
 import {useLocation, useNavigate} from "react-router";
-
+import AppLogo from './images/logos/akello/akello-corner-logo.svg'
 import {
     CalendarDaysIcon,
     ChartBarSquareIcon,
@@ -15,6 +15,20 @@ import {
 
 const icon_size = 'w-6 h-auto'
 
+
+export const LogoButton= () => {
+    const navigate = useNavigate()
+
+    return (
+        <button onClick={() => navigate('/')}>
+            <img
+                className=""
+                src={AppLogo}
+                alt="Akello Health"
+            />
+        </button>
+    )
+}
 
 const DashboardButton = () => {
     const location = useLocation();

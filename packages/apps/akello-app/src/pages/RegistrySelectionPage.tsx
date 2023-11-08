@@ -1,8 +1,11 @@
 import {WelcomeTemplate, RegistryMemberships, RegistrySelectRow} from '@akello/react'
 import AkelloLogo from '../../src/images/logos/akello/akello-corner-logo.svg'
+import {useNavigate} from "react-router";
 
 
 const RegistrySelectionPage = () => {
+
+    const navigate = useNavigate()
 
     return (
         <div className={'w-screen h-auto bg-base-200/40'}>
@@ -15,7 +18,7 @@ const RegistrySelectionPage = () => {
                         name={'Registry A'}
                         members={5}
                         patients={5}
-                        onClick={() => {}}
+                        onClick={() => {navigate('/dashboard')}}
                     />
 
                     <RegistrySelectRow
@@ -23,7 +26,7 @@ const RegistrySelectionPage = () => {
                         name={'Registry B'}
                         members={5}
                         patients={5}
-                        onClick={() => {}}
+                        onClick={() => {navigate('/dashboard')}}
                     />
 
 

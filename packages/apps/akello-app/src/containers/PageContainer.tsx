@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import * as React from "react";
 import {SideNavigation} from '@akello/react'
 import AkelloLogo from '../images/logos/akello/akello-corner-logo.svg'
-import {top_nav_buttons, bottom_nav_buttons } from "../side_nav_buttons";
+import {top_nav_buttons, bottom_nav_buttons, LogoButton } from "../side_nav_buttons";
 
 
 interface PageContainerProps {
@@ -26,7 +26,7 @@ const PageContainer:React.FC<PageContainerProps> = ({children}) => {
         <>
             <div className={"flex flex-col"}>
                 <SideNavigation
-                    logo={AkelloLogo}
+                    logo={<LogoButton />}
                     top_navigation={top_nav_buttons}
                     bottom_navigation={bottom_nav_buttons}
                 />
