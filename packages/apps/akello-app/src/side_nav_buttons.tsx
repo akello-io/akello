@@ -8,8 +8,12 @@ import {
     ChatBubbleLeftRightIcon,
     HeartIcon,
     TableCellsIcon,
-    UserGroupIcon
+    UserGroupIcon,
+    Cog8ToothIcon
 } from '@heroicons/react/24/outline'
+
+
+const icon_size = 'w-6 h-auto'
 
 
 const DashboardButton = () => {
@@ -17,18 +21,82 @@ const DashboardButton = () => {
     const navigate = useNavigate()
     return (
         <SideNavigationButton
-            name={'btn'}
-            short_name={'button'}
+            name={'Dashboard'}
+            short_name={'Dashboard'}
             is_active={location.pathname.includes('dashboard')}
-            icon={<TableCellsIcon className={'w-5 h-auto'}/>}
+            icon={<ChartBarSquareIcon className={icon_size}/>}
             navigate={() => navigate('/dashboard')}
         />
     )
 }
 
-const top_nav_buttons = [
-    (<DashboardButton />)
+
+const RegistryButton = () => {
+    const location = useLocation();
+    const navigate = useNavigate()
+    return (
+        <SideNavigationButton
+            name={'Registry'}
+            short_name={'Registry'}
+            is_active={location.pathname.includes('registry')}
+            icon={<TableCellsIcon className={icon_size}/>}
+            navigate={() => navigate('/registry')}
+        />
+    )
+}
+
+
+const TeamButton = () => {
+    const location = useLocation();
+    const navigate = useNavigate()
+    return (
+        <SideNavigationButton
+            name={'Team'}
+            short_name={'Team'}
+            is_active={location.pathname.includes('team')}
+            icon={<UserGroupIcon className={icon_size}/>}
+            navigate={() => navigate('/team')}
+        />
+    )
+}
+
+const ReportsButton = () => {
+    const location = useLocation();
+    const navigate = useNavigate()
+    return (
+        <SideNavigationButton
+            name={'Reports'}
+            short_name={'Reports'}
+            is_active={location.pathname.includes('reports')}
+            icon={<ChartBarSquareIcon className={icon_size}/>}
+            navigate={() => navigate('/reports')}
+        />
+    )
+}
+
+
+const SettingsButton = () => {
+    const location = useLocation();
+    const navigate = useNavigate()
+    return (
+        <SideNavigationButton
+            name={'Settings'}
+            short_name={'Settings'}
+            is_active={location.pathname.includes('settings')}
+            icon={<Cog8ToothIcon className={icon_size}/>}
+            navigate={() => navigate('/settings')}
+        />
+    )
+}
+
+
+export const top_nav_buttons = [
+    (<DashboardButton />),
+    (<RegistryButton />),
+    (<TeamButton />),
+    (<ReportsButton />)
 ]
 
-
-export default top_nav_buttons
+export const bottom_nav_buttons = [
+    (<SettingsButton />)
+]

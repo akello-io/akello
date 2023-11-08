@@ -13,7 +13,7 @@ const RegistrySelectRow = (props: RegistrySelectRowProps) => {
 
     return (
         <>
-            <div className={"flex flex-row w-full justify-between bg-white py-8 px-12"} onClick={() => {
+            <div className={"flex flex-row w-full justify-between bg-base-100 py-8 px-12"} onClick={() => {
                 props.onClick('registry-id')
             }}>
                 <div className={" flex flex-row space-x-4"}>
@@ -21,7 +21,7 @@ const RegistrySelectRow = (props: RegistrySelectRowProps) => {
                         <img src={props.logo} className={"w-28 h-auto rounded-lg cursor-pointer"}/>
                     </div>
 
-                    <div className={"flex flex-col space-y-4"}>
+                    <div className={"flex flex-col space-y-4 text-base-content"}>
                         <div className={"font-medium text-3xl"}>
                             {props.name}
                         </div>
@@ -32,7 +32,7 @@ const RegistrySelectRow = (props: RegistrySelectRowProps) => {
 
                 </div>
                 <div className={"my-auto"}>
-                    <button className={"btn bg-ak-yellow rounded-lg text-xl"}>
+                    <button className={"btn btn-warning"}>
                         LAUNCH
                     </button>
                 </div>

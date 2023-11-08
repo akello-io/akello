@@ -3,7 +3,6 @@ import {Auth} from "aws-amplify";
 
 const DashboardPage = () => {
 
-
     return (
         <>
             <PageContainer>
@@ -19,7 +18,6 @@ const DashboardPage = () => {
                         });
                 }}>sign out</button>
             </PageContainer>
-
         </>
     )
 }

@@ -2,6 +2,7 @@ import PageContainer from "../containers/PageContainer";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import LandingPage from "./LandingPage";
+import RegistrySelectionPage from './RegistrySelectionPage';
 import {Auth} from "aws-amplify";
 import {CognitoUserSession} from "amazon-cognito-identity-js";
 import {setAuthToken} from "../reducers/appSlice";
@@ -28,9 +29,9 @@ const HomePage:React.FC<HomePageProps> = () => {
     return (
         <>
             {loggedIn && (
-                <PageContainer>
-                    <RegistryPage />
-                </PageContainer>
+                <PublicPageContainer>
+                    <RegistrySelectionPage />
+                </PublicPageContainer>
 
             )}
             {!loggedIn && (

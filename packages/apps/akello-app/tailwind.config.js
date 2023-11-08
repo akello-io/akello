@@ -10,7 +10,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        'ak-light-blue': '#c3d7fa',
+        'ak-light-blue': '#3081FA',
         'crx-red': '#FF755F',
         'ak-dark-blue': '#001338',
         'ak-yellow': '#FFEC1F'

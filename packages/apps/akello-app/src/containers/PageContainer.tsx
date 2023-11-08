@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import * as React from "react";
 import {SideNavigation} from '@akello/react'
 import AkelloLogo from '../images/logos/akello/akello-corner-logo.svg'
-import top_nav_buttons from "../side_nav_buttons";
+import {top_nav_buttons, bottom_nav_buttons } from "../side_nav_buttons";
 
 
 interface PageContainerProps {
@@ -28,7 +28,7 @@ const PageContainer:React.FC<PageContainerProps> = ({children}) => {
                 <SideNavigation
                     logo={AkelloLogo}
                     top_navigation={top_nav_buttons}
-                    bottom_navigation={top_nav_buttons}
+                    bottom_navigation={bottom_nav_buttons}
                 />
                 <div className={'pl-20'}>
                     {children}

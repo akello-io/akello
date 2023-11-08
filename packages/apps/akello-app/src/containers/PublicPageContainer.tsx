@@ -7,9 +7,6 @@ import {Auth} from "aws-amplify";
 import GithubLogo from "../images/logos/github-logo-vector.svg";
 import { TopNavigation, ThemeSwap } from '@akello/react'
 import * as React from "react";
-import {SideNavigation} from '@akello/react'
-import AkelloLogo from '../images/logos/akello/akello-corner-logo.svg'
-import top_nav_buttons from "../side_nav_buttons";
 
 
 interface PublicPageContainerProps {
