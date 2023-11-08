@@ -1,19 +1,18 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import TopNavigation from './TopNavigation';
+import SideNavigation from './SideNavigation';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'Molecules/Navigation/TopNavigation',
-    component: TopNavigation,
-} as ComponentMeta<typeof TopNavigation>;
+    title: 'Molecules/Navigation/SideNavigation',
+    component: SideNavigation,
+} as ComponentMeta<typeof SideNavigation>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof TopNavigation> = (args) => <TopNavigation {...args} />;
+const Template: ComponentStory<typeof SideNavigation> = (args) => <SideNavigation {...args} />;
 
-export const BasicExample = Template.bind({});
+export const DefaultExample = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-BasicExample.args = {
-
+DefaultExample.args = {
 };

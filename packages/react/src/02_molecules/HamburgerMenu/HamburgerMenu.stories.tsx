@@ -5,7 +5,7 @@ import HamburgerMenu from './HamburgerMenu';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'Molecules/HamburgerMenu',
+    title: 'Molecules/Navigation/HamburgerMenu',
     component: HamburgerMenu,
 } as ComponentMeta<typeof HamburgerMenu>;
 
