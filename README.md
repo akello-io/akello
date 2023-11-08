@@ -14,9 +14,6 @@ Akello is a developer platform that enables flexible and rapid development of po
 
 ## Quick start guide
 
-> **Warning**
-For local development you will need a free AWS account with cognito pools created. Please reference AWS docs.
-
 
 The best way to start working with akello and seeing how it works is by trying out one of our examples under /examples
 
