@@ -19,4 +19,12 @@ const Template: ComponentStory<typeof RegistryMemberships> = (args) =>
     </RegistryMemberships>;
 
 export const BasicExample = Template.bind({});
+
+
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+const EmptyTemplateTemplate: ComponentStory<typeof RegistryMemberships> = (args) =>
+    <RegistryMemberships {...args}>
+    </RegistryMemberships>;
+
+export const EmptyTemplate = EmptyTemplateTemplate.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
