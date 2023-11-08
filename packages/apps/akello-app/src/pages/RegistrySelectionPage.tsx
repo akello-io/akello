@@ -11,8 +11,9 @@ const RegistrySelectionPage = () => {
         <div className={'w-screen h-auto bg-base-200/40'}>
             <WelcomeTemplate first_name={'Vijay'}>
 
-                <RegistryMemberships>
-
+                <RegistryMemberships onCreate={()=> {
+                    navigate('/registry/create')
+                }}>
                     <RegistrySelectRow
                         logo={AkelloLogo}
                         name={'Registry A'}
@@ -28,10 +29,7 @@ const RegistrySelectionPage = () => {
                         patients={5}
                         onClick={() => {navigate('/dashboard')}}
                     />
-
-
                 </RegistryMemberships>
-
             </WelcomeTemplate>
         </div>
     )

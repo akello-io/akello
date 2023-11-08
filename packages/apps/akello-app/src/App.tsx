@@ -10,6 +10,7 @@ import {Provider, useSelector} from "react-redux";
 import {RootState, store} from "./store";
 import DashboardPage from "./pages/DashboardPage";
 import RegistryPage from "./pages/RegistryPage";
+import RegistryCreate from "./pages/RegistryCreate";
 
 
 Amplify.configure({
@@ -32,6 +33,7 @@ function App() {
                         <Route path={"/login"} element={<Login />} />
                         <Route path={'/dashboard'} element={<DashboardPage />} />
                         <Route path={'/registry'} element={<RegistryPage />} />
+                        <Route path={'/registry/create'} element={<RegistryCreate />} />
                     </Routes>
                 </BrowserRouter>
             </Provider>
