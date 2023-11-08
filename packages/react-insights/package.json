@@ -1,18 +1,15 @@
 {
   "name": "@akello/react-insights",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/YOUR_REPOSITORY_NAME"
-  },
-  "version": "0.1.0",
-  "description": "A simple template for a custom React component library",
+  "version": "0.0.1",
+  "description": "Akello Component Library for building healthcare analytics and reporting dashboards",
   "scripts": {
     "rollup": "rollup -c",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-  "author": "YOUR_NAME",
-  "license": "ISC",
+  "author": "Akello Health Inc.",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
