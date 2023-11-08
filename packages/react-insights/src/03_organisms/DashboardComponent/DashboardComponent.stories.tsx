@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import DashboardComponent from './DashboardComponent';
-import RegistryMemberships from "../RegistryMemberships";
+import RegistryMemberships from "../../../../react/src/03_organisms/RegistryMemberships";
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

@@ -5,6 +5,7 @@
   "dependencies": {
     "@akello/core": "file:../../core",
     "@akello/react": "file:../../react",
+    "@akello/react-insights": "file:../../react-insights",
     "@aws-amplify/ui-react": "^5.3.1",
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "^1.9.7",

@@ -1,12 +1,12 @@
 import React, {ReactNode} from "react";
 
-interface NavigationProps {
+export interface SideNavigationProps {
     logo: ReactNode
     top_navigation: any[]
     bottom_navigation: any[]
 }
 
-const SideNavigation:React.FC<NavigationProps> = ({logo, top_navigation, bottom_navigation}) => {
+const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigation, bottom_navigation}) => {
 
     return (
         <>

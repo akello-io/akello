@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import SideNavigation from './SideNavigation';
