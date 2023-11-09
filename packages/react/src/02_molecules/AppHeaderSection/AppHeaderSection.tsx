@@ -1,6 +1,8 @@
 import {ReactNode} from "react";
 import * as React from "react";
-interface HeaderComponentProps {
+
+
+export interface HeaderComponentProps {
     title: string
     buttons?: ReactNode[]
     isLoading?: boolean
