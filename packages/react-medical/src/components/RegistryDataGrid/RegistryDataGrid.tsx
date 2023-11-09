@@ -246,7 +246,7 @@ const columnGroupingModel: GridColumnGroupingModel = [
     },
 ];
 
-interface RegistryDataGridProps {
+export interface RegistryDataGridProps {
     patients: PatientRegistry[]
     handlePatientClickEvent: GridEventListener<'rowClick'>
 }
@@ -254,17 +254,21 @@ interface RegistryDataGridProps {
 export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, handlePatientClickEvent}) => {
     return (
         <>
-            <DataGrid
-                onRowClick={handlePatientClickEvent}
-                rows={patients}
-                getRowId={(row) => row.patient_mrn}
-                columns={columns}
-                experimentalFeatures={{ columnGrouping: true }}
-                columnGroupingModel={columnGroupingModel}
-                slots={{
-                    toolbar: GridToolbar,
-                }}
-            />
+            <div className={"bg-green-100"}>
+                Test
+                <DataGrid
+                    onRowClick={handlePatientClickEvent}
+                    rows={patients}
+                    getRowId={(row) => row.patient_mrn}
+                    columns={columns}
+                    experimentalFeatures={{ columnGrouping: true }}
+                    columnGroupingModel={columnGroupingModel}
+                    slots={{
+                        toolbar: GridToolbar,
+                    }}
+                />
+            </div>
+
         </>
     )
 }
