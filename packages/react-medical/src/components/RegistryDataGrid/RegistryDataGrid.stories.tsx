@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { PatientRegistry } from '@akello/core';
 
 import RegistryDataGrid from './RegistryDataGrid';
 
@@ -15,7 +16,13 @@ const Template: ComponentStory<typeof RegistryDataGrid> = (args) => <RegistryDat
 export const DefaultOptions = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 DefaultOptions.args = {
-    patients:[],
+    patients:[
+        new PatientRegistry('mrn', 'Vijay', 'Selvaraj' ,'4444','vijay@g.com', '10/10/2024'),
+        new PatientRegistry('mrn', 'Vijay', 'Selvaraj' ,'4444','vijay@g.com', '10/10/2024'),
+        new PatientRegistry('mrn', 'Vijay', 'Selvaraj' ,'4444','vijay@g.com', '10/10/2024'),
+        new PatientRegistry('mrn', 'Vijay', 'Selvaraj' ,'4444','vijay@g.com', '10/10/2024'),
+        new PatientRegistry('mrn', 'Vijay', 'Selvaraj' ,'4444','vijay@g.com', '10/10/2024'),
+    ],
     handlePatientClickEvent: () => {}
 };
 

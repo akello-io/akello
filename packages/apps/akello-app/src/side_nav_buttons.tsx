@@ -3,10 +3,7 @@ import {SideNavigationButton} from '@akello/react'
 import {useLocation, useNavigate} from "react-router";
 import AppLogo from './images/logos/akello/akello-corner-logo.svg'
 import {
-    CalendarDaysIcon,
     ChartBarSquareIcon,
-    ChatBubbleLeftRightIcon,
-    HeartIcon,
     TableCellsIcon,
     UserGroupIcon,
     Cog8ToothIcon

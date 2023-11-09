@@ -1,10 +1,10 @@
 import {useSelector} from "react-redux";
-import {RootState} from "../store";
-import {useScrollPosition} from "../hooks/scroll-position";
+import {RootState} from "../../../store";
+import {useScrollPosition} from "../../../hooks/scroll-position";
 import {useNavigate} from "react-router";
 import {useEffect, useState} from "react";
 import {Auth} from "aws-amplify";
-import GithubLogo from "../images/logos/github-logo-vector.svg";
+import GithubLogo from "../../../images/logos/github-logo-vector.svg";
 import { TopNavigation, ThemeSwap } from '@akello/react'
 import * as React from "react";
 

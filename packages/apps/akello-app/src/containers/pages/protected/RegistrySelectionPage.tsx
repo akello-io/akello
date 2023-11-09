@@ -1,5 +1,5 @@
 import {WelcomeTemplate, RegistryMemberships, RegistrySelectRow} from '@akello/react'
-import AkelloLogo from '../../src/images/logos/akello/akello-corner-logo.svg'
+import AkelloLogo from '../../../images/logos/akello/akello-corner-logo.svg'
 import {useNavigate} from "react-router";
 
 

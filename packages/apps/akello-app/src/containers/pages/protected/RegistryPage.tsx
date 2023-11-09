@@ -1,5 +1,5 @@
 import {Auth} from "aws-amplify";
-import PageContainer from "../containers/PageContainer";
+import PageContainer from "../../PageContainer";
 import {RegistryDataGrid} from "@akello/react-medical";
 
 const RegistryPage = () => {

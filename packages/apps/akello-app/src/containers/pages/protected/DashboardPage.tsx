@@ -1,4 +1,4 @@
-import PageContainer from "../containers/PageContainer";
+import PageContainer from "../../PageContainer";
 import {DashboardComponent, Metric} from '@akello/react-insights';
 
 const DashboardPage = () => {

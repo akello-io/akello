@@ -2,6 +2,8 @@ import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridTo
 import moment from "moment";
 import {PatientRegistry, TreatmentLog} from '@akello/core';
 import * as React from "react";
+import {createTheme, ThemeProvider} from "@mui/material";
+
 
 const columns: GridColDef[] = [
     {
@@ -252,24 +254,29 @@ export interface RegistryDataGridProps {
 }
 
 export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, handlePatientClickEvent}) => {
+    const theme = document.querySelector("html")!.getAttribute('data-theme')
+    const darkTheme = createTheme({
+        palette: {
+            mode: theme=='dark' ? 'dark' : 'light',
+        },
+    });
     return (
         <>
-            <div className={"bg-green-100"}>
-                <div className={'font-semibold text-3xl text-red-400'}>
-                    Test
-                </div>
+            <div className={"bg-base-100 text-base-content"}>
+                <ThemeProvider theme={darkTheme}>
+                    <DataGrid
+                        onRowClick={handlePatientClickEvent}
+                        rows={patients}
+                        getRowId={(row) => row.patient_mrn}
+                        columns={columns}
+                        experimentalFeatures={{ columnGrouping: true }}
+                        columnGroupingModel={columnGroupingModel}
+                        slots={{
+                            toolbar: GridToolbar,
+                        }}
+                    />
+                </ThemeProvider>
 
-                <DataGrid
-                    onRowClick={handlePatientClickEvent}
-                    rows={patients}
-                    getRowId={(row) => row.patient_mrn}
-                    columns={columns}
-                    experimentalFeatures={{ columnGrouping: true }}
-                    columnGroupingModel={columnGroupingModel}
-                    slots={{
-                        toolbar: GridToolbar,
-                    }}
-                />
             </div>
 
         </>

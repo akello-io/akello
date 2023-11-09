@@ -4,14 +4,14 @@ import '@aws-amplify/ui-react/styles.css';
 import {Amplify} from 'aws-amplify';
 import {BrowserRouter, Navigate, Routes} from "react-router-dom";
 import {Route} from "react-router";
-import HomePage from './pages/HomePage';
-import Login from "./pages/Login";
+import HomePage from './containers/pages/HomePage';
+import Login from "./containers/pages/public/Login";
 import {Provider, useSelector} from "react-redux";
 import {RootState, store} from "./store";
-import DashboardPage from "./pages/DashboardPage";
-import RegistryPage from "./pages/RegistryPage";
-import RegistryCreate from "./pages/RegistryCreate";
-import TeamPage from "./pages/TeamPage";
+import DashboardPage from "./containers/pages/protected/DashboardPage";
+import RegistryPage from "./containers/pages/protected/RegistryPage";
+import RegistryCreate from "./containers/pages/protected/RegistryCreate";
+import TeamPage from "./containers/pages/protected/TeamPage";
 
 
 Amplify.configure({

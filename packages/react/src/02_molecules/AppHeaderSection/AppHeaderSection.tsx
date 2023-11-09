@@ -13,13 +13,13 @@ const AppHeaderSection:React.FC<HeaderComponentProps> = ({title, isLoading, butt
     return (
         <>
 
-            <div className={"flex bg-white h-40 w-full px-7"}>
+            <div className={"flex bg-base-100 h-40 w-full px-7"}>
                 <div className={"flex flex-row my-auto justify-between w-full"}>
                     <div className={"flex flex-col sm:flex-row space-x-4"}>
                         <div className={"flex flex-row space-x-4 my-auto text-2xl sm:text-4xl font-semibold"}>
                             {isLoading && (
                                 <>
-                                    <span className="loading bg-black loading-ring loading-lg"></span>
+                                    <span className="loading bg-base-content loading-ring loading-lg"></span>
                                 </>
                             )}
                             <div>
