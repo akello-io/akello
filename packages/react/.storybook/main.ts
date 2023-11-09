@@ -10,6 +10,7 @@ const config: StorybookConfig = {
     "@storybook/addon-interactions",
     "@storybook/addon-styling-webpack",
     "@storybook/addon-styling-webpack",
+    "@storybook/addon-styling-webpack",
     "@storybook/addon-styling-webpack"
   ],
   framework: {
