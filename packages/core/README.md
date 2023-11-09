@@ -114,7 +114,7 @@ Within the root of your project, create the following file structure:
 ├── src
 │   ├── components
 |   │   ├── Button
-|   |   │   ├── Registry.tsx
+|   |   │   ├── RegistryDataGrid.tsx
 |   |   │   └── index.ts
 |   │   └── index.ts
 │   └── index.ts
@@ -122,11 +122,11 @@ Within the root of your project, create the following file structure:
 └── package-lock.json
 ```
 
-Make sure to double check your structure.  You should have three `index.ts` files, and a `Registry.tsx` file inside of a `Button` directory.  If you have a preferred way of structuring React components within a project you are of course welcome to do it however you like, but this is the structure we will follow for this tutorial.  
+Make sure to double check your structure.  You should have three `index.ts` files, and a `RegistryDataGrid.tsx` file inside of a `Button` directory.  If you have a preferred way of structuring React components within a project you are of course welcome to do it however you like, but this is the structure we will follow for this tutorial.  
 
-Begin by creating `Registry.tsx`:
+Begin by creating `RegistryDataGrid.tsx`:
 
-`src/components/Button/Registry.tsx`
+`src/components/Button/RegistryDataGrid.tsx`
 ```tsx
 import React from "react";
 
@@ -220,7 +220,7 @@ The values marked _added_ are new values that we need for our project.  We'll br
 * "allowSyntheticDefaultImports": true -- Assumes default exports if none are created manually
 * "emitDeclarationOnly": true -- Don't generate JS (rollup will do that) only export type declarations
 
-One you add those values to your TS configuration file you should see the errors in `Registry.tsx` and other files immediately disappear.
+One you add those values to your TS configuration file you should see the errors in `RegistryDataGrid.tsx` and other files immediately disappear.
 
 ## Adding Rollup
 
@@ -340,7 +340,7 @@ With these configurations in place you are now ready to run rollup for the first
 ├── src
 │   ├── components
 |   │   ├── Button
-|   |   │   ├── Registry.tsx
+|   |   │   ├── RegistryDataGrid.tsx
 |   |   │   └── index.ts
 |   │   └── index.ts
 │   └── index.ts
@@ -536,9 +536,9 @@ button {
 
 This will turn our regular _Hello world!_ button into a REALLY BIG button.  
 
-Next we will indicate that these styles are meant to be applied on our button component.  We'll be using special syntax that isn't native to Javascript, but thanks to rollup and the appropriate plugins, we are able to use it.  Update our `Registry.tsx` file with the following:
+Next we will indicate that these styles are meant to be applied on our button component.  We'll be using special syntax that isn't native to Javascript, but thanks to rollup and the appropriate plugins, we are able to use it.  Update our `RegistryDataGrid.tsx` file with the following:
 
-`src/components/Button/Registry.tsx`
+`src/components/Button/RegistryDataGrid.tsx`
 ```tsx
 import React from "react";
 import "./Button.css";

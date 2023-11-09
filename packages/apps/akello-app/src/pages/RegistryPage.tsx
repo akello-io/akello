@@ -1,5 +1,6 @@
 import {Auth} from "aws-amplify";
 import PageContainer from "../containers/PageContainer";
+import {RegistryDataGrid} from "@akello/react-medical";
 
 const RegistryPage = () => {
     return (
@@ -7,15 +8,7 @@ const RegistryPage = () => {
             <PageContainer>
                 Registry Page
 
-                <button className={"btn btn-primary btn-xl"} onClick={() => {
-                    Auth.signOut()
-                        .then(() => {
-                            window.location.reload();
-                        })
-                        .catch(err => {
-                            debugger;
-                        });
-                }}>sign out</button>
+                <RegistryDataGrid patients={[]} handlePatientClickEvent={()=> {}}/>
             </PageContainer>
         </>
     )
