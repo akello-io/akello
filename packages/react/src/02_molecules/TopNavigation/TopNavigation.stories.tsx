@@ -5,7 +5,7 @@ import TopNavigation from './TopNavigation';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'Molecules/TopNavigation',
+    title: 'Molecules/Navigation/TopNavigation',
     component: TopNavigation,
 } as ComponentMeta<typeof TopNavigation>;
 

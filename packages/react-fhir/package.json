@@ -1,0 +1,94 @@
+{
+  "name": "@akello/react-fhir",
+  "version": "0.0.1",
+  "private": false,
+  "type": "module",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.0.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.60",
+    "@types/react": "^18.2.34",
+    "@types/react-dom": "^18.2.14",
+    "aws-amplify": "^5.3.11",
+    "classnames": "^2.3.2",
+    "daisyui": "^3.9.4",
+    "heroicons": "^2.0.18",
+    "i": "^0.3.7",
+    "npm": "^10.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-jsx": "^1.0.0",
+    "react-refresh": "^0.14.0",
+    "react-router-dom": "^6.18.0",
+    "react-scripts": "5.0.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "rollup -c --watch",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:storybook/recommended"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-typescript": "^7.23.2",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^8.3.3",
+    "@storybook/addon-essentials": "^7.5.2",
+    "@storybook/addon-interactions": "^7.5.2",
+    "@storybook/addon-links": "^7.5.2",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/addon-styling-webpack": "^0.0.5",
+    "@storybook/blocks": "^7.5.2",
+    "@storybook/preset-create-react-app": "^7.5.2",
+    "@storybook/react": "^7.5.2",
+    "@storybook/react-webpack5": "^7.5.2",
+    "@storybook/testing-library": "^0.2.2",
+    "babel-plugin-named-exports-order": "^0.0.2",
+    "eslint-plugin-storybook": "^0.6.15",
+    "prop-types": "^15.8.1",
+    "rollup": "^3.28.1",
+    "storybook": "^7.5.2",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0"
+  }
+}
