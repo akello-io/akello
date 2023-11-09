@@ -11,6 +11,7 @@ import {RootState, store} from "./store";
 import DashboardPage from "./pages/DashboardPage";
 import RegistryPage from "./pages/RegistryPage";
 import RegistryCreate from "./pages/RegistryCreate";
+import TeamPage from "./pages/TeamPage";
 
 
 Amplify.configure({
@@ -32,6 +33,7 @@ function App() {
                         <Route index element={<HomePage />}/>
                         <Route path={"/login"} element={<Login />} />
                         <Route path={'/dashboard'} element={<DashboardPage />} />
+                        <Route path={'/team'} element={<TeamPage />} />
                         <Route path={'/registry'} element={<RegistryPage />} />
                         <Route path={'/registry/create'} element={<RegistryCreate />} />
                     </Routes>

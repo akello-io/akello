@@ -15,4 +15,13 @@ const Template: ComponentStory<typeof AppHeaderSection> = (args) => <AppHeaderSe
 export const DefaultOptions = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 DefaultOptions.args = {
+    title:'App Page Title Name'
+};
+
+
+export const LoadingState = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+LoadingState.args = {
+    title:'App Page Title Name',
+    isLoading: true
 };

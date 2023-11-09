@@ -5,7 +5,7 @@ const DashboardPage = () => {
 
     return (
         <>
-            <PageContainer>
+            <PageContainer title={'Dashboard'}>
                 <div className={"p-4 grid grid-cols-1 sm:grid-cols-2 gap-4"}>
                     <DashboardComponent title={"Treatment Performance"}>
                         <div className={"bg-base-100 p-12 w-full pb-6 flex flex-row space-x-12"}>

@@ -5,7 +5,7 @@ import {RegistryDataGrid} from "@akello/react-medical";
 const RegistryPage = () => {
     return (
         <>
-            <PageContainer>
+            <PageContainer title={'Registry'}>
                 Registry Page
 
                 <RegistryDataGrid patients={[]} handlePatientClickEvent={()=> {}}/>

@@ -4,7 +4,7 @@ import PageContainer from "../containers/PageContainer";
 const RegistryCreate = () => {
     return (
         <>
-            <PageContainer>
+            <PageContainer title={'New Registry'}>
                 Registry Create
 
                 <button className={"btn btn-primary btn-xl"} onClick={() => {
