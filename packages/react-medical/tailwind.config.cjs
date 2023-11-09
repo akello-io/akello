@@ -4,6 +4,7 @@ module.exports = {
   daisyui: {
     themes: ["light", "dark", "cupcake"],
   },
+  darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     fontFamily: {
       display: ["Satisfy", "cursive"],

@@ -255,7 +255,10 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, hand
     return (
         <>
             <div className={"bg-green-100"}>
-                Test
+                <div className={'font-semibold text-3xl text-red-400'}>
+                    Test
+                </div>
+
                 <DataGrid
                     onRowClick={handlePatientClickEvent}
                     rows={patients}
