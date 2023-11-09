@@ -1,6 +1,6 @@
 {
   "name": "@akello/react-fhir",
-  "version": "0.0.5",
+  "version": "0.0.1",
   "private": false,
   "type": "module",
   "license": "Apache-2.0",

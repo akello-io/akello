@@ -1,6 +1,6 @@
 {
   "name": "@akello/core",
-  "version": "0.0.10",
+  "version": "0.0.1",
   "scripts": {
     "build": "rollup -c",
     "test": "jest"
@@ -46,6 +46,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "moment": "^2.29.4",
     "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.23"
   }
 }
