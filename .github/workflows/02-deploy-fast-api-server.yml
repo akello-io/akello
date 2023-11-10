@@ -36,11 +36,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install packages
-        working-directory: packages/apps/cocm-registry
+        working-directory: apps/cocm-registry
         run: npm install
 
       - name: Build node
-        working-directory: packages/apps/cocm-registry
+        working-directory: apps/cocm-registry
         run: npm run build
 
       - uses: shallwefootball/s3-upload-action@master
@@ -50,7 +50,7 @@ jobs:
           aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_bucket: ${{ secrets.AWS_BUCKET }}
-          source_dir: 'packages/apps/cocm-registry/build'
+          source_dir: 'apps/cocm-registry/build'
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
