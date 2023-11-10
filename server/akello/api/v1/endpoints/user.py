@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
-from akello.auth_settings import cognito_us
-from akello.auth_settings import CognitoTokenCustom
-from akello.dynamodb.models.user import UserInvite, RegistryUser
+from akello.auth.provider import auth_token_check
+from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
+from akello.dynamodb.models.user import UserInvite
 from akello.services.user import UserService
 from akello.services.registry import RegistryService
 
@@ -11,8 +11,7 @@ router = APIRouter()
 
 
 @router.get("")
-async def get_user(auth: CognitoTokenCustom = Depends(cognito_us.auth_required)):
-
+async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
     logger.info('calling get_user: email:%s' % auth.email)
     user = UserService.get_user(auth.cognito_id)
     if not user:
@@ -45,7 +44,7 @@ async def get_user(auth: CognitoTokenCustom = Depends(cognito_us.auth_required))
 #     api.akello.io/registry -- this gets the list of registeries for current account which
 #     they have access to
 @router.get("/registries")
-async def get_user_registries(auth: CognitoTokenCustom = Depends(cognito_us.auth_required)):
+async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_check)):
     registries = UserService.get_registries(auth.cognito_id)
 
     user_id = auth.cognito_id

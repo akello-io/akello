@@ -5,6 +5,7 @@ from fastapi_cognito import CognitoAuth, CognitoSettings
 from pydantic import BaseModel, HttpUrl, Field
 from akello.settings import AWS_REGION, AWS_COGNITO_USERPOOL_ID, AWS_COGNITO_APP_CLIENT_ID
 
+
 class Settings(BaseSettings):
     check_expiration: bool = True
     jwt_header_prefix: str = "Bearer"
@@ -34,7 +35,7 @@ class CognitoTokenCustom(BaseModel):
     email: str
 
 
-cognito_us = CognitoAuth(
+auth_provider = CognitoAuth(
     settings=CognitoSettings.from_global_settings(Settings()), userpool_name="us",
     custom_model=CognitoTokenCustom
 )
