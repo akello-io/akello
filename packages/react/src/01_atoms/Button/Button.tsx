@@ -8,9 +8,6 @@ export interface ButtonProps {
 }
 
 const Button = (props: ButtonProps) => {
-    console.log(React)
-    const [test, setTest] = useState(0)
-
     return <div className={classNames({
         "btn-sm" : props.size == 'sm',
         "btn-md" : props.size == 'md',

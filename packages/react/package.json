@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "react-scripts start",
-    "build": "rollup -c --watch",
+    "build": "rollup -c",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
@@ -14,6 +14,7 @@
   },
   "eslintConfig": {
     "extends": [
+      "plugin:storybook/recommended",
       "plugin:storybook/recommended"
     ]
   },
@@ -36,22 +37,41 @@
   ],
   "types": "dist/index.d.ts",
   "devDependencies": {
-    "rollup-plugin-peer-deps-external": "^2.2.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
-    "rollup-plugin-dts": "^6.1.0",
-    "rollup-plugin-postcss": "^4.0.2",
-    "tslib": "^2.6.2",
-    "@storybook/react": "^7.5.3"
-  },
-  "peerDependencies": {
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/addon-styling-webpack": "^0.0.5",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/react": "^7.5.3",
+    "@storybook/react-vite": "^7.5.3",
+    "@storybook/testing-library": "^0.2.2",
+    "css-loader": "^6.8.1",
+    "eslint-plugin-storybook": "^0.6.15",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@types/react": "^18.2.37"
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "^7.5.3",
+    "style-loader": "^3.3.3",
+    "tslib": "^2.6.2",
+    "tailwind": "^4.0.0",
+    "daisyui": "^3.9.4",
+    "classnames": "^2.3.2"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.2.37",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "classnames": "^2.3.2"
+    "@babel/preset-react": "^7.23.3",
+    "autoprefixer": "^10.4.16"
   }
 }
