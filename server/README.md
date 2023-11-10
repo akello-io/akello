@@ -27,7 +27,7 @@ export AWS_COGNITO_APP_CLIENT_ID=##
 python3 -m venv venv 
 source venv/bin/activate
 pip install -r requirements.txt
-uvicorn main:app --reload
+uvicorn akello.main:app --reload
 ```
 
 ### Call akello services
