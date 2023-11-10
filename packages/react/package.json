@@ -61,7 +61,10 @@
     "rollup-plugin-postcss": "^4.0.2",
     "storybook": "^7.5.3",
     "style-loader": "^3.3.3",
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.2",
+    "tailwind": "^4.0.0",
+    "daisyui": "^3.9.4",
+    "classnames": "^2.3.2"
   },
   "peerDependencies": {
     "@types/react": "^18.2.37",
@@ -70,8 +73,6 @@
   },
   "dependencies": {
     "@babel/preset-react": "^7.23.3",
-    "autoprefixer": "^10.4.16",
-    "classnames": "^2.3.2",
-    "daisyui": "^3.9.4"
+    "autoprefixer": "^10.4.16"
   }
 }

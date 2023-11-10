@@ -1,6 +1,10 @@
 #!/bin/bash
 
-dir=$(pwd)
+echo '>>>>>>>>>>  COMMON'
+cd packages/common
+rm -rf node_modules
+npm install
+cd ../../
 
 echo '>>>>>>>>>>  CORE'
 cd packages/core
