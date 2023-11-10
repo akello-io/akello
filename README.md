@@ -80,6 +80,24 @@ akello/
 └── scripts                # General helper scripts (placeholder for now)
 ```
 
+
+### Local development
+
+#### App Development
+
+Gets all the packages ready to locally import and build apps
+```shell
+sh dev-build.sh 
+```
+
+Try it out with an app under apps/
+
+#### npm package development
+
+- Make sure node_modules are generated for each package dependency
+- Use storybook to test module development
+
+
 ## License
 
 [Apache 2.0](LICENSE.txt)
