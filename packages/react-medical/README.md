@@ -127,6 +127,7 @@ Make sure to double check your structure.  You should have three `index.ts` file
 Begin by creating `RegistryDataGrid.tsx`:
 
 `src/components/Button/RegistryDataGrid.tsx`
+
 ```tsx
 import React from "react";
 

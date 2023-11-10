@@ -40,6 +40,7 @@
     "react-scripts": "5.0.1",
     "theme-change": "^2.5.0",
     "typescript": "^4.9.5",
+    "typescript-npm-package-template": "file:../../react-test-2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

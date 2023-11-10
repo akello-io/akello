@@ -127,6 +127,7 @@ Make sure to double check your structure.  You should have three `index.ts` file
 Begin by creating `RegistryDataGrid.tsx`:
 
 `src/components/Button/RegistryDataGrid.tsx`
+
 ```tsx
 import React from "react";
 
@@ -539,6 +540,7 @@ This will turn our regular _Hello world!_ button into a REALLY BIG button.
 Next we will indicate that these styles are meant to be applied on our button component.  We'll be using special syntax that isn't native to Javascript, but thanks to rollup and the appropriate plugins, we are able to use it.  Update our `RegistryDataGrid.tsx` file with the following:
 
 `src/components/Button/RegistryDataGrid.tsx`
+
 ```tsx
 import React from "react";
 import "./Button.css";
