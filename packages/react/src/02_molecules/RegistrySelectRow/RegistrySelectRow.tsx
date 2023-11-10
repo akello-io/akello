@@ -12,9 +12,8 @@ const RegistrySelectRow = (props: RegistrySelectRowProps) => {
 
     return (
         <>
-            <div className={"flex flex-row w-full justify-between bg-base-100 py-8 px-12"}
+            <button className={"flex flex-row w-full justify-between bg-base-100 py-8 px-12"}
                  onClick={() => {props.onClick('registry-id')}}
-                 onFocus={() => {}}
             >
                 <div className={" flex flex-row space-x-4"}>
                     <div>
@@ -36,7 +35,7 @@ const RegistrySelectRow = (props: RegistrySelectRowProps) => {
                         LAUNCH
                     </button>
                 </div>
-            </div>
+            </button>
         </>
     )
 };
