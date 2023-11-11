@@ -9,8 +9,8 @@ if AKELLO_ENV != 'TEST':
         dynamodb = boto3.resource('dynamodb', aws_access_key_id=AWS_ACCESS_KEY_ID,
                                   aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     else:
-        client = boto3.client('dynamodb', endpoint_url="http://localhost:8001")
-        dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8001")
+        client = boto3.client('dynamodb', endpoint_url="http://localhost:8000")
+        dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
 
 
     def drop_tables():
