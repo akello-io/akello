@@ -51,9 +51,9 @@ npm install
 echo '>>>>>>>>>>  DOCKER'
 docker-compose up -d 
 
-echo '>>>>>>>>>>  AWS CLI INSTALLATION'
 if ! command -v aws &> /dev/null
 then
+echo '>>>>>>>>>>  AWS CLI INSTALLATION'
 case "$(uname -s)" in
   Darwin*) 
     echo 'Installing AWS CLI for MacOS...'
