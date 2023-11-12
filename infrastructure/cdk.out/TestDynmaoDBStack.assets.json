@@ -1,0 +1,20 @@
+{
+  "version": "22.0.0",
+  "files": {
+    "178b65f92a7aeaf7ba15adad156982be5b6f1af60a43726faafbd4e61789f2a5": {
+      "source": {
+        "path": "TestDynmaoDBStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "440667844220-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-440667844220-us-east-1",
+          "objectKey": "178b65f92a7aeaf7ba15adad156982be5b6f1af60a43726faafbd4e61789f2a5.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-file-publishing-role-440667844220-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

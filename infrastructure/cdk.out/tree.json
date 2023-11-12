@@ -1,0 +1,233 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "TestDynmaoDBStack": {
+        "id": "TestDynmaoDBStack",
+        "path": "TestDynmaoDBStack",
+        "children": {
+          "DynamoDbTable": {
+            "id": "DynamoDbTable",
+            "path": "TestDynmaoDBStack/DynamoDbTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "TestDynmaoDBStack/DynamoDbTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "keySchema": [
+                      {
+                        "attributeName": "partition_key",
+                        "keyType": "HASH"
+                      }
+                    ],
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "partition_key",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "provisionedThroughput": {
+                      "readCapacityUnits": 15,
+                      "writeCapacityUnits": 5
+                    },
+                    "tableName": "TEST_TABLE",
+                    "timeToLiveSpecification": {
+                      "attributeName": "ttl",
+                      "enabled": true
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
+                  "version": "2.58.1"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "TestDynmaoDBStack/DynamoDbTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.58.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_dynamodb.Table",
+              "version": "2.58.1"
+            }
+          },
+          "DynamoDBTableName": {
+            "id": "DynamoDBTableName",
+            "path": "TestDynmaoDBStack/DynamoDBTableName",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.58.1"
+            }
+          },
+          "test1-MyBucket": {
+            "id": "test1-MyBucket",
+            "path": "TestDynmaoDBStack/test1-MyBucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "TestDynmaoDBStack/test1-MyBucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketEncryption": {
+                      "serverSideEncryptionConfiguration": [
+                        {
+                          "serverSideEncryptionByDefault": {
+                            "sseAlgorithm": "AES256"
+                          }
+                        }
+                      ]
+                    },
+                    "bucketName": "test1-my-unique-bucket-name",
+                    "versioningConfiguration": {
+                      "status": "Enabled"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.58.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.58.1"
+            }
+          },
+          "test2-MyBucket": {
+            "id": "test2-MyBucket",
+            "path": "TestDynmaoDBStack/test2-MyBucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "TestDynmaoDBStack/test2-MyBucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketEncryption": {
+                      "serverSideEncryptionConfiguration": [
+                        {
+                          "serverSideEncryptionByDefault": {
+                            "sseAlgorithm": "AES256"
+                          }
+                        }
+                      ]
+                    },
+                    "bucketName": "test2-my-unique-bucket-name",
+                    "versioningConfiguration": {
+                      "status": "Enabled"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.58.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.58.1"
+            }
+          },
+          "test3-MyBucket": {
+            "id": "test3-MyBucket",
+            "path": "TestDynmaoDBStack/test3-MyBucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "TestDynmaoDBStack/test3-MyBucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketEncryption": {
+                      "serverSideEncryptionConfiguration": [
+                        {
+                          "serverSideEncryptionByDefault": {
+                            "sseAlgorithm": "AES256"
+                          }
+                        }
+                      ]
+                    },
+                    "bucketName": "test3-my-unique-bucket-name",
+                    "versioningConfiguration": {
+                      "status": "Enabled"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.58.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.58.1"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "TestDynmaoDBStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "TestDynmaoDBStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.58.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "TestDynmaoDBStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.58.1"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "TestDynmaoDBStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.58.1"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.58.1"
+        }
+      },
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.3.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.58.1"
+    }
+  }
+}
