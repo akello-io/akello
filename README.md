@@ -23,22 +23,27 @@ Example Docs
 
 ## Local Development
 
-Setup local env
+![Alt text](/assets/setuplocal.png "local dev")
+
+Run the setup local script
+
 ```shell
-sh dev-build.sh           # builds all the local packages and makes them available
-sh dev-setup-localh.sh    # sets up Local instance of DynamoDB and AWS Cognito
+sh dev-setup-local.sh    # sets up Local instance of DynamoDB and AWS Cognito
 ```
 
-Run server
+Add the generated environment variable exports to the bottom of your environment file (e.g., ~/.zshrc)
+
+Run the API server
 ```shell
 cd server
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements
+pip install -r requirements.txt
 uvicorn akello.main:app --reload
 ```
 
-Run client app
+Run the React app
+
 ```shell
 cd apps/cocm-registry
 npm install
