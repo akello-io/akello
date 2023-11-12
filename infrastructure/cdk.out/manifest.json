@@ -1,0 +1,102 @@
+{
+  "version": "22.0.0",
+  "artifacts": {
+    "TestDynmaoDBStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "TestDynmaoDBStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "TestDynmaoDBStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://440667844220/us-east-1",
+      "properties": {
+        "templateFile": "TestDynmaoDBStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-deploy-role-440667844220-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-cfn-exec-role-440667844220-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-440667844220-us-east-1/178b65f92a7aeaf7ba15adad156982be5b6f1af60a43726faafbd4e61789f2a5.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "TestDynmaoDBStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-lookup-role-440667844220-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "TestDynmaoDBStack.assets"
+      ],
+      "metadata": {
+        "/TestDynmaoDBStack/DynamoDbTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "DynamoDbTable6316879D"
+            }
+          }
+        ],
+        "/TestDynmaoDBStack/DynamoDbTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDbTable6316879D"
+          }
+        ],
+        "/TestDynmaoDBStack/DynamoDBTableName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DynamoDBTableName"
+          }
+        ],
+        "/TestDynmaoDBStack/test1-MyBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "test1MyBucket2CDC5C75"
+          }
+        ],
+        "/TestDynmaoDBStack/test2-MyBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "test2MyBucket6A580500"
+          }
+        ],
+        "/TestDynmaoDBStack/test3-MyBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "test3MyBucketEA2D3AD3"
+          }
+        ],
+        "/TestDynmaoDBStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/TestDynmaoDBStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/TestDynmaoDBStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "TestDynmaoDBStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

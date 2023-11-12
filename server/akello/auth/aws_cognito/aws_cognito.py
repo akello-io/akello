@@ -5,8 +5,14 @@ from pydantic.types import Any
 from typing import Optional
 from fastapi_cognito import CognitoAuth, CognitoSettings
 from pydantic import BaseModel, HttpUrl, Field,parse_obj_as
-from akello.settings import AWS_REGION, AWS_COGNITO_USERPOOL_ID, AWS_COGNITO_APP_CLIENT_ID
 from jose import jwt
+
+
+from akello.settings import configs
+AWS_COGNITO_APP_CLIENT_ID = configs['AWS_COGNITO_APP_CLIENT_ID']['value']
+AWS_COGNITO_USERPOOL_ID = configs['AWS_COGNITO_USERPOOL_ID']['value']
+AKELLO_COGNITO_URL = configs['AKELLO_COGNITO_URL']['value']
+AWS_REGION = configs['AWS_REGION']['value']
 
 
 class Settings(BaseSettings):
@@ -18,7 +24,7 @@ class Settings(BaseSettings):
             "region": AWS_REGION,
             "userpool_id": AWS_COGNITO_USERPOOL_ID,
             "app_client_id": AWS_COGNITO_APP_CLIENT_ID,
-            **({"endpoint": "http://localhost:9229"} if os.environ.get('AKELLO_ENV') == 'LOCAL' else {})
+            **({"endpoint": AKELLO_COGNITO_URL} if os.environ.get('AKELLO_COGNITO_LOCAL') == 'TRUE' else {})
         },
     }
 

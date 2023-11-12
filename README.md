@@ -21,6 +21,30 @@ Example Docs
  * [Run your own custom API with akello](https://github.com/akello-io/akello/blob/main/examples/foo-api)
 
 
+## Local Development
+
+Setup local env
+```shell
+sh dev-build.sh           # builds all the local packages and makes them available
+sh dev-setup-localh.sh    # sets up Local instance of DynamoDB and AWS Cognito
+```
+
+Run server
+```shell
+cd server
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements
+uvicorn akello.main:app --reload
+```
+
+Run client app
+```shell
+cd apps/cocm-registry
+npm install
+npm run start
+```
+
 ## CoCM Registry App
 
 ![Alt text](/assets/app-screenshot.png "akello")

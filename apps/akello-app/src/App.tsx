@@ -17,7 +17,7 @@ import TeamPage from "./containers/pages/protected/TeamPage";
 Amplify.configure({
   Auth: {
     region: process.env.REACT_APP_TEST_AWS_REGION,
-    userPoolId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_ID,
+    userPoolId: process.env.REACT_APP_TEST_AWS_COGNITO_USERPOOL_ID,
     userPoolWebClientId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_APP_CLIENT_ID
   }
 })
