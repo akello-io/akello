@@ -68,16 +68,17 @@
               "version": "2.58.1"
             }
           },
-          "test1-MyBucket": {
-            "id": "test1-MyBucket",
-            "path": "TestDynmaoDBStack/test1-MyBucket",
+          "akello-test.akello.io": {
+            "id": "akello-test.akello.io",
+            "path": "TestDynmaoDBStack/akello-test.akello.io",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "TestDynmaoDBStack/test1-MyBucket/Resource",
+                "path": "TestDynmaoDBStack/akello-test.akello.io/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                   "aws:cdk:cloudformation:props": {
+                    "accessControl": "Private",
                     "bucketEncryption": {
                       "serverSideEncryptionConfiguration": [
                         {
@@ -87,7 +88,7 @@
                         }
                       ]
                     },
-                    "bucketName": "test1-my-unique-bucket-name",
+                    "bucketName": "akello-test.akello.io",
                     "versioningConfiguration": {
                       "status": "Enabled"
                     }
@@ -104,75 +105,69 @@
               "version": "2.58.1"
             }
           },
-          "test2-MyBucket": {
-            "id": "test2-MyBucket",
-            "path": "TestDynmaoDBStack/test2-MyBucket",
+          "AnAmazingWebsiteProbably": {
+            "id": "AnAmazingWebsiteProbably",
+            "path": "TestDynmaoDBStack/AnAmazingWebsiteProbably",
             "children": {
-              "Resource": {
-                "id": "Resource",
-                "path": "TestDynmaoDBStack/test2-MyBucket/Resource",
+              "CFDistribution": {
+                "id": "CFDistribution",
+                "path": "TestDynmaoDBStack/AnAmazingWebsiteProbably/CFDistribution",
                 "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:type": "AWS::CloudFront::Distribution",
                   "aws:cdk:cloudformation:props": {
-                    "bucketEncryption": {
-                      "serverSideEncryptionConfiguration": [
+                    "distributionConfig": {
+                      "enabled": true,
+                      "defaultRootObject": "index.html",
+                      "httpVersion": "http2",
+                      "priceClass": "PriceClass_100",
+                      "ipv6Enabled": true,
+                      "origins": [
                         {
-                          "serverSideEncryptionByDefault": {
-                            "sseAlgorithm": "AES256"
-                          }
+                          "id": "origin1",
+                          "domainName": {
+                            "Fn::GetAtt": [
+                              "akellotestakelloioECAB224A",
+                              "RegionalDomainName"
+                            ]
+                          },
+                          "s3OriginConfig": {},
+                          "connectionAttempts": 3,
+                          "connectionTimeout": 10
                         }
-                      ]
-                    },
-                    "bucketName": "test2-my-unique-bucket-name",
-                    "versioningConfiguration": {
-                      "status": "Enabled"
+                      ],
+                      "defaultCacheBehavior": {
+                        "allowedMethods": [
+                          "GET",
+                          "HEAD"
+                        ],
+                        "cachedMethods": [
+                          "GET",
+                          "HEAD"
+                        ],
+                        "compress": true,
+                        "forwardedValues": {
+                          "queryString": false,
+                          "cookies": {
+                            "forward": "none"
+                          }
+                        },
+                        "targetOriginId": "origin1",
+                        "viewerProtocolPolicy": "redirect-to-https"
+                      },
+                      "viewerCertificate": {
+                        "cloudFrontDefaultCertificate": true
+                      }
                     }
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "fqn": "aws-cdk-lib.aws_cloudfront.CfnDistribution",
                   "version": "2.58.1"
                 }
               }
             },
             "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_s3.Bucket",
-              "version": "2.58.1"
-            }
-          },
-          "test3-MyBucket": {
-            "id": "test3-MyBucket",
-            "path": "TestDynmaoDBStack/test3-MyBucket",
-            "children": {
-              "Resource": {
-                "id": "Resource",
-                "path": "TestDynmaoDBStack/test3-MyBucket/Resource",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
-                  "aws:cdk:cloudformation:props": {
-                    "bucketEncryption": {
-                      "serverSideEncryptionConfiguration": [
-                        {
-                          "serverSideEncryptionByDefault": {
-                            "sseAlgorithm": "AES256"
-                          }
-                        }
-                      ]
-                    },
-                    "bucketName": "test3-my-unique-bucket-name",
-                    "versioningConfiguration": {
-                      "status": "Enabled"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
-                  "version": "2.58.1"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "fqn": "aws-cdk-lib.aws_cloudfront.CloudFrontWebDistribution",
               "version": "2.58.1"
             }
           },

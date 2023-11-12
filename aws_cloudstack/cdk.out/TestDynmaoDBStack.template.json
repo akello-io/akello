@@ -31,9 +31,10 @@
     "aws:cdk:path": "TestDynmaoDBStack/DynamoDbTable/Resource"
    }
   },
-  "test1MyBucket2CDC5C75": {
+  "akellotestakelloioECAB224A": {
    "Type": "AWS::S3::Bucket",
    "Properties": {
+    "AccessControl": "Private",
     "BucketEncryption": {
      "ServerSideEncryptionConfiguration": [
       {
@@ -43,7 +44,7 @@
       }
      ]
     },
-    "BucketName": "test1-my-unique-bucket-name",
+    "BucketName": "akello-test.akello.io",
     "VersioningConfiguration": {
      "Status": "Enabled"
     }
@@ -51,59 +52,64 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test1-MyBucket/Resource"
+    "aws:cdk:path": "TestDynmaoDBStack/akello-test.akello.io/Resource"
    }
   },
-  "test2MyBucket6A580500": {
-   "Type": "AWS::S3::Bucket",
+  "AnAmazingWebsiteProbablyCFDistribution47E3983B": {
+   "Type": "AWS::CloudFront::Distribution",
    "Properties": {
-    "BucketEncryption": {
-     "ServerSideEncryptionConfiguration": [
+    "DistributionConfig": {
+     "DefaultCacheBehavior": {
+      "AllowedMethods": [
+       "GET",
+       "HEAD"
+      ],
+      "CachedMethods": [
+       "GET",
+       "HEAD"
+      ],
+      "Compress": true,
+      "ForwardedValues": {
+       "Cookies": {
+        "Forward": "none"
+       },
+       "QueryString": false
+      },
+      "TargetOriginId": "origin1",
+      "ViewerProtocolPolicy": "redirect-to-https"
+     },
+     "DefaultRootObject": "index.html",
+     "Enabled": true,
+     "HttpVersion": "http2",
+     "IPV6Enabled": true,
+     "Origins": [
       {
-       "ServerSideEncryptionByDefault": {
-        "SSEAlgorithm": "AES256"
-       }
+       "ConnectionAttempts": 3,
+       "ConnectionTimeout": 10,
+       "DomainName": {
+        "Fn::GetAtt": [
+         "akellotestakelloioECAB224A",
+         "RegionalDomainName"
+        ]
+       },
+       "Id": "origin1",
+       "S3OriginConfig": {}
       }
-     ]
-    },
-    "BucketName": "test2-my-unique-bucket-name",
-    "VersioningConfiguration": {
-     "Status": "Enabled"
+     ],
+     "PriceClass": "PriceClass_100",
+     "ViewerCertificate": {
+      "CloudFrontDefaultCertificate": true
+     }
     }
    },
-   "UpdateReplacePolicy": "Delete",
-   "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test2-MyBucket/Resource"
-   }
-  },
-  "test3MyBucketEA2D3AD3": {
-   "Type": "AWS::S3::Bucket",
-   "Properties": {
-    "BucketEncryption": {
-     "ServerSideEncryptionConfiguration": [
-      {
-       "ServerSideEncryptionByDefault": {
-        "SSEAlgorithm": "AES256"
-       }
-      }
-     ]
-    },
-    "BucketName": "test3-my-unique-bucket-name",
-    "VersioningConfiguration": {
-     "Status": "Enabled"
-    }
-   },
-   "UpdateReplacePolicy": "Delete",
-   "DeletionPolicy": "Delete",
-   "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test3-MyBucket/Resource"
+    "aws:cdk:path": "TestDynmaoDBStack/AnAmazingWebsiteProbably/CFDistribution"
    }
   },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSM7XQM1RMLC/WTU7J1s3JTNKrDi5JTM7WAQrFV6dU5iXm5qcABUMSk3JSdZzT8sCMWp1iY71qp9Lk7NQSkCCEVVurE5RanF9alAxW6V9aUlAKloaJ1uoEVJZk5OfpG+sZGuqZKWYVZ2bqFpXmlWTmpuoFQWgAARfh+JIAAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02NywrCMBBFv8V9OlKL4tqKW6UKLiWv4tg2kWSClJB/t2kRXM25B+6dDWz3UK74xxdSdUWPAuKVuOzYpB5RjYYPVk3yxkWvWd2aGRLzFcRDkJ2mLBdKTPY2qNZZQxDrzKfMdy2O6MmhCITW5MJ/Tok12tvg5PzgHOgd5tWfTewy0tOadQVlCbvVyyMWLhjCQUOz3C8uLE64yQAAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "TestDynmaoDBStack/CDKMetadata/Default"
