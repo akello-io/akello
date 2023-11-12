@@ -1,16 +1,5 @@
 # [akello](https://www.akello.io) &middot; [![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/akello-io/akello/blob/main/LICENSE)  [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=akello-io_akello&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=akello-io_akello)  [![Coverage Status](https://coveralls.io/repos/github/akello-io/akello/badge.svg?branch=main)](https://coveralls.io/github/akello-io/akello?branch=main) 
 
-![Alt text](/assets/banner.png "akello")
-
-Akello is a developer platform that enables flexible and rapid development of population health apps
-
-- **Akello Registry** - Complete platform to run Measurement Based Care (MBC) programs.
-- **Akello Insights** - Tools for analytics and insights into population models.
-- **Akello API** - API's to help build personalized workflows
-- **Akello SDK** - Client libraries that simplify the process of interacting with the **Akello API**.
-- **Akello App** - Web application where you can view your data and perform basic editing tasks. You can also use the Akello App to manage basic workflows.
-
-
 
 ## Quick start guide
 
@@ -23,22 +12,27 @@ Example Docs
 
 ## Local Development
 
-Setup local env
+![Alt text](/assets/setuplocal.png "local dev")
+
+Run the setup local script
+
 ```shell
-sh dev-build.sh           # builds all the local packages and makes them available
-sh dev-setup-localh.sh    # sets up Local instance of DynamoDB and AWS Cognito
+sh dev-setup-local.sh    # sets up Local instance of DynamoDB and AWS Cognito
 ```
 
-Run server
+Add the generated environment variable exports to the bottom of your environment file (e.g., ~/.zshrc)
+
+Run the API server
 ```shell
 cd server
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements
+pip install -r requirements.txt
 uvicorn akello.main:app --reload
 ```
 
-Run client app
+Run the React app
+
 ```shell
 cd apps/cocm-registry
 npm install
