@@ -59,10 +59,10 @@ UserPoolClient=$(echo $stdout | jq -r '.UserPoolClient.ClientId')
 
 cp apps/cocm-registry/.template.env apps/cocm-registry/.env
 
-envContent=$(cat apps/cocm-registry/.env)
-envContent=${envContent//\$user_pool_id/$UserPoolId}
-envContent=${envContent//\$user_pool_client_id/$UserPoolClient}
-echo "$envContent" > apps/cocm-registry/.env
+# envContent=$(cat apps/cocm-registry/.env)
+# envContent=${envContent//\$user_pool_id/$UserPoolId}
+# envContent=${envContent//\$user_pool_client_id/$UserPoolClient}
+# echo "$envContent" > apps/cocm-registry/.env
 
 rcFile=$([ "$SHELL" = "/bin/zsh" ] && echo "~/.zshrc" || echo "~/.bashrc")
 
