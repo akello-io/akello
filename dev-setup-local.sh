@@ -57,6 +57,7 @@ UserPoolId=$(echo $stdout | jq -r '.UserPool.Id')
 stdout=$(aws --endpoint http://localhost:9229 cognito-idp create-user-pool-client --user-pool-id $UserPoolId --client-name client --output json --no-cli-pager)
 UserPoolClient=$(echo $stdout | jq -r '.UserPoolClient.ClientId')
 
+
 cp apps/cocm-registry/.template.env apps/cocm-registry/.env
 
 # envContent=$(cat apps/cocm-registry/.env)
@@ -70,16 +71,20 @@ CYAN='\033[0;36m'
 printf "
 ✅ Setup Complete
 📝 Add this in your $rcFile
-${CYAN}export AKELLO_ENV=LOCAL
-${CYAN}export COGNITO_ENV=LOCAL
-${CYAN}export DYNAMODB_ENV=LOCAL
-${CYAN}export DYNAMODB_LOCAL_URL=http://localhost:8001
-${CYAN}export AWS_REGION=us-west-2
-${CYAN}export AWS_SECRET_NAME=''
-${CYAN}export AWS_SECRET_SERVICE=''
+${CYAN}export AKELLO_API_URL=http://127.0.0.1:8000/v1
+${CYAN}export AKELLO_COGNITO_LOCAL=TRUE
+${CYAN}export AKELLO_COGNITO_URL=http://localhost:9229
+${CYAN}export AKELLO_DYNAMODB_LOCAL=TRUE
+${CYAN}export AKELLO_DYNAMODB_LOCAL_URL=http://localhost:8001
 ${CYAN}export AWS_ACCESS_KEY_ID=''
-${CYAN}export AWS_SECRET_ACCESS_KEY=''
-${CYAN}export DYNAMODB_TABLE=akello
-${CYAN}export AWS_COGNITO_USER_POOL_ID=$UserPoolId
+${CYAN}export AWS_ACCOUNT_ID=''
+${CYAN}export AWS_BUCKET=''
+${CYAN}export AWS_CLOUD_FRONT_DISTRIBUTION=''
 ${CYAN}export AWS_COGNITO_APP_CLIENT_ID=$UserPoolClient
+${CYAN}export AWS_COGNITO_USERPOOL_ID=$UserPoolId
+${CYAN}export AWS_DYNAMODB_TABLE='akello-local'
+${CYAN}export AWS_REGION=''
+${CYAN}export AWS_SECRET_ACCESS_KEY=''
+${CYAN}export AWS_SECRET_NAME=''
+${CYAN}export AWS_STORYBOOK_BUCKET=''
 "

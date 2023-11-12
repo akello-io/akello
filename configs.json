@@ -1,31 +1,31 @@
 {
-    "environment_variables": {
-        "DYNAMODB_ENV": {
-            "description": ""
-        },
-        "DYNAMODB_LOCAL_URL": {
-            "description": ""
-        },
-        "AWS_REGION": {
-            "description": ""
-        },
-        "AWS_SECRET_NAME": {
-            "description": ""
-        },
-        "AWS_ACCESS_KEY_ID": {
-            "description": ""
-        },
-        "AWS_SECRET_ACCESS_KEY": {
-            "description": ""
-        },
-        "DYNAMODB_TABLE": {
-            "description": ""
-        },
-        "AWS_COGNITO_USER_POOL_ID": {
-            "description": ""
-        },
-        "AWS_COGNITO_APP_CLIENT_ID": {
-            "description": ""
-        }
-    }
+    "AKELLO_COGNITO_LOCAL": {
+        "description": "If true the local AWS cognito service is used for auth",
+        "options": "TRUE | FALSE"
+    },
+    "AKELLO_COGNITO_URL": {
+
+    },
+    "AKELLO_DYNAMODB_LOCAL": {
+        "description": "If true the local DynamoDB instance defined on AKELLO_DYNAMODB_LOCAL_URL is used",
+        "options": "TRUE | FALSE"
+    },
+    "AKELLO_DYNAMODB_LOCAL_URL": {
+        "description": "Local DynamoDB server URL. Required if AKELLO_DYNAMODB_LOCAL is set",
+        "options": "TRUE | FALSE"
+    },
+    "AKELLO_API_URL": {
+
+    },
+    "AWS_ACCESS_KEY_ID": {},
+    "AWS_ACCOUNT_ID": {},
+    "AWS_BUCKET": {},
+    "AWS_CLOUD_FRONT_DISTRIBUTION": {},
+    "AWS_COGNITO_APP_CLIENT_ID": {},
+    "AWS_COGNITO_USERPOOL_ID": {},
+    "AWS_DYNAMODB_TABLE": {},
+    "AWS_REGION": {},
+    "AWS_SECRET_ACCESS_KEY": {},
+    "AWS_SECRET_NAME": {},
+    "AWS_STORYBOOK_BUCKET": {}
 }

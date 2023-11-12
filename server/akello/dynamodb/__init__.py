@@ -1,22 +1,25 @@
 import boto3
 from akello.settings import configs
 
-DYNAMODB_ENV = configs['environment_variables']['DYNAMODB_ENV']['value']
-DYNAMODB_LOCAL_URL = configs['environment_variables']['DYNAMODB_LOCAL_URL']['value']
-DYNAMODB_TABLE = configs['environment_variables']['DYNAMODB_TABLE']['value']
-AWS_REGION = configs['environment_variables']['AWS_REGION']['value']
+AWS_ACCESS_KEY_ID = configs['AWS_ACCESS_KEY_ID']['value']
+AWS_REGION = configs['AWS_REGION']['value']
+AKELLO_DYNAMODB_LOCAL = configs['AKELLO_DYNAMODB_LOCAL']['value']
+AKELLO_DYNAMODB_LOCAL_URL = configs['AKELLO_DYNAMODB_LOCAL_URL']['value']
+DYNAMODB_TABLE = configs['AWS_DYNAMODB_TABLE']['value']
+AWS_SECRET_ACCESS_KEY = configs['AWS_SECRET_ACCESS_KEY']['value']
 
 
 #TODO: We need a better way to do this...
 registry_db = None
 
-if DYNAMODB_ENV != 'LOCAL':
+if AKELLO_DYNAMODB_LOCAL == 'TRUE':
+    client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+    dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+else:
     client = boto3.client('dynamodb', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     dynamodb = boto3.resource('dynamodb', aws_access_key_id=AWS_ACCESS_KEY_ID,
                               aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-else:
-    client = boto3.client('dynamodb', endpoint_url=DYNAMODB_LOCAL_URL)
-    dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_LOCAL_URL)
+
 
 
 def drop_tables():

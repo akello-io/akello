@@ -3,10 +3,9 @@ from unittest import TestCase, mock
 from unittest.mock import patch
 
 @mock.patch.dict(os.environ, {
-    "AKELLO_ENV": "TEST",
+    "AKELLO_COGNITO_LOCAL": "TRUE",
     "AWS_REGION": "x",
     "AWS_SECRET_NAME": "x",
-    "AWS_SECRET_SERVICE": "x",
     "AWS_ACCESS_KEY_ID": "x",
     "AWS_SECRET_ACCESS_KEY": "x",
     "DYNAMODB_TABLE": "UnitTestLocalDB",

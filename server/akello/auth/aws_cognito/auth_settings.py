@@ -5,9 +5,9 @@ from fastapi_cognito import CognitoAuth, CognitoSettings
 from pydantic import BaseModel, HttpUrl, Field
 from akello.settings import configs
 
-AWS_COGNITO_APP_CLIENT_ID = configs['environment_variables']['AWS_COGNITO_APP_CLIENT_ID']['value']
-AWS_COGNITO_USER_POOL_ID = configs['environment_variables']['AWS_COGNITO_USER_POOL_ID']['value']
-AWS_REGION = configs['environment_variables']['AWS_REGION']['value']
+AWS_COGNITO_APP_CLIENT_ID = configs['AWS_COGNITO_APP_CLIENT_ID']['value']
+AWS_COGNITO_USERPOOL_ID = configs['AWS_COGNITO_USERPOOL_ID']['value']
+AWS_REGION = configs['AWS_REGION']['value']
 
 
 class Settings(BaseSettings):
@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     userpools: dict[str, dict[str, Any]] = {
         "us": {
             "region": AWS_REGION,
-            "userpool_id": AWS_COGNITO_USER_POOL_ID,
+            "userpool_id": AWS_COGNITO_USERPOOL_ID,
             "app_client_id": AWS_COGNITO_APP_CLIENT_ID
         },
     }

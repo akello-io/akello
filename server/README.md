@@ -13,7 +13,6 @@ For local development you will need a free AWS account with cognito pools create
 export AKELLO_ENV=LOCAL
 export AWS_REGION=## 
 export AWS_SECRET_NAME=##  
-export AWS_SECRET_SERVICE=##
 export AWS_ACCESS_KEY_ID=##
 export AWS_SECRET_ACCESS_KEY=##
 export DYNAMODB_TABLE=##

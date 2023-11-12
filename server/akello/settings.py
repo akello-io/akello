@@ -13,8 +13,8 @@ def getkey(keystore, key):
         return None
 
 def setenvars(keystore):
-    for config in configs['environment_variables'].keys():
-        configs['environment_variables'][config]['value'] = getkey(keystore, config)
+    for config in configs.keys():
+        configs[config]['value'] = getkey(keystore, config)
 
 def set_local():
     setenvars(os.environ)
@@ -23,8 +23,7 @@ def set_aws():
     secrets = get_secret()
     setenvars(secrets)
 
-
-if os.getenv('AKELLO_ENV') not in ['LOCAL', 'TEST']:
-    set_aws()
-else:
+if os.getenv('AKELLO_COGNITO_LOCAL') == 'TRUE':
     set_local()
+else:
+    set_aws()
