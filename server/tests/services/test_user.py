@@ -3,14 +3,22 @@ from unittest import TestCase, mock
 from unittest.mock import patch
 
 @mock.patch.dict(os.environ, {
+    "AKELLO_API_URL": "TRUE",
     "AKELLO_COGNITO_LOCAL": "TRUE",
-    "AWS_REGION": "x",
-    "AWS_SECRET_NAME": "x",
-    "AWS_ACCESS_KEY_ID": "x",
-    "AWS_SECRET_ACCESS_KEY": "x",
-    "DYNAMODB_TABLE": "UnitTestLocalDB",
-    "AWS_COGNITO_USERPOOL_ID": "x",
+    "AKELLO_COGNITO_URL": "x",
+    "AKELLO_DYNAMODB_LOCAL": "x",
+    "AKELLO_DYNAMODB_LOCAL_URL": "x",
+    "AWS_ACCESS_KEY_ID": "UnitTestLocalDB",
+    "AWS_ACCOUNT_ID": "x",
+    "AWS_BUCKET": "x",
+    "AWS_CLOUD_FRONT_DISTRIBUTION": "x",
     "AWS_COGNITO_APP_CLIENT_ID": "x",
+    "AWS_COGNITO_USERPOOL_ID": "x",
+    "AWS_DYNAMODB_TABLE": "x",
+    "AWS_REGION": "x",
+    "AWS_SECRET_ACCESS_KEY": "x",
+    "AWS_SECRET_NAME": "x",
+    "AWS_STORYBOOK_BUCKET": "x",
 })
 class TestUserService(TestCase):
 
