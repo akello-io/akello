@@ -4,10 +4,11 @@ from unittest.mock import patch
 
 @mock.patch.dict(os.environ, {
     "AKELLO_API_URL": "TRUE",
+    "AKELLO_UNIT_TEST": "TRUE",
     "AKELLO_COGNITO_LOCAL": "TRUE",
-    "AKELLO_COGNITO_URL": "x",
-    "AKELLO_DYNAMODB_LOCAL": "x",
-    "AKELLO_DYNAMODB_LOCAL_URL": "x",
+    "AKELLO_COGNITO_URL": "http://localhost:9229",
+    "AKELLO_DYNAMODB_LOCAL": "TRUE",
+    "AKELLO_DYNAMODB_LOCAL_URL": "=http://localhost:8001",
     "AWS_ACCESS_KEY_ID": "UnitTestLocalDB",
     "AWS_ACCOUNT_ID": "x",
     "AWS_BUCKET": "x",

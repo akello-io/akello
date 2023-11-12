@@ -7,30 +7,24 @@ AKELLO_DYNAMODB_LOCAL = configs['AKELLO_DYNAMODB_LOCAL']['value']
 AKELLO_DYNAMODB_LOCAL_URL = configs['AKELLO_DYNAMODB_LOCAL_URL']['value']
 DYNAMODB_TABLE = configs['AWS_DYNAMODB_TABLE']['value']
 AWS_SECRET_ACCESS_KEY = configs['AWS_SECRET_ACCESS_KEY']['value']
-
-
-#TODO: We need a better way to do this...
-registry_db = None
-
-if AKELLO_DYNAMODB_LOCAL == 'TRUE':
-    client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-    dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-else:
-    client = boto3.client('dynamodb', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-    dynamodb = boto3.resource('dynamodb', aws_access_key_id=AWS_ACCESS_KEY_ID,
-                              aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+AKELLO_UNIT_TEST = configs['AKELLO_UNIT_TEST']['value']
 
 
 
-def drop_tables():
-    try:
-        response = client.delete_table(
-            TableName=DYNAMODB_TABLE
-        )
-    except:
-        pass
+def setup_registry_db():
 
-def create_tables():
+    if AKELLO_UNIT_TEST == 'TRUE':
+        return None, None, None
+
+    if AKELLO_DYNAMODB_LOCAL == 'TRUE':
+        client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+        dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+    else:
+        client = boto3.client('dynamodb', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        dynamodb = boto3.resource('dynamodb', aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                  aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+
+
     try:
         print('creating registry table')
         table = dynamodb.create_table(
@@ -67,7 +61,7 @@ def create_tables():
     except:
         print("tables probably already exist")
 
-    return dynamodb.Table(DYNAMODB_TABLE)
+    return  client, dynamodb, dynamodb.Table(DYNAMODB_TABLE)
 
 
-registry_db = create_tables()
+client, dynamodb, registry_db = setup_registry_db()
