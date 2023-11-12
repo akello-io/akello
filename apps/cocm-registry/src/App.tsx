@@ -32,7 +32,7 @@ if(process.env.REACT_APP_MOCK != 'true') {
             region: process.env.REACT_APP_TEST_AWS_REGION,
             userPoolId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_ID,
             userPoolWebClientId: process.env.REACT_APP_TEST_AWS_COGNITO_USER_POOL_APP_CLIENT_ID,
-            ...(process.env.AKELLO_ENV === "LOCAL" && {
+            ...(process.env.REACT_APP_TEST_ENV === "LOCAL" && {
                 endpoint: "http://localhost:9229",
                 authenticationFlowType: "USER_PASSWORD_AUTH",
               })

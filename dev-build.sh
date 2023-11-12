@@ -97,15 +97,17 @@ fi
 
 echo '>>>>>>>>>>  SETTING UP AWS COGNITO'
 
-aws --endpoint http://localhost:9229 cognito-idp create-user-pool --pool-name akello --auto-verified-attributes email --no-cli-pager > /dev/null 2>&1
+stdout=$(aws --endpoint http://localhost:9229 cognito-idp create-user-pool --pool-name akello --no-cli-pager --output json)
+UserPoolId=$(echo $stdout | jq -r '.UserPool.Id')
 
-stdout=$(aws --endpoint http://localhost:9229 cognito-idp create-user-pool-client --user-pool-id akello --client-name client --output json --no-cli-pager)
+stdout=$(aws --endpoint http://localhost:9229 cognito-idp create-user-pool-client --user-pool-id $UserPoolId --client-name client --output json --no-cli-pager)
 UserPoolClient=$(echo $stdout | jq -r '.UserPoolClient.ClientId')
 
 cp apps/cocm-registry/.template.env apps/cocm-registry/.env
 
 envContent=$(cat apps/cocm-registry/.env)
-envContent=${envContent//\$user_pool_id/$UserPoolClient}
+envContent=${envContent//\$user_pool_id/$UserPoolId}
+envContent=${envContent//\$user_pool_client_id/$UserPoolClient}
 echo "$envContent" > apps/cocm-registry/.env
 
 rcFile=$([ "$SHELL" = "/bin/zsh" ] && echo "~/.zshrc" || echo "~/.bashrc")
@@ -121,6 +123,6 @@ ${CYAN}export AWS_SECRET_SERVICE=''
 ${CYAN}export AWS_ACCESS_KEY_ID=''
 ${CYAN}export AWS_SECRET_ACCESS_KEY=''
 ${CYAN}export DYNAMODB_TABLE=akello
-${CYAN}export AWS_COGNITO_USERPOOL_ID=akello
+${CYAN}export AWS_COGNITO_USERPOOL_ID=$UserPoolId
 ${CYAN}export AWS_COGNITO_APP_CLIENT_ID=$UserPoolClient
 "
