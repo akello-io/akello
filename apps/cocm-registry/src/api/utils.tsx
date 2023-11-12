@@ -19,7 +19,7 @@ const getHeaders = (accessToken: string) => {
 
 export const apiRequest = async (params: RequestParam) => {
     if(params.method == 'get') {
-        await axios.get(process.env.REACT_APP_TEST_AWS_API + '/' + params.endpoint, {
+        await axios.get(process.env.REACT_APP_API + '/' + params.endpoint, {
             headers: getHeaders(params.token),
         })
             .then((resp) => {
@@ -33,7 +33,7 @@ export const apiRequest = async (params: RequestParam) => {
     }
 
     if(params.method == 'put') {
-        await axios.put(process.env.REACT_APP_TEST_AWS_API + '/' + params.endpoint, params.payload, {
+        await axios.put(process.env.REACT_APP_API + '/' + params.endpoint, params.payload, {
             headers: getHeaders(params.token),
         })
             .then((resp) => {
@@ -47,7 +47,7 @@ export const apiRequest = async (params: RequestParam) => {
     }
 
     if(params.method == 'post') {
-        await axios.post(process.env.REACT_APP_TEST_AWS_API + '/' + params.endpoint, params.payload, {
+        await axios.post(process.env.REACT_APP_API + '/' + params.endpoint, params.payload, {
             headers: getHeaders(params.token),
         })
             .then((resp) => {
@@ -61,7 +61,7 @@ export const apiRequest = async (params: RequestParam) => {
     }
 
     if(params.method == 'delete') {
-        await axios.delete(process.env.REACT_APP_TEST_AWS_API + '/' + params.endpoint, {
+        await axios.delete(process.env.REACT_APP_API + '/' + params.endpoint, {
             headers: getHeaders(params.token),
         })
             .then((resp) => {

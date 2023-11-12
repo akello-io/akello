@@ -4,7 +4,7 @@ services:
   dynamodb:
     image: amazon/dynamodb-local
     ports:
-      - "8000:8000"
+      - "8001:8000"
   cognito-local:
     image: jagregory/cognito-local:latest
     volumes:
