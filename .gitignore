@@ -4,3 +4,5 @@ dist/
 venv
 .env
 .DS_Store
+# docker volume for cognito
+.cognito

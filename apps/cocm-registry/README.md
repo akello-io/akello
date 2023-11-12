@@ -1,9 +1,6 @@
 # CoCM Registry
 
 
-> **Warning**
-For local development you will need a free AWS account with cognito pools created. Please reference AWS docs.
-
 ## Run the local mockserver
 
 Create your .env files under the env folder with the following environment variables
@@ -13,6 +10,10 @@ REACT_APP_TEST_AWS_REGION=xx
 REACT_APP_TEST_AWS_COGNITO_USER_POOL_ID=xx
 REACT_APP_TEST_AWS_COGNITO_USER_POOL_APP_CLIENT_ID=xx
 ```
+
+> **Note**
+<span style="color:red">⚠️ In LOCAL environment, the email confirmation for new sign up will always be 1234.</span>
+
 
 Install the dependencies
 ```shell
