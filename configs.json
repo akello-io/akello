@@ -14,9 +14,7 @@
         "description": "Local DynamoDB server URL. Required if AKELLO_DYNAMODB_LOCAL is set",
         "options": "TRUE | FALSE"
     },
-    "AKELLO_API_URL": {
-
-    },
+    "AKELLO_API_URL": {},
     "AWS_ACCESS_KEY_ID": {},
     "AWS_ACCOUNT_ID": {},
     "AWS_BUCKET": {},
