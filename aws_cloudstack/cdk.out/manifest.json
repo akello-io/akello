@@ -17,7 +17,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-deploy-role-440667844220-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-cfn-exec-role-440667844220-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-440667844220-us-east-1/178b65f92a7aeaf7ba15adad156982be5b6f1af60a43726faafbd4e61789f2a5.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-440667844220-us-east-1/1b6954f422e109ede71798224b4f097df1ae8245950ea04be3669920b797f363.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -53,22 +53,16 @@
             "data": "DynamoDBTableName"
           }
         ],
-        "/TestDynmaoDBStack/test1-MyBucket/Resource": [
+        "/TestDynmaoDBStack/akello-test.akello.io/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "test1MyBucket2CDC5C75"
+            "data": "akellotestakelloioECAB224A"
           }
         ],
-        "/TestDynmaoDBStack/test2-MyBucket/Resource": [
+        "/TestDynmaoDBStack/AnAmazingWebsiteProbably/CFDistribution": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "test2MyBucket6A580500"
-          }
-        ],
-        "/TestDynmaoDBStack/test3-MyBucket/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "test3MyBucketEA2D3AD3"
+            "data": "AnAmazingWebsiteProbablyCFDistribution47E3983B"
           }
         ],
         "/TestDynmaoDBStack/CDKMetadata/Default": [
