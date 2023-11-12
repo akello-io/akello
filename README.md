@@ -1,16 +1,5 @@
 # [akello](https://www.akello.io) &middot; [![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/akello-io/akello/blob/main/LICENSE)  [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=akello-io_akello&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=akello-io_akello)  [![Coverage Status](https://coveralls.io/repos/github/akello-io/akello/badge.svg?branch=main)](https://coveralls.io/github/akello-io/akello?branch=main) 
 
-![Alt text](/assets/banner.png "akello")
-
-Akello is a developer platform that enables flexible and rapid development of population health apps
-
-- **Akello Registry** - Complete platform to run Measurement Based Care (MBC) programs.
-- **Akello Insights** - Tools for analytics and insights into population models.
-- **Akello API** - API's to help build personalized workflows
-- **Akello SDK** - Client libraries that simplify the process of interacting with the **Akello API**.
-- **Akello App** - Web application where you can view your data and perform basic editing tasks. You can also use the Akello App to manage basic workflows.
-
-
 
 ## Quick start guide
 
