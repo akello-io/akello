@@ -71,12 +71,15 @@ printf "
 ✅ Setup Complete
 📝 Add this in your $rcFile
 ${CYAN}export AKELLO_ENV=LOCAL
+${CYAN}export COGNITO_ENV=LOCAL
+${CYAN}export DYNAMODB_ENV=LOCAL
+${CYAN}export DYNAMODB_LOCAL_URL=http://localhost:8001
 ${CYAN}export AWS_REGION=us-west-2
 ${CYAN}export AWS_SECRET_NAME=''
 ${CYAN}export AWS_SECRET_SERVICE=''
 ${CYAN}export AWS_ACCESS_KEY_ID=''
 ${CYAN}export AWS_SECRET_ACCESS_KEY=''
 ${CYAN}export DYNAMODB_TABLE=akello
-${CYAN}export AWS_COGNITO_USERPOOL_ID=$UserPoolId
+${CYAN}export AWS_COGNITO_USER_POOL_ID=$UserPoolId
 ${CYAN}export AWS_COGNITO_APP_CLIENT_ID=$UserPoolClient
 "

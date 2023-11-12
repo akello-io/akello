@@ -1,0 +1,31 @@
+{
+    "environment_variables": {
+        "DYNAMODB_ENV": {
+            "description": ""
+        },
+        "DYNAMODB_LOCAL_URL": {
+            "description": ""
+        },
+        "AWS_REGION": {
+            "description": ""
+        },
+        "AWS_SECRET_NAME": {
+            "description": ""
+        },
+        "AWS_ACCESS_KEY_ID": {
+            "description": ""
+        },
+        "AWS_SECRET_ACCESS_KEY": {
+            "description": ""
+        },
+        "DYNAMODB_TABLE": {
+            "description": ""
+        },
+        "AWS_COGNITO_USER_POOL_ID": {
+            "description": ""
+        },
+        "AWS_COGNITO_APP_CLIENT_ID": {
+            "description": ""
+        }
+    }
+}

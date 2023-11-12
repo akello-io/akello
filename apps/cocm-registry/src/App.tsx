@@ -28,13 +28,12 @@ import {getUser} from "./api/user";
 
 if(process.env.REACT_APP_MOCK != 'true') {
     console.log(process.env)
-    debugger;
     Amplify.configure({
         Auth: {
             region: process.env.REACT_APP_AWS_REGION,
             userPoolId: process.env.REACT_APP_AWS_COGNITO_USERPOOL_ID,
             userPoolWebClientId: process.env.REACT_APP_AWS_COGNITO_APP_CLIENT_ID,
-            ...(process.env.REACT_APP_AKELLO_ENV === "LOCAL" && {
+            ...(process.env.REACT_APP_COGNITO_ENV === "LOCAL" && {
                 endpoint: "http://localhost:9229",
                 authenticationFlowType: "USER_PASSWORD_AUTH",
               })
