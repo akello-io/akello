@@ -3,13 +3,6 @@
 [![](https://dcbadge.vercel.app/api/server/WSqNrWBKKw)](https://discord.gg/WSqNrWBKKw)
 
 
-[![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](https://github.com/akello-io/akello/blob/main/LICENSE)  [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=akello-io_akello&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=akello-io_akello)  [![Coverage Status](https://coveralls.io/repos/github/akello-io/akello/badge.svg?branch=main)](https://coveralls.io/github/akello-io/akello?branch=main) 
-
-
-
-
-
-
 ## Quick start guide
 
 
