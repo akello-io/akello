@@ -30,8 +30,6 @@ akello/
 
 ### Setting up your local environment
 
-![Alt text](/assets/setuplocal.png "local dev")
-
 Run the setup local script
 
 ```shell
@@ -39,6 +37,8 @@ sh dev-setup-local.sh    # sets up Local instance of DynamoDB and AWS Cognito
 ```
 
 Add the generated environment variable exports to the bottom of your environment file (e.g., ~/.zshrc)
+
+![Alt text](/assets/setuplocal.png "local dev")
 
 Run the API server
 ```shell
