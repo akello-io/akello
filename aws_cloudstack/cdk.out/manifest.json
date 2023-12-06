@@ -1,6 +1,65 @@
 {
   "version": "22.0.0",
   "artifacts": {
+    "ECRStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "ECRStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "ECRStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://440667844220/us-east-1",
+      "properties": {
+        "templateFile": "ECRStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-deploy-role-440667844220-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-cfn-exec-role-440667844220-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-440667844220-us-east-1/111743cee8f87fca96b05efae91dac0e31651705b49e925b12ad96eb942c5289.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "ECRStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-lookup-role-440667844220-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "ECRStack.assets"
+      ],
+      "metadata": {
+        "/ECRStack/test-ecr-v1/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testecrv126C541AE"
+          }
+        ],
+        "/ECRStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/ECRStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/ECRStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "ECRStack"
+    },
     "TestDynmaoDBStack.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
@@ -17,7 +76,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-deploy-role-440667844220-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-cfn-exec-role-440667844220-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-440667844220-us-east-1/1b6954f422e109ede71798224b4f097df1ae8245950ea04be3669920b797f363.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-440667844220-us-east-1/4541660f3b9c0a438059efe1872e9020ff7e047ca50417c0a935176b6fb87e31.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -33,18 +92,18 @@
         "TestDynmaoDBStack.assets"
       ],
       "metadata": {
-        "/TestDynmaoDBStack/DynamoDbTable": [
+        "/TestDynmaoDBStack/test-dynamodb-table": [
           {
             "type": "aws:cdk:hasPhysicalName",
             "data": {
-              "Ref": "DynamoDbTable6316879D"
+              "Ref": "testdynamodbtableDD11F17D"
             }
           }
         ],
-        "/TestDynmaoDBStack/DynamoDbTable/Resource": [
+        "/TestDynmaoDBStack/test-dynamodb-table/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DynamoDbTable6316879D"
+            "data": "testdynamodbtableDD11F17D"
           }
         ],
         "/TestDynmaoDBStack/DynamoDBTableName": [
@@ -53,16 +112,94 @@
             "data": "DynamoDBTableName"
           }
         ],
-        "/TestDynmaoDBStack/akello-test.akello.io/Resource": [
+        "/TestDynmaoDBStack/test-user-pool/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "akellotestakelloioECAB224A"
+            "data": "testuserpoolA0AB675A"
           }
         ],
-        "/TestDynmaoDBStack/AnAmazingWebsiteProbably/CFDistribution": [
+        "/TestDynmaoDBStack/test-user-pool-authorizer/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AnAmazingWebsiteProbablyCFDistribution47E3983B"
+            "data": "testuserpoolauthorizer24C59DBA"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdaServiceRole28D9F97A"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdaC73320F8"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda-rest-api/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdarestapiCD00C7F1"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda-rest-api/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdarestapiCloudWatchRoleB8701CB8"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda-rest-api/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdarestapiAccount732D628C"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda-rest-api/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdarestapiDeployment65416D8A3b3fe7d369fda24aad5979e3099eab9b"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda-rest-api/DeploymentStage.v1/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdarestapiDeploymentStagev17D5D165A"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda-rest-api/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdarestapiEndpoint5452E8CC"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda-rest-api/Default/hello/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdarestapihello5124E914"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda-rest-api/Default/hello/GET/ApiPermission.TestDynmaoDBStacktestlambdarestapi40AF0E94.GET..hello": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdarestapihelloGETApiPermissionTestDynmaoDBStacktestlambdarestapi40AF0E94GEThelloDF8D5ECF"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda-rest-api/Default/hello/GET/ApiPermission.Test.TestDynmaoDBStacktestlambdarestapi40AF0E94.GET..hello": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdarestapihelloGETApiPermissionTestTestDynmaoDBStacktestlambdarestapi40AF0E94GEThello6DD8C317"
+          }
+        ],
+        "/TestDynmaoDBStack/test-lambda-rest-api/Default/hello/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "testlambdarestapihelloGET2955000F"
+          }
+        ],
+        "/TestDynmaoDBStack/UserPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserPoolId"
           }
         ],
         "/TestDynmaoDBStack/CDKMetadata/Default": [

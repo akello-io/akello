@@ -4,17 +4,85 @@
     "id": "App",
     "path": "",
     "children": {
+      "ECRStack": {
+        "id": "ECRStack",
+        "path": "ECRStack",
+        "children": {
+          "test-ecr-v1": {
+            "id": "test-ecr-v1",
+            "path": "ECRStack/test-ecr-v1",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ECRStack/test-ecr-v1/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECR::Repository",
+                  "aws:cdk:cloudformation:props": {
+                    "repositoryName": "test-ecr-v1"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecr.CfnRepository",
+                  "version": "2.58.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecr.Repository",
+              "version": "2.58.1"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "ECRStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "ECRStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.58.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "ECRStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.58.1"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "ECRStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.58.1"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.58.1"
+        }
+      },
       "TestDynmaoDBStack": {
         "id": "TestDynmaoDBStack",
         "path": "TestDynmaoDBStack",
         "children": {
-          "DynamoDbTable": {
-            "id": "DynamoDbTable",
-            "path": "TestDynmaoDBStack/DynamoDbTable",
+          "test-dynamodb-table": {
+            "id": "test-dynamodb-table",
+            "path": "TestDynmaoDBStack/test-dynamodb-table",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "TestDynmaoDBStack/DynamoDbTable/Resource",
+                "path": "TestDynmaoDBStack/test-dynamodb-table/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                   "aws:cdk:cloudformation:props": {
@@ -34,7 +102,7 @@
                       "readCapacityUnits": 15,
                       "writeCapacityUnits": 5
                     },
-                    "tableName": "TEST_TABLE",
+                    "tableName": "test-dynamodb-table",
                     "timeToLiveSpecification": {
                       "attributeName": "ttl",
                       "enabled": true
@@ -48,7 +116,7 @@
               },
               "ScalingRole": {
                 "id": "ScalingRole",
-                "path": "TestDynmaoDBStack/DynamoDbTable/ScalingRole",
+                "path": "TestDynmaoDBStack/test-dynamodb-table/ScalingRole",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.Resource",
                   "version": "2.58.1"
@@ -68,106 +136,563 @@
               "version": "2.58.1"
             }
           },
-          "akello-test.akello.io": {
-            "id": "akello-test.akello.io",
-            "path": "TestDynmaoDBStack/akello-test.akello.io",
+          "test-user-pool": {
+            "id": "test-user-pool",
+            "path": "TestDynmaoDBStack/test-user-pool",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "TestDynmaoDBStack/akello-test.akello.io/Resource",
+                "path": "TestDynmaoDBStack/test-user-pool/Resource",
                 "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:type": "AWS::Cognito::UserPool",
                   "aws:cdk:cloudformation:props": {
-                    "accessControl": "Private",
-                    "bucketEncryption": {
-                      "serverSideEncryptionConfiguration": [
+                    "accountRecoverySetting": {
+                      "recoveryMechanisms": [
                         {
-                          "serverSideEncryptionByDefault": {
-                            "sseAlgorithm": "AES256"
-                          }
+                          "name": "verified_email",
+                          "priority": 1
                         }
                       ]
                     },
-                    "bucketName": "akello-test.akello.io",
-                    "versioningConfiguration": {
-                      "status": "Enabled"
+                    "adminCreateUserConfig": {
+                      "allowAdminCreateUserOnly": false
+                    },
+                    "autoVerifiedAttributes": [
+                      "email"
+                    ],
+                    "emailVerificationMessage": "The verification code to your new account is {####}",
+                    "emailVerificationSubject": "Verify your new account",
+                    "policies": {
+                      "passwordPolicy": {
+                        "minimumLength": 8,
+                        "requireLowercase": false,
+                        "requireUppercase": false,
+                        "requireNumbers": false,
+                        "requireSymbols": false
+                      }
+                    },
+                    "smsVerificationMessage": "The verification code to your new account is {####}",
+                    "usernameAttributes": [
+                      "email"
+                    ],
+                    "userPoolName": "test-user-pool",
+                    "verificationMessageTemplate": {
+                      "defaultEmailOption": "CONFIRM_WITH_CODE",
+                      "emailMessage": "The verification code to your new account is {####}",
+                      "emailSubject": "Verify your new account",
+                      "smsMessage": "The verification code to your new account is {####}"
                     }
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "fqn": "aws-cdk-lib.aws_cognito.CfnUserPool",
                   "version": "2.58.1"
                 }
               }
             },
             "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "fqn": "aws-cdk-lib.aws_cognito.UserPool",
               "version": "2.58.1"
             }
           },
-          "AnAmazingWebsiteProbably": {
-            "id": "AnAmazingWebsiteProbably",
-            "path": "TestDynmaoDBStack/AnAmazingWebsiteProbably",
+          "test-user-pool-authorizer": {
+            "id": "test-user-pool-authorizer",
+            "path": "TestDynmaoDBStack/test-user-pool-authorizer",
             "children": {
-              "CFDistribution": {
-                "id": "CFDistribution",
-                "path": "TestDynmaoDBStack/AnAmazingWebsiteProbably/CFDistribution",
+              "Resource": {
+                "id": "Resource",
+                "path": "TestDynmaoDBStack/test-user-pool-authorizer/Resource",
                 "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::CloudFront::Distribution",
+                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Authorizer",
                   "aws:cdk:cloudformation:props": {
-                    "distributionConfig": {
-                      "enabled": true,
-                      "defaultRootObject": "index.html",
-                      "httpVersion": "http2",
-                      "priceClass": "PriceClass_100",
-                      "ipv6Enabled": true,
-                      "origins": [
-                        {
-                          "id": "origin1",
-                          "domainName": {
-                            "Fn::GetAtt": [
-                              "akellotestakelloioECAB224A",
-                              "RegionalDomainName"
-                            ]
-                          },
-                          "s3OriginConfig": {},
-                          "connectionAttempts": 3,
-                          "connectionTimeout": 10
-                        }
-                      ],
-                      "defaultCacheBehavior": {
-                        "allowedMethods": [
-                          "GET",
-                          "HEAD"
-                        ],
-                        "cachedMethods": [
-                          "GET",
-                          "HEAD"
-                        ],
-                        "compress": true,
-                        "forwardedValues": {
-                          "queryString": false,
-                          "cookies": {
-                            "forward": "none"
-                          }
-                        },
-                        "targetOriginId": "origin1",
-                        "viewerProtocolPolicy": "redirect-to-https"
-                      },
-                      "viewerCertificate": {
-                        "cloudFrontDefaultCertificate": true
+                    "name": "TestDynmaoDBStacktestuserpoolauthorizer7E3492A2",
+                    "restApiId": {
+                      "Ref": "testlambdarestapiCD00C7F1"
+                    },
+                    "type": "COGNITO_USER_POOLS",
+                    "identitySource": "method.request.header.Authorization",
+                    "providerArns": [
+                      {
+                        "Fn::GetAtt": [
+                          "testuserpoolA0AB675A",
+                          "Arn"
+                        ]
                       }
-                    }
+                    ]
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_cloudfront.CfnDistribution",
+                  "fqn": "aws-cdk-lib.aws_apigateway.CfnAuthorizer",
                   "version": "2.58.1"
                 }
               }
             },
             "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_cloudfront.CloudFrontWebDistribution",
+              "fqn": "aws-cdk-lib.aws_apigateway.CognitoUserPoolsAuthorizer",
+              "version": "2.58.1"
+            }
+          },
+          "test-ecr-v1": {
+            "id": "test-ecr-v1",
+            "path": "TestDynmaoDBStack/test-ecr-v1",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecr.RepositoryBase",
+              "version": "2.58.1"
+            }
+          },
+          "test-lambda": {
+            "id": "test-lambda",
+            "path": "TestDynmaoDBStack/test-lambda",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "TestDynmaoDBStack/test-lambda/ServiceRole",
+                "children": {
+                  "ImportServiceRole": {
+                    "id": "ImportServiceRole",
+                    "path": "TestDynmaoDBStack/test-lambda/ServiceRole/ImportServiceRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.58.1"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "TestDynmaoDBStack/test-lambda/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.58.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.58.1"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "TestDynmaoDBStack/test-lambda/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "imageUri": {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "440667844220.dkr.ecr.us-east-1.",
+                            {
+                              "Ref": "AWS::URLSuffix"
+                            },
+                            "/test-ecr-v1:latest"
+                          ]
+                        ]
+                      }
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "testlambdaServiceRole28D9F97A",
+                        "Arn"
+                      ]
+                    },
+                    "description": "Lambda function defined in the custom container",
+                    "functionName": "test-lambda-fn",
+                    "memorySize": 5120,
+                    "packageType": "Image",
+                    "timeout": 300
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.58.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "version": "2.58.1"
+            }
+          },
+          "test-lambda-rest-api": {
+            "id": "test-lambda-rest-api",
+            "path": "TestDynmaoDBStack/test-lambda-rest-api",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "TestDynmaoDBStack/test-lambda-rest-api/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::RestApi",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "test-lambda-rest-api"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_apigateway.CfnRestApi",
+                  "version": "2.58.1"
+                }
+              },
+              "CloudWatchRole": {
+                "id": "CloudWatchRole",
+                "path": "TestDynmaoDBStack/test-lambda-rest-api/CloudWatchRole",
+                "children": {
+                  "ImportCloudWatchRole": {
+                    "id": "ImportCloudWatchRole",
+                    "path": "TestDynmaoDBStack/test-lambda-rest-api/CloudWatchRole/ImportCloudWatchRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.58.1"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "TestDynmaoDBStack/test-lambda-rest-api/CloudWatchRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "apigateway.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.58.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.58.1"
+                }
+              },
+              "Account": {
+                "id": "Account",
+                "path": "TestDynmaoDBStack/test-lambda-rest-api/Account",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Account",
+                  "aws:cdk:cloudformation:props": {
+                    "cloudWatchRoleArn": {
+                      "Fn::GetAtt": [
+                        "testlambdarestapiCloudWatchRoleB8701CB8",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_apigateway.CfnAccount",
+                  "version": "2.58.1"
+                }
+              },
+              "Deployment": {
+                "id": "Deployment",
+                "path": "TestDynmaoDBStack/test-lambda-rest-api/Deployment",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "TestDynmaoDBStack/test-lambda-rest-api/Deployment/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Deployment",
+                      "aws:cdk:cloudformation:props": {
+                        "restApiId": {
+                          "Ref": "testlambdarestapiCD00C7F1"
+                        },
+                        "description": "Automatically created by the RestApi construct"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_apigateway.CfnDeployment",
+                      "version": "2.58.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_apigateway.Deployment",
+                  "version": "2.58.1"
+                }
+              },
+              "DeploymentStage.v1": {
+                "id": "DeploymentStage.v1",
+                "path": "TestDynmaoDBStack/test-lambda-rest-api/DeploymentStage.v1",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "TestDynmaoDBStack/test-lambda-rest-api/DeploymentStage.v1/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
+                      "aws:cdk:cloudformation:props": {
+                        "restApiId": {
+                          "Ref": "testlambdarestapiCD00C7F1"
+                        },
+                        "deploymentId": {
+                          "Ref": "testlambdarestapiDeployment65416D8A3b3fe7d369fda24aad5979e3099eab9b"
+                        },
+                        "stageName": "v1"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_apigateway.CfnStage",
+                      "version": "2.58.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_apigateway.Stage",
+                  "version": "2.58.1"
+                }
+              },
+              "Endpoint": {
+                "id": "Endpoint",
+                "path": "TestDynmaoDBStack/test-lambda-rest-api/Endpoint",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.58.1"
+                }
+              },
+              "Default": {
+                "id": "Default",
+                "path": "TestDynmaoDBStack/test-lambda-rest-api/Default",
+                "children": {
+                  "hello": {
+                    "id": "hello",
+                    "path": "TestDynmaoDBStack/test-lambda-rest-api/Default/hello",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "TestDynmaoDBStack/test-lambda-rest-api/Default/hello/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "testlambdarestapiCD00C7F1",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "hello",
+                            "restApiId": {
+                              "Ref": "testlambdarestapiCD00C7F1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                          "version": "2.58.1"
+                        }
+                      },
+                      "GET": {
+                        "id": "GET",
+                        "path": "TestDynmaoDBStack/test-lambda-rest-api/Default/hello/GET",
+                        "children": {
+                          "ApiPermission.TestDynmaoDBStacktestlambdarestapi40AF0E94.GET..hello": {
+                            "id": "ApiPermission.TestDynmaoDBStacktestlambdarestapi40AF0E94.GET..hello",
+                            "path": "TestDynmaoDBStack/test-lambda-rest-api/Default/hello/GET/ApiPermission.TestDynmaoDBStacktestlambdarestapi40AF0E94.GET..hello",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "testlambdaC73320F8",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:us-east-1:440667844220:",
+                                      {
+                                        "Ref": "testlambdarestapiCD00C7F1"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "testlambdarestapiDeploymentStagev17D5D165A"
+                                      },
+                                      "/GET/hello"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                              "version": "2.58.1"
+                            }
+                          },
+                          "ApiPermission.Test.TestDynmaoDBStacktestlambdarestapi40AF0E94.GET..hello": {
+                            "id": "ApiPermission.Test.TestDynmaoDBStacktestlambdarestapi40AF0E94.GET..hello",
+                            "path": "TestDynmaoDBStack/test-lambda-rest-api/Default/hello/GET/ApiPermission.Test.TestDynmaoDBStacktestlambdarestapi40AF0E94.GET..hello",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "testlambdaC73320F8",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:us-east-1:440667844220:",
+                                      {
+                                        "Ref": "testlambdarestapiCD00C7F1"
+                                      },
+                                      "/test-invoke-stage/GET/hello"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                              "version": "2.58.1"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "TestDynmaoDBStack/test-lambda-rest-api/Default/hello/GET/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "GET",
+                                "resourceId": {
+                                  "Ref": "testlambdarestapihello5124E914"
+                                },
+                                "restApiId": {
+                                  "Ref": "testlambdarestapiCD00C7F1"
+                                },
+                                "authorizationType": "COGNITO_USER_POOLS",
+                                "authorizerId": {
+                                  "Ref": "testuserpoolauthorizer24C59DBA"
+                                },
+                                "integration": {
+                                  "type": "AWS_PROXY",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "testlambdaC73320F8",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                              "version": "2.58.1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                          "version": "2.58.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                      "version": "2.58.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_apigateway.ResourceBase",
+                  "version": "2.58.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_apigateway.LambdaRestApi",
+              "version": "2.58.1"
+            }
+          },
+          "UserPoolId": {
+            "id": "UserPoolId",
+            "path": "TestDynmaoDBStack/UserPoolId",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.58.1"
             }
           },

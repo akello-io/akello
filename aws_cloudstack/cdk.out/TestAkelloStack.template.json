@@ -28,7 +28,7 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-dynamodb-table/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-dynamodb-table/Resource"
    }
   },
   "testuserpoolA0AB675A": {
@@ -74,13 +74,13 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-user-pool/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-user-pool/Resource"
    }
   },
   "testuserpoolauthorizer24C59DBA": {
    "Type": "AWS::ApiGateway::Authorizer",
    "Properties": {
-    "Name": "TestDynmaoDBStacktestuserpoolauthorizer7E3492A2",
+    "Name": "TestAkelloStacktestuserpoolauthorizerE2854F91",
     "RestApiId": {
      "Ref": "testlambdarestapiCD00C7F1"
     },
@@ -96,7 +96,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-user-pool-authorizer/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-user-pool-authorizer/Resource"
    }
   },
   "testlambdaServiceRole28D9F97A": {
@@ -130,7 +130,7 @@
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda/ServiceRole/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-lambda/ServiceRole/Resource"
    }
   },
   "testlambdaC73320F8": {
@@ -145,7 +145,7 @@
         {
          "Ref": "AWS::URLSuffix"
         },
-        "/test-ecr-v1:latest"
+        "/test-ecr:latest"
        ]
       ]
      }
@@ -166,7 +166,7 @@
     "testlambdaServiceRole28D9F97A"
    ],
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-lambda/Resource"
    }
   },
   "testlambdarestapiCD00C7F1": {
@@ -175,7 +175,7 @@
     "Name": "test-lambda-rest-api"
    },
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda-rest-api/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-lambda-rest-api/Resource"
    }
   },
   "testlambdarestapiCloudWatchRoleB8701CB8": {
@@ -211,7 +211,7 @@
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda-rest-api/CloudWatchRole/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-lambda-rest-api/CloudWatchRole/Resource"
    }
   },
   "testlambdarestapiAccount732D628C": {
@@ -230,10 +230,10 @@
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda-rest-api/Account"
+    "aws:cdk:path": "TestAkelloStack/test-lambda-rest-api/Account"
    }
   },
-  "testlambdarestapiDeployment65416D8A3b3fe7d369fda24aad5979e3099eab9b": {
+  "testlambdarestapiDeployment65416D8Aac46b87e9d8ead7f6e080bc0425e875f": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "RestApiId": {
@@ -246,7 +246,7 @@
     "testlambdarestapihello5124E914"
    ],
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda-rest-api/Deployment/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-lambda-rest-api/Deployment/Resource"
    }
   },
   "testlambdarestapiDeploymentStagev17D5D165A": {
@@ -256,7 +256,7 @@
      "Ref": "testlambdarestapiCD00C7F1"
     },
     "DeploymentId": {
-     "Ref": "testlambdarestapiDeployment65416D8A3b3fe7d369fda24aad5979e3099eab9b"
+     "Ref": "testlambdarestapiDeployment65416D8Aac46b87e9d8ead7f6e080bc0425e875f"
     },
     "StageName": "v1"
    },
@@ -264,7 +264,7 @@
     "testlambdarestapiAccount732D628C"
    ],
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda-rest-api/DeploymentStage.v1/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-lambda-rest-api/DeploymentStage.v1/Resource"
    }
   },
   "testlambdarestapihello5124E914": {
@@ -282,10 +282,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda-rest-api/Default/hello/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-lambda-rest-api/Default/hello/Resource"
    }
   },
-  "testlambdarestapihelloGETApiPermissionTestDynmaoDBStacktestlambdarestapi40AF0E94GEThelloDF8D5ECF": {
+  "testlambdarestapihelloGETApiPermissionTestAkelloStacktestlambdarestapi91AAEBBCGEThello02E45157": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -318,10 +318,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda-rest-api/Default/hello/GET/ApiPermission.TestDynmaoDBStacktestlambdarestapi40AF0E94.GET..hello"
+    "aws:cdk:path": "TestAkelloStack/test-lambda-rest-api/Default/hello/GET/ApiPermission.TestAkelloStacktestlambdarestapi91AAEBBC.GET..hello"
    }
   },
-  "testlambdarestapihelloGETApiPermissionTestTestDynmaoDBStacktestlambdarestapi40AF0E94GEThello6DD8C317": {
+  "testlambdarestapihelloGETApiPermissionTestTestAkelloStacktestlambdarestapi91AAEBBCGEThello2E144229": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
@@ -350,7 +350,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda-rest-api/Default/hello/GET/ApiPermission.Test.TestDynmaoDBStacktestlambdarestapi40AF0E94.GET..hello"
+    "aws:cdk:path": "TestAkelloStack/test-lambda-rest-api/Default/hello/GET/ApiPermission.Test.TestAkelloStacktestlambdarestapi91AAEBBC.GET..hello"
    }
   },
   "testlambdarestapihelloGET2955000F": {
@@ -392,7 +392,7 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/test-lambda-rest-api/Default/hello/GET/Resource"
+    "aws:cdk:path": "TestAkelloStack/test-lambda-rest-api/Default/hello/GET/Resource"
    }
   },
   "CDKMetadata": {
@@ -401,7 +401,7 @@
     "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQT0/EIBDFP8veKaZuNF7rGk9ubKqeDaVjHbcwDX+yqYTvLhQ31hO/92aGeXDNb+54vRNnW8nhVE3Y8/DihDyxZL2HYdFC0ZDMV9FPwA4feoXIJI0aHfHwZsG0RFOuXTgyMeMoHJzFwsOhtF6KtvHukwx+g8kzG/UkVD+IDqxrZsy1DTZSkteOPcA80aIgYXI3KqUe14AF0ih5I+Fe2D/xe2fhI6TFQ7YKRQbS8A5msimtWdbJaY3Ew6PX0iHp3L7lFoxCa5OKDIXioaPyTfmM8d/mZ+9m77YZImuXtFpf7Xld89vdl0WsTHomKuBdOX8A01WqEqIBAAA="
    },
    "Metadata": {
-    "aws:cdk:path": "TestDynmaoDBStack/CDKMetadata/Default"
+    "aws:cdk:path": "TestAkelloStack/CDKMetadata/Default"
    }
   }
  },
