@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, List, Optional, Union
 
-from server.akello.fhir.hl7 import XFHIR
+from akello.fhir.hl7 import XFHIR
 
 Base64Binary = str
 

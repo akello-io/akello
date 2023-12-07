@@ -46,8 +46,11 @@ class CognitoTokenCustom(BaseModel):
 
 
 async def local_auth_required(request: Request) -> CognitoTokenCustom:
-    auth_token = request.headers.get('Authorization').replace('Bearer ', '')
-    decoded_token = jwt.get_unverified_claims(auth_token)
+    auth_token = request.headers.get('Authorization').replace('Bearer ', '') 
+    
+    # For local development we are not verifying the token
+    decoded_token = jwt.get_unverified_claims(auth_token) 
+ 
     decoded_token["email"] = decoded_token["cognito:username"]
     return parse_obj_as(CognitoTokenCustom, decoded_token)
 
