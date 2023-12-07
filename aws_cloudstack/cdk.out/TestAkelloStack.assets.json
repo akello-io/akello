@@ -1,15 +1,15 @@
 {
   "version": "22.0.0",
   "files": {
-    "4541660f3b9c0a438059efe1872e9020ff7e047ca50417c0a935176b6fb87e31": {
+    "81e934d22282a767ad796a669eddcf85edb4fe1fae43fc935bb18e9ab09f2a3c": {
       "source": {
-        "path": "TestDynmaoDBStack.template.json",
+        "path": "TestAkelloStack.template.json",
         "packaging": "file"
       },
       "destinations": {
         "440667844220-us-east-1": {
           "bucketName": "cdk-hnb659fds-assets-440667844220-us-east-1",
-          "objectKey": "4541660f3b9c0a438059efe1872e9020ff7e047ca50417c0a935176b6fb87e31.json",
+          "objectKey": "81e934d22282a767ad796a669eddcf85edb4fe1fae43fc935bb18e9ab09f2a3c.json",
           "region": "us-east-1",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::440667844220:role/cdk-hnb659fds-file-publishing-role-440667844220-us-east-1"
         }
