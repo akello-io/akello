@@ -6,6 +6,7 @@ from akello.services.user import UserService
 from akello.services.registry import RegistryService
 
 import logging
+
 logger = logging.getLogger('mangum')
 router = APIRouter()
 
@@ -40,7 +41,7 @@ async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
         RegistryService.update_stats(invite['registry_id'])
 
 
-#TODO: Should this be the root API for registry?
+# TODO: Should this be the root API for registry?
 #     api.akello.io/registry -- this gets the list of registeries for current account which
 #     they have access to
 @router.get("/registries")
@@ -54,10 +55,11 @@ async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_chec
         registry['is_admin'] = registry_access['is_admin']
         registry['role'] = registry_access['role']
         registry['role'] = registry_access['role']
-
         registry_metadata = RegistryService.get_registry(registry_id)
-
         registry['members'] = registry_metadata['members']
         registry['active_patients'] = registry_metadata['active_patients']
+
+        # TODO: This could be a farily large object since we are returning the full FHIR Resource
+        registry['questionnaires'] = registry_metadata['questionnaires']
 
     return registries
