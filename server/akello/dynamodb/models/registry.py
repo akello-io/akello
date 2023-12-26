@@ -1,4 +1,5 @@
 from akello.dynamodb.models import RegistryDBBaseModel
+from akello.fhir.hl7.fhir_v6_models import QuestionnaireResponse
 from enum import Enum
 from pydantic import BaseModel
 from typing import List, Optional
@@ -111,6 +112,7 @@ class RegistryModel(RegistryDBBaseModel):
     created_date: float
     members: int = 0
     active_patients: int = 0
+    questionnaires: List[dict] = None  # FHIR Questionnaire Object
 
     @property
     def object_type(self) -> str:
@@ -119,7 +121,6 @@ class RegistryModel(RegistryDBBaseModel):
     @property
     def sort_key(self) -> str:
         return 'metadata'
-
 
 class PatientRegistry(RegistryDBBaseModel):
     id: Optional[str] = None
