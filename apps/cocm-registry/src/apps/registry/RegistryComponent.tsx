@@ -13,7 +13,6 @@ import PatientDrawer from "./components/patient-drawer/patient-view-drawer/Patie
 import AddPatientDrawer from "./components/patient-drawer/refer-patient-drawer/AddPatientDrawer";
 import RegistryDataGrid from "../../stories/registry/DataTable/RegistryDataGrid";
 import {Auth} from "aws-amplify";
-import classNames from "classnames";
 
 export default function DataGridDemo() {
     const dispatch = useDispatch()
@@ -22,6 +21,7 @@ export default function DataGridDemo() {
     const [role, setRole] = useState('')
     const [addPatient, setAddPatient] = useState(false)
     const [patients, setPatients] = useState<PatientRegistry[]>([])
+    const [questionnaires, setQuestionnaires] = useState<any[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [selectedPatient, setSelectedPatient] = useState<PatientRegistry>()
     const navigate = useNavigate()
@@ -35,6 +35,7 @@ export default function DataGridDemo() {
             getRegistryPatients(selectedRegistry.id, token, (data) => {
                 setPatients(data['successfully_loaded'])
                 setIsAdmin(data['is_admin'])
+                setQuestionnaires(data['questionnaires'])
                 setRole(data['role'])
                 setIsLoading(false)
             }, (data) => {
@@ -78,7 +79,7 @@ export default function DataGridDemo() {
             <div className={"bg-white"}>
                 {!isLoading && (
                     <>
-                        <RegistryDataGrid patients={patients} handlePatientClickEvent={handlePatientClickEvent} />
+                        <RegistryDataGrid patients={patients} questionnaires={questionnaires} handlePatientClickEvent={handlePatientClickEvent} />
                         <PatientDrawer checked={checked} setChecked={setChecked} selectedPatient={selectedPatient} setSelectedPatient={setSelectedPatient} />
                         <AddPatientDrawer checked={addPatient} setChecked={setAddPatient} patients={patients} setPatients={setPatients} />
                     </>

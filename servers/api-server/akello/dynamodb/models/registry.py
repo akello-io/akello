@@ -59,13 +59,7 @@ class TreatmentLog(BaseModel):
     visit_type: VisitTypes
 
     phq9_score: Optional[int] = None
-
-    # TODO: Needs to be automatically set based on Registry configurations
-    phq9_remission_met: Optional[bool] = False
     gad7_score: Optional[int] = None
-
-    # TODO: Needs to be automatically set based on Registry configurations
-    gad7_remission_met: Optional[bool] = False
 
     minutes: Optional[int] = None
 

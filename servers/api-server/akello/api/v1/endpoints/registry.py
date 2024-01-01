@@ -46,6 +46,7 @@ async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom =
 
 @router.get("/{registry_id}/patients")
 async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    registry_metadata = RegistryService.get_registry(registry_id)
     registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
     patients = RegistryService.get_patients(registry_id)
     successfully_loaded = []
@@ -59,6 +60,7 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
     return {
         'is_admin': registry_access['is_admin'],
         'role': registry_access['role'],
+        'questionnaires': registry_metadata['questionnaires'],
         'successfully_loaded': successfully_loaded,
         'failed_patients': failed_patients
     }

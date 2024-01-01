@@ -10,14 +10,14 @@
         }
       ]
     },
-    "title": "Generalized anxiety disorder 7 item (GAD-7)",
+    "title": "PHQ9",
     "status": "draft",
     "copyright": "Copyright © Pfizer Inc. All rights reserved. Developed by Drs. Robert L. Spitzer, Janet B.W. Williams, Kurt Kroenke and colleagues, with an educational grant from Pfizer Inc. No permission required to reproduce, translate, display or distribute.",
     "code": [
       {
         "system": "http://loinc.org",
-        "code": "69737-5",
-        "display": "Generalized anxiety disorder 7 item (GAD-7)"
+        "code": "44249-1",
+        "display": "PHQ-9 quick depression assessment panel [Reported.PHQ]"
       }
     ],
     "item": [
@@ -25,8 +25,8 @@
         "type": "choice",
         "code": [
           {
-            "code": "69725-0",
-            "display": "Feeling nervous, anxious or on edge",
+            "code": "44250-9",
+            "display": "Little interest or pleasure in doing things",
             "system": "http://loinc.org"
           }
         ],
@@ -46,8 +46,8 @@
           }
         ],
         "required": false,
-        "linkId": "/69725-0",
-        "text": "Feeling nervous, anxious or on edge",
+        "linkId": "/44250-9",
+        "text": "Little interest or pleasure in doing things",
         "answerOption": [
           {
             "valueCoding": {
@@ -123,8 +123,8 @@
         "type": "choice",
         "code": [
           {
-            "code": "68509-9",
-            "display": "Over the past 2 weeks have you not been able to stop or control worrying",
+            "code": "44255-8",
+            "display": "Feeling down, depressed, or hopeless",
             "system": "http://loinc.org"
           }
         ],
@@ -144,106 +144,8 @@
           }
         ],
         "required": false,
-        "linkId": "/68509-9",
-        "text": "Over the past 2 weeks have you not been able to stop or control worrying",
-        "answerOption": [
-          {
-            "valueCoding": {
-              "code": "LA6568-5",
-              "display": "Not at all",
-              "system": "http://loinc.org"
-            },
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
-                "valueString": "0"
-              },
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-                "valueDecimal": 0
-              }
-            ]
-          },
-          {
-            "valueCoding": {
-              "code": "LA6569-3",
-              "display": "Several days",
-              "system": "http://loinc.org"
-            },
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
-                "valueString": "1"
-              },
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-                "valueDecimal": 1
-              }
-            ]
-          },
-          {
-            "valueCoding": {
-              "code": "LA18938-3",
-              "display": "More days than not",
-              "system": "http://loinc.org"
-            },
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
-                "valueString": "2"
-              },
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-                "valueDecimal": 2
-              }
-            ]
-          },
-          {
-            "valueCoding": {
-              "code": "LA6571-9",
-              "display": "Nearly every day",
-              "system": "http://loinc.org"
-            },
-            "extension": [
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
-                "valueString": "3"
-              },
-              {
-                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
-                "valueDecimal": 3
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "type": "choice",
-        "code": [
-          {
-            "code": "69733-4",
-            "display": "Worrying too much about different things",
-            "system": "http://loinc.org"
-          }
-        ],
-        "extension": [
-          {
-            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-            "valueCodeableConcept": {
-              "coding": [
-                {
-                  "system": "http://hl7.org/fhir/questionnaire-item-control",
-                  "code": "drop-down",
-                  "display": "Drop down"
-                }
-              ],
-              "text": "Drop down"
-            }
-          }
-        ],
-        "required": false,
-        "linkId": "/69733-4",
-        "text": "Worrying too much about different things",
+        "linkId": "/44255-8",
+        "text": "Feeling down, depressed, or hopeless",
         "answerOption": [
           {
             "valueCoding": {
@@ -319,8 +221,8 @@
         "type": "choice",
         "code": [
           {
-            "code": "69734-2",
-            "display": "Trouble relaxing",
+            "code": "44259-0",
+            "display": "Trouble falling or staying asleep, or sleeping too much",
             "system": "http://loinc.org"
           }
         ],
@@ -340,8 +242,8 @@
           }
         ],
         "required": false,
-        "linkId": "/69734-2",
-        "text": "Trouble relaxing",
+        "linkId": "/44259-0",
+        "text": "Trouble falling or staying asleep, or sleeping too much",
         "answerOption": [
           {
             "valueCoding": {
@@ -417,8 +319,8 @@
         "type": "choice",
         "code": [
           {
-            "code": "69735-9",
-            "display": "Being so restless that it is hard to sit still",
+            "code": "44254-1",
+            "display": "Feeling tired or having little energy",
             "system": "http://loinc.org"
           }
         ],
@@ -438,8 +340,8 @@
           }
         ],
         "required": false,
-        "linkId": "/69735-9",
-        "text": "Being so restless that it is hard to sit still",
+        "linkId": "/44254-1",
+        "text": "Feeling tired or having little energy",
         "answerOption": [
           {
             "valueCoding": {
@@ -515,8 +417,8 @@
         "type": "choice",
         "code": [
           {
-            "code": "69689-8",
-            "display": "Becoming easily annoyed or irritable.",
+            "code": "44251-7",
+            "display": "Poor appetite or overeating",
             "system": "http://loinc.org"
           }
         ],
@@ -536,8 +438,8 @@
           }
         ],
         "required": false,
-        "linkId": "/69689-8",
-        "text": "Becoming easily annoyed or irritable.",
+        "linkId": "/44251-7",
+        "text": "Poor appetite or overeating",
         "answerOption": [
           {
             "valueCoding": {
@@ -613,8 +515,8 @@
         "type": "choice",
         "code": [
           {
-            "code": "69736-7",
-            "display": "Feeling afraid as if something awful might happen",
+            "code": "44258-2",
+            "display": "Feeling bad about yourself-or that you are a failure or have let yourself or your family down",
             "system": "http://loinc.org"
           }
         ],
@@ -634,8 +536,8 @@
           }
         ],
         "required": false,
-        "linkId": "/69736-7",
-        "text": "Feeling afraid as if something awful might happen",
+        "linkId": "/44258-2",
+        "text": "Feeling bad about yourself-or that you are a failure or have let yourself or your family down",
         "answerOption": [
           {
             "valueCoding": {
@@ -702,6 +604,380 @@
               {
                 "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
                 "valueDecimal": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "choice",
+        "code": [
+          {
+            "code": "44252-5",
+            "display": "Trouble concentrating on things, such as reading the newspaper or watching television",
+            "system": "http://loinc.org"
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/questionnaire-item-control",
+                  "code": "drop-down",
+                  "display": "Drop down"
+                }
+              ],
+              "text": "Drop down"
+            }
+          }
+        ],
+        "required": false,
+        "linkId": "/44252-5",
+        "text": "Trouble concentrating on things, such as reading the newspaper or watching television",
+        "answerOption": [
+          {
+            "valueCoding": {
+              "code": "LA6568-5",
+              "display": "Not at all",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "0"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 0
+              }
+            ]
+          },
+          {
+            "valueCoding": {
+              "code": "LA6569-3",
+              "display": "Several days",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "1"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 1
+              }
+            ]
+          },
+          {
+            "valueCoding": {
+              "code": "LA6570-1",
+              "display": "More than half the days",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "2"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 2
+              }
+            ]
+          },
+          {
+            "valueCoding": {
+              "code": "LA6571-9",
+              "display": "Nearly every day",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "3"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "choice",
+        "code": [
+          {
+            "code": "44253-3",
+            "display": "Moving or speaking so slowly that other people could have noticed. Or the opposite-being so fidgety or restless that you have been moving around a lot more than usual",
+            "system": "http://loinc.org"
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/questionnaire-item-control",
+                  "code": "drop-down",
+                  "display": "Drop down"
+                }
+              ],
+              "text": "Drop down"
+            }
+          }
+        ],
+        "required": false,
+        "linkId": "/44253-3",
+        "text": "Moving or speaking so slowly that other people could have noticed. Or the opposite-being so fidgety or restless that you have been moving around a lot more than usual",
+        "answerOption": [
+          {
+            "valueCoding": {
+              "code": "LA6568-5",
+              "display": "Not at all",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "0"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 0
+              }
+            ]
+          },
+          {
+            "valueCoding": {
+              "code": "LA6569-3",
+              "display": "Several days",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "1"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 1
+              }
+            ]
+          },
+          {
+            "valueCoding": {
+              "code": "LA6570-1",
+              "display": "More than half the days",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "2"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 2
+              }
+            ]
+          },
+          {
+            "valueCoding": {
+              "code": "LA6571-9",
+              "display": "Nearly every day",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "3"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "choice",
+        "code": [
+          {
+            "code": "44260-8",
+            "display": "Thoughts that you would be better off dead, or of hurting yourself in some way",
+            "system": "http://loinc.org"
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/questionnaire-item-control",
+                  "code": "drop-down",
+                  "display": "Drop down"
+                }
+              ],
+              "text": "Drop down"
+            }
+          }
+        ],
+        "required": false,
+        "linkId": "/44260-8",
+        "text": "Thoughts that you would be better off dead, or of hurting yourself in some way",
+        "answerOption": [
+          {
+            "valueCoding": {
+              "code": "LA6568-5",
+              "display": "Not at all",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "0"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 0
+              }
+            ]
+          },
+          {
+            "valueCoding": {
+              "code": "LA6569-3",
+              "display": "Several days",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "1"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 1
+              }
+            ]
+          },
+          {
+            "valueCoding": {
+              "code": "LA6570-1",
+              "display": "More than half the days",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "2"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 2
+              }
+            ]
+          },
+          {
+            "valueCoding": {
+              "code": "LA6571-9",
+              "display": "Nearly every day",
+              "system": "http://loinc.org"
+            },
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix",
+                "valueString": "3"
+              },
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/ordinalValue",
+                "valueDecimal": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "choice",
+        "code": [
+          {
+            "code": "69722-7",
+            "display": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
+            "system": "http://loinc.org"
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/questionnaire-item-control",
+                  "code": "drop-down",
+                  "display": "Drop down"
+                }
+              ],
+              "text": "Drop down"
+            }
+          }
+        ],
+        "required": false,
+        "linkId": "/69722-7",
+        "text": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
+        "answerOption": [
+          {
+            "valueCoding": {
+              "code": "LA6572-7",
+              "display": "Not difficult at all",
+              "system": "http://loinc.org"
+            }
+          },
+          {
+            "valueCoding": {
+              "code": "LA6573-5",
+              "display": "Somewhat difficult",
+              "system": "http://loinc.org"
+            }
+          },
+          {
+            "valueCoding": {
+              "code": "LA6575-0",
+              "display": "Very difficult",
+              "system": "http://loinc.org"
+            }
+          },
+          {
+            "valueCoding": {
+              "code": "LA6574-3",
+              "display": "Extremely difficult",
+              "system": "http://loinc.org"
+            }
+          }
+        ],
+        "item": [
+          {
+            "text": "If you checked off any problems on this questionnaire",
+            "type": "display",
+            "linkId": "/69722-7-help",
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                "valueCodeableConcept": {
+                  "text": "Help-Button",
+                  "coding": [
+                    {
+                      "code": "help",
+                      "display": "Help-Button",
+                      "system": "http://hl7.org/fhir/questionnaire-item-control"
+                    }
+                  ]
+                }
               }
             ]
           }
@@ -711,8 +987,8 @@
         "type": "decimal",
         "code": [
           {
-            "code": "70274-6",
-            "display": "Generalized anxiety disorder 7 item total score",
+            "code": "44261-6",
+            "display": "Patient health questionnaire 9 item total score",
             "system": "http://loinc.org"
           }
         ],
@@ -727,8 +1003,30 @@
           }
         ],
         "required": false,
-        "linkId": "/70274-6",
-        "text": "Generalized anxiety disorder 7 item total score"
+        "linkId": "/44261-6",
+        "text": "Patient health questionnaire 9 item total score",
+        "item": [
+          {
+            "text": "The PHQ-9 is the standard (and most commonly used) depression measure, and it ranges from 0-27 Scoring: Add up all checked boxes on PHQ-9. For every check: Not at all = 0; Several days = 1; More than half the days = 2; Nearly every day = 3 (the scores are the codes that appear in the answer list for each of the PHQ-9 problem panel terms). Interpretation: 1-4 = Minimal depression; 5-9 = Mild depression; 10-14 = Moderate depression; 15-19 = Moderately severe depression; 20-27 = Severed depression.",
+            "type": "display",
+            "linkId": "/44261-6-help",
+            "extension": [
+              {
+                "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                "valueCodeableConcept": {
+                  "text": "Help-Button",
+                  "coding": [
+                    {
+                      "code": "help",
+                      "display": "Help-Button",
+                      "system": "http://hl7.org/fhir/questionnaire-item-control"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
       }
     ]
   }

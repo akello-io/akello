@@ -26,3 +26,7 @@ class ScreenerService(BaseService):
     @staticmethod
     def get_screener_by_id(screener_id):
         pass
+
+    def generate_questionnaire_response(self, questionnaire_response):
+        # Example: https://build.fhir.org/ig/HL7/sdc/QuestionnaireResponse-questionnaireresponse-sdc-profile-example-PHQ9.json.html
+        pass
