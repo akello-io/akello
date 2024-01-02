@@ -5,6 +5,7 @@ from akello.dynamodb import registry_db
 from akello.services import BaseService
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
+from fastapi.encoders import jsonable_encoder
 
 
 class RegistryService(BaseService):
@@ -96,94 +97,25 @@ class RegistryService(BaseService):
     @staticmethod
     def add_treatment_log(registry_id, sort_key, treatment_log: TreatmentLog):
 
-        #TODO: This needs a ton of clean up
+        UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
+                           "flag = :flag," \
+                           "no_show = :no_show," \
+                           "initial_assessment = :initial_assessment, " \
+                           "last_follow_up = :last_follow_up, " \
+                           "last_psychiatric_consult = :last_psychiatric_consult, " \
+                           "relapse_prevention_plan = :relapse_prevention_plan, " \
+                           "weeks_since_initial_assessment = :weeks_since_initial_assessment "
 
-        if treatment_log.contact_type == ContactTypes.initial_assessment:
-            score_mappings = [
-                {
-                    f'score_{score.score_name}_first': score.score_value,
-                    f'score_{score.score_name}_last': score.score_value,
-                    f'score_{score.score_name}_last_date': Decimal(datetime.datetime.utcnow().timestamp())
-                } for score in treatment_log.scores
-            ]
-        else:
-            score_mappings = [
-                {
-                    f'score_{score.score_name}_last': score.score_value,
-                    f'score_{score.score_name}_last_date': Decimal(datetime.datetime.utcnow().timestamp())
-                } for score in treatment_log.scores
-            ]
-
-
-        #TODO break this up into individual actions/methods
-        if treatment_log.contact_type == ContactTypes.initial_assessment:
-            UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
-                               "flag = :flag,"\
-                               "no_show = :no_show," \
-                               "initial_assessment = :initial_assessment, " \
-                               "weeks_since_initial_assessment = :weeks_since_initial_assessment "
-
-            ExpressionAttributeValues = {
-                ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
-                ':flag': treatment_log.flag,
-                ':no_show': treatment_log.no_show,
-                ':initial_assessment': Decimal(treatment_log.date),
-                ":weeks_since_initial_assessment": 0
-            }
-
-        if treatment_log.contact_type == ContactTypes.follow_up:
-            UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
-                               "flag = :flag," \
-                               "no_show = :no_show," \
-                               "last_follow_up = :last_follow_up, " \
-                               "weeks_since_initial_assessment = :weeks_since_initial_assessment "
-
-            ExpressionAttributeValues = {
-                ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
-                ':flag': treatment_log.flag,
-                ':no_show': treatment_log.no_show,
-                ':last_follow_up': Decimal(treatment_log.date),
-                ":weeks_since_initial_assessment": 0
-            }
-
-        if treatment_log.contact_type == ContactTypes.psychiatric_consultation:
-            UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
-                               "flag = :flag," \
-                               "no_show = :no_show," \
-                               "last_psychiatric_consult = :last_psychiatric_consult, " \
-                               "weeks_since_initial_assessment = :weeks_since_initial_assessment "
-
-            ExpressionAttributeValues = {
-                ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
-                ':flag': treatment_log.flag,
-                ':no_show': treatment_log.no_show,
-                ':last_psychiatric_consult': Decimal(treatment_log.date),
-                ":weeks_since_initial_assessment": 0
-            }
-
-        if treatment_log.contact_type == ContactTypes.relapse_prevention:
-            UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
-                               "flag = :flag," \
-                               "no_show = :no_show," \
-                               "relapse_prevention_plan = :relapse_prevention_plan, " \
-                               "weeks_since_initial_assessment = :weeks_since_initial_assessment"
-
-            ExpressionAttributeValues = {
-                ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
-                ':flag': treatment_log.flag,
-                ':no_show': treatment_log.no_show,
-                ':relapse_prevention_plan': Decimal(treatment_log.date),
-                ":weeks_since_initial_assessment": 0
-            }
-
-        for score in score_mappings:
-            for key, value in score.items():
-                UpdateExpression += f",{key} = :{key} "
-
-        for score in score_mappings:
-            for key, value in score.items():
-                ExpressionAttributeValues[f':{key}'] = value
-
+        ExpressionAttributeValues = {
+            ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
+            ':flag': treatment_log.flag,
+            ':no_show': treatment_log.no_show,
+            ':initial_assessment': Decimal(treatment_log.date),
+            ':last_follow_up': Decimal(treatment_log.date),
+            ":last_psychiatric_consult": Decimal(treatment_log.date),
+            ":relapse_prevention_plan": Decimal(treatment_log.date),
+            ":weeks_since_initial_assessment": 0
+        }
 
         response = registry_db.update_item(
             Key={
@@ -192,7 +124,7 @@ class RegistryService(BaseService):
             },
             UpdateExpression=UpdateExpression,
             ExpressionAttributeNames={
-                "#att_name": "treatment_logs"
+                "#att_name": "treatment_logs",
             },
             ExpressionAttributeValues=ExpressionAttributeValues,
             ReturnValues="UPDATED_NEW"

@@ -140,13 +140,6 @@ class PatientRegistry(RegistryDBBaseModel):
     flags: List[dict] = []
 
     status: PatientStatysTypes = PatientStatysTypes.enrolled
-    phq9_first: Optional[int] = None
-    phq9_last: Optional[int] = None
-    phq9_last_date: Optional[int] = None
-
-    gad7_first: Optional[int] = None
-    gad7_last: Optional[int] = None
-    gad7_last_date: Optional[int] = None
 
     initial_assessment: Optional[int] = None
     last_follow_up: Optional[int] = None
