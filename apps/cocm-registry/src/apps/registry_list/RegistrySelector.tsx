@@ -10,17 +10,16 @@ import {setSelectedRegistry} from "../../reducers/appSlice";
 import TopNavigation from "../../stories/app/Navigation/TopNavigation/TopNavigation";
 
 
-
-
 interface RegistryProps {
     id: string
     name: string
     members: number
     patients: number
     description: string
+    questionnaires: [any]
 }
 
-const Registry:React.FC<RegistryProps> = ({id, name, members, patients, description}) => {
+const Registry:React.FC<RegistryProps> = ({id, name, members, patients, questionnaires, description}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     return (
@@ -42,7 +41,7 @@ const Registry:React.FC<RegistryProps> = ({id, name, members, patients, descript
                             {name}
                         </div>
                         <div>
-                            {members} members | {patients} active patients
+                            {members} members | {patients} active patients | {questionnaires.length} screeners
                         </div>
                     </div>
 
@@ -103,7 +102,7 @@ const Section = () => {
                     {
                         !isLoading && registries.map((registry) => {
                             return (
-                                <Registry id={registry['id']} name={registry['name']} members={registry['members']} patients={registry['active_patients']} description={''} />
+                                <Registry id={registry['id']} name={registry['name']} members={registry['members']} patients={registry['active_patients']} questionnaires={registry['questionnaires']} description={''} />
                             )
                         })
                     }

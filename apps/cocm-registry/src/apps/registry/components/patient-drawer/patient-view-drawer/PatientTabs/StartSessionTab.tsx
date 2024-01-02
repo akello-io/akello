@@ -200,8 +200,15 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                     flag: flag,
                                     weeks_in_treatment: 0,
                                     visit_type: visitType,
-                                    phq9_score: phq9_score,
-                                    gad7_score: gad7_score,
+                                    scores: [
+                                        {
+                                            score_name: 'phq9_score',
+                                            score_value: phq9_score
+                                        },
+                                        {
+                                            score_name: 'gad7_score',
+                                            score_value: gad7_score
+                                        }],
                                     minutes: mm,
                                     no_show: noShow,
                                     date: Date.now() // UTC time

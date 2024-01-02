@@ -31,6 +31,7 @@ let x = new PatientRegistry(
 )
 export const Primary: Story = {
     args: {
-        patients: [x, x, x]
+        patients: [x, x, x],
+        questionnaires: []
     },
 };
