@@ -96,30 +96,37 @@ class RegistryService(BaseService):
     @staticmethod
     def add_treatment_log(registry_id, sort_key, treatment_log: TreatmentLog):
 
+        #TODO: This needs a ton of clean up
+
+        if treatment_log.contact_type == ContactTypes.initial_assessment:
+            score_mappings = [
+                {
+                    f'score_{score.score_name}_first': score.score_value,
+                    f'score_{score.score_name}_last': score.score_value,
+                    f'score_{score.score_name}_last_date': Decimal(datetime.datetime.utcnow().timestamp())
+                } for score in treatment_log.scores
+            ]
+        else:
+            score_mappings = [
+                {
+                    f'score_{score.score_name}_last': score.score_value,
+                    f'score_{score.score_name}_last_date': Decimal(datetime.datetime.utcnow().timestamp())
+                } for score in treatment_log.scores
+            ]
+
+
         #TODO break this up into individual actions/methods
         if treatment_log.contact_type == ContactTypes.initial_assessment:
             UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
-                               "flag = :flag," \
+                               "flag = :flag,"\
                                "no_show = :no_show," \
-                               "phq9_first = :phq9_first, " \
-                               "phq9_last = :phq9_last, " \
-                               "phq9_last_date = :phq9_last_date, " \
-                               "gad7_first = :gad7_first, " \
-                               "gad7_last = :gad7_last, " \
-                               "gad7_last_date = :gad7_last_date, " \
                                "initial_assessment = :initial_assessment, " \
-                               "weeks_since_initial_assessment = :weeks_since_initial_assessment"
+                               "weeks_since_initial_assessment = :weeks_since_initial_assessment "
 
             ExpressionAttributeValues = {
                 ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
                 ':flag': treatment_log.flag,
                 ':no_show': treatment_log.no_show,
-                ':phq9_first': treatment_log.phq9_score,
-                ':phq9_last': treatment_log.phq9_score,
-                ':phq9_last_date': Decimal(treatment_log.date),
-                ':gad7_first': treatment_log.gad7_score,
-                ':gad7_last': treatment_log.gad7_score,
-                ':gad7_last_date': Decimal(treatment_log.date),
                 ':initial_assessment': Decimal(treatment_log.date),
                 ":weeks_since_initial_assessment": 0
             }
@@ -128,21 +135,13 @@ class RegistryService(BaseService):
             UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
                                "flag = :flag," \
                                "no_show = :no_show," \
-                               "phq9_last = :phq9_last, " \
-                               "phq9_last_date = :phq9_last_date, " \
-                               "gad7_last = :gad7_last, " \
-                               "gad7_last_date = :gad7_last_date, " \
                                "last_follow_up = :last_follow_up, " \
-                               "weeks_since_initial_assessment = :weeks_since_initial_assessment"
+                               "weeks_since_initial_assessment = :weeks_since_initial_assessment "
 
             ExpressionAttributeValues = {
                 ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
                 ':flag': treatment_log.flag,
                 ':no_show': treatment_log.no_show,
-                ':phq9_last': treatment_log.phq9_score,
-                ':phq9_last_date': Decimal(treatment_log.date),
-                ':gad7_last': treatment_log.gad7_score,
-                ':gad7_last_date': Decimal(treatment_log.date),
                 ':last_follow_up': Decimal(treatment_log.date),
                 ":weeks_since_initial_assessment": 0
             }
@@ -151,21 +150,13 @@ class RegistryService(BaseService):
             UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
                                "flag = :flag," \
                                "no_show = :no_show," \
-                               "phq9_last = :phq9_last, " \
-                               "phq9_last_date = :phq9_last_date, " \
-                               "gad7_last = :gad7_last, " \
-                               "gad7_last_date = :gad7_last_date, " \
                                "last_psychiatric_consult = :last_psychiatric_consult, " \
-                               "weeks_since_initial_assessment = :weeks_since_initial_assessment"
+                               "weeks_since_initial_assessment = :weeks_since_initial_assessment "
 
             ExpressionAttributeValues = {
                 ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
                 ':flag': treatment_log.flag,
                 ':no_show': treatment_log.no_show,
-                ':phq9_last': treatment_log.phq9_score,
-                ':phq9_last_date': Decimal(treatment_log.date),
-                ':gad7_last': treatment_log.gad7_score,
-                ':gad7_last_date': Decimal(treatment_log.date),
                 ':last_psychiatric_consult': Decimal(treatment_log.date),
                 ":weeks_since_initial_assessment": 0
             }
@@ -174,10 +165,6 @@ class RegistryService(BaseService):
             UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
                                "flag = :flag," \
                                "no_show = :no_show," \
-                               "phq9_last = :phq9_last, " \
-                               "phq9_last_date = :phq9_last_date, " \
-                               "gad7_last = :gad7_last, " \
-                               "gad7_last_date = :gad7_last_date, " \
                                "relapse_prevention_plan = :relapse_prevention_plan, " \
                                "weeks_since_initial_assessment = :weeks_since_initial_assessment"
 
@@ -185,13 +172,18 @@ class RegistryService(BaseService):
                 ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
                 ':flag': treatment_log.flag,
                 ':no_show': treatment_log.no_show,
-                ':phq9_last': treatment_log.phq9_score,
-                ':phq9_last_date': Decimal(treatment_log.date),
-                ':gad7_last': treatment_log.gad7_score,
-                ':gad7_last_date': Decimal(treatment_log.date),
                 ':relapse_prevention_plan': Decimal(treatment_log.date),
                 ":weeks_since_initial_assessment": 0
             }
+
+        for score in score_mappings:
+            for key, value in score.items():
+                UpdateExpression += f",{key} = :{key} "
+
+        for score in score_mappings:
+            for key, value in score.items():
+                ExpressionAttributeValues[f':{key}'] = value
+
 
         response = registry_db.update_item(
             Key={

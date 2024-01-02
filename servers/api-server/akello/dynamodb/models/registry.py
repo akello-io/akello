@@ -45,6 +45,9 @@ class VisitTypes(str, Enum):
     phone = 'Phone'
     in_person = 'In-person w/ Patient'
 
+class TreatmentLogScore(BaseModel):
+    score_name: str
+    score_value: int
 
 class TreatmentLog(BaseModel):
     patient_mrn: Optional[str] = None
@@ -58,8 +61,7 @@ class TreatmentLog(BaseModel):
     contact_type: ContactTypes
     visit_type: VisitTypes
 
-    phq9_score: Optional[int] = None
-    gad7_score: Optional[int] = None
+    scores: List[TreatmentLogScore] = []
 
     minutes: Optional[int] = None
 
