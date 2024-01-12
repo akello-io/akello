@@ -1,30 +1,9 @@
 from akello.dynamodb.models import RegistryDBBaseModel
-from akello.fhir.hl7.fhir_v6_models import QuestionnaireResponse
 from enum import Enum
 from pydantic import BaseModel
 from typing import List, Optional
 import json
 import datetime
-
-
-class Medication(BaseModel):
-    medication: str
-    dose: str
-    start_date: float
-    end_date: Optional[float]
-    created_date: float
-
-
-class ScreeningTypes(str, Enum):
-    phq9 = 'phq9'
-    gad7 = 'gad7'
-
-
-class Screening(BaseModel):
-    created_date: float
-    type: ScreeningTypes
-    score: int
-    responses: List[int]
 
 
 class FlagTypes(str, Enum):
@@ -110,7 +89,7 @@ class RegistryModel(RegistryDBBaseModel):
     created_date: float
     members: int = 0
     active_patients: int = 0
-    questionnaires: List[dict] = None  # FHIR Questionnaire Object
+    questionnaires: List[dict] = None
 
     @property
     def object_type(self) -> str:
@@ -136,8 +115,6 @@ class PatientRegistry(RegistryDBBaseModel):
     phone_number: str
     email: str
     date_of_birth: str
-    medications: List[Medication] = []
-    screening: List[Screening] = []
     treatment_logs: List[TreatmentLog] = []
     audit_logs: List[AuditLog] = []
     flags: List[dict] = []

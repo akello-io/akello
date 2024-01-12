@@ -2,7 +2,7 @@ import os, json
 import logging
 
 from akello.services import BaseService
-from akello.fhir.hl7.fhir_v6_models import Questionnaire
+from akello.dynamodb.models.questionnaire import Questionnaire
 from dataclasses import asdict
 
 
@@ -16,11 +16,11 @@ class ScreenerService(BaseService):
         screeners = os.listdir('akello/screeners')
         questionnaires = []
         for screener in screeners:
-            if screener.endswith('R4.json'):                
+            if screener.endswith('.json'):
                 with open(f'akello/screeners/{screener}') as f:                    
                     data = json.load(f)
-                    screener_questionnaier = Questionnaire(**data)
-                    questionnaires.append(asdict(screener_questionnaier))
+                    questionnaire = Questionnaire(**data)
+                    questionnaires.append(questionnaire.dict())
         return questionnaires
 
     @staticmethod

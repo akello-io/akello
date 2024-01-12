@@ -1,11 +1,10 @@
 import datetime, random, uuid, json
 from decimal import Decimal
-from akello.dynamodb.models.registry import RegistryModel, ContactTypes, TreatmentLog, PatientRegistry
+from akello.dynamodb.models.registry import RegistryModel, TreatmentLog, PatientRegistry
 from akello.dynamodb import registry_db
 from akello.services import BaseService
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
-from fastapi.encoders import jsonable_encoder
 
 
 class RegistryService(BaseService):
@@ -25,7 +24,7 @@ class RegistryService(BaseService):
             name=name,
             questionnaires=questionnaires,
             modified_date=current_timestamp,
-            created_date=current_timestamp
+            created_date=current_timestamp,
         )
 
         # TODO: Need to generate the Item Object using the data model
