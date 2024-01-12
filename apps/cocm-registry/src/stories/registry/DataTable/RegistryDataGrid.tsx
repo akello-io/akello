@@ -42,102 +42,6 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             width: 110,
             editable: true,
         },
-        /*
-        {
-            field: 'phq9_first',
-            headerName: 'First',
-            description: 'First baseline PHQ9 screening',
-            type: 'number',
-            width: 110,
-            editable: true,
-        },
-        {
-            field: 'phq9_last',
-            headerName: 'Last',
-            description: 'Most recent PHQ9 screening',
-            type: 'number',
-            width: 110,
-            editable: true,
-        },
-        {
-            field: 'phq9_last_delta',
-            headerName: 'Last Delta',
-            description: '',
-            type: 'number',
-            width: 110,
-            editable: true,
-            valueGetter: (params) => {
-                if(params.row.phq9_last && params.row.treatment_logs.length >= 2) {
-                    let first = params.row.treatment_logs[params.row.treatment_logs.length-2]
-                    let next = params.row.treatment_logs[params.row.treatment_logs.length-1]
-
-                    if(first.phq9_score !=0 ) {
-                        return ((next.phq9_score - first.phq9_score)/first.phq9_score * 100).toFixed(0)
-                    }
-                }
-            }
-        },
-        {
-            field: 'phq9_last_date',
-            headerName: 'Last Date',
-            description: 'Date of most recent PHQ9 screening',
-            type: 'date',
-            width: 110,
-            editable: true,
-            valueGetter: (params) => {
-                if(params.row.phq9_last_date) {
-                    return new Date(params.row.phq9_last_date * 1000)
-                }
-            }
-        },
-        {
-            field: 'gad7_first',
-            headerName: 'First',
-            description: 'First baseline GAD7 screening.',
-            type: 'number',
-            width: 110,
-            editable: true,
-        },
-        {
-            field: 'gad7_last',
-            headerName: 'Last',
-            description: 'Most recent GAD7 screening.',
-            type: 'number',
-            width: 110,
-            editable: true,
-        },
-        {
-            field: 'gad7_last_delta',
-            headerName: 'Last Delta',
-            description: '',
-            type: 'number',
-            width: 110,
-            editable: true,
-            valueGetter: (params) => {
-                if(params.row.gad7_last && params.row.treatment_logs.length >= 2) {
-                    let first = params.row.treatment_logs[params.row.treatment_logs.length-2]
-                    let next = params.row.treatment_logs[params.row.treatment_logs.length-1]
-
-                    if(first.gad7_score !=0 ) {
-                        return ((next.gad7_score - first.gad7_score)/first.gad7_score * 100).toFixed(0)
-                    }
-                }
-            }
-        },
-        {
-            field: 'gad7_last_date',
-            headerName: 'Last Date',
-            description: 'Date of last GAD7 screening.',
-            type: 'date',
-            width: 110,
-            editable: true,
-            valueGetter: (params) => {
-                if(params.row.gad7_last_date) {
-                    return new Date(params.row.gad7_last_date * 1000)
-                }
-            }
-        },
-         */
         {
             field: 'initial_assessment',
             headerName: 'I/A',
@@ -240,20 +144,6 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
     ];
 
     const columnGroupingModel: GridColumnGroupingModel = [
-        /*
-        {
-            groupId: 'PHQ 9',
-            children: [
-                { field: 'phq9_first' }, { field: 'phq9_last'}, { field: 'phq9_last_delta'}, { field: 'phq9_last_date'}
-            ],
-        },
-        {
-            groupId: 'GAD 7',
-            children: [
-                { field: 'gad7_first' }, { field: 'gad7_last'}, { field: 'gad7_last_delta'}, { field: 'gad7_last_date'}
-            ],
-        },
-         */
         {
             groupId: 'Contact',
             children: [

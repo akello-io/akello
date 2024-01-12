@@ -45,15 +45,17 @@ class VisitTypes(str, Enum):
     phone = 'Phone'
     in_person = 'In-person w/ Patient'
 
+
 class TreatmentLogScore(BaseModel):
     score_name: str
     score_value: int
+
 
 class TreatmentLog(BaseModel):
     patient_mrn: Optional[str] = None
     provider: Optional[str] = None
 
-    #TODO: Add a UI to flag if a user was a no-show
+    # TODO: Add a UI to flag if a user was a no-show
     no_show: Optional[bool] = False
 
     flag: Optional[FlagTypes] = None
@@ -118,6 +120,7 @@ class RegistryModel(RegistryDBBaseModel):
     def sort_key(self) -> str:
         return 'metadata'
 
+
 class PatientRegistry(RegistryDBBaseModel):
     id: Optional[str] = None
     patient_flag: Optional[FlagTypes] = None
@@ -147,8 +150,8 @@ class PatientRegistry(RegistryDBBaseModel):
 
     relapse_prevention_plan: Optional[int] = None
     total_sessions: Optional[int] = 0
-    weeks_since_initial_assessment: Optional[int] = 0   #TODO: This gets calculated from the client side, remove field
-    minutes_this_month: Optional[int] = 0  #TODO: This gets calculated from the client side, remove field
+    weeks_since_initial_assessment: Optional[int] = 0  # TODO: This gets calculated from the client side, remove field
+    minutes_this_month: Optional[int] = 0  # TODO: This gets calculated from the client side, remove field
     schema_version: Optional[str] = None
 
     def toJson(self):
@@ -156,7 +159,6 @@ class PatientRegistry(RegistryDBBaseModel):
         data['partition_key'] = self.partition_key
         data['sort_key'] = self.sort_key
         return data
-
 
     @property
     def object_type(self):
