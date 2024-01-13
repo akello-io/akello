@@ -36,6 +36,14 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
     console.log(scores)
     console.log(score_keys)
 
+    let colors = [
+        "#6fe520",
+        "#cc553b",
+        "#06825f",
+        "#ce6808",
+        "#2313f9"
+    ]
+
     return (
         <ResponsiveContainer>
             <LineChart
@@ -55,10 +63,11 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
                 <Tooltip />
                 <Legend />
                 {
-                    score_keys.map((score_key: any) => {
+                    score_keys.map((score_key: any, index) => {
+                        //TODO: Need to handle the case when a registry might have more than 5 measurements
                         return (
                             <>
-                                <Line type="monotone" dataKey={score_key} stroke="#8884d8"  />
+                                <Line type="monotone" dataKey={score_key} stroke={colors[index]}  />
                             </>
                         )
                     })
