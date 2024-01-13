@@ -14,12 +14,34 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
     copy.sort((a, b) => a.weeks_in_treatment > b.weeks_in_treatment ? 1 : -1)
     selectedPatient.treatment_logs = copy
 
+    let scores:any = []
+
+
+
+    selectedPatient.treatment_logs.map((treatment_log) => {
+
+        let treatment_log_score:any = {
+            "weeks_in_treatment" : treatment_log.weeks_in_treatment
+        }
+
+        treatment_log.scores.map((score) => {
+            treatment_log_score[score.score_name] = score.score_value
+        })
+
+        scores.push(treatment_log_score)
+    })
+
+    let score_keys = selectedPatient.treatment_logs[0].scores.map((score) => { return score.score_name })
+
+    console.log(scores)
+    console.log(score_keys)
+
     return (
         <ResponsiveContainer>
             <LineChart
                 width={500}
                 height={300}
-                data={selectedPatient.treatment_logs}
+                data={scores}
                 margin={{
                     top: 5,
                     right: 30,
@@ -29,11 +51,18 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
             >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="weeks_in_treatment" />
-                <YAxis />
+                <YAxis  />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="phq9_score" stroke="#8884d8" activeDot={{ r: 8 }} />
-                <Line type="monotone" dataKey="gad7_score" stroke="#82ca9d" />
+                {
+                    score_keys.map((score_key: any) => {
+                        return (
+                            <>
+                                <Line type="monotone" dataKey={score_key} stroke="#8884d8"  />
+                            </>
+                        )
+                    })
+                }
             </LineChart>
         </ResponsiveContainer>
     );

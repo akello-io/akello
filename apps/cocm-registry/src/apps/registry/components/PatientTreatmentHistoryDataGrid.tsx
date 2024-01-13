@@ -56,6 +56,8 @@ const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = (
         )
     }
 
+    // Use the first row to determine the data columns.
+    // TODO: Consider using the configuration passed into the registry
     selectedPatient.treatment_logs[0].scores.map((score) => {
         const score_filed:GridColDef ={
                 field: score.score_name,
