@@ -1,12 +1,25 @@
 
+
+export class TreatmentLogScore {
+    score_name: string
+    score_value: number
+
+    constructor(
+        score_name: string,
+        score_value: number
+    ) {
+        this.score_name = score_name
+        this.score_value = score_value
+    }
+}
+
 export class TreatmentLog {
     id: string
     contact_type: string
     weeks_in_treatment: number
     visit_type: string
-    phq9_score?: number
-    gad7_score?: number
     minutes?: number
+    scores: TreatmentLogScore[]
     date: number
     no_show?: boolean
 
@@ -14,9 +27,8 @@ export class TreatmentLog {
         contact_type: string,
         weeks_in_treatment: number,
         visit_type: string,
-        phq9_score: number,
-        gad7_score: number,
         minutes: number,
+        scores: TreatmentLogScore[],
         date: number,
         no_show: boolean
     ) {
@@ -24,11 +36,63 @@ export class TreatmentLog {
         this.contact_type = contact_type
         this.weeks_in_treatment = weeks_in_treatment
         this.visit_type = visit_type
-        this.phq9_score = phq9_score
-        this.gad7_score = gad7_score
+        this.scores = scores
         this.minutes = minutes
         this.date = date
         this.no_show = no_show
+    }
+
+}
+
+
+export class QuestionnaireResponse {
+    id: string
+    response: string
+    score: number
+
+    constructor(
+        id: string,
+        response: string,
+        score: number
+    ) {
+        this.id = id
+        this.response = response
+        this.score = score
+    }
+}
+export class QuestionnaireQuestion {
+    id: string
+    question: string
+    responses: QuestionnaireResponse[]
+    score: number
+
+    constructor(
+        id: string,
+        question: string,
+        responses: QuestionnaireResponse[],
+        score: number
+    ) {
+        this.id = id
+        this.question = question
+        this.responses = responses
+        this.score = score
+    }
+}
+
+export class Questionnaire {
+    uid: string
+    name: string
+    questions: QuestionnaireQuestion[]
+
+    constructor(
+        uid: string,
+        name: string,
+        questions: any
+    ) {
+        debugger
+        this.uid  = uid
+        this.name = name
+        this.questions = questions
     }
 
 }
@@ -46,13 +110,6 @@ export class PatientRegistry {
 
     payer?: string
     status?: string
-    phq9_first?: number
-    phq9_last?: number
-    phq9_last_date?: number
-
-    gad7_first?: number
-    gad7_last?: number
-    gad7_last_date?: number
 
     initial_assessment?: number
     last_follow_up?: number

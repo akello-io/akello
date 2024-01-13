@@ -94,6 +94,69 @@ const Dashboard = () => {
                             <ScreeningComponent title={"Treatment Performance"}>
                                 <div className={"bg-white p-12 w-full pb-6 flex flex-row space-x-12"}>
                                     <div className={"text-center space-y-4"}>
+                                        <div className={"font-black text-5xl"}>1</div>
+                                        <div>Avg. Weeks in treatment</div>
+                                    </div>
+
+                                    <div className={"text-center space-y-4"}>
+                                        <div className={"font-black text-5xl"}>1</div>
+                                        <div>Median Weeks in treatment</div>
+                                    </div>
+
+                                    <div className={"text-center space-y-4"}>
+                                        <div className={"font-black text-5xl"}>1</div>
+                                        <div>Max Weeks in treatment</div>
+                                    </div>
+                                </div>
+                            </ScreeningComponent>
+                            <ScreeningComponent title={"PHQ-9/GAD7-9 Screening Avg"}>
+                                <div className={"bg-white p-12 w-full pb-6 flex flex-row space-x-12"}>
+                                    <div className={"text-center space-y-4"}>
+                                        <div className={"font-black text-5xl"}>1</div>
+                                        <div>Initial</div>
+                                    </div>
+
+                                    <div className={"text-center space-y-4"}>
+                                        <div className={"font-black text-5xl"}>1</div>
+                                        <div>Current</div>
+                                    </div>
+
+                                    <div className={"text-center space-y-4"}>
+                                        <div className={"font-black text-5xl"}>1</div>
+                                        <div>Weekly Change</div>
+                                    </div>
+                                </div>
+                            </ScreeningComponent>
+                            <ScreeningComponent title={"Payer Distribution"}>
+                                <div className={"w-auto h-96 bg-white"}>
+                                    <PieChart
+                                        series={[
+                                            {
+                                                data: [
+                                                    { id: 0, value: 10, label: 'series A' },
+                                                    { id: 1, value: 15, label: 'series B' },
+                                                    { id: 2, value: 20, label: 'series C' },
+                                                ],
+                                            },
+                                        ]}
+                                    />
+                                </div>
+
+                            </ScreeningComponent>
+
+                            <ScreeningComponent title={"Patient Status Distribution"}>
+
+                                <BarChart
+                                    xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
+                                    series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
+                                    width={500}
+                                    height={300}
+                                />
+                            </ScreeningComponent>
+                            {/*
+                            <ScreeningComponent title={"Treatment Performance"}>
+                                <div className={"bg-white p-12 w-full pb-6 flex flex-row space-x-12"}>
+                                    <div className={"text-center space-y-4"}>
                                         <div className={"font-black text-5xl"}>{treatment['avg_weeks']}</div>
                                         <div>Avg. Weeks in treatment</div>
                                     </div>
@@ -150,6 +213,7 @@ const Dashboard = () => {
                                     height={300}
                                 />
                             </ScreeningComponent>
+                            */}
                         </>
                     )}
 

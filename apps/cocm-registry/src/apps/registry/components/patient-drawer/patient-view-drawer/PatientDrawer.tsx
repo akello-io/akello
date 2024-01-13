@@ -4,16 +4,17 @@ import {useEffect, useState} from "react";
 import MainPatientTab from "./PatientTabs/MainPatientTab";
 import StartSessionTab from "./PatientTabs/StartSessionTab";
 import DrawerLayout from "../DrawerLayout";
-import {PatientRegistry} from "../../../../../data/schemas/RegistryModel";
+import {PatientRegistry, Questionnaire} from "../../../../../data/schemas/RegistryModel";
 
 interface PatientDrawerProps {
     checked: boolean
     setChecked: (checked: boolean) => void
+    questionnaires: Questionnaire[]
     selectedPatient?: PatientRegistry
     setSelectedPatient?: (patient: PatientRegistry) => void
 }
 
-const PatientDrawer: React.FC<PatientDrawerProps> = ({checked, setChecked, selectedPatient, setSelectedPatient}) => {
+const PatientDrawer: React.FC<PatientDrawerProps> = ({checked, setChecked, questionnaires, selectedPatient, setSelectedPatient}) => {
     const [selectedTab, setSelectedTab] = useState('Main')
     const [selectedTabComponent, setSelectedTabComponent] = useState<ReactNode>()
 
@@ -25,13 +26,13 @@ const PatientDrawer: React.FC<PatientDrawerProps> = ({checked, setChecked, selec
     }, [checked])
 
     useEffect(() => {
-        let mainTab = (<MainPatientTab setSelectedTab={setSelectedTab} selectedPatient={selectedPatient!} setSelectedPatient={setSelectedPatient!}/>)
-        let sessionTab = (<StartSessionTab setSelectedTab={setSelectedTab} selectedPatient={selectedPatient!} setSelectedPatient={setSelectedPatient!}/>)
         if(selectedPatient) {
             if(selectedTab == 'Main') {
+                let mainTab = (<MainPatientTab setSelectedTab={setSelectedTab} selectedPatient={selectedPatient!} setSelectedPatient={setSelectedPatient!}/>)
                 setSelectedTabComponent(mainTab)
             }
             if(selectedTab == 'Session') {
+                let sessionTab = (<StartSessionTab setSelectedTab={setSelectedTab} selectedPatient={selectedPatient!} questionnaires={Object.assign([], questionnaires)} setSelectedPatient={setSelectedPatient!}/>)
                 setSelectedTabComponent(sessionTab)
             }
         }
