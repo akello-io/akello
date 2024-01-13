@@ -79,8 +79,8 @@ export default function DataGridDemo() {
             <div className={"bg-white"}>
                 {!isLoading && (
                     <>
-                        <RegistryDataGrid patients={patients} questionnaires={questionnaires} handlePatientClickEvent={handlePatientClickEvent} />
-                        <PatientDrawer checked={checked} setChecked={setChecked} questionnaires={questionnaires} setQuestionnaires={setQuestionnaires} selectedPatient={selectedPatient} setSelectedPatient={setSelectedPatient} />
+                        <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={handlePatientClickEvent} />
+                        <PatientDrawer checked={checked} setChecked={setChecked} questionnaires={Object.assign([], questionnaires)} selectedPatient={selectedPatient} setSelectedPatient={setSelectedPatient} />
                         <AddPatientDrawer checked={addPatient} setChecked={setAddPatient} patients={patients} setPatients={setPatients} />
                     </>
                 )}

@@ -6,12 +6,13 @@ class Response(BaseModel):
     id: str
     response: str
     score: int
-    selected: Optional[bool] = False
 
 
 class Question(BaseModel):
+    id: str
     question: str
     responses: List[Response]
+    score: int = 0
 
 
 class Questionnaire(BaseModel):

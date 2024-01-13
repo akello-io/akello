@@ -1,30 +1,37 @@
 import * as React from "react";
 import StopWatch from "./components/stopwatch/StopWatch";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import classNames from "classnames";
 import Dropdown from "../../../Dropdown";
 import {saveTreatmentSession} from "../../../../../../api/registry";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../../../store";
-import {PatientRegistry, Questionnaire, QuestionnaireResponse} from "../../../../../../data/schemas/RegistryModel";
+import {
+    PatientRegistry,
+    Questionnaire,
+    QuestionnaireQuestion,
+    QuestionnaireResponse
+} from "../../../../../../data/schemas/RegistryModel";
 
 
 interface SelectorProps {
     selectedId?: number
-    responses: QuestionnaireResponse[]
+    question: QuestionnaireQuestion
     onSelection: (response: QuestionnaireResponse) => void
 }
-const Selector:React.FC<SelectorProps> = ({selectedId, onSelection, responses}) => {
+const Selector:React.FC<SelectorProps> = ({selectedId, onSelection, question}) => {
 
+    const [selectedResponseId, setSelectedResponseId] = useState('')
     return (
         <>
             <div className={"rounded w-full border border-1"}>
                 {
-                    responses.map((response) => {
+                    question.responses.map((response) => {
                         return (
-                            <div className={ classNames ("flex flex-row justify-between cursor-pointer py-1 px-2 text-xs font-semibold", {"bg-indigo-200": response.selected==true})}
+                            <div className={ classNames ("flex flex-row justify-between cursor-pointer py-1 px-2 text-xs font-semibold", {"bg-indigo-200": response.id==selectedResponseId})}
                                  onClick={() => {
                                      onSelection(response)
+                                     setSelectedResponseId(response.id)
                                  }}>
                                 <div>{response.response}</div><div className={classNames("p-1")}>{response.score}</div>
                             </div>
@@ -40,10 +47,9 @@ interface StartSessionTabProps {
     setSelectedTab: (tab: string) => void
     selectedPatient: PatientRegistry
     questionnaires: Questionnaire[]
-    setQuestionnaires: (questionnaires: Questionnaire[]) => void
     setSelectedPatient: (patient: PatientRegistry) => void
 }
-const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selectedPatient, questionnaires, setQuestionnaires, setSelectedPatient}) => {
+const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selectedPatient, questionnaires, setSelectedPatient}) => {
 
     const [visitType, setVisitType] = useState('')
     const [contactType, setContactTye] = useState('')
@@ -55,8 +61,12 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
 
     const token = useSelector ((state: RootState) => state.app.token)
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
-
     const [noShow, setNoShow] = useState(false)
+
+    type ScoreDictionary = {
+        [question: string]: number;
+    };
+    const [questionnaire_responses, setQuestionnaireResponses] = useState<{ [questionnaire: string] : ScoreDictionary }>({})
 
     return (
         <>
@@ -76,6 +86,20 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                             </button>
                             <button className={"btn btn-primary"} onClick={() => {
 
+                                let scores = []
+                                for (let questionnaire_uid in questionnaire_responses) {
+                                    let responses = questionnaire_responses[questionnaire_uid];
+                                    let score = 0
+                                    for(let response_id in responses) {
+                                        score += questionnaire_responses[questionnaire_uid][response_id]
+                                    }
+                                    scores.push({
+                                        score_name: questionnaire_uid + '_score',
+                                        score_value: score
+                                    })
+                                }
+
+                                debugger;
 
 
                                 saveTreatmentSession(selectedRegistry.id, token, {
@@ -84,15 +108,7 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                     flag: flag,
                                     weeks_in_treatment: 0,
                                     visit_type: visitType,
-                                    scores: [
-                                        {
-                                            score_name: 'phq9_score',
-                                            score_value: 0
-                                        },
-                                        {
-                                            score_name: 'gad7_score',
-                                            score_value: 0
-                                        }],
+                                    scores: scores,
                                     minutes: mm,
                                     no_show: noShow,
                                     date: Date.now() // UTC time
@@ -179,11 +195,13 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                                         <>
                                                             <div className={"col-span-2 text-sm font-semibold"}> {questionnaire_question.question}</div>
                                                             <div>
-
-                                                                <Selector responses={questionnaire_question.responses}  onSelection={(selectedResponse: QuestionnaireResponse) => {
-                                                                    console.log(questionnaire_question)
-                                                                    console.log(selectedResponse)
-                                                                    selectedResponse.selected = true
+                                                                <Selector question={questionnaire_question}  onSelection={(selectedResponse: QuestionnaireResponse) => {
+                                                                    if(questionnaire_responses[questionnaire.uid] == undefined) {
+                                                                        questionnaire_responses[questionnaire.uid] = {}
+                                                                    }
+                                                                    questionnaire_responses[questionnaire.uid][questionnaire_question.id] = selectedResponse.score
+                                                                    setQuestionnaireResponses(questionnaire_responses)
+                                                                    console.log(questionnaire_responses)
                                                                 }}/>
 
                                                             </div>

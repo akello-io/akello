@@ -35,31 +35,36 @@ export class TreatmentLog {
 
 
 export class QuestionnaireResponse {
+    id: string
     response: string
     score: number
-    selected: boolean = false
 
     constructor(
+        id: string,
         response: string,
-        score: number,
-        selected: boolean
+        score: number
     ) {
-        debugger;
+        this.id = id
         this.response = response
         this.score = score
-        this.selected = selected
     }
 }
 export class QuestionnaireQuestion {
+    id: string
     question: string
     responses: QuestionnaireResponse[]
+    score: number
 
     constructor(
+        id: string,
         question: string,
-        responses: QuestionnaireResponse[]
+        responses: QuestionnaireResponse[],
+        score: number
     ) {
+        this.id = id
         this.question = question
         this.responses = responses
+        this.score = score
     }
 }
 
