@@ -1,4 +1,4 @@
-import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridToolbar} from "@mui/x-data-grid";
+import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridValueGetterParams, GridToolbar} from "@mui/x-data-grid";
 import moment from "moment";
 import {PatientRegistry, Questionnaire, TreatmentLog} from "../../../data/schemas/RegistryModel";
 import * as React from "react";
@@ -162,6 +162,10 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             "type": "number",
             "width": 110,
             "editable": true,
+            valueGetter: (params: GridValueGetterParams<any, any>) => {
+                let element = params.row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.uid + "_score")
+                return element.score_value
+            }
         }
         const last_column = {
             "field": questionnaire.uid + '_last',
@@ -170,6 +174,10 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             "type": "number",
             "width": 110,
             "editable": true,
+            valueGetter: (params: GridValueGetterParams<any, any>) => {
+                let element = params.row.treatment_logs[params.row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.uid + "_score")
+                return element.score_value
+            }
         }
         columns.push(first_column)
         columns.push(last_column)
