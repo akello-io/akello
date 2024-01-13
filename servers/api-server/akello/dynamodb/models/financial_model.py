@@ -92,7 +92,7 @@ class FinancialModel(BaseModel):
         }
     }
 
-
+"""
 def load_client_model(model, user_id):
     modified = datetime.datetime.utcnow().timestamp()
     created = datetime.datetime.utcnow().timestamp()
@@ -295,8 +295,10 @@ def load_client_model(model, user_id):
         created_date=created  # TODO: WE SHOULD NOT BE SETTING CREATED DATE
     )
     return financial_model
+"""
 
 
+"""
 def load_db_model(model, user_id):
     # TODO: Refactor this into a utility for all json objects being stored
     modified = datetime.datetime.utcnow().timestamp()
@@ -391,3 +393,4 @@ def load_db_model(model, user_id):
     )
 
     return financial_model
+"""

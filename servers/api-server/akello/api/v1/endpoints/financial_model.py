@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi import Depends
 from typing import List
-from akello.dynamodb.models.financial_model import FinancialModel, load_db_model, load_client_model
+from akello.dynamodb.models.financial_model import FinancialModel
 from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.dynamodb.query import FinancialModelQuery
@@ -26,13 +26,19 @@ async def get_model(model_name, auth: CognitoTokenCustom = Depends(auth_token_ch
 
 @router.put("")
 async def put_model(model: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
     financial_model = load_client_model(model, auth.cognito_id)
     query = FinancialModelQuery()
     query.create_model(financial_model)
+    """
+    pass
 
 
 @router.post("")
 async def create_model(model: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
     financial_model = load_db_model(model, auth.cognito_id)
     query = FinancialModelQuery()
     query.create_model(financial_model)
+    """
+    pass
