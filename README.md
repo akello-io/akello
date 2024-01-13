@@ -4,7 +4,7 @@
 
 ## What's Akello?
 
-Akello simplifies Collaborative Care. It's an open-source platform that features:
+Akello enables clinical services to run and bill for Collaborative Care (CoCM). It's an open-source platform that features:
 
 - A streamlined Patient Registry.
 - Easy management of multiple registries.
@@ -26,13 +26,15 @@ akello/
 ├── examples               # end-to-end examples using akello packages
 ├── packages   
 │   ├── cdk                # AWS CDK scripts to setup infrastructure
-│   ├── cli                # CLI tools to manage running environments
 │   ├── docs               # docs hosted under docs.akello.io
 │   ├── react-fhir         # React components designed for FHIR resource types
 │   ├── react-insights     # React components for anything related to data/charts/insights
 │   ├── react-medical      # React components for anything clinical (screeners, registry, etc)
 ├── scripts                # General helper scripts (placeholder for now)
-└── server                 # React Fast API server
+└── servers                 
+│   ├── api-server         # Fast API server
+│   ├── fhir-server        # FHIR Server
+
 ```
 
 
