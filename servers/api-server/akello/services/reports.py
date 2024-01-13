@@ -70,49 +70,6 @@ class ReportsService(BaseService):
     @staticmethod
     def get_registry_dashboard(registry_id, from_date, to_date):
 
-        patients = RegistryService.get_patients(registry_id)
-        successfully_loaded = []
-        failed_patients = []
-        for patient in patients:
-            try:
-                successfully_loaded.append(PatientRegistry(**patient))
-            except Exception as e:
-                failed_patients.append(patient['patient_mrn'])
-
-        avg_phq9_initial = 0
-        avg_gad7_initial = 0
-        avg_phq9_last = 0
-        avg_gad7_last = 0
-        for patient in successfully_loaded:
-            if patient.phq9_first and patient.gad7_first and patient.phq9_last and patient.gad7_last:
-                avg_phq9_initial += patient.phq9_first
-                avg_gad7_initial += patient.gad7_first
-                avg_phq9_last += patient.phq9_last
-                avg_gad7_last += patient.gad7_last
-
-        avg_phq9_initial = avg_phq9_initial / len(successfully_loaded)
-        avg_gad7_initial = avg_gad7_initial / len(successfully_loaded)
-        avg_phq9_last = avg_phq9_last / len(successfully_loaded)
-        avg_gad7_last = avg_gad7_last / len(successfully_loaded)
-
-        payer_stats = {'no-payer': 0}
-        for patient in successfully_loaded:
-            if not patient.payer:
-                payer_stats['no-payer'] += 1
-            else:
-                if patient.payer not in payer_stats:
-                    payer_stats[patient.payer] = 0
-                payer_stats[patient.payer] += 1
-
-        patient_status_stats = {}
-        for patient in successfully_loaded:
-            if patient.status not in patient_status_stats:
-                patient_status_stats[patient.status] = 0
-            patient_status_stats[patient.status] += 1
-
-        status_keys = [key.value for key in list(patient_status_stats.keys())]
-        status_values = [patient_status_stats[status] for status in status_keys]
-
         return {
             'treatment': {
                 'avg_weeks': -1,
@@ -121,20 +78,19 @@ class ReportsService(BaseService):
             },
             'screening': {
                 'phq9': {
-                    'initial': round(avg_phq9_initial),
-                    'current': round(avg_phq9_last),
+                    'initial': 1,
+                    'current': 1,
                     'weekly_delta': -1
                 },
                 'gad7': {
-                    'initial': round(avg_gad7_initial),
-                    'current': round(avg_gad7_last),
+                    'initial': 1,
+                    'current': 1,
                     'weekly_delta': -1
                 }
             },
-            'payer_distribution': [{'id': idx, 'value': payer_stats[payer], 'label': payer} for idx, payer in
-                                   enumerate(payer_stats)],
+            'payer_distribution': [{'id': 1, 'value': 1, 'label': 'xx'}],
             'patient_status_distribution': {
-                'status': status_keys,
-                'values': status_values
+                'status': 'status_keys',
+                'values': 'status_values'
             }
         }
