@@ -1,9 +1,17 @@
-# [akello](https://www.akello.io)
+![Alt text](/assets/banner.jpg "Akello Banner")
 
 [![](https://dcbadge.vercel.app/api/server/WSqNrWBKKw)](https://discord.gg/WSqNrWBKKw)
 
 ## What's Akello?
-Akello is an open-source developer platform dedicated to supporting integrated population health models. Our current focus is on the Collaborative Care (CoCM) clinical model, with the goal of assisting more clinics throughout the United States in adopting this approach.
+
+Akello enables clinical services to run and bill for Collaborative Care (CoCM). It's an open-source platform that features:
+
+- A streamlined Patient Registry.
+- Easy management of multiple registries.
+- Customizable tools for population assessment.
+- Efficient time tracking for billing.
+- Easy to customize styles and branding.
+- AWS Infrastructure scripts to host and run your own registry.
 
 
 ## Overview of the Repo
@@ -18,13 +26,15 @@ akello/
 ├── examples               # end-to-end examples using akello packages
 ├── packages   
 │   ├── cdk                # AWS CDK scripts to setup infrastructure
-│   ├── cli                # CLI tools to manage running environments
 │   ├── docs               # docs hosted under docs.akello.io
 │   ├── react-fhir         # React components designed for FHIR resource types
 │   ├── react-insights     # React components for anything related to data/charts/insights
 │   ├── react-medical      # React components for anything clinical (screeners, registry, etc)
 ├── scripts                # General helper scripts (placeholder for now)
-└── server                 # React Fast API server
+└── servers                 
+│   ├── api-server         # Fast API server
+│   ├── fhir-server        # FHIR Server
+
 ```
 
 
