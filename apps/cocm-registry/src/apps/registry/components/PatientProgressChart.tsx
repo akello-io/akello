@@ -19,7 +19,7 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
             <LineChart
                 width={500}
                 height={300}
-                data={selectedPatient.treatment_logs?.filter((item:TreatmentLog) => item.phq9_score != undefined) }
+                data={selectedPatient.treatment_logs}
                 margin={{
                     top: 5,
                     right: 30,

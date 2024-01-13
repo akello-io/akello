@@ -20,7 +20,6 @@ interface SelectorProps {
     onSelection: (response: QuestionnaireResponse) => void
 }
 const Selector:React.FC<SelectorProps> = ({selectedId, onSelection, question}) => {
-
     const [selectedResponseId, setSelectedResponseId] = useState('')
     return (
         <>
@@ -94,13 +93,11 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                         score += questionnaire_responses[questionnaire_uid][response_id]
                                     }
                                     scores.push({
+                                        score_questionnaire: questionnaire_uid,
                                         score_name: questionnaire_uid + '_score',
                                         score_value: score
                                     })
                                 }
-
-                                debugger;
-
 
                                 saveTreatmentSession(selectedRegistry.id, token, {
                                     patient_mrn: selectedPatient.patient_mrn,
