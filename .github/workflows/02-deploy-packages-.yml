@@ -20,16 +20,16 @@ jobs:
       # retrieve your distributions here
       - uses: actions/checkout@v2
       - name: Install packages
-        working-directory: server
+        working-directory: servers/api-server
         run: pip install -r requirements.txt
       - name: Build
-        working-directory: server
+        working-directory: servers/api-server
         run: python -m build
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           skip-existing: true
-          packages-dir: server/dist/
+          packages-dir: servers/api-server/dist/
 
   publish:
     runs-on: ubuntu-latest

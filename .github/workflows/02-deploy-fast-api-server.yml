@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build Docker
-        working-directory: server
+        working-directory: servers/api-server
         run: docker build -t demo-akello-io .
       - name: Push to ECR
         id: ecr
