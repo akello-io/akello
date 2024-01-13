@@ -57,6 +57,7 @@ npm install
 npm run start
 ```
 
+When you signup as a new user, the local SMS confirmation code is set to `1234` for local development
 
 
 ## License
