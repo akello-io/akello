@@ -1,13 +1,13 @@
 import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridToolbar} from "@mui/x-data-grid";
 import moment from "moment";
-import {PatientRegistry, TreatmentLog} from "../../../data/schemas/RegistryModel";
+import {PatientRegistry, Questionnaire, TreatmentLog} from "../../../data/schemas/RegistryModel";
 import * as React from "react";
 
 
 
 interface RegistryDataGridProps {
     patients: PatientRegistry[]
-    questionnaires: any[]
+    questionnaires: Questionnaire[]
     handlePatientClickEvent: GridEventListener<'rowClick'>
 }
 
@@ -154,26 +154,28 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
 
 
     questionnaires.map((questionnaire) => {
-        console.log(questionnaire.title)
+        console.log(questionnaire.name)
         const first_column = {
-            "field": questionnaire.title + '_first',
-            "headerName": questionnaire.title + ' Initial',
-            "description": "Initial baseline " + questionnaire.title + " screening",
+            "field": questionnaire.uid + '_first',
+            "headerName": questionnaire.uid + ' Initial',
+            "description": "Initial baseline " + questionnaire.uid + " screening",
             "type": "number",
             "width": 110,
             "editable": true,
         }
         const last_column = {
-            "field": questionnaire.title + '_last',
-            "headerName": questionnaire.title + ' Last',
-            "description": "Most recent " + questionnaire.title + " screening",
+            "field": questionnaire.uid + '_last',
+            "headerName": questionnaire.uid + ' Last',
+            "description": "Most recent " + questionnaire.uid + " screening",
             "type": "number",
             "width": 110,
             "editable": true,
         }
         columns.push(first_column)
         columns.push(last_column)
+
     })
+
 
 
     return (

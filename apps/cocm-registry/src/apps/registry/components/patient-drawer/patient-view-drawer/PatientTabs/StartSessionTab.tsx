@@ -6,33 +6,27 @@ import Dropdown from "../../../Dropdown";
 import {saveTreatmentSession} from "../../../../../../api/registry";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../../../store";
-import {PatientRegistry} from "../../../../../../data/schemas/RegistryModel";
+import {PatientRegistry, Questionnaire, QuestionnaireResponse} from "../../../../../../data/schemas/RegistryModel";
 
 
 interface SelectorProps {
     selectedId?: number
-    previousValue?: number
-    setValue: (selectedId: number) => void
+    responses: QuestionnaireResponse[]
+    onSelection: (response: QuestionnaireResponse) => void
 }
-const Selector:React.FC<SelectorProps> = ({selectedId, previousValue,  setValue}) => {
-    let options = [
-        {id: 0, name: 'Not at all', scoreTxt:'0', score: 0},
-        {id: 1, name: 'Several days', scoreTxt:'+1', score: 1},
-        {id: 2, name: 'More than half the days', scoreTxt:'+2', score: 2},
-        {id: 3, name: 'Nearly every day', scoreTxt:'+3', score: 3},
-    ]
+const Selector:React.FC<SelectorProps> = ({selectedId, onSelection, responses}) => {
+
     return (
         <>
             <div className={"rounded w-full border border-1"}>
                 {
-                    options.map((option) => {
+                    responses.map((response) => {
                         return (
-                            <div className={ classNames ("flex flex-row justify-between cursor-pointer py-1 px-2 text-xs font-semibold",
-                                {"bg-indigo-200": selectedId==option.id}
-                            )}
-                                 onClick={() => setValue(option.id)}
-                            >
-                                <div>{option.name}</div><div className={classNames("p-1", {"border border-2 border-orange-300": previousValue==option.score})}>{option.scoreTxt}</div>
+                            <div className={ classNames ("flex flex-row justify-between cursor-pointer py-1 px-2 text-xs font-semibold", {"bg-indigo-200": response.selected==true})}
+                                 onClick={() => {
+                                     onSelection(response)
+                                 }}>
+                                <div>{response.response}</div><div className={classNames("p-1")}>{response.score}</div>
                             </div>
                         )
                     })
@@ -45,9 +39,11 @@ const Selector:React.FC<SelectorProps> = ({selectedId, previousValue,  setValue}
 interface StartSessionTabProps {
     setSelectedTab: (tab: string) => void
     selectedPatient: PatientRegistry
+    questionnaires: Questionnaire[]
+    setQuestionnaires: (questionnaires: Questionnaire[]) => void
     setSelectedPatient: (patient: PatientRegistry) => void
 }
-const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selectedPatient, setSelectedPatient}) => {
+const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selectedPatient, questionnaires, setQuestionnaires, setSelectedPatient}) => {
 
     const [visitType, setVisitType] = useState('')
     const [contactType, setContactTye] = useState('')
@@ -61,116 +57,6 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
 
     const [noShow, setNoShow] = useState(false)
-
-    type ScreeningQuestionType = {
-        id: number
-        question: string
-        selected: number
-        previous: number
-    }
-
-    const [phq9, setPHQ9] = useState<ScreeningQuestionType[]>([
-        {
-            'id': 1,
-            'question': 'Little interest or pleasure in doing things?',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 2,
-            'question': 'Feeling down, depressed, or hopeless?',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 3,
-            'question': 'Trouble falling or staying asleep, or sleeping too much?',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 4,
-            'question': 'Feeling tired or having little energy?',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 5,
-            'question': 'Poor appetite or overeating?',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 6,
-            'question': 'Feeling bad about yourself — or that you are a failure or have let yourself or your family down?',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 7,
-            'question': 'Trouble concentrating on things, such as reading the newspaper or watching television?',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 8,
-            'question': 'Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 9,
-            'question': 'Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?',
-            'selected': 0,
-            'previous': 2
-        },
-    ])
-
-    const [gad7, setGad7] = useState<ScreeningQuestionType[]>([
-        {
-            'id': 1,
-            'question': 'Feeling nervous, anxious, or on edge',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 2,
-            'question': 'Not being able to stop or control worrying',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 3,
-            'question': 'Worrying too much about different things',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 4,
-            'question': 'Trouble relaxing',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 5,
-            'question': 'Being so restless that it\'s hard to sit still',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 6,
-            'question': 'Becoming easily annoyed or irritable',
-            'selected': 0,
-            'previous': 2
-        },
-        {
-            'id': 7,
-            'question': 'Feeling afraid as if something awful might happen',
-            'selected': 0,
-            'previous': 2
-        },
-    ])
-
 
     return (
         <>
@@ -190,8 +76,6 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                             </button>
                             <button className={"btn btn-primary"} onClick={() => {
 
-                                let phq9_score = phq9.reduce((accumulator, obj) => accumulator + obj.selected, 0);
-                                let gad7_score = gad7.reduce((accumulator, obj) => accumulator + obj.selected, 0);
 
 
                                 saveTreatmentSession(selectedRegistry.id, token, {
@@ -203,11 +87,11 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                     scores: [
                                         {
                                             score_name: 'phq9_score',
-                                            score_value: phq9_score
+                                            score_value: 0
                                         },
                                         {
                                             score_name: 'gad7_score',
-                                            score_value: gad7_score
+                                            score_value: 0
                                         }],
                                     minutes: mm,
                                     no_show: noShow,
@@ -277,65 +161,45 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                         </div>
                     </div>
                 </div>
-                <div className={"w-full border border-1"}>
-                    <div className={"font-semibold border-b border-1 p-2"}>
-                        <p className={"text-xl"}>
-                            PHQ-9 Screening
-                        </p>
-                    </div>
-                    <div className={"bg-white p-2"}>
-                        <div className={"grid grid-cols-3 gap-y-2"}>
-                            {
-                                phq9.map((phq9_question) => {
-                                    return (
-                                        <>
-                                            <div className={"col-span-2 text-sm font-semibold"}>{phq9_question.id}. {phq9_question.question}</div>
-                                            <div>
-                                                <Selector selectedId={phq9_question.selected} previousValue={phq9_question.previous} setValue={(value) => {
-                                                    let newArr = [...phq9];
-                                                    let idx = phq9.findIndex((question) => question.id == phq9_question.id)
-                                                    newArr[idx] = {id: phq9_question.id, question: phq9_question.question, selected: value, previous: phq9_question.previous}
-                                                    setPHQ9(newArr);
-                                                }} />
-                                            </div>
-                                        </>
+                {
+                    questionnaires.map((questionnaire) => {
+                        return (
+                            <>
+                                <div className={"w-full border border-1"}>
+                                    <div className={"font-semibold border-b border-1 p-2"}>
+                                        <p className={"text-xl"}>
+                                            {questionnaire.name}
+                                        </p>
+                                    </div>
+                                    <div className={"bg-white p-2"}>
+                                        <div className={"grid grid-cols-3 gap-y-2"}>
+                                            {
+                                                questionnaire.questions.map((questionnaire_question) => {
+                                                    return (
+                                                        <>
+                                                            <div className={"col-span-2 text-sm font-semibold"}> {questionnaire_question.question}</div>
+                                                            <div>
 
-                                    )
-                                })
-                            }
+                                                                <Selector responses={questionnaire_question.responses}  onSelection={(selectedResponse: QuestionnaireResponse) => {
+                                                                    console.log(questionnaire_question)
+                                                                    console.log(selectedResponse)
+                                                                    selectedResponse.selected = true
+                                                                }}/>
 
-                        </div>
-                    </div>
-                </div>
-                <div className={"w-full border border-1"}>
-                    <div className={"font-semibold border-b border-1 p-2"}>
-                        <p className={"text-xl"}>
-                            GAD-7 Screening
-                        </p>
-                    </div>
-                    <div className={"bg-white p-2"}>
-                        <div className={"grid grid-cols-3 gap-y-2"}>
-                            {
-                                gad7.map((gad7_question) => {
-                                    return (
-                                        <>
-                                            <div className={"col-span-2 text-sm font-semibold"}>{gad7_question.id}. {gad7_question.question}</div>
-                                            <div>
-                                                <Selector selectedId={gad7_question.selected} previousValue={gad7_question.previous} setValue={(value) => {
-                                                    let newArr = [...gad7];
-                                                    let idx = gad7.findIndex((question) => question.id == gad7_question.id)
-                                                    newArr[idx] = {id: gad7_question.id, question: gad7_question.question, selected: value, previous: gad7_question.previous}
-                                                    setGad7(newArr);
-                                                }} />
-                                            </div>
-                                        </>
+                                                            </div>
+                                                        </>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    })
+                }
 
-                                    )
-                                })
-                            }
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </>
     )

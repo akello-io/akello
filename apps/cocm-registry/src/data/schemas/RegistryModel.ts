@@ -33,6 +33,54 @@ export class TreatmentLog {
 
 }
 
+
+export class QuestionnaireResponse {
+    response: string
+    score: number
+    selected: boolean = false
+
+    constructor(
+        response: string,
+        score: number,
+        selected: boolean
+    ) {
+        debugger;
+        this.response = response
+        this.score = score
+        this.selected = selected
+    }
+}
+export class QuestionnaireQuestion {
+    question: string
+    responses: QuestionnaireResponse[]
+
+    constructor(
+        question: string,
+        responses: QuestionnaireResponse[]
+    ) {
+        this.question = question
+        this.responses = responses
+    }
+}
+
+export class Questionnaire {
+    uid: string
+    name: string
+    questions: QuestionnaireQuestion[]
+
+    constructor(
+        uid: string,
+        name: string,
+        questions: any
+    ) {
+        debugger
+        this.uid  = uid
+        this.name = name
+        this.questions = questions
+    }
+
+}
+
 export class PatientRegistry {
     id: string
     flag?: string
@@ -46,13 +94,6 @@ export class PatientRegistry {
 
     payer?: string
     status?: string
-    phq9_first?: number
-    phq9_last?: number
-    phq9_last_date?: number
-
-    gad7_first?: number
-    gad7_last?: number
-    gad7_last_date?: number
 
     initial_assessment?: number
     last_follow_up?: number

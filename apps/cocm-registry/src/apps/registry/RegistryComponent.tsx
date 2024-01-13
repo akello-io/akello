@@ -4,7 +4,7 @@ import {
 } from '@mui/x-data-grid';
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
-import {PatientRegistry} from "../../data/schemas/RegistryModel";
+import {PatientRegistry, Questionnaire} from "../../data/schemas/RegistryModel";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {getRegistryPatients} from "../../api/registry";
@@ -21,7 +21,7 @@ export default function DataGridDemo() {
     const [role, setRole] = useState('')
     const [addPatient, setAddPatient] = useState(false)
     const [patients, setPatients] = useState<PatientRegistry[]>([])
-    const [questionnaires, setQuestionnaires] = useState<any[]>([])
+    const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [selectedPatient, setSelectedPatient] = useState<PatientRegistry>()
     const navigate = useNavigate()
@@ -80,7 +80,7 @@ export default function DataGridDemo() {
                 {!isLoading && (
                     <>
                         <RegistryDataGrid patients={patients} questionnaires={questionnaires} handlePatientClickEvent={handlePatientClickEvent} />
-                        <PatientDrawer checked={checked} setChecked={setChecked} selectedPatient={selectedPatient} setSelectedPatient={setSelectedPatient} />
+                        <PatientDrawer checked={checked} setChecked={setChecked} questionnaires={questionnaires} setQuestionnaires={setQuestionnaires} selectedPatient={selectedPatient} setSelectedPatient={setSelectedPatient} />
                         <AddPatientDrawer checked={addPatient} setChecked={setAddPatient} patients={patients} setPatients={setPatients} />
                     </>
                 )}

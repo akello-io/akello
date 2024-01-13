@@ -4,16 +4,18 @@ import {useEffect, useState} from "react";
 import MainPatientTab from "./PatientTabs/MainPatientTab";
 import StartSessionTab from "./PatientTabs/StartSessionTab";
 import DrawerLayout from "../DrawerLayout";
-import {PatientRegistry} from "../../../../../data/schemas/RegistryModel";
+import {PatientRegistry, Questionnaire} from "../../../../../data/schemas/RegistryModel";
 
 interface PatientDrawerProps {
     checked: boolean
     setChecked: (checked: boolean) => void
+    questionnaires: Questionnaire[]
+    setQuestionnaires: (questionnaires: Questionnaire[]) => void
     selectedPatient?: PatientRegistry
     setSelectedPatient?: (patient: PatientRegistry) => void
 }
 
-const PatientDrawer: React.FC<PatientDrawerProps> = ({checked, setChecked, selectedPatient, setSelectedPatient}) => {
+const PatientDrawer: React.FC<PatientDrawerProps> = ({checked, setChecked, questionnaires, setQuestionnaires, selectedPatient, setSelectedPatient}) => {
     const [selectedTab, setSelectedTab] = useState('Main')
     const [selectedTabComponent, setSelectedTabComponent] = useState<ReactNode>()
 
@@ -26,7 +28,7 @@ const PatientDrawer: React.FC<PatientDrawerProps> = ({checked, setChecked, selec
 
     useEffect(() => {
         let mainTab = (<MainPatientTab setSelectedTab={setSelectedTab} selectedPatient={selectedPatient!} setSelectedPatient={setSelectedPatient!}/>)
-        let sessionTab = (<StartSessionTab setSelectedTab={setSelectedTab} selectedPatient={selectedPatient!} setSelectedPatient={setSelectedPatient!}/>)
+        let sessionTab = (<StartSessionTab setSelectedTab={setSelectedTab} selectedPatient={selectedPatient!} questionnaires={questionnaires} setQuestionnaires={setQuestionnaires} setSelectedPatient={setSelectedPatient!}/>)
         if(selectedPatient) {
             if(selectedTab == 'Main') {
                 setSelectedTabComponent(mainTab)
