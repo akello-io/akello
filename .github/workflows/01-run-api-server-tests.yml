@@ -10,9 +10,9 @@ jobs:
         with:
           python-version: 3.8
       - name: Install dependencies
-        working-directory: server
+        working-directory: servers/api-server
         run: pip install -r requirements.txt
       - name: Run unit tests
-        working-directory: server
+        working-directory: servers/api-server
         run: python -m unittest discover tests
 
