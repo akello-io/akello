@@ -1,9 +1,8 @@
+![Alt text](/assets/banner.jpg "Akello Banner")
+
 # [akello](https://www.akello.io)
 
 [![](https://dcbadge.vercel.app/api/server/WSqNrWBKKw)](https://discord.gg/WSqNrWBKKw)
-
-
-![Alt text](/assets/banner.jpg "Akello Banner")
 
 ## What's Akello?
 Akello is an open-source developer platform dedicated to supporting integrated population health models. Our current focus is on the Collaborative Care (CoCM) clinical model, with the goal of assisting more clinics throughout the United States in adopting this approach.
