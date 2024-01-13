@@ -68,7 +68,6 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
 @router.post("/{registry_id}/refer-patient")
 async def refer_patient(registry_id: str, model: PatientRegistry,
                                   auth: CognitoTokenCustom = Depends(auth_token_check)):
-    logger.info('referring a patient MRN:%s into registry %s - created by user: %s' % (model.patient_mrn, registry_id, auth.cognito_id) )
     UserService.check_registry_access(auth.cognito_id, registry_id)
     patient_registry = PatientRegistry(
         id=registry_id,
@@ -90,7 +89,6 @@ async def refer_patient(registry_id: str, model: PatientRegistry,
 
 @router.post("/{registry_id}/record-session")
 async def record_session(registry_id: str, treatment_log: TreatmentLog, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    logger.info('recording session on registry: %s for patient MRN: %s by user %s' % (registry_id, treatment_log.patient_mrn, auth.email))
     UserService.check_registry_access(auth.cognito_id, registry_id)
     RegistryService.add_treatment_log(registry_id, treatment_log.patient_mrn, treatment_log)
     return treatment_log
@@ -99,7 +97,6 @@ async def record_session(registry_id: str, treatment_log: TreatmentLog, auth: Co
 @router.post("/{registry_id}/patient-attribute")
 async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
     UserService.check_registry_access(auth.cognito_id, registry_id)
-    logger.info('registry: %s setting patient MRN: %s attribute name: %s to value: %s' % (registry_id, data['mrn'], data['attr_name'], data['attr_value']))
 
     #TODO: static methods are not that helpful when you have to set the partition key
     PatientRegistry.set_attribute('registry-patient:%s' % registry_id, data['mrn'], data['attr_name'], data['attr_value'])

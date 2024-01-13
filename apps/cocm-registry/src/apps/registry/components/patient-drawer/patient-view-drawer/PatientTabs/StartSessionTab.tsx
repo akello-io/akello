@@ -197,7 +197,7 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                                                         questionnaire_responses[questionnaire.uid] = {}
                                                                     }
                                                                     questionnaire_responses[questionnaire.uid][questionnaire_question.id] = selectedResponse.score
-                                                                    setQuestionnaireResponses(questionnaire_responses)
+                                                                    setQuestionnaireResponses({...questionnaire_responses})
                                                                     console.log(questionnaire_responses)
                                                                 }}/>
 
