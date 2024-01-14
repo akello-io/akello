@@ -41,21 +41,7 @@ const HeaderComponent:React.FC<HeaderComponentProps> = ({title, isLoading, is_ad
                             </div>
 
                         </div>
-                        {is_admin && (
-                            <div>
-                                        <span className="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">
-                                            Admin
-                                        </span>
-                            </div>
-                        )}
 
-                        {role && (
-                            <div>
-                                        <span className="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">
-                                            {role}
-                                        </span>
-                            </div>
-                        )}
                         { titleToolTip && (
                             <div className={"relative "}>
                                 <QuestionMarkCircleIcon className={classNames("h-6 w-6 shrink-0 my-auto cursor-pointer", {

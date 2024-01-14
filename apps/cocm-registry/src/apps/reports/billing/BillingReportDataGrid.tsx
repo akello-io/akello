@@ -37,7 +37,7 @@ const columns: GridColDef[] = [
         editable: true,
         valueGetter: (params) => {
             if(params.row.phq9_last_date) {
-                return new Date(params.row.phq9_last_date * 1000)
+                return new Date(params.row.phq9_last_date)
             }
         }
     },
@@ -66,7 +66,7 @@ const columns: GridColDef[] = [
         editable: true,
         valueGetter: (params) => {
             if(params.row.gad7_last_date) {
-                return new Date(params.row.gad7_last_date * 1000)
+                return new Date(params.row.gad7_last_date)
             }
         }
     },

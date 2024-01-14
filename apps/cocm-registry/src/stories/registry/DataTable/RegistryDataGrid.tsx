@@ -51,7 +51,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             editable: true,
             valueGetter: (params) => {
                 if(params.row.initial_assessment) {
-                    return new Date(params.row.initial_assessment * 1000)
+                    return new Date(params.row.initial_assessment)
                 }
             }
         },
@@ -64,7 +64,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             editable: true,
             valueGetter: (params) => {
                 if(params.row.last_follow_up) {
-                    return new Date(params.row.last_follow_up * 1000)
+                    return new Date(params.row.last_follow_up)
                 }
             }
         },
@@ -77,7 +77,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             editable: true,
             valueGetter: (params) => {
                 if(params.row.last_psychiatric_consult) {
-                    return new Date(params.row.last_psychiatric_consult * 1000)
+                    return new Date(params.row.last_psychiatric_consult)
                 }
             }
         },
@@ -90,7 +90,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             editable: true,
             valueGetter: (params) => {
                 if(params.row.relapse_prevention_plan) {
-                    return new Date(params.row.relapse_prevention_plan * 1000)
+                    return new Date(params.row.relapse_prevention_plan)
                 }
             }
         },
@@ -118,7 +118,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             editable: true,
             valueGetter: (params) => {
                 if(params.row.initial_assessment) {
-                    var ia = moment(params.row.initial_assessment * 1000);
+                    var ia = moment(params.row.initial_assessment);
                     var today = moment();
                     var diff = moment.duration(today.diff(ia));
                     return diff.years() * 52 + diff.weeks()
