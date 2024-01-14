@@ -5,22 +5,20 @@
 
 
 
-| Columns 	           | Type       | Notes |
-|---------------------|------------|-------|
-| PK: registry   	    | str        |       |
-| SK: registry-id   	 | str        |       |
-| id  	               | str        |       |
-| name                | str        |       |
-| modified_date       | float      |       |
-| created_date        | float      |       |
-| members             | int        |       |
-| active_patients     | int        |       |
-| questionnaires      | List[dict] |       |
+## Registry
 
+| Columns 	        | Type       | Notes                                                                          |
+|------------------|------------|--------------------------------------------------------------------------------|
+| PK: registry   	 | str        | Primary Key = registry                                                         |
+| SK: metadata   	 | str        | Metadata SK is used to indicate all metadata for the object to be stored here. |
+| id  	            | str        | Unique ID of the registry                                                      |
+| name             | str        | Friendly name for the registry                                                 |
+| modified_date    | float      | Date registry was modified                                                     |
+| created_date     | float      | Date registry was created                                                      |
+| members          | int        | Statistic field - count of members                                             |
+| active_patients  | int        | Statistic field - count of active patients                                     |
+| questionnaires   | List[dict] | List of questionnaires used for this population                                |
 
-## Registry 
-* PK: `registry`
-* SK: `registry-id`
 
 
 ## Registry Patient
