@@ -71,7 +71,7 @@ When you signup as a new user, the local SMS confirmation code is set to `1234` 
 
 [Apache 2.0](LICENSE.txt)
 
-Copyright &copy; Akello Health 2023
+Copyright &copy; Akello Health 2024
 
 FHIR&reg; is a registered trademark of HL7.
 
