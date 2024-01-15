@@ -3,12 +3,12 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Akello',
-  tagline: 'Population health infrastructure for absolutely everyone',
-  favicon: 'img/AkelloLogo.png',
+  title: 'My Site',
+  tagline: 'Dinosaurs are cool',
+  favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://akello.io',
+  url: 'https://your-docusaurus-site.example.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -16,7 +16,7 @@ const config: Config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'akello-io', // Usually your repo name.
+  projectName: 'docusaurus', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -38,14 +38,14 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/akello-io/akello/tree/main/packages/docs',
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/akello-io/akello/tree/main/packages/docs',
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -54,60 +54,39 @@ const config: Config = {
     ],
   ],
 
-  plugins: [
-    async function myPlugin(context, options) {
-      return {
-        name: "docusaurus-tailwindcss",
-        configurePostCss(postcssOptions) {
-          // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(require("tailwindcss"));
-          postcssOptions.plugins.push(require("autoprefixer"));
-          return postcssOptions;
-        },
-      };
-    },
-  ],
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'Akello',
+      title: 'My Site',
       logo: {
-        alt: 'Akello Logo',
-        src: 'img/AkelloLogo.png'
+        alt: 'My Site Logo',
+        src: 'img/logo.svg',
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Documentation',
+          label: 'Tutorial',
         },
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          to: 'https://github.com/akello-io/akello',
+          href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
-          position: 'right',
-        },
-        {
-          to: 'https://trust.akello.io',
-          label: 'Trust Center',
           position: 'right',
         },
       ],
     },
     footer: {
-      style: 'light',
+      style: 'dark',
       links: [
         {
-          title: 'Developers',
+          title: 'Docs',
           items: [
             {
-              label: 'Getting started',
-              to: '/docs/category/developers',
-            },
-            {
-              label: 'Documentation',
-              to: '/docs/category/developers',
+              label: 'Tutorial',
+              to: '/docs/intro',
             },
           ],
         },
@@ -115,42 +94,34 @@ const config: Config = {
           title: 'Community',
           items: [
             {
+              label: 'Stack Overflow',
+              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+            },
+            {
               label: 'Discord',
-              to: 'https://discord.gg/WSqNrWBKKw',
+              href: 'https://discordapp.com/invite/docusaurus',
             },
             {
-              label: 'GitHub',
-              to: 'https://github.com/akello-io/akello',
-            },
-            {
-              label: 'Contributing',
-              to: '/docs/developers/contributing',
+              label: 'Twitter',
+              href: 'https://twitter.com/docusaurus',
             },
           ],
         },
         {
-          title: 'Company',
+          title: 'More',
           items: [
             {
-              label: 'About us',
+              label: 'Blog',
               to: '/blog',
             },
             {
-              label: 'Trust Center',
-              to: '/trust-center',
-            },
-            {
-              label: 'Terms of Service',
-              to: '/terms-of-service',
-            },
-            {
-              label: 'Privacy Policy',
-              to: '/privacy',
+              label: 'GitHub',
+              href: 'https://github.com/facebook/docusaurus',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Akello Health, Inc.`,
+      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
