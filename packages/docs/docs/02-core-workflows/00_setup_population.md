@@ -18,6 +18,8 @@ Setting up a new registry is easy with Akello. You can create as many registries
 
 ## User Access
 
+With Akello, you can make sure that only those treating patients in the population can access the registry. To add a user, simply enter their email. If they're not already on Akello, they'll get an invite to join. After signing up, they'll be able to see the registry they were invited to.
 
 ## Configure Screeners
+
 
