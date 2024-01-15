@@ -67,9 +67,23 @@ const config: Config = {
       };
     },
   ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'LLQ0UQMR6U',
+
+      // Public API key: it is safe to commit it
+      apiKey: 'cb66185455375628f24c87f34a52d38e',
+
+      indexName: 'XFHIR',
+
+      // Optional: see doc section below
+      contextualSearch: true,
+
+    },
     navbar: {
       title: 'Akello',
       logo: {
