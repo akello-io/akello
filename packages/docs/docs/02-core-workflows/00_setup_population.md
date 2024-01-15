@@ -22,4 +22,277 @@ With Akello, you can make sure that only those treating patients in the populati
 
 ## Configure Screeners
 
+Once you set up a registry, its screeners are locked in. This ensures you maintain a consistent approach for a population. If you require different screeners, simply create a new registry. Screeners provide a stable way for the clinical team to evaluate each patient in every session.
+
+There are two kinds of screeners you can assign to the registry. Built-in screeners allow you to choose from an existing collection. If something you need isn't available, you have the option to create a custom screener for your registry.
+
+### Built in screeners
+
+| Screeners 	 | Description                  |
+|------------|------------------------------|
+| PHQ-9   	  | Patient Health Questionnaire |
+| GAD-7   	  | Generalised Anxiety Disorder |
+ | GHQ-12  	  | General Health Questionnaire |
+| ISI        | Insomnia Severity Index      |
+
+
+
+
+### Custom screeners
+
+To add a custom screener, upload a JSON file for each one. Follow the provided PHQ-9 example as a guide to create your own screener.
+
+
+<details>
+    <summary>View Custom Screener Example</summary>
+<p>
+
+#### Here is an example of how you would create a custom screener based off of the PHQ-9
+
+```json lines
+{
+  "uid": "phq9",
+  "name": "PHQ-9",
+  "questions": [
+    {
+      "id": "0",
+      "question": "Little interest or pleasure in doing things?",
+      "responses": [
+        {
+          "id": "0",
+          "response": "Not at all",
+          "score": 0
+        },
+        {
+          "id": "1",
+          "response": "Several days",
+          "score": 1
+        },
+        {
+          "id": "2",
+          "response": "More than half the days",
+          "score": 2
+        },
+        {
+          "id": "3",
+          "response": "Nearly every day",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "question": "Feeling down, depressed, or hopeless?",
+      "responses": [
+        {
+          "id": "0",
+          "response": "Not at all",
+          "score": 0
+        },
+        {
+          "id": "1",
+          "response": "Several days",
+          "score": 1
+        },
+        {
+          "id": "2",
+          "response": "More than half the days",
+          "score": 2
+        },
+        {
+          "id": "3",
+          "response": "Nearly every day",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "question": "Trouble falling or staying asleep, or sleeping too much?",
+      "responses": [
+        {
+          "id": "0",
+          "response": "Not at all",
+          "score": 0
+        },
+        {
+          "id": "1",
+          "response": "Several days",
+          "score": 1
+        },
+        {
+          "id": "2",
+          "response": "More than half the days",
+          "score": 2
+        },
+        {
+          "id": "3",
+          "response": "Nearly every day",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "question": "Feeling tired or having little energy?",
+      "responses": [
+        {
+          "id": "0",
+          "response": "Not at all",
+          "score": 0
+        },
+        {
+          "id": "1",
+          "response": "Several days",
+          "score": 1
+        },
+        {
+          "id": "2",
+          "response": "More than half the days",
+          "score": 2
+        },
+        {
+          "id": "3",
+          "response": "Nearly every day",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "question": "Poor appetite or overeating?",
+      "responses": [
+        {
+          "id": "0",
+          "response": "Not at all",
+          "score": 0
+        },
+        {
+          "id": "1",
+          "response": "Several days",
+          "score": 1
+        },
+        {
+          "id": "2",
+          "response": "More than half the days",
+          "score": 2
+        },
+        {
+          "id": "3",
+          "response": "Nearly every day",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "question": "Feeling bad about yourself - or that you are a failure or have let yourself or your family down?",
+      "responses": [
+       {
+          "id": "0",
+          "response": "Not at all",
+          "score": 0
+        },
+        {
+          "id": "1",
+          "response": "Several days",
+          "score": 1
+        },
+        {
+          "id": "2",
+          "response": "More than half the days",
+          "score": 2
+        },
+        {
+          "id": "3",
+          "response": "Nearly every day",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "question": "Trouble concentrating on things, such as reading the newspaper or watching television?",
+      "responses": [
+        {
+          "id": "0",
+          "response": "Not at all",
+          "score": 0
+        },
+        {
+          "id": "1",
+          "response": "Several days",
+          "score": 1
+        },
+        {
+          "id": "2",
+          "response": "More than half the days",
+          "score": 2
+        },
+        {
+          "id": "3",
+          "response": "Nearly every day",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "question": "Moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?",
+      "responses": [
+        {
+          "id": "0",
+          "response": "Not at all",
+          "score": 0
+        },
+        {
+          "id": "1",
+          "response": "Several days",
+          "score": 1
+        },
+        {
+          "id": "2",
+          "response": "More than half the days",
+          "score": 2
+        },
+        {
+          "id": "3",
+          "response": "Nearly every day",
+          "score": 3
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "question": "Thoughts that you would be better off dead, or of hurting yourself in some way?",
+      "responses": [
+        {
+          "id": "0",
+          "response": "Not at all",
+          "score": 0
+        },
+        {
+          "id": "1",
+          "response": "Several days",
+          "score": 1
+        },
+        {
+          "id": "2",
+          "response": "More than half the days",
+          "score": 2
+        },
+        {
+          "id": "3",
+          "response": "Nearly every day",
+          "score": 3
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+</p>
+</details>
 
