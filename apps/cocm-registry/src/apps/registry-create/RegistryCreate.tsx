@@ -65,7 +65,7 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                     <div className={"pt-4 space-x-4"}>
                         {
                             step > 1 && (
-                                <button className={"btn btn-primary"} onClick={()=> setIdx( 0)}>Backt</button>
+                                <button className={"btn btn-primary"} onClick={()=> setIdx( 0)}>Back</button>
                             )
                         }
                         {
@@ -101,6 +101,7 @@ const RegistryCreate = () => {
 
     const [invites, setInvites] = useState<UserInvite[]>([])
     const [stepIdx, setStepIdx] = useState(0)
+    const [screeners, setScreeners] = useState([])
     const [registryName, setRegistryName] = useState('')
 
     const create_steps = [
@@ -126,6 +127,20 @@ const RegistryCreate = () => {
         },
         {
             step: 2,
+            title: "Add your screeners",
+            description: "xx",
+            inputs: (
+                <div className={"space-y-4"}>
+
+                    <div className={"grid grid-cols-3 gap-4"}>
+
+                    </div>
+
+                </div>
+            )
+        },
+        {
+            step: 3,
             title: "Invite your team members",
             description: "Make sure to only add team members that are authorized to view your patient population",
             inputs: (
@@ -185,7 +200,8 @@ const RegistryCreate = () => {
 
                 </div>
             )
-        }
+        },
+
     ]
 
     return (

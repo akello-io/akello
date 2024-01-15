@@ -38,14 +38,14 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/akello-io/akello/tree/main/packages/docs',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/akello-io/akello/tree/main/packages/docs',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -67,19 +67,28 @@ const config: Config = {
       };
     },
   ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
-    colorMode: {
-      defaultMode: 'light',
-      disableSwitch: true,
-      respectPrefersColorScheme: false,
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'LLQ0UQMR6U',
+
+      // Public API key: it is safe to commit it
+      apiKey: 'cb66185455375628f24c87f34a52d38e',
+
+      indexName: 'XFHIR',
+
+      // Optional: see doc section below
+      contextualSearch: true,
+
     },
     navbar: {
       title: 'Akello',
       logo: {
         alt: 'Akello Logo',
-        src: 'img/AkelloLogo.png',
+        src: 'img/AkelloLogo.png'
       },
       items: [
         {
@@ -91,6 +100,11 @@ const config: Config = {
         {
           to: 'https://github.com/akello-io/akello',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          to: 'https://trust.akello.io',
+          label: 'Trust Center',
           position: 'right',
         },
       ],
@@ -136,20 +150,16 @@ const config: Config = {
               to: '/blog',
             },
             {
-              label: 'Security',
-              to: '/blog',
+              label: 'Trust Center',
+              to: '/trust-center',
             },
             {
               label: 'Terms of Service',
-              to: '/blog',
+              to: '/terms-of-service',
             },
             {
               label: 'Privacy Policy',
-              to: '/blog',
-            },
-            {
-              label: 'Blog',
-              to: 'https://github.com/facebook/docusaurus',
+              to: '/privacy',
             },
           ],
         },

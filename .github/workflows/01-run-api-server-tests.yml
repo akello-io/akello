@@ -14,5 +14,5 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run unit tests
         working-directory: servers/api-server
-        run: python -m unittest discover tests
+        run: python -m unittest
 
