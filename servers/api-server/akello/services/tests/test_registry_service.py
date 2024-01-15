@@ -10,6 +10,8 @@ class TestRegistryService(TestCase):
 
     @patch('akello.dynamodb.registry_db')
     def test_create_registry(self, mock_query):
+        #TODO: need to mock the db create and return a mock registry id
+
         registry_id = RegistryService.create_registry('test', [], 'test')
 
         assert registry_id is not None
@@ -19,15 +21,23 @@ class TestRegistryService(TestCase):
         assert loaded_registry.name == 'test'
         assert loaded_registry.questionnaires == []
 
-    """
+
     @patch('akello.dynamodb.registry_db')
     def test_get_registry(self, mock_query):
-        raise Exception('Not implemented')
+        #TODO: need to mock the db to return a mock registry
+        pass
+
 
     @patch('akello.dynamodb.registry_db')
     def test_update_stats(self, mock_query):
+        """
+        Mock out get_patients and get_members. Set the total patients/members
+        call update stats
+        assert the member and patient count is correct
+        """
         raise Exception('Not implemented')
 
+    """
     @patch('akello.dynamodb.registry_db')
     def test_get_patients(self, mock_query):
         raise Exception('Not implemented')
