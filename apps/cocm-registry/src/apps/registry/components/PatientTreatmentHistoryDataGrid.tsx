@@ -58,18 +58,23 @@ const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = (
 
     // Use the first row to determine the data columns.
     // TODO: Consider using the configuration passed into the registry
-    selectedPatient.treatment_logs[0].scores.map((score) => {
-        const score_filed:GridColDef ={
+    if(selectedPatient.treatment_logs.length > 0) {
+        selectedPatient.treatment_logs[0].scores.map((score) => {
+            const score_filed:GridColDef ={
                 field: score.score_name,
                 headerName: score.score_name,
                 valueGetter:(params)=>{
                     const element = params.row.scores.find((element: TreatmentLogScore) => element.score_name == score.score_name)
-                    return element.score_value;
+                    if(element) {
+                        return element.score_value;
+                    }
                 },
                 width: 160,
-        }
-        columns.push(score_filed)
-    })
+            }
+            columns.push(score_filed)
+        })
+    }
+
 
 
     return (
