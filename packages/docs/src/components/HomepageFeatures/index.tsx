@@ -14,8 +14,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Run any clinical screeners such as PHQ-9, GAD-7 or create your own to  to regularly assess the health of a patient population.
       </>
     ),
   },
@@ -24,8 +23,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Define a treatment target (such as remission or low disease activity) and work collaboratively with other clinical team members to  manage a population.
       </>
     ),
   },
@@ -34,8 +32,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Make billing for CoCM much simpler with built in financial modeling support, time tracking, reports and more.
       </>
     ),
   },
@@ -44,12 +41,14 @@ const FeatureList: FeatureItem[] = [
 function Feature({title, Svg, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
+        {/*
+            <div className="mx-auto">
+                <Svg className={styles.featureSvg} role="img" />
+            </div>
+        */}
       <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+          <div className={"text-2xl font-semibold"}>{title}</div>
+          <p>{description}</p>
       </div>
     </div>
   );
