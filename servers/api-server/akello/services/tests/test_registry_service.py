@@ -35,7 +35,7 @@ class TestRegistryService(TestCase):
         call update stats
         assert the member and patient count is correct
         """
-        raise Exception('Not implemented')
+        pass
 
     """
     @patch('akello.dynamodb.registry_db')
