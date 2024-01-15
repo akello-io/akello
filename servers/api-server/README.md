@@ -73,3 +73,7 @@ registry.add_treatment_log('<registry_id>', '<patient_id>', treatment_log)
 ## Publish a package
 python3 -m build
 twine upload dist/*
+
+
+## Run tests
+python3 -m unittest
