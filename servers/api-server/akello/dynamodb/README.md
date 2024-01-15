@@ -1,7 +1,7 @@
 
 
 
-# DynamoDB Schema
+# CoCM Registry - DynamoDB Schema
 
 
 
@@ -55,24 +55,66 @@
 
 
 
-
 ## User
-* PK: `user:<user_id>`
-* SK: `profile`
+
+| Columns 	                      | Type      | Notes |
+|--------------------------------|-----------|---|
+| PK: user:<cognito_user_id>   	 | str       | Primary Key = user:<cognito_user_id> |
+| SK: profile   	                | str       |   |
+| email                          | str       |   |
+| first_name                     | str       |   |
+| last_name                      | str       |   |
+| phone_number                   | str       |   |
+| registeries                    | List[str] |   |
+
+
+
 
 ## Registry User
-* PK: `registry-user:<registry_id>`
-* SK: `user:<user_id>`
+
+
+| Columns 	                           | Type     | Notes |
+|-------------------------------------|----------|---|
+| PK: registry-user:<registry_id>   	 | str      | Primary Key = registry-user:<registry_id> |
+| SK: user:<user_id>   	              | str      |   |
+| date_created                        | int      |   |
+| first_name                          | str      |   |
+| last_name                           | str      |   |
+| role                                | UserRole |   |
+| is_admin                            | UserRole |   |
+
 
 ## User Email
-* PK: `user-email:<email>`
-* SK: `<user_id>`
+
+| Columns 	                  | Type | Notes |
+|----------------------------|------|---|
+| PK: user-email:<email>   	 | str  | Primary Key = user-email:<email> |
+| SK: user_id   	            | str  |  |
+| email                      | str  |  |
+| date_created               | int  |  |
+
+
 
 ## User Registry
-* PK: `user-registry:<user_id>`
-* SK: `registry:<registry_id>`
+
+| Columns 	                  | Type | Notes |
+|----------------------------|------|---|
+| PK: user-registry:<user_id>   	 | str  | Primary Key = user-registry:<user_id> |
+| SK: registry:<registry_id>   	    | str  |  |
+| date_created               | int  |  |
+
 
 ## User Invite
-* PK: `invite:<email>`
-* SK: `registry:<registry_id>`
+
+| Columns 	                      | Type     | Notes |
+|--------------------------------|----------|---|
+| PK: invite:<email>   	         | str      | Primary Key = invite:<email> |
+| SK: registry:<registry_id>   	 | str      |  |
+| email                          | str      |  |
+| first_name                     | str      |  |
+| last_name                      | str      |  |
+| invited_by                     | str      |  |
+| registry_id                    | str      |  |
+| date_created                   | int      |  |
+| role                           | UserRole |  |
 
