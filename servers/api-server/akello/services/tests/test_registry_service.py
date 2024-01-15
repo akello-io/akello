@@ -1,6 +1,8 @@
 import os
 from unittest import TestCase, mock
 from unittest.mock import patch
+from akello.services.registry import RegistryService
+from akello.dynamodb.models.registry import RegistryModel
 
 @mock.patch.dict(os.environ, {
     "AKELLO_API_URL": "TRUE",
@@ -25,8 +27,16 @@ class TestRegistryService(TestCase):
 
     @patch('akello.dynamodb.registry_db')
     def test_create_registry(self, mock_query):
-        raise Exception('Not implemented')
+        registry_id = RegistryService.create_registry('test', [], 'test')
 
+        assert registry_id is not None
+        registry = RegistryService.get_registry(registry_id)
+        loaded_registry = RegistryModel(**registry)
+        assert loaded_registry.id == registry_id
+        assert loaded_registry.name == 'test'
+        assert loaded_registry.questionnaires == []
+
+    """
     @patch('akello.dynamodb.registry_db')
     def test_get_registry(self, mock_query):
         raise Exception('Not implemented')
@@ -50,3 +60,4 @@ class TestRegistryService(TestCase):
     @patch('akello.dynamodb.registry_db')
     def get_member(self, mock_query):
         raise Exception('Not implemented')
+    """
