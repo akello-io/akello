@@ -23,10 +23,10 @@ DB schema for all the objects needed for the CoCM Registry. This can later be ex
 
 ## Registry Patient
 
-[!CAUTION] 
+> [!CAUTION] 
 > We are missing the Registry ID. This only allows a patient to ever be part of one registry. 
 
-[!WARNING]
+> [!WARNING]
 > Columns to be reviewed: patient_flag, flags, status
 
 | Columns 	                      | Type                | Notes                                                                 |
@@ -61,8 +61,8 @@ DB schema for all the objects needed for the CoCM Registry. This can later be ex
 
 ## User
 
-[!WARNING]
-> Columns to be reviewed: registeries
+> [!WARNING]
+> Columns to be reviewed: registeries (fix typo)
 
 | Columns 	                      | Type      | Notes                                   |
 |--------------------------------|-----------|-----------------------------------------|
@@ -78,7 +78,7 @@ DB schema for all the objects needed for the CoCM Registry. This can later be ex
 
 ## Registry User
 
-[!WARNING]
+> [!WARNING]
 > Columns to be reviewed: is_admin - do we need it if we have a role?
 > Columns to be reviewed: first_name, last_name - why not just pull it from the User object?
 
@@ -119,7 +119,7 @@ This table is used to lookup a user by registry. This is used to find all users 
 
 ## User Invite
 
-[!WARNING]
+> [!WARNING]
 > Do we need to store the first_name, and last_name here? We can update it once the user accepts the invite.
 
 | Columns 	                      | Type     | Notes |
