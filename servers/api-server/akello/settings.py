@@ -24,7 +24,7 @@ def set_aws():
     setenvars(secrets)
 
 # use os.environ to force an exception if it doesn't exist
-if os.environ['AKELLO_COGNITO_LOCAL'] == 'TRUE':
-    set_local()
-else:
+if not os.getenv('AKELLO_COGNITO_LOCAL'):
     set_aws()
+else:
+    set_local()
