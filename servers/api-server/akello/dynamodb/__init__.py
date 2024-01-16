@@ -1,4 +1,5 @@
 import boto3
+from unittest.mock import MagicMock
 from akello.settings import configs
 
 AWS_ACCESS_KEY_ID = configs['AWS_ACCESS_KEY_ID']['value']
@@ -14,7 +15,7 @@ AKELLO_UNIT_TEST = configs['AKELLO_UNIT_TEST']['value']
 def setup_registry_db():
 
     if AKELLO_UNIT_TEST == 'TRUE':
-        return None, None, None
+        return MagicMock(), MagicMock(), MagicMock()
 
     if AKELLO_DYNAMODB_LOCAL == 'TRUE':
         client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
