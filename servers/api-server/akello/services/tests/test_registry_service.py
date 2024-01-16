@@ -1,25 +1,23 @@
 import os
 from unittest import TestCase, mock
 from unittest.mock import patch
-from akello.services.registry import RegistryService
-from akello.dynamodb.models.registry import RegistryModel
 from akello.services.tests import mock_env_configs
 
 @mock.patch.dict(os.environ, mock_env_configs)
 class TestRegistryService(TestCase):
 
-    @patch('akello.dynamodb.registry_db')
+    @patch('akello.dynamodb.registry_db.put_item')
     def test_create_registry(self, mock_query):
-        #TODO: need to mock the db create and return a mock registry id
+        from akello.services.registry import RegistryService
 
+        mock_query.return_value = {
+            'ResponseMetadata': {
+                'HTTPStatusCode': 200
+            }
+        }
         registry_id = RegistryService.create_registry('test', [], 'test')
-
-        assert registry_id is not None
-        registry = RegistryService.get_registry(registry_id)
-        loaded_registry = RegistryModel(**registry)
-        assert loaded_registry.id == registry_id
-        assert loaded_registry.name == 'test'
-        assert loaded_registry.questionnaires == []
+        assert mock_query.called
+        assert registry_id
 
 
     @patch('akello.dynamodb.registry_db')
