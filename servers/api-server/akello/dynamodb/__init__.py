@@ -13,6 +13,7 @@ AKELLO_UNIT_TEST = configs['AKELLO_UNIT_TEST']['value']
 
 def setup_registry_db():
 
+    print('AKELLO_UNIT_TEST: ', AKELLO_UNIT_TEST)
     if AKELLO_UNIT_TEST == 'TRUE':
         return None, None, None
 
