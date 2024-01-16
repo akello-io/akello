@@ -1,5 +1,7 @@
 name: Run API Server Tests
 on: [push]
+env:
+  AKELLO_COGNITO_LOCAL='TRUE'
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
