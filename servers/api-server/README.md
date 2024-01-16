@@ -10,7 +10,6 @@ For local development you will need a free AWS account with cognito pools create
 
 ### Set your environment variables
 ```commandline
-export AKELLO_ENV=LOCAL
 export AWS_REGION=## 
 export AWS_SECRET_NAME=##  
 export AWS_ACCESS_KEY_ID=##
