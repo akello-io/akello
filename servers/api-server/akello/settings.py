@@ -23,7 +23,7 @@ def set_aws():
     secrets = get_secret()
     setenvars(secrets)
 
-if os.getenv('AKELLO_COGNITO_LOCAL') == 'TRUE':
+if os.getenv('AKELLO_COGNITO_LOCAL') == 'TRUE' or os.getenv('AKELLO_COGNITO_CI') == 'True':
     set_local()
 else:
     set_aws()
