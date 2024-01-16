@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AKELLO_COGNITO_LOCAL: TRUE
+      AWS_REGION: us-east-1
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
