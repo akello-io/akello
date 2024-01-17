@@ -18,7 +18,8 @@
         "description": "The HTTP URL for where the akello Fast API server will be running. For example: http://localhost:8000/v1"
     },
     "AKELLO_UNIT_TEST": {
-        "description": "Set to TRUE if you are running unit tests. This will prevent any attempts to connect to the DynamoDB."
+        "description": "Set to TRUE if you are running unit tests. This will prevent any attempts to connect to the DynamoDB.",
+        "options": "TRUE | FALSE"
     },
     "AWS_ACCESS_KEY_ID": {
         "description": "Found from your AWS account."
