@@ -1,10 +1,10 @@
 version: "3"
 name: akello-dev
 services:
-  #dynamodb:
-  #  image: amazon/dynamodb-local
-  #  ports:
-  #    - "8001:8000"
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - "8001:8000"
   cognito-local:
     image: jagregory/cognito-local:latest
     volumes:

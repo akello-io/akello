@@ -49,9 +49,9 @@ sh dev-setup-local.sh    # sets up Local instance of DynamoDB and AWS Cognito
 
 Run the API server
 ```shell
-cd server
-python3 -m venv venv
-source venv/bin/activate
+cd servers/api-server
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn akello.main:app --reload
 ```
