@@ -28,7 +28,7 @@ const PatientDrawer: React.FC<PatientDrawerProps> = ({checked, setChecked, quest
     useEffect(() => {
         if(selectedPatient) {
             if(selectedTab == 'Main') {
-                let mainTab = (<MainPatientTab setSelectedTab={setSelectedTab} selectedPatient={selectedPatient!} setSelectedPatient={setSelectedPatient!}/>)
+                let mainTab = (<MainPatientTab setSelectedTab={setSelectedTab} selectedPatient={selectedPatient!} questionnaires={Object.assign([], questionnaires)} setSelectedPatient={setSelectedPatient!}/>)
                 setSelectedTabComponent(mainTab)
             }
             if(selectedTab == 'Session') {

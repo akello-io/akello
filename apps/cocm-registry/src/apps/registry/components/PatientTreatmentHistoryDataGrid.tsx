@@ -1,14 +1,15 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import {PatientRegistry, TreatmentLogScore} from "../../../data/schemas/RegistryModel";
+import {PatientRegistry, TreatmentLogScore, Questionnaire} from "../../../data/schemas/RegistryModel";
 
 
 
 interface PatientTreatmentHistoryProps {
-    selectedPatient: PatientRegistry
+    selectedPatient: PatientRegistry,
+    questionnaires: Questionnaire[]
 }
-const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = ({ selectedPatient }) => {
+const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = ({ selectedPatient, questionnaires }) => {
 
 
     const columns: GridColDef[] = [
@@ -50,23 +51,27 @@ const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = (
         },
     ];
 
+    let score_names = questionnaires.map((questionnaire) => { return questionnaire.uid + '_score' })
+
     if(!selectedPatient.treatment_logs) {
         return (
             <></>
         )
-    }
-
+    }            
+    
     // Use the first row to determine the data columns.
     // TODO: Consider using the configuration passed into the registry
     if(selectedPatient.treatment_logs.length > 0) {
-        selectedPatient.treatment_logs[0].scores.map((score) => {
+        score_names.map((score_name) => {
             const score_filed:GridColDef ={
-                field: score.score_name,
-                headerName: score.score_name,
+                field: score_name,
+                headerName: score_name,
                 valueGetter:(params)=>{
-                    const element = params.row.scores.find((element: TreatmentLogScore) => element.score_name == score.score_name)
+                    const element = params.row.scores.find((element: TreatmentLogScore) => element.score_name == score_name)
                     if(element) {
                         return element.score_value;
+                    } else {
+                        return 0
                     }
                 },
                 width: 160,

@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import {PatientRegistry, TreatmentLog} from "../../../data/schemas/RegistryModel";
+import {PatientRegistry, TreatmentLog, Questionnaire} from "../../../data/schemas/RegistryModel";
 
 
 
 interface PatientProgressChartProps {
-    selectedPatient: PatientRegistry
+    selectedPatient: PatientRegistry,
+    questionnaires: Questionnaire[]
 }
 
-const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatient}) => {
+const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatient, questionnaires}) => {
 
     let copy = [...selectedPatient.treatment_logs!]
     copy.sort((a, b) => a.weeks_in_treatment > b.weeks_in_treatment ? 1 : -1)
@@ -16,25 +17,31 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
 
     let scores:any = []
 
+    let score_names = questionnaires.map((questionnaire) => { return questionnaire.uid + '_score' })
 
-
+ 
     selectedPatient.treatment_logs.map((treatment_log) => {
 
         let treatment_log_score:any = {
             "weeks_in_treatment" : treatment_log.weeks_in_treatment
         }
 
+        // make sure we set all values to 0
+        score_names.map((score_name) => {
+            treatment_log_score[score_name] = 0
+        })
+        
         treatment_log.scores.map((score) => {
             treatment_log_score[score.score_name] = score.score_value
         })
+        
 
         scores.push(treatment_log_score)
     })
-
-    let score_keys = selectedPatient.treatment_logs[0].scores.map((score) => { return score.score_name })
+    
 
     console.log(scores)
-    console.log(score_keys)
+    console.log(score_names)
 
     let colors = [
         "#6fe520",
@@ -63,7 +70,7 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
                 <Tooltip />
                 <Legend />
                 {
-                    score_keys.map((score_key: any, index) => {
+                    score_names.map((score_key: any, index) => {
                         //TODO: Need to handle the case when a registry might have more than 5 measurements
                         return (
                             <>
