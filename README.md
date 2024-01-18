@@ -40,6 +40,14 @@ akello/
 
 ### Setting up your local environment
 
+> :warning: **You shouldn't need to use aws for local install**: Make sure you have Docker installed, there will be two Docker Containers running after you run the dev-setup script
+
+
+REQUIRED SOFTWARE
+- Python
+- Node
+  
+
 Run the setup local script and add the environment variables into your environment file (e.g., ~/.zshrc)
 
 ```shell
