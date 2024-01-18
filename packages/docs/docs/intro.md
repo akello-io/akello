@@ -1,47 +1,17 @@
 ---
 sidebar_position: 1
+title: Welcome
 ---
 
-# Tutorial Intro
+# Welcome to Akello
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to Akello.io, your comprehensive solution for streamlining patient care in the Collaborative Care Model. Dive into our user-friendly, open-source patient registry designed to enhance care coordination and improve patient outcomes. Whether you're a small clinic or a large healthcare provider, discover how Akello.io can transform your approach to healthcare management. Join our community today and take the first step towards a more efficient, integrated, and quality-driven patient care experience.
 
-## Getting Started
+## Collaborative Care Model (CoCM)
 
-Get started by **creating a new site**.
+The Collaborative Care Model (CoCM) is a healthcare approach that integrates primary care with mental health services. It involves a team comprising a primary care provider, a behavioral health manager, and a consulting psychiatrist, working together to treat mental health conditions within a primary care setting. This model employs systematic patient tracking, measurement-based care, and a treatment-to-target strategy, aiming to improve mental health accessibility, enhance service quality, and achieve better health outcomes.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Run and grow your CoCM Program
 
-### What you'll need
+Akello, an open-source patient registry for the Collaborative Care Model (CoCM), offers a cost-effective and customizable solution suitable for both small and large clinics. It simplifies patient tracking and management, enhancing care quality and team coordination. For large clinics, Akello's scalability and data analytics capabilities support growth and strategic decision-making. Additionally, its community support and ease of integration with existing systems make it an adaptable tool for improving patient outcomes in diverse healthcare settings.
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-    - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.

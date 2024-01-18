@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Akello',
-  tagline: 'Population health infrastructure for absolutely everyone',
+  tagline: 'Open Source Registry for the Collaborative Care Model (CoCM)',
   favicon: 'img/AkelloLogo.png',
 
   // Set the production url of your site here
@@ -70,7 +70,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/akello-social.png',
     algolia: {
       // The application ID provided by Algolia
       appId: 'LLQ0UQMR6U',
@@ -117,11 +117,11 @@ const config: Config = {
           items: [
             {
               label: 'Getting started',
-              to: '/docs/category/developers',
+              to: '/docs/category/getting-started',
             },
             {
-              label: 'Documentation',
-              to: '/docs/category/developers',
+              label: 'Developer Docs',
+              to: '/docs/developers/contributing',
             },
           ],
         },
