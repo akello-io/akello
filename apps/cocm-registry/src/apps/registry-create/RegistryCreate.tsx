@@ -124,23 +124,9 @@ const RegistryCreate = () => {
                     </div>
                 </>
             )
-        },
+        },        
         {
             step: 2,
-            title: "Add your screeners",
-            description: "xx",
-            inputs: (
-                <div className={"space-y-4"}>
-
-                    <div className={"grid grid-cols-3 gap-4"}>
-
-                    </div>
-
-                </div>
-            )
-        },
-        {
-            step: 3,
             title: "Invite your team members",
             description: "Make sure to only add team members that are authorized to view your patient population",
             inputs: (
