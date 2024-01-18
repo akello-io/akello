@@ -8,7 +8,7 @@ on:
       - completed
 
 jobs:
-  Deploy-Storybook:
+  Deploy-Public-Web:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
