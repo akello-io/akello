@@ -2,7 +2,7 @@ import * as React from "react";
 import {useNavigate} from "react-router";
 import PatientProgressChart from "../../../PatientProgressChart";
 import PatientTreatmentHistoryDataGrid from "../../../PatientTreatmentHistoryDataGrid";
-import {PatientRegistry} from "../../../../../../data/schemas/RegistryModel";
+import {PatientRegistry, Questionnaire} from "../../../../../../data/schemas/RegistryModel";
 import moment from "moment";
 import Dropdown from "../../../Dropdown";
 import {setFlag, setStatus} from "../../../../../../api/registry";
@@ -12,9 +12,10 @@ import {RootState} from "../../../../../../store";
 interface MainTabProps {
     setSelectedTab: (tab: string) => void
     selectedPatient: PatientRegistry
+    questionnaires: Questionnaire[]
     setSelectedPatient: (patient: PatientRegistry) => void
 }
-const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient, setSelectedPatient}) => {
+const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient, questionnaires, setSelectedPatient}) => {
 
     const token = useSelector ((state: RootState) => state.app.token)
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
@@ -103,10 +104,9 @@ const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient,
                                     <p className={"text-xl"}>
                                         Patient Progress Chart
                                     </p>
-
                                 </div>
                                 <div className={"bg-white p-2 h-64 w-full"}>
-                                    <PatientProgressChart selectedPatient={selectedPatient} />
+                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={questionnaires} />
                                 </div>
                             </div>
 
@@ -115,10 +115,9 @@ const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient,
                                     <p className={"text-xl"}>
                                         Treatment History
                                     </p>
-
                                 </div>
                                 <div className={"bg-white p-2"}>
-                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} />
+                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={questionnaires} />
                                 </div>
                             </div>
                         </>
