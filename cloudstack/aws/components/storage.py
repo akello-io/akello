@@ -45,7 +45,8 @@ class DynamoDB(Construct):
                 sort_key=dynamodb.Attribute(name=sort_key, type=dynamodb.AttributeType.STRING), 
                 contributor_insights=True,
                 table_class=dynamodb.TableClass.STANDARD_INFREQUENT_ACCESS,
-                point_in_time_recovery=True
+                point_in_time_recovery=True,
+                removal_policy=cdk.RemovalPolicy.DESTROY
             )        
 
 class Healthlake(Construct):
@@ -66,6 +67,7 @@ class Healthlake(Construct):
                 metadata="metadata"
             ),
             datastore_type_version="R4", 
-            datastore_name=healthlake_db_name
+            datastore_name=healthlake_db_name,
+            removal_policy=cdk.RemovalPolicy.DESTROY
         )
         self.cfn_fHIRDatastore.apply_removal_policy(cdk.RemovalPolicy.DESTROY)        
