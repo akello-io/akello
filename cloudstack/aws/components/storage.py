@@ -17,12 +17,7 @@ class S3(Construct):
         self.bucket = s3.Bucket(
             self,            
             bucket_name,
-            bucket_name=bucket_name,
-            versioned=False,
-            access_control=s3.BucketAccessControl.PRIVATE,
-            removal_policy=cdk.RemovalPolicy.DESTROY,
-            encryption=s3.BucketEncryption.KMS_MANAGED,    
-            bucket_key_enabled=True        
+            bucket_name=bucket_name            
         )
         
         if lambda_notification:
