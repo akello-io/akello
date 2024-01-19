@@ -26,11 +26,12 @@ sidebar_position: 3
 
 ## Screener Score Fields (scores)
 
+The colums labeled `screener-name`_score `Initial` or `Last` are all generated based on the measurements configured for the registry.
 
-| Field 	     | Description |
-|-------------|-------------|
-| Initial   	 |             |
-| Last   	    |             |
+| Field 	                     | Description                                  |
+|-----------------------------|----------------------------------------------|
+| `screener-name` Initial   	 | Initial score upon referral                  |
+| `screener-name` Last   	    | Score from the most recent treatment session |
 
 
 ## CoCM Flags
