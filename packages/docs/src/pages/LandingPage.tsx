@@ -183,10 +183,10 @@ export default function Example() {
                                 </a>
                             </div>
                             <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-6xl">
-                                Patient Registry for CoCM
+                                Integrated Mental Health Infrastructure
                             </h1>
                             <p className="mt-6 text-lg leading-8">
-                                An open source patient registry for Collaborative Care Model (CoCM), simplifies patient management for healthcare providers and eases the reimbursement process.
+                                An open source measurement based platform to run integrated care models for mental health.
                             </p>
                             <div className="mt-10 flex items-center gap-x-6">
                                 <a
