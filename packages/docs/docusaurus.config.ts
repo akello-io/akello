@@ -101,12 +101,7 @@ const config: Config = {
           to: 'https://github.com/akello-io/akello',
           label: 'GitHub',
           position: 'right',
-        },
-        {
-          to: 'https://trust.akello.io',
-          label: 'Trust Center',
-          position: 'right',
-        },
+        }
       ],
     },
     footer: {
@@ -151,7 +146,7 @@ const config: Config = {
             },
             {
               label: 'Trust Center',
-              to: '/trust-center',
+              to: 'https://trust.akello.io',
             },
             {
               label: 'Terms of Service',
