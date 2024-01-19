@@ -173,34 +173,37 @@ export default function Example() {
 
                             <div className="mt-24 sm:mt-32 lg:mt-16">
                                 <a href="https://github.com/akello-io/akello/releases/tag/v0.0.3" className="inline-flex space-x-6">
-                                    <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
+                                    <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-semibold leading-6  ring-1 ring-inset ">
                                       Latest updates
                                     </span>
-                                    <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-800">
+                                    <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6">
                                     <span>Just shipped v0.0.3</span>
-                                    <ChevronRightIcon className="h-5 w-5 text-gray-500" aria-hidden="true" />
+                                    <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
                                   </span>
                                 </a>
                             </div>
                             <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-6xl">
                                 Patient Registry for CoCM
                             </h1>
-                            <p className="mt-6 text-lg leading-8 text-gray-800">
-                                Akello is the open source patient registry for the collaborative care model (CoCM). It is a simple, secure, and scalable solution for healthcare providers to manage their patients and care teams.
+                            <p className="mt-6 text-lg leading-8">
+                                An open source patient registry for Collaborative Care Model (CoCM), simplifies patient management for healthcare providers and eases the reimbursement process.
                             </p>
                             <div className="mt-10 flex items-center gap-x-6">
                                 <a
                                     href="/docs/intro"
-                                    className="rounded-md bg-black px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+                                    className="rounded-md bg-black px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
                                 >
                                     Get started
                                 </a>
-                                <a href="#" className="text-sm font-semibold leading-6 text-white">
-                                    Live demo <span aria-hidden="true">→</span>
+                                <a
+                                    href="/docs/intro"
+                                    className="rounded-md  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+                                >
+                                    Learn more
                                 </a>
                             </div>
                         </div>
-                        <div className="">
+                        <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-40 lg:flex lg:px-8 lg:pt-40">
                             <div className="">
                                 <img
                                     src={HeroImg}
