@@ -8,7 +8,7 @@ import {
     ServerIcon,
 } from '@heroicons/react/20/solid'
 import { BoltIcon, CalendarDaysIcon, UsersIcon } from '@heroicons/react/24/outline'
-import Wescott  from './wescott_full.png'
+import HeroImg  from './hero.png'
 
 const primaryFeatures = [
     {
@@ -183,15 +183,15 @@ export default function Example() {
                                 </a>
                             </div>
                             <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-6xl">
-                                Population health infrastructure
+                                Patient Registry for CoCM
                             </h1>
                             <p className="mt-6 text-lg leading-8 text-gray-800">
-                                Akello is the open source population health developer platform that helps you build, test and deliver population health products or services.
+                                Akello is the open source patient registry for the collaborative care model (CoCM). It is a simple, secure, and scalable solution for healthcare providers to manage their patients and care teams.
                             </p>
                             <div className="mt-10 flex items-center gap-x-6">
                                 <a
                                     href="/docs/intro"
-                                    className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+                                    className="rounded-md bg-black px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
                                 >
                                     Get started
                                 </a>
@@ -200,12 +200,12 @@ export default function Example() {
                                 </a>
                             </div>
                         </div>
-                        <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
-                            <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+                        <div className="">
+                            <div className="">
                                 <img
-                                    src={Wescott}
+                                    src={HeroImg}
                                     alt="App screenshot"
-                                    className="w-96"
+                                    className=""
                                 />
                             </div>
                         </div>
