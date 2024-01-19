@@ -203,12 +203,13 @@ export default function Example() {
                                 </a>
                             </div>
                         </div>
-                        <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-40 lg:flex lg:px-8 lg:pt-40">
-                            <div className="">
+                        <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
+                            <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
                                 <img
                                     src={HeroImg}
                                     alt="App screenshot"
-                                    className=""
+
+                                    className="h-[34rem] "
                                 />
                             </div>
                         </div>
