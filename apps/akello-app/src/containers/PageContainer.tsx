@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import * as React from "react";
-import {SideNavigation, AppHeaderSection} from '@akello/react'
+import {SideNavigation, AppHeaderSection, PageFooter} from '@akello/react'
 import {top_nav_buttons, bottom_nav_buttons, LogoButton } from "../side_nav_buttons";
 
 
@@ -35,17 +35,10 @@ const PageContainer:React.FC<PageContainerProps> = ({children, title}) => {
                         <AppHeaderSection title={title} />
                         <div className={"px-2 py-4 "}>
                             {children}
-                            <div className={"pl-6 pt-24 flex flex-row space-x-4"}>
-                                <div className={"font-bold"}>
-                                    © 2023 akello.io
-                                </div>
-                                <a href={"/terms.html"} className={"text-ak-light-blue underline font-semibold cursor-pointer"}>
-                                    Terms of Service
-                                </a>
-                                <a href={"/privacy.html"} className={"text-ak-light-blue underline font-semibold cursor-pointer"}>
-                                    Privacy Policy
-                                </a>
-                            </div>
+                            <PageFooter
+                                terms_of_service_link={"/terms.html"}
+                                privacy_policy_link={"/privacy.html"}
+                            />
                         </div>
                     </>
                 </div>

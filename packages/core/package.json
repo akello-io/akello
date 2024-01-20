@@ -49,6 +49,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@types/fhir": "^0.0.40",
     "moment": "^2.29.4"
   }
 }

@@ -7,8 +7,7 @@ const RegistryPage = () => {
         <>
             <PageContainer title={'Registry'}>
                 Registry Page
-
-                <RegistryDataGrid patients={[]} handlePatientClickEvent={()=> {}}/>
+                <RegistryDataGrid patients={[]} questionnaires={[]} handlePatientClickEvent={()=> {}}/>
             </PageContainer>
         </>
     )
