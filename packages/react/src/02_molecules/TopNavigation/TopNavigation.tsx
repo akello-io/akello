@@ -7,7 +7,7 @@ export interface TopNavigationProps {
     signIn: () => void
     signOut: ((data?: any | undefined) => void) | undefined
     createRegistry?: () => void
-    profile_img: string
+    logo: ReactNode    
     github_url?: string
     signed_in: boolean
     menu_items: ReactNode[]
@@ -44,7 +44,7 @@ const TopNavigation = (props: TopNavigationProps) => {
                     </div>
                 )}
                 <div className="flex-1">
-                    <p className="font-semibold normal-case text-xl">akello.io</p>
+                    {props.logo}
                 </div>
                 <div className="flex-none gap-2">
                     { !props.signed_in && (
