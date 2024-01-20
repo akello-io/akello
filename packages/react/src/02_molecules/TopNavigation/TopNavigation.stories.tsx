@@ -15,5 +15,17 @@ const Template: ComponentStory<typeof TopNavigation> = (args) => <TopNavigation 
 export const BasicExample = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 BasicExample.args = {
-
+    menu_items: []
 };
+
+export const SingedInMenuItemsExample = Template.bind({});
+SingedInMenuItemsExample.args = {
+    signed_in: true,
+    menu_items: [(<li><button onClick={()=> {}}>Create a Registry</button></li>)]
+}
+
+export const SingedInMenuItemsExampleEmpty = Template.bind({});
+SingedInMenuItemsExampleEmpty.args = {
+    signed_in: true,
+    menu_items: []
+}

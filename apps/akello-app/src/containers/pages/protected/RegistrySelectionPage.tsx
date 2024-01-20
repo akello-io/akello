@@ -1,6 +1,7 @@
-import {WelcomeTemplate, RegistryMemberships, RegistrySelectRow} from '@akello/react'
+import {WelcomeTemplate, RegistryMemberships, RegistrySelectRow, TopNavigation} from '@akello/react'
 import AkelloLogo from '../../../images/logos/akello/akello-corner-logo.svg'
 import {useNavigate} from "react-router";
+import {Auth} from "aws-amplify";
 
 
 const RegistrySelectionPage = () => {
@@ -9,6 +10,15 @@ const RegistrySelectionPage = () => {
 
     return (
         <div className={'w-screen h-auto bg-base-200/40'}>
+            <TopNavigation 
+                signIn={()=> {}} 
+                signOut={()=>{Auth.signOut()}} 
+                createRegistry={()=> {navigate('/registry/create')}}
+                profile_img="profile_img" 
+                signed_in={true}                 
+                menu_items={[]}                
+                theme_swapper={true}
+                />
             <WelcomeTemplate first_name={'Vijay'}>
 
                 <RegistryMemberships onCreate={()=> {

@@ -15,4 +15,10 @@ const Template: ComponentStory<typeof SideNavigation> = (args) => <SideNavigatio
 export const DefaultExample = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 DefaultExample.args = {
+    logo: (<>test</>),
+    top_navigation: [
+        (<div>button 1</div>),
+        (<div>button 2</div>),
+    ],
+    bottom_navigation: []
 };

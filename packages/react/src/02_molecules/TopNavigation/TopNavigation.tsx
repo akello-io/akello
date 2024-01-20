@@ -6,10 +6,11 @@ import classNames from "classnames";
 export interface TopNavigationProps {
     signIn: () => void
     signOut: ((data?: any | undefined) => void) | undefined
+    createRegistry?: () => void
     profile_img: string
     github_url?: string
     signed_in: boolean
-    menu_items: ReactNode
+    menu_items: ReactNode[]
     theme_swapper: ReactNode
     y_scroll_position?: number
     sticky?: boolean
@@ -17,6 +18,7 @@ export interface TopNavigationProps {
 
 const TopNavigation = (props: TopNavigationProps) => {
 
+    debugger;
     return (
         <>
             <div className={classNames(
@@ -26,10 +28,18 @@ const TopNavigation = (props: TopNavigationProps) => {
                 },
                 "navbar z-50 sticky top-0 p-4"
             )}>
-                {props.signed_in && (
+                {(props.signed_in && props.menu_items!.length > 0) && (
                     <div className="flex-none">
                         <HamburgerMenu>
-                            { props.menu_items }
+                            {
+                                props.menu_items!.map((item, index) => {
+                                    return (
+                                        <div key={index}>
+                                            {item}
+                                        </div>
+                                    )
+                                })
+                            }                            
                         </HamburgerMenu>
                     </div>
                 )}
@@ -47,6 +57,14 @@ const TopNavigation = (props: TopNavigationProps) => {
                             </a>
                         </>
                     )}
+
+                    {
+                        props.createRegistry && (
+                            <button className="btn btn-ghost" onClick={props.createRegistry}>
+                                Create Registry
+                            </button>
+                        )
+                    }
 
                     { props.signed_in && (
                         <>
