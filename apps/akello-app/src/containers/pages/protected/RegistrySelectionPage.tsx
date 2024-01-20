@@ -13,9 +13,10 @@ const RegistrySelectionPage = () => {
             <TopNavigation 
                 signIn={()=> {}} 
                 signOut={()=>{Auth.signOut()}} 
+                createRegistry={()=> {navigate('/registry/create')}}
                 profile_img="profile_img" 
-                signed_in={true} 
-                menu_items={[]}
+                signed_in={true}                 
+                menu_items={[]}                
                 theme_swapper={true}
                 />
             <WelcomeTemplate first_name={'Vijay'}>
