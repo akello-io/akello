@@ -1,5 +1,6 @@
 import * as React from "react";
 import {SideNavigationButton} from '@akello/react'
+import {Auth} from "aws-amplify";
 import {useLocation, useNavigate} from "react-router";
 import AppLogo from './images/logos/akello/akello-corner-logo.svg'
 import {
@@ -109,5 +110,5 @@ export const top_nav_buttons = [
 ]
 
 export const bottom_nav_buttons = [
-    (<SettingsButton />)
+    (<SettingsButton />)    
 ]

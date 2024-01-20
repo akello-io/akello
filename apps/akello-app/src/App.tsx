@@ -15,12 +15,12 @@ import RegistryPage from "./containers/pages/protected/RegistryPage";
 import RegistryCreate from "./containers/pages/protected/RegistryCreate";
 import TeamPage from "./containers/pages/protected/TeamPage";
 import { setAuthToken } from './reducers/appSlice';
+import RegistrySelectionPage from './containers/pages/protected/RegistrySelectionPage';
 
 
 
 
 // Configure Amplify in index file or root file
-
 
 if(process.env.REACT_APP_MOCK != 'true') {
     console.log(process.env)
@@ -45,7 +45,7 @@ const routes = () => {
             <BrowserRouter>
                 <Routes>
                 <Route path={'/dashboard'} element={<DashboardPage />} />
-                        <Route path={'/'} element={<RegistryPage />} />
+                        <Route path={'/'} element={<RegistrySelectionPage />} />
                         <Route path={'/team'} element={<TeamPage />} />
                         <Route path={'/registry'} element={<RegistryPage />} />
                         <Route path={'/registry/create'} element={<RegistryCreate />} />
