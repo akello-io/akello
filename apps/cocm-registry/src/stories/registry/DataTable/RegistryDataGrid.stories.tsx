@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { RegistryDataGrid } from './RegistryDataGrid';
-import {PatientRegistry} from "../../../data/schemas/RegistryModel";
+import {PatientRegistry} from "@akello/core";
 import {GridEventListener} from "@mui/x-data-grid";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

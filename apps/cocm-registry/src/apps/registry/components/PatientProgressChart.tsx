@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import {PatientRegistry, TreatmentLog, Questionnaire} from "../../../data/schemas/RegistryModel";
+import {PatientRegistry, TreatmentLog, Questionnaire} from "@akello/core";
 
 
 
@@ -19,7 +19,7 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
 
     let score_names = questionnaires.map((questionnaire) => { return questionnaire.uid + '_score' })
 
- 
+
     selectedPatient.treatment_logs.map((treatment_log) => {
 
         let treatment_log_score:any = {
@@ -30,15 +30,15 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
         score_names.map((score_name) => {
             treatment_log_score[score_name] = 0
         })
-        
+
         treatment_log.scores.map((score) => {
             treatment_log_score[score.score_name] = score.score_value
         })
-        
+
 
         scores.push(treatment_log_score)
     })
-    
+
 
     console.log(scores)
     console.log(score_names)

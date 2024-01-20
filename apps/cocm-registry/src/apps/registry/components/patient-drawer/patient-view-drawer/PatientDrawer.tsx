@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import MainPatientTab from "./PatientTabs/MainPatientTab";
 import StartSessionTab from "./PatientTabs/StartSessionTab";
 import DrawerLayout from "../DrawerLayout";
-import {PatientRegistry, Questionnaire} from "../../../../../data/schemas/RegistryModel";
+import {PatientRegistry, Questionnaire} from "@akello/core";
 
 interface PatientDrawerProps {
     checked: boolean

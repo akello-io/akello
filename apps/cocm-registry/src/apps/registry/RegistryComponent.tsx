@@ -4,7 +4,7 @@ import {
 } from '@mui/x-data-grid';
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
-import {PatientRegistry, Questionnaire} from "../../data/schemas/RegistryModel";
+import {PatientRegistry, Questionnaire} from "@akello/core";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {getRegistryPatients} from "../../api/registry";

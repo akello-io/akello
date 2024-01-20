@@ -4,7 +4,7 @@ import {useScrollPosition} from "../../../hooks/scroll-position";
 import {useNavigate} from "react-router";
 import {useEffect, useState} from "react";
 import {Auth} from "aws-amplify";
-import GithubLogo from "../../../images/logos/github-logo-vector.svg";
+import AkelloLogo from "../../../images/logos/akello/AkelloLogo.svg";
 import { TopNavigation, ThemeSwap } from '@akello/react'
 import * as React from "react";
 
@@ -33,6 +33,7 @@ const PublicPageContainer:React.FC<PublicPageContainerProps> = ({children}) => {
             <div className={"flex flex-col"}>
                 <TopNavigation
                     signIn={() => navigate('/login') }
+                    logo={<img src={AkelloLogo} alt={'Akello Logo'} className={'h-24'}/>}
                     signOut={async () => {
                         if (!Auth || typeof Auth.signOut !== 'function') {
                             throw new Error('No Auth module found, please ensure @aws-amplify/auth is imported');
@@ -45,8 +46,7 @@ const PublicPageContainer:React.FC<PublicPageContainerProps> = ({children}) => {
                                 debugger;
                             });
 
-                    }}
-                    profile_img={GithubLogo}
+                    }}                    
                     github_url={token == undefined ? 'https://github.com/akello-io/akello': undefined}
                     signed_in={token != undefined}
                     theme_swapper={<ThemeSwap theme={theme!} setTheme={setTheme}/>}
