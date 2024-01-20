@@ -1,5 +1,5 @@
 name: Deploy Storybook
-run-name: ${{ github.actor }} is deploying storybook to storybook.akello.io 🚀
+run-name: ${{ github.actor }} is deploying storybook to react-storybook.akello.io 🚀
 on:
   workflow_run:
     workflows: [ "Run API Server Tests" ]
@@ -23,18 +23,8 @@ jobs:
 
       - name: Upload to S3
         run: |
-          aws s3 sync packages/react/storybook-static s3://storybook.akello.io
+          aws s3 sync packages/react/storybook-static s3://react-storybook.akello.io
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: 'us-east-1'
-
-
-      - name: Invalidate CloudFront
-        uses: chetan/invalidate-cloudfront-action@v2
-        env:
-          PATHS: '/*'
-          AWS_REGION: 'us-east-1'
-          DISTRIBUTION: ${{ secrets.STORYBOOK_AWS_CLOUD_FRONT_DISTRIBUTION }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
