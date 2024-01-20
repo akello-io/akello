@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src/",
     // Default
     "target": "es5",
     "esModuleInterop": true,

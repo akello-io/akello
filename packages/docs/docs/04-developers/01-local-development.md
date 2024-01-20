@@ -31,3 +31,11 @@ npm run start
 ```
 
 When you signup as a new user, the local SMS confirmation code is set to `1234` for local development
+
+
+
+### Run local dev
+
+```shell
+sh dev-build.sh   # run this script to have all the local packages built
+```
