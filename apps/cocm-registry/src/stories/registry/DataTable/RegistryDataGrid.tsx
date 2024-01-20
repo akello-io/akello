@@ -1,6 +1,6 @@
 import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridValueGetterParams, GridToolbar} from "@mui/x-data-grid";
 import moment from "moment";
-import {PatientRegistry, Questionnaire, TreatmentLog} from "../../../data/schemas/RegistryModel";
+import {PatientRegistry, Questionnaire, TreatmentLog} from "@akello/core";
 import * as React from "react";
 
 

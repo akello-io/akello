@@ -6,7 +6,7 @@ import RegistryDataGrid from './RegistryDataGrid';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: 'Molecules/Navigation/RegistryDataGrid',
+    title: 'Molecules/DataPresentation/RegistryDataGrid',
     component: RegistryDataGrid,
 } as ComponentMeta<typeof RegistryDataGrid>;
 

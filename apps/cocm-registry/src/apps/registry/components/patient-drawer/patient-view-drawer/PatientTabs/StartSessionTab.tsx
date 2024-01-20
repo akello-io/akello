@@ -11,7 +11,7 @@ import {
     Questionnaire,
     QuestionnaireQuestion,
     QuestionnaireResponse
-} from "../../../../../../data/schemas/RegistryModel";
+} from "@akello/core";
 
 
 interface SelectorProps {

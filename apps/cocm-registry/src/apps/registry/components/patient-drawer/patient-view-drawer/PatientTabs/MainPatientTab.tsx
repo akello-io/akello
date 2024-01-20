@@ -2,7 +2,7 @@ import * as React from "react";
 import {useNavigate} from "react-router";
 import PatientProgressChart from "../../../PatientProgressChart";
 import PatientTreatmentHistoryDataGrid from "../../../PatientTreatmentHistoryDataGrid";
-import {PatientRegistry, Questionnaire} from "../../../../../../data/schemas/RegistryModel";
+import {PatientRegistry, Questionnaire} from "@akello/core";
 import moment from "moment";
 import Dropdown from "../../../Dropdown";
 import {setFlag, setStatus} from "../../../../../../api/registry";

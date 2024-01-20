@@ -3,7 +3,7 @@ import DrawerLayout from "../DrawerLayout";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import {referPatient} from "../../../../../api/registry";
-import {PatientRegistry} from "../../../../../data/schemas/RegistryModel";
+import {PatientRegistry} from "@akello/core";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../../store";
 

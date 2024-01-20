@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import {PatientRegistry, TreatmentLogScore, Questionnaire} from "../../../data/schemas/RegistryModel";
+import {PatientRegistry, TreatmentLogScore, Questionnaire} from "@akello/core";
 
 
 
@@ -57,8 +57,8 @@ const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = (
         return (
             <></>
         )
-    }            
-    
+    }
+
     // Use the first row to determine the data columns.
     // TODO: Consider using the configuration passed into the registry
     if(selectedPatient.treatment_logs.length > 0) {

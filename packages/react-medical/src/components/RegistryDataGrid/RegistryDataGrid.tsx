@@ -253,7 +253,7 @@ export interface RegistryDataGridProps {
     handlePatientClickEvent: GridEventListener<'rowClick'>
 }
 
-export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, handlePatientClickEvent}) => {
+export const RegistryDataGrid: React.FC<RegistryDataGridProps> = ({ patients, handlePatientClickEvent }: RegistryDataGridProps) => {
     const theme = document.querySelector("html")!.getAttribute('data-theme')
     const darkTheme = createTheme({
         palette: {
@@ -262,7 +262,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, hand
     });
     return (
         <>
-            <div className={"bg-base-100 text-base-content"}>
+            <div className={"bg-base-100 text-base-content"}>            
                 <ThemeProvider theme={darkTheme}>
                     <DataGrid
                         onRowClick={handlePatientClickEvent}

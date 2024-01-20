@@ -1,1 +1,1 @@
-export {PatientRegistry, TreatmentLog} from './RegistryModel'
+export {QuestionnaireResponse, QuestionnaireQuestion, Questionnaire, PatientRegistry, TreatmentLog, TreatmentLogScore} from './RegistryModel'
