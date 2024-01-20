@@ -20,7 +20,6 @@ jobs:
         working-directory: packages/react
         run: npm run build-storybook
 
-
       - name: Upload to S3
         run: |
           aws s3 sync packages/react/storybook-static s3://react-storybook.akello.io
