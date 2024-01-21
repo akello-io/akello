@@ -2,4 +2,4 @@
 sidebar_position: 1
 ---
 
-# Setup a Registry
+# 1. Setup a Registry

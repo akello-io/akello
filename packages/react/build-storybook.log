@@ -1,0 +1,93 @@
+
+> @akello/react@0.0.8 build-storybook
+> storybook build --output-dir /var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7
+
+@storybook/cli v8.0.0-alpha.12
+
+info => Cleaning outputDir: ../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7
+info => Loading presets
+WARN The "@storybook/addon-mdx-gfm" addon is meant as a migration assistant for Storybook 8.0; and will likely be removed in a future version.
+WARN It's recommended you read this document:
+WARN https://storybook.js.org/docs/react/writing-docs/mdx#lack-of-github-flavored-markdown-gfm
+WARN 
+WARN Once you've made the necessary changes, you can remove the addon from your package.json and storybook config.
+info => Building manager..
+info => Manager built (102 ms)
+info => Building preview..
+WARN No story files found for the specified pattern: src/**/*.mdx
+vite v5.0.12 building for production...
+info => Copying static files: public at ../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7
+
+./sb-common-assets/fonts.css doesn't exist at build time, it will remain unchanged to be resolved at runtime
+transforming...
+
+╭── 🌼[35m daisyUI 3.9.4 [0mhttps://daisyui.com
+│
+├── [2m2[0m themes are enabled. How to add more themes:
+│   https://daisyui.com/docs/themes
+│
+╰── [32m💚 Support daisyUI project[0m: https://opencollective.com/daisyui
+
+node_modules/telejson/dist/index.mjs (1413:15) Use of eval in "node_modules/telejson/dist/index.mjs" is strongly discouraged as it poses security risks and may cause issues with minification.
+node_modules/telejson/dist/index.mjs (1416:18) Use of eval in "node_modules/telejson/dist/index.mjs" is strongly discouraged as it poses security risks and may cause issues with minification.
+✓ 593 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/iframe.html                                      12.85 kB │ gzip:   3.60 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-5BhvLnPm.css                      44.55 kB │ gzip:   7.64 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-zZA4w0lH.js                        0.07 kB │ gzip:   0.08 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-FwPiyx6Q.js                        0.15 kB │ gzip:   0.15 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/WithTooltip-4IJ4T2ZO-rFIAbMPm.js           0.35 kB │ gzip:   0.23 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/syntaxhighlighter-P2EQDVYX-9xQCJkmc.js     0.39 kB │ gzip:   0.27 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/WelcomeBanner-_nZnSjny.js                  0.42 kB │ gzip:   0.29 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/index-sSjf4fwj.js                          0.42 kB │ gzip:   0.27 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/PageFooter.stories-lq_loK1q.js             0.50 kB │ gzip:   0.31 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/RegistryCreateRow.stories-R4E7NOFy.js      0.51 kB │ gzip:   0.32 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/HamburgerMenuButton.stories-jVbdKUAW.js    0.53 kB │ gzip:   0.33 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/WelcomeBanner.stories-zFha9K_0.js          0.55 kB │ gzip:   0.34 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/HamburgerMenuButton-vxXQjfdg.js            0.59 kB │ gzip:   0.40 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-VI2eoWmp.js                        0.64 kB │ gzip:   0.44 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/ReactSelectRow.stories-HjcILjxf.js         0.68 kB │ gzip:   0.44 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/SideNavigation.stories-KqtoWEFy.js         0.68 kB │ gzip:   0.38 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/HamburgerMenu-un2C38RE.js                  0.69 kB │ gzip:   0.40 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/PageFooter-R3p_doig.js                     0.73 kB │ gzip:   0.39 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/index-PPLHz8o0.js                          0.77 kB │ gzip:   0.47 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/index-zOuYqnAR.js                          0.79 kB │ gzip:   0.50 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/Button.stories-msh5WHfk.js                 0.80 kB │ gzip:   0.40 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/Button.stories-cyqFWUll.js                 0.80 kB │ gzip:   0.40 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-bEa2SesL.js                        0.86 kB │ gzip:   0.55 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/RegistryCreateRow-8WPOVkH0.js              0.87 kB │ gzip:   0.49 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/AppHeaderSection.stories-kFne6Epl.js       0.87 kB │ gzip:   0.41 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-poPgeXKA.js                        0.92 kB │ gzip:   0.57 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/AppHeaderSection-NeEOho18.js               0.98 kB │ gzip:   0.45 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/entry-preview-3We8mpxS.js                  1.09 kB │ gzip:   0.64 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/Button-fbj_TzJP.js                         1.09 kB │ gzip:   0.44 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/HamburgerMenu.stories-Ia7RsYz4.js          1.12 kB │ gzip:   0.45 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/RegistrySelectRow-6_k4qpOt.js              1.28 kB │ gzip:   0.57 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/SideNavigation-ENeNZPV2.js                 1.29 kB │ gzip:   0.53 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/WelcomeTemplate.stories-orJ-ru0f.js        1.37 kB │ gzip:   0.71 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/TopNavigation.stories-kjgsv5U0.js          1.39 kB │ gzip:   0.55 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/TopNavigation-9Mo8SddM.js                  2.16 kB │ gzip:   0.76 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/index-ogXoivrg.js                          2.59 kB │ gzip:   1.26 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/RegistryMemberships.stories-xQv0KiFB.js    3.08 kB │ gzip:   1.10 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-FekBEZxm.js                        3.19 kB │ gzip:   1.37 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-AYz8Mr14.js                        3.38 kB │ gzip:   1.64 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/iframe-XM5ZLxmi.js                         6.74 kB │ gzip:   2.16 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-u8M_OEO2.js                        7.62 kB │ gzip:   1.56 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/index-DogsOklH.js                          7.80 kB │ gzip:   3.07 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-TkXSQy1x.js                        8.11 kB │ gzip:   3.08 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/Color-6VNJS4EI-4i9VjUbF.js                30.96 kB │ gzip:  11.61 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/preview-KdqJsgMw.js                       61.29 kB │ gzip:  21.20 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/_getPrototype-iZw6p92V.js                 78.60 kB │ gzip:  23.43 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/react-18-qZm_vjb7.js                     134.49 kB │ gzip:  43.41 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/formatter-U44HIZBV--AQv9bW9.js           210.76 kB │ gzip:  70.32 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/entry-preview-docs-pNY8ZoM7.js           212.91 kB │ gzip:  66.17 kB
+../../../../../../var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7/assets/DocsRenderer-56ZJCE2Q-tS_lIW9t.js        652.68 kB │ gzip: 200.48 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.47s
+info => Preview built (3.82 s)
+info => Output directory: /var/folders/wj/40_kjlps6v7807l3s8rxjpn00000gn/T/chromatic--7941-SDtdihKDb0P7

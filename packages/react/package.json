@@ -10,7 +10,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_9ae39fe9d274425"
   },
   "eslintConfig": {
     "extends": [
@@ -46,7 +47,7 @@
     "@storybook/addon-links": "^8.0.0-alpha.12",
     "@storybook/addon-mdx-gfm": "^8.0.0-alpha.12",
     "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/addon-styling-webpack": "^0.0.5",
+    "@storybook/addon-styling-webpack": "^1.0.0-next.1",
     "@storybook/blocks": "^8.0.0-alpha.12",
     "@storybook/react": "^8.0.0-alpha.12",
     "@storybook/react-vite": "^8.0.0-alpha.12",
@@ -73,6 +74,10 @@
   },
   "dependencies": {
     "@babel/preset-react": "^7.23.3",
-    "autoprefixer": "^10.4.16"
-  }
+    "@storybook/cli": "^8.0.0-alpha.12",
+    "autoprefixer": "^10.4.16",
+    "http-server": "^14.1.1"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "@akello/react@0.0.8"
 }

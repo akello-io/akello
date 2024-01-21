@@ -6,10 +6,10 @@ title: Welcome
 
 We're thrilled to have you join us! At Akello, our focus is on creating a platform that revolves around measurement-based approaches. Our objectives include:
 
-Assisting clinical teams in implementing integrated population health models driven by specific metrics.
-Facilitating collaborative efforts among healthcare professionals.
-Actively involving both patients and clinicians in effective treatment programs.
-Streamlining the billing process to suit the chosen model of the healthcare team.
+- Assisting clinical teams in implementing integrated population health models driven by specific metrics. 
+- Facilitating collaborative efforts among healthcare professionals. 
+- Actively involving both patients and clinicians in effective treatment programs. 
+- Streamlining the billing process to suit the chosen model of the healthcare team.
 
 Should you have any inquiries or wish to engage with us directly, feel free to connect with us on our [Discord Server](https://discord.gg/WSqNrWBKKw). We're here to assist you!
 
