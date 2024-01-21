@@ -70,6 +70,7 @@ const config: Config = {
     },
   ],
 
+  themes: ['@docusaurus/theme-search-algolia'],
   themeConfig: {
     // Replace with your project's social card
     image: 'img/akello-social.png',
