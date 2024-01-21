@@ -160,7 +160,7 @@ const config: Config = {
             },
             {
               label: 'Terms of Service',
-              to: '/terms-of-service',
+              to: '/terms',
             },
             {
               label: 'Privacy Policy',
