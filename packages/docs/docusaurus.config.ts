@@ -7,7 +7,7 @@ const config: Config = {
   tagline: 'Open Source Registry for the Collaborative Care Model (CoCM)',
   favicon: 'img/AkelloLogo.png',
 
-  trailingSlash: false,
+  trailingSlash: true,
 
   // Set the production url of your site here
   url: 'https://akello.io',
