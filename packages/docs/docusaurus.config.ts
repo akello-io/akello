@@ -92,6 +92,16 @@ const config: Config = {
       },
       items: [
         {
+          to: '/products',
+          position: 'left',
+          label: 'Products',
+        },
+        {
+          to: '/solutions',
+          position: 'left',
+          label: 'Solutions',
+        },
+        {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',

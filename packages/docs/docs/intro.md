@@ -29,6 +29,9 @@ There are 5 pillars that drive our decision towards open-source:
 #### 3. Security
 #### 4. Innovation
 
+# How is Akello different?
+
+With Akello, you get total flexibility, and there's no worry about getting tied down to one vendor. You can mix and match to create just the right kind of personalized care experiences. Also, if you don't want to invest the engineering time Akello can also manage it for you.
 
 # Join the movement
 
