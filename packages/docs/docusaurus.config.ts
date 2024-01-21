@@ -82,10 +82,8 @@ const config: Config = {
 
       indexName: 'akello',
 
-      // Optional: see doc section below
-      contextualSearch: true,
-
     },
+
     navbar: {
       title: 'Akello',
       logo: {
