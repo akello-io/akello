@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Welcome
 ---
 
-# Welcome
+# 🙏 Welcome
 
 Hi we are excited that you are here. Akello is designed as a measurement based platform and we aim to do the following:
 
@@ -13,6 +13,20 @@ Hi we are excited that you are here. Akello is designed as a measurement based p
 4. Make billing simpler for the model the team is using
 
 If you have any questions or would like to directly chat with us right away you can connect with us on our [Discord Server](https://discord.gg/WSqNrWBKKw).
+
+# Why is Akello open-source?
+
+Regrettably, in healthcare, many solutions are proprietary, which conceals the methods of processing and storing clinical data. This hinders the integration and development of superior, engaging experiences for patients. Moreover, it may adversely affect patient treatment and further compartmentalize their care.
+
+Akello is a radical alternative to solutions in the market. We are the first open-source integrated population health platform.
+
+There are 5 pillars that drive our decision towards open-source:
+### 1. Quality
+
+### 2. Agility
+### 3. Transparency
+### 3. Security
+### 4. Innovation
 
 # Patient Registry
 
