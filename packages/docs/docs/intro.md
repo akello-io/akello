@@ -14,29 +14,24 @@ Hi we are excited that you are here. Akello is designed as a measurement based p
 
 If you have any questions or would like to directly chat with us right away you can connect with us on our [Discord Server](https://discord.gg/WSqNrWBKKw).
 
+
 # Why is Akello open-source?
 
-Regrettably, in healthcare, many solutions are proprietary, which conceals the methods of processing and storing clinical data. This hinders the integration and development of superior, engaging experiences for patients. Moreover, it may adversely affect patient treatment and further compartmentalize their care.
+Unfortunately, in healthcare, many solutions are proprietary, which conceals the methods of processing and storing clinical data. This hinders the integration and development of superior, engaging experiences for patients. Moreover, it may adversely affect patient treatment and further compartmentalize their care.
 
-Akello is a radical alternative to solutions in the market. We are the first open-source integrated population health platform.
+We are a radical shift to what's out there in the market. We are the first open-source integrated population health platform.
 
 There are 5 pillars that drive our decision towards open-source:
-### 1. Quality
 
-### 2. Agility
-### 3. Transparency
-### 3. Security
-### 4. Innovation
+#### 1. Quality
+#### 2. Agility
+#### 3. Transparency
+#### 3. Security
+#### 4. Innovation
 
-# Patient Registry
 
-A core part of our product is rooted from a patient registry. The registry services as a collection of patients with similar conditions and treatments making it simpler for a clinical team to manage a larger population. A few components are critical for a successful registry:
+# Join the movement
 
-1. Run repeatable models
-2. Run treat-to-target strategy
-3. Collect measures
-4. Flag patients
+Interested in contributing? You don't have to be an engineer to contribute! There are many ways to help out. Have a look at our guide over here: [Contributing to Akello](/docs/developers/contributing/)
 
-# Integrated Care
-
-Akello aims to break the silos of clinical treatments by making it easier for clinical teams to work collaboratively.
+There is no contribution that is too small ❤️
