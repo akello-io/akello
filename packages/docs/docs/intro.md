@@ -3,15 +3,26 @@ sidebar_position: 1
 title: Welcome
 ---
 
-# Welcome to Akello
+# Welcome
 
-Welcome to Akello.io, your comprehensive solution for streamlining patient care in the Collaborative Care Model. Dive into our user-friendly, open-source patient registry designed to enhance care coordination and improve patient outcomes. Whether you're a small clinic or a large healthcare provider, discover how Akello.io can transform your approach to healthcare management. Join our community today and take the first step towards a more efficient, integrated, and quality-driven patient care experience.
+Hi we are excited that you are here. Akello is designed as a measurement based platform and we aim to do the following:
 
-## Collaborative Care Model (CoCM)
+1. Help clinical teams run integrated population health models that are based off of measures
+2. Work collaboratively as team around
+3. Engage both patients and clinicians in treatment programs
+4. Make billing simpler for the model the team is using
 
-The Collaborative Care Model (CoCM) is a healthcare approach that integrates primary care with mental health services. It involves a team comprising a primary care provider, a behavioral health manager, and a consulting psychiatrist, working together to treat mental health conditions within a primary care setting. This model employs systematic patient tracking, measurement-based care, and a treatment-to-target strategy, aiming to improve mental health accessibility, enhance service quality, and achieve better health outcomes.
+If you have any questions or would like to directly chat with us right away you can connect with us on our [Discord Server](https://discord.gg/WSqNrWBKKw).
 
-## Run and grow your CoCM Program
+# Patient Registry
 
-Akello, an open-source patient registry for the Collaborative Care Model (CoCM), offers a cost-effective and customizable solution suitable for both small and large clinics. It simplifies patient tracking and management, enhancing care quality and team coordination. For large clinics, Akello's scalability and data analytics capabilities support growth and strategic decision-making. Additionally, its community support and ease of integration with existing systems make it an adaptable tool for improving patient outcomes in diverse healthcare settings.
+A core part of our product is rooted from a patient registry. The registry services as a collection of patients with similar conditions and treatments making it simpler for a clinical team to manage a larger population. A few components are critical for a successful registry:
 
+1. Run repeatable models
+2. Run treat-to-target strategy
+3. Collect measures
+4. Flag patients
+
+# Integrated Care
+
+Akello aims to break the silos of clinical treatments by making it easier for clinical teams to work collaboratively.
