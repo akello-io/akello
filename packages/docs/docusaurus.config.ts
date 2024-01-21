@@ -73,12 +73,12 @@ const config: Config = {
     image: 'img/akello-social.png',
     algolia: {
       // The application ID provided by Algolia
-      appId: 'LLQ0UQMR6U',
+      appId: 'ZPW8AHLDRJ',
 
       // Public API key: it is safe to commit it
-      apiKey: 'cb66185455375628f24c87f34a52d38e',
+      apiKey: '129743335fc9e341bf6f16e1686294dc',
 
-      indexName: 'XFHIR',
+      indexName: 'akello',
 
       // Optional: see doc section below
       contextualSearch: true,
