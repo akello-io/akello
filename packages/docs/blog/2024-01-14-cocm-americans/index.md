@@ -1,6 +1,6 @@
 ---
 slug: cocm-americans-evidence-based-mental-health
-title: CoCM How It Gets More Americans to Evidence-Based Mental Health Care
+title: CoCM - How It Gets More Americans to Evidence-Based Mental Health Care
 authors: vijay
 tags: [cocm]
 ---
