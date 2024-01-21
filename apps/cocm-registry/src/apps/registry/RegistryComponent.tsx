@@ -11,7 +11,7 @@ import {getRegistryPatients} from "../../api/registry";
 import AppContainer from "../../stories/app/Container/AppContainer";
 import PatientDrawer from "./components/patient-drawer/patient-view-drawer/PatientDrawer";
 import AddPatientDrawer from "./components/patient-drawer/refer-patient-drawer/AddPatientDrawer";
-import RegistryDataGrid from "../../stories/registry/DataTable/RegistryDataGrid";
+import { RegistryDataGrid } from "@akello/react-medical";
 import {Auth} from "aws-amplify";
 
 export default function DataGridDemo() {

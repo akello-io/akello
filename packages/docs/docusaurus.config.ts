@@ -7,6 +7,8 @@ const config: Config = {
   tagline: 'Open Source Registry for the Collaborative Care Model (CoCM)',
   favicon: 'img/AkelloLogo.png',
 
+  trailingSlash: true,
+
   // Set the production url of your site here
   url: 'https://akello.io',
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -73,17 +75,15 @@ const config: Config = {
     image: 'img/akello-social.png',
     algolia: {
       // The application ID provided by Algolia
-      appId: 'LLQ0UQMR6U',
+      appId: 'ZPW8AHLDRJ',
 
       // Public API key: it is safe to commit it
-      apiKey: 'cb66185455375628f24c87f34a52d38e',
+      apiKey: '129743335fc9e341bf6f16e1686294dc',
 
-      indexName: 'XFHIR',
-
-      // Optional: see doc section below
-      contextualSearch: true,
+      indexName: 'akello',
 
     },
+
     navbar: {
       title: 'Akello',
       logo: {

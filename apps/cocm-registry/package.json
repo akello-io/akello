@@ -2,6 +2,8 @@
   "name": "akello",
   "version": "0.1.1",
   "dependencies": {
+    "@akello/react": "0.0.8",
+    "@akello/core": "0.0.2",
     "@aws-amplify/ui-react": "^5.3.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -81,6 +83,7 @@
   "devDependencies": {
     "@akello/react": "file:../../packages/react",
     "@akello/core": "file:../../packages/core",
+    "@akello/react-medical": "file:../../packages/react-medical",
     "@faker-js/faker": "^8.1.0",
     "@storybook/addon-essentials": "^7.5.1",
     "@storybook/addon-interactions": "^7.5.1",

@@ -3,15 +3,35 @@ sidebar_position: 1
 title: Welcome
 ---
 
-# Welcome to Akello
+# 🙏 Welcome
 
-Welcome to Akello.io, your comprehensive solution for streamlining patient care in the Collaborative Care Model. Dive into our user-friendly, open-source patient registry designed to enhance care coordination and improve patient outcomes. Whether you're a small clinic or a large healthcare provider, discover how Akello.io can transform your approach to healthcare management. Join our community today and take the first step towards a more efficient, integrated, and quality-driven patient care experience.
+Hi we are excited that you are here. Akello is designed as a measurement based platform and we aim to do the following:
 
-## Collaborative Care Model (CoCM)
+1. Help clinical teams run integrated population health models that are based off of measures
+2. Work collaboratively as team around
+3. Engage both patients and clinicians in treatment programs
+4. Make billing simpler for the model the team is using
 
-The Collaborative Care Model (CoCM) is a healthcare approach that integrates primary care with mental health services. It involves a team comprising a primary care provider, a behavioral health manager, and a consulting psychiatrist, working together to treat mental health conditions within a primary care setting. This model employs systematic patient tracking, measurement-based care, and a treatment-to-target strategy, aiming to improve mental health accessibility, enhance service quality, and achieve better health outcomes.
+If you have any questions or would like to directly chat with us right away you can connect with us on our [Discord Server](https://discord.gg/WSqNrWBKKw).
 
-## Run and grow your CoCM Program
 
-Akello, an open-source patient registry for the Collaborative Care Model (CoCM), offers a cost-effective and customizable solution suitable for both small and large clinics. It simplifies patient tracking and management, enhancing care quality and team coordination. For large clinics, Akello's scalability and data analytics capabilities support growth and strategic decision-making. Additionally, its community support and ease of integration with existing systems make it an adaptable tool for improving patient outcomes in diverse healthcare settings.
+# Why is Akello open-source?
 
+Unfortunately, in healthcare, many solutions are proprietary, which conceals the methods of processing and storing clinical data. This hinders the integration and development of superior, engaging experiences for patients. Moreover, it may adversely affect patient treatment and further compartmentalize their care.
+
+We are a radical shift to what's out there in the market. We are the first open-source integrated population health platform.
+
+There are 5 pillars that drive our decision towards open-source:
+
+#### 1. Quality
+#### 2. Agility
+#### 3. Transparency
+#### 3. Security
+#### 4. Innovation
+
+
+# Join the movement
+
+Interested in contributing? You don't have to be an engineer to contribute! There are many ways to help out. Have a look at our guide over here: [Contributing to Akello](/docs/developers/contributing/)
+
+There is no contribution that is too small ❤️

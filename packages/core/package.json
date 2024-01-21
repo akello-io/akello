@@ -1,6 +1,6 @@
 {
   "name": "@akello/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "build": "rollup -c",
@@ -49,6 +49,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@types/fhir": "^0.0.40",
     "moment": "^2.29.4"
   }
 }

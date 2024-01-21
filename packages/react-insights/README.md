@@ -1,6 +1,17 @@
-# Akello React Component Library for Insights
+# React Insights
 
-- Charts
-- Dashboards
-- Metrics
-- etc.
+General gomponents used to build charts/reports/analytics will be stored here.  
+
+| Component 	    | Description |
+|----------------|-------------|
+| Stats   	      |             |
+| Charts   	     |             |
+| Reports  	     |             |
+
+
+
+### Storybook
+
+```shell
+npm run storybook
+```
