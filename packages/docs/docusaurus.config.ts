@@ -122,7 +122,7 @@ const config: Config = {
           items: [
             {
               label: 'Getting started',
-              to: '/docs/category/getting-started',
+              to: '/docs/getting-started/',
             },
             {
               label: 'Developer Docs',
@@ -160,11 +160,15 @@ const config: Config = {
             },
             {
               label: 'Terms of Service',
-              to: '/terms-of-service',
+              to: '/terms',
             },
             {
               label: 'Privacy Policy',
               to: '/privacy',
+            },
+            {
+              label: 'Blog',
+              to: '/blog',
             },
           ],
         },
