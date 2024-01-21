@@ -166,6 +166,10 @@ const config: Config = {
               label: 'Privacy Policy',
               to: '/privacy',
             },
+            {
+              label: 'Blog',
+              to: '/blog',
+            },
           ],
         },
       ],
