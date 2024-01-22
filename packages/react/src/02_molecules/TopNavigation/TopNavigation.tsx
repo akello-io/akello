@@ -7,7 +7,7 @@ export interface TopNavigationProps {
     signIn: () => void
     signOut: ((data?: any | undefined) => void) | undefined
     createRegistry?: () => void
-    logo: ReactNode    
+    logo: ReactNode
     github_url?: string
     signed_in: boolean
     menu_items: ReactNode[]
@@ -17,8 +17,6 @@ export interface TopNavigationProps {
 }
 
 const TopNavigation = (props: TopNavigationProps) => {
-
-    debugger;
     return (
         <>
             <div className={classNames(
@@ -39,7 +37,7 @@ const TopNavigation = (props: TopNavigationProps) => {
                                         </div>
                                     )
                                 })
-                            }                            
+                            }
                         </HamburgerMenu>
                     </div>
                 )}

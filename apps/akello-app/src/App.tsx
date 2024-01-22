@@ -24,7 +24,6 @@ import RegistrySelectionPage from './containers/pages/protected/RegistrySelectio
 
 if(process.env.REACT_APP_MOCK != 'true') {
     console.log(process.env)
-    debugger;
     Amplify.configure({
         Auth: {
             region: process.env.REACT_APP_AWS_REGION,
@@ -55,10 +54,10 @@ const routes = () => {
     )
 }
 
-function App() {    
+function App() {
     const dispatch = useDispatch()
 
-    if(process.env.REACT_APP_MOCK == 'true') {        
+    if(process.env.REACT_APP_MOCK == 'true') {
         dispatch(setAuthToken('mock-token'))
         return routes()
     }
@@ -66,7 +65,7 @@ function App() {
         return (
             <>
                 <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
-                    {({ signOut, user }) => {                        
+                    {({ signOut, user }) => {
                         Auth.currentSession().then((session) => {
                             let token = session.getIdToken().getJwtToken()
                             dispatch(setAuthToken(token))
