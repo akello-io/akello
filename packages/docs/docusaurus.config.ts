@@ -152,7 +152,7 @@ const config: Config = {
           items: [
             {
               label: 'About us',
-              to: '/blog',
+              to: '/about',
             },
             {
               label: 'Trust Center',
