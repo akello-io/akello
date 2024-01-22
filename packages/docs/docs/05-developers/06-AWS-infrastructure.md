@@ -4,4 +4,8 @@ sidebar_position: 6
 
 # AWS Infrastructure
 
-> **_NOTE:_** Document details behind AWS in Production, security, and policies
+:::tip Work in progress
+
+We are actively making updates to our docs. If you would like to contribute you can do so directly by editing this page.
+
+:::

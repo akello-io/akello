@@ -2,10 +2,8 @@
 # Getting Started 
 
 
-### Start running a Registry in 2 mins
+:::tip Work in progress
 
-```bash
-git clone https://github.com/akello-io/akello
-cd akello/examples/sample-registry
-sh run-dev.sh
-```
+We are actively making updates to our docs. If you would like to contribute you can do so directly by editing this page.
+
+:::

@@ -1,5 +1,5 @@
 name: Deploy Storybook
-run-name: ${{ github.actor }} is deploying storybook to react-storybook.akello.io 🚀
+run-name: ${{ github.actor }} is deploying storybook to storybook.akello.io 🚀
 on:
   workflow_run:
     workflows: [ "Run API Server Tests" ]

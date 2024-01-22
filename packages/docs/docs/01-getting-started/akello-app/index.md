@@ -1,3 +1,7 @@
 # Akello App
 
-This is a good place to start to familiarize yourself with the a product that was built using the open-source framework.
+:::tip Work in progress
+
+We are actively making updates to our docs. If you would like to contribute you can do so directly by editing this page.
+
+:::
