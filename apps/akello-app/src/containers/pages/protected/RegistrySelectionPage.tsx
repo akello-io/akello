@@ -63,21 +63,6 @@ const RegistrySelectionPage = () => {
                             )
                         })
                     }
-                    <RegistrySelectRow
-                        logo={AkelloLogoCorner}
-                        name={'Registry A'}
-                        members={5}
-                        patients={5}
-                        onClick={() => {navigate('/dashboard')}}
-                    />
-
-                    <RegistrySelectRow
-                        logo={AkelloLogoCorner}
-                        name={'Registry B'}
-                        members={5}
-                        patients={5}
-                        onClick={() => {navigate('/dashboard')}}
-                    />
                 </RegistryMemberships>
             </WelcomeTemplate>
         </div>
