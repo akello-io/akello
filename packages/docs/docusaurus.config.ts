@@ -84,11 +84,11 @@ const config: Config = {
 
     },
 
-    navbar: {
-      title: 'Akello',
+    navbar: {      
       logo: {
         alt: 'Akello Logo',
-        src: 'img/AkelloLogo.png'
+        src: 'img/Akello.png',
+        srcDark: 'img/AkelloDark.png',
       },
       items: [
         {

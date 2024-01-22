@@ -50,10 +50,20 @@ REQUIRED SOFTWARE
 
 Run the setup local script and add the environment variables into your environment file (e.g., ~/.zshrc)
 
+Sets up Local instance of DynamoDB and AWS Cognito
 ```shell
-sh dev-setup-local.sh    # sets up Local instance of DynamoDB and AWS Cognito
+sh dev-setup-local.sh 
 ```
 
+From one terminal run the api server
+```shell
+python akello.py run server
+```
+
+In another terminal run the web-app
+```shell
+python akello.py run cocm
+```
 
 Run the API server
 ```shell

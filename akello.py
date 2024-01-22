@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-
+import click
 import os, json
 
 
@@ -7,8 +6,6 @@ def run_docker():
     resp = os.popen("docker-compose down").read()
     resp = os.popen("docker-compose up -d").read()
     
-def build_code():
-    resp = os.popen("sh dev-build.sh").read()
 
 def create_user_pool():
     resp = os.popen("aws --endpoint http://localhost:9229 cognito-idp create-user-pool --pool-name akello --no-cli-pager --output json").read()
@@ -32,7 +29,17 @@ def get_saved_user_pool():
             return file.split('.')[0]
 
 
-def main():
+@click.group()
+def cli():
+    pass
+
+
+@click.command()
+def setup():
+    os.system("cd servers/api-server && python -m venv .venv && pip install -r requirements.txt")
+    os.system("cd apps/cocm-registry && npm install")
+    os.system("cd apps/akello-app && npm install")
+
     try:
         client_id = get_saved_client()
         user_pool_id = get_saved_user_pool()
@@ -42,8 +49,7 @@ def main():
         user_pool_id = create_user_pool()
         client_id = create_user_pool_client(user_pool_id)
 
-    run_docker()
-    build_code()
+    run_docker()    
 
     print("\n\n")
     print("Add the following to your .env file")
@@ -52,16 +58,34 @@ def main():
     print(f"export AWS_COGNITO_APP_CLIENT_ID={client_id}")     
     print(f"export AWS_DYNAMODB_TABLE='akello-local'")
     print(f"export AKELLO_API_URL=http://127.0.0.1:8000/v1")
-    print(f"AKELLO_COGNITO_LOCAL=TRUE")
-    print(f"AKELLO_COGNITO_URL=http://localhost:9229")
-    print(f"AKELLO_DYNAMODB_LOCAL=TRUE")
-    print(f"AKELLO_DYNAMODB_LOCAL_URL=http://localhost:8001")
+    print(f"export AKELLO_COGNITO_LOCAL=TRUE")
+    print(f"export AKELLO_COGNITO_URL=http://localhost:9229")
+    print(f"export AKELLO_DYNAMODB_LOCAL=TRUE")
+    print(f"export AKELLO_DYNAMODB_LOCAL_URL=http://localhost:8001")
     print("\n\n")
 
 
+@click.command()
+@click.argument('name')
+def start(name):    
+    if name=='server':
+        cmd = """
+                cd servers/api-server && 
+                source .venv/bin/activate &&
+                pip install -r requirements.txt &&
+                uvicorn akello.main:app --reload
+        """
+        os.system(cmd)  
+    elif name=='cocm':
+        cmd = """
+            sh dev-build.sh &&
+            cd apps/cocm-registry && 
+            npm run start"""
+        os.system(cmd)
+            
+cli.add_command(setup)
+cli.add_command(start)
+
 
 if __name__ == '__main__':
-    main()
-
-
-os.environ["DEBUSSY"] = "1"
+    cli()

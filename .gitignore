@@ -2,6 +2,7 @@
 dist/
 .idea/
 venv
+.venv
 .env
 .DS_Store
 # docker volume for cognito
