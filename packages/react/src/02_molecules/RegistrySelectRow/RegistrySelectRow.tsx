@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface RegistrySelectRowProps {
     logo: string
+    registry_id: string
     name: string
     members: number
     patients: number
@@ -13,7 +14,7 @@ const RegistrySelectRow = (props: RegistrySelectRowProps) => {
     return (
         <>
             <button className={"flex flex-row w-full justify-between bg-base-100 py-8 px-12"}
-                 onClick={() => {props.onClick('registry-id')}}
+                 onClick={() => {props.onClick(props.registry_id)}}
             >
                 <div className={" flex flex-row space-x-4"}>
                     <div>

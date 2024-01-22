@@ -19,18 +19,17 @@ const RegistrySelectionPage = () => {
 
     useEffect(() => {
         if(token) {
-            const api_service = new AkelloAPIService('http://localhost:8000/v1', token)
             setIsLoading(true)
+            const api_service = new AkelloAPIService(process.env.REACT_APP_API!, token!)
             api_service.getUserRegistries((data: any) => {
-                debugger;
                 setRegistries(data)
-
             }, (error: any) => {
                 setIsLoading(false)
             })
-        }
 
+        }
     }, [token])
+
 
     return (
         <div className={'w-screen h-auto bg-base-200/40'}>
@@ -54,10 +53,11 @@ const RegistrySelectionPage = () => {
                                 <>
                                     <RegistrySelectRow
                                         logo={AkelloLogoCorner}
+                                        registry_id={registry['id']}
                                         name={registry['name']}
                                         members={registry['members']}
                                         patients={registry['active_patients']}
-                                        onClick={() => {navigate('/dashboard')}}
+                                        onClick={() => {navigate('/registry')}}
                                     />
                                 </>
                             )
