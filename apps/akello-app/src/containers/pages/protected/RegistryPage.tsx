@@ -6,7 +6,6 @@ const RegistryPage = () => {
     return (
         <>
             <PageContainer title={'Registry'}>
-                Registry Page
                 <RegistryDataGrid patients={[]} questionnaires={[]} handlePatientClickEvent={()=> {}}/>
             </PageContainer>
         </>

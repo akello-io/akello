@@ -12,7 +12,7 @@ rm -rf node_modules
 rm -rf dist
 npm install
 npm run build
-rm -rf node_modules
+# rm -rf node_modules
 cd ../../
 
 echo '>>>>>>>>>>  REACT'
@@ -21,7 +21,7 @@ rm -rf node_modules
 rm -rf dist
 npm install
 npm run build
-rm -rf node_modules
+# rm -rf node_modules
 cd ../../
 
 
@@ -31,7 +31,7 @@ rm -rf node_modules
 rm -rf dist
 npm install
 npm run build
-rm -rf node_modules
+# rm -rf node_modules
 cd ../../
 
 echo '>>>>>>>>>>  MEDICAL'
@@ -40,10 +40,16 @@ rm -rf node_modules
 rm -rf dist
 npm install
 npm run build
-rm -rf node_modules
+# rm -rf node_modules
 cd ../../
 
 echo '>>>>>>>>>>  APPS'
 cd apps/akello-app
+rm -rf node_modules
+npm install
+cd ../../
+
+echo '>>>>>>>>>>  COCM-REGISTRY'
+cd apps/cocm-registry
 rm -rf node_modules
 npm install
