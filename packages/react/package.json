@@ -48,9 +48,10 @@
     "@storybook/addon-mdx-gfm": "^8.0.0-alpha.12",
     "@storybook/addon-onboarding": "^1.0.8",
     "@storybook/addon-styling-webpack": "^1.0.0-next.1",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.0",
     "@storybook/blocks": "^8.0.0-alpha.12",
     "@storybook/react": "^8.0.0-alpha.12",
-    "@storybook/react-vite": "^8.0.0-alpha.12",
+    "@storybook/react-webpack5": "^8.0.0-alpha.12",
     "@storybook/testing-library": "^0.2.2",
     "classnames": "^2.3.2",
     "css-loader": "^6.8.1",
@@ -76,7 +77,8 @@
     "@babel/preset-react": "^7.23.3",
     "@storybook/cli": "^8.0.0-alpha.12",
     "autoprefixer": "^10.4.16",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "typescript": "^5.3.3"
   },
   "readme": "ERROR: No README data found!",
   "_id": "@akello/react@0.0.8"
