@@ -14,10 +14,10 @@ const PageFooter = (props: PageFooterProps) => {
                 <div className={"font-bold"}>
                     © 2023 akello.io
                 </div>
-                <a href={"/terms.html"} className={"text-ak-light-blue underline font-semibold cursor-pointer"}>
+                <a href={"https://akello.io/terms"} target="_blank" className={"text-ak-light-blue underline font-semibold cursor-pointer"}>
                     Terms of Service
                 </a>
-                <a href={"/privacy.html"} className={"text-ak-light-blue underline font-semibold cursor-pointer"}>
+                <a href={"https://akello.io/privacy"} target="_blank" className={"text-ak-light-blue underline font-semibold cursor-pointer"}>
                     Privacy Policy
                 </a>
             </div>
