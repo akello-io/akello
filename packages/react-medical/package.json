@@ -8,7 +8,8 @@
     "build": "rollup -c",
     "test": "jest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "rm -rf storybook-static && storybook build",
+    "serve-storybook": "serve storybook-static"
   },
   "author": "Akello Health Inc.",
   "license": "Apache-2.0",
@@ -58,7 +59,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "sass": "^1.43.5",
     "sass-loader": "^12.3.0",
-    "storybook": "^7.5.3",
+    "storybook": "^7.6.10",
     "style-loader": "^3.3.1",
     "styled-components": "^6.1.1",
     "tailwindcss": "^3.3.5",
@@ -75,6 +76,7 @@
     "@emotion/styled": "^11.11.0",
     "@types/fhir": "^0.0.40",
     "autoprefixer": "^10.4.16",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "serve": "^14.2.1"
   }
 }
