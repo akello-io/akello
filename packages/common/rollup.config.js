@@ -6,6 +6,8 @@ import json from "@rollup/plugin-json";
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import dts from "rollup-plugin-dts";
 import packageJson from "./package.json" assert { type: 'json'}
+import nodePolyfills from "rollup-plugin-node-polyfills";
+
 
 export default [
     {
@@ -21,12 +23,22 @@ export default [
                 format: "esm",
                 sourcemap: true,
             },
-        ],
+        ],        
         plugins: [
             peerDepsExternal(),
             resolve(),
             json(),
             commonjs(),
+            nodePolyfills({
+                crypto: false,
+                os: false,
+                zlib: false,
+                tty: false,
+                stream: false,
+                https: false,
+                http: false,
+                process: false                
+            }),
             typescript({ tsconfig: "./tsconfig.json", sourceMap: false }),
             postcss(),
         ],

@@ -38,55 +38,23 @@
         "dist"
     ],
     "types": "dist/index.d.ts",
-    "devDependencies": {
-        "@rollup/plugin-commonjs": "^25.0.7",
-        "@rollup/plugin-json": "^6.0.1",
-        "@rollup/plugin-node-resolve": "^15.2.3",
-        "@rollup/plugin-typescript": "^11.1.5",
-        "@storybook/addon-essentials": "^7.6.10",
-        "@storybook/addon-interactions": "^7.6.10",
-        "@storybook/addon-links": "^7.6.10",
-        "@storybook/addon-mdx-gfm": "^7.6.10",
-        "@storybook/addon-onboarding": "^1.0.8",
-        "@storybook/blocks": "^7.6.10",
-        "@storybook/react": "^7.6.10",
-        "@storybook/testing-library": "^0.2.2",
-        "classnames": "^2.3.2",
-        "css-loader": "^6.8.1",
-        "daisyui": "^3.9.4",
-        "eslint-plugin-storybook": "^0.6.15",
-        "prop-types": "^15.8.1",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "rollup-plugin-dts": "^6.1.0",
-        "rollup-plugin-peer-deps-external": "^2.2.4",
-        "rollup-plugin-postcss": "^4.0.2",
-        "storybook": "^7.6.10",
-        "style-loader": "^3.3.3",
-        "tailwind": "^4.0.0",
-        "tslib": "^2.6.2",
-        "webpack-cli": "^5.1.4"
-    },
     "peerDependencies": {
         "@akello/core": "file:../core",
-        "@types/react": "^18.2.37",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "@mui/material": "^5.14.17",
+        "@mui/styled-engine-sc": "^6.0.0-alpha.5",
+        "@mui/x-data-grid": "^6.18.1",
+        "@types/react": "^18.2.37"
     },
     "dependencies": {
-        "@babel/preset-react": "^7.23.3",
         "@rjsf/core": "^5.16.1",
         "@rjsf/validator-ajv8": "^5.16.1",
-        "@storybook/addon-styling-webpack": "^0.0.6",
-        "@storybook/builder-webpack5": "^7.6.10",
-        "@storybook/cli": "^7.6.10",
-        "@storybook/react-webpack5": "^7.6.10",
-        "autoprefixer": "^10.4.16",
         "fhirformjs": "^0.9.3",
-        "postcss-loader": "^8.0.0",
-        "serve": "^14.2.1",
-        "stream-http": "^3.2.0"
+        "storybook": "^7.6.10",
+        "style-loader": "^3.3.4"
     },
     "readme": "ERROR: No README data found!",
-    "_id": "@akello/react@0.0.8"
+    "_id": "@akello/react@0.0.8",
+    "devDependencies": {
+        "rollup-plugin-polyfill-node": "^0.13.0"
+    }
 }
