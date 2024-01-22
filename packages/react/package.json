@@ -1,83 +1,86 @@
 {
-  "name": "@akello/react",
-  "version": "0.0.8",
-  "private": false,
-  "type": "module",
-  "license": "Apache-2.0",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "rollup -c",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_9ae39fe9d274425"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended",
-      "plugin:storybook/recommended"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+    "name": "@akello/react",
+    "version": "0.0.8",
+    "private": false,
+    "type": "module",
+    "license": "Apache-2.0",
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "rollup -c",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "rm -rf storybook-static && storybook build",
+        "serve-storybook": "serve storybook-static",
+        "chromatic": "npx chromatic --project-token=chpt_9ae39fe9d274425"
+    },
+    "eslintConfig": {
+        "extends": [
+            "plugin:storybook/recommended",
+            "plugin:storybook/recommended"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "files": [
+        "dist"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "files": [
-    "dist"
-  ],
-  "types": "dist/index.d.ts",
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-json": "^6.0.1",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.5",
-    "@storybook/addon-essentials": "^8.0.0-alpha.12",
-    "@storybook/addon-interactions": "^8.0.0-alpha.12",
-    "@storybook/addon-links": "^8.0.0-alpha.12",
-    "@storybook/addon-mdx-gfm": "^8.0.0-alpha.12",
-    "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/addon-styling-webpack": "^1.0.0-next.1",
-    "@storybook/blocks": "^8.0.0-alpha.12",
-    "@storybook/react": "^8.0.0-alpha.12",
-    "@storybook/react-vite": "^8.0.0-alpha.12",
-    "@storybook/testing-library": "^0.2.2",
-    "classnames": "^2.3.2",
-    "css-loader": "^6.8.1",
-    "daisyui": "^3.9.4",
-    "eslint-plugin-storybook": "^0.6.15",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup-plugin-dts": "^6.1.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
-    "storybook": "^8.0.0-alpha.12",
-    "style-loader": "^3.3.3",
-    "tailwind": "^4.0.0",
-    "tslib": "^2.6.2"
-  },
-  "peerDependencies": {
-    "@types/react": "^18.2.37",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "dependencies": {
-    "@babel/preset-react": "^7.23.3",
-    "@storybook/cli": "^8.0.0-alpha.12",
-    "autoprefixer": "^10.4.16",
-    "http-server": "^14.1.1"
-  },
-  "readme": "ERROR: No README data found!",
-  "_id": "@akello/react@0.0.8"
+    "types": "dist/index.d.ts",
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^25.0.7",
+        "@rollup/plugin-json": "^6.0.1",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-typescript": "^11.1.5",
+        "@storybook/addon-essentials": "^7.6.10",
+        "@storybook/addon-interactions": "^7.6.10",
+        "@storybook/addon-links": "^7.6.10",
+        "@storybook/addon-mdx-gfm": "^7.6.10",
+        "@storybook/addon-onboarding": "^1.0.8",
+        "@storybook/blocks": "^7.6.10",
+        "@storybook/react": "^7.6.10",
+        "@storybook/testing-library": "^0.2.2",
+        "classnames": "^2.3.2",
+        "css-loader": "^6.8.1",
+        "daisyui": "^3.9.4",
+        "eslint-plugin-storybook": "^0.6.15",
+        "prop-types": "^15.8.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "rollup-plugin-dts": "^6.1.0",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
+        "rollup-plugin-postcss": "^4.0.2",
+        "storybook": "^7.6.10",
+        "style-loader": "^3.3.3",
+        "tailwind": "^4.0.0",
+        "tslib": "^2.6.2"
+    },
+    "peerDependencies": {
+        "@types/react": "^18.2.37",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "dependencies": {
+        "@babel/preset-react": "^7.23.3",
+        "@storybook/addon-styling-webpack": "^0.0.6",
+        "@storybook/builder-webpack5": "^7.6.10",
+        "@storybook/cli": "^7.6.10",
+        "@storybook/react-webpack5": "^7.6.10",
+        "autoprefixer": "^10.4.16",
+        "postcss-loader": "^8.0.0",
+        "serve": "^14.2.1"
+    },
+    "readme": "ERROR: No README data found!",
+    "_id": "@akello/react@0.0.8"
 }
