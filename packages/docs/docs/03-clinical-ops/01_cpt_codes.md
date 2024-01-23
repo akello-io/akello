@@ -4,9 +4,6 @@ sidebar_position: 1
 
 # CoCM CPT Codes
 
-> **_NOTE:_** More to come here.. this will deomonstrate how to track time, generate reports, and make sure minimum thresholds are met
-
-
 | CPT Code 	         | Description                                                                                              |
 |--------------------|----------------------------------------------------------------------------------------------------------|
 | 99492   	          | Used to bill the first 70 minutes in the first initial month of collaborative care.                      |
