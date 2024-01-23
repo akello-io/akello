@@ -85,6 +85,22 @@ npm run start
 When you signup as a new user, the local SMS confirmation code is set to `1234` for local development
 
 
+Setup python environment from the root directory
+
+```shell
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+```shell
+sh dev-setup-local.sh
+python akello.py setup
+python akello.py start server 
+python akello.py start cocm  # run this in another terminal, make sure to apply the environment settings
+```
+
+
 ## License
 
 [Apache 2.0](LICENSE.txt)
