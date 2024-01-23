@@ -3,8 +3,10 @@ import os, json
 
 
 def run_docker():
+    print("starting docker")
     resp = os.popen("docker-compose down").read()
     resp = os.popen("docker-compose up -d").read()
+    print("running docker")
     
 
 def create_user_pool():
@@ -39,7 +41,7 @@ def setup():
     os.system("cd servers/api-server && python -m venv .venv && pip install -r requirements.txt")
     os.system("cd apps/cocm-registry && npm install")
     os.system("cd apps/akello-app && npm install")
-
+    
     try:
         client_id = get_saved_client()
         user_pool_id = get_saved_user_pool()

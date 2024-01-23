@@ -23,15 +23,3 @@ npm install
 npm run build
 # rm -rf node_modules
 cd ../../
-
-
-echo '>>>>>>>>>>  APPS'
-cd apps/akello-app
-rm -rf node_modules
-npm install
-cd ../../
-
-echo '>>>>>>>>>>  COCM-REGISTRY'
-cd apps/cocm-registry
-rm -rf node_modules
-npm install
