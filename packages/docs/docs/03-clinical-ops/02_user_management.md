@@ -4,4 +4,8 @@ sidebar_position: 2
 
 # User Management
 
-> **_NOTE:_** Work in progress.. we will have information around how to add/remove users and set roles
+:::tip Work in progress
+
+We are actively making updates to our docs. If you would like to contribute you can do so directly by editing this page.
+
+:::

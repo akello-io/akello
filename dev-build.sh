@@ -25,24 +25,6 @@ npm run build
 cd ../../
 
 
-echo '>>>>>>>>>>  INSIGHTS'
-cd packages/react-insights
-rm -rf node_modules
-rm -rf dist
-npm install
-npm run build
-# rm -rf node_modules
-cd ../../
-
-echo '>>>>>>>>>>  MEDICAL'
-cd packages/react-medical
-rm -rf node_modules
-rm -rf dist
-npm install
-npm run build
-# rm -rf node_modules
-cd ../../
-
 echo '>>>>>>>>>>  APPS'
 cd apps/akello-app
 rm -rf node_modules

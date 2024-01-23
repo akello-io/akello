@@ -8,6 +8,8 @@ import {store} from "./store";
 import {Provider} from 'react-redux'
 import {Theme} from "react-daisyui";
 
+
+
 if(process.env.NODE_ENV=='production') {
     try {
         //TODO: move to config file

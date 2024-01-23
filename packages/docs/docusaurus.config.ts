@@ -84,7 +84,7 @@ const config: Config = {
 
     },
 
-    navbar: {      
+    navbar: {
       logo: {
         alt: 'Akello Logo',
         src: 'img/Akello.png',
@@ -127,6 +127,10 @@ const config: Config = {
             {
               label: 'Developer Docs',
               to: '/docs/developers/contributing',
+            },
+            {
+              label: 'Storybook',
+              to: 'https://storybook.akello.io',
             },
           ],
         },

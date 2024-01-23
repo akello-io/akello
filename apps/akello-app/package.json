@@ -4,9 +4,7 @@
   "private": true,
   "devDependencies": {
     "@akello/core": "file:../../packages/core",
-    "@akello/react": "file:../../packages/react",
-    "@akello/react-insights": "file:../../packages/react-insights",
-    "@akello/react-medical": "file:../../packages/react-medical",
+    "@akello/react": "file:../../packages/react",    
     "tailwindcss": "^3.3.5"
   },
   "dependencies": {

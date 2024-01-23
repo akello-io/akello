@@ -1,5 +1,5 @@
 name: Deploy Storybook
-run-name: ${{ github.actor }} is deploying storybook to react-storybook.akello.io 🚀
+run-name: ${{ github.actor }} is deploying storybook to storybook.akello.io 🚀
 on:
   workflow_run:
     workflows: [ "Run API Server Tests" ]
@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Build packages        
+        run: sh dev-build.sh
+
       - name: Install packages
         working-directory: packages/react
         run: npm install --force
@@ -22,7 +26,7 @@ jobs:
 
       - name: Upload to S3
         run: |
-          aws s3 sync packages/react/storybook-static s3://react-storybook.akello.io
+          aws s3 sync packages/react/storybook-static s3://storybook.akello.io
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
