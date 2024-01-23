@@ -67,6 +67,7 @@
         "postcss-loader": "^8.0.0",
         "rollup-plugin-dts": "^6.1.0",
         "rollup-plugin-peer-deps-external": "^2.2.4",
+        "sass": "^1.70.0",
         "storybook": "^7.6.10",
         "style-loader": "^3.3.4",
         "tailwind": "^4.0.0"
