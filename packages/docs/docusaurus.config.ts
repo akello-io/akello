@@ -71,6 +71,7 @@ const config: Config = {
   ],
 
   themeConfig: {
+    
     // Replace with your project's social card
     image: 'img/akello-social.png',
     algolia: {
@@ -83,7 +84,6 @@ const config: Config = {
       indexName: 'akello',
 
     },
-
     navbar: {
       logo: {
         alt: 'Akello Logo',
