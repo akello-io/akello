@@ -93,6 +93,8 @@ class RegistryService(BaseService):
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
+        #TODO: If Metriport is integrated then make a document query request for the patient
+
     @staticmethod
     def add_treatment_log(registry_id, sort_key, treatment_log: TreatmentLog):
 
