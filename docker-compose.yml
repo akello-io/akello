@@ -48,6 +48,8 @@ services:
       - AWS_REGION=${AWS_REGION}
       - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
       - PORT=5432
+    volumes:
+      - ./.cognito:/app/.cognito      
     ports:
       - "5432:5432"
     depends_on:
