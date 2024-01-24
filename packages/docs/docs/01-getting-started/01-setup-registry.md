@@ -4,30 +4,31 @@ sidebar_position: 1
 
 # 1. Setup a Registry
 
+Creating a registry in your system is a straightforward process, designed to be user-friendly and efficient. Here's a step-by-step guide to setting up a registry, starting right after you log in.
 
-Setting up a registry is super simple. All you need to do after you login is select the `CREATE REGISTRY` on the top right corner.
+### Initial Step: Creating the Registry
+- **Starting Point**: After logging in, head to the top right corner of your screen and click on `CREATE REGISTRY`.
+- **Workflow Experience**: Entering the create workflow will guide you through the necessary steps to establish your registry.
 
-Once you are in the create workflow experience you will be guided through the following steps
+### Detailed Steps in Registry Creation
 
+#### 1. Naming Your Registry
+- **Importance of a Descriptive Name**: Choose a name that accurately describes your patient population. This is particularly helpful if you're managing multiple population models or coordinating with team members across different registries.
+- **Strategy for Naming**: Consider using names that reflect the specific group or condition you're managing, making it easier to identify and access the registry.
 
+#### 2. Selecting Screeners
+- **Choosing Screeners**: From the provided dropdown menu, select one or more screeners that are relevant to assessing your population.
+- **Custom Screeners Option**: If you have specific needs, you can opt to use custom screeners. Instructions for this can be found [here](/).
 
-#### 1. Set the name of your Registry.
-
-Use a name that is descriptive of your population. This will be helpful if you are running multiple population models with team members across registries.
-
-#### 2. Define which screeners you want for this population.
-
-From the `dropdown` select 1 or more screeners you want to measure the population by. If you would like to use your own custom screener follow the instructions over [here](/).
-
-
-#### 3. Invite your team members
+#### 3. Adding Team Members
 
 :::danger Sensitive Patient Information 
 
-Make sure the users added to the registry are authorized to view patient information. 
+**Sensitive Information Warning**: Remember, patient information is sensitive. Ensure that anyone you add to the registry is authorized to view this information.
 
 :::
 
-Add your team member and set their role. The role helps with tracking time when it comes to billing and in the future we can customize views and notifications so that they are more relevant.
+- **Setting Roles for Team Members**: When adding your team members, assign them roles. These roles are crucial for aspects like time tracking for billing purposes. In the future, roles can also help in customizing views and notifications to make them more relevant to each team member.
+- **Invitations and Access**: Upon creating the registry, new users will receive an invite to join if they aren't already part of Akello. Existing users will see the new registry in their dashboard.
 
-Once you create the registry the users will get an invite if they are not part of Akello. If they are they will be able to see the registry from their dashboard.
+By following these steps, you can efficiently set up a registry that is tailored to your specific needs and is easy for your team to use and manage.
