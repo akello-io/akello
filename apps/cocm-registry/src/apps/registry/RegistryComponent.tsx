@@ -57,7 +57,7 @@ export default function DataGridDemo() {
         setChecked(true)
     };
 
-
+    
     return (
         <AppContainer isLoading={isLoading} title={selectedRegistry.name} is_admin={isAdmin} role={role} headerButtons={[
             (
