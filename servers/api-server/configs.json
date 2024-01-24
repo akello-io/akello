@@ -1,0 +1,45 @@
+{
+    "AKELLO_COGNITO_LOCAL": {
+        "description": "If true the local AWS cognito service is used for auth",
+        "options": "TRUE | FALSE"
+    },
+    "AKELLO_COGNITO_URL": {
+
+    },
+    "AKELLO_DYNAMODB_LOCAL": {
+        "description": "If true the local DynamoDB instance defined on AKELLO_DYNAMODB_LOCAL_URL is used",
+        "options": "TRUE | FALSE"
+    },
+    "AKELLO_DYNAMODB_LOCAL_URL": {
+        "description": "Local DynamoDB server URL. Required if AKELLO_DYNAMODB_LOCAL is set",
+        "options": "TRUE | FALSE"
+    },
+    "AKELLO_API_URL": {
+        "description": "The HTTP URL for where the akello Fast API server will be running. For example: http://localhost:8000/v1"
+    },
+    "AKELLO_UNIT_TEST": {
+        "description": "Set to TRUE if you are running unit tests. This will prevent any attempts to connect to the DynamoDB.",
+        "options": "TRUE | FALSE"
+    },
+    "AWS_ACCESS_KEY_ID": {
+        "description": "Found from your AWS account."
+    },
+    "AWS_ACCOUNT_ID": {
+        "description": "Found from your AWS account."
+    },
+    "AWS_BUCKET": {
+        "description": "This is the S3 bucket used during deployment to upload the static app to."
+    },
+    "AWS_CLOUD_FRONT_DISTRIBUTION": {
+        "description": "The cloudfront distribution that will be updated. This is used during deployment. "
+    },
+    "AWS_COGNITO_APP_CLIENT_ID": {
+        "description": "Make sure to set this to your local cognito service for local development."
+    },
+    "AWS_COGNITO_USERPOOL_ID": {},
+    "AWS_DYNAMODB_TABLE": {},
+    "AWS_REGION": {},
+    "AWS_SECRET_ACCESS_KEY": {},
+    "AWS_SECRET_NAME": {},
+    "AWS_STORYBOOK_BUCKET": {}
+}

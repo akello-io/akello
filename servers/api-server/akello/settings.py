@@ -2,7 +2,7 @@ import os, json
 from akello.secrets import get_secret
 
 
-with open('../../configs.json') as config_json:
+with open('./configs.json') as config_json:
     configs = json.load(config_json)
 
 

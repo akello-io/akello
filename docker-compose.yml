@@ -12,4 +12,22 @@ services:
     ports:
       - "9229:9229"
     environment:
-      - CODE=1234
+      - CODE=1234  
+  api-server:
+    build: ./servers/api-server   
+    environment:
+      - AWS_COGNITO_USERPOOL_ID=local_5P2pfQyq
+      - AWS_COGNITO_APP_CLIENT_ID=dt1m0ofdtf1h8ysawx1ev5ega
+      - AWS_DYNAMODB_TABLE='akello-local'
+      - AKELLO_API_URL=http://127.0.0.1:8000/v1
+      - AKELLO_COGNITO_LOCAL=TRUE
+      - AKELLO_COGNITO_URL=http://localhost:9229
+      - AKELLO_DYNAMODB_LOCAL=TRUE
+      - AKELLO_DYNAMODB_LOCAL_URL=http://localhost:8001      
+      - AWS_REGION=us-east-1
+      - AWS_DEFAULT_REGION=us-east-1
+    ports:
+      - "8000:8000"
+    depends_on:
+      - dynamodb
+      - cognito-local
