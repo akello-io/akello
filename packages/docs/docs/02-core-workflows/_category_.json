@@ -1,8 +1,4 @@
 {
   "label": "Core Workflows",
-  "position": 3,
-  "link": {
-    "type": "generated-index",
-    "description": "Core CoCM workflows in Akello."
-  }
+  "position": 3
 }

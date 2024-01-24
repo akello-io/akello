@@ -3,9 +3,10 @@ import {Clinic} from "../data/aims_model/clinic";
 import FinancialModelDBRecordTypeV1 from "../data/schemas/FinancialModel";
 
 
-export const getFinancialModel = async (name: string, token: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
+export const getFinancialModel = async (api_url: string, name: string, token: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
     const endpoint =  "financial-model/" + name;
     const resp = await apiRequest({
+        api_url: api_url,
         method: 'get',
         endpoint: endpoint,
         token: token,
@@ -21,9 +22,10 @@ export const getFinancialModel = async (name: string, token: string, onSuccess: 
 
 }
 
-export const getFinancialModels = async (token: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
+export const getFinancialModels = async (api_url: string, token: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
     const endpoint =  "financial-model";
     const resp = await apiRequest({
+        api_url: api_url,
         method: 'get',
         endpoint: endpoint,
         token: token,
@@ -38,10 +40,11 @@ export const getFinancialModels = async (token: string, onSuccess: (data: any) =
 
 }
 
-export const createFinancialModel = async (token: string, model: Clinic, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
+export const createFinancialModel = async (api_url: string, token: string, model: Clinic, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
     const endpoint =  "financial-model";
 
     const resp = await apiRequest({
+        api_url: api_url,
         method: 'post',
         endpoint: endpoint,
         token: token,
@@ -53,10 +56,11 @@ export const createFinancialModel = async (token: string, model: Clinic, onSucce
     });
 }
 
-export const saveFinancialModel = async (token: string, model: Clinic, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
+export const saveFinancialModel = async (api_url: string, token: string, model: Clinic, onSuccess: (data: any) => void, onFail?: (data: any) =>  void)  => {
     const endpoint =  "financial-model";
 
     const resp = await apiRequest({
+        api_url: api_url,
         method: 'put',
         endpoint: endpoint,
         token: token,
