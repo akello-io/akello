@@ -193,8 +193,6 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
 
     })
 
-
-
     return (
         <>
             <DataGrid

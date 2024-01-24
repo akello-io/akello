@@ -75,6 +75,7 @@
         "serve": "^14.2.1",
         "storybook": "^7.6.10",
         "style-loader": "^3.3.4",
+        "styled-components": "^6.1.8",
         "tailwind": "^4.0.0"
     },
     "readme": "ERROR: No README data found!",
