@@ -43,10 +43,10 @@ class MetriportAPI(object):
 
 
     def get_request(self, endpoint):
-        return requests.request("GET", self.api_url + '/' + endpoint, headers=self.headers)
+        return requests.request("GET", self.api_url + 'medical/v1/' + endpoint, headers=self.headers)
 
     def post_request(self, endpoint, payload=None):
-        return requests.request("POST", self.api_url + '/' + endpoint, headers=self.headers, data=payload)
+        return requests.request("POST", self.api_url + 'medical/v1/' + endpoint, headers=self.headers, data=payload)
 
 class Organization(MetriportAPI):
     endpoint = 'organization'

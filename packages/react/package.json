@@ -1,6 +1,6 @@
 {
     "name": "@akello/react",
-    "version": "0.0.8",
+    "version": "0.0.10",
     "private": false,
     "type": "module",
     "license": "Apache-2.0",
@@ -38,8 +38,8 @@
         "dist"
     ],
     "types": "dist/index.d.ts",
-    "peerDependencies": {
-        "@akello/core": "file:../core",
+    "peerDependencies": {        
+        "@akello/core": "0.0.3",
         "@mui/material": "^5.15.6",
         "@mui/styled-engine-sc": "^6.0.0-alpha.5",
         "@mui/x-data-grid": "^6.18.1",

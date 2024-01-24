@@ -1,7 +1,11 @@
-FROM public.ecr.aws/lambda/python:3.11
+
+FROM python:3.9
+
 ARG env
 COPY ./ ./
-COPY ./requirements.txt ./requirements.txt
 RUN python -m pip install --upgrade pip
 RUN pip install -r ./requirements.txt
-CMD ["akello.main.handler"]
+
+CMD ["uvicorn", "akello.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+EXPOSE 8000

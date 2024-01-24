@@ -12,4 +12,45 @@ services:
     ports:
       - "9229:9229"
     environment:
-      - CODE=1234
+      - CODE=1234 
+  api-server:
+    build: ./servers/api-server   
+    environment:
+      - AWS_COGNITO_USERPOOL_ID=${AWS_COGNITO_USERPOOL_ID}
+      - AWS_COGNITO_APP_CLIENT_ID=${AWS_COGNITO_APP_CLIENT_ID}
+      - AWS_DYNAMODB_TABLE=${AWS_DYNAMODB_TABLE}
+      - AKELLO_API_URL=${AKELLO_API_URL}
+      - AKELLO_COGNITO_LOCAL=${AKELLO_COGNITO_LOCAL}
+      - AKELLO_COGNITO_URL=${AKELLO_COGNITO_URL}
+      - AKELLO_DYNAMODB_LOCAL=${AKELLO_DYNAMODB_LOCAL}
+      - AKELLO_DYNAMODB_LOCAL_URL=${AKELLO_DYNAMODB_LOCAL_URL}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - PORT=8000
+    volumes:
+      - ./.cognito:/app/.cognito      
+    ports:
+      - "8000:8000"
+    depends_on:
+      - dynamodb
+      - cognito-local
+  cocm-client:
+    build: ./apps/cocm-registry
+    environment:
+      - AWS_COGNITO_USERPOOL_ID=${AWS_COGNITO_USERPOOL_ID}
+      - AWS_COGNITO_APP_CLIENT_ID=${AWS_COGNITO_APP_CLIENT_ID}
+      - AWS_DYNAMODB_TABLE=${AWS_DYNAMODB_TABLE}
+      - AKELLO_API_URL=${AKELLO_API_URL}
+      - AKELLO_COGNITO_LOCAL=${AKELLO_COGNITO_LOCAL}
+      - AKELLO_COGNITO_URL=${AKELLO_COGNITO_URL}
+      - AKELLO_DYNAMODB_LOCAL=${AKELLO_DYNAMODB_LOCAL}
+      - AKELLO_DYNAMODB_LOCAL_URL=${AKELLO_DYNAMODB_LOCAL_URL}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - PORT=5432
+    volumes:
+      - ./.cognito:/app/.cognito      
+    ports:
+      - "5432:5432"
+    depends_on:
+      - api-server        

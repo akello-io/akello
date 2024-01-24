@@ -41,5 +41,11 @@
     "AWS_REGION": {},
     "AWS_SECRET_ACCESS_KEY": {},
     "AWS_SECRET_NAME": {},
-    "AWS_STORYBOOK_BUCKET": {}
+    "AWS_STORYBOOK_BUCKET": {},
+    "METRIPORT_API_KEY": {
+        "description": "API Key for Metriport. If set, this integration is enabled."
+    },
+    "METRIPORT_API_URL": {
+        "description": "API URL for Metriport. If set, this integration is enabled."
+    }
 }
