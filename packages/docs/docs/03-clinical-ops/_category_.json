@@ -1,8 +1,4 @@
 {
   "label": "Clinical Ops",
-  "position": 3,
-  "link": {
-    "type": "generated-index",
-    "description": "Workflows important to Clinical Ops teams."
-  }
+  "position": 3
 }
