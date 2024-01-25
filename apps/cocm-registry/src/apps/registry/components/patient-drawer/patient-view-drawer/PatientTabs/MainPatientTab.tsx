@@ -27,7 +27,7 @@ const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient,
         var diff = moment.duration(ia.diff(today));
         return diff.weeks()
     }
-
+    
     return (
         <>
             <div className={"space-y-4"}>
