@@ -1,4 +1,4 @@
-import requests
+import requests, json
 
 """
 import os
@@ -43,10 +43,10 @@ class MetriportAPI(object):
 
 
     def get_request(self, endpoint):
-        return requests.request("GET", self.api_url + 'medical/v1/' + endpoint, headers=self.headers)
+        return requests.request("GET", self.api_url + '/medical/v1/' + endpoint, headers=self.headers)
 
     def post_request(self, endpoint, payload=None):
-        return requests.request("POST", self.api_url + 'medical/v1/' + endpoint, headers=self.headers, data=payload)
+        return requests.request("POST", self.api_url + '/medical/v1/' + endpoint, headers=self.headers, data=payload)
 
 class Organization(MetriportAPI):
     endpoint = 'organization'
@@ -98,8 +98,10 @@ class Patient(MetriportAPI):
     def delete_patient(self):
         raise Exception("Not Implemented")
 
-    def start_fhir_consolidated_data_query(self, patient_id):
-        response = self.post_request(self.endpoint + f'/{patient_id}/consolidated/query', payload={"metadata": {}})
+    def start_fhir_consolidated_data_query(self, patient_id, registry_id):
+        response = self.post_request(
+            self.endpoint + f'/{patient_id}/consolidated/query',
+            payload=json.dumps({"metadata": {"registry_id": registry_id}}))
         return response
 
     def get_fhir_consolidated_data_query_status(self, patient_id):

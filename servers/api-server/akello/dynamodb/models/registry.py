@@ -110,6 +110,8 @@ class PatientRegistry(RegistryDBBaseModel):
 
     payer: Optional[str] = None
 
+    integration_metriport_fhir_data: Optional[dict] = {}
+
     first_name: str
     last_name: str
     phone_number: str

@@ -75,7 +75,7 @@ def start(name):
                 cd servers/api-server && 
                 source .venv/bin/activate &&
                 pip install -r requirements.txt &&
-                uvicorn akello.main:app --reload
+                USE_NGROK=True NGROK_AUTHTOKEN={{authtoken}} uvicorn akello.main:app --reload                
         """
         os.system(cmd)  
     elif name=='cocm':
