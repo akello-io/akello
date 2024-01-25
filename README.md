@@ -1,4 +1,4 @@
-![Alt text](/assets/banner.jpg "Akello Banner")
+![Alt text](/assets/banner.png "Akello Banner")
 
 [![](https://dcbadge.vercel.app/api/server/WSqNrWBKKw)](https://discord.gg/WSqNrWBKKw)
 
