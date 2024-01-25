@@ -26,7 +26,7 @@ async def metriport_webhook(payload: dict):
             print(patient['bundle'])
             print(patient['filters'])
 
-            patient = RegistryService.get_patient(registry_id, patient['patientId'])
-            patient_registry = PatientRegistry(**patient)
+            saved_patient = RegistryService.get_patient(registry_id, patient['patientId'])
+            patient_registry = PatientRegistry(**saved_patient)
             patient_registry.integration_metriport_fhir_data = patient # TODO: only for debugging
             RegistryService.update_patient(patient_registry)
