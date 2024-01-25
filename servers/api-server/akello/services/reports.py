@@ -70,25 +70,66 @@ class ReportsService(BaseService):
     @staticmethod
     def get_registry_dashboard(registry_id, from_date, to_date):
 
+        patients = RegistryService.get_patients(registry_id)
+
+        scores = {}
+        payers = {}
+        treatment_performance = {
+            'avg_weeks': 0,
+            'median_weeks': 0,
+            'max_weeks': 0
+        }
+        list_weeks = []
+        for patient in patients:
+            patient_registry = PatientRegistry(**patient)
+
+            if patient_registry.payer not in payers:
+                payers[patient_registry.payer] = 1
+            else:
+                payers[patient_registry.payer] += 1
+
+            if len(patient_registry.treatment_logs) == 0: continue
+
+            first_treatment_log = patient_registry.treatment_logs[0]
+            last_treatment_log = patient_registry.treatment_logs[-1]
+
+            first_date = datetime.utcfromtimestamp(first_treatment_log.date / 1000)
+            last_date = datetime.utcfromtimestamp(last_treatment_log.date / 1000 )
+            treatment_weeks = (last_date - first_date).days / 7
+
+            treatment_performance['avg_weeks'] += treatment_weeks
+            list_weeks.append(treatment_weeks)
+            treatment_performance['max_weeks'] = max(treatment_performance['max_weeks'], treatment_weeks)
+
+            for score in last_treatment_log.scores:
+                if score.score_name not in scores:
+                    scores[score.score_name] = {
+                        'avg': score.score_value,
+                    }
+                else:
+                    scores[score.score_name]['avg'] = scores[score.score_name]['avg'] + score.score_value
+            # calculate the average
+
+        treatment_performance['avg_weeks'] = treatment_performance['avg_weeks'] / len(patients)
+
+        list_weeks.sort()
+        treatment_performance['median_weeks'] = list_weeks[len(list_weeks) // 2]
+
+        for score in scores:
+            scores[score]['avg'] = scores[score]['avg'] / len(patients)
+
+        payer_distribution = []
+        for idx, payer in enumerate(payers):
+            payer_distribution.append({
+                'id': idx,
+                'value': payers[payer],
+                'label': payer
+            })
+
         return {
-            'treatment': {
-                'avg_weeks': -1,
-                'median_weeks': -1,
-                'max_weeks': -1
-            },
-            'screening': {
-                'phq9': {
-                    'initial': 1,
-                    'current': 1,
-                    'weekly_delta': -1
-                },
-                'gad7': {
-                    'initial': 1,
-                    'current': 1,
-                    'weekly_delta': -1
-                }
-            },
-            'payer_distribution': [{'id': 1, 'value': 1, 'label': 'xx'}],
+            'treatment': treatment_performance,
+            'screening': scores,
+            'payer_distribution': payer_distribution,
             'patient_status_distribution': {
                 'status': 'status_keys',
                 'values': 'status_values'

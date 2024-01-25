@@ -3,7 +3,6 @@ import logging
 
 from akello.services import BaseService
 from akello.dynamodb.models.questionnaire import Questionnaire
-from dataclasses import asdict
 
 
 logger = logging.getLogger('mangum')
@@ -13,11 +12,11 @@ class ScreenerService(BaseService):
     
     @staticmethod
     def get_screeners():
-        screeners = os.listdir('akello/screeners')
+        screeners = os.listdir('akello/screeners/questionnaires')
         questionnaires = []
         for screener in screeners:
             if screener.endswith('.json'):
-                with open(f'akello/screeners/{screener}') as f:                    
+                with open(f'akello/screeners/questionnaires/{screener}') as f:
                     data = json.load(f)
                     questionnaire = Questionnaire(**data)
                     questionnaires.append(questionnaire.dict())

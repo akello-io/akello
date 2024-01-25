@@ -6,6 +6,7 @@ import Dropdown from "../registry/components/Dropdown";
 import {createRegistry} from "../../api/registry";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
+import { setIn } from "formik";
 
 
 
@@ -13,6 +14,11 @@ interface UserInvite {
     email: string
     role: string
     is_admin: boolean
+}
+
+interface APIIntegration {
+    name: string
+    api_key: string
 }
 
 interface RegistryCreateSectionProps {
@@ -24,6 +30,8 @@ interface RegistryCreateSectionProps {
     inputs: ReactNode
     registryName?: string
     invites?: UserInvite[]
+    integrations?: APIIntegration[]
+    logo_url?: string
 }
 
 const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
@@ -35,7 +43,9 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
         setIdx,
         inputs,
         registryName,
-        invites
+        invites,
+        integrations,
+        logo_url
     }
 ) => {
 
@@ -75,13 +85,15 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                         }
                         {
                             step == total_steps && (
-                                <button disabled={registryName == undefined || registryName == '' }  className={"btn btn-primary"} onClick={()=> {
+                                <button disabled={registryName == undefined || registryName == '' }  className={"btn btn-primary"} onClick={()=> {                                    
                                     createRegistry(token, {
                                         'name': registryName!,
                                         'invited-users': invites,
                                         'first_name': userProfile.first_name ? userProfile.first_name : '',
                                         'last_name': userProfile.last_name ? userProfile.last_name : '',
                                         'email': userProfile.email,
+                                        'integrations': integrations,
+                                        'logo_url': logo_url
                                     }, (data) => {
                                         navigate("/registry")
                                     })
@@ -103,6 +115,8 @@ const RegistryCreate = () => {
     const [stepIdx, setStepIdx] = useState(0)
     const [screeners, setScreeners] = useState([])
     const [registryName, setRegistryName] = useState('')
+    const [integrations, setIntegrations] = useState<APIIntegration[]>([])
+    const [logoUrl, setLogoUrl] = useState('')
 
     const create_steps = [
         {   step: 1,
@@ -119,6 +133,16 @@ const RegistryCreate = () => {
                             value={registryName}
                             onChange={(e: React.FormEvent<HTMLInputElement>) => {
                                 setRegistryName(e.currentTarget.value)
+                            }}
+                        />
+                        <input
+                            id={"logo-url"}
+                            type="text"
+                            placeholder="Logo URL"
+                            className="input input-bordered w-full max-w-xs"
+                            value={logoUrl}
+                            onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                                setLogoUrl(e.currentTarget.value)
                             }}
                         />
                     </div>
@@ -187,7 +211,6 @@ const RegistryCreate = () => {
                 </div>
             )
         },
-
     ]
 
     return (
@@ -207,6 +230,8 @@ const RegistryCreate = () => {
                     inputs={create_steps[stepIdx].inputs}
                     registryName={registryName}
                     invites={invites}
+                    integrations={integrations}
+                    logo_url={logoUrl}
                 />
 
             </main>

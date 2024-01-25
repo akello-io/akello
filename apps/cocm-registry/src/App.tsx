@@ -23,6 +23,7 @@ import ProfileComponent from "./apps/profile/ProfileComponent";
 import BillingReport from "./apps/reports/billing/BillingReport";
 import RegistryReport from "./apps/reports/registry/RegistryReport";
 import {getUser} from "./api/user";
+import { debug } from 'console';
 
 // Configure Amplify in index file or root file
 
@@ -107,12 +108,21 @@ function App() {
                                 dispatch(setSelectedRegistry(JSON.parse(stored_selection)))
                             }
 
-                            dispatch(setUserProfile({
-                                first_name: session.getIdToken().payload['given_name'],
-                                last_name: session.getIdToken().payload['family_name'],
-                                email: session.getIdToken().payload['email'],
-                                profile_photo: session.getIdToken().payload['picture'],
-                            }))
+                            if(process.env.REACT_APP_AKELLO_COGNITO_LOCAL) {                                
+                                dispatch(setUserProfile({
+                                    first_name: 'Vijay',
+                                    last_name: 'Selvaraj',
+                                    email: 'vijay@akellohealth.com',
+                                    profile_photo: 'https://avatars.githubusercontent.com/u/398292?v=4',
+                                }))                                
+                            } else {                                
+                                dispatch(setUserProfile({
+                                    first_name: session.getIdToken().payload['given_name'],
+                                    last_name: session.getIdToken().payload['family_name'],
+                                    email: session.getIdToken().payload['email'],
+                                    profile_photo: session.getIdToken().payload['picture'],
+                                }))    
+                            }                            
                         }).catch((resp) => {
                             if(signOut) {
                                 signOut()

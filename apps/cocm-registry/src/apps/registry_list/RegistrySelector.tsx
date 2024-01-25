@@ -9,19 +9,21 @@ import {useNavigate} from "react-router";
 import {setSelectedRegistry} from "../../reducers/appSlice";
 import TopNavigation from "../../stories/app/Navigation/TopNavigation/TopNavigation";
 
-
 interface RegistryProps {
     id: string
     name: string
     members: number
+    logo_url?: string
     patients: number
     description: string
     questionnaires: [any]
+    integrations?: [any]
 }
 
-const Registry:React.FC<RegistryProps> = ({id, name, members, patients, questionnaires, description}) => {
+const Registry:React.FC<RegistryProps> = ({id, name, members, patients, questionnaires, description, integrations, logo_url}) => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch()    
+    console.log('integrations: ' + integrations)
     return (
         <>
             <div className={"flex flex-row w-full justify-between bg-white py-8 px-12"} onClick={() => {
@@ -34,14 +36,17 @@ const Registry:React.FC<RegistryProps> = ({id, name, members, patients, question
             }}>
                 <div className={" flex flex-row space-x-4"}>
                     <div>
-                        <img src={AkelloLog} className={"w-28 h-auto rounded-lg cursor-pointer"}/>
+                        <img src={logo_url ? logo_url : AkelloLog} className={"w-28 h-auto rounded-lg cursor-pointer"}/>
                     </div>
                     <div className={"flex flex-col space-y-4"}>
                         <div className={"font-medium text-3xl"}>
                             {name}
                         </div>
-                        <div>
-                            {members} members | {patients} active patients | {questionnaires.length} screeners
+                        <div className="flex flex-row">
+                            {members} members | {patients} active patients | {questionnaires.length} screeners                            
+                        </div>
+                        <div>                            
+                            
                         </div>
                     </div>
 
@@ -102,7 +107,7 @@ const Section = () => {
                     {
                         !isLoading && registries.map((registry) => {
                             return (
-                                <Registry id={registry['id']} name={registry['name']} members={registry['members']} patients={registry['active_patients']} questionnaires={registry['questionnaires']} description={''} />
+                                <Registry id={registry['id']} name={registry['name']} members={registry['members']} patients={registry['active_patients']} questionnaires={registry['questionnaires']} integrations={registry['integrations']} description={''} logo_url={registry['logo_url']} />
                             )
                         })
                     }

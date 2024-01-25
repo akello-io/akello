@@ -36,7 +36,7 @@ const Dashboard = () => {
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
     const [stats, setStats] = useState({} as any)
     const [payerDistribution, setPayerDistribution] = useState([] as any[])
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)    
     const [value, setValue] = useState({
         startDate: new Date(),
         endDate: new Date()
@@ -50,20 +50,19 @@ const Dashboard = () => {
         'values': [0] as any
     } as any)
     const [treatment, setTreatment] = useState({} as any)
-    const [screening, setScreening] = useState({
-        'phq9': {}, 'gad7': {},
-    } as any)
+    const [screening, setScreening] = useState({} as any)
 
 
-    useEffect(() => {
+    useEffect(() => {                
         if(token && selectedRegistry.id && value.startDate && value.endDate) {
             setIsLoading(true)
-            getRegistryStats(selectedRegistry.id, new Date(value.startDate).getTime(), new Date(value.endDate).getTime(), token, (data) => {
+            getRegistryStats(selectedRegistry.id, new Date(value.startDate).getTime(), new Date(value.endDate).getTime(), token, (data) => {                
                 setPayerDistribution(data['payer_distribution'])
                 setScreening(data['screening'])
                 setTreatment(data['treatment'])
                 setStatusDistribution(data['patient_status_distribution'])
                 setIsLoading(false)
+                debugger;
             })
         }
 
@@ -94,37 +93,33 @@ const Dashboard = () => {
                             <ScreeningComponent title={"Treatment Performance"}>
                                 <div className={"bg-white p-12 w-full pb-6 flex flex-row space-x-12"}>
                                     <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>1</div>
+                                        <div className={"font-black text-5xl"}>{treatment['avg_weeks']}</div>
                                         <div>Avg. Weeks in treatment</div>
                                     </div>
 
                                     <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>1</div>
+                                        <div className={"font-black text-5xl"}>{treatment['median_weeks']}</div>
                                         <div>Median Weeks in treatment</div>
                                     </div>
 
                                     <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>1</div>
+                                        <div className={"font-black text-5xl"}>{treatment['max_weeks']}</div>
                                         <div>Max Weeks in treatment</div>
                                     </div>
                                 </div>
                             </ScreeningComponent>
-                            <ScreeningComponent title={"PHQ-9/GAD7-9 Screening Avg"}>
+                            <ScreeningComponent title={"Avg Measurements"}>
                                 <div className={"bg-white p-12 w-full pb-6 flex flex-row space-x-12"}>
-                                    <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>1</div>
-                                        <div>Initial</div>
-                                    </div>
-
-                                    <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>1</div>
-                                        <div>Current</div>
-                                    </div>
-
-                                    <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>1</div>
-                                        <div>Weekly Change</div>
-                                    </div>
+                                    {
+                                        Object.keys(screening).map((key, index) => {
+                                            return (
+                                                <div className={"text-center space-y-4"}>
+                                                    <div className={"font-black text-5xl"}>{screening[key]['avg']}</div>
+                                                    <div>{key}</div>
+                                                </div>
+                                            )
+                                        })
+                                    }                                    
                                 </div>
                             </ScreeningComponent>
                             <ScreeningComponent title={"Payer Distribution"}>
@@ -132,11 +127,7 @@ const Dashboard = () => {
                                     <PieChart
                                         series={[
                                             {
-                                                data: [
-                                                    { id: 0, value: 10, label: 'series A' },
-                                                    { id: 1, value: 15, label: 'series B' },
-                                                    { id: 2, value: 20, label: 'series C' },
-                                                ],
+                                                data: payerDistribution,
                                             },
                                         ]}
                                     />
