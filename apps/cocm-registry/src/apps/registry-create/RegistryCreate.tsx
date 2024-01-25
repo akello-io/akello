@@ -31,6 +31,7 @@ interface RegistryCreateSectionProps {
     registryName?: string
     invites?: UserInvite[]
     integrations?: APIIntegration[]
+    logo_url?: string
 }
 
 const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
@@ -43,7 +44,8 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
         inputs,
         registryName,
         invites,
-        integrations
+        integrations,
+        logo_url
     }
 ) => {
 
@@ -90,7 +92,8 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                                         'first_name': userProfile.first_name ? userProfile.first_name : '',
                                         'last_name': userProfile.last_name ? userProfile.last_name : '',
                                         'email': userProfile.email,
-                                        'integrations': integrations                                        
+                                        'integrations': integrations,
+                                        'logo_url': logo_url
                                     }, (data) => {
                                         navigate("/registry")
                                     })
@@ -113,6 +116,7 @@ const RegistryCreate = () => {
     const [screeners, setScreeners] = useState([])
     const [registryName, setRegistryName] = useState('')
     const [integrations, setIntegrations] = useState<APIIntegration[]>([])
+    const [logoUrl, setLogoUrl] = useState('')
 
     const create_steps = [
         {   step: 1,
@@ -129,6 +133,16 @@ const RegistryCreate = () => {
                             value={registryName}
                             onChange={(e: React.FormEvent<HTMLInputElement>) => {
                                 setRegistryName(e.currentTarget.value)
+                            }}
+                        />
+                        <input
+                            id={"logo-url"}
+                            type="text"
+                            placeholder="Logo URL"
+                            className="input input-bordered w-full max-w-xs"
+                            value={logoUrl}
+                            onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                                setLogoUrl(e.currentTarget.value)
                             }}
                         />
                     </div>
@@ -206,7 +220,7 @@ const RegistryCreate = () => {
 
                     <div className={"grid grid-cols-3 gap-4"}>                        
                         <input type="text" placeholder="API Key" className="input input-bordered w-full max-w-xs"
-                                               value=""
+                                               value={integrations[0]?.api_key}
                                             onChange={(e: React.FormEvent<HTMLInputElement>) => {
                                                 setIntegrations([{name: 'Metriport', api_key: e.currentTarget.value}])
                                             }}                                        
@@ -237,6 +251,7 @@ const RegistryCreate = () => {
                     registryName={registryName}
                     invites={invites}
                     integrations={integrations}
+                    logo_url={logoUrl}
                 />
 
             </main>

@@ -96,6 +96,7 @@ class RegistryModel(RegistryDBBaseModel):
     active_patients: int = 0
     questionnaires: List[dict] = None
     integrations: List[RegistryIntegration] = []
+    logo_url: Optional[str] = None
 
     @property
     def object_type(self) -> str:

@@ -4,6 +4,7 @@ export const appSlice = createSlice({
     name: 'app',
     initialState: {
         token: '',
+        test: 'test',
         selectedRegistry: {
             id: '',
             name: ''
@@ -16,8 +17,8 @@ export const appSlice = createSlice({
         }
     },
     reducers: {
-        setAuthToken: (state, action) => {
-            state.token = action.payload
+        setAuthToken: (state, action) => {            
+            state.token = action.payload            
         },
 
         setSelectedRegistry: (state, action) => {
@@ -25,7 +26,7 @@ export const appSlice = createSlice({
             state.selectedRegistry.name = action.payload.name
         },
 
-        setUserProfile: (state, action) => {
+        setUserProfile: (state, action) => {              
             state.userProfile.first_name = action.payload.first_name
             state.userProfile.last_name = action.payload.last_name
             state.userProfile.email = action.payload.email

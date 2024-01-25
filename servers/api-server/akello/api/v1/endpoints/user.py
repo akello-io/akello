@@ -62,8 +62,8 @@ async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_chec
         registry['questionnaires'] = registry_metadata['questionnaires']
 
         registry['integrations'] = registry_metadata['integrations']
+        registry['logo_url'] = registry_metadata['logo_url']
 
-        print('registry_metadata')
-        print(registry_metadata)
+        print('>>>>>>>>>>> logo url %s' % registry['logo_url'])
 
     return registries
