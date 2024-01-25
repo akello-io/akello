@@ -61,4 +61,9 @@ async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_chec
         # TODO: This could be a farily large object since we are returning the full FHIR Resource
         registry['questionnaires'] = registry_metadata['questionnaires']
 
+        registry['integrations'] = registry_metadata['integrations']
+
+        print('registry_metadata')
+        print(registry_metadata)
+
     return registries

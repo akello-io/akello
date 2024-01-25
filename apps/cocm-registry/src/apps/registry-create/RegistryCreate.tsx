@@ -6,6 +6,7 @@ import Dropdown from "../registry/components/Dropdown";
 import {createRegistry} from "../../api/registry";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
+import { setIn } from "formik";
 
 
 
@@ -13,6 +14,11 @@ interface UserInvite {
     email: string
     role: string
     is_admin: boolean
+}
+
+interface APIIntegration {
+    name: string
+    api_key: string
 }
 
 interface RegistryCreateSectionProps {
@@ -24,6 +30,7 @@ interface RegistryCreateSectionProps {
     inputs: ReactNode
     registryName?: string
     invites?: UserInvite[]
+    integrations?: APIIntegration[]
 }
 
 const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
@@ -35,7 +42,8 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
         setIdx,
         inputs,
         registryName,
-        invites
+        invites,
+        integrations
     }
 ) => {
 
@@ -75,13 +83,14 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                         }
                         {
                             step == total_steps && (
-                                <button disabled={registryName == undefined || registryName == '' }  className={"btn btn-primary"} onClick={()=> {
+                                <button disabled={registryName == undefined || registryName == '' }  className={"btn btn-primary"} onClick={()=> {                                    
                                     createRegistry(token, {
                                         'name': registryName!,
                                         'invited-users': invites,
                                         'first_name': userProfile.first_name ? userProfile.first_name : '',
                                         'last_name': userProfile.last_name ? userProfile.last_name : '',
                                         'email': userProfile.email,
+                                        'integrations': integrations                                        
                                     }, (data) => {
                                         navigate("/registry")
                                     })
@@ -103,6 +112,7 @@ const RegistryCreate = () => {
     const [stepIdx, setStepIdx] = useState(0)
     const [screeners, setScreeners] = useState([])
     const [registryName, setRegistryName] = useState('')
+    const [integrations, setIntegrations] = useState<APIIntegration[]>([])
 
     const create_steps = [
         {   step: 1,
@@ -187,6 +197,25 @@ const RegistryCreate = () => {
                 </div>
             )
         },
+        {
+            step: 3,
+            title: "Metriport",
+            description: "Metriport gets comprehensive data for each patient refered into the registry. Would you like to add Metriport to this registry?",
+            inputs: (
+                <div className={"space-y-4"}>
+
+                    <div className={"grid grid-cols-3 gap-4"}>                        
+                        <input type="text" placeholder="API Key" className="input input-bordered w-full max-w-xs"
+                                               value=""
+                                            onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                                                setIntegrations([{name: 'Metriport', api_key: e.currentTarget.value}])
+                                            }}                                        
+                                        />
+                    </div>
+
+                </div>
+            )
+        },
 
     ]
 
@@ -207,6 +236,7 @@ const RegistryCreate = () => {
                     inputs={create_steps[stepIdx].inputs}
                     registryName={registryName}
                     invites={invites}
+                    integrations={integrations}
                 />
 
             </main>

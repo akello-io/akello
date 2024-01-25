@@ -17,11 +17,13 @@ interface RegistryProps {
     patients: number
     description: string
     questionnaires: [any]
+    integrations?: [any]
 }
 
-const Registry:React.FC<RegistryProps> = ({id, name, members, patients, questionnaires, description}) => {
+const Registry:React.FC<RegistryProps> = ({id, name, members, patients, questionnaires, description, integrations}) => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch()    
+    console.log('integrations: ' + integrations)
     return (
         <>
             <div className={"flex flex-row w-full justify-between bg-white py-8 px-12"} onClick={() => {
@@ -42,6 +44,15 @@ const Registry:React.FC<RegistryProps> = ({id, name, members, patients, question
                         </div>
                         <div>
                             {members} members | {patients} active patients | {questionnaires.length} screeners
+                        </div>
+                        <div>                            
+                            {
+                                integrations && integrations.length > 0 && (
+                                    <>
+                                        <div>Metriport</div>
+                                    </>
+                                )
+                            } 
                         </div>
                     </div>
 
@@ -102,7 +113,7 @@ const Section = () => {
                     {
                         !isLoading && registries.map((registry) => {
                             return (
-                                <Registry id={registry['id']} name={registry['name']} members={registry['members']} patients={registry['active_patients']} questionnaires={registry['questionnaires']} description={''} />
+                                <Registry id={registry['id']} name={registry['name']} members={registry['members']} patients={registry['active_patients']} questionnaires={registry['questionnaires']} integrations={registry['integrations']} description={''} />
                             )
                         })
                     }

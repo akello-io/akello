@@ -82,6 +82,11 @@ class PatientStatysTypes(str, Enum):
     deactivated = 'Deactivated'
 
 
+class RegistryIntegration(BaseModel):
+    name: str
+    api_key: str
+
+
 class RegistryModel(RegistryDBBaseModel):
     id: str
     name: str
@@ -90,6 +95,7 @@ class RegistryModel(RegistryDBBaseModel):
     members: int = 0
     active_patients: int = 0
     questionnaires: List[dict] = None
+    integrations: List[RegistryIntegration] = []
 
     @property
     def object_type(self) -> str:
@@ -110,7 +116,7 @@ class PatientRegistry(RegistryDBBaseModel):
 
     payer: Optional[str] = None
 
-    integration_metriport_fhir_data: Optional[dict] = {}
+    integration_metriport_fhir_data: Optional[dict] = None
 
     first_name: str
     last_name: str
