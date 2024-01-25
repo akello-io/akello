@@ -211,26 +211,6 @@ const RegistryCreate = () => {
                 </div>
             )
         },
-        {
-            step: 3,
-            title: "Metriport",
-            description: "Metriport gets comprehensive data for each patient refered into the registry. Would you like to add Metriport to this registry?",
-            inputs: (
-                <div className={"space-y-4"}>
-
-                    <div className={"grid grid-cols-3 gap-4"}>                        
-                        <input type="text" placeholder="API Key" className="input input-bordered w-full max-w-xs"
-                                               value={integrations[0]?.api_key}
-                                            onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                                                setIntegrations([{name: 'Metriport', api_key: e.currentTarget.value}])
-                                            }}                                        
-                                        />
-                    </div>
-
-                </div>
-            )
-        },
-
     ]
 
     return (

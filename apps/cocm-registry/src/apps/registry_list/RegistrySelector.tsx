@@ -8,8 +8,6 @@ import {RootState} from "../../store";
 import {useNavigate} from "react-router";
 import {setSelectedRegistry} from "../../reducers/appSlice";
 import TopNavigation from "../../stories/app/Navigation/TopNavigation/TopNavigation";
-import MetriportLogo from "../../images/integrations/metriport-logo.png";
-
 
 interface RegistryProps {
     id: string
@@ -45,14 +43,7 @@ const Registry:React.FC<RegistryProps> = ({id, name, members, patients, question
                             {name}
                         </div>
                         <div className="flex flex-row">
-                            {members} members | {patients} active patients | {questionnaires.length} screeners
-                            {
-                                integrations && integrations.length > 0 && (
-                                    <>
-                                         <div>&nbsp;|&nbsp;</div> <img src={MetriportLogo} className={"w-28 h-auto rounded-lg cursor-pointer"}/>  
-                                    </>
-                                )
-                            } 
+                            {members} members | {patients} active patients | {questionnaires.length} screeners                            
                         </div>
                         <div>                            
                             
