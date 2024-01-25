@@ -72,6 +72,24 @@ class RegistryService(BaseService):
 
 
     @staticmethod
+    def get_patient(registry_id, patient_id):
+        try:
+            response = registry_db.get_item(
+                Key={
+                    'partition_key': 'registry-patient:%s' % registry_id,
+                    'sort_key': patient_id
+                }
+            )
+        except ClientError as e:
+            print(e)
+            print(e.response['No item found'])
+
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200
+
+        return response['Item']
+
+    @staticmethod
     def get_patients(registry_id, flag=None):
         try:
             response = registry_db.query(
@@ -100,7 +118,22 @@ class RegistryService(BaseService):
         api_url = os.getenv('METRIPORT_API_URL', None)
         if api_key and api_url:
             patient = Patient(api_key=api_key, api_url=api_url)
-            patient.start_fhir_consolidated_data_query(patient_registry.patient_mrn)
+            resp = patient.start_fhir_consolidated_data_query(patient_registry.patient_mrn, patient_registry.id)
+            assert resp.status_code == 200 or resp.status_code == 404
+
+    @staticmethod
+    def update_patient(patient_registry: PatientRegistry):
+        item = patient_registry.toJson()
+
+        item = json.loads(json.dumps(item), parse_float=Decimal)
+        item['partition_key'] = patient_registry.partition_key
+        item['sort_key'] = patient_registry.sort_key
+        response = registry_db.put_item(
+            Item=item
+        )
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200
+
 
     @staticmethod
     def add_treatment_log(registry_id, sort_key, treatment_log: TreatmentLog):

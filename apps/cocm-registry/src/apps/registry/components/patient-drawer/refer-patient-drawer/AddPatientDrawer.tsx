@@ -31,8 +31,7 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
             dob: '',
         },
         validationSchema: Yup.object({
-            mrn: Yup.string()
-                .max(15, 'Must be 15 characters or less')
+            mrn: Yup.string()                
                 .required('Required'),
             payer: Yup.string()
                 .max(15, 'Must be 15 characters or less'),

@@ -117,6 +117,8 @@ export class PatientRegistry {
     weeks_since_initial_assessment?: number
     minutes_this_month?: number
 
+    integration_metriport_fhir_data?: any
+
     treatment_logs?: TreatmentLog[] = []
 
     constructor(
