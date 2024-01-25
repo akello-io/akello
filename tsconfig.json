@@ -1,23 +1,26 @@
 {
-  "compilerOptions": {
-    "baseUrl": "src/",
-    // Default
-    "target": "es5",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
+    "compilerOptions": {
+        "baseUrl": "src/",
+        // Default
+        "target": "es5",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true,
 
-    // Added
-    "jsx": "react",
-    "module": "ESNext",
-    "declaration": true,
-    "declarationDir": "types",
-    "sourceMap": true,
-    "outDir": "dist",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true
-  },
-  "exclude": ["node_modules"]
+        // Added
+        "jsx": "react",
+        "module": "ESNext",
+        "declaration": true,
+        "declarationDir": "types",
+        "sourceMap": true,
+        "outDir": "dist",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "emitDeclarationOnly": true,
+        "paths": {
+            "core": ["./packages/core/src/index.ts"]
+        }
+    },
+    "exclude": ["node_modules"]
 }

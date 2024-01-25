@@ -1,0 +1,21 @@
+{
+    "name": "core",
+    "root": "packages/core",
+    "projectType": "library",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/core/src",
+    "targets": {
+      "test": {
+        "command": "npx jest",
+        "options": {
+          "cwd": "packages/core"
+        }
+      },
+      "build": {
+        "command": "npx rollup -c",
+        "options": {
+          "cwd": "packages/core"
+        }
+      }
+    }
+}

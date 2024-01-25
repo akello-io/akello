@@ -1,0 +1,15 @@
+{
+    "name": "@akello/storybook",
+    "root": "packages/react",
+    "projectType": "application",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/react/src",
+    "targets": {
+        "storybook": {
+            "command": "npx storybook dev -p 6006",
+            "options": {
+                "cwd": "packages/react"
+            }
+        }
+    }
+}

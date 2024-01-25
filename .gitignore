@@ -8,3 +8,6 @@ venv
 # docker volume for cognito
 .cognito
 .vscode/
+.nx/installation
+.nx/cache
+node_modules/
