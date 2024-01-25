@@ -15,7 +15,7 @@ class TestRegistryService(TestCase):
                 'HTTPStatusCode': 200
             }
         }
-        registry_id = RegistryService.create_registry('test', [], 'test')
+        registry_id = RegistryService.create_registry('test', [], [])
         assert mock_query.called
         assert registry_id
 
