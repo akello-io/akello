@@ -16,7 +16,7 @@ const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = (
         {
             field: 'date',
             headerName: 'Date',
-            width: 160,
+            width: 160,            
             valueGetter: (params) => {
                 if(params.row.date) {
                     return new Date(params.row.date).toLocaleDateString()

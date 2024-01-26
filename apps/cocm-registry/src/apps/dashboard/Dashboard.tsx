@@ -73,19 +73,7 @@ const Dashboard = () => {
     return (
         <>
             <AppContainer title={"Dashboard"} isLoading={isLoading}>
-
-
-                {/*
-                <div className={"w-64"}>
-                    <Datepicker
-                        primaryColor={"blue"}
-                        value={value}
-                        onChange={handleValueChange}
-                        showShortcuts={true}
-                    />
-                </div>
-                */}
-
+               
 
                 <div className={"p-4 grid grid-cols-2 gap-4"}>
 

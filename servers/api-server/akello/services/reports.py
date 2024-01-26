@@ -99,7 +99,7 @@ class ReportsService(BaseService):
             for score in last_treatment_log.scores:
                 if score.score_name not in scores:
                     scores[score.score_name] = {
-                        'avg': score.score_value,
+                        'avg': score.score_value
                     }
                 else:
                     scores[score.score_name]['avg'] = scores[score.score_name]['avg'] + score.score_value

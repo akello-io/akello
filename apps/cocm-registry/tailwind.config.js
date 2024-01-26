@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,tsx}"],
+  content: [
+    "./src/**/*.{html,js,tsx}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js"
+
+  ],
   daisyui: {
     themes: ["light", "dark", "cupcake"],
   },
