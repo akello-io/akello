@@ -51,7 +51,7 @@ def setup():
         user_pool_id = create_user_pool()
         client_id = create_user_pool_client(user_pool_id)
 
-    run_docker()    
+    # run_docker()    
 
     print("\n\n")
     print("Add the following to your .env file")
