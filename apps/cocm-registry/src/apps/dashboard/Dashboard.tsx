@@ -57,12 +57,13 @@ const Dashboard = () => {
         if(token && selectedRegistry.id && value.startDate && value.endDate) {
             setIsLoading(true)
             getRegistryStats(selectedRegistry.id, new Date(value.startDate).getTime(), new Date(value.endDate).getTime(), token, (data) => {                
-                setPayerDistribution(data['payer_distribution'])
-                setScreening(data['screening'])
-                setTreatment(data['treatment'])
-                setStatusDistribution(data['patient_status_distribution'])
                 setIsLoading(false)
-                debugger;
+                if(data) {
+                    setPayerDistribution(data['payer_distribution'])
+                    setScreening(data['screening'])
+                    setTreatment(data['treatment'])
+                    setStatusDistribution(data['patient_status_distribution'])
+                }
             })
         }
 

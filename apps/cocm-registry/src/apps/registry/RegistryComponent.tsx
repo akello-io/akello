@@ -32,7 +32,7 @@ export default function DataGridDemo() {
     useEffect(() => {
         if(token && selectedRegistry.id) {
             setIsLoading(true)
-            getRegistryPatients(selectedRegistry.id, token, (data) => {
+            getRegistryPatients(selectedRegistry.id, token, (data) => {                
                 setPatients(data['successfully_loaded'])
                 setIsAdmin(data['is_admin'])
                 setQuestionnaires(data['questionnaires'])

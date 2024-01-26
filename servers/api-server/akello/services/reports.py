@@ -72,6 +72,7 @@ class ReportsService(BaseService):
 
         patients = RegistryService.get_patients(registry_id)
 
+        payer_distribution = []
         scores = {}
         payers = {}
         treatment_performance = {
@@ -110,15 +111,18 @@ class ReportsService(BaseService):
                     scores[score.score_name]['avg'] = scores[score.score_name]['avg'] + score.score_value
             # calculate the average
 
+        if len(patients) == 0: return None 
+
         treatment_performance['avg_weeks'] = treatment_performance['avg_weeks'] / len(patients)
 
-        list_weeks.sort()
-        treatment_performance['median_weeks'] = list_weeks[len(list_weeks) // 2]
+
+        if len(list_weeks) > 0:
+            list_weeks.sort()        
+            treatment_performance['median_weeks'] = list_weeks[len(list_weeks) // 2]
 
         for score in scores:
             scores[score]['avg'] = scores[score]['avg'] / len(patients)
-
-        payer_distribution = []
+        
         for idx, payer in enumerate(payers):
             payer_distribution.append({
                 'id': idx,
