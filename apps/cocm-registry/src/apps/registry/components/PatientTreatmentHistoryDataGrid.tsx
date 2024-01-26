@@ -51,7 +51,7 @@ const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = (
         },
     ];
 
-    let score_names = questionnaires.map((questionnaire) => { return questionnaire.uid + '_score' })
+    let score_names = questionnaires.map((questionnaire) => { return questionnaire.name})
 
     if(!selectedPatient.treatment_logs) {
         return (

@@ -173,8 +173,8 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             }
         }
         const last_column = {
-            "field": questionnaire.uid + '_last',
-            "headerName": questionnaire.uid + ' Last',
+            "field": questionnaire.uid + '_first',
+            "headerName": questionnaire.name + ' Last',
             "description": "Most recent " + questionnaire.uid + " screening",
             "type": "number",
             "width": 110,
