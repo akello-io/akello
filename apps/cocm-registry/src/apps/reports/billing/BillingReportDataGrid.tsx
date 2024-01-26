@@ -11,65 +11,7 @@ const columns: GridColDef[] = [
         field: 'last_name',
         headerName: 'Last name',
         width: 150,
-    },
-    {
-        field: 'phq9_first',
-        headerName: 'First',
-        description: 'First baseline PHQ9 screening',
-        type: 'number',
-        width: 110,
-        editable: true,
-    },
-    {
-        field: 'phq9_last',
-        headerName: 'Last',
-        description: 'Most recent PHQ9 screening',
-        type: 'number',
-        width: 110,
-        editable: true,
-    },
-    {
-        field: 'phq9_last_date',
-        headerName: 'Last Date',
-        description: 'Date of most recent PHQ9 screening',
-        type: 'date',
-        width: 110,
-        editable: true,
-        valueGetter: (params) => {
-            if(params.row.phq9_last_date) {
-                return new Date(params.row.phq9_last_date)
-            }
-        }
-    },
-    {
-        field: 'gad7_first',
-        headerName: 'First',
-        description: 'First baseline GAD7 screening.',
-        type: 'number',
-        width: 110,
-        editable: true,
-    },
-    {
-        field: 'gad7_last',
-        headerName: 'Last',
-        description: 'Most recent GAD7 screening.',
-        type: 'number',
-        width: 110,
-        editable: true,
-    },
-    {
-        field: 'gad7_last_date',
-        headerName: 'Last Date',
-        description: 'Date of last GAD7 screening.',
-        type: 'date',
-        width: 110,
-        editable: true,
-        valueGetter: (params) => {
-            if(params.row.gad7_last_date) {
-                return new Date(params.row.gad7_last_date)
-            }
-        }
-    },
+    },    
     {
         field: 'stat_date',
         headerName: 'Date',

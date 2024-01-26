@@ -34,7 +34,7 @@ class ReportsService(BaseService):
 
             for treatment_log in patient['treatment_logs']:
                 t = TreatmentLog(**treatment_log)
-                utc_dt = datetime.utcfromtimestamp(t.date)
+                utc_dt = datetime.utcfromtimestamp(t.date / 1000)
                 if not (utc_dt.timestamp() >= from_date and utc_dt.timestamp() <= to_date):
                     continue
                 year = utc_dt.year
@@ -53,12 +53,6 @@ class ReportsService(BaseService):
                 r.append({
                     'first_name': p['first_name'],
                     'last_name': p['last_name'],
-                    'phq9_first': p['phq9_first'],
-                    'phq9_last': p['phq9_last'],
-                    'phq9_last_date': p['phq9_last_date'],
-                    'gad7_first': p['gad7_first'],
-                    'gad7_last': p['gad7_last'],
-                    'gad7_last_date': p['gad7_last_date'],
                     'mrn': mrn,
                     'stat_date': s,
                     'total_minutes': patient_report['patients'][mrn]['minute_stats'][s]

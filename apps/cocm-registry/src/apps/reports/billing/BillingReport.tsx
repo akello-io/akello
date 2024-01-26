@@ -53,10 +53,7 @@ const BillingReport = () => {
                                 showShortcuts={true}
                             />
 
-                            <BillingReportDataGrid data={statData}/>
-                            <br />
-                            If you would like to learn more about our roadmap please feel free to reach me directly at
-                            <a href={"mailto: vijay@akellohealth.com"} className={"text-blue-500 font-semibold"}> vijay@akellohealth.com </a>.
+                            <BillingReportDataGrid data={statData}/>                                                        
                         </div>
                     </div>
                 </div>
