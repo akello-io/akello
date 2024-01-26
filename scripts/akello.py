@@ -66,7 +66,6 @@ def setup():
     print(f"export AKELLO_DYNAMODB_LOCAL_URL=http://localhost:8001")
     print("\n\n")
 
-
 @click.command()
 @click.argument('name')
 def start(name):    
@@ -80,7 +79,7 @@ def start(name):
         os.system(cmd)  
     elif name=='cocm':
         cmd = """
-            sh dev-build.sh &&
+            sh scripts/dev-build.sh &&
             cd apps/cocm-registry && 
             npm run start"""
         os.system(cmd)

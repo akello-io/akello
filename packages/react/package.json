@@ -49,7 +49,7 @@
         "@mui/styles": "^5.15.6",        
         "@mui/styled-engine-sc": "^6.0.0-alpha.5",
         "@mui/x-data-grid": "^6.18.1",
-        "@types/react": "^18.2.37"
+        "@types/react": "@types/react@17.0.75"
     },
     "dependencies": {
         "@emotion/react": "^11.11.3",
