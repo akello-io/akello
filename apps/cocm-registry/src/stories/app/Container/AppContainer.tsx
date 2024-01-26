@@ -6,6 +6,7 @@ import {RootState} from "../../../store";
 import {useNavigate} from "react-router";
 import {setSelectedRegistry} from "../../../reducers/appSlice";
 import {SideNavigation} from "../Navigation/SideNavigation/SideNavigation";
+import { PageFooter } from '@akello/react';
 
 interface AppContainerProps {
     children: ReactNode
@@ -52,17 +53,7 @@ export const AppContainer:React.FC<AppContainerProps> = ({children, title, is_ad
                                 <HeaderComponent title={title} isLoading={isLoading} is_admin={is_admin} role={role} titleToolTip={titleToolTip} buttons={headerButtons} />
                                 <div className={"px-2 py-4 "}>
                                     {children}
-                                    <div className={"pl-6 pt-24 flex flex-row space-x-4"}>
-                                        <div className={"font-bold"}>
-                                            © 2023 akello.io
-                                        </div>
-                                        <a href={"/terms.html"} className={"text-ak-light-blue underline font-semibold cursor-pointer"}>
-                                            Terms of Service
-                                        </a>
-                                        <a href={"/privacy.html"} className={"text-ak-light-blue underline font-semibold cursor-pointer"}>
-                                            Privacy Policy
-                                        </a>
-                                    </div>
+                                    <PageFooter terms_of_service_link='https://akello.io/terms' privacy_policy_link='https://akello.io/privacy' />                                    
                                 </div>
                             </>
                     }

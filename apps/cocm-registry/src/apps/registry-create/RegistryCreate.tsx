@@ -124,7 +124,7 @@ const RegistryCreate = () => {
             description: "This will be the name of your Akello registry - Chose something that your team will recognize",
             inputs: (
                 <>
-                    <div>
+                    <div className="flex flex-col space-y-4">
                         <input
                             id={"registry-name"}
                             type="text"
@@ -135,6 +135,7 @@ const RegistryCreate = () => {
                                 setRegistryName(e.currentTarget.value)
                             }}
                         />
+                        {/* 
                         <input
                             id={"logo-url"}
                             type="text"
@@ -145,6 +146,7 @@ const RegistryCreate = () => {
                                 setLogoUrl(e.currentTarget.value)
                             }}
                         />
+                        */}
                     </div>
                 </>
             )

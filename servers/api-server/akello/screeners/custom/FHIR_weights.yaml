@@ -1,0 +1,15 @@
+---
+ name: "Score FHIR Object"  
+ weights:
+   - name: "Family History of Stroke"     
+     resourceType: "FamilyMemberHistory"
+     conditions:
+      - condition_code: "371041009"
+        description: "Embolic Stroke"
+     score: 1
+  - name: "Family History of Diabetes type I"     
+     resourceType: "FamilyMemberHistory"
+     conditions:
+      - condition_code: "46635009"
+        description: "Embolic Stroke"
+     score: 1  
