@@ -44,14 +44,18 @@ const BillingReport = () => {
                             </p>
                         </div>
                         <div className={"bg-white p-2  pb-6"}>
-                            Generate and download your billing report
-                            <br/>
-                            <br/>
-                            <Datepicker
-                                value={value}
-                                onChange={handleValueChange}
-                                showShortcuts={true}
-                            />
+                            <div>
+                                Generate and download your billing report                            
+                            </div>
+                                                    
+                            <div className="w-96 border border-1  rounded-md">
+                                <Datepicker
+                                    value={value}
+                                    onChange={handleValueChange}
+                                    showShortcuts={true}
+                                />
+                            </div>
+                            
 
                             <BillingReportDataGrid data={statData}/>                                                        
                         </div>

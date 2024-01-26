@@ -63,7 +63,7 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
     const [noShow, setNoShow] = useState(false)
 
     type ScoreDictionary = {
-        [question: string]: number;
+        [question: string]: any;
     };
     const [questionnaire_responses, setQuestionnaireResponses] = useState<{ [questionnaire: string] : ScoreDictionary }>({})
 
@@ -84,19 +84,20 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                 cancel
                             </button>
                             <button className={"btn btn-primary"} onClick={() => {
-
-                                let scores = []
+                                
+                                let scores = []                                   
                                 for (let questionnaire_uid in questionnaire_responses) {
-                                    let responses = questionnaire_responses[questionnaire_uid];
+                                    let responses = questionnaire_responses[questionnaire_uid]["responses"];                                                               
                                     let score = 0
                                     for(let response_id in responses) {
-                                        score += questionnaire_responses[questionnaire_uid][response_id]
-                                    }
+                                        score += questionnaire_responses[questionnaire_uid]["responses"][response_id]
+                                    }                                    
                                     scores.push({
                                         score_questionnaire: questionnaire_uid,
-                                        score_name: questionnaire_uid + '_score',
+                                        score_name: questionnaire_responses[questionnaire_uid]['name'],
                                         score_value: score
                                     })
+                                    
                                 }
 
                                 saveTreatmentSession(selectedRegistry.id, token, {
@@ -194,9 +195,12 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                                             <div>
                                                                 <Selector question={questionnaire_question}  onSelection={(selectedResponse: QuestionnaireResponse) => {
                                                                     if(questionnaire_responses[questionnaire.uid] == undefined) {
-                                                                        questionnaire_responses[questionnaire.uid] = {}
+                                                                        questionnaire_responses[questionnaire.uid] = {
+                                                                            "responses": {},
+                                                                            "name": questionnaire.name
+                                                                        }
                                                                     }
-                                                                    questionnaire_responses[questionnaire.uid][questionnaire_question.id] = selectedResponse.score
+                                                                    questionnaire_responses[questionnaire.uid]["responses"][questionnaire_question.id] = selectedResponse.score
                                                                     setQuestionnaireResponses({...questionnaire_responses})
                                                                     console.log(questionnaire_responses)
                                                                 }}/>

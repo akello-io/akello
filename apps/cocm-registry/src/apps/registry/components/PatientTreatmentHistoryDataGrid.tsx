@@ -16,7 +16,7 @@ const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = (
         {
             field: 'date',
             headerName: 'Date',
-            width: 160,
+            width: 160,            
             valueGetter: (params) => {
                 if(params.row.date) {
                     return new Date(params.row.date).toLocaleDateString()
@@ -51,7 +51,7 @@ const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = (
         },
     ];
 
-    let score_names = questionnaires.map((questionnaire) => { return questionnaire.uid + '_score' })
+    let score_names = questionnaires.map((questionnaire) => { return questionnaire.name})
 
     if(!selectedPatient.treatment_logs) {
         return (

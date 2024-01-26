@@ -17,7 +17,7 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
 
     let scores:any = []
 
-    let score_names = questionnaires.map((questionnaire) => { return questionnaire.uid + '_score' })
+    let score_names = questionnaires.map((questionnaire) => { return questionnaire.name})
 
 
     selectedPatient.treatment_logs.map((treatment_log) => {
@@ -43,6 +43,7 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
     console.log(scores)
     console.log(score_names)
 
+    //TODO: Need to handle the case when a registry might have more than 5 measurements
     let colors = [
         "#6fe520",
         "#cc553b",
