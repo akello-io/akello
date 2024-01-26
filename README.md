@@ -28,7 +28,6 @@ akello/
 │   ├── core               # data models and API utilities
 │   ├── docs               # docs hosted under docs.akello.io
 │   ├── react              # React components and storybook
-registry, etc)
 ├── scripts                # General helper scripts (placeholder for now)
 └── servers                 
 │   ├── api-server         # Fast API server
@@ -45,6 +44,7 @@ registry, etc)
 REQUIRED SOFTWARE
 - Python
 - Node
+- Docker
   
 
 ```shell
