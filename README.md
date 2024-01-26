@@ -48,56 +48,9 @@ REQUIRED SOFTWARE
 - Node
   
 
-Run the setup local script and add the environment variables into your environment file (e.g., ~/.zshrc)
-
-Sets up Local instance of DynamoDB and AWS Cognito
 ```shell
-sh dev-setup-local.sh 
-```
-
-From one terminal run the api server
-```shell
-python akello.py run server
-```
-
-In another terminal run the web-app
-```shell
-python akello.py run cocm
-```
-
-Run the API server
-```shell
-cd servers/api-server
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn akello.main:app --reload
-```
-
-Run the React app
-
-```shell
-cd apps/cocm-registry
-npm install
-npm run start
-```
-
-When you signup as a new user, the local SMS confirmation code is set to `1234` for local development
-
-
-Setup python environment from the root directory
-
-```shell
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-```shell
-sh dev-setup-local.sh
-python akello.py setup
-python akello.py start server 
-python akello.py start cocm  # run this in another terminal, make sure to apply the environment settings
+sh run-setup.sh   # use the output to set your environment variables
+sh run-local.sh   # new local users created will have a SMS code of `1234``
 ```
 
 
