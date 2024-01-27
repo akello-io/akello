@@ -151,6 +151,7 @@ const RegistryCreate = () => {
                 </>
             )
         },        
+        /* 
         {
             step: 2,
             title: "Invite your team members",
@@ -213,6 +214,7 @@ const RegistryCreate = () => {
                 </div>
             )
         },
+        */
     ]
 
     return (
