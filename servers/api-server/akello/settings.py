@@ -5,9 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-
-
-
 def set_aws():
     # For AWS environments we want to use secrets configured in AWS Secrets Manager
     secrets = get_secret()
