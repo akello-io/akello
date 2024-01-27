@@ -7,6 +7,8 @@ from akello.services.user import  UserService
 from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.services.screeners import ScreenerService
+from fastapi import Request
+from akello.decorators.mixin import mixin
 
 import logging
 logger = logging.getLogger('mangum')
@@ -70,20 +72,23 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
         'failed_patients': failed_patients
     }
 
+
 @router.post("/{registry_id}/refer-patient")
-async def refer_patient(registry_id: str, model: PatientRegistry,
+@mixin(mixins=['patient_post_referral_mixins'])
+async def refer_patient(request: Request, registry_id: str, patient_registry: PatientRegistry,
                                   auth: CognitoTokenCustom = Depends(auth_token_check)):
+
     UserService.check_registry_access(auth.cognito_id, registry_id)
     patient_registry = PatientRegistry(
         id=registry_id,
-        patient_mrn=model.patient_mrn,
-        payer=model.payer,
-        first_name=model.first_name,
-        last_name=model.last_name,
-        phone_number=model.phone_number,
-        email=model.email,
-        date_of_birth=model.date_of_birth,
-        treatment_logs=model.treatment_logs,
+        patient_mrn=patient_registry.patient_mrn,
+        payer=patient_registry.payer,
+        first_name=patient_registry.first_name,
+        last_name=patient_registry.last_name,
+        phone_number=patient_registry.phone_number,
+        email=patient_registry.email,
+        date_of_birth=patient_registry.date_of_birth,
+        treatment_logs=patient_registry.treatment_logs,
         schema_version='V1',
     )
     RegistryService.refer_patient(patient_registry)
