@@ -5,7 +5,6 @@ from akello.dynamodb import registry_db
 from akello.services import BaseService
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
-from akello.integrations.metriport.api import Organization, Facility, Patient, Document
 
 
 
@@ -114,14 +113,6 @@ class RegistryService(BaseService):
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
-
-        #TODO: If Metriport is integrated then make a document query request for the patient
-        api_key = os.getenv('METRIPORT_API_KEY', None)
-        api_url = os.getenv('METRIPORT_API_URL', None)
-        if api_key and api_url:
-            patient = Patient(api_key=api_key, api_url=api_url)
-            resp = patient.start_fhir_consolidated_data_query(patient_registry.patient_mrn, patient_registry.id)
-            assert resp.status_code == 200 or resp.status_code == 404
 
     @staticmethod
     def update_patient(patient_registry: PatientRegistry):

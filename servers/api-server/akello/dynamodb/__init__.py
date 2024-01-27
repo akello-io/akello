@@ -1,14 +1,14 @@
 import boto3
 from unittest.mock import MagicMock
-from akello.settings import configs
+import os
 
-AWS_ACCESS_KEY_ID = configs['AWS_ACCESS_KEY_ID']['value']
-AWS_REGION = configs['AWS_REGION']['value']
-AKELLO_DYNAMODB_LOCAL = configs['AKELLO_DYNAMODB_LOCAL']['value']
-AKELLO_DYNAMODB_LOCAL_URL = configs['AKELLO_DYNAMODB_LOCAL_URL']['value']
-DYNAMODB_TABLE = configs['AWS_DYNAMODB_TABLE']['value']
-AWS_SECRET_ACCESS_KEY = configs['AWS_SECRET_ACCESS_KEY']['value']
-AKELLO_UNIT_TEST = configs['AKELLO_UNIT_TEST']['value']
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_REGION = os.getenv('AWS_REGION')
+AKELLO_DYNAMODB_LOCAL = os.getenv('AKELLO_DYNAMODB_LOCAL')
+AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
+DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
 
 
 
