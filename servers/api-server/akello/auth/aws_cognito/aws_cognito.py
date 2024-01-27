@@ -8,11 +8,11 @@ from pydantic import BaseModel, HttpUrl, Field,parse_obj_as
 from jose import jwt
 
 
-from akello.settings import configs
-AWS_COGNITO_APP_CLIENT_ID = configs['AWS_COGNITO_APP_CLIENT_ID']['value']
-AWS_COGNITO_USERPOOL_ID = configs['AWS_COGNITO_USERPOOL_ID']['value']
-AKELLO_COGNITO_URL = configs['AKELLO_COGNITO_URL']['value']
-AWS_REGION = configs['AWS_REGION']['value']
+AWS_COGNITO_APP_CLIENT_ID = os.getenv('AWS_COGNITO_APP_CLIENT_ID')
+AWS_COGNITO_USERPOOL_ID = os.getenv('AWS_COGNITO_USERPOOL_ID')
+AKELLO_COGNITO_URL = os.getenv('AKELLO_COGNITO_URL')
+AWS_REGION = os.getenv('AWS_REGION')
+
 
 
 class Settings(BaseSettings):

@@ -1,13 +1,13 @@
+import os
 from pydantic_settings import BaseSettings
 from pydantic.types import Any
 from typing import Optional
 from fastapi_cognito import CognitoAuth, CognitoSettings
 from pydantic import BaseModel, HttpUrl, Field
-from akello.settings import configs
 
-AWS_COGNITO_APP_CLIENT_ID = configs['AWS_COGNITO_APP_CLIENT_ID']['value']
-AWS_COGNITO_USERPOOL_ID = configs['AWS_COGNITO_USERPOOL_ID']['value']
-AWS_REGION = configs['AWS_REGION']['value']
+AWS_COGNITO_APP_CLIENT_ID = os.getenv('AWS_COGNITO_APP_CLIENT_ID')
+AWS_COGNITO_USERPOOL_ID = os.getenv('AWS_COGNITO_USERPOOL_ID')
+AWS_REGION = os.getenv('AWS_REGION')
 
 
 class Settings(BaseSettings):
