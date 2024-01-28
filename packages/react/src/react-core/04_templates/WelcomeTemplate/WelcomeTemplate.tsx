@@ -1,3 +1,5 @@
+import '../../../index.css';
+
 import React, {ReactNode} from 'react';
 import classNames from "classnames";
 import {WelcomeBanner} from "../../02_molecules";

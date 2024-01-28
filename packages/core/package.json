@@ -1,6 +1,6 @@
 {
   "name": "@akello/core",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "type": "module",
   "scripts": {
     "build": "rollup -c",
@@ -50,6 +50,8 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@types/fhir": "^0.0.40",
-    "moment": "^2.29.4"
+    "aws-amplify": "^6.0.13",
+    "moment": "^2.29.4",
+    "rollup-plugin-node-globals": "^1.4.0"
   }
 }

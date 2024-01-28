@@ -1,3 +1,4 @@
+import '../../../index.css';
 import React, {ReactNode} from 'react';
 import HamburgerMenuButton from "../../01_atoms/HamburgerMenuButton";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
