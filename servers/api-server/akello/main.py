@@ -6,7 +6,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 from aws_lambda_powertools import Logger
 from pydantic_settings import BaseSettings
-from akello.plugins.metriport import MetriportMixin
 
 logger = Logger(service="mangum")
 
@@ -51,18 +50,19 @@ app = FastAPI(
     redoc_url=None
 )
 
-app = FastAPI(docs_url="/docs")
+@app.get("/")
+def root():
+    return {"message": "api.akello.io"}
+
 
 app.include_router(api_router, prefix="/v1")
 
 
-app.state.patient_post_referral_mixins = [
-    # MetriportMixin
-]
-
-app.state.patient_pre_session_mixins = [
-    # MetriportMixin
-]
+app.state.after_patient_referral_mixins = []
+app.state.before_patient_session_mixins = []
+app.state.sms_plugin = None
+app.state.email_plugin = None
+app.state.patient_form_plugin = None
 
 app.add_middleware(
     CORSMiddleware,
@@ -71,12 +71,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-@app.get("/")
-def root():
-    return {"message": "api.akello.io"}
-
 
 handler = Mangum(app)
 handler = logger.inject_lambda_context(handler, clear_state=True)

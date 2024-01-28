@@ -82,8 +82,8 @@ def start(name):
         os.system(cmd)
     elif name=='cocm':
         cmd = """
-            sh scripts/dev-build.sh &&
-            cd apps/cocm-registry &&
+            sh scripts/dev-build.sh &&            
+            cd apps/cocm-registry &&        
             npm run start"""
         os.system(cmd)
 

@@ -7,6 +7,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import dts from "rollup-plugin-dts";
 import packageJson from "./package.json" assert { type: 'json'}
 import nodePolyfills from "rollup-plugin-node-polyfills";
+import nodeGlobals from "rollup-plugin-node-globals";
 
 
 export default [
@@ -26,10 +27,14 @@ export default [
         ],        
         plugins: [
             peerDepsExternal(),
+            nodeGlobals(),
             resolve(),
             json(),
-            commonjs(),
-            nodePolyfills({
+            commonjs({
+                include: /node_modules/,
+                requireReturnsDefault: 'auto'
+            }),
+            nodePolyfills({            
                 crypto: false,
                 os: false,
                 zlib: false,

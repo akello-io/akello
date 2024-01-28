@@ -1,3 +1,5 @@
+import '../../../index.css';
+
 import React, {ReactNode, Children} from 'react';
 
 export interface DashboardComponentProps {

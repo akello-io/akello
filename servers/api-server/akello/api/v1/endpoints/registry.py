@@ -74,7 +74,7 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
 
 
 @router.post("/{registry_id}/refer-patient")
-@mixin(mixins=['patient_post_referral_mixins'])
+@mixin(mixins=['after_patient_referral_mixins'])
 async def refer_patient(request: Request, registry_id: str, patient_registry: PatientRegistry,
                                   auth: CognitoTokenCustom = Depends(auth_token_check)):
 

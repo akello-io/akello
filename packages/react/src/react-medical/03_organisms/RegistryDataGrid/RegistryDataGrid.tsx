@@ -1,3 +1,5 @@
+import '../../../index.css';
+
 import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridValueGetterParams, GridToolbar} from "@mui/x-data-grid";
 import moment from "moment";
 import {PatientRegistry, Questionnaire, TreatmentLog} from "@akello/core";
