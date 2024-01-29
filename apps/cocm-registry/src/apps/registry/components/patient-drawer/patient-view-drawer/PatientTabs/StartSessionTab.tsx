@@ -27,12 +27,12 @@ const Selector:React.FC<SelectorProps> = ({selectedId, onSelection, question}) =
                 {
                     question.responses.map((response) => {
                         return (
-                            <div className={ classNames ("flex flex-row justify-between cursor-pointer py-1 px-2 text-xs font-semibold", {"bg-indigo-200": response.id==selectedResponseId})}
+                            <div className={ classNames ("flex flex-row justify-between cursor-pointer py-1 px-2 text-xs font-semibold ", {"border-2 border-base-content": response.id==selectedResponseId})}
                                  onClick={() => {
                                      onSelection(response)
                                      setSelectedResponseId(response.id)
                                  }}>
-                                <div>{response.response}</div><div className={classNames("p-1")}>{response.score}</div>
+                                <div className={""}>{response.response}</div><div className={classNames("p-1")}>{response.score}</div>
                             </div>
                         )
                     })
@@ -122,7 +122,7 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                             </button>
                         </div>
                     </div>
-                    <div className={"flex bg-white p-2"}>
+                    <div className={"flex p-2"}>
                         <div className={"grid grid-cols-2 w-full gap-y-2"}>
                             <div className={"font-semibold "}>Flag</div>
                             <div className={"text-right"}>
@@ -185,7 +185,7 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                             {questionnaire.name}
                                         </p>
                                     </div>
-                                    <div className={"bg-white p-2"}>
+                                    <div className={"p-2"}>
                                         <div className={"grid grid-cols-3 gap-y-2"}>
                                             {
                                                 questionnaire.questions.map((questionnaire_question) => {

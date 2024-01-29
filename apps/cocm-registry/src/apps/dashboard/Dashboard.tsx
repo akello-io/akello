@@ -7,6 +7,11 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import Datepicker from "react-tailwindcss-datepicker";
 import {Simulate} from "react-dom/test-utils";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+
+
 import input = Simulate.input;
 
 interface ScreeningComponentProps {
@@ -15,7 +20,7 @@ interface ScreeningComponentProps {
 }
 const ScreeningComponent:React.FC<ScreeningComponentProps> = ({title, children}) => {
     return (
-        <div className={"w-full border border-1 bg-white"}>
+        <div className={"w-full border border-1 "}>
             <div className={"font-regular border-b border-1 p-2"}>
                 <p className={"text-xl"}>
                     {title}
@@ -52,6 +57,25 @@ const Dashboard = () => {
     const [treatment, setTreatment] = useState({} as any)
     const [screening, setScreening] = useState({} as any)
 
+    const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+        },
+      });
+      
+    const lightTheme = createTheme({
+      palette: {
+        mode: 'light'
+      }
+    })
+
+    let muiTheme = lightTheme
+
+    const theme = document.querySelector('html')?.getAttribute('data-theme');
+    if(theme == 'dark') {
+        muiTheme = darkTheme
+    }
+
 
     useEffect(() => {                
         if(token && selectedRegistry.id && value.startDate && value.endDate) {
@@ -75,12 +99,12 @@ const Dashboard = () => {
             <AppContainer title={"Dashboard"} isLoading={isLoading}>
                
 
-                <div className={"p-4 grid grid-cols-2 gap-4"}>
+                <div className={"p-4 grid grid-cols-2 gap-4 "}>
 
                     {(!isLoading && stats) && (
                         <>
                             <ScreeningComponent title={"Treatment Performance"}>
-                                <div className={"bg-white p-12 w-full pb-6 flex flex-row space-x-12"}>
+                                <div className={" p-12 w-full pb-6 flex flex-row space-x-12"}>
                                     <div className={"text-center space-y-4"}>
                                         <div className={"font-black text-5xl"}>{treatment['avg_weeks']}</div>
                                         <div>Avg. Weeks in treatment</div>
@@ -98,7 +122,7 @@ const Dashboard = () => {
                                 </div>
                             </ScreeningComponent>
                             <ScreeningComponent title={"Avg Measurements"}>
-                                <div className={"bg-white p-12 w-full pb-6 flex flex-row space-x-12"}>
+                                <div className={" p-12 w-full pb-6 flex flex-row space-x-12"}>
                                     {
                                         Object.keys(screening).map((key, index) => {
                                             return (
@@ -112,88 +136,31 @@ const Dashboard = () => {
                                 </div>
                             </ScreeningComponent>
                             <ScreeningComponent title={"Payer Distribution"}>
-                                <div className={"w-auto h-96 bg-white"}>
-                                    <PieChart
-                                        series={[
-                                            {
-                                                data: payerDistribution,
-                                            },
-                                        ]}
-                                    />
+                                <div className={"w-auto h-96 "}>
+                                    <ThemeProvider theme={muiTheme}>
+                                        <PieChart
+                                            series={[
+                                                {
+                                                    data: payerDistribution,
+                                                },
+                                            ]}
+                                        />
+                                    </ThemeProvider>
                                 </div>
 
                             </ScreeningComponent>
 
                             <ScreeningComponent title={"Patient Status Distribution"}>
 
-                                <BarChart
-                                    xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
-                                    series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
-                                    width={500}
-                                    height={300}
-                                />
-                            </ScreeningComponent>
-                            {/*
-                            <ScreeningComponent title={"Treatment Performance"}>
-                                <div className={"bg-white p-12 w-full pb-6 flex flex-row space-x-12"}>
-                                    <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>{treatment['avg_weeks']}</div>
-                                        <div>Avg. Weeks in treatment</div>
-                                    </div>
-
-                                    <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>{treatment['median_weeks']}</div>
-                                        <div>Median Weeks in treatment</div>
-                                    </div>
-
-                                    <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>{treatment['max_weeks']}</div>
-                                        <div>Max Weeks in treatment</div>
-                                    </div>
-                                </div>
-                            </ScreeningComponent>
-                            <ScreeningComponent title={"PHQ-9/GAD7-9 Screening Avg"}>
-                                <div className={"bg-white p-12 w-full pb-6 flex flex-row space-x-12"}>
-                                    <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>{screening['phq9']['initial']} / {screening['gad7']['initial']}</div>
-                                        <div>Initial</div>
-                                    </div>
-
-                                    <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>{screening['phq9']['current']} / {screening['gad7']['current']}</div>
-                                        <div>Current</div>
-                                    </div>
-
-                                    <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>{screening['phq9']['weekly_delta']} / {screening['gad7']['weekly_delta']}</div>
-                                        <div>Weekly Change</div>
-                                    </div>
-                                </div>
-                            </ScreeningComponent>
-
-                            <ScreeningComponent title={"Payer Distribution"}>
-                                <div className={"w-auto h-96 bg-white"}>
-                                    <PieChart
-                                        series={[
-                                            {
-                                                data: payerDistribution,
-                                            },
-                                        ]}
+                                <ThemeProvider theme={muiTheme}>
+                                    <BarChart
+                                        xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
+                                        series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
+                                        width={500}
+                                        height={300}
                                     />
-                                </div>
-
-                            </ScreeningComponent>
-
-                            <ScreeningComponent title={"Patient Status Distribution"}>
-
-                                <BarChart
-                                    xAxis={[{ scaleType: 'band', data: statusDistribution['status'] }]}
-                                    series={[{ data: statusDistribution['values'] }]}
-                                    width={500}
-                                    height={300}
-                                />
-                            </ScreeningComponent>
-                            */}
+                                </ThemeProvider>                                
+                            </ScreeningComponent>                            
                         </>
                     )}
 

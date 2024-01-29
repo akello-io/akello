@@ -4,6 +4,9 @@ import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {getMembers} from "../../api/registry";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
 
 const columns: GridColDef[] = [
     {
@@ -77,6 +80,25 @@ const TeamTable = () => {
     const token = useSelector((state: RootState) => state.app.token)
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
 
+    const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+        },
+      });
+      
+    const lightTheme = createTheme({
+      palette: {
+        mode: 'light'
+      }
+    })
+
+    let muiTheme = lightTheme
+
+    const theme = document.querySelector('html')?.getAttribute('data-theme');
+    if(theme == 'dark') {
+        muiTheme = darkTheme
+    }
+
 
     useEffect(() => {
         getMembers(selectedRegistry.id, token, (data) => {
@@ -98,13 +120,15 @@ const TeamTable = () => {
             <div className={"font-black py-4"}>
                 CoCM Team
             </div>
-            <div className={"bg-white"}>
+            <div className={""}>
+                <ThemeProvider theme={muiTheme}>
                 <DataGrid
                     getRowId={(row) => row.user_id}
                     onRowClick={handleEvent}
                     rows={teamMembers}
                     columns={columns}
                 />
+                </ThemeProvider>                
                 <div className="drawer drawer-end">
                     <input id="my-drawer-4" type="checkbox" className="drawer-toggle" checked={checked} onClick={() => setChecked(!checked)}/>
                     <div className="drawer-side">

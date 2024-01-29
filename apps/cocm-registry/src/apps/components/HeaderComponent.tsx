@@ -27,13 +27,13 @@ const HeaderComponent:React.FC<HeaderComponentProps> = ({title, isLoading, is_ad
     return (
         <>
 
-            <div className={"flex bg-white h-40 w-full px-7"}>
+            <div className={"flex h-40 w-full px-7"}>
                 <div className={"flex flex-row my-auto justify-between w-full"}>
                     <div className={"flex flex-col sm:flex-row space-x-4"}>
                         <div className={"flex flex-row space-x-4 my-auto text-2xl sm:text-4xl font-semibold"}>
                             {isLoading && (
                                 <>
-                                    <span className="loading bg-black loading-ring loading-lg"></span>
+                                    <span className="loading loading-ring loading-lg"></span>
                                 </>
                             )}
                             <div>

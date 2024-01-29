@@ -1,5 +1,8 @@
 import * as React from 'react';
 import {DataGrid, GridColDef, GridToolbar} from '@mui/x-data-grid';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
 
 const columns: GridColDef[] = [
     {
@@ -32,24 +35,46 @@ interface BillingReportDataGridProps {
 
 
 const BillingReportDataGrid:React.FC<BillingReportDataGridProps> = ({data}) => {
+    const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+        },
+      });
+      
+    const lightTheme = createTheme({
+      palette: {
+        mode: 'light'
+      }
+    })
+
+    let muiTheme = lightTheme
+
+    const theme = document.querySelector('html')?.getAttribute('data-theme');
+    if(theme == 'dark') {
+        muiTheme = darkTheme
+    }
+
     return (
         <div className={"w-full"}>
-            <DataGrid
-                getRowId={(row) => row.mrn + row.stat_date}
-                rows={data}
-                columns={columns}
-                initialState={{
-                    pagination: {
-                        paginationModel: {
-                            pageSize: 100,
+            <ThemeProvider theme={muiTheme}>
+                <DataGrid
+                    getRowId={(row) => row.mrn + row.stat_date}
+                    rows={data}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: {
+                                pageSize: 100,
+                            },
                         },
-                    },
-                }}
-                pageSizeOptions={[5]}
-                checkboxSelection
-                disableRowSelectionOnClick
-                slots={{ toolbar: GridToolbar }}
-            />
+                    }}
+                    pageSizeOptions={[5]}
+                    checkboxSelection
+                    disableRowSelectionOnClick
+                    slots={{ toolbar: GridToolbar }}
+                />
+            </ThemeProvider>
+            
         </div>
     );
 }

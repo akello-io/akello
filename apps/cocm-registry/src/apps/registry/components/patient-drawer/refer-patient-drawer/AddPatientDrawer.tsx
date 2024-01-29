@@ -74,19 +74,19 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
                                 Add Patient
                             </p>
                         </div>
-                        <div className={"bg-white p-2 space-y-4"}>
+                        <div className={"p-2 space-y-4"}>
                             <div className="w-full max-w-xs">
-                                <form className="bg-white rounded px-2 pt-6 pb-8 mb-4"
+                                <form className="rounded px-2 pt-6 pb-8 mb-4"
                                       onSubmit={formik.handleSubmit}>
                                     <div className="mb-4">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2"
+                                        <label className="blocktext-sm font-bold mb-2"
                                                htmlFor="mrn">
                                             MRN
                                         </label>
                                         <input
                                             id="mrn"
                                             type="text"
-                                            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            className="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                             {...formik.getFieldProps('mrn')}
                                         />
                                         {formik.touched.mrn && formik.errors.mrn ? (
@@ -95,14 +95,14 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2"
+                                        <label className="block  text-sm font-bold mb-2"
                                                htmlFor="payer">
                                             Payer
                                         </label>
                                         <input
                                             id="payer"
                                             type="text"
-                                            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            className="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                             {...formik.getFieldProps('payer')}
                                         />
                                         {formik.touched.payer && formik.errors.payer ? (
@@ -111,14 +111,14 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2"
+                                        <label className="block text-sm font-bold mb-2"
                                                htmlFor="firstName">
                                             First Name
                                         </label>
                                         <input
                                             id="firstName"
                                             type="text"
-                                            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            className="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                             {...formik.getFieldProps('firstName')}
                                         />
                                         {formik.touched.firstName && formik.errors.firstName ? (
@@ -127,13 +127,13 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2"
+                                        <label className="block  text-sm font-bold mb-2"
                                                htmlFor="lastName">
                                             Last Name
                                         </label>
                                         <input id="lastName"
                                                type="text"
-                                               className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                               className="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                                {...formik.getFieldProps('lastName')}
                                         />
                                         {formik.touched.lastName && formik.errors.lastName ? (
@@ -141,13 +141,13 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
                                         ) : null}
                                     </div>
                                     <div className="mb-4">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2"
+                                        <label className="block  text-sm font-bold mb-2"
                                                htmlFor="dob">
                                             Date of Birth
                                         </label>
                                         <input id="dob"
                                                type="date"
-                                               className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                               className="border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                                                {...formik.getFieldProps('dob')}
                                         />
                                         {formik.touched.dob && formik.errors.dob ? (
@@ -156,13 +156,13 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2"
+                                        <label className="block  text-sm font-bold mb-2"
                                                htmlFor="phoneNumber">
                                             email
                                         </label>
                                         <input id="lastName"
                                                type="email"
-                                               className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                               className="border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                                                {...formik.getFieldProps('email')}
                                         />
                                         {formik.touched.email && formik.errors.email ? (
@@ -171,13 +171,13 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block text-gray-700 text-sm font-bold mb-2"
+                                        <label className="block  text-sm font-bold mb-2"
                                                htmlFor="phoneNumber">
                                             Phone Number
                                         </label>
                                         <input id="lastName"
                                                type="text"
-                                               className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                               className="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                                {...formik.getFieldProps('phoneNumber')}
                                         />
                                         {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
@@ -187,7 +187,7 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
                                     <div className="flex items-center justify-between">
                                         <button
                                             type="submit"
-                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                            className="btn btn-primary"
                                         >
                                             Add Patient
                                         </button>

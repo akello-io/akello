@@ -41,8 +41,8 @@
   "types": "dist/index.d.ts",
   "peerDependencies": {
     "@akello/core": "../core",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "readme": "ERROR: No README data found!",
   "_id": "@akello/react@0.0.8",
@@ -66,8 +66,7 @@
     "@storybook/preset-create-react-app": "^7.6.10",
     "@storybook/react-webpack5": "^7.6.10",
     "@tailwindcss/postcss7-compat": "^2.2.17",
-    "@types/fhir": "^0.0.40",
-    "autoprefixer": "^9.8.8",
+    "@types/fhir": "^0.0.40",    
     "autoprefixer": "^10.4.17",
     "classnames": "^2.5.1",
     "craco": "^0.0.3",

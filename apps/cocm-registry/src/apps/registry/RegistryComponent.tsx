@@ -14,6 +14,12 @@ import AddPatientDrawer from "./components/patient-drawer/refer-patient-drawer/A
 import { RegistryDataGrid } from "@akello/react";
 import {Auth} from "aws-amplify";
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+
+
+
 export default function DataGridDemo() {
     const dispatch = useDispatch()
     const [checked, setChecked] = useState(false)
@@ -57,6 +63,27 @@ export default function DataGridDemo() {
         setChecked(true)
     };
 
+
+    const darkTheme = createTheme({
+        palette: {
+          mode: 'dark',
+        },
+      });
+      
+    const lightTheme = createTheme({
+      palette: {
+        mode: 'light'
+      }
+    })
+
+    let muiTheme = lightTheme
+
+    const theme = document.querySelector('html')?.getAttribute('data-theme');
+    if(theme == 'dark') {
+        muiTheme = darkTheme
+    }
+
+
     
     return (
         <AppContainer isLoading={isLoading} title={selectedRegistry.name} is_admin={isAdmin} role={role} headerButtons={[
@@ -65,7 +92,7 @@ export default function DataGridDemo() {
                     {!isLoading && (
                         <button
                             type="button"
-                            className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                            className="btn btn-primary"
                             onClick={() => {
                                 setAddPatient(true)
                             }}
@@ -76,10 +103,13 @@ export default function DataGridDemo() {
                 </>
             ),
         ]}>
-            <div className={"bg-white"}>
+            <div className={""}>
                 {!isLoading && (
                     <>
-                        <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={handlePatientClickEvent} />
+                        <ThemeProvider theme={muiTheme}>
+                            <CssBaseline />
+                            <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={handlePatientClickEvent} />
+                        </ThemeProvider>                        
                         <PatientDrawer checked={checked} setChecked={setChecked} questionnaires={Object.assign([], questionnaires)} selectedPatient={selectedPatient} setSelectedPatient={setSelectedPatient} />
                         <AddPatientDrawer checked={addPatient} setChecked={setAddPatient} patients={patients} setPatients={setPatients} />
                     </>
