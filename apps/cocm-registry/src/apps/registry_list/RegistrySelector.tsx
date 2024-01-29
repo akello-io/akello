@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {useNavigate} from "react-router";
 import {setSelectedRegistry} from "../../reducers/appSlice";
-import TopNavigation from "../../stories/app/Navigation/TopNavigation/TopNavigation";
+import {TopNavigation, Logo} from "@akello/react";
 
 interface RegistryProps {
     id: string
@@ -131,27 +131,21 @@ const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
     })
 
 
+
     return (
         <>
-            <div className="h-fit min-h-screen bg-ak-dark-blue  ">
-                <TopNavigation logo={AkelloLogWhite} profile_photo={userProfile.profile_photo} email={userProfile.email} primary_button={
-                    (
-                        <>
-
-                            <div className={"flex flex-row space-x-4"}>
-                                {/*
-                                    <button className={"btn btn-neutral text-xs"} >TALK TO SALES</button>
-                                */}
-                                <button className={"btn text-xs"} onClick={() => navigate('/registry/create')} >CREATE A NEW REGISTRY</button>
-                            </div>
-
-                        </>
-
-
-                    )} signOut={signOut}
+            <div className="h-fit min-h-screen  ">
+                <TopNavigation 
+                    signIn={() => navigate('/login')}
+                    signOut={signOut}                
+                    signed_in={true}    
+                    logo={<></>}  
+                    createRegistry={ () => navigate('/registry/create')} 
+                    menu_items={[]}
+                    theme_swapper={<></>}                    
                 />
                 <div className="p-4  mx-auto  max-w-7xl pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-1 lg:gap-x-8 lg:px-8 lg:py-20 space-y-12">
-                    <div className={"text-4xl text-white font-black"}>
+                    <div className={"text-4xl font-black"}>
                         🌈 Welcome back, {userProfile.first_name}
                     </div>
                     <Section />
