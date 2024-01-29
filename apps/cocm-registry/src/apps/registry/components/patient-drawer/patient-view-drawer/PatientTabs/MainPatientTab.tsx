@@ -38,13 +38,13 @@ const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient,
                         </p>
                         <button
                             type="button"
-                            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            className="btn btn-primary"
                             onClick={() => setSelectedTab('Session')}
                         >
                             Start a session
                         </button>
                     </div>
-                    <div className={"bg-white p-2"}>
+                    <div className={"p-2"}>
                         <div className={"grid grid-cols-2"}>
                             {
                                 selectedPatient.integration_metriport_fhir_data && (
@@ -114,7 +114,7 @@ const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient,
                                         Patient Progress Chart
                                     </p>
                                 </div>
-                                <div className={"bg-white p-2 h-64 w-full"}>
+                                <div className={"p-2 h-64 w-full"}>
                                     <PatientProgressChart selectedPatient={selectedPatient} questionnaires={questionnaires} />
                                 </div>
                             </div>
@@ -125,7 +125,7 @@ const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient,
                                         Treatment History
                                     </p>
                                 </div>
-                                <div className={"bg-white p-2"}>
+                                <div className={"p-2"}>
                                     <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={questionnaires} />
                                 </div>
                             </div>

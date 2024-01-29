@@ -138,7 +138,7 @@ export const SideNavigation:React.FC<NavigationProps> = ({role, activeRoute, nav
                         !is_registry_create && (
                             <div className="drawer-side z-50 ml-20">
 
-                                <div className="menu p-4 w-80 min-h-full bg-white shadow-xl">
+                                <div className="menu p-4 w-80 min-h-full bg-base-100 shadow-xl">
 
                                     <label htmlFor="reports-drawer" className="drawer-button cursor-pointer" onClick={()=> {
                                         setDrawerToggle(!drawerToggle)

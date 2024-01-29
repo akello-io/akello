@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {useNavigate} from "react-router";
 import {setSelectedRegistry} from "../../reducers/appSlice";
-import {TopNavigation, Logo} from "@akello/react";
+import {TopNavigation, Logo, ThemeSwap} from "@akello/react";
 
 interface RegistryProps {
     id: string
@@ -26,7 +26,7 @@ const Registry:React.FC<RegistryProps> = ({id, name, members, patients, question
     console.log('integrations: ' + integrations)
     return (
         <>
-            <div className={"flex flex-row w-full justify-between bg-white py-8 px-12"} onClick={() => {
+            <div className={"flex flex-row w-full justify-between py-8 px-12"} onClick={() => {
                 dispatch(setSelectedRegistry({
                     id: id,
                     name: name
@@ -53,7 +53,7 @@ const Registry:React.FC<RegistryProps> = ({id, name, members, patients, question
                 </div>
 
                 <div className={"my-auto"}>
-                    <button className={"btn bg-ak-yellow  rounded-lg text-xl"}>
+                    <button className={"btn btn-secondary rounded-lg text-xl"}>
                         LAUNCH
                     </button>
 
@@ -124,11 +124,21 @@ interface RegistrySelectorProps {
 const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
 
     const navigate = useNavigate()
+    const [theme, setTheme] = useState('light');
+
     const userProfile = useSelector((state: RootState) => state.app.userProfile)
+    
+    const toggleTheme = () => {
+        setTheme(theme === 'dark' ? 'light' : 'dark');
+    };
 
     useEffect(() => {
         localStorage.setItem("selectedRegistry",  "")
     })
+
+    useEffect(() => {
+        document.querySelector('html')?.setAttribute('data-theme', theme);
+    }, [theme]);
 
 
 
@@ -142,7 +152,11 @@ const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
                     logo={<></>}  
                     createRegistry={ () => navigate('/registry/create')} 
                     menu_items={[]}
-                    theme_swapper={<></>}                    
+                    theme_swapper={
+                        <>
+                            <ThemeSwap theme={theme} setTheme={setTheme} />
+                        </>
+                    }                    
                 />
                 <div className="p-4  mx-auto  max-w-7xl pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-1 lg:gap-x-8 lg:px-8 lg:py-20 space-y-12">
                     <div className={"text-4xl font-black"}>

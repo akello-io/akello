@@ -18,7 +18,7 @@ const ReportsComponent = () => {
 
                 <div className={"p-4 space-y-6"}>
 
-                    <div className="tabs tabs-boxed bg-white">
+                    <div className="tabs tabs-boxed ">
                         <button onClick={()=> setTab('Registry')} className={classNames({'tab-active': tab=='Registry'}, "tab") }>Registry</button>
                         <button onClick={()=> setTab('Billing')} className={classNames({'tab-active': tab=='Billing'}, "tab") }>Billing</button>
                     </div>
