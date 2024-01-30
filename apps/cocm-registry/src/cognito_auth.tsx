@@ -1,4 +1,4 @@
-import { Authenticator, useTheme, Button, View, Image, Text, Heading, ThemeProvider, useAuthenticator } from '@aws-amplify/ui-react';
+import { Authenticator, useTheme, Button, View, Image, Text, Heading, ThemeProvider, useAuthenticator, CheckboxField } from '@aws-amplify/ui-react';
 
 import AkelloLogo from "./images/logos/akello/akello-logo.png";
 
@@ -81,32 +81,50 @@ export const cognito_auth_components = {
             const { tokens } = useTheme();
 
             return (
-                <Heading
-                    padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
-            level={3}
-                >
-                Create a new account
-            </Heading>
-        );
+                    <Heading
+                        padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
+                        level={3}
+                        >
+                        Create a new account
+                    </Heading>
+            );
+        },
+        FormFields() {
+            const { validationErrors } = useAuthenticator();
+
+            return (
+              <>
+                {/* Re-use default `Authenticator.SignUp.FormFields` */}
+                <Authenticator.SignUp.FormFields />
+
+                {/* Append & require Terms and Conditions field to sign up  */}
+                <CheckboxField
+                  errorMessage={validationErrors.acknowledgement as string}
+                  hasError={!!validationErrors.acknowledgement}
+                  name="acknowledgement"
+                  value="yes"
+                  label="I agree with the Terms and Conditions"
+                />
+              </>
+            );
         },
         Footer() {
             const { toSignIn } = useAuthenticator();
 
             return (
                 <View textAlign="center">
-                <Button
-                    fontWeight="normal"
-            onClick={toSignIn}
-            size="small"
-            variation="link"
-                >
-                Back to Sign In
-            </Button>
-            </View>
-        );
+                    <Button
+                        fontWeight="normal"
+                        onClick={toSignIn}
+                        size="small"
+                        variation="link"
+                            >
+                        Back to Sign In
+                    </Button>
+                </View>
+            )
         },
     },
-
 
     ConfirmSignUp: {
         Header() {
