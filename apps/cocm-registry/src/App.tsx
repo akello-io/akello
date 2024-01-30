@@ -24,6 +24,7 @@ import BillingReport from "./apps/reports/billing/BillingReport";
 import RegistryReport from "./apps/reports/registry/RegistryReport";
 import {getUser} from "./api/user";
 import { debug } from 'console';
+import "./App.css"
 
 // Configure Amplify in index file or root file
 
