@@ -7,14 +7,14 @@
     "type": "git",
     "url": "https://github.com/IgnacioNMiranda/vite-component-library-template"
   },
-  "main": "./dist/vite-component-library-template.umd.js",
-  "module": "./dist/vite-component-library-template.es.js",
+  "main": "./dist/react2.umd.js",
+  "module": "./dist/react2.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/vite-component-library-template.es.js",
-      "require": "./dist/vite-component-library-template.umd.js"
+      "import": "./dist/react2.es.js",
+      "require": "./dist/react2.umd.js"
     },
     "./dist/style.css": "./dist/style.css"
   },
@@ -29,6 +29,7 @@
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "vitest",
     "test:cov": "vitest run --coverage",
+    "prepare": "husky install",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
   "peerDependencies": {

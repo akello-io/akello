@@ -21,6 +21,7 @@ export interface AtButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const AtButton = ({ label, variant = 'PRIMARY', isDisabled = false, onClick }: AtButtonProps) => {
   const [test, setTest] = useState(0)
+
   return (
     <>
       <button onClick={() => setTest(test + 1)}>
