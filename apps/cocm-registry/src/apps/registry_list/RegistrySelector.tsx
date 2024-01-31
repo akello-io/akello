@@ -7,8 +7,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {useNavigate} from "react-router";
 import {setSelectedRegistry} from "../../reducers/appSlice";
-import {TopNavigation, Logo, ThemeSwap} from "@akello/react";
-import {AtButton} from "@akello/react2";
+import {TopNavigation, Logo} from "@akello/react";
+import {ThemeSwap} from "@akello/react2"
 
 interface RegistryProps {
     id: string
@@ -23,7 +23,7 @@ interface RegistryProps {
 
 const Registry:React.FC<RegistryProps> = ({id, name, members, patients, questionnaires, description, integrations, logo_url}) => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()    
+    const dispatch = useDispatch()
     console.log('integrations: ' + integrations)
     return (
         <>
@@ -44,10 +44,10 @@ const Registry:React.FC<RegistryProps> = ({id, name, members, patients, question
                             {name}
                         </div>
                         <div className="flex flex-row">
-                            {members} members | {patients} active patients | {questionnaires.length} screeners                            
+                            {members} members | {patients} active patients | {questionnaires.length} screeners
                         </div>
-                        <div>                            
-                            
+                        <div>
+
                         </div>
                     </div>
 
@@ -125,45 +125,33 @@ interface RegistrySelectorProps {
 const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
 
     const navigate = useNavigate()
-    const [theme, setTheme] = useState('light');
-
     const userProfile = useSelector((state: RootState) => state.app.userProfile)
-    
-    const toggleTheme = () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
-    };
 
     useEffect(() => {
         localStorage.setItem("selectedRegistry",  "")
     })
 
-    useEffect(() => {
-        document.querySelector('html')?.setAttribute('data-theme', theme);
-    }, [theme]);
-
-
 
     return (
         <>
             <div className="h-fit min-h-screen  ">
-                <TopNavigation 
+                <TopNavigation
                     signIn={() => navigate('/login')}
-                    signOut={signOut}                
-                    signed_in={true}    
-                    logo={<></>}  
-                    createRegistry={ () => navigate('/registry/create')} 
+                    signOut={signOut}
+                    signed_in={true}
+                    logo={<></>}
+                    createRegistry={ () => navigate('/registry/create')}
                     menu_items={[]}
                     theme_swapper={
                         <>
-                            <ThemeSwap theme={theme} setTheme={setTheme} />
+                            <ThemeSwap  />
                         </>
-                    }                    
+                    }
                 />
                 <div className="p-4  mx-auto  max-w-7xl pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-1 lg:gap-x-8 lg:px-8 lg:py-20 space-y-12">
                     <div className={"text-4xl font-black"}>
                         🌈 Welcome back, {userProfile.first_name}
                     </div>
-                    <AtButton label="test" />
                     <Section />
                 </div>
             </div>

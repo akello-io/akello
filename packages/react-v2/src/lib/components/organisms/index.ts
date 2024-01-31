@@ -1,1 +1,3 @@
-export * from './or-footer'
+export * from './core'
+export * from './insights'
+export * from './medical'
