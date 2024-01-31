@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, useState } from 'react'
 
 export const AT_BUTTON_VARIANT = {
   PRIMARY: 'primary',
@@ -20,14 +20,21 @@ export interface AtButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const AtButton = ({ label, variant = 'PRIMARY', isDisabled = false, onClick }: AtButtonProps) => {
+  const [test, setTest] = useState(0)
   return (
-    <button
-      className={`transition-colors px-6 py-2 rounded-md ${variantClasses[variant]} ${
-        isDisabled ? 'bg-gray-300 text-slate-600 cursor-not-allowed pointer-events-none' : ''
-      }`}
-      onClick={isDisabled ? onClick : undefined}
-    >
-      {label}
-    </button>
+    <>
+      <button onClick={() => setTest(test + 1)}>
+        {test}
+      </button>
+      <button
+        className={`transition-colors px-6 py-2 rounded-md ${variantClasses[variant]} ${
+          isDisabled ? 'bg-gray-300 text-slate-600 cursor-not-allowed pointer-events-none' : ''
+        }`}
+        onClick={isDisabled ? onClick : undefined}
+      >
+        {label}
+      </button>
+    </>
+
   )
 }

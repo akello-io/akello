@@ -8,6 +8,7 @@ import {RootState} from "../../store";
 import {useNavigate} from "react-router";
 import {setSelectedRegistry} from "../../reducers/appSlice";
 import {TopNavigation, Logo, ThemeSwap} from "@akello/react";
+import {AtButton} from "@akello/react2";
 
 interface RegistryProps {
     id: string
@@ -162,6 +163,7 @@ const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
                     <div className={"text-4xl font-black"}>
                         🌈 Welcome back, {userProfile.first_name}
                     </div>
+                    <AtButton label="test" />
                     <Section />
                 </div>
             </div>
