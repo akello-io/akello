@@ -11,7 +11,7 @@ import {getRegistryPatients} from "../../api/registry";
 import AppContainer from "../../stories/app/Container/AppContainer";
 import PatientDrawer from "./components/patient-drawer/patient-view-drawer/PatientDrawer";
 import AddPatientDrawer from "./components/patient-drawer/refer-patient-drawer/AddPatientDrawer";
-import { RegistryDataGrid } from "@akello/react";
+import { RegistryDataGrid } from "@akello/react2";
 import {Auth} from "aws-amplify";
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -38,7 +38,7 @@ export default function DataGridDemo() {
     useEffect(() => {
         if(token && selectedRegistry.id) {
             setIsLoading(true)
-            getRegistryPatients(selectedRegistry.id, token, (data) => {                
+            getRegistryPatients(selectedRegistry.id, token, (data) => {
                 setPatients(data['successfully_loaded'])
                 setIsAdmin(data['is_admin'])
                 setQuestionnaires(data['questionnaires'])
@@ -69,7 +69,7 @@ export default function DataGridDemo() {
           mode: 'dark',
         },
       });
-      
+
     const lightTheme = createTheme({
       palette: {
         mode: 'light'
@@ -84,7 +84,7 @@ export default function DataGridDemo() {
     }
 
 
-    
+
     return (
         <AppContainer isLoading={isLoading} title={selectedRegistry.name} is_admin={isAdmin} role={role} headerButtons={[
             (
@@ -109,7 +109,7 @@ export default function DataGridDemo() {
                         <ThemeProvider theme={muiTheme}>
                             <CssBaseline />
                             <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={handlePatientClickEvent} />
-                        </ThemeProvider>                        
+                        </ThemeProvider>
                         <PatientDrawer checked={checked} setChecked={setChecked} questionnaires={Object.assign([], questionnaires)} selectedPatient={selectedPatient} setSelectedPatient={setSelectedPatient} />
                         <AddPatientDrawer checked={addPatient} setChecked={setAddPatient} patients={patients} setPatients={setPatients} />
                     </>

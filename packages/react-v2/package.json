@@ -33,6 +33,7 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
   "peerDependencies": {
+    "@akello/core": "../core",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
