@@ -11,7 +11,7 @@ import {getRegistryPatients} from "../../api/registry";
 import AppContainer from "../../stories/app/Container/AppContainer";
 import PatientDrawer from "./components/patient-drawer/patient-view-drawer/PatientDrawer";
 import AddPatientDrawer from "./components/patient-drawer/refer-patient-drawer/AddPatientDrawer";
-import { RegistryDataGrid } from "@akello/react2";
+import { RegistryDataGrid } from "@akello/react";
 import {Auth} from "aws-amplify";
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
