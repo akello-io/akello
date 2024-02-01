@@ -4,7 +4,7 @@ export interface HamburgerMenuButtonProps {
     htmlFor: string
 }
 
-const HamburgerMenuButton = (props: HamburgerMenuButtonProps) => {
+export const HamburgerMenuButton = (props: HamburgerMenuButtonProps) => {
 
     return (
         <>
@@ -14,5 +14,3 @@ const HamburgerMenuButton = (props: HamburgerMenuButtonProps) => {
         </>
     )
 };
-
-export default HamburgerMenuButton;

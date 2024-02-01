@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import HamburgerMenuButton from "../../../atoms/core/hamburger-btn";
+import {HamburgerMenuButton}from "../../../atoms/core/hamburger-btn";
 
 export interface HamburgerMenuProps {
     children: ReactNode
