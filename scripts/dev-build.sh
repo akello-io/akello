@@ -19,7 +19,12 @@ echo '>>>>>>>>>>  REACT'
 cd packages/react
 rm -rf node_modules
 rm -rf dist
+
 pnpm install  --save-dev husky
+pnpm install  --save-dev storybook
+pnpm install  --save-dev @storybook/react-vite
+pnpm install  --save-dev @storybook/react
+
 pnpm install  --save @types/react
 pnpm install --save classnames
 pnpm install --save vite
