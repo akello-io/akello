@@ -45,16 +45,7 @@ const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient,
                         </button>
                     </div>
                     <div className={"p-2"}>
-                        <div className={"grid grid-cols-2"}>
-                            {
-                                selectedPatient.integration_metriport_fhir_data && (
-                                    <>
-                                        <div className={"font-semibold "}>Metriport FHIR Data</div>
-                                        <div>{JSON.stringify(selectedPatient.integration_metriport_fhir_data)}</div>
-                                    </>
-                                )
-                            }                    
-
+                        <div className={"grid grid-cols-2"}>                               
                             <div className={"font-semibold "}>Name</div>
                             <div>{selectedPatient.first_name} {selectedPatient.last_name}</div>
 

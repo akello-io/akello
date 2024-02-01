@@ -21,6 +21,9 @@ const app = async (): Promise<UserConfigExport> => {
         insertTypesEntry: true,
       }),
     ],
+    optimizeDeps: {
+      include: ['@emotion/styled'],
+    },
     css: {
       postcss: {
         plugins: [tailwindcss],
