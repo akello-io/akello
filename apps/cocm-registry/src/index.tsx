@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { AwsRum, AwsRumConfig } from 'aws-rum-web';
 import {store} from "./store";
 import {Provider} from 'react-redux'
-import {Theme} from "react-daisyui";
 
 
 

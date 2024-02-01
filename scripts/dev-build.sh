@@ -21,19 +21,26 @@ rm -rf node_modules
 rm -rf dist
 pnpm install  --save-dev husky
 pnpm install  --save @types/react
-pnpm install --save @mui/x-data-grid
 pnpm install --save classnames
 pnpm install --save vite
 pnpm install --save @vitejs/plugin-react
 pnpm install --save vitest
 pnpm install --save vite-plugin-dts
-pnpm install --save tailwindcss
 pnpm install --save @emotion/react
 pnpm install --save @emotion/styled
-pnpm install --save @mui/material
 pnpm install --save @testing-library/react
 pnpm install --save json
-pnpm install --save @mui/styled-engine
+
+pnpm install --save @@headlessui/react
+
+pnpm install --save-peer @mui/material
+pnpm install --save-peer @mui/styled-engine
+pnpm install --save-peer tailwindcss
+pnpm install --save-peer postcss
+pnpm install --save-peer autoprefixer
+pnpm install --save-peer @mui/x-data-grid
+pnpm install --save-peer daisyui
+
 pnpm i
 pnpm build:lib
 pnpm pack

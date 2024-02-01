@@ -2,8 +2,8 @@
 module.exports = {
   content: [
     "./src/**/*.{html,js,tsx}",
-    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js"
-
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
+    './node_modules/daisyui/dist/**/*.js'
   ],
   daisyui: {
     themes: ["light", "dark", "cupcake"],
