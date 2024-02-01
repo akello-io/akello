@@ -1,8 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/**/*.{ts,tsx}',
-    'node_modules/daisyui/src/**/*.{ts,tsx}'
+    './src/**/*.{ts,tsx}',    
   ],
   theme: {
     extend: {},
