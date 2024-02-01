@@ -13,7 +13,7 @@ export interface RegistrySelectRowProps {
 export const RegistrySelectRow = (props: RegistrySelectRowProps) => {
 
     return (
-        <div className={"flex flex-row w-full justify-between py-8 px-12"} onClick={props.onClick}>                
+        <div className={"flex shadow-md flex-row w-full justify-between py-8 px-12"} onClick={props.onClick}>                
             {/* */}
             <div className={" flex flex-row space-x-4"}>
                 <div>
