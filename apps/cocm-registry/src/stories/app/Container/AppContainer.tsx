@@ -6,7 +6,7 @@ import {RootState} from "../../../store";
 import {useNavigate} from "react-router";
 import {setSelectedRegistry} from "../../../reducers/appSlice";
 import {SideNavigation} from "../Navigation/SideNavigation/SideNavigation";
-import { PageFooter } from '@akello/react2';
+import { PageFooter } from '@akello/react';
 
 interface AppContainerProps {
     children: ReactNode
