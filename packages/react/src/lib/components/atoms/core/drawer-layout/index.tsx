@@ -2,14 +2,14 @@ import * as React from "react";
 import {ReactNode} from "react";
 
 
-interface DrawerLayoutProps  {
+export interface DrawerLayoutProps  {
     id: string
     checked: boolean
     setChecked: (checked: boolean) => void
     children: ReactNode
 }
 
-const DrawerLayout:React.FC<DrawerLayoutProps> = ({id, checked, setChecked, children}) => {
+export const DrawerLayout:React.FC<DrawerLayoutProps> = ({id, checked, setChecked, children}) => {
     return (
         <>
             <div className="drawer drawer-end">
@@ -26,5 +26,3 @@ const DrawerLayout:React.FC<DrawerLayoutProps> = ({id, checked, setChecked, chil
         </>
     )
 }
-
-export default DrawerLayout

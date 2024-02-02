@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import {useEffect, useState} from "react";
 import MainPatientTab from "./PatientTabs/MainPatientTab";
 import StartSessionTab from "./PatientTabs/StartSessionTab";
-import DrawerLayout from "../DrawerLayout";
+import {DrawerLayout} from "@akello/react";
 import {PatientRegistry, Questionnaire} from "@akello/core";
 
 interface PatientDrawerProps {
