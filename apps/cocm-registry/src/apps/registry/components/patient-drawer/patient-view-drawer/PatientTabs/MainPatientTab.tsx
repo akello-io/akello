@@ -1,6 +1,6 @@
 import * as React from "react";
 import {useNavigate} from "react-router";
-import PatientProgressChart from "../../../PatientProgressChart";
+import {PatientProgressChart} from "@akello/react";
 import {PatientTreatmentHistoryDataGrid} from "@akello/react";
 import {PatientRegistry, Questionnaire} from "@akello/core";
 import moment from "moment";
