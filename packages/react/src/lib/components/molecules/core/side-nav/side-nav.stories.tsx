@@ -62,7 +62,7 @@ Primary.args = {
         {name: "Dashboard", short_name: "Dashboard", icon: <>{iconMap.get('calendar')}</>, is_active: false, navigate: () => {}},  
         {name: "Registry", short_name: "Registry", icon: <>{iconMap.get('table')}</>, is_active: false, navigate: () => {}},  
         {name: "Team", short_name: "Patients", icon: <>{iconMap.get('team')}</>, is_active: false, navigate: () => {}},
-        {name: "Reports", short_name: "Reports", icon: <>{iconMap.get('chart')}</>, is_active: false, navigate: () => {}},
+        {name: "Reports", short_name: "Reports", icon: <>{iconMap.get('chart')}</>, is_active: false, navigate: () => {}, toggle_drawer: true},
     ],
     bottom_navigation: [
         {name: "Settings", short_name: "Settings", icon: <>{iconMap.get('gear')}</>, is_active: false, navigate: () => {}},

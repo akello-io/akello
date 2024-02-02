@@ -1,6 +1,7 @@
 import React, {ReactNode, useState} from "react";
 import {useLocation} from "react-router-dom";
 import {SideNavigationButton, SideNavigationButtonProps} from '../side-nav-btn';
+import {ArrowLeftIcon} from "@heroicons/react/20/solid";
 
 export interface SideNavigationProps {
     logo: ReactNode
@@ -13,13 +14,15 @@ export const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigati
     const [bottomNavigation, setBottomNavigation] = useState(bottom_navigation)
     const [selectedBtn, setSelectedBtn] = useState("Dashboard")
 
+    const [drawerToggle, setDrawerToggle] = useState(false)
+
     return (
         <>
             <div>
                 {/* Static sidebar for desktop */}
 
                 <div className="drawer">
-                    <input id="reports-drawer" type="checkbox" className="drawer-toggle" checked={false} />
+                    <input id="reports-drawer" type="checkbox" className="drawer-toggle" checked={drawerToggle} />
                     <div className="drawer-content">
                         {/* Page content here */}
                         <div className="fixed inset-y-0 left-0 z-50 block w-20 overflow-y-auto bg-gray-900 pb-4">
@@ -34,8 +37,10 @@ export const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigati
                                                 <>
                                                     <SideNavigationButton name={item.name} short_name={item.short_name} icon={item.icon} is_active={item.short_name==selectedBtn} navigate={()=> {
                                                         setSelectedBtn(item.short_name)
+                                                        if(item.toggle_drawer) {
+                                                            setDrawerToggle(!drawerToggle)
+                                                        }
                                                         item.navigate()
-
                                                     }} />
                                                 </>
                                             )
@@ -52,6 +57,9 @@ export const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigati
                                                     <>
                                                         <SideNavigationButton name={item.name} short_name={item.short_name} icon={item.icon} is_active={item.short_name==selectedBtn} navigate={()=> {
                                                             setSelectedBtn(item.short_name)
+                                                            if(item.toggle_drawer) {
+                                                                setDrawerToggle(!drawerToggle)
+                                                            }
                                                             item.navigate()
     
                                                         }} />
@@ -64,6 +72,28 @@ export const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigati
                             </div>
                         </div>
                     </div>
+                    <div className="drawer-side z-50 ml-20">
+
+                                <div className="menu p-4 w-80 min-h-full bg-neutral shadow-xl">
+
+                                    <label htmlFor="reports-drawer" className="drawer-button cursor-pointer" onClick={()=> {
+                                        setDrawerToggle(!drawerToggle)
+                                    }}>
+                                        <ArrowLeftIcon className={"h-6 w-6"} />
+                                    </label>
+                                    <div className={"pt-4 text-2xl font-semibold"}>
+                                        Reports
+                                    </div>
+                                    <div className={"pt-5 flex flex-col space-y-4"}>
+                                        <label htmlFor="reports-drawer" className="drawer-button text-lg cursor-pointer" onClick={() => {
+                                            setDrawerToggle(!drawerToggle)
+                                            // navigate("/reports/billing")
+                                        }}>
+                                            Billing Report
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                 </div>
 
             </div>

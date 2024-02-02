@@ -7,6 +7,7 @@ export interface SideNavigationButtonProps {
     short_name: string
     icon: ReactNode
     is_active: boolean
+    toggle_drawer?: boolean
     navigate: () => void
 }
 
