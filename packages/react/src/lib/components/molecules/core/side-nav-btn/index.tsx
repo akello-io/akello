@@ -2,15 +2,16 @@ import classNames from "classnames";
 import React from 'react';
 import {ReactNode} from "react";
 
-interface NavigationButtonProps {
+export interface SideNavigationButtonProps {
     name: string
     short_name: string
     icon: ReactNode
     is_active: boolean
+    toggle_drawer?: boolean
     navigate: () => void
 }
 
-export const SideNavigationButton:React.FC<NavigationButtonProps> = ({
+export const SideNavigationButton:React.FC<SideNavigationButtonProps> = ({
     name, short_name, is_active, icon, navigate
 }) => {
     let size = 'w-6 h-auto'

@@ -1,7 +1,4 @@
 import {forwardRef, ReactNode, useState} from "react";
-import 'react-tooltip/dist/react-tooltip.css'
-import YouTube from 'react-youtube';
-
 
 
 import {
@@ -11,7 +8,8 @@ import {
 import {Tooltip} from "@mui/material";
 import classNames from "classnames";
 import * as React from "react";
-interface HeaderComponentProps {
+
+export interface HeaderComponentProps {
     title: string
     is_admin?: boolean
     role?: string
@@ -20,7 +18,7 @@ interface HeaderComponentProps {
     isLoading?: boolean
 }
 
-const HeaderComponent:React.FC<HeaderComponentProps> = ({title, isLoading, is_admin, role, titleToolTip, buttons}) => {
+export const HeaderComponent:React.FC<HeaderComponentProps> = ({title, isLoading, is_admin, role, titleToolTip, buttons}) => {
 
     const [tooltipOpen, setTooltipOpen] = useState(false)
 
@@ -79,7 +77,6 @@ const HeaderComponent:React.FC<HeaderComponentProps> = ({title, isLoading, is_ad
                                         </>
                                     )
                                 }
-
                             </div>
                         )}
 
@@ -99,4 +96,3 @@ const HeaderComponent:React.FC<HeaderComponentProps> = ({title, isLoading, is_ad
     )
 }
 
-export default HeaderComponent

@@ -25,6 +25,8 @@ pnpm install  --save-dev storybook
 pnpm install  --save-dev @storybook/react-vite
 pnpm install  --save-dev @storybook/react
 
+pnpm install --save-dev @heroicons/react
+
 pnpm install  --save @types/react
 pnpm install --save classnames
 pnpm install --save vite
