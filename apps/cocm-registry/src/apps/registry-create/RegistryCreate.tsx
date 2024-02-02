@@ -1,8 +1,7 @@
 import AppContainer from "../../stories/app/Container/AppContainer";
-import {SideNavigation} from "@akello/react";
+import {SideNavigation, Dropdown} from "@akello/react";
 import {ReactNode, useState} from "react";
 import {useNavigate} from "react-router";
-import Dropdown from "../registry/components/Dropdown";
 import {createRegistry} from "../../api/registry";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";

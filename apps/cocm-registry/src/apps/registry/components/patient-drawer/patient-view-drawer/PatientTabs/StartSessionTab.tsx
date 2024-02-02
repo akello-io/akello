@@ -2,7 +2,7 @@ import * as React from "react";
 import StopWatch from "./components/stopwatch/StopWatch";
 import {useEffect, useState} from "react";
 import classNames from "classnames";
-import Dropdown from "../../../Dropdown";
+import {Dropdown} from "@akello/react";
 import {saveTreatmentSession} from "../../../../../../api/registry";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../../../store";
