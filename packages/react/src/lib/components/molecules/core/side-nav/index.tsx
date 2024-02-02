@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from "react";
+import React, {ReactNode, useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
 import {SideNavigationButton, SideNavigationButtonProps} from '../side-nav-btn';
 import {ArrowLeftIcon} from "@heroicons/react/20/solid";
@@ -12,9 +12,15 @@ export interface SideNavigationProps {
 export const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigation, bottom_navigation}) => {
     const [topNavigation, setTopNavigation] = useState(top_navigation)
     const [bottomNavigation, setBottomNavigation] = useState(bottom_navigation)
-    const [selectedBtn, setSelectedBtn] = useState("Dashboard")
+    const [selectedBtn, setSelectedBtn] = useState<SideNavigationButtonProps>()
 
     const [drawerToggle, setDrawerToggle] = useState(false)
+
+    useEffect(() => {
+        if(!selectedBtn?.toggle_drawer) {
+            setDrawerToggle(false)
+        }
+    }, [selectedBtn])
 
     return (
         <>
@@ -35,8 +41,8 @@ export const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigati
                                         topNavigation.map((item: SideNavigationButtonProps) => {                                            
                                             return (
                                                 <>
-                                                    <SideNavigationButton name={item.name} short_name={item.short_name} icon={item.icon} is_active={item.short_name==selectedBtn} navigate={()=> {
-                                                        setSelectedBtn(item.short_name)
+                                                    <SideNavigationButton name={item.name} short_name={item.short_name} icon={item.icon} is_active={item.short_name==selectedBtn?.short_name} navigate={()=> {
+                                                        setSelectedBtn(item)
                                                         if(item.toggle_drawer) {
                                                             setDrawerToggle(!drawerToggle)
                                                         }
@@ -55,8 +61,8 @@ export const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigati
                                             bottomNavigation.map((item: SideNavigationButtonProps) => {
                                                 return (
                                                     <>
-                                                        <SideNavigationButton name={item.name} short_name={item.short_name} icon={item.icon} is_active={item.short_name==selectedBtn} navigate={()=> {
-                                                            setSelectedBtn(item.short_name)
+                                                        <SideNavigationButton name={item.name} short_name={item.short_name} icon={item.icon} is_active={item.short_name==selectedBtn?.short_name} navigate={()=> {
+                                                            setSelectedBtn(item)
                                                             if(item.toggle_drawer) {
                                                                 setDrawerToggle(!drawerToggle)
                                                             }
