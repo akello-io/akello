@@ -1,12 +1,13 @@
 
 import {useEffect, useState} from "react";
-import {getUserRegistries} from "../../api/user";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../store";
 import {useNavigate} from "react-router";
+import {useDispatch, useSelector} from "react-redux";
+import {getUserRegistries} from "../../api/user";
+import {RootState} from "../../store";
 import {setSelectedRegistry} from "../../reducers/appSlice";
 import {RegistrySelectRow, TopNavigation, WelcomeBanner, ThemeSwap} from "@akello/react"
 import {RegistryMemberships} from "@akello/react"
+import AkelloCornerLogo from "../../images/logos/akello/akello-corner-logo.svg"
 
 
 interface RegistrySelectorProps {
@@ -14,13 +15,12 @@ interface RegistrySelectorProps {
 }
 
 const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
-
     const navigate = useNavigate()
-    const userProfile = useSelector((state: RootState) => state.app.userProfile)
+    const dispatch = useDispatch()
 
+    const userProfile = useSelector((state: RootState) => state.app.userProfile)
     const token = useSelector((state: RootState) => state.app.token)
     
-    const dispatch = useDispatch()
     const [create, setCreate] = useState(false)
     const [registries, setRegistries] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -78,7 +78,7 @@ const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
                                         }}
                                         name={registry['name']}
                                         members={registry['members']}
-                                        logo_url={''}
+                                        logo_url={AkelloCornerLogo}
                                         patients={3}
                                         screeners={3}
                                     />

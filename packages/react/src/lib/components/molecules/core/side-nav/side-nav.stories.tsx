@@ -4,6 +4,17 @@ import { SideNavigationButton } from '../side-nav-btn'
 import { objectValuesToControls } from '../../../storybook-utils'
 import { Meta } from '@storybook/react'
 import { StoryFn } from '@storybook/react'
+import {
+    CalendarDaysIcon,
+    ChartBarSquareIcon,
+    ChatBubbleLeftRightIcon,
+    HeartIcon,
+    TableCellsIcon,
+    UserGroupIcon,   
+    Cog8ToothIcon 
+} from '@heroicons/react/24/outline'
+
+import AkelloLogoCorner from '../../../../assets/images/logos/akello/akello-corner-logo.svg'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof SideNavigation> = {
@@ -18,15 +29,41 @@ export default meta
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof SideNavigation> = (args: SideNavigationProps) => <SideNavigation {...args} />
 
+
+let size = 'w-6 h-auto'
+
+const iconMap = new Map<string, any>()
+iconMap.set("table",  <TableCellsIcon className={size} /> )
+iconMap.set("calendar", <CalendarDaysIcon className={size} />)
+iconMap.set("chart", <ChartBarSquareIcon className={size} /> )
+iconMap.set("chat", <ChatBubbleLeftRightIcon className={size} /> )
+iconMap.set("heart", <HeartIcon className={size} /> )
+iconMap.set("team", <UserGroupIcon className={size} /> )
+iconMap.set("gear", <Cog8ToothIcon className={size} /> )
+
 export const Primary = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
+
+const logo = (    
+    <a href={"/"}>
+        <img
+            className=""
+            src={AkelloLogoCorner}
+            alt="Akello Health"
+        />
+    </a>    
+)
+
+
 Primary.args = {
-    logo: (<><div className="bg-red-500 w-24 h-24"></div></>),
+    logo: (<>{logo}</>),
     top_navigation: [
-        (<SideNavigationButton name="Dashboard" short_name="Dashboard" icon={<div className="bg-red-500 w-6 h-6"></div>} is_active={true} navigate={() => {}}/>),  
-        (<SideNavigationButton name="Reports" short_name="Reports" icon={<div className="bg-red-500 w-6 h-6"></div>} is_active={true} navigate={() => {}}/>),  
+        (<SideNavigationButton name="Dashboard" short_name="Dashboard" icon={<>{iconMap.get('chart')}</>} is_active={true} navigate={() => {}}/>),  
+        (<SideNavigationButton name="Registry" short_name="Registry" icon={<>{iconMap.get('table')}</>} is_active={false} navigate={() => {}}/>),  
+        (<SideNavigationButton name="Team" short_name="Team" icon={<>{iconMap.get('team')}</>} is_active={false} navigate={() => {}}/>),  
+        (<SideNavigationButton name="Reports" short_name="Reports" icon={<>{iconMap.get('chart')}</>} is_active={false} navigate={() => {}}/>),  
     ],
     bottom_navigation: [
-        (<SideNavigationButton name="Settings" short_name="Settings" icon={<div className="bg-red-500 w-6 h-6"></div>} is_active={true} navigate={() => {}}/>),  
+        (<SideNavigationButton name="Settings" short_name="Settings" icon={<>{iconMap.get('chart')}</>}  is_active={false} navigate={() => {}}/>),  
     ]
 }
