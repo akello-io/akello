@@ -1,10 +1,9 @@
 import * as React from "react";
 import {useNavigate} from "react-router";
-import PatientProgressChart from "../../../PatientProgressChart";
-import PatientTreatmentHistoryDataGrid from "../../../PatientTreatmentHistoryDataGrid";
+import {PatientProgressChart, Dropdown} from "@akello/react";
+import {PatientTreatmentHistoryDataGrid} from "@akello/react";
 import {PatientRegistry, Questionnaire} from "@akello/core";
 import moment from "moment";
-import Dropdown from "../../../Dropdown";
 import {setFlag, setStatus} from "../../../../../../api/registry";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../../../store";

@@ -3,18 +3,18 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import classNames from "classnames";
 
-type DropdownOption = {
+export type DropdownOption = {
     id: string
     value: string
 }
 
-interface DropdownProps {
+export interface DropdownProps {
     placeholder: string
     options: DropdownOption[]
     setSelectedOption: (value: string) => void
 }
 
-const Dropdown:React.FC<DropdownProps> = ({placeholder, options, setSelectedOption}) => {
+export const Dropdown:React.FC<DropdownProps> = ({placeholder, options, setSelectedOption}) => {
 
     const [value, setValue] = useState(placeholder)
 
@@ -66,6 +66,3 @@ const Dropdown:React.FC<DropdownProps> = ({placeholder, options, setSelectedOpti
         </Menu>
     )
 }
-
-
-export default Dropdown

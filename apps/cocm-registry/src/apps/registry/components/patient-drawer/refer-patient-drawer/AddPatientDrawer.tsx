@@ -1,5 +1,5 @@
 import * as React from "react";
-import DrawerLayout from "../DrawerLayout";
+import {DrawerLayout} from "@akello/react";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import {referPatient} from "../../../../../api/registry";

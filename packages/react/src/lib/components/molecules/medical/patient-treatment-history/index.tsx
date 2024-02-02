@@ -5,11 +5,12 @@ import {PatientRegistry, TreatmentLogScore, Questionnaire} from "@akello/core";
 
 
 
-interface PatientTreatmentHistoryProps {
+export interface PatientTreatmentHistoryProps {
     selectedPatient: PatientRegistry,
     questionnaires: Questionnaire[]
 }
-const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = ({ selectedPatient, questionnaires }) => {
+
+export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = ({ selectedPatient, questionnaires }) => {
 
 
     const columns: GridColDef[] = [
@@ -100,5 +101,3 @@ const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryProps> = (
         </Box>
     );
 }
-
-export default PatientTreatmentHistoryDataGrid

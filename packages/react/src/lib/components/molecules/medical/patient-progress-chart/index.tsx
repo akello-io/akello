@@ -4,12 +4,12 @@ import {PatientRegistry, TreatmentLog, Questionnaire} from "@akello/core";
 
 
 
-interface PatientProgressChartProps {
+export interface PatientProgressChartProps {
     selectedPatient: PatientRegistry,
     questionnaires: Questionnaire[]
 }
 
-const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatient, questionnaires}) => {
+export const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatient, questionnaires}) => {
 
     let copy = [...selectedPatient.treatment_logs!]
     copy.sort((a, b) => a.weeks_in_treatment > b.weeks_in_treatment ? 1 : -1)
@@ -84,5 +84,3 @@ const PatientProgressChart:React.FC<PatientProgressChartProps> = ({selectedPatie
         </ResponsiveContainer>
     );
 }
-
-export default PatientProgressChart
