@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store";
 import {useLocation, useNavigate} from "react-router";
 import {setSelectedRegistry} from "../../../reducers/appSlice";
-// import {SideNavigation} from "../Navigation/SideNavigation/SideNavigation";
 import { PageFooter, SideNavigation, SideNavigationButtonProps } from '@akello/react';
 import AkelloLogoCorner from "../../../images/logos/akello/akello-corner-logo.svg";
 

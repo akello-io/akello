@@ -1,5 +1,5 @@
 import AppContainer from "../../stories/app/Container/AppContainer";
-import {SideNavigation} from "../../stories/app/Navigation/SideNavigation/SideNavigation";
+import {SideNavigation} from "@akello/react";
 import {ReactNode, useState} from "react";
 import {useNavigate} from "react-router";
 import Dropdown from "../registry/components/Dropdown";
@@ -220,9 +220,10 @@ const RegistryCreate = () => {
     return (
         <>
             <SideNavigation
-                role={"N/A"}
-                activeRoute={window.location.pathname}
-                navigate={(route) => {}}
+                logo={<a href={"/"}><img src={"/akello-logo.png"} alt="Akello Health" /></a>}
+                selectedBtn={{name: "Registry", short_name: "Registry", icon: <>{}</>, is_active: true, navigate: () => {}}}
+                top_navigation={[]}
+                bottom_navigation={[]}
             />
             <main className="pl-20 pt-4  h-full">
                 <RegistryCreateSection

@@ -79,7 +79,6 @@ const HeaderComponent:React.FC<HeaderComponentProps> = ({title, isLoading, is_ad
                                         </>
                                     )
                                 }
-
                             </div>
                         )}
 
