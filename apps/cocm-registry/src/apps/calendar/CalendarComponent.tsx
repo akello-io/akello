@@ -1,5 +1,4 @@
 import AppContainer from "../../stories/app/Container/AppContainer";
-import PatientTreatmentHistoryDataGrid from "../registry/components/PatientTreatmentHistoryDataGrid";
 import * as React from "react";
 
 
