@@ -1,11 +1,10 @@
 import {ReactNode} from 'react'
-import HeaderComponent from "../../../apps/components/HeaderComponent";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store";
 import {useLocation, useNavigate} from "react-router";
 import {setSelectedRegistry} from "../../../reducers/appSlice";
-import { PageFooter, SideNavigation, SideNavigationButtonProps } from '@akello/react';
+import { PageFooter, SideNavigation, SideNavigationButtonProps, AppHeaderSection } from '@akello/react';
 import AkelloLogoCorner from "../../../images/logos/akello/akello-corner-logo.svg";
 
 import {
@@ -104,7 +103,7 @@ export const AppContainer:React.FC<AppContainerProps> = ({children, title, is_ad
                     {
                         fullscreen ? children :
                             <>
-                                <HeaderComponent title={title} isLoading={isLoading} is_admin={is_admin} role={role} titleToolTip={titleToolTip} buttons={headerButtons} />
+                                <AppHeaderSection title={title} isLoading={isLoading} buttons={headerButtons} />
                                 <div className={"px-2 py-4 "}>
                                     {children}
                                     <PageFooter terms_of_service_link='https://akello.io/terms' privacy_policy_link='https://akello.io/privacy' />
