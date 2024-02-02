@@ -55,15 +55,16 @@ const logo = (
 )
 
 
+
 Primary.args = {
     logo: (<>{logo}</>),
     top_navigation: [
-        (<SideNavigationButton name="Dashboard" short_name="Dashboard" icon={<>{iconMap.get('chart')}</>} is_active={true} navigate={() => {}}/>),  
-        (<SideNavigationButton name="Registry" short_name="Registry" icon={<>{iconMap.get('table')}</>} is_active={false} navigate={() => {}}/>),  
-        (<SideNavigationButton name="Team" short_name="Team" icon={<>{iconMap.get('team')}</>} is_active={false} navigate={() => {}}/>),  
-        (<SideNavigationButton name="Reports" short_name="Reports" icon={<>{iconMap.get('chart')}</>} is_active={false} navigate={() => {}}/>),  
+        {name: "Dashboard", short_name: "Dashboard", icon: <>{iconMap.get('calendar')}</>, is_active: false, navigate: () => {}},  
+        {name: "Registry", short_name: "Registry", icon: <>{iconMap.get('table')}</>, is_active: false, navigate: () => {}},  
+        {name: "Team", short_name: "Patients", icon: <>{iconMap.get('team')}</>, is_active: false, navigate: () => {}},
+        {name: "Reports", short_name: "Reports", icon: <>{iconMap.get('chart')}</>, is_active: false, navigate: () => {}},
     ],
     bottom_navigation: [
-        (<SideNavigationButton name="Settings" short_name="Settings" icon={<>{iconMap.get('chart')}</>}  is_active={false} navigate={() => {}}/>),  
+        {name: "Settings", short_name: "Settings", icon: <>{iconMap.get('gear')}</>, is_active: false, navigate: () => {}},
     ]
 }

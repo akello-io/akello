@@ -1,12 +1,17 @@
-import React, {ReactNode} from "react";
+import React, {ReactNode, useState} from "react";
+import {useLocation} from "react-router-dom";
+import {SideNavigationButton, SideNavigationButtonProps} from '../side-nav-btn';
 
 export interface SideNavigationProps {
     logo: ReactNode
-    top_navigation: any[]
-    bottom_navigation: any[]
+    top_navigation: SideNavigationButtonProps[]
+    bottom_navigation: SideNavigationButtonProps[]
 }
 
 export const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigation, bottom_navigation}) => {
+    const [topNavigation, setTopNavigation] = useState(top_navigation)
+    const [bottomNavigation, setBottomNavigation] = useState(bottom_navigation)
+    const [selectedBtn, setSelectedBtn] = useState("Dashboard")
 
     return (
         <>
@@ -24,8 +29,16 @@ export const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigati
                             <nav className="mt-4">
                                 <ul role="list" className="flex flex-col space-y-3">
                                     {
-                                        top_navigation.map((item: any) => {
-                                            return <>{item}</>
+                                        topNavigation.map((item: SideNavigationButtonProps) => {                                            
+                                            return (
+                                                <>
+                                                    <SideNavigationButton name={item.name} short_name={item.short_name} icon={item.icon} is_active={item.short_name==selectedBtn} navigate={()=> {
+                                                        setSelectedBtn(item.short_name)
+                                                        item.navigate()
+
+                                                    }} />
+                                                </>
+                                            )
                                         })
                                     }
                                 </ul>
@@ -34,8 +47,16 @@ export const SideNavigation:React.FC<SideNavigationProps> = ({logo, top_navigati
                                 <nav className="absolute bottom-0 left-0 right-0">
                                     <ul role="list" className="">
                                         {
-                                            bottom_navigation.map((item: any) => {
-                                                return <>{item}</>
+                                            bottomNavigation.map((item: SideNavigationButtonProps) => {
+                                                return (
+                                                    <>
+                                                        <SideNavigationButton name={item.name} short_name={item.short_name} icon={item.icon} is_active={item.short_name==selectedBtn} navigate={()=> {
+                                                            setSelectedBtn(item.short_name)
+                                                            item.navigate()
+    
+                                                        }} />
+                                                    </>
+                                                )
                                             })
                                         }
                                     </ul>
