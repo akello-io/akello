@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { AwsRum, AwsRumConfig } from 'aws-rum-web';
 import {store} from "./store";
 import {Provider} from 'react-redux'
-
+import {AkelloProvider} from '@akello/react-hook'
 
 
 if(process.env.NODE_ENV=='production') {
@@ -45,7 +45,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
       <Provider store={store}>
-          <App />
+            <AkelloProvider>
+                <App />
+            </AkelloProvider>          
       </Provider>
   </React.StrictMode>
 );

@@ -1,5 +1,5 @@
 import {Amplify, Auth} from 'aws-amplify';
-import { Authenticator } from '@aws-amplify/ui-react';
+import React, {ReactNode, useEffect} from 'react';
 import '@aws-amplify/ui-react/styles.css';
 import {BrowserRouter, Routes} from "react-router-dom";
 import {Route, useNavigate} from "react-router";
@@ -9,7 +9,9 @@ import FinancialModelCreate from "./apps/financial-model/FinancialModelCreate";
 import RegistryComponent from "./apps/registry/RegistryComponent";
 import SettingsComponent from "./apps/settings/SettingsComponent";
 import UpgradeComponent from "./apps/upgrade/UpgradeComponent";
+
 import {cognito_auth_components, cognito_auth_formFields} from "./cognito_auth";
+import { Authenticator } from '@aws-amplify/ui-react';
 import {setAuthToken, setSelectedRegistry, setUserProfile} from "./reducers/appSlice";
 import {useDispatch} from "react-redux";
 import TeamComponent from "./apps/team/TeamComponent";
@@ -24,6 +26,7 @@ import BillingReport from "./apps/reports/billing/BillingReport";
 import RegistryReport from "./apps/reports/registry/RegistryReport";
 import {getUser} from "./api/user";
 import { debug } from 'console';
+import { useAuth } from "@akello/react-hook"
 import "./App.css"
 
 // Configure Amplify in index file or root file
@@ -43,13 +46,34 @@ if(process.env.REACT_APP_MOCK != 'true') {
     })
 }
 
+interface ProtectedRoute {
+    children: ReactNode
+    publicNode?: ReactNode
+}
+
+const ProtectedRoute:React.FC<ProtectedRoute> = ({children, publicNode}) => {
+    const {token} = useAuth()    
+    debugger;
+    if (!token) {
+        if(publicNode) {
+            return (<>{publicNode}</>)
+        }
+        return (<>go to login</>)
+    }
+    return (
+        <>
+            {children}
+        </>
+    );
+};
+
 
 const routes = () => {
     return (
         <>
             <BrowserRouter>
-                <Routes>
-                    <Route index element={<RegistrySelector signOut={() => {}} />} />
+                <Routes>                    
+                    <Route path={"/"} element={<RegistrySelector signOut={() => {}} />} />
                     <Route path={"/profile"} element={<ProfileComponent />} />
                     <Route path={"/registry/create"} element={<RegistryCreate />} />
                     <Route path={"/dashboard"} element={<Dashboard />} />
@@ -76,6 +100,12 @@ const routes = () => {
 
 function App() {
     const dispatch = useDispatch()
+    const {signIn } = useAuth()
+
+    useEffect(() => {
+        signIn('vijay.selvaraj@gmail.com','Testing1234!', (token:string)=> {debugger; console.log(token)}, (err: any) => {debugger; console.log(err)})
+    }, [])
+    
 
     if(process.env.REACT_APP_MOCK == 'true') {
         dispatch(setAuthToken('mock-token'))
@@ -84,6 +114,7 @@ function App() {
     else {
         return (
             <>
+                
                 <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
                     {({ signOut, user }) => {
                         Auth.currentSession().then((session) => {
@@ -132,7 +163,7 @@ function App() {
 
                         return routes()
                     }}
-                </Authenticator>
+                </Authenticator>                
             </>
 
         );

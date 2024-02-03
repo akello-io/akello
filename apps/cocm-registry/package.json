@@ -4,6 +4,7 @@
   "dependencies": {
     "@akello/core": "0.0.3",
     "@aws-amplify/ui-react": "^5.3.1",
+    "@aws-sdk/util-utf8-browser": "^3.259.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.17",
@@ -32,7 +33,7 @@
     "mockserver": "^3.1.1",
     "moment": "^2.29.4",
     "npm": "^10.4.0",
-    "react": "^18.2.0",    
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
     "react-is-visible": "^1.2.0",
@@ -82,6 +83,7 @@
   "devDependencies": {
     "@akello/core": "../../packages/core",
     "@akello/react": "file:../../packages/react/akello-react-2.0.4.tgz",
+    "@akello/react-hook": "file:../../packages/react-hook/akello-react-hook-2.0.4.tgz",
     "@faker-js/faker": "^8.1.0",
     "@storybook/addon-essentials": "^7.5.1",
     "@storybook/addon-interactions": "^7.5.1",

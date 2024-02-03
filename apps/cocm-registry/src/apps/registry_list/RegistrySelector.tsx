@@ -8,6 +8,7 @@ import {setSelectedRegistry} from "../../reducers/appSlice";
 import {RegistrySelectRow, TopNavigation, WelcomeBanner, ThemeSwap} from "@akello/react"
 import {RegistryMemberships} from "@akello/react"
 import AkelloCornerLogo from "../../images/logos/akello/akello-corner-logo.svg"
+import { useAkelloContext } from "@akello/react-hook"
 
 
 interface RegistrySelectorProps {
@@ -20,6 +21,8 @@ const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
 
     const userProfile = useSelector((state: RootState) => state.app.userProfile)
     const token = useSelector((state: RootState) => state.app.token)
+
+    const akelloContext = useAkelloContext()
     
     const [create, setCreate] = useState(false)
     const [registries, setRegistries] = useState([])
@@ -29,6 +32,8 @@ const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
         if(token) {
             setIsLoading(true)
             getUserRegistries(token, (data) => {
+                console.log(akelloContext.loading)
+                debugger;
                 setRegistries(data)
                 setIsLoading(false)
             })
