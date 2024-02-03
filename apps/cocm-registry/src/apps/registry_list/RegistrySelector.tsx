@@ -33,6 +33,7 @@ const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
             setIsLoading(true)
             getUserRegistries(token, (data) => {
                 console.log(akelloContext.loading)
+                console.log(akelloContext.akello)
                 debugger;
                 setRegistries(data)
                 setIsLoading(false)
