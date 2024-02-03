@@ -44,6 +44,8 @@ pnpm install --save-peer postcss
 pnpm install --save-peer autoprefixer
 pnpm install --save-peer @mui/x-data-grid
 pnpm install --save-peer daisyui
+pnpm install --save yup
+pnpm install --save formik
 pnpm i
 pnpm build:lib
 pnpm pack
@@ -70,6 +72,5 @@ pnpm install --save @vitejs/plugin-react
 pnpm install --save vitest
 pnpm install --save json
 pnpm install --save tailwindcss
-
 pnpm install --save amazon-cognito-identity-js
 
