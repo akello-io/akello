@@ -26,7 +26,6 @@ import BillingReport from "./apps/reports/billing/BillingReport";
 import RegistryReport from "./apps/reports/registry/RegistryReport";
 import {getUser} from "./api/user";
 import { debug } from 'console';
-import { useAuth } from "@akello/react-hook"
 import "./App.css"
 
 // Configure Amplify in index file or root file
@@ -45,28 +44,6 @@ if(process.env.REACT_APP_MOCK != 'true') {
             }
     })
 }
-
-interface ProtectedRoute {
-    children: ReactNode
-    publicNode?: ReactNode
-}
-
-const ProtectedRoute:React.FC<ProtectedRoute> = ({children, publicNode}) => {
-    const {token} = useAuth()    
-    debugger;
-    if (!token) {
-        if(publicNode) {
-            return (<>{publicNode}</>)
-        }
-        return (<>go to login</>)
-    }
-    return (
-        <>
-            {children}
-        </>
-    );
-};
-
 
 const routes = () => {
     return (
@@ -100,11 +77,6 @@ const routes = () => {
 
 function App() {
     const dispatch = useDispatch()
-    const {signIn } = useAuth()
-
-    useEffect(() => {
-        signIn('vijay.selvaraj@gmail.com','Testing1234!', (token:string)=> {debugger; console.log(token)}, (err: any) => {debugger; console.log(err)})
-    }, [])
     
 
     if(process.env.REACT_APP_MOCK == 'true') {

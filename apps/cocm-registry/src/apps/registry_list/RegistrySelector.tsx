@@ -34,6 +34,7 @@ const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
             getUserRegistries(token, (data) => {
                 console.log(akelloContext.loading)
                 console.log(akelloContext.akello)
+                akelloContext.akello.login('vijay.selvaraj@gmail.com', 'Testing1234!', (data: any) => { debugger}, (error: any) => { debugger})
                 debugger;
                 setRegistries(data)
                 setIsLoading(false)

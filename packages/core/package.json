@@ -40,7 +40,9 @@
   "peerDependencies": {
     "axios": "^1.6.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "amazon-cognito-identity-js": "^6.3.7",
+    "aws-amplify": "^6.0.13"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -48,9 +50,8 @@
     "dist"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "@types/fhir": "^0.0.40",
-    "aws-amplify": "^6.0.13",
+  "dependencies": {    
+    "@types/fhir": "^0.0.40",    
     "moment": "^2.29.4",
     "rollup-plugin-node-globals": "^1.4.0"
   }
