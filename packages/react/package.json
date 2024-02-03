@@ -33,7 +33,8 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
   "peerDependencies": {
-    "@akello/core": "^0.0.5",
+    "@akello/core": "link:../core",
+    "@akello/react-hook": "file:../react-hook/akello-react-hook-2.0.4.tgz",
     "@mui/icons-material": "^5.15.6",
     "@mui/lab": "^5.0.0-alpha.162",
     "@mui/material": "^5.15.7",
@@ -55,6 +56,20 @@
       "prettier -w"
     ]
   },
+  "devDependencies": {    
+    "@heroicons/react": "^2.1.1",
+    "@mui/material": "^5.15.7",
+    "@mui/styled-engine": "^5.15.7",
+    "@mui/x-data-grid": "^6.19.3",
+    "@storybook/react": "^7.6.12",
+    "@storybook/react-vite": "^7.6.12",
+    "autoprefixer": "^10.4.17",
+    "daisyui": "^4.6.1",
+    "husky": "^9.0.10",
+    "postcss": "^8.4.33",
+    "storybook": "^7.6.12",
+    "tailwindcss": "^3.4.1"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
@@ -70,19 +85,5 @@
     "vite-plugin-dts": "^3.7.2",
     "vitest": "^1.2.2",
     "yup": "^1.3.3"
-  },
-  "devDependencies": {
-    "@heroicons/react": "^2.1.1",
-    "@mui/material": "^5.15.7",
-    "@mui/styled-engine": "^5.15.7",
-    "@mui/x-data-grid": "^6.19.3",
-    "@storybook/react": "^7.6.12",
-    "@storybook/react-vite": "^7.6.12",
-    "autoprefixer": "^10.4.17",
-    "daisyui": "^4.6.1",
-    "husky": "^9.0.10",
-    "postcss": "^8.4.33",
-    "storybook": "^7.6.12",
-    "tailwindcss": "^3.4.1"
   }
 }

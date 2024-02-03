@@ -46,6 +46,7 @@ pnpm install --save-peer @mui/x-data-grid
 pnpm install --save-peer daisyui
 pnpm install --save yup
 pnpm install --save formik
+pnpm install --save-peer ../react-hook
 pnpm i
 pnpm build:lib
 pnpm pack

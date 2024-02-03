@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Yup from "yup";
 import {Field, Form, Formik} from "formik";
-
+import { useAkelloContext } from "@akello/react-hook"
 
 export interface SignInProps  {
     
@@ -17,6 +17,9 @@ export const LoginSchema = Yup.object().shape({
 
 
 export const SignIn:React.FC<SignInProps> = () => {
+
+    const akelloContext = useAkelloContext()
+    const akello = akelloContext.akello
 
     return (
         <div>
@@ -35,7 +38,7 @@ export const SignIn:React.FC<SignInProps> = () => {
                     <Form className="space-y-4">
                       <div className="flex flex-wrap -mx-3 mb-4">
                         <div className="w-full px-3">
-                          <label className="block text-gray-800 text-sm font-medium mb-1" htmlFor="email">Email <span className="text-red-600">*</span></label>
+                          <label className="block  text-sm font-medium mb-1" htmlFor="email">Email <span className="text-red-600">*</span></label>
                           <Field name="email" placeholder={"Enter your email address"} className="form-input w-full text-gray-800"/>
                           {errors.email && touched.email ? (
                               <div>{errors.email}</div>
@@ -46,7 +49,7 @@ export const SignIn:React.FC<SignInProps> = () => {
                       <div className="flex flex-wrap -mx-3 mb-4">
                         <div className="w-full px-3">
                           <div className={"flex justify-between"}>
-                            <label className="block text-gray-800 text-sm font-medium mb-1" htmlFor="email">Password <span className="text-red-600">*</span></label>
+                            <label className="block text-sm font-medium mb-1" htmlFor="email">Password <span className="text-red-600">*</span></label>
                             <div  className="text-sm font-medium text-blue-600 hover:underline">Having trouble signing in?</div>
                           </div>
                           <Field type="password" name="password" placeholder={"Enter your password"} className="form-input w-full text-gray-800"/>
