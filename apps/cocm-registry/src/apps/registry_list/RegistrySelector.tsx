@@ -9,6 +9,7 @@ import {RegistrySelectRow, TopNavigation, WelcomeBanner, ThemeSwap} from "@akell
 import {RegistryMemberships} from "@akello/react"
 import AkelloCornerLogo from "../../images/logos/akello/akello-corner-logo.svg"
 import { useAkelloContext } from "@akello/react-hook"
+import { debug } from "console";
 
 
 interface RegistrySelectorProps {
@@ -17,12 +18,10 @@ interface RegistrySelectorProps {
 
 const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch()        
 
     const userProfile = useSelector((state: RootState) => state.app.userProfile)
-    const token = useSelector((state: RootState) => state.app.token)
-
-    const akelloContext = useAkelloContext()
+    const token = useSelector((state: RootState) => state.app.token)    
     
     const [create, setCreate] = useState(false)
     const [registries, setRegistries] = useState([])

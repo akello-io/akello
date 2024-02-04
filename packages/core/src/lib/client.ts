@@ -19,7 +19,8 @@ export interface AkelloClientOptions  {
     token?: string;    
     cognitoUserPoolId?: string;
     cognitoClientId?: string;
-    cognitoEndpoint?: string;    
+    cognitoEndpoint?: string;   
+    onUnauthenticated?: () => void 
 }
 
 export interface RequestParam {
@@ -29,23 +30,26 @@ export interface RequestParam {
     token: string,
     payload?: any
     onSuccess: (resp: any) => void
-    onFail?: (resp: any) => void
+    onFail?: (resp: any) => void    
 }
 
 
 export class AkelloClient extends EventTarget implements AkelloClientInterface {
 
-    private readonly options: AkelloClientOptions;
-    private readonly registryService: RegistryService;
+    private readonly options: AkelloClientOptions;    
+    public readonly registryService: RegistryService;
 
     constructor(options?: AkelloClientOptions) {
         super();
         this.options = options ?? {};
-        this.registryService = new RegistryService();
+        this.registryService = new RegistryService(this);
+    }
+
+    getOptions() {
+        return this.options;
     }
 
     login(username: string, password: string, onSuccess: (token: string) => void, onFail: (err: any) => void) {
-        debugger;
         const authenticationData = {
             Username : username,
             Password : password,
@@ -80,6 +84,12 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     }
 
     logout() {
+    }
+
+    handleUnauthenticated() {
+        if (this.options.onUnauthenticated) {
+            this.options.onUnauthenticated();
+        }
     }
 
 }

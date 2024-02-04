@@ -1,31 +1,32 @@
-
+import { AkelloClient } from '../client';
 import { BaseService } from './base';
 
 export class RegistryService extends BaseService {
-
-    constructor() {
-        super();
+    
+    constructor(client: AkelloClient) {
+        super(client);        
     }
 
-    async createRegistry(api_url: string, token: string, payload: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/create";
+    async createRegistry(token: string, payload: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "registry/create";            
         const resp = this.apiRequest({
-            api_url: api_url,
+            api_url: this.client.getOptions().baseUrl!,
             method: 'post',
             endpoint: endpoint,
             token: token,
             payload: payload,
             onSuccess: (resp: any) => {
                 onSuccess(resp)
-            }, onFail: (error: any) => {
+            }, onFail: (error: any) => {        
+                
             }
         });
     }
 
-    async referPatient(api_url: string, token: string, registry_id: string, referral: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async referPatient(token: string, registry_id: string, referral: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + "/refer-patient";
         const resp = this.apiRequest({
-            api_url: api_url,
+            api_url: this.client.getOptions().baseUrl!,
             method: 'post',
             endpoint: endpoint,
             token: token,
@@ -33,46 +34,46 @@ export class RegistryService extends BaseService {
             onSuccess: (resp: any) => {
                 onSuccess(resp)
             }, onFail: (error: any) => {
+                this.handleFail(error, onFail)
             }
         });
     }
 
-    async getMembers(api_url: string, token: string, registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async getMembers(token: string, registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + "/team-members";
         const resp = this.apiRequest({
-            api_url: api_url,
+            api_url: this.client.getOptions().baseUrl!,
             method: 'get',
             endpoint: endpoint,
             token: token,
             onSuccess: (resp: any) => {
                 onSuccess(resp)
             }, onFail: (error: any) => {
+                this.handleFail(error, onFail)
             }
         });
     }
 
-    async getRegistryPatients(api_url: string, token: string, registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async getRegistryPatients(token: string, registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + '/patients' ;
         const resp = this.apiRequest({
-            api_url: api_url,
+            api_url: this.client.getOptions().baseUrl!,
             method: 'get',
             endpoint: endpoint,
             token: token,
             onSuccess: (resp: any) => {
                 onSuccess(resp)
             }, onFail: (error: any) => {
-                if(onFail) {
-                    onFail(error)
-                }
+                this.handleFail(error, onFail)
             }
         });
     
     }
 
-    async saveTreatmentSession(api_url: string, token: string, registry_id: string,  session: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async saveTreatmentSession(token: string, registry_id: string,  session: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + "/record-session";
         const resp = this.apiRequest({
-            api_url: api_url,
+            api_url: this.client.getOptions().baseUrl!,
             method: 'post',
             endpoint: endpoint,
             payload: session,
@@ -80,14 +81,15 @@ export class RegistryService extends BaseService {
             onSuccess: (resp: any) => {
                 onSuccess(resp)
             }, onFail: (error: any) => {
+                this.handleFail(error, onFail)
             }
         });
     }
 
-    async setFlag(api_url: string, token: string, registry_id: string, mrn: string, flag: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async setFlag(token: string, registry_id: string, mrn: string, flag: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + "/patient-attribute";
         const resp = this.apiRequest({
-            api_url: api_url,
+            api_url: this.client.getOptions().baseUrl!,
             method: 'post',
             endpoint: endpoint,
             payload: {
@@ -103,10 +105,10 @@ export class RegistryService extends BaseService {
         });
     }
 
-    async setStatus(api_url: string, token: string, registry_id: string,  mrn: string, status: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async setStatus(token: string, registry_id: string,  mrn: string, status: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + "/patient-attribute";
         const resp = this.apiRequest({
-            api_url: api_url,
+            api_url: this.client.getOptions().baseUrl!,
             method: 'post',
             endpoint: endpoint,
             payload: {

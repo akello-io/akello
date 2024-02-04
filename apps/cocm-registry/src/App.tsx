@@ -11,6 +11,8 @@ import SettingsComponent from "./apps/settings/SettingsComponent";
 import UpgradeComponent from "./apps/upgrade/UpgradeComponent";
 
 import AkelloSignIn from './apps/auth/AkelloSignIn';
+import {AkelloProvider} from '@akello/react-hook'
+import {AkelloClient} from '@akello/core'
 
 import {cognito_auth_components, cognito_auth_formFields} from "./cognito_auth";
 import { Authenticator } from '@aws-amplify/ui-react';
@@ -47,35 +49,45 @@ if(process.env.REACT_APP_MOCK != 'true') {
     })
 }
 
-const routes = () => {
-   
+const akello = new AkelloClient({
+    baseUrl: process.env.REACT_APP_API,
+    cognitoUserPoolId: process.env.REACT_APP_AWS_COGNITO_USERPOOL_ID,
+    cognitoClientId: process.env.REACT_APP_AWS_COGNITO_APP_CLIENT_ID,
+    cognitoEndpoint: process.env.REACT_APP_AKELLO_COGNITO_URL,
+    onUnauthenticated: () => {
+        window.location.href = '/login'
+    }
+})
+
+const routes = () => {       
 
     return (
         <>
             <BrowserRouter>
                 
-                    <Routes>                    
-                        <Route path={"/"} element={<RegistrySelector signOut={() => {}} />} />
-                        <Route path={"/test-signin"} element={<AkelloSignIn />} />
-                        <Route path={"/profile"} element={<ProfileComponent />} />
-                        <Route path={"/registry/create"} element={<RegistryCreate />} />
-                        <Route path={"/dashboard"} element={<Dashboard />} />
-                        <Route path={"/calendar"} element={<CalendarComponent />} />
-                        <Route path={"/messages"} element={<MessagesComponent />} />
-                        <Route path={"/health"} element={<Dashboard />} />
-                        <Route path={"/team"} element={<TeamComponent />} />
-                        <Route path={"/reports"} element={<ReportsComponent />} />
-                        <Route path={"/reports/billing"} element={<BillingReport />} />
-                        <Route path={"/reports/registry"} element={<RegistryReport />} />
-                        <Route path={"/registry"} element={<RegistryComponent />} />
+                    <AkelloProvider akello={akello}>                                   
+                        <Routes>
+                            <Route path={"/"} element={<RegistrySelector signOut={() => {}} />} />
+                            <Route path={"/profile"} element={<ProfileComponent />} />
+                            <Route path={"/registry/create"} element={<RegistryCreate />} />
+                            <Route path={"/dashboard"} element={<Dashboard />} />
+                            <Route path={"/calendar"} element={<CalendarComponent />} />
+                            <Route path={"/messages"} element={<MessagesComponent />} />
+                            <Route path={"/health"} element={<Dashboard />} />
+                            <Route path={"/team"} element={<TeamComponent />} />
+                            <Route path={"/reports"} element={<ReportsComponent />} />
+                            <Route path={"/reports/billing"} element={<BillingReport />} />
+                            <Route path={"/reports/registry"} element={<RegistryReport />} />
+                            <Route path={"/registry"} element={<RegistryComponent />} />
 
-                        <Route path={"/model"} element={<FinancialModelDetail />} />
-                        <Route path={"/models"} element={<FinancialModelList />} />
-                        <Route path={"/models/create"} element={<FinancialModelCreate />} />
-                        <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
+                            <Route path={"/model"} element={<FinancialModelDetail />} />
+                            <Route path={"/models"} element={<FinancialModelList />} />
+                            <Route path={"/models/create"} element={<FinancialModelCreate />} />
+                            <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
 
-                        <Route path={"/upgrade"} element={<UpgradeComponent />} />
-                    </Routes>                                
+                            <Route path={"/upgrade"} element={<UpgradeComponent />} />
+                        </Routes>     
+                    </AkelloProvider>                                     
             </BrowserRouter>
         </>
     )

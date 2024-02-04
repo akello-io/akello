@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AkelloClient } from "../client";
 
 export interface RequestParam {
     api_url: string,
@@ -12,8 +13,9 @@ export interface RequestParam {
 
 
 export class BaseService {
-
-    constructor() {        
+    readonly client: AkelloClient
+    constructor(client: AkelloClient) {  
+        this.client = client  
     }
 
     getHeaders(accessToken: string) {
@@ -22,6 +24,17 @@ export class BaseService {
             Authorization: authorization
         };
         return headers
+    }
+
+    handleFail(error: any, onFail?: (resp: any) => void) {
+        if(error.response) {
+            if(error.response.status == 401) {
+                this.client.handleUnauthenticated()
+            }
+        }       
+        if(onFail) {
+            onFail(error)
+        }
     }
     
     async apiRequest(params: RequestParam) {
@@ -34,9 +47,7 @@ export class BaseService {
                     params.onSuccess(resp.data)
                 })
                 .catch((error) => {
-                    if(params.onFail) {
-                        params.onFail(error)
-                    }
+                    this.handleFail(error, params.onFail)
                 });
         }
     
@@ -48,9 +59,7 @@ export class BaseService {
                     params.onSuccess(resp.data)
                 })
                 .catch((error) => {
-                    if(params.onFail) {
-                        params.onFail(error)
-                    }
+                    this.handleFail(error, params.onFail)
                 });
         }
     
@@ -62,9 +71,7 @@ export class BaseService {
                     params.onSuccess(resp.data)
                 })
                 .catch((error) => {
-                    if(params.onFail) {
-                        params.onFail(error)
-                    }
+                    this.handleFail(error, params.onFail)
                 });
         }
     
@@ -76,9 +83,7 @@ export class BaseService {
                     params.onSuccess(resp.data)
                 })
                 .catch((error) => {
-                    if(params.onFail) {
-                        params.onFail(error)
-                    }
+                    this.handleFail(error, params.onFail)
                 });
         }
 

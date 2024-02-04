@@ -6,7 +6,7 @@ import {createRegistry} from "../../api/registry";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import { setIn } from "formik";
-
+import { useAkello } from "@akello/react-hook";
 
 
 interface UserInvite {
@@ -49,6 +49,10 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
 ) => {
 
     const navigate = useNavigate()
+    const akello = useAkello()
+
+    
+    
     const token = useSelector ((state: RootState) => state.app.token)
     const userProfile = useSelector ((state: RootState) => state.app.userProfile)
 
@@ -85,6 +89,21 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                         {
                             step == total_steps && (
                                 <button disabled={registryName == undefined || registryName == '' }  className={"btn btn-primary"} onClick={()=> {                                    
+
+                                    akello.registryService.createRegistry(token, {
+                                        'name': registryName!,
+                                        'invited-users': invites,
+                                        'first_name': userProfile.first_name ? userProfile.first_name : '',
+                                        'last_name': userProfile.last_name ? userProfile.last_name : '',
+                                        'email': userProfile.email,
+                                        'integrations': integrations,
+                                        'logo_url': logo_url
+                                    }, (data) => {
+                                        navigate("/registry")
+                                    })
+
+                                    /* 
+                                
                                     createRegistry(token, {
                                         'name': registryName!,
                                         'invited-users': invites,
@@ -96,6 +115,7 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                                     }, (data) => {
                                         navigate("/registry")
                                     })
+                                    */
                                 }}>Create Registry</button>
                             )
                         }
