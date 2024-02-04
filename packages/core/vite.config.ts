@@ -21,9 +21,6 @@ const app = async (): Promise<UserConfigExport> => {
         insertTypesEntry: true,
       }),
     ],
-    optimizeDeps: {
-      include: ['@emotion/styled'],
-    },
     css: {
       postcss: {
         plugins: [tailwindcss],
@@ -37,7 +34,7 @@ const app = async (): Promise<UserConfigExport> => {
         fileName: (format) => `${formattedName}.${format}.js`,
       },
       rollupOptions: {
-        external: ['react', 'react/jsx-runtime', 'react-dom', 'tailwindcss', 'daisyui', '@akello/core', '@akello/react-hook'],
+        external: ['react', 'react/jsx-runtime', 'react-dom', 'tailwindcss'],
         output: {
           globals: {
             react: 'React',

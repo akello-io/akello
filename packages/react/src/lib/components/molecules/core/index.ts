@@ -1,4 +1,5 @@
 export * from './app-header'
+export * from './auth-sign-in'
 export * from './hamburger-nav'
 export * from './page-footer'
 export * from './registry-create-row'

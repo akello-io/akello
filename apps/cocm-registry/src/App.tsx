@@ -1,5 +1,5 @@
 import {Amplify, Auth} from 'aws-amplify';
-import { Authenticator } from '@aws-amplify/ui-react';
+import React, {ReactNode, useEffect} from 'react';
 import '@aws-amplify/ui-react/styles.css';
 import {BrowserRouter, Routes} from "react-router-dom";
 import {Route, useNavigate} from "react-router";
@@ -9,7 +9,11 @@ import FinancialModelCreate from "./apps/financial-model/FinancialModelCreate";
 import RegistryComponent from "./apps/registry/RegistryComponent";
 import SettingsComponent from "./apps/settings/SettingsComponent";
 import UpgradeComponent from "./apps/upgrade/UpgradeComponent";
+
+import AkelloSignIn from './apps/auth/AkelloSignIn';
+
 import {cognito_auth_components, cognito_auth_formFields} from "./cognito_auth";
+import { Authenticator } from '@aws-amplify/ui-react';
 import {setAuthToken, setSelectedRegistry, setUserProfile} from "./reducers/appSlice";
 import {useDispatch} from "react-redux";
 import TeamComponent from "./apps/team/TeamComponent";
@@ -29,7 +33,7 @@ import "./App.css"
 // Configure Amplify in index file or root file
 
 if(process.env.REACT_APP_MOCK != 'true') {
-    console.log(process.env)
+    console.log(process.env)    
     Amplify.configure({
         Auth: {
             region: process.env.REACT_APP_AWS_REGION,
@@ -43,32 +47,35 @@ if(process.env.REACT_APP_MOCK != 'true') {
     })
 }
 
-
 const routes = () => {
+   
+
     return (
         <>
             <BrowserRouter>
-                <Routes>
-                    <Route index element={<RegistrySelector signOut={() => {}} />} />
-                    <Route path={"/profile"} element={<ProfileComponent />} />
-                    <Route path={"/registry/create"} element={<RegistryCreate />} />
-                    <Route path={"/dashboard"} element={<Dashboard />} />
-                    <Route path={"/calendar"} element={<CalendarComponent />} />
-                    <Route path={"/messages"} element={<MessagesComponent />} />
-                    <Route path={"/health"} element={<Dashboard />} />
-                    <Route path={"/team"} element={<TeamComponent />} />
-                    <Route path={"/reports"} element={<ReportsComponent />} />
-                    <Route path={"/reports/billing"} element={<BillingReport />} />
-                    <Route path={"/reports/registry"} element={<RegistryReport />} />
-                    <Route path={"/registry"} element={<RegistryComponent />} />
+                
+                    <Routes>                    
+                        <Route path={"/"} element={<RegistrySelector signOut={() => {}} />} />
+                        <Route path={"/test-signin"} element={<AkelloSignIn />} />
+                        <Route path={"/profile"} element={<ProfileComponent />} />
+                        <Route path={"/registry/create"} element={<RegistryCreate />} />
+                        <Route path={"/dashboard"} element={<Dashboard />} />
+                        <Route path={"/calendar"} element={<CalendarComponent />} />
+                        <Route path={"/messages"} element={<MessagesComponent />} />
+                        <Route path={"/health"} element={<Dashboard />} />
+                        <Route path={"/team"} element={<TeamComponent />} />
+                        <Route path={"/reports"} element={<ReportsComponent />} />
+                        <Route path={"/reports/billing"} element={<BillingReport />} />
+                        <Route path={"/reports/registry"} element={<RegistryReport />} />
+                        <Route path={"/registry"} element={<RegistryComponent />} />
 
-                    <Route path={"/model"} element={<FinancialModelDetail />} />
-                    <Route path={"/models"} element={<FinancialModelList />} />
-                    <Route path={"/models/create"} element={<FinancialModelCreate />} />
-                    <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
+                        <Route path={"/model"} element={<FinancialModelDetail />} />
+                        <Route path={"/models"} element={<FinancialModelList />} />
+                        <Route path={"/models/create"} element={<FinancialModelCreate />} />
+                        <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
 
-                    <Route path={"/upgrade"} element={<UpgradeComponent />} />
-                </Routes>
+                        <Route path={"/upgrade"} element={<UpgradeComponent />} />
+                    </Routes>                                
             </BrowserRouter>
         </>
     )
@@ -76,6 +83,7 @@ const routes = () => {
 
 function App() {
     const dispatch = useDispatch()
+    
 
     if(process.env.REACT_APP_MOCK == 'true') {
         dispatch(setAuthToken('mock-token'))
@@ -84,6 +92,7 @@ function App() {
     else {
         return (
             <>
+                
                 <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
                     {({ signOut, user }) => {
                         Auth.currentSession().then((session) => {
@@ -132,7 +141,7 @@ function App() {
 
                         return routes()
                     }}
-                </Authenticator>
+                </Authenticator>                
             </>
 
         );
