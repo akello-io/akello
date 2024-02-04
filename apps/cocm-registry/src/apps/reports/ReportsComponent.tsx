@@ -1,7 +1,6 @@
 import AppContainer from "../../stories/app/Container/AppContainer";
 import React, {useEffect, useState} from "react";
 import Datepicker from "react-tailwindcss-datepicker";
-import {getBillingReport} from "../../api/reports";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import BillingReportDataGrid from "./billing/BillingReportDataGrid";

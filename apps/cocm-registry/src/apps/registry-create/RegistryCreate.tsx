@@ -2,7 +2,6 @@ import AppContainer from "../../stories/app/Container/AppContainer";
 import {SideNavigation, Dropdown} from "@akello/react";
 import {ReactNode, useState} from "react";
 import {useNavigate} from "react-router";
-import {createRegistry} from "../../api/registry";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import { setIn } from "formik";

@@ -28,7 +28,6 @@ import RegistryCreate from "./apps/registry-create/RegistryCreate";
 import ProfileComponent from "./apps/profile/ProfileComponent";
 import BillingReport from "./apps/reports/billing/BillingReport";
 import RegistryReport from "./apps/reports/registry/RegistryReport";
-import {getUser} from "./api/user";
 import { debug } from 'console';
 import "./App.css"
 
@@ -118,11 +117,6 @@ function App() {
                                     id: session.getIdToken().payload['sub'],
                                     email: user!.attributes!.email,
                                 }
-                            })
-
-                            getUser(token, (data) => {
-                                // just setting user activity and registering any user invites
-                                // get-user is not the ideal name here...
                             })
 
                             let stored_selection = localStorage.getItem("selectedRegistry")

@@ -6,6 +6,9 @@ import {
     CognitoUser,
     AuthenticationDetails
   } from 'amazon-cognito-identity-js';
+import { UserService } from './services';
+import { FinancialModelService } from './services/financial_model';
+import { ReportsService } from './services/reports';
 export const DEFAULT_BASE_URL = 'http://localhost:8000';
 
 
@@ -38,11 +41,19 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
 
     private readonly options: AkelloClientOptions;    
     public readonly registryService: RegistryService;
+    public readonly userService: UserService;
+    public readonly financialService: FinancialModelService;
+    public readonly reportsService: ReportsService;
+
 
     constructor(options?: AkelloClientOptions) {
         super();
         this.options = options ?? {};
         this.registryService = new RegistryService(this);
+        this.userService = new UserService(this);
+        this.financialService = new FinancialModelService(this);
+        this.reportsService = new ReportsService(this);
+
     }
 
     getOptions() {

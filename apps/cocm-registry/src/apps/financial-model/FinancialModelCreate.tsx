@@ -6,15 +6,16 @@ import CreateModelInformation
     from "./components/create_model/CreateModelInformation";
 import {validate_model} from "./aims_model/model_validation";
 import Breadcrumb from "../components/Breadcrumb";
-import {getFinancialModels, createFinancialModel} from "../../api/financial_model";
 import {Auth} from "aws-amplify";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
+import { useAkello } from "@akello/react-hook";
 
 const FinancialModelCreate = () => {
     const [model, setModel] = useState<Clinic>(getClinicInstance())
     const [errors, setErrors] = useState<string[]>([])
     const token = useSelector((state: RootState) => state.app.token)
+    const akello = useAkello()
 
     return (
         <div className="pt-24 space-y-10 divide-y divide-gray-900/10 px-4 shadow-sm sm:px-6 lg:px-8 mb-24">
@@ -38,7 +39,7 @@ const FinancialModelCreate = () => {
                     setErrors(errors)
 
                     if(errors.length == 0) {
-                        createFinancialModel(token, model, (data) => {
+                        akello.financialService.createFinancialModel(token, model, (data) => {
                             console.log('saved data: ' + data)
                         })
                     }

@@ -3,7 +3,6 @@ import StopWatch from "./components/stopwatch/StopWatch";
 import {useEffect, useState} from "react";
 import classNames from "classnames";
 import {Dropdown} from "@akello/react";
-import {saveTreatmentSession} from "../../../../../../api/registry";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../../../store";
 import {
@@ -12,6 +11,7 @@ import {
     QuestionnaireQuestion,
     QuestionnaireResponse
 } from "@akello/core";
+import { useAkello } from "@akello/react-hook";
 
 
 interface SelectorProps {
@@ -54,6 +54,7 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
     const [contactType, setContactTye] = useState('')
     const [flag, setFlag] = useState<string>()
 
+    const akello = useAkello()
     const [mm, setMM] = useState(0)
     const [ss, setSS] = useState(0)
     const [ms, setMS] = useState(0)
@@ -98,9 +99,8 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                         score_value: score
                                     })
                                     
-                                }
-
-                                saveTreatmentSession(selectedRegistry.id, token, {
+                                }                                
+                                akello.registryService.saveTreatmentSession(token, selectedRegistry.id, {
                                     patient_mrn: selectedPatient.patient_mrn,
                                     contact_type: contactType,
                                     flag: flag,

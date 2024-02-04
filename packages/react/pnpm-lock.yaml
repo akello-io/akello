@@ -10455,7 +10455,7 @@ packages:
     dev: false
 
   file:../core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-8fyv4x/hirDLA9I+Oqbzmtft5r8o7nNcnG4w/dPr+b7XNRenvsAUHyEFyTmR7p9xWapCR2JHshWAMT+0BqJ1Xw==, tarball: file:../core/akello-core-2.0.4.tgz}
+    resolution: {integrity: sha512-tj9iLPUU7Vl6t0UI9Kw1N726WF+M2pVJKieKINdBkix4OY/nS2R0AKsfR3IOIi/PxQsVKkM2Hy0mEbISjESFiQ==, tarball: file:../core/akello-core-2.0.4.tgz}
     id: file:../core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4

@@ -22,18 +22,12 @@ import { TotalReimbursement} from "./components/model_detail/financials/TotalRei
 import { CostOfServices } from "./components/model_detail/financials/CostOfServices";
 import {clinic} from "./aims_model/init/init_models";
 import Breadcrumb from "../components/Breadcrumb";
-// import {FinancialModelDBRecord} from "../../data/models/financial_model";
-import {
-    createFinancialModel,
-    getFinancialModel,
-    getFinancialModels,
-    saveFinancialModel
-} from "../../api/financial_model";
 import {Auth} from "aws-amplify";
 import FinancialModelDBRecordTypeV1 from "../../data/schemas/FinancialModel";
 import AppContainer from "../../stories/app/Container/AppContainer";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
+import { useAkello } from '@akello/react-hook';
 
 
 const BetaBanner = () => {
@@ -62,6 +56,7 @@ export const FinancialModelDetail = () =>  {
     let { model_name } = useParams();
     const {state} = useLocation()
     const navigate = useNavigate()
+    const akello = useAkello()
 
     let model_input: any ;
 
@@ -76,7 +71,7 @@ export const FinancialModelDetail = () =>  {
 
 
     useEffect(() => {
-        getFinancialModel('Financial Model', token, (model_input) => {
+        akello.financialService.getFinancialModel('Financial Model', token, (model_input) => {
             aims.setInputs(model_input)
             setAIMS(aims)
         })
@@ -157,7 +152,7 @@ export const FinancialModelDetail = () =>  {
                                                       type="button"
                                                       className="inline-flex btn-xs items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                                                       onClick={() => {
-                                                          saveFinancialModel(token, aims, (data) => {
+                                                        akello.financialService.saveFinancialModel(token, aims, (data) => {
 
                                                           })
                                                       }}
