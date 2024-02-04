@@ -46,5 +46,10 @@
     "*.{ts,tsx,js,jsx,json,css,md}": [
       "prettier -w"
     ]
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.52",
+    "husky": "^9.0.10",
+    "saas": "^1.0.0"
   }
 }

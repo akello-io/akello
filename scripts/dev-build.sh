@@ -15,7 +15,8 @@ pnpm install  --save-dev husky
 pnpm install  --save-dev saas
 pnpm install  --save-dev @types/react
 pnpm i
-pnpm build
+pnpm build:lib
+pnpm pack
 # rm -rf node_modules
 cd ../../
 
@@ -32,7 +33,7 @@ pnpm install  --save-dev storybook
 pnpm install  --save-dev @storybook/react-vite
 pnpm install  --save-dev @storybook/react
 pnpm install --save-dev @heroicons/react
-pnpm install --save-peer ../core
+pnpm install --save-peer ../core/akello-core-2.0.4.tgz
 pnpm install  --save @types/react
 pnpm install --save classnames
 pnpm install --save vite
@@ -82,8 +83,8 @@ pnpm install --save-peer daisyui
 pnpm install --save yup
 pnpm install --save formik
 
-pnpm install --save-dev ../react-hook
-pnpm install --save-dev ../core
+pnpm install --save-peer ../react-hook/akello-react-hook-2.0.4.tgz
+pnpm install --save-peer ../core/akello-core-2.0.4.tgz
 pnpm install @storybook/addon-essentials --save-dev
 
 pnpm i
@@ -98,9 +99,9 @@ cd apps/cocm-registry
 rm -rf node_modules
 rm pnpm-lock.yaml
 
-pnpm install ../../packages/core
-pnpm install ../../packages/react-hook
-pnpm install ../../packages/react
+pnpm install ../../packages/core/akello-core-2.0.4.tgz
+pnpm install ../../packages/react-hook/akello-react-hook-2.0.4.tgz
+pnpm install ../../packages/react/akello-react-2.0.4.tgz
 
 pnpm i
 pnpm start
