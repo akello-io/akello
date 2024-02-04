@@ -52,6 +52,9 @@ dependencies:
   husky:
     specifier: ^9.0.10
     version: 9.0.10
+  json:
+    specifier: ^11.0.0
+    version: 11.0.0
   postcss:
     specifier: ^8.4.33
     version: 8.4.33
@@ -2057,6 +2060,12 @@ packages:
 
   /json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
+    dev: false
+
+  /json@11.0.0:
+    resolution: {integrity: sha512-N/ITv3Yw9Za8cGxuQqSqrq6RHnlaHWZkAFavcfpH/R52522c26EbihMxnY7A1chxfXJ4d+cEFIsyTgfi9GihrA==}
+    engines: {node: '>=0.10.0'}
+    hasBin: true
     dev: false
 
   /jsonc-parser@3.2.1:

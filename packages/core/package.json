@@ -46,20 +46,5 @@
     "*.{ts,tsx,js,jsx,json,css,md}": [
       "prettier -w"
     ]
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.52",
-    "husky": "^9.0.10",
-    "saas": "^1.0.0"
-  },
-  "dependencies": {
-    "@types/react-dom": "^18.2.18",
-    "@vitejs/plugin-react": "^4.2.1",
-    "react-dom": "^18.2.0",
-    "sass": "^1.70.0",
-    "tailwindcss": "^3.4.1",
-    "vite": "^5.0.12",
-    "vite-plugin-dts": "^3.7.2",
-    "vitest": "^1.2.2"
   }
 }
