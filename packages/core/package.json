@@ -37,7 +37,8 @@
     "aws-amplify": "^6.0.13",
     "axios": "^1.6.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "tailwindcss": "^3.4.1"
   },
   "files": [
     "dist"
@@ -46,10 +47,5 @@
     "*.{ts,tsx,js,jsx,json,css,md}": [
       "prettier -w"
     ]
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.52",
-    "husky": "^9.0.10",
-    "saas": "^1.0.0"
   }
 }

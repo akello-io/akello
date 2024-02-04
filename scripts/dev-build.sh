@@ -12,8 +12,17 @@ rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml
 pnpm install  --save-dev husky
-pnpm install  --save-dev saas
 pnpm install  --save-dev @types/react
+pnpm install  --save-dev @types/react-dom
+pnpm install --save-dev sass
+pnpm install --save classnames
+pnpm install --save vite
+pnpm install --save vite-plugin-dts
+pnpm install --save @vitejs/plugin-react
+pnpm install --save vitest
+pnpm install --save json
+pnpm install --save-peer tailwindcss
+
 pnpm i
 pnpm build:lib
 pnpm pack

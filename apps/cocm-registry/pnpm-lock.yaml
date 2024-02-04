@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@akello/core':
     specifier: file:../../packages/core/akello-core-2.0.4.tgz
-    version: file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@5.3.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)
+    version: file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@5.3.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@akello/react':
     specifier: file:../../packages/react/akello-react-2.0.4.tgz
     version: file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.7)(@mui/lab@5.0.0-alpha.163)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.14)(@mui/styled-engine@5.15.7)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.1)(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
@@ -8786,7 +8786,7 @@ packages:
     resolution: {integrity: sha512-xcLxITLe2HYa1cnYnwCjkOO1PqUHQpozB8x9AR0OgWN2woOBi5kSDVxKfd0b7sb1hw5qFeJhXm9H1nu3xSfLeQ==}
     engines: {node: '>=10'}
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.4.1
 
   /aria-query@5.1.3:
     resolution: {integrity: sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==}
@@ -11655,7 +11655,6 @@ packages:
   /flow-parser@0.228.0:
     resolution: {integrity: sha512-xPWkzCO07AnS8X+fQFpWm+tJ+C7aeaiVzJ+rSepbkCXUvUJ6l6squEl63axoMcixyH4wLjmypOzq/+zTD0O93w==}
     engines: {node: '>=0.4.0'}
-    dev: true
 
   /follow-redirects@1.15.5:
     resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
@@ -13523,7 +13522,7 @@ packages:
       '@babel/register': 7.23.7(@babel/core@7.23.9)
       babel-core: 7.0.0-bridge.0(@babel/core@7.23.9)
       chalk: 4.1.2
-      flow-parser: 0.206.0
+      flow-parser: 0.228.0
       graceful-fs: 4.2.11
       micromatch: 4.0.5
       neo-async: 2.6.2
@@ -16427,7 +16426,7 @@ packages:
       '@types/react': 18.2.52
       react: 18.2.0
       react-style-singleton: 2.2.1(@types/react@18.2.52)(react@18.2.0)
-      tslib: 2.6.2
+      tslib: 2.4.1
 
   /react-remove-scroll@2.5.4(@types/react@18.2.52)(react@18.2.0):
     resolution: {integrity: sha512-xGVKJJr0SJGQVirVFAUZ2k1QLyO6m+2fy0l8Qawbp5Jgrv3DeLalrfMNBFSlmz5kriGGzsVBtGVnf4pTKIhhWA==}
@@ -16622,7 +16621,7 @@ packages:
       get-nonce: 1.0.1
       invariant: 2.2.4
       react: 18.2.0
-      tslib: 2.6.2
+      tslib: 2.4.1
 
   /react-tailwindcss-datepicker@1.6.6(dayjs@1.11.10)(react@18.2.0):
     resolution: {integrity: sha512-kHSUonRO86PoYQQWPqpaSw2JeEn9OafdLsLBG85zO5Sfs23Ku8Ixt/YO+Is3TCBcFeOKnZgzhGLmP3NAXVlFkA==}
@@ -18535,7 +18534,7 @@ packages:
     dependencies:
       '@types/react': 18.2.52
       react: 18.2.0
-      tslib: 2.6.2
+      tslib: 2.4.1
 
   /use-isomorphic-layout-effect@1.1.2(@types/react@18.2.52)(react@18.2.0):
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
@@ -18573,7 +18572,7 @@ packages:
       '@types/react': 18.2.52
       detect-node-es: 1.1.0
       react: 18.2.0
-      tslib: 2.6.2
+      tslib: 2.4.1
 
   /use-sync-external-store@1.2.0(react@18.2.0):
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
@@ -19429,8 +19428,8 @@ packages:
       zen-observable: 0.7.1
     dev: false
 
-  file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@5.3.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-7in3dgog34dwle49tt/v4xAPJrGaE04NFWFF4PwaPT+7EHSk0SVJwsetUY+QnjPk9yV3Vg6ro8Qs7H3iHs1CzQ==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
+  file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@5.3.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-VKDbIW3YgiTeGaXq9vb6oT3SEvbm1yJVwGeixrUTbQzcEFcK6FtBJ2HXEDOS7v3y6zmfcCR/WpFCxEmuRF7ZXA==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
     id: file:../../packages/core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4
@@ -19441,12 +19440,14 @@ packages:
       axios: ^1.6.1
       react: 18.2.0
       react-dom: 18.2.0
+      tailwindcss: ^3.4.1
     dependencies:
       amazon-cognito-identity-js: 6.3.7
       aws-amplify: 5.3.15(react-native@0.73.3)
       axios: 1.6.7
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+      tailwindcss: 3.4.1
     dev: false
 
   file:../../packages/react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
@@ -19461,14 +19462,14 @@ packages:
       react-dom: 18.2.0
       tailwindcss: ^3.4.1
     dependencies:
-      '@akello/core': file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@5.3.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)
+      '@akello/core': file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@5.3.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tailwindcss: 3.4.1
     dev: false
 
   file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.7)(@mui/lab@5.0.0-alpha.163)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.14)(@mui/styled-engine@5.15.7)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.1)(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-J/0TeriS8Km5VXkxey98BkPhIqK9W63EGERoMvaF6iWsc/iertpr3sgl2Y2vqtrplrC66sWKotJZhxG8JuJQzA==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
+    resolution: {integrity: sha512-lyIEWqp97y7atnKy/76TvRhCjHHY5qzKCrZ6Svji3dRCSoqqOlVjEFmBDGdXQ31SZRPD6+L6dpmRpfO0UTvARw==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
     id: file:../../packages/react/akello-react-2.0.4.tgz
     name: '@akello/react'
     version: 2.0.4
@@ -19489,7 +19490,7 @@ packages:
       react-dom: ^18.2.0
       tailwindcss: ^3.4.1
     dependencies:
-      '@akello/core': file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@5.3.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)
+      '@akello/core': file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@5.3.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
       '@akello/react-hook': file:../../packages/react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
       '@mui/icons-material': 5.15.7(@mui/material@5.15.7)(@types/react@18.2.52)(react@18.2.0)
       '@mui/lab': 5.0.0-alpha.163(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)
