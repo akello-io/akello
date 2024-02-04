@@ -65,7 +65,7 @@ devDependencies:
     version: file:../core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@akello/react-hook':
     specifier: file:../react-hook/akello-react-hook-2.0.4.tgz
-    version: file:../react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
+    version: file:../react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@heroicons/react':
     specifier: ^2.1.1
     version: 2.1.1(react@18.2.0)
@@ -10455,7 +10455,7 @@ packages:
     dev: false
 
   file:../core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-8dXSjokKG4Abf0N5Q3gYzLKzUob+P1RiwtE/xD4jIzrti6i0WAR1u8yihBbmlaHPAR7zWCPHrHnHFUwtWJezfg==, tarball: file:../core/akello-core-2.0.4.tgz}
+    resolution: {integrity: sha512-C2tywISeBQVrn2TFPzBhQGll7oXuBZeFPYfOGPepfNpoGKaUboWRz7hHLD1zSO5eibUZVsq53+LJQFgXPd+KJw==, tarball: file:../core/akello-core-2.0.4.tgz}
     id: file:../core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4
@@ -10476,19 +10476,25 @@ packages:
       tailwindcss: 3.4.1
     dev: true
 
-  file:../react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-75LhROyMUqEjdSoSjk73auoWrA86NmiDbzxJMAt3hjumZxjO/mH3xYuqRMH4jp1wmiEm2e6fsOz6QQ/js5HLgg==, tarball: file:../react-hook/akello-react-hook-2.0.4.tgz}
+  file:../react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-isr7A8r4itYgZ3NvWvebIyiR1w+dSgkgtGw59kpEWqB80KKF8uqwIT6z5x8OhRM2U2lLrpRI18/iK1HJWrbgqA==, tarball: file:../react-hook/akello-react-hook-2.0.4.tgz}
     id: file:../react-hook/akello-react-hook-2.0.4.tgz
     name: '@akello/react-hook'
     version: 2.0.4
     engines: {node: '18'}
     peerDependencies:
       '@akello/core': file:../core/akello-core-2.0.4.tgz
+      amazon-cognito-identity-js: ^6.3.7
+      aws-amplify: ^6.0.13
+      axios: ^1.6.1
       react: 18.2.0
       react-dom: 18.2.0
       tailwindcss: ^3.4.1
     dependencies:
       '@akello/core': file:../core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
+      amazon-cognito-identity-js: 6.3.7
+      aws-amplify: 6.0.13
+      axios: 1.6.7
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tailwindcss: 3.4.1
