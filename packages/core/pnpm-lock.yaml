@@ -45,9 +45,6 @@ devDependencies:
   husky:
     specifier: ^9.0.10
     version: 9.0.10
-  saas:
-    specifier: ^1.0.0
-    version: 1.0.0
   sass:
     specifier: ^1.70.0
     version: 1.70.0
@@ -3214,10 +3211,6 @@ packages:
     dependencies:
       tslib: 2.6.2
     dev: false
-
-  /saas@1.0.0:
-    resolution: {integrity: sha512-FgayhFS18BlPfcyMcOqxD7PIyNyUjqyv8R+rsr3X2KRK2icEUL4uvWBF+lZ0IPqJIO2kUO0d20OXY+R+pdriqg==}
-    dev: true
 
   /sass@1.70.0:
     resolution: {integrity: sha512-uUxNQ3zAHeAx5nRFskBnrWzDUJrrvpCPD5FNAoRvTi0WwremlheES3tg+56PaVtCs5QDRX5CBLxxKMDJMEa1WQ==}

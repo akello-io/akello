@@ -11,6 +11,7 @@ cd packages/core
 rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml
+rm akello-core-2.0.4.tgz
 pnpm install  --save-dev husky
 pnpm install  --save-dev @types/react
 pnpm install  --save-dev @types/react-dom
@@ -36,7 +37,7 @@ cd packages/react-hook
 rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml
-
+rm akello-react-hook-2.0.4.tgz
 pnpm install  --save-dev husky
 pnpm install  --save-dev storybook
 pnpm install  --save-dev @storybook/react-vite
@@ -64,7 +65,7 @@ cd packages/react
 rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml
-
+rm akello-react-2.0.4.tgz
 pnpm install  --save-dev husky
 pnpm install  --save-dev storybook
 pnpm install  --save-dev @storybook/react-vite

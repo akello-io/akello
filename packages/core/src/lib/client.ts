@@ -45,6 +45,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     }
 
     login(username: string, password: string, onSuccess: (token: string) => void, onFail: (err: any) => void) {
+        debugger;
         const authenticationData = {
             Username : username,
             Password : password,
@@ -67,12 +68,13 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                 const accessToken = result.getAccessToken().getJwtToken();
                 /* Use the idToken for Logins Map when Federating User Pools with identity pools or when passing through an Authorization Header to an API Gateway Authorizer */
                 const idToken = result.idToken.jwtToken;
+                this.options.token = accessToken
                 onSuccess(accessToken);
-                this.options.token = accessToken                
+                
             },
-            onFailure: (err: any) => {
-                alert(err);
+            onFailure: (err: any) => {                
                 this.options.token = undefined                
+                onFail(err);
             },
         });
     }

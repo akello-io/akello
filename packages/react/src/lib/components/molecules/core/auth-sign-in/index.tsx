@@ -4,7 +4,8 @@ import {Field, Form, Formik} from "formik";
 import { useAkelloContext } from "@akello/react-hook"
 
 export interface SignInProps  {
-    
+    onSuccess?: (token: string) => void
+    onFail?: (error: any) => void
 }
 
 
@@ -16,7 +17,7 @@ export const LoginSchema = Yup.object().shape({
 });
 
 
-export const SignIn:React.FC<SignInProps> = () => {
+export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail}) => {
 
     const akelloContext = useAkelloContext()
     const akello = akelloContext.akello
@@ -29,7 +30,18 @@ export const SignIn:React.FC<SignInProps> = () => {
                 email: '',
                 password: ''
             }} onSubmit={values => {
-              akello.login(values.email, values.password, (token: string) => {debugger}, (err: any) => {debugger})
+              debugger;
+              akello.login(values.email, values.password, (token: string) => {
+                console.log(token)
+                if (onSuccess) {
+                  onSuccess(token);
+                }
+              }, (err: any) => {
+                console.log(err)
+                if (onFail) {
+                  onFail(err);
+                }                   
+              })
 
               // let error = onClick(values.email, values.password)
             }}

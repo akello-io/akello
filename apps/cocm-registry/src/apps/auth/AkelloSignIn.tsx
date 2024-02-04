@@ -8,15 +8,20 @@ const AkelloSignIn = () => {
         baseUrl: process.env.REACT_APP_AKELLO_API_URL,
         cognitoUserPoolId: process.env.REACT_APP_AWS_COGNITO_USERPOOL_ID,
         cognitoClientId: process.env.REACT_APP_AWS_COGNITO_APP_CLIENT_ID,
-        cognitoEndpoint: process.env.REACT_APP_AWS_COGNITO_ENDPOINT,
+        cognitoEndpoint: process.env.REACT_APP_AKELLO_COGNITO_URL,
     })
     
- 
-
+     
     return (
         <>
             <AkelloProvider akello={akello}>
-                <SignIn />
+                <SignIn onSuccess={(token: string) => {
+                    console.log(token)
+                    debugger
+                }} onFail={(err: string) => {
+                    console.log(err)
+                    debugger
+                }}/>
             </AkelloProvider>            
         </>
     )

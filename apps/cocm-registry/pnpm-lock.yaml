@@ -19429,7 +19429,7 @@ packages:
     dev: false
 
   file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@5.3.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-VKDbIW3YgiTeGaXq9vb6oT3SEvbm1yJVwGeixrUTbQzcEFcK6FtBJ2HXEDOS7v3y6zmfcCR/WpFCxEmuRF7ZXA==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
+    resolution: {integrity: sha512-8dXSjokKG4Abf0N5Q3gYzLKzUob+P1RiwtE/xD4jIzrti6i0WAR1u8yihBbmlaHPAR7zWCPHrHnHFUwtWJezfg==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
     id: file:../../packages/core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4
@@ -19469,7 +19469,7 @@ packages:
     dev: false
 
   file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.7)(@mui/lab@5.0.0-alpha.163)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.14)(@mui/styled-engine@5.15.7)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.1)(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-lyIEWqp97y7atnKy/76TvRhCjHHY5qzKCrZ6Svji3dRCSoqqOlVjEFmBDGdXQ31SZRPD6+L6dpmRpfO0UTvARw==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
+    resolution: {integrity: sha512-bSmfwsroWW8bfXiZ2ajE7pJ9GM1OK5/xPgdy6CWHckjZyXPwok5UfVUH3pJuW/OhZaydgowIdW2X4E99tah62g==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
     id: file:../../packages/react/akello-react-2.0.4.tgz
     name: '@akello/react'
     version: 2.0.4
