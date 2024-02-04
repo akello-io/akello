@@ -2,7 +2,9 @@
   "name": "akello",
   "version": "0.1.1",
   "dependencies": {
-    "@akello/core": "0.0.3",
+    "@akello/core": "link:../../packages/core",
+    "@akello/react": "link:../../packages/react",
+    "@akello/react-hook": "link:../../packages/react-hook",
     "@aws-amplify/ui-react": "^5.3.1",
     "@aws-sdk/util-utf8-browser": "^3.259.0",
     "@emotion/react": "^11.11.1",
@@ -81,7 +83,7 @@
     ]
   },
   "devDependencies": {
-    "@akello/core": "../../packages/core",
+    "@akello/core": "file:../../packages/core/akello-core-2.0.4.tgz",
     "@akello/react": "file:../../packages/react/akello-react-2.0.4.tgz",
     "@akello/react-hook": "file:../../packages/react-hook/akello-react-hook-2.0.4.tgz",
     "@faker-js/faker": "^8.1.0",

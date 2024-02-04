@@ -10,15 +10,50 @@ echo '>>>>>>>>>>  CORE'
 cd packages/core
 rm -rf node_modules
 rm -rf dist
-npm install
-npm run build
+rm pnpm-lock.yaml
+pnpm install  --save-dev husky
+pnpm install  --save-dev saas
+pnpm install  --save-dev @types/react
+pnpm i
+pnpm build
 # rm -rf node_modules
 cd ../../
+
+
+
+echo '>>>>>>>>>>  REACT HOOK'
+cd packages/react-hook
+rm -rf node_modules
+rm -rf dist
+rm pnpm-lock.yaml
+
+pnpm install  --save-dev husky
+pnpm install  --save-dev storybook
+pnpm install  --save-dev @storybook/react-vite
+pnpm install  --save-dev @storybook/react
+pnpm install --save-dev @heroicons/react
+pnpm install --save-peer ../core
+pnpm install  --save @types/react
+pnpm install --save classnames
+pnpm install --save vite
+pnpm install --save vite-plugin-dts
+pnpm install --save @vitejs/plugin-react
+pnpm install --save vitest
+pnpm install --save json
+pnpm install --save-peer tailwindcss
+pnpm install --save amazon-cognito-identity-js
+
+pnpm i
+pnpm build:lib
+pnpm pack
+cd ../../
+
 
 echo '>>>>>>>>>>  REACT'
 cd packages/react
 rm -rf node_modules
 rm -rf dist
+rm pnpm-lock.yaml
 
 pnpm install  --save-dev husky
 pnpm install  --save-dev storybook
@@ -46,7 +81,11 @@ pnpm install --save-peer @mui/x-data-grid
 pnpm install --save-peer daisyui
 pnpm install --save yup
 pnpm install --save formik
-pnpm install --save-peer ../react-hook
+
+pnpm install --save-dev ../react-hook
+pnpm install --save-dev ../core
+pnpm install @storybook/addon-essentials --save-dev
+
 pnpm i
 pnpm build:lib
 pnpm pack
@@ -54,24 +93,14 @@ pnpm pack
 cd ../../
 
 
-echo '>>>>>>>>>>  REACT HOOK'
-cd packages/react-hook
+echo '>>>>>>>>>>  CoCM'
+cd apps/cocm-registry
 rm -rf node_modules
-rm -rf dist
+rm pnpm-lock.yaml
 
-pnpm install  --save-dev husky
-pnpm install  --save-dev storybook
-pnpm install  --save-dev @storybook/react-vite
-pnpm install  --save-dev @storybook/react
-pnpm install --save-dev @heroicons/react
-pnpm install --save-dev ../core
-pnpm install  --save @types/react
-pnpm install --save classnames
-pnpm install --save vite
-pnpm install --save vite-plugin-dts
-pnpm install --save @vitejs/plugin-react
-pnpm install --save vitest
-pnpm install --save json
-pnpm install --save tailwindcss
-pnpm install --save amazon-cognito-identity-js
+pnpm install ../../packages/core
+pnpm install ../../packages/react-hook
+pnpm install ../../packages/react
 
+pnpm i
+pnpm start

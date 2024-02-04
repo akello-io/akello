@@ -39,9 +39,6 @@ def cli():
 @click.command()
 def setup():
     os.system("cd servers/api-server && python -m venv .venv && pip install -r requirements.txt")
-    os.system("cd apps/cocm-registry && npm install")
-    os.system("cd apps/akello-app && npm install")
-
     os.system("cp scripts/.template.env apps/cocm-registry/.env")
     os.system("cp scripts/.template.api.env servers/api-server/akello/.env")
 

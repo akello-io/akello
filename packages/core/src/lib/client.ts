@@ -17,7 +17,9 @@ export interface AkelloClientInterface {
 export interface AkelloClientOptions  {
     baseUrl?: string;
     token?: string;    
-
+    cognitoUserPoolId?: string;
+    cognitoClientId?: string;
+    cognitoEndpoint?: string;    
 }
 
 export interface RequestParam {
@@ -31,7 +33,7 @@ export interface RequestParam {
 }
 
 
-export default class AkelloClient extends EventTarget implements AkelloClientInterface {
+export class AkelloClient extends EventTarget implements AkelloClientInterface {
 
     private readonly options: AkelloClientOptions;
     private readonly registryService: RegistryService;
@@ -49,9 +51,9 @@ export default class AkelloClient extends EventTarget implements AkelloClientInt
         };
         const authenticationDetails = new AuthenticationDetails(authenticationData);
         const poolData = {                
-            UserPoolId: process.env.REACT_APP_AWS_COGNITO_USERPOOL_ID!,
-		    ClientId: process.env.REACT_APP_AWS_COGNITO_APP_CLIENT_ID!,
-		    endpoint: process.env.REACT_APP_AKELLO_COGNITO_URL            
+            UserPoolId: this.options.cognitoUserPoolId!,
+		    ClientId: this.options.cognitoClientId!,
+		    endpoint: this.options.cognitoEndpoint!
         };
         const userPool = new CognitoUserPool(poolData);
         const userData = {
