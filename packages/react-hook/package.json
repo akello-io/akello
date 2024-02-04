@@ -1,0 +1,52 @@
+{
+  "name": "@akello/react-hook",
+  "private": false,
+  "version": "2.0.4",
+  "packageManager": "pnpm@8.4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IgnacioNMiranda/vite-component-library-template"
+  },
+  "main": "./dist/react-hook.umd.js",
+  "module": "./dist/react-hook.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/react-hook.es.js",
+      "require": "./dist/react-hook.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "build:lib": "tsc && vite build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix",
+    "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
+    "test": "vitest",
+    "test:cov": "vitest run --coverage",
+    "prepare": "husky install",
+    "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
+  },
+  "peerDependencies": {
+    "@akello/core": "file:../core/akello-core-2.0.4.tgz",
+    "amazon-cognito-identity-js": "^6.3.7",
+    "aws-amplify": "^6.0.13",
+    "axios": "^1.6.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "^3.4.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,css,md}": [
+      "prettier -w"
+    ]
+  }
+}
