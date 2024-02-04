@@ -3,9 +3,9 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {getMembers} from "../../api/registry";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { useAkello } from "@akello/react-hook";
 
 
 const columns: GridColDef[] = [
@@ -78,6 +78,7 @@ const TeamTable = () => {
     const [checked, setChecked] = useState(false)
     const [teamMembers, setTeamMebmers] = useState([])
     const token = useSelector((state: RootState) => state.app.token)
+    const akello = useAkello()
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
 
     const darkTheme = createTheme({
@@ -100,8 +101,8 @@ const TeamTable = () => {
     }
 
 
-    useEffect(() => {
-        getMembers(selectedRegistry.id, token, (data) => {
+    useEffect(() => {        
+        akello.registryService.getMembers(token, selectedRegistry.id, (data) => {
             setTeamMebmers(data)
         })
     }, [token])

@@ -19429,7 +19429,7 @@ packages:
     dev: false
 
   file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@5.3.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-C2tywISeBQVrn2TFPzBhQGll7oXuBZeFPYfOGPepfNpoGKaUboWRz7hHLD1zSO5eibUZVsq53+LJQFgXPd+KJw==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
+    resolution: {integrity: sha512-tj9iLPUU7Vl6t0UI9Kw1N726WF+M2pVJKieKINdBkix4OY/nS2R0AKsfR3IOIi/PxQsVKkM2Hy0mEbISjESFiQ==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
     id: file:../../packages/core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4

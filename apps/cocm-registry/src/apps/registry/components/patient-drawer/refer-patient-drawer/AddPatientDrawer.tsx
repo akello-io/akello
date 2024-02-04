@@ -2,11 +2,10 @@ import * as React from "react";
 import {DrawerLayout} from "@akello/react";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import {referPatient} from "../../../../../api/registry";
 import {PatientRegistry} from "@akello/core";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../../store";
-
+import {useAkello} from '@akello/react-hook'
 
 interface AddPatientDrawer {
     checked: boolean
@@ -19,6 +18,7 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
 
     const token = useSelector((state: RootState) => state.app.token)
     const selectedRegistry = useSelector((state: RootState) => state.app.selectedRegistry)
+    const akello = useAkello()
 
     const formik = useFormik({
         initialValues: {
@@ -58,7 +58,7 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
             )
             new_patient.treatment_logs =  []
             new_patient.payer = values['payer']
-            referPatient(selectedRegistry.id, token, new_patient, (data) => {
+            akello.registryService.referPatient(token, selectedRegistry.id, new_patient, (data) => {
                 setPatients([...patients, data])
             })
         },

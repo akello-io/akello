@@ -2,7 +2,6 @@ import AppContainer from "../../stories/app/Container/AppContainer";
 import * as React from "react";
 import {BarChart, PieChart} from "@mui/x-charts";
 import {ReactNode, useEffect, useState} from "react";
-import {getRegistryStats} from "../../api/reports";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import Datepicker from "react-tailwindcss-datepicker";
@@ -13,6 +12,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 
 import input = Simulate.input;
+import { useAkello } from "@akello/react-hook";
 
 interface ScreeningComponentProps {
     title: string
@@ -42,6 +42,7 @@ const Dashboard = () => {
     const [stats, setStats] = useState({} as any)
     const [payerDistribution, setPayerDistribution] = useState([] as any[])
     const [isLoading, setIsLoading] = useState(true)    
+    const akello = useAkello()
     const [value, setValue] = useState({
         startDate: new Date(),
         endDate: new Date()
@@ -80,7 +81,8 @@ const Dashboard = () => {
     useEffect(() => {                
         if(token && selectedRegistry.id && value.startDate && value.endDate) {
             setIsLoading(true)
-            getRegistryStats(selectedRegistry.id, new Date(value.startDate).getTime(), new Date(value.endDate).getTime(), token, (data) => {                
+            
+            akello.reportsService.getRegistryStats(selectedRegistry.id, new Date(value.startDate).getTime(), new Date(value.endDate).getTime(), token, (data) => {                
                 setIsLoading(false)
                 if(data) {
                     setPayerDistribution(data['payer_distribution'])

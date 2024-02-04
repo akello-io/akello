@@ -3,7 +3,7 @@ import BillingReportDataGrid from "./BillingReportDataGrid";
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../store";
-import {getBillingReport} from "../../../api/reports";
+import {useAkello} from "@akello/react-hook";
 import moment from "moment";
 import classNames from "classnames";
 import AppContainer from "../../../stories/app/Container/AppContainer";
@@ -13,6 +13,7 @@ const BillingReport = () => {
     const token = useSelector((state: RootState) => state.app.token)
     const selectedRegistry = useSelector((state: RootState) => state.app.selectedRegistry)
     const [statData, setStatData] = useState([])
+    const akello = useAkello()
 
     const [value, setValue] = useState({
         startDate: null,
@@ -26,7 +27,7 @@ const BillingReport = () => {
 
     useEffect(() => {
         if(value.startDate && value.endDate) {
-            getBillingReport(token, selectedRegistry.id, moment(value.startDate).unix(), moment(value.endDate).unix(), (data) => {
+            akello.reportsService.getBillingReport(token, selectedRegistry.id, moment(value.startDate).unix(), moment(value.endDate).unix(), (data) => {
                 setStatData(data)
             })
         }

@@ -1,22 +1,22 @@
 import {useNavigate} from "react-router";
 import React, {useEffect, useState} from "react";
 import { Auth } from "aws-amplify";
-import {getFinancialModels} from "../../api/financial_model";
-// import {FinancialModelDBRecord} from "../../data/models/financial_model";
 import {DataGrid, GridEventListener, GridToolbar} from '@mui/x-data-grid';
 import FinancialModelDBRecordTypeV1 from "../../data/schemas/FinancialModel";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
+import { useAkello } from "@akello/react-hook";
 
 
 const VisibleColumnsBasicExample = () => {
     const navigate = useNavigate()
     const [models, setModels] = useState<FinancialModelDBRecordTypeV1[]>([])
     const token = useSelector((state: RootState) => state.app.token)
+    const akello = useAkello()
 
 
-    useEffect(() => {
-        getFinancialModels(token, (financial_models) => {
+    useEffect(() => {        
+        akello.financialService.getFinancialModels(token, (financial_models) => {
             setModels(financial_models)
         }, (error) => {
         })

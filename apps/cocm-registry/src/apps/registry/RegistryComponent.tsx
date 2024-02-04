@@ -7,7 +7,7 @@ import {useNavigate} from "react-router";
 import {PatientRegistry, Questionnaire} from "@akello/core";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {getRegistryPatients} from "../../api/registry";
+// import {getRegistryPatients} from "../../api/registry";
 import AppContainer from "../../stories/app/Container/AppContainer";
 import PatientDrawer from "./components/patient-drawer/patient-view-drawer/PatientDrawer";
 import AddPatientDrawer from "./components/patient-drawer/refer-patient-drawer/AddPatientDrawer";
@@ -16,6 +16,7 @@ import {Auth} from "aws-amplify";
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { useAkello } from '@akello/react-hook';
 
 
 
@@ -30,6 +31,7 @@ export default function DataGridDemo() {
     const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [selectedPatient, setSelectedPatient] = useState<PatientRegistry>()
+    const akello = useAkello()
     const navigate = useNavigate()
     const token = useSelector ((state: RootState) => state.app.token)
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
@@ -37,8 +39,8 @@ export default function DataGridDemo() {
 
     useEffect(() => {
         if(token && selectedRegistry.id) {
-            setIsLoading(true)
-            getRegistryPatients(selectedRegistry.id, token, (data) => {
+            setIsLoading(true)            
+            akello.registryService.getRegistryPatients(token, selectedRegistry.id, (data) => {
                 setPatients(data['successfully_loaded'])
                 setIsAdmin(data['is_admin'])
                 setQuestionnaires(data['questionnaires'])
