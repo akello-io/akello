@@ -1,5 +1,5 @@
 import React from 'react'
-import { AuthConfirmSignup } from '.'
+import { SignUpForm } from '.'
 import { objectValuesToControls } from '../../../storybook-utils'
 import { StoryFn } from '@storybook/react'
 import {AkelloProvider} from '@akello/react-hook'
@@ -7,9 +7,9 @@ import {AkelloClient} from '@akello/core'
 import { Meta } from '@storybook/react'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-const meta: Meta<typeof AuthConfirmSignup> = {
-  title: 'Molecules/Auth/AuthConfirmSignup',
-  component: AuthConfirmSignup,
+const meta: Meta<typeof SignUpForm> = {
+  title: 'Molecules/Auth/SignUpForm',
+  component: SignUpForm,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {        
     baseUrl: {
@@ -38,7 +38,7 @@ const Template: StoryFn = (props) => {
     
     
     return (
-      <AkelloProvider akello={akello}><AuthConfirmSignup email={"test@gmail.com"} /></AkelloProvider>  
+      <AkelloProvider akello={akello}><SignUpForm onSiginClick={() => {}} /></AkelloProvider>  
     )
   
   }

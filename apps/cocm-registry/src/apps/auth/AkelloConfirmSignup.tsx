@@ -1,4 +1,4 @@
-import {AuthConfirmSignup} from '@akello/react'
+import {SignupConfirmationForm} from '@akello/react'
 import { useAkello } from '@akello/react-hook'
 import { useNavigate } from 'react-router'
 
@@ -13,7 +13,7 @@ const AkelloConfirmSignuup = () => {
      
     return (
         <>
-            <AuthConfirmSignup onSuccess={() => {
+            <SignupConfirmationForm onSuccess={() => {
                 console.log('success confirming')
                 navigate('/')
             }} onFail={() => {

@@ -1,4 +1,4 @@
-import {SignIn} from '@akello/react'
+import {SignInForm} from '@akello/react'
 import { useNavigate } from 'react-router'
 
 
@@ -8,7 +8,7 @@ const AkelloSignIn = () => {
      
     return (
         <>
-            <SignIn onSuccess={(token: string) => {                    
+            <SignInForm onSuccess={(token: string) => {                    
                     navigate('/')
                 }} onFail={(err: string) => {
                     console.log(err)                    

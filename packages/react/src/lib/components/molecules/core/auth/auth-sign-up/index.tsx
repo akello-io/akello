@@ -14,13 +14,13 @@ const SignupSchema = Yup.object().shape({
   password: Yup.string().required('Required')
 });
 
-export interface AuthSignupProps {
+export interface SignUpFormProps {
     onSuccess?: () => void
     onFail?: () => void
     onSiginClick: () => void
 }
 
-export const AuthSignup:React.FC<AuthSignupProps> = ({onSuccess, onFail, onSiginClick}) => {        
+export const SignUpForm:React.FC<SignUpFormProps> = ({onSuccess, onFail, onSiginClick}) => {        
     const [submissionError, setSubmissionError] = useState('')
 
     const akelloContext = useAkelloContext()

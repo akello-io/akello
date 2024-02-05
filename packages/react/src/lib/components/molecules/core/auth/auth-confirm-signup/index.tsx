@@ -4,13 +4,13 @@ import {CognitoUser, CognitoUserAttribute, CognitoUserPool} from "amazon-cognito
 import {useState} from "react";
 import {useAkello} from "@akello/react-hook";
 
-export interface AuthConfirmSignupProps  {
+export interface SignupConfirmationFormProps  {
     email: string
     onSuccess?: () => void
     onFail?: () => void
 }
 
-export const AuthConfirmSignup:React.FC<AuthConfirmSignupProps> = ({email, onSuccess, onFail}) => {    
+export const SignupConfirmationForm:React.FC<SignupConfirmationFormProps> = ({email, onSuccess, onFail}) => {    
     const [apierror, setAPIError] = useState('')
     const akello = useAkello()    
 

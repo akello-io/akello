@@ -1,5 +1,5 @@
 import React from 'react'
-import { SignIn, SignInProps } from '.'
+import { SignInForm, SignInFormProps } from '.'
 import { objectValuesToControls } from '../../../storybook-utils'
 import { StoryFn } from '@storybook/react'
 import {AkelloProvider} from '@akello/react-hook'
@@ -7,9 +7,9 @@ import {AkelloClient} from '@akello/core'
 import { Meta } from '@storybook/react'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-const meta: Meta<typeof SignIn> = {
-  title: 'Molecules/Auth/SignIn',
-  component: SignIn,
+const meta: Meta<typeof SignInForm> = {
+  title: 'Molecules/Auth/SignInForm',
+  component: SignInForm,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {        
     baseUrl: {
@@ -25,8 +25,8 @@ const meta: Meta<typeof SignIn> = {
 }
 export default meta
 
-interface SignInStoryProps extends SignInProps {
-  signInProps: typeof SignIn
+interface SignInStoryProps extends SignInFormProps {
+  signInProps: typeof SignInForm
   baseUrl: string
   cognitoUserPoolId: string
   cognitoClientId: string
@@ -45,7 +45,7 @@ const Template: StoryFn<SignInStoryProps> = (props) => {
   
   
   return (
-    <AkelloProvider akello={akello}><SignIn {...props.signInProps} onSignupClick={() => {}} /></AkelloProvider>  
+    <AkelloProvider akello={akello}><SignInForm {...props.signInProps} onSignupClick={() => {}} /></AkelloProvider>  
   )
 
 }

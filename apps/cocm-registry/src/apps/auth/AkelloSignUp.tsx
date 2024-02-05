@@ -1,11 +1,11 @@
-import {AuthSignup} from '@akello/react'
+import {SignUpForm} from '@akello/react'
 import { useNavigate } from 'react-router'
 
 const AkelloSignUp = () => {    
     const navigate = useNavigate()
     return (
         <>
-            <AuthSignup onSuccess={() =>  navigate('/confirm')}   onSiginClick={() => {navigate("/signup")}}/>
+            <SignUpForm onSuccess={() =>  navigate('/confirm')}   onSiginClick={() => {navigate("/signup")}}/>
         </>
     )
 }

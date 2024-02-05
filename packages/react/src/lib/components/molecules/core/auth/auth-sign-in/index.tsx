@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import {Field, Form, Formik} from "formik";
 import { useAkello } from "@akello/react-hook"
 
-export interface SignInProps  {
+export interface SignInFormProps  {
     onSuccess?: (token: string) => void
     onFail?: (error: any) => void
     onSignupClick: () => void
@@ -18,7 +18,7 @@ export const LoginSchema = Yup.object().shape({
 });
 
 
-export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail, onSignupClick}) => {    
+export const SignInForm:React.FC<SignInFormProps> = ({onSuccess, onFail, onSignupClick}) => {    
     const akello = useAkello()
 
     return (
