@@ -12,7 +12,7 @@ const AkelloSignIn = () => {
                     navigate('/')
                 }} onFail={(err: string) => {
                     console.log(err)                    
-                }}/>
+                }} onSignupClick={() => navigate('/signup') }/>
         </>
     )
 }

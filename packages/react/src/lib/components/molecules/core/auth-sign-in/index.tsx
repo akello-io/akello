@@ -6,6 +6,7 @@ import { useAkello } from "@akello/react-hook"
 export interface SignInProps  {
     onSuccess?: (token: string) => void
     onFail?: (error: any) => void
+    onSignupClick: () => void
 }
 
 
@@ -17,7 +18,7 @@ export const LoginSchema = Yup.object().shape({
 });
 
 
-export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail}) => {    
+export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail, onSignupClick}) => {    
     const akello = useAkello()
 
     return (
@@ -94,9 +95,8 @@ export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail}) => {
               )}
             </Formik>
             <div className="text-center mt-6 flex flex-wrap space-x-2">
-              <div>Don't you have an account?</div> <div className="text-blue-600 hover:underline transition duration-150 ease-in-out">Sign up</div>
+              <div>Don't you have an account?</div> <button onClick={() => onSignupClick()} className="text-blue-600 hover:underline transition duration-150 ease-in-out">Sign up</button>
             </div>
-
           </div>
         </div>
     );

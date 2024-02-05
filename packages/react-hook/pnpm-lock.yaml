@@ -23,10 +23,10 @@ dependencies:
     specifier: ^11.0.0
     version: 11.0.0
   react:
-    specifier: 18.2.0
+    specifier: ^18.2.0
     version: 18.2.0
   react-dom:
-    specifier: 18.2.0
+    specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   vite:
     specifier: ^5.0.12
@@ -2505,7 +2505,7 @@ packages:
     engines: {node: '>= 8'}
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
-      fastq: 1.17.0
+      fastq: 1.17.1
     dev: true
 
   /@pkgjs/parseargs@0.11.0:
@@ -4170,7 +4170,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001583
+      caniuse-lite: 1.0.30001584
       electron-to-chromium: 1.4.656
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.3)
@@ -4225,8 +4225,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /caniuse-lite@1.0.30001583:
-    resolution: {integrity: sha512-acWTYaha8xfhA/Du/z4sNZjHUWjkiuoAi2LM+T/aL+kemKQgPT1xBb/YKjlQ0Qo8gvbHsGNplrEJ+9G3gL7i4Q==}
+  /caniuse-lite@1.0.30001584:
+    resolution: {integrity: sha512-LOz7CCQ9M1G7OjJOF9/mzmqmj3jE/7VOmrfw6Mgs0E8cjOsbRXQJHsPBfmBOXDskXKrHLyyW3n7kpDW/4BsfpQ==}
 
   /chai@4.4.1:
     resolution: {integrity: sha512-13sOfMv2+DWduEU+/xbun3LScLoqN17nBeTLUsmDfKdoiC1fr0n9PU4guu4AhRcOVFk/sW8LyZWHuhWtQZiF+g==}
@@ -4720,8 +4720,8 @@ packages:
       is-arrayish: 0.2.1
     dev: true
 
-  /es-errors@1.0.0:
-    resolution: {integrity: sha512-yHV74THqMJUyFKkHyN7hyENcEZM3Dj2a2IrdClY+IT4BFQHkIVwlh8s6uZfjsFydMdNHv0F5mWgAA3ajFbsvVQ==}
+  /es-errors@1.3.0:
+    resolution: {integrity: sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==}
     engines: {node: '>= 0.4'}
     dev: true
 
@@ -4972,8 +4972,8 @@ packages:
     dependencies:
       strnum: 1.0.5
 
-  /fastq@1.17.0:
-    resolution: {integrity: sha512-zGygtijUMT7jnk3h26kUms3BkSDp4IfIKjmnqI2tvx6nuBfiF1UqOxbnLfzdv+apBy+53oaImsKtMw/xYbW+1w==}
+  /fastq@1.17.1:
+    resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
     dependencies:
       reusify: 1.0.4
     dev: true
@@ -5174,7 +5174,7 @@ packages:
     resolution: {integrity: sha512-JIcZczvcMVE7AUOP+X72bh8HqHBRxFdz5PDHYtNG/lE3yk9b3KZBJlwFcTyPYjg3L4RLLmZJzvjxhaZVapxFrQ==}
     engines: {node: '>= 0.4'}
     dependencies:
-      es-errors: 1.0.0
+      es-errors: 1.3.0
       function-bind: 1.1.2
       has-proto: 1.0.1
       has-symbols: 1.0.3
@@ -7880,7 +7880,7 @@ packages:
     dev: false
 
   file:../core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-4slGzSqe4/atAA3pMlfwN3OzNaj2gcC8VLI+eyc9SYn19FqQ5LqU8D229hk3EO/yzTItUXORlXTVX7i5GG5KmQ==, tarball: file:../core/akello-core-2.0.4.tgz}
+    resolution: {integrity: sha512-qFrtKA5ZHOQFlQXC/v4wlNMYZ+A8cuvULg/z3P6RLIFxvItUMzmdEbzwT95JPWuOLeZ84UVeJXHd7h0MUY3PUQ==, tarball: file:../core/akello-core-2.0.4.tgz}
     id: file:../core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4
@@ -7889,8 +7889,8 @@ packages:
       amazon-cognito-identity-js: ^6.3.7
       aws-amplify: ^6.0.13
       axios: ^1.6.1
-      react: 18.2.0
-      react-dom: 18.2.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
       tailwindcss: ^3.4.1
     dependencies:
       amazon-cognito-identity-js: 6.3.7

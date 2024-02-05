@@ -8,6 +8,7 @@ import {store} from "./store";
 import {Provider} from 'react-redux'
 import {AkelloProvider} from '@akello/react-hook'
 import {AkelloClient} from '@akello/core'
+import { BrowserRouter } from 'react-router-dom';
 
 
 if(process.env.NODE_ENV=='production') {
@@ -43,17 +44,38 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const akello = new AkelloClient({})
+
+const akello = new AkelloClient({
+    baseUrl: process.env.REACT_APP_API,
+    cognitoUserPoolId: process.env.REACT_APP_AWS_COGNITO_USERPOOL_ID,
+    cognitoClientId: process.env.REACT_APP_AWS_COGNITO_APP_CLIENT_ID,
+            ...(process.env.REACT_APP_AKELLO_COGNITO_LOCAL === "TRUE" && {
+                cognitoEndpoint: process.env.REACT_APP_AKELLO_COGNITO_URL,
+                authenticationFlowType: "USER_PASSWORD_AUTH",
+    }),
+    onUnauthenticated: () => {
+        window.location.href = '/login'
+    }
+})
+
+
+
 
 root.render(
-  <React.StrictMode>
-      <Provider store={store}>
+    <BrowserRouter>
+        <Provider store={store}>
             <AkelloProvider akello={akello}>
                 <App />
             </AkelloProvider>          
-      </Provider>
-  </React.StrictMode>
+        </Provider>      
+    </BrowserRouter>    
 );
+
+/* 
+<React.StrictMode>
+      
+  </React.StrictMode>
+*/
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -45,7 +45,7 @@ const Template: StoryFn<SignInStoryProps> = (props) => {
   
   
   return (
-    <AkelloProvider akello={akello}><SignIn {...props.signInProps} /></AkelloProvider>  
+    <AkelloProvider akello={akello}><SignIn {...props.signInProps} onSignupClick={() => {}} /></AkelloProvider>  
   )
 
 }

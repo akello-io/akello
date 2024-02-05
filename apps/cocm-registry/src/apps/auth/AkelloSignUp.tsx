@@ -1,9 +1,11 @@
 import {AuthSignup} from '@akello/react'
+import { useNavigate } from 'react-router'
 
-const AkelloSignUp = () => {
+const AkelloSignUp = () => {    
+    const navigate = useNavigate()
     return (
         <>
-            <AuthSignup />
+            <AuthSignup onSiginClick={() => {navigate("/login")}}/>
         </>
     )
 }

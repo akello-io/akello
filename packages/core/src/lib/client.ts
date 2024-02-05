@@ -61,6 +61,59 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         return this.options;
     }    
 
+    confirmSignup(username: string, code: string, onSuccess: (result: any) => void, onFail: (err: any) => void) {
+
+        const poolData = {                
+            UserPoolId: this.options.cognitoUserPoolId!,
+		    ClientId: this.options.cognitoClientId!,
+		    endpoint: this.options.cognitoEndpoint!
+        };
+        const userPool = new CognitoUserPool(poolData);
+
+        try {
+            // Create a new user
+            const user = new CognitoUser({Pool: userPool, Username: username});
+
+            user.confirmRegistration(code, false, (err, result) => {                
+                if(!err) {
+                    onSuccess(result);
+                } else {
+                    onFail(err);
+                }
+            })                        
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    resendCode(email: string, onSuccess: (result: any) => void, onFail: (err: any) => void) {
+        const poolData = {                
+            UserPoolId: this.options.cognitoUserPoolId!,
+		    ClientId: this.options.cognitoClientId!,
+		    endpoint: this.options.cognitoEndpoint!
+        };
+        const userPool = new CognitoUserPool(poolData);
+
+        try {
+            // Create a new user
+            const user = new CognitoUser({Pool: userPool, Username: email});
+
+            user.resendConfirmationCode(
+                (err, result) => {
+                    if(err) {
+                        onFail(err);
+                    } else {
+                        onSuccess(result);
+                    }
+                }
+            )            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     signup(username: string, password: string, onSuccess: (user: CognitoUser) => void, onFail: (err: any) => void) {                
         const poolData = {                
             UserPoolId: this.options.cognitoUserPoolId!,

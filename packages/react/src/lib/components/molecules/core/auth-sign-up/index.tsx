@@ -14,11 +14,14 @@ const SignupSchema = Yup.object().shape({
   password: Yup.string().required('Required')
 });
 
+export interface AuthSignupProps {
+    onSiginClick: () => void
+}
 
-export const AuthSignup = () => {        
+export const AuthSignup:React.FC<AuthSignupProps> = ({onSiginClick}) => {        
     const [submissionError, setSubmissionError] = useState('')
 
-    const akello = useAkello()
+    const akello = useAkello()    
 
     return (
         <section className="">
@@ -101,7 +104,7 @@ export const AuthSignup = () => {
                 )}
                 </Formik>
                 <div className="text-gray-600 text-center mt-6">
-                Already using Akello.io? <div  className="text-blue-600 hover:underline transition duration-150 ease-in-out ">Sign in</div>
+                Already using Akello.io? <button onClick={() => onSiginClick()}  className="text-blue-600 hover:underline transition duration-150 ease-in-out ">Sign in</button>
                 </div>
             </div>
 
