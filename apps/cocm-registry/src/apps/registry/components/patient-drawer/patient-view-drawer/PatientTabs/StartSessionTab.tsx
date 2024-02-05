@@ -59,7 +59,6 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
     const [ss, setSS] = useState(0)
     const [ms, setMS] = useState(0)
 
-    const token = useSelector ((state: RootState) => state.app.token)
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
     const [noShow, setNoShow] = useState(false)
 
@@ -100,7 +99,7 @@ const StartSessionTab:React.FC<StartSessionTabProps> = ({setSelectedTab, selecte
                                     })
                                     
                                 }                                
-                                akello.registryService.saveTreatmentSession(token, selectedRegistry.id, {
+                                akello.registryService.saveTreatmentSession(selectedRegistry.id, {
                                     patient_mrn: selectedPatient.patient_mrn,
                                     contact_type: contactType,
                                     flag: flag,

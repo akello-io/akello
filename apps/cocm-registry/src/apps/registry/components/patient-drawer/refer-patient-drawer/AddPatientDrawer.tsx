@@ -16,7 +16,6 @@ interface AddPatientDrawer {
 
 const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, patients, setPatients}) => {
 
-    const token = useSelector((state: RootState) => state.app.token)
     const selectedRegistry = useSelector((state: RootState) => state.app.selectedRegistry)
     const akello = useAkello()
 
@@ -58,7 +57,7 @@ const AddPatientDrawer: React.FC<AddPatientDrawer> = ({checked, setChecked, pati
             )
             new_patient.treatment_logs =  []
             new_patient.payer = values['payer']
-            akello.registryService.referPatient(token, selectedRegistry.id, new_patient, (data) => {
+            akello.registryService.referPatient(selectedRegistry.id, new_patient, (data) => {
                 setPatients([...patients, data])
             })
         },

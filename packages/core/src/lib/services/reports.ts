@@ -8,13 +8,13 @@ export class ReportsService extends BaseService {
     }
 
 
-    async getBillingReport(token: string, registry_id:string, from_date: number, to_date: number,  onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async getBillingReport(registry_id:string, from_date: number, to_date: number,  onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "reports/" + registry_id + "/billing?from_date=" + from_date + "&to_date=" + to_date;
         this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'get',
             endpoint: endpoint,
-            token: token,
+            token: this.client.accessToken!,
             onSuccess: (resp: any) => {
                 onSuccess(resp)
             }, onFail: (error: any) => {
@@ -24,13 +24,13 @@ export class ReportsService extends BaseService {
             }
         });
     }
-    async getRegistryStats(registry_id: string, from_date: number, to_date: number, token: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async getRegistryStats(registry_id: string, from_date: number, to_date: number, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "reports/" + registry_id + "/dashboard-stats?from_date=" + from_date + "&to_date=" + to_date;
         this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'get',
             endpoint: endpoint,
-            token: token,
+            token: this.client.accessToken!,
             onSuccess: (resp: any) => {
                 onSuccess(resp)
             }, onFail: (error: any) => {

@@ -29,8 +29,7 @@ export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail}) => {
             <Formik initialValues={{
                 email: '',
                 password: ''
-            }} onSubmit={values => {
-              debugger;
+            }} onSubmit={values => {  
               akello.login(values.email, values.password, (token: string) => {
                 console.log(token)
                 if (onSuccess) {

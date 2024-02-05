@@ -6,50 +6,48 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {setSelectedRegistry} from "../../reducers/appSlice";
 import {RegistrySelectRow, TopNavigation, WelcomeBanner, ThemeSwap} from "@akello/react"
-import {RegistryMemberships} from "@akello/react"
+import {RegistryMemberships, Loader} from "@akello/react"
 import AkelloCornerLogo from "../../images/logos/akello/akello-corner-logo.svg"
 import { useAkelloContext, useAkello } from "@akello/react-hook"
 import { debug } from "console";
 
 
-interface RegistrySelectorProps {
-    signOut: (data?: any | undefined) => void
-}
-
-const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
+const RegistrySelector = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()        
     const akello = useAkello()
-
-    const userProfile = useSelector((state: RootState) => state.app.userProfile)
-    const token = useSelector((state: RootState) => state.app.token)    
-    
+    const userProfile = useSelector((state: RootState) => state.app.userProfile)    
     const [create, setCreate] = useState(false)
     const [registries, setRegistries] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        if(token) {            
-            setIsLoading(true)
-            akello.userService.getUserRegistries(token, (data) => {                
+        setIsLoading(true)
+            akello.userService.getUserRegistries((data) => {                
                 setRegistries(data)
                 setIsLoading(false)
             })
-        }
-    }, [token])
-
+    }, [])
 
     useEffect(() => {
         localStorage.setItem("selectedRegistry",  "")
     })
-
+    
+    
+    if(akello.accessToken === undefined) {            
+        return(
+            <>
+                <Loader />
+            </>
+        )
+    }
 
     return (
         <>
             <div className="h-fit min-h-screen  ">
                 <TopNavigation
                     signIn={() => navigate('/login')}
-                    signOut={signOut}
+                    signOut={()=> akello.logout()}
                     signed_in={true}
                     logo={<></>}
                     createRegistry={ () => navigate('/registry/create')}
@@ -81,12 +79,10 @@ const RegistrySelector:React.FC<RegistrySelectorProps> = ({signOut}) => {
                                         name={registry['name']}
                                         members={registry['members']}
                                         logo_url={AkelloCornerLogo}
-                                        patients={3}
-                                        screeners={3}
+                                        patients={-1}
+                                        screeners={-1}
                                     />
-                                    
                                     </>
-                                    
                                 )
                             })
                         }

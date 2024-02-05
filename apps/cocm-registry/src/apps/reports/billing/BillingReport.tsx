@@ -10,7 +10,6 @@ import AppContainer from "../../../stories/app/Container/AppContainer";
 
 
 const BillingReport = () => {
-    const token = useSelector((state: RootState) => state.app.token)
     const selectedRegistry = useSelector((state: RootState) => state.app.selectedRegistry)
     const [statData, setStatData] = useState([])
     const akello = useAkello()
@@ -27,7 +26,7 @@ const BillingReport = () => {
 
     useEffect(() => {
         if(value.startDate && value.endDate) {
-            akello.reportsService.getBillingReport(token, selectedRegistry.id, moment(value.startDate).unix(), moment(value.endDate).unix(), (data) => {
+            akello.reportsService.getBillingReport(selectedRegistry.id, moment(value.startDate).unix(), moment(value.endDate).unix(), (data) => {
                 setStatData(data)
             })
         }

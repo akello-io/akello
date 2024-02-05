@@ -1,5 +1,5 @@
 import {Amplify, Auth} from 'aws-amplify';
-import React, {ReactNode, useEffect} from 'react';
+import React, {Suspense, ReactNode, useEffect} from 'react';
 import '@aws-amplify/ui-react/styles.css';
 import {BrowserRouter, Routes} from "react-router-dom";
 import {Route, useNavigate} from "react-router";
@@ -7,17 +7,9 @@ import FinancialModelList from "./apps/financial-model/FinancialModelList";
 import {FinancialModelDetail} from "./apps/financial-model/FinancialModelDetail";
 import FinancialModelCreate from "./apps/financial-model/FinancialModelCreate";
 import RegistryComponent from "./apps/registry/RegistryComponent";
-import SettingsComponent from "./apps/settings/SettingsComponent";
 import UpgradeComponent from "./apps/upgrade/UpgradeComponent";
-
-import AkelloSignIn from './apps/auth/AkelloSignIn';
-import {AkelloProvider} from '@akello/react-hook'
+import {AkelloProvider, useAkello} from '@akello/react-hook'
 import {AkelloClient} from '@akello/core'
-
-import {cognito_auth_components, cognito_auth_formFields} from "./cognito_auth";
-import { Authenticator } from '@aws-amplify/ui-react';
-import {setAuthToken, setSelectedRegistry, setUserProfile} from "./reducers/appSlice";
-import {useDispatch} from "react-redux";
 import TeamComponent from "./apps/team/TeamComponent";
 import Dashboard from "./apps/dashboard/Dashboard";
 import CalendarComponent from "./apps/calendar/CalendarComponent";
@@ -28,11 +20,12 @@ import RegistryCreate from "./apps/registry-create/RegistryCreate";
 import ProfileComponent from "./apps/profile/ProfileComponent";
 import BillingReport from "./apps/reports/billing/BillingReport";
 import RegistryReport from "./apps/reports/registry/RegistryReport";
-import { debug } from 'console';
 import "./App.css"
+import { SignIn } from '@akello/react';
 
 // Configure Amplify in index file or root file
 
+/*
 if(process.env.REACT_APP_MOCK != 'true') {
     console.log(process.env)    
     Amplify.configure({
@@ -47,26 +40,36 @@ if(process.env.REACT_APP_MOCK != 'true') {
             }
     })
 }
+ */
 
 const akello = new AkelloClient({
     baseUrl: process.env.REACT_APP_API,
     cognitoUserPoolId: process.env.REACT_APP_AWS_COGNITO_USERPOOL_ID,
     cognitoClientId: process.env.REACT_APP_AWS_COGNITO_APP_CLIENT_ID,
-    cognitoEndpoint: process.env.REACT_APP_AKELLO_COGNITO_URL,
+            ...(process.env.REACT_APP_AKELLO_COGNITO_LOCAL === "TRUE" && {
+                cognitoEndpoint: process.env.REACT_APP_AKELLO_COGNITO_URL,
+                authenticationFlowType: "USER_PASSWORD_AUTH",
+    }),
     onUnauthenticated: () => {
         window.location.href = '/login'
     }
 })
 
-const routes = () => {       
+
+
+function App() {    
+    
 
     return (
         <>
-            <BrowserRouter>
-                
-                    <AkelloProvider akello={akello}>                                   
-                        <Routes>
-                            <Route path={"/"} element={<RegistrySelector signOut={() => {}} />} />
+            <BrowserRouter>                        
+                <AkelloProvider akello={akello}>                                        
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Routes>                        
+                            <Route path={"/"} element={<RegistrySelector />} />
+                            <Route path={"/login"} element={<SignIn onSuccess={() => {                                
+                                window.location.href = "/"
+                            }} />} />
                             <Route path={"/profile"} element={<ProfileComponent />} />
                             <Route path={"/registry/create"} element={<RegistryCreate />} />
                             <Route path={"/dashboard"} element={<Dashboard />} />
@@ -78,80 +81,19 @@ const routes = () => {
                             <Route path={"/reports/billing"} element={<BillingReport />} />
                             <Route path={"/reports/registry"} element={<RegistryReport />} />
                             <Route path={"/registry"} element={<RegistryComponent />} />
-
                             <Route path={"/model"} element={<FinancialModelDetail />} />
                             <Route path={"/models"} element={<FinancialModelList />} />
                             <Route path={"/models/create"} element={<FinancialModelCreate />} />
                             <Route path={"/models/:model_name"} element={<FinancialModelDetail />} />
-
-                            <Route path={"/upgrade"} element={<UpgradeComponent />} />
+                            <Route path={"/upgrade"} element={<UpgradeComponent />} />                                        
                         </Routes>     
-                    </AkelloProvider>                                     
+                    </Suspense>
+                </AkelloProvider>                                     
             </BrowserRouter>
+            
         </>
-    )
-}
 
-function App() {
-    const dispatch = useDispatch()
-    
-
-    if(process.env.REACT_APP_MOCK == 'true') {
-        dispatch(setAuthToken('mock-token'))
-        return routes()
-    }
-    else {
-        return (
-            <>
-                
-                <Authenticator formFields={cognito_auth_formFields} components={cognito_auth_components} hideSignUp={false}>
-                    {({ signOut, user }) => {
-                        Auth.currentSession().then((session) => {
-
-                            let token = session.getIdToken().getJwtToken()
-
-                            dispatch(setAuthToken(token))
-
-                            pendo.initialize({
-                                visitor: {
-                                    id: session.getIdToken().payload['sub'],
-                                    email: user!.attributes!.email,
-                                }
-                            })
-
-                            let stored_selection = localStorage.getItem("selectedRegistry")
-                            if(stored_selection) {
-                                dispatch(setSelectedRegistry(JSON.parse(stored_selection)))
-                            }
-
-                            if(process.env.REACT_APP_AKELLO_COGNITO_LOCAL) {                                
-                                dispatch(setUserProfile({
-                                    first_name: 'Vijay',
-                                    last_name: 'Selvaraj',
-                                    email: 'vijay@akellohealth.com',
-                                    profile_photo: 'https://avatars.githubusercontent.com/u/398292?v=4',
-                                }))                                
-                            } else {                                
-                                dispatch(setUserProfile({
-                                    first_name: session.getIdToken().payload['given_name'],
-                                    last_name: session.getIdToken().payload['family_name'],
-                                    email: session.getIdToken().payload['email'],
-                                    profile_photo: session.getIdToken().payload['picture'],
-                                }))    
-                            }                            
-                        }).catch((resp) => {
-                            if(signOut) {
-                                signOut()
-                            }
-                        })
-
-                        return routes()
-                    }}
-                </Authenticator>                
-            </>
-
-        );
-    }
+    );
 }
 
 export default App;

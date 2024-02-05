@@ -11,16 +11,15 @@ import { useAkello } from "@akello/react-hook";
 const VisibleColumnsBasicExample = () => {
     const navigate = useNavigate()
     const [models, setModels] = useState<FinancialModelDBRecordTypeV1[]>([])
-    const token = useSelector((state: RootState) => state.app.token)
     const akello = useAkello()
 
 
     useEffect(() => {        
-        akello.financialService.getFinancialModels(token, (financial_models) => {
+        akello.financialService.getFinancialModels((financial_models) => {
             setModels(financial_models)
         }, (error) => {
         })
-    }, [token])
+    }, [])
 
     const handleEvent: GridEventListener<'rowClick'> = (
         params, // GridRowParams

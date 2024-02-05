@@ -19,7 +19,6 @@ export interface AkelloClientInterface {
 
 export interface AkelloClientOptions  {
     baseUrl?: string;
-    token?: string;    
     cognitoUserPoolId?: string;
     cognitoClientId?: string;
     cognitoEndpoint?: string;   
@@ -45,6 +44,9 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     public readonly financialService: FinancialModelService;
     public readonly reportsService: ReportsService;
 
+    accessToken: string | undefined;
+
+
 
     constructor(options?: AkelloClientOptions) {
         super();
@@ -58,7 +60,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
 
     getOptions() {
         return this.options;
-    }
+    }    
 
     login(username: string, password: string, onSuccess: (token: string) => void, onFail: (err: any) => void) {
         const authenticationData = {
@@ -83,18 +85,22 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                 const accessToken = result.getAccessToken().getJwtToken();
                 /* Use the idToken for Logins Map when Federating User Pools with identity pools or when passing through an Authorization Header to an API Gateway Authorizer */
                 const idToken = result.idToken.jwtToken;
-                this.options.token = accessToken
-                onSuccess(accessToken);
-                
+                this.accessToken = accessToken
+                onSuccess(accessToken);               
+                this.dispatchEvent({ type: 'change' }); 
             },
             onFailure: (err: any) => {                
-                this.options.token = undefined                
+                this.accessToken = undefined
                 onFail(err);
             },
         });
     }
 
     logout() {
+        this.accessToken = undefined        
+        if(this.options.onUnauthenticated) {
+            this.options.onUnauthenticated();
+        }
     }
 
     handleUnauthenticated() {

@@ -1,5 +1,5 @@
 import os
-from fastapi import Request
+from fastapi import Request, HTTPException
 from pydantic_settings import BaseSettings
 from pydantic.types import Any
 from typing import Optional
@@ -46,9 +46,12 @@ class CognitoTokenCustom(BaseModel):
 
 
 async def local_auth_required(request: Request) -> CognitoTokenCustom:
-    auth_token = request.headers.get('Authorization').replace('Bearer ', '')
-    decoded_token = jwt.get_unverified_claims(auth_token) #NOSONAR
-    decoded_token["email"] = decoded_token["cognito:username"]
+    try:        
+        auth_token = request.headers.get('Authorization').replace('Bearer ', '')
+        decoded_token = jwt.get_unverified_claims(auth_token) #NOSONAR
+        decoded_token["email"] = decoded_token["cognito:username"]
+    except Exception as e:
+        raise HTTPException(status_code=401, detail="Unauthroized")
     return parse_obj_as(CognitoTokenCustom, decoded_token)
 
 auth_provider = CognitoAuth(

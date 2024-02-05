@@ -52,7 +52,6 @@ const BetaBanner = () => {
 
 export const FinancialModelDetail = () =>  {
 
-    // const authToken = useSelector((state: RootState) => state.app.authToken)
     let { model_name } = useParams();
     const {state} = useLocation()
     const navigate = useNavigate()
@@ -67,15 +66,14 @@ export const FinancialModelDetail = () =>  {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const [aims, setAIMS] = useState(clinic.copy())
 
-    const token = useSelector((state: RootState) => state.app.token)
 
 
     useEffect(() => {
-        akello.financialService.getFinancialModel('Financial Model', token, (model_input) => {
+        akello.financialService.getFinancialModel('Financial Model', (model_input) => {
             aims.setInputs(model_input)
             setAIMS(aims)
         })
-    }, [token])
+    }, [])
 
 
     useEffect(() => {
@@ -152,7 +150,7 @@ export const FinancialModelDetail = () =>  {
                                                       type="button"
                                                       className="inline-flex btn-xs items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                                                       onClick={() => {
-                                                        akello.financialService.saveFinancialModel(token, aims, (data) => {
+                                                        akello.financialService.saveFinancialModel(aims, (data) => {
 
                                                           })
                                                       }}

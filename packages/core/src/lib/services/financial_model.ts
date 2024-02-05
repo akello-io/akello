@@ -11,13 +11,13 @@ export class FinancialModelService extends BaseService {
 
 
 
-async getFinancialModel( name: string, token: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void){
+async getFinancialModel( name: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void){
     const endpoint =  "financial-model/" + name;
     this.apiRequest({
         api_url: this.client.getOptions().baseUrl!,
         method: 'get',
         endpoint: endpoint,
-        token: token,
+        token: this.client.accessToken!,
         onSuccess: (resp: FinancialModelDBRecordTypeV1[]) => {
             onSuccess(resp[0])
         },
@@ -30,13 +30,13 @@ async getFinancialModel( name: string, token: string, onSuccess: (data: any) => 
 
 }
 
-    async getFinancialModels(token: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void){
+    async getFinancialModels(onSuccess: (data: any) => void, onFail?: (data: any) =>  void){
         const endpoint =  "financial-model";
         this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'get',
             endpoint: endpoint,
-            token: token,
+            token: this.client.accessToken!,
             onSuccess: (resp: FinancialModelDBRecordTypeV1[]) => {
                 onSuccess(resp)
             }, onFail: (error: any) => {
@@ -48,14 +48,14 @@ async getFinancialModel( name: string, token: string, onSuccess: (data: any) => 
 
     }
 
-    async createFinancialModel(token: string, model: Clinic, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async createFinancialModel(model: Clinic, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "financial-model";
 
         this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'post',
             endpoint: endpoint,
-            token: token,
+            token: this.client.accessToken!,
             payload: model,
             onSuccess: (resp: any) => {
                 onSuccess(resp)
@@ -64,14 +64,14 @@ async getFinancialModel( name: string, token: string, onSuccess: (data: any) => 
         });
     }
 
-    async saveFinancialModel(token: string, model: Clinic, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async saveFinancialModel(model: Clinic, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "financial-model";
 
         this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'put',
             endpoint: endpoint,
-            token: token,
+            token: this.client.accessToken!,
             payload: model,
             onSuccess: (resp: any) => {
                 onSuccess(resp)

@@ -14,7 +14,6 @@ import { useAkello } from "@akello/react-hook";
 const FinancialModelCreate = () => {
     const [model, setModel] = useState<Clinic>(getClinicInstance())
     const [errors, setErrors] = useState<string[]>([])
-    const token = useSelector((state: RootState) => state.app.token)
     const akello = useAkello()
 
     return (
@@ -39,7 +38,7 @@ const FinancialModelCreate = () => {
                     setErrors(errors)
 
                     if(errors.length == 0) {
-                        akello.financialService.createFinancialModel(token, model, (data) => {
+                        akello.financialService.createFinancialModel(model, (data) => {
                             console.log('saved data: ' + data)
                         })
                     }
