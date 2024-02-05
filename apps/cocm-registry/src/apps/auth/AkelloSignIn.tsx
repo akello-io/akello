@@ -8,13 +8,10 @@ const AkelloSignIn = () => {
      
     return (
         <>
-            <SignIn onSuccess={(token: string) => {
-                    console.log(token)
-                    navigate('/registry')
-                    debugger;
+            <SignIn onSuccess={(token: string) => {                    
+                    navigate('/')
                 }} onFail={(err: string) => {
-                    console.log(err)
-                    debugger
+                    console.log(err)                    
                 }}/>
         </>
     )

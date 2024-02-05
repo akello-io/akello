@@ -4,7 +4,8 @@ import { RegistryService } from './services/registry';
 import {
     CognitoUserPool,
     CognitoUser,
-    AuthenticationDetails
+    AuthenticationDetails,
+    CognitoUserAttribute
   } from 'amazon-cognito-identity-js';
 import { UserService } from './services';
 import { FinancialModelService } from './services/financial_model';
@@ -46,8 +47,6 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
 
     accessToken: string | undefined;
 
-
-
     constructor(options?: AkelloClientOptions) {
         super();
         this.options = options ?? {};
@@ -61,6 +60,35 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     getOptions() {
         return this.options;
     }    
+
+    signup(username: string, password: string, onSuccess: (user: CognitoUser) => void, onFail: (err: any) => void) {                
+        const poolData = {                
+            UserPoolId: this.options.cognitoUserPoolId!,
+		    ClientId: this.options.cognitoClientId!,
+		    endpoint: this.options.cognitoEndpoint!
+        };
+        const userPool = new CognitoUserPool(poolData);
+
+        try {
+            // Create a new user
+            const user = new CognitoUser({Pool: userPool, Username: username});
+            userPool.signUp(
+                username,
+                password,
+                [new CognitoUserAttribute({Name: 'email', Value: username})],
+                [],
+                (err, result) => {
+                    if (err) {
+                        console.log(err)
+                        return
+                    }
+                    onSuccess(result!.user)
+                }
+            )            
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     login(username: string, password: string, onSuccess: (token: string) => void, onFail: (err: any) => void) {
         const authenticationData = {

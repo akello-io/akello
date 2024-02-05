@@ -22,6 +22,7 @@ import BillingReport from "./apps/reports/billing/BillingReport";
 import RegistryReport from "./apps/reports/registry/RegistryReport";
 import "./App.css"
 import AkelloSignIn from './apps/auth/AkelloSignIn';
+import AkelloSignUp from './apps/auth/AkelloSignUp';
 
 // Configure Amplify in index file or root file
 
@@ -67,6 +68,7 @@ function App() {
                         <Routes>                        
                             <Route path={"/"} element={<RegistrySelector />} />
                             <Route path={"/login"} element={<AkelloSignIn />} />
+                            <Route path={"/signup"} element={<AkelloSignUp />} />
                             <Route path={"/profile"} element={<ProfileComponent />} />
                             <Route path={"/registry/create"} element={<RegistryCreate />} />
                             <Route path={"/dashboard"} element={<Dashboard />} />
