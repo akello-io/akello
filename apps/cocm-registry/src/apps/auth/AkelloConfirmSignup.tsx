@@ -6,26 +6,20 @@ import { useNavigate } from 'react-router'
 const AkelloConfirmSignuup = () => {
     const navigate = useNavigate()
     const akello = useAkello()
-    
-
-    debugger;        
+        
     if(akello.getUserName() === undefined) {
-        
-        return (
-            <div>
-                <h1>Not signed in</h1>
-                <button onClick={() => {navigate("/signup")}}>Sign up</button>
-                <button onClick={() => {navigate("/login")}}>Login</button>
-            </div>
-        
-        )
+        navigate('/signin')
     }
-    debugger
-    
      
     return (
         <>
-            <AuthConfirmSignup email={akello.getUserName()!} />
+            <AuthConfirmSignup onSuccess={() => {
+                console.log('success confirming')
+                navigate('/')
+            }} onFail={() => {
+                console.log('failed confirming')
+                debugger;
+            }} email={akello.getUserName()!} />
         </>
     )
 }

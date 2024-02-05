@@ -5,10 +5,12 @@ import {useState} from "react";
 import {useAkello} from "@akello/react-hook";
 
 export interface AuthConfirmSignupProps  {
-    email: string    
+    email: string
+    onSuccess?: () => void
+    onFail?: () => void
 }
 
-export const AuthConfirmSignup:React.FC<AuthConfirmSignupProps> = ({email}) => {    
+export const AuthConfirmSignup:React.FC<AuthConfirmSignupProps> = ({email, onSuccess, onFail}) => {    
     const [apierror, setAPIError] = useState('')
     const akello = useAkello()    
 
@@ -38,10 +40,13 @@ export const AuthConfirmSignup:React.FC<AuthConfirmSignupProps> = ({email}) => {
                             onSubmit={values => {
                                 akello.confirmSignup(email, values.code, (user: any) => {
                                     debugger;
+                                    console.log('user successfully confirmed')
                                     console.log(user)
+                                    onSuccess && onSuccess()
                                 }, (err: any) => {
                                     debugger;
                                     console.log(err)
+                                    onFail && onFail()
                                 })                                
                             }}
                         >
