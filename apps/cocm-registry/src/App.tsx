@@ -23,6 +23,7 @@ import RegistryReport from "./apps/reports/registry/RegistryReport";
 import "./App.css"
 import AkelloSignIn from './apps/auth/AkelloSignIn';
 import AkelloSignUp from './apps/auth/AkelloSignUp';
+import AkelloConfirmSignuup from './apps/auth/AkelloConfirmSignup';
 
 // Configure Amplify in index file or root file
 
@@ -53,6 +54,7 @@ const AkelloRoutes = () => {
                 <Routes>
                     <Route path={"/login"} element={<AkelloSignIn />} />
                     <Route path={"/signup"} element={<AkelloSignUp />} />
+                    <Route path={"/confirm"} element={<AkelloConfirmSignuup />} />
                     <Route path={"*"} element={<Navigate to="/login" />} />
                     
                 </Routes>

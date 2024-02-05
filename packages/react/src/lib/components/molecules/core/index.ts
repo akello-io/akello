@@ -1,4 +1,5 @@
 export * from './app-header'
+export * from './auth-confirm-signup'
 export * from './auth-sign-in'
 export * from './auth-sign-up'
 export * from './hamburger-nav'

@@ -13,18 +13,19 @@ export const AkelloProvider = (props: AkelloProviderProps): JSX.Element => {
   
   const [state, setState] = useState({ 
     loading: false,
-    isAuthenticated: akello.accessToken !== undefined
+    isAuthenticated: akello.accessToken !== undefined,
+    username: akello.getUserName()
   });
 
   useEffect(() => {
-    const eventListener = (): void => {
-      debugger
+    const eventListener = (): void => {      
       console.log('--------------EVENT LISTENER----------------------')
       console.log("akello.accessToken: " + akello.accessToken)
       
       setState({
         ...state,
-        isAuthenticated: akello.accessToken !== undefined
+        isAuthenticated: akello.accessToken !== undefined,
+        username: akello.getUserName()
       });
     }
 

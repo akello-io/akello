@@ -39,11 +39,12 @@ export interface RequestParam {
 
 export class AkelloClient extends EventTarget implements AkelloClientInterface {
 
-    private readonly options: AkelloClientOptions;    
+    private readonly options: AkelloClientOptions;
+    private username: string | undefined;        
     public readonly registryService: RegistryService;
     public readonly userService: UserService;
     public readonly financialService: FinancialModelService;
-    public readonly reportsService: ReportsService;
+    public readonly reportsService: ReportsService;    
 
     accessToken: string | undefined;
 
@@ -61,6 +62,10 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         return this.options;
     }    
 
+    getUserName() {
+        return this.username;
+    }
+
     confirmSignup(username: string, code: string, onSuccess: (result: any) => void, onFail: (err: any) => void) {
 
         const poolData = {                
@@ -76,7 +81,9 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
 
             user.confirmRegistration(code, false, (err, result) => {                
                 if(!err) {
+                    this.username = username;
                     onSuccess(result);
+                    this.dispatchEvent({ type: 'change' }); 
                 } else {
                     onFail(err);
                 }
@@ -135,7 +142,9 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                         console.log(err)
                         return
                     }
+                    this.username = username;
                     onSuccess(result!.user)
+                    this.dispatchEvent({ type: 'change' }); 
                 }
             )            
         } catch (error) {
@@ -167,6 +176,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                 /* Use the idToken for Logins Map when Federating User Pools with identity pools or when passing through an Authorization Header to an API Gateway Authorizer */
                 const idToken = result.idToken.jwtToken;
                 this.accessToken = accessToken
+                this.username = username;
                 onSuccess(accessToken);               
                 this.dispatchEvent({ type: 'change' }); 
             },

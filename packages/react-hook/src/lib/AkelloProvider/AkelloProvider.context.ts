@@ -8,6 +8,7 @@ export interface AkelloContext {
   akello: AkelloClient;  
   loading: boolean;
   isAuthenticated: boolean;
+  username?: string
 }
 
 export const useAkelloContext = ():AkelloContext => {

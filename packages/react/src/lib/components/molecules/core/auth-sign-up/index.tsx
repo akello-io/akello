@@ -1,7 +1,7 @@
 import {Field, Form, Formik, useFormik} from 'formik';
 import * as Yup from 'yup';
 import {useState} from "react";
-import { useAkello } from "@akello/react-hook"
+import { useAkello, useAkelloContext } from "@akello/react-hook"
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -15,13 +15,16 @@ const SignupSchema = Yup.object().shape({
 });
 
 export interface AuthSignupProps {
+    onSuccess?: () => void
+    onFail?: () => void
     onSiginClick: () => void
 }
 
-export const AuthSignup:React.FC<AuthSignupProps> = ({onSiginClick}) => {        
+export const AuthSignup:React.FC<AuthSignupProps> = ({onSuccess, onFail, onSiginClick}) => {        
     const [submissionError, setSubmissionError] = useState('')
 
-    const akello = useAkello()    
+    const akelloContext = useAkelloContext()
+    const akello = useAkello()
 
     return (
         <section className="">
@@ -46,9 +49,12 @@ export const AuthSignup:React.FC<AuthSignupProps> = ({onSiginClick}) => {
                         akello.signup(values.email, values.password, (user: any) => {
                             debugger;
                             console.log(user)
+                            onSuccess && onSuccess()
+                            
                         }, (err: any) => {
                             debugger;
-                            console.log(err)                            
+                            console.log(err)
+                            onFail && onFail()
                         })                        
                     }}
                 >

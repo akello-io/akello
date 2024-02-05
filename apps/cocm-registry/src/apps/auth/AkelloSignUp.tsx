@@ -5,7 +5,7 @@ const AkelloSignUp = () => {
     const navigate = useNavigate()
     return (
         <>
-            <AuthSignup onSiginClick={() => {navigate("/login")}}/>
+            <AuthSignup onSuccess={() =>  navigate('/confirm')}   onSiginClick={() => {navigate("/signup")}}/>
         </>
     )
 }
