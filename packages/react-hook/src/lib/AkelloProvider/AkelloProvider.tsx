@@ -18,6 +18,10 @@ export const AkelloProvider = (props: AkelloProviderProps): JSX.Element => {
 
   useEffect(() => {
     const eventListener = (): void => {
+      debugger
+      console.log('--------------EVENT LISTENER----------------------')
+      console.log("akello.accessToken: " + akello.accessToken)
+      
       setState({
         ...state,
         isAuthenticated: akello.accessToken !== undefined
@@ -29,9 +33,10 @@ export const AkelloProvider = (props: AkelloProviderProps): JSX.Element => {
   }, [akello, state]);
   
 
-  useEffect(() => {    
-    console.log("auth token: " + props.akello.accessToken)
-  }, [props.akello.accessToken]);
+  useEffect(() => {
+    console.log("state.isAuthenticated: " + state.isAuthenticated)
+  }, [state.isAuthenticated]);
+
 
   const akelloContext = useMemo(
     () => ({

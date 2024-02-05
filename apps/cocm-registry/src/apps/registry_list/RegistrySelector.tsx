@@ -15,12 +15,15 @@ import { debug } from "console";
 const RegistrySelector = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()        
+    const akelloContext = useAkelloContext()
     const akello = useAkello()
     const userProfile = useSelector((state: RootState) => state.app.userProfile)    
     const [create, setCreate] = useState(false)
     const [registries, setRegistries] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+    
+    
     useEffect(() => {
         setIsLoading(true)
             akello.userService.getUserRegistries((data) => {                
@@ -32,9 +35,9 @@ const RegistrySelector = () => {
     useEffect(() => {
         localStorage.setItem("selectedRegistry",  "")
     })
+        
     
-    
-    if(akello.accessToken === undefined) {            
+    if(!akelloContext.isAuthenticated) {            
         return(
             <>
                 <Loader />

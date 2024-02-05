@@ -21,7 +21,7 @@ import ProfileComponent from "./apps/profile/ProfileComponent";
 import BillingReport from "./apps/reports/billing/BillingReport";
 import RegistryReport from "./apps/reports/registry/RegistryReport";
 import "./App.css"
-import { SignIn } from '@akello/react';
+import AkelloSignIn from './apps/auth/AkelloSignIn';
 
 // Configure Amplify in index file or root file
 
@@ -58,8 +58,7 @@ const akello = new AkelloClient({
 
 
 function App() {    
-    
-
+        
     return (
         <>
             <BrowserRouter>                        
@@ -67,9 +66,7 @@ function App() {
                     <Suspense fallback={<div>Loading...</div>}>
                         <Routes>                        
                             <Route path={"/"} element={<RegistrySelector />} />
-                            <Route path={"/login"} element={<SignIn onSuccess={() => {                                
-                                window.location.href = "/"
-                            }} />} />
+                            <Route path={"/login"} element={<AkelloSignIn />} />
                             <Route path={"/profile"} element={<ProfileComponent />} />
                             <Route path={"/registry/create"} element={<RegistryCreate />} />
                             <Route path={"/dashboard"} element={<Dashboard />} />
