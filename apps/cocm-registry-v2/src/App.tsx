@@ -71,6 +71,7 @@ export default function App() {
           mobile: !opened,
         },
       }}
+      aside={{ width: 400 }}
       padding="md"
     >
       <Header loggedIn={loggedIn} toggle={drawerHandlers.toggle} />
@@ -117,12 +118,11 @@ export default function App() {
         </div>        
       </AppShell.Main>
       {
-        loggedIn && (
+        loggedIn && pathname.indexOf('registry') != -1  && (
           <AppShell.Aside p="md">Aside</AppShell.Aside>
         )
       }
-      
-      <AppShell.Footer p="md">Footer</AppShell.Footer>
+          
     </AppShell>
   );
 
