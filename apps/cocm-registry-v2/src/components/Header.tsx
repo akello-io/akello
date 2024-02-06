@@ -21,8 +21,8 @@ const Header:React.FC<HeaderProps> = ({loggedIn, toggle}) => {
           <UnstyledButton onClick={() => {          
             akello.selectRegistry('')
             navigate('/')
-          }} className="flex h-10 w-auto my-auto">
-            <img src={Logo} alt="logo" className="h-10 w-auto"/>
+          }} className="flex h-6 w-auto my-auto">
+            <img src={Logo} alt="logo" className="h-6 w-auto"/>
           </UnstyledButton>      
           <div className='text-xl font-bold my-auto'>Registry Name</div>
         </div>        
