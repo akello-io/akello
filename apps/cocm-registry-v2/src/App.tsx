@@ -64,7 +64,7 @@ export default function App() {
       className={'w-screen'}
       header={{ height: 60 }}      
       navbar={{
-        width: loggedIn && pathname.indexOf('registry') != -1 ? 200 : 0,
+        width: loggedIn && pathname.indexOf('registry') != -1 ? 200 : 0,        
         breakpoint: 'sm',
         collapsed: {
           desktop: !opened,
