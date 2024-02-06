@@ -13,6 +13,8 @@ import {
 import { publicRoutes } from './routes';
 import LoginPage from './pages/LoginPage';  
 import { useEffect } from 'react';
+import SignUpPage from './pages/SignUpPage';
+import SignUpConfirm from './pages/SignUpConfirm';
 
 
 
@@ -26,7 +28,9 @@ export default function App() {
       <>        
           <Routes>
               <Route path={"/"} element={<div>test</div>} />
-              <Route path={"/login"} element={<LoginPage/>} />              
+              <Route path={"/confirm"} element={<SignUpConfirm />} />        
+              <Route path={"/login"} element={<LoginPage/>} />        
+              <Route path={"/signup"} element={<SignUpPage/>} />        
               <Route path={"*"} element={<Navigate to="/login" />} />                    
           </Routes>            
       </>
