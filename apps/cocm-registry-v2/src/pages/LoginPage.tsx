@@ -1,5 +1,6 @@
 import {SignInForm} from '@akello/react'
 import { useNavigate } from 'react-router'
+import { useRegistry } from '@akello/react-hook'
 
 
 const LoginPage = () => {

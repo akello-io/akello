@@ -5,13 +5,16 @@ import Header from './components/Header';
 import { AppShell } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useAkello } from "@akello/react-hook";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import RegistryPage from './pages/registry/RegistryPage';
+import AppHomePage from './pages/AppHomePage';
 
 export default function App() {
-  const [opened, { toggle }] = useDisclosure();
+  const [opened, drawerHandlers] = useDisclosure({ initialOpened: true });
   const akello = useAkello();
-
-  const renderRoutes = () => (
+  const navigate = useNavigate();
+  
+  const renderPublicRoutes = () => (
     <Routes>
       <Route path={"/confirm"} element={<SignUpConfirm />} />
       <Route path={"/login"} element={<LoginPage />} />
@@ -20,12 +23,20 @@ export default function App() {
     </Routes>
   );
 
+  const renderPrivateRoutes = () => (
+    <Routes>
+      <Route path={"/"} element={<AppHomePage drawerHandlers={drawerHandlers} />} />
+      <Route path={"/registry/create"} element={<div>add registry</div>} />      
+      <Route path={"/registry/:registry_id"} element={<RegistryPage />} />
+    </Routes>
+  )
+
   const renderAppShell = (loggedIn: boolean) => (
     <AppShell
       className={loggedIn ? '' : 'w-screen'}
       header={{ height: 60 }}
       navbar={{
-        width: loggedIn ? 300 : 0,
+        width: loggedIn ? 200 : 0,
         breakpoint: 'sm',
         collapsed: {
           desktop: !opened,
@@ -34,9 +45,9 @@ export default function App() {
       }}
       padding="md"
     >
-      <Header loggedIn={loggedIn} toggle={toggle} />
+      <Header loggedIn={loggedIn} toggle={drawerHandlers.toggle} />
       {loggedIn && <AppShell.Navbar p="md">Navbar</AppShell.Navbar>}
-      <AppShell.Main>{loggedIn ? 'Main' : renderRoutes()}</AppShell.Main>
+      <AppShell.Main>{loggedIn ? renderPrivateRoutes() : renderPublicRoutes()}</AppShell.Main>
     </AppShell>
   );
 
@@ -44,5 +55,8 @@ export default function App() {
     return renderAppShell(false);
   }
 
+  if(akello.getSelectedRegistry() == undefined) {  
+    navigate('/')
+  }  
   return renderAppShell(true);
 }

@@ -20,6 +20,33 @@ export interface AkelloClientInterface {
         onFail: (err: any) => void
     ): void;
     logout(): void;
+    handleUnauthenticated(): void;
+    getOptions(): AkelloClientOptions;
+    getUserName(): string | undefined;
+    confirmSignup(
+        username: string,
+        code: string,
+        onSuccess: (result: any) => void,
+        onFail: (err: any) => void
+    ): void;
+    resendCode(
+        email: string,
+        onSuccess: (result: any) => void,
+        onFail: (err: any) => void
+    ): void;
+    signup(
+        username: string,
+        password: string,
+        onSuccess: (user: CognitoUser) => void,
+        onFail: (err: any) => void
+    ): void;
+    selectRegistry(registry: any): void;
+    getSelectedRegistry(): any;
+    registryService: RegistryService;
+    userService: UserService;
+    financialService: FinancialModelService;
+    reportsService: ReportsService;
+    accessToken: string | undefined;    
 }
 
 export interface AkelloClientOptions {
@@ -44,6 +71,7 @@ export interface RequestParam {
 export class AkelloClient extends EventTarget implements AkelloClientInterface {
     private readonly options: AkelloClientOptions;
     private username: string | undefined;
+    private selectedRegistry: any | undefined
     private readonly storage: Storage = localStorage;
     public readonly registryService: RegistryService;
     public readonly userService: UserService;
@@ -64,6 +92,17 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         this.reportsService = new ReportsService(this);
         this.storage = options?.storage ?? localStorage;
         this.accessToken = this.storage.getItem('accessToken') ?? undefined;
+        this.selectedRegistry = this.storage.getItem('selectedRegistry') ?? undefined;
+    }
+
+
+    selectRegistry(registry: any) {
+        this.selectedRegistry = registry;
+        this.storage.setItem('selectedRegistry', JSON.stringify(registry));
+    }
+
+    getSelectedRegistry() {
+        return this.selectedRegistry;
     }
 
     /**
