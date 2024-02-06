@@ -7,12 +7,17 @@ const LoginPage = () => {
         
     return (
         <>
+            <div className="flex h-screen">
+                <div className="m-auto">
+                    <SignInForm onSuccess={(token: string) => {                    
+                        navigate('/')
+                    }} onFail={(err: string) => {
+                        console.log(err)                    
+                    }} onSignupClick={() => navigate('/signup') }/>
+                </div>
+            </div>
      
-            <SignInForm onSuccess={(token: string) => {                    
-                    navigate('/')
-                }} onFail={(err: string) => {
-                    console.log(err)                    
-                }} onSignupClick={() => navigate('/signup') }/>
+            
         </>
     )
 }

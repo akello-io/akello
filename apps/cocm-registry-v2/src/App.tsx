@@ -2,7 +2,7 @@ import LoginPage from './pages/LoginPage';
 import LandingPage from './pages/LandingPage';
 import SignUpPage from './pages/SignUpPage';
 import SignUpConfirm from './pages/SignUpConfirm';
-import { AppShell, Burger } from '@mantine/core';
+import { AppShell, Burger, Center, Box, Group, Title, NavLink } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useAkello } from "@akello/react-hook"
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -14,15 +14,44 @@ export default function App() {
 
   if(akello == undefined || akello.accessToken == undefined) {  
     return (
-      <>              
-        <Routes>              
-            <Route path={"/"} element={<LandingPage />} />        
-            <Route path={"/confirm"} element={<SignUpConfirm />} />        
-            <Route path={"/login"} element={<LoginPage/>} />        
-            <Route path={"/signup"} element={<SignUpPage/>} />        
-            <Route path={"*"} element={<Navigate to="/login" />} />                    
-        </Routes>          
-      </>
+      <AppShell
+          className='w-screen'
+          header={{ height: 60 }}
+          navbar={{
+            width: 0,
+            breakpoint: 'sm',
+            collapsed: { mobile: !opened },
+          }}
+          padding="md"
+        >
+      <AppShell.Header>        
+        
+          <Group justify="space-between">
+              <Center px={"xl"}>
+                  <Title>
+                      Nebula CMS
+                  </Title>
+              </Center>
+              <Center px={"xl"}>
+                  <NavLink px={"sm"} label="home">
+                  </NavLink>                  
+              </Center>
+          </Group>
+
+      </AppShell.Header>      
+      <AppShell.Main>        
+        <div className="flex h-screen">
+          <div className="m-auto">
+            <Routes>              
+                <Route path={"/confirm"} element={<SignUpConfirm />} />        
+                <Route path={"/login"} element={<LoginPage/>} />        
+                <Route path={"/signup"} element={<SignUpPage/>} />        
+                <Route path={"*"} element={<Navigate to="/login" />} />                    
+            </Routes>                    
+          </div>
+        </div>        
+      </AppShell.Main>
+    </AppShell>          
     )      
   }
   return (    
