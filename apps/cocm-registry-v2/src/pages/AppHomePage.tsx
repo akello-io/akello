@@ -39,9 +39,9 @@ const AppHomePage:React.FC<AppHomePageProps> = ({drawerHandlers}) => {
                                     <>
                                     <RegistrySelectRow 
                                         id={registry['id']} 
-                                        onClick={() => {
-                                            akello.selectRegistry(registry['id'])
-                                            navigate(`/registry/${registry['id']}`)                                          
+                                        onClick={() => {                                              
+                                            akello.selectRegistry(registry['id'])                                            
+                                            navigate(`/registry/${registry['id']}`)
                                         }}
                                         name={registry['name']}
                                         members={registry['members']}

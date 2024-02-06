@@ -9,6 +9,8 @@ import {
 import { UserService } from './services';
 import { FinancialModelService } from './services/financial_model';
 import { ReportsService } from './services/reports';
+import { ClientStorage } from './storage';
+
 
 export const DEFAULT_BASE_URL = 'http://localhost:8000';
 
@@ -46,7 +48,8 @@ export interface AkelloClientInterface {
     userService: UserService;
     financialService: FinancialModelService;
     reportsService: ReportsService;
-    accessToken: string | undefined;    
+    accessToken: string | undefined;
+    
 }
 
 export interface AkelloClientOptions {
@@ -72,7 +75,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     private readonly options: AkelloClientOptions;
     private username: string | undefined;
     private selectedRegistry: any | undefined
-    private readonly storage: Storage = localStorage;
+    private readonly storage: ClientStorage;
     public readonly registryService: RegistryService;
     public readonly userService: UserService;
     public readonly financialService: FinancialModelService;
@@ -90,15 +93,15 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         this.userService = new UserService(this);
         this.financialService = new FinancialModelService(this);
         this.reportsService = new ReportsService(this);
-        this.storage = options?.storage ?? localStorage;
-        this.accessToken = this.storage.getItem('accessToken') ?? undefined;
-        this.selectedRegistry = this.storage.getItem('selectedRegistry') ?? undefined;
+        this.storage = new ClientStorage(localStorage);
+        this.accessToken = this.storage.getString('accessToken') ?? undefined;
+        this.selectedRegistry = this.storage.getString('selectedRegistry') ?? undefined;
     }
 
 
-    selectRegistry(registry: any) {
-        this.selectedRegistry = registry;
-        this.storage.setItem('selectedRegistry', JSON.stringify(registry));
+    selectRegistry(registry_id: string | undefined) {        
+        this.selectedRegistry = registry_id;        
+        this.storage.setString('selectedRegistry', registry_id);
     }
 
     getSelectedRegistry() {
@@ -280,7 +283,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                 this.accessToken = accessToken;
                 this.username = username;
                 onSuccess(accessToken);
-                this.storage.setItem('accessToken', accessToken);
+                this.storage.setString('accessToken', accessToken);
                 this.dispatchEvent({ type: 'change' });
             },
             onFailure: (err: any) => {

@@ -1,5 +1,11 @@
+import React, { useState, useEffect } from 'react'
 
-const RegistryPage = () => {
+interface RegistryPageProps {
+    drawerHandlers: any
+}
+
+const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
+    drawerHandlers.open()
     return (
         <>
             Registry Page

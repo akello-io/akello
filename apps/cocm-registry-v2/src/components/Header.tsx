@@ -4,6 +4,7 @@ import ThemeToggle from './ThemeToggle';
 import { useEffect, useState } from 'react';
 import HeaderMenu from './Menu';
 import { useNavigate } from 'react-router-dom';
+import { useAkello } from "@akello/react-hook";
 
 interface HeaderProps {
   loggedIn: boolean 
@@ -12,11 +13,13 @@ interface HeaderProps {
 
 const Header:React.FC<HeaderProps> = ({loggedIn, toggle}) => {  
   const navigate = useNavigate()
+  const akello = useAkello()
   if(loggedIn) {
     return (
       <AppShell.Header className='flex justify-between px-4'>
         <div className='flex flex-row space-x-3'>
           <UnstyledButton onClick={() => {          
+            akello.selectRegistry('')
             navigate('/')
           }} className="flex h-10 w-auto my-auto">
             <img src={Logo} alt="logo" className="h-10 w-auto"/>

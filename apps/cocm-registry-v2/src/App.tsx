@@ -8,11 +8,22 @@ import { useAkello } from "@akello/react-hook";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import RegistryPage from './pages/registry/RegistryPage';
 import AppHomePage from './pages/AppHomePage';
+import { useEffect } from 'react';
 
 export default function App() {
-  const [opened, drawerHandlers] = useDisclosure({ initialOpened: true });
+  const [opened, drawerHandlers] = useDisclosure({ initialOpened: true });  
   const akello = useAkello();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(akello.getSelectedRegistry() == undefined) {  
+      navigate('/')
+    }  
+    if(akello.getSelectedRegistry() != undefined) {        
+      navigate(`/registry/${akello.getSelectedRegistry()}`)       
+      debugger;                                   
+    }
+  }, [akello]);
   
   const renderPublicRoutes = () => (
     <Routes>
@@ -27,7 +38,7 @@ export default function App() {
     <Routes>
       <Route path={"/"} element={<AppHomePage drawerHandlers={drawerHandlers} />} />
       <Route path={"/registry/create"} element={<div>add registry</div>} />      
-      <Route path={"/registry/:registry_id"} element={<RegistryPage />} />
+      <Route path={"/registry/:registry_id"} element={<RegistryPage drawerHandlers={drawerHandlers} />} />
     </Routes>
   )
 
@@ -53,10 +64,7 @@ export default function App() {
 
   if (akello == undefined || akello.accessToken == undefined) {
     return renderAppShell(false);
-  }
-
-  if(akello.getSelectedRegistry() == undefined) {  
-    navigate('/')
   }  
+  
   return renderAppShell(true);
 }
