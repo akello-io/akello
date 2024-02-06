@@ -3597,7 +3597,7 @@ packages:
   /@types/node-fetch@2.6.11:
     resolution: {integrity: sha512-24xFj9R5+rfQJLRyM56qh+wnVSYhyXC2tkoBndtY0U+vubqNsYXGjufB2nn8Q6gt0LrARwL6UBtMCSVCwl4B1g==}
     dependencies:
-      '@types/node': 18.19.14
+      '@types/node': 20.11.16
       form-data: 4.0.0
     dev: true
 
@@ -7891,7 +7891,7 @@ packages:
     dev: false
 
   file:../core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-jjJvz8/sIq5JA2UZw/TkI1C1AbQ0xZ1ERuSxVt0kzwnNjkVTTslZ8oMDumEQc9801Q12YTkO3lor7YCCKMg9RQ==, tarball: file:../core/akello-core-2.0.4.tgz}
+    resolution: {integrity: sha512-S35XTH4W8yBU27p9YHm27/t6BQwfO/K3DIh7LYqrzwV6ACspqAhHJO785xOEDWGAfvASUEqKcb9WXIw/X64Tsw==, tarball: file:../core/akello-core-2.0.4.tgz}
     id: file:../core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4
