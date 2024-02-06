@@ -37,7 +37,6 @@ const ScreeningComponent:React.FC<ScreeningComponentProps> = ({title, children})
 
 const Dashboard = () => {
 
-    const token = useSelector ((state: RootState) => state.app.token)
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
     const [stats, setStats] = useState({} as any)
     const [payerDistribution, setPayerDistribution] = useState([] as any[])
@@ -79,10 +78,10 @@ const Dashboard = () => {
 
 
     useEffect(() => {                
-        if(token && selectedRegistry.id && value.startDate && value.endDate) {
+        if(selectedRegistry.id && value.startDate && value.endDate) {
             setIsLoading(true)
             
-            akello.reportsService.getRegistryStats(selectedRegistry.id, new Date(value.startDate).getTime(), new Date(value.endDate).getTime(), token, (data) => {                
+            akello.reportsService.getRegistryStats(selectedRegistry.id, new Date(value.startDate).getTime(), new Date(value.endDate).getTime(), (data) => {                
                 setIsLoading(false)
                 if(data) {
                     setPayerDistribution(data['payer_distribution'])
@@ -93,7 +92,7 @@ const Dashboard = () => {
             })
         }
 
-    }, [token, selectedRegistry.id, value])
+    }, [selectedRegistry.id, value])
 
 
     return (

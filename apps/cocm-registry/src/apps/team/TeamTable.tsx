@@ -77,7 +77,6 @@ const columns: GridColDef[] = [
 const TeamTable = () => {
     const [checked, setChecked] = useState(false)
     const [teamMembers, setTeamMebmers] = useState([])
-    const token = useSelector((state: RootState) => state.app.token)
     const akello = useAkello()
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
 
@@ -102,10 +101,10 @@ const TeamTable = () => {
 
 
     useEffect(() => {        
-        akello.registryService.getMembers(token, selectedRegistry.id, (data) => {
+        akello.registryService.getMembers(selectedRegistry.id, (data) => {
             setTeamMebmers(data)
         })
-    }, [token])
+    }, [])
 
 
     const handleEvent: GridEventListener<'rowClick'> = (

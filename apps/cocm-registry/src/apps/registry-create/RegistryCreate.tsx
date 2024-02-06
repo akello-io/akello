@@ -52,7 +52,6 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
 
     
     
-    const token = useSelector ((state: RootState) => state.app.token)
     const userProfile = useSelector ((state: RootState) => state.app.userProfile)
 
     return (
@@ -89,7 +88,7 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                             step == total_steps && (
                                 <button disabled={registryName == undefined || registryName == '' }  className={"btn btn-primary"} onClick={()=> {                                    
 
-                                    akello.registryService.createRegistry(token, {
+                                    akello.registryService.createRegistry({
                                         'name': registryName!,
                                         'invited-users': invites,
                                         'first_name': userProfile.first_name ? userProfile.first_name : '',

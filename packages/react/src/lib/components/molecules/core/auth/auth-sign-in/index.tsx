@@ -1,11 +1,12 @@
 import React from 'react';
 import * as Yup from "yup";
 import {Field, Form, Formik} from "formik";
-import { useAkelloContext } from "@akello/react-hook"
+import { useAkello } from "@akello/react-hook"
 
-export interface SignInProps  {
+export interface SignInFormProps  {
     onSuccess?: (token: string) => void
     onFail?: (error: any) => void
+    onSignupClick: () => void
 }
 
 
@@ -17,10 +18,8 @@ export const LoginSchema = Yup.object().shape({
 });
 
 
-export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail}) => {
-
-    const akelloContext = useAkelloContext()
-    const akello = akelloContext.akello
+export const SignInForm:React.FC<SignInFormProps> = ({onSuccess, onFail, onSignupClick}) => {    
+    const akello = useAkello()
 
     return (
         <div>
@@ -29,8 +28,7 @@ export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail}) => {
             <Formik initialValues={{
                 email: '',
                 password: ''
-            }} onSubmit={values => {
-              debugger;
+            }} onSubmit={values => {  
               akello.login(values.email, values.password, (token: string) => {
                 console.log(token)
                 if (onSuccess) {
@@ -51,11 +49,11 @@ export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail}) => {
                   <div>
                     <Form className="space-y-4">
                       <div className="flex flex-wrap -mx-3 mb-4">
-                        <label className="form-control w-full max-w-xs">
+                        <label className="form-control w-full">
                           <div className="label">
                             <span className="label-text"><label className="block  text-sm font-medium mb-1" htmlFor="email">Email <span className="text-red-600">*</span></label></span>                            
                           </div>
-                          <Field name="email" placeholder={"Enter your email address"} className="input input-bordered w-full max-w-xs"/>
+                          <Field name="email" placeholder={"Enter your email address"} className="input input-bordered w-full "/>
                           <div className="label">
                             {errors.email && touched.email ? (
                                 <div>{errors.email}</div>
@@ -64,12 +62,12 @@ export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail}) => {
                         </label>                        
                       </div>
                       <div className="flex flex-wrap -mx-3 mb-4">
-                        <label className="form-control w-full max-w-xs">
+                        <label className="form-control w-full ">
                           <div className="label">
                             <span className="label-text"><label className="block text-sm font-medium mb-1" htmlFor="password">Password <span className="text-red-600">*</span></label></span>                            
                             <div  className="text-sm font-medium text-blue-600 hover:underline">Having trouble signing in?</div>
                           </div>                          
-                          <Field type="password" name="password" placeholder={"Enter your password"} className="input input-bordered w-full max-w-xs"/>                          
+                          <Field type="password" name="password" placeholder={"Enter your password"} className="input input-bordered w-full "/>                          
                           <div className="label">
                           {errors.password && touched.password ? (
                               <div>{errors.password}</div>
@@ -89,7 +87,7 @@ export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail}) => {
                       </div>
                       <div className="flex flex-wrap -mx-3 mt-6">
                         <div className="w-full px-3">
-                          <button type="submit" className="btn text-white bg-blue-600 hover:bg-blue-700 w-full">Sign in</button>
+                          <button type="submit" className="btn btn-primary w-full ">Sign in</button>
                         </div>
                       </div>
                     </Form>
@@ -97,9 +95,8 @@ export const SignIn:React.FC<SignInProps> = ({onSuccess, onFail}) => {
               )}
             </Formik>
             <div className="text-center mt-6 flex flex-wrap space-x-2">
-              <div>Don't you have an account?</div> <div className="text-blue-600 hover:underline transition duration-150 ease-in-out">Sign up</div>
+              <div>Don't you have an account?</div> <button onClick={() => onSignupClick()} className="text-blue-600 hover:underline transition duration-150 ease-in-out">Sign up</button>
             </div>
-
           </div>
         </div>
     );

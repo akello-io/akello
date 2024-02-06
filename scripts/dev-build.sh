@@ -104,8 +104,8 @@ pnpm pack
 cd ../../
 
 
-echo '>>>>>>>>>>  CoCM'
-cd apps/cocm-registry
+echo '>>>>>>>>>>  CoCM v2'
+cd apps/cocm-registry-v2
 rm -rf node_modules
 rm pnpm-lock.yaml
 
@@ -114,4 +114,5 @@ pnpm install ../../packages/react-hook/akello-react-hook-2.0.4.tgz
 pnpm install ../../packages/react/akello-react-2.0.4.tgz
 
 pnpm i
-pnpm start
+pnpm dev
+

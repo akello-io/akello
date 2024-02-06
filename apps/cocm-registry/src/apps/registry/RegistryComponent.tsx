@@ -33,14 +33,13 @@ export default function DataGridDemo() {
     const [selectedPatient, setSelectedPatient] = useState<PatientRegistry>()
     const akello = useAkello()
     const navigate = useNavigate()
-    const token = useSelector ((state: RootState) => state.app.token)
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
 
 
     useEffect(() => {
-        if(token && selectedRegistry.id) {
+        if(selectedRegistry.id) {
             setIsLoading(true)            
-            akello.registryService.getRegistryPatients(token, selectedRegistry.id, (data) => {
+            akello.registryService.getRegistryPatients(selectedRegistry.id, (data) => {
                 setPatients(data['successfully_loaded'])
                 setIsAdmin(data['is_admin'])
                 setQuestionnaires(data['questionnaires'])
@@ -52,7 +51,7 @@ export default function DataGridDemo() {
                     .catch(err => console.log(err));
             })
         }
-    }, [token, selectedRegistry])
+    }, [selectedRegistry])
 
     const handlePatientClickEvent: GridEventListener<'rowClick'> = (
         params, // GridRowParams

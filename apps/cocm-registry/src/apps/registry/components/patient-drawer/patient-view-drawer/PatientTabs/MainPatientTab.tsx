@@ -16,7 +16,6 @@ interface MainTabProps {
 }
 const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient, questionnaires, setSelectedPatient}) => {
 
-    const token = useSelector ((state: RootState) => state.app.token)
     const selectedRegistry = useSelector ((state: RootState) => state.app.selectedRegistry)
     const akello = useAkello()
 
@@ -70,7 +69,7 @@ const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient,
                                         { id: '2', value: 'Review with Psychiatrist'},
                                         { id: '3', value: 'Safety Risk'}
                                     ]} setSelectedOption={(option) => {
-                                        akello.registryService.setFlag(token, selectedRegistry.id, selectedPatient.patient_mrn, option, (data) => {
+                                        akello.registryService.setFlag(selectedRegistry.id, selectedPatient.patient_mrn, option, (data) => {
                                             // setSelectedPatient({...selectedPatient, flag: option})
                                         })
                                     // setFlag(option)
@@ -86,7 +85,7 @@ const MainPatientTab:React.FC<MainTabProps> = ({setSelectedTab, selectedPatient,
                                         { id: '3', value: 'Relapse Prevention Plan'},
                                         { id: '4', value: 'Deactivated'},
                                     ]} setSelectedOption={(option) => {
-                                        akello.registryService.setStatus(token, selectedRegistry.id, selectedPatient.patient_mrn, option, (data) => {
+                                        akello.registryService.setStatus(selectedRegistry.id, selectedPatient.patient_mrn, option, (data) => {
                                             // setSelectedPatient({...selectedPatient, flag: option})
                                         })
 
