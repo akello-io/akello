@@ -1,3 +1,5 @@
+import '@mantine/core/styles.css';
+
 import React, {ReactNode} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -9,7 +11,7 @@ import {Provider} from 'react-redux'
 import {AkelloProvider} from '@akello/react-hook'
 import {AkelloClient} from '@akello/core'
 import { BrowserRouter } from 'react-router-dom';
-
+import { MantineProvider, createTheme } from '@mantine/core';
 
 if(process.env.NODE_ENV=='production') {
     try {
@@ -58,24 +60,36 @@ const akello = new AkelloClient({
     }
 })
 
-
+const theme = createTheme({
+    primaryColor: 'teal',
+    primaryShade: 8,
+    fontSizes: {
+      xs: '0.6875rem',
+      sm: '0.875rem',
+      md: '0.875rem',
+      lg: '1rem',
+      xl: '1.125rem',
+    },
+    components: {
+      Container: {
+        defaultProps: {
+          size: 1200,
+        },
+      },
+    },
+  });
 
 
 root.render(
     <BrowserRouter>
-        <Provider store={store}>
-            <AkelloProvider akello={akello}>
-                <App />
-            </AkelloProvider>          
+        <Provider store={store}>            
+                <AkelloProvider akello={akello}>
+                    <App />
+                </AkelloProvider>                                  
         </Provider>      
     </BrowserRouter>    
 );
 
-/* 
-<React.StrictMode>
-      
-  </React.StrictMode>
-*/
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
