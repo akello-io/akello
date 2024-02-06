@@ -79,7 +79,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
      * Returns the username.
      * @returns {string} The username.
      */
-    getUserName(): string {
+    getUserName(): string | undefined {
         return this.username;
     }
 
