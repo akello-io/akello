@@ -7,6 +7,7 @@ const LoginPage = () => {
         
     return (
         <>
+     
             <SignInForm onSuccess={(token: string) => {                    
                     navigate('/')
                 }} onFail={(err: string) => {

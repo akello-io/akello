@@ -1,38 +1,27 @@
+import LoginPage from './pages/LoginPage';  
+import LandingPage from './pages/LandingPage';
+import SignUpPage from './pages/SignUpPage';
+import SignUpConfirm from './pages/SignUpConfirm';
 import { AppShell, Burger } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useAkello } from "@akello/react-hook"
-import {
-  RouterProvider,
-  Routes,
-  Route,
-  useNavigate,
-  createBrowserRouter,
-  BrowserRouter,
-  Navigate
-} from "react-router-dom";
-import { publicRoutes } from './routes';
-import LoginPage from './pages/LoginPage';  
-import { useEffect } from 'react';
-import SignUpPage from './pages/SignUpPage';
-import SignUpConfirm from './pages/SignUpConfirm';
-
+import { Routes, Route, Navigate } from "react-router-dom";
 
 
 export default function App() {
   const [opened, { toggle }] = useDisclosure();
   const akello = useAkello()   
-  const navigate = useNavigate()  
 
   if(akello == undefined || akello.accessToken == undefined) {  
     return (
-      <>        
-          <Routes>
-              <Route path={"/"} element={<div>test</div>} />
-              <Route path={"/confirm"} element={<SignUpConfirm />} />        
-              <Route path={"/login"} element={<LoginPage/>} />        
-              <Route path={"/signup"} element={<SignUpPage/>} />        
-              <Route path={"*"} element={<Navigate to="/login" />} />                    
-          </Routes>            
+      <>              
+        <Routes>              
+            <Route path={"/"} element={<LandingPage />} />        
+            <Route path={"/confirm"} element={<SignUpConfirm />} />        
+            <Route path={"/login"} element={<LoginPage/>} />        
+            <Route path={"/signup"} element={<SignUpPage/>} />        
+            <Route path={"*"} element={<Navigate to="/login" />} />                    
+        </Routes>          
       </>
     )      
   }
