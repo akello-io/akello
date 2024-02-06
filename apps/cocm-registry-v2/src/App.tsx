@@ -11,6 +11,10 @@ import AppHomePage from './pages/AppHomePage';
 import { useEffect } from 'react';
 import { IconHome2, IconGauge, IconChevronRight, IconActivity, IconCircleOff } from '@tabler/icons-react';
 import { useLocation } from 'react-router-dom';
+import DashboardPage from './pages/registry/DashboardPage';
+import TeamPage from './pages/registry/TeamPage';
+import ReportsPage from './pages/registry/ReportsPage';
+import PatientReferralPage from './pages/registry/PatientReferralPage';
 
 
 
@@ -25,8 +29,7 @@ export default function App() {
       navigate('/')
     }  
     if(akello.getSelectedRegistry() != undefined) {        
-      navigate(`/registry/${akello.getSelectedRegistry()}`)       
-      debugger;                                   
+      navigate(`/registry/${akello.getSelectedRegistry()}`)                                           
     }
   }, [akello]);
   
@@ -44,9 +47,10 @@ export default function App() {
       <Route path={"/"} element={<AppHomePage drawerHandlers={drawerHandlers} />} />
       <Route path={"/registry/create"} element={<div>add registry</div>} />            
       <Route path={"/registry/:registry_id"} element={<RegistryPage drawerHandlers={drawerHandlers} />} />
-      <Route path={"/registry/:registry_id/dashboard"} element={<RegistryPage drawerHandlers={drawerHandlers} />} />
-      <Route path={"/registry/:registry_id/team"} element={<RegistryPage drawerHandlers={drawerHandlers} />} />
-      <Route path={"/registry/:registry_id/reports"} element={<RegistryPage drawerHandlers={drawerHandlers} />} />
+      <Route path={"/registry/:registry_id/dashboard"} element={<DashboardPage />} />
+      <Route path={"/registry/:registry_id/team"} element={<TeamPage />} />
+      <Route path={"/registry/:registry_id/reports"} element={<ReportsPage />} />
+      <Route path={"/registry/:registry_id/patient-referral"} element={<PatientReferralPage />} />      
     </Routes>
   )
   const demoProps = {

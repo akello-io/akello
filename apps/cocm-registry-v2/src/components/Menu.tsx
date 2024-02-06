@@ -10,9 +10,12 @@ import {
 import ThemeToggle from './ThemeToggle';
 import { useAkello } from "@akello/react-hook";
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const HeaderMenu = () => {
   const akello = useAkello();
+  const navigate = useNavigate();
 
   return (
     <Menu shadow="md" width={200}>
@@ -55,6 +58,7 @@ const HeaderMenu = () => {
             <Menu.Label>Registry</Menu.Label>
             <Menu.Item
               leftSection={<IconSearch style={{ width: rem(14), height: rem(14) }} />}
+              onClick={() => {navigate(`/registry/${akello.getSelectedRegistry()}/patient-referral`)}}
             >
               Invite Team Member
             </Menu.Item>
