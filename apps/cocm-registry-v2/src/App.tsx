@@ -2,6 +2,7 @@ import LoginPage from './pages/LoginPage';
 import LandingPage from './pages/LandingPage';
 import SignUpPage from './pages/SignUpPage';
 import SignUpConfirm from './pages/SignUpConfirm';
+import Header from './components/Header';
 import { AppShell, Burger, Center, Box, Group, Title, NavLink } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useAkello } from "@akello/react-hook"
@@ -24,23 +25,9 @@ export default function App() {
           }}
           padding="md"
         >
-      <AppShell.Header>        
-        
-          <Group justify="space-between">
-              <Center px={"xl"}>
-                  <Title>
-                      Nebula CMS
-                  </Title>
-              </Center>
-              <Center px={"xl"}>
-                  <NavLink px={"sm"} label="home">
-                  </NavLink>                  
-              </Center>
-          </Group>
-
-      </AppShell.Header>      
+      <Header />      
       <AppShell.Main>        
-        <div className="flex h-screen">
+        <div className="flex">
           <div className="m-auto">
             <Routes>              
                 <Route path={"/confirm"} element={<SignUpConfirm />} />        
