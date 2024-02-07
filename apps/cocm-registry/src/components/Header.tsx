@@ -1,9 +1,10 @@
-import { AppShell, UnstyledButton } from '@mantine/core';
+import { AppShell, Button, UnstyledButton } from '@mantine/core';
 import Logo from '../assets/logo.png';
 import ThemeToggle from './ThemeToggle';
 import HeaderMenu from './Menu';
 import { useNavigate } from 'react-router-dom';
 import { useAkello } from "@akello/react-hook";
+import { IconUserPlus, IconPlus } from '@tabler/icons-react';
 
 interface HeaderProps {
   loggedIn: boolean;
@@ -33,25 +34,27 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, toggle }) => {
         </div>
         <div className='flex flex-row my-auto space-x-6'>
           {akello.getSelectedRegistry() && (
-            <div
-              className='btn btn-secondary btn-sm text-white rounded-xl my-auto'
+            <Button
+              variant="default"
+              leftSection={<IconUserPlus size={14} />} 
               onClick={() => {
                 navigate(`/registry/${akello.getSelectedRegistry().id}/patient-referral`);
               }}
             >
               Add Patient
-            </div>
+            </Button>
           )}
 
           {!akello.getSelectedRegistry() && (
-            <button
-              className='btn btn-secondary text-white btn-sm rounded-xl my-auto'
+            <Button
+              variant="default"
+              leftSection={<IconPlus size={14} />} 
               onClick={() => {
                 navigate('/create-registry');
               }}
             >
               Create Registry              
-            </button>
+            </Button>
           )}
 
           <HeaderMenu />
