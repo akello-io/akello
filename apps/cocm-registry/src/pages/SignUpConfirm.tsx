@@ -87,7 +87,9 @@ const SignUpConfirm = () => {
                                     </div>
                                     
                                 </div>
-                                    
+                                <div className="text-sm text-gray-500 text-center mt-3">
+                                            By creating an account, you agree to the <a className="underline" href="https://www.akello.io/terms">terms & conditions</a>, and our <a className="underline" href="https://www.akello.io/privacy/">privacy policy</a>.
+                                        </div>
                             </Form>
                         )}
                     </Formik>
