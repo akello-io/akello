@@ -17,12 +17,19 @@ const PatientDetail = () => {
         return diff.weeks();
     };
 
+
     if(selectedPatient === undefined) {
         return (
             <></>
         )
-    }
+    } 
     
+    
+    if(selectedPatient.patient_flag === null) {    
+        debugger;    
+    } else {
+        console.log(selectedPatient.patient_flag);
+    }
 
     return (
         <>
@@ -47,7 +54,8 @@ const PatientDetail = () => {
 
                             <div className={"font-semibold"}>Flag</div>
                             <Select
-                                    placeholder="Select patient flag"
+                                    placeholder="Select patient flag "                                
+                                    value={selectedPatient.patient_flag}
                                     data={[                        
                                         'Needs Discussion',
                                         'Review with Psychiatrist',
@@ -61,7 +69,8 @@ const PatientDetail = () => {
                                 />
                             <div className={"font-semibold"}>Status</div>
                             <Select
-                                placeholder="Set patient status"
+                                placeholder="Set patient status"        
+                                value={selectedPatient.status}                        
                                 data={[                        
                                     'Enrolled',
                                     'Treatment',
