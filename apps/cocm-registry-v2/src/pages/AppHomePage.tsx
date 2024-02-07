@@ -3,7 +3,7 @@ import {useAkello} from "@akello/react-hook"
 import {RegistryMemberships, WelcomeBanner, Loader, RegistrySelectRow} from "@akello/react"
 import { useNavigate } from 'react-router-dom'
 import { Grid, Container } from '@mantine/core';
-
+import RegistryCard from '../components/RegistryCard';
 
 interface AppHomePageProps {
     drawerHandlers: any
@@ -26,27 +26,25 @@ const AppHomePage:React.FC<AppHomePageProps> = ({drawerHandlers}) => {
 
 
     return (
-        <div className="px-24 overscroll-hidden overscroll-none	">
-            test
+        <div className="lg:px-24 overscroll-hidden overscroll-none	">
             <WelcomeBanner first_name={"Vijay"} />                    
             <RegistryMemberships onCreate={() => navigate('/registry/create')}>
                 {
                     !isLoading && registries.map((registry) => {
                         return (
                             <>
-                            <RegistrySelectRow 
-                                id={"registry['id']"} 
-                                onClick={() => {
-                                    navigate(`/registry/${registry['id']}`)
-                                    akello.selectRegistry(registry['id'])  
-                                    debugger
-                                }}
+                            <RegistryCard
+                                id={registry['id']}
                                 name={registry['name']}
-                                members={registry['members']}
-                                logo_url={""}
-                                patients={-1}
-                                screeners={-1}
-                            />
+                                description={registry['description']}
+                                tasksCompleted={-1}
+                                totalTasks={-1}
+                                daysLeft={-1}
+                                avatars={[
+                                    'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-2.png',
+                                    'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-4.png'                                
+                                ]}
+                             />                            
                             </>
                         )
                     })

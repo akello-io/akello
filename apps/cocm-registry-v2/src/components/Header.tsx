@@ -1,10 +1,12 @@
-import { AppShell, UnstyledButton, Group, Stack, Text } from '@mantine/core';
+import { AppShell, UnstyledButton, Button } from '@mantine/core';
 import Logo from '../assets/logo.png';
 import ThemeToggle from './ThemeToggle';
 import { useEffect, useState } from 'react';
 import HeaderMenu from './Menu';
 import { useNavigate } from 'react-router-dom';
 import { useAkello } from "@akello/react-hook";
+import { IconPhoto, IconArrowRight } from '@tabler/icons-react';
+
 
 interface HeaderProps {
   loggedIn: boolean 
@@ -13,7 +15,7 @@ interface HeaderProps {
 
 const Header:React.FC<HeaderProps> = ({loggedIn, toggle}) => {  
   const navigate = useNavigate()
-  const akello = useAkello()
+  const akello = useAkello()  
   if(loggedIn) {
     return (
       <AppShell.Header className='flex justify-between px-4'>
@@ -26,10 +28,30 @@ const Header:React.FC<HeaderProps> = ({loggedIn, toggle}) => {
           </UnstyledButton>      
           <div className='text-xl font-bold my-auto'>Registry Name</div>
         </div>        
-        <div className='flex flex-row'>
-          <HeaderMenu />
-          <div className="flex w-auto h-10">            
-          </div>          
+        <div className='flex flex-row my-auto space-x-6'>  
+          {
+            akello.getSelectedRegistry() && (
+              <div
+                  className='btn btn-primary'  
+                  onClick={() => {navigate(`/registry/${akello.getSelectedRegistry()}/patient-referral`)}}
+                >
+                  Add Patient
+              </div>          
+            )
+          }
+
+          {
+            !akello.getSelectedRegistry() && (
+              <div
+                  className='btn btn-primary'  
+                  onClick={() => {navigate('/create-registry')}}
+                >
+                  Create Registry
+              </div>          
+            )
+          }
+          
+          <HeaderMenu />          
         </div>
       </AppShell.Header>
     );
