@@ -6,7 +6,7 @@ import json
 import datetime
 
 
-class FlagTypes(str, Enum):
+class FlagTypes(str, Enum):    
     needs_discussion = 'Needs Discussion'
     review_with_psychiatrist = 'Review with Psychiatrist'
     safety_risk = 'Safety Risk'

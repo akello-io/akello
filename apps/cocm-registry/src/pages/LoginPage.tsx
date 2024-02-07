@@ -1,27 +1,11 @@
-import {
-    TextInput,
-    PasswordInput,
-    Checkbox,
-    Anchor,
-    Paper,
-    Title,
-    Text,
-    Container,
-    Group,
-    Button,
-    Center
-  } from '@mantine/core';
-import * as Yup from "yup";
-
-// import classes from './AuthenticationTitle.module.css';
-import {Field, Form, Formik} from "formik";
-
-import { SignInForm } from '@akello/react';
+import React, { useState } from 'react';
+import { Checkbox, Anchor, Paper, Title, Text, Container, Group, Button, Center } from '@mantine/core';
+import { Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
 import { useNavigate } from 'react-router';
-import { useAkello, useRegistry } from '@akello/react-hook';
+import { useAkello } from '@akello/react-hook';
 
 import classes from './LoginPage.module.css';
-import { useState } from 'react';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -29,34 +13,35 @@ const LoginPage = () => {
     const [error, setError] = useState<string | null>(null);
 
     const LoginSchema = Yup.object().shape({
-        email: Yup.string()
-            .email('Invalid email')
-            .required('Required'),
+        email: Yup.string().email('Invalid email').required('Required'),
         password: Yup.string().required('Required')
     });
-    
-    
+
+    const handleSubmit = (values: { email: string; password: string }) => {
+        akello.login(
+            values.email,
+            values.password,
+            (token: string) => {
+                navigate('/');
+            },
+            (err: any) => {
+                setError(err.message);
+            }
+        );
+    };
 
     return (
-        <Formik initialValues={{
-            email: '',
-            password: ''
-        }} onSubmit={values => {  
-          akello.login(values.email, values.password, (token: string) => {
-            console.log(token)                        
-            navigate('/')
-          }, (err: any) => {
-            console.log(err)   
-            setError(err.message)         
-          })
-
-          // let error = onClick(values.email, values.password)
-        }}
-        validationSchema={LoginSchema}
+        <Formik
+            initialValues={{
+                email: '',
+                password: ''
+            }}
+            onSubmit={handleSubmit}
+            validationSchema={LoginSchema}
         >
-          {({ errors, touched }) => (    
-                <Form>                
-                    <div className='w-screen'>
+            {({ errors, touched }) => (
+                <Form>
+                    <div className="w-screen">
                         <Center>
                             <Container size={420} my={40}>
                                 <Title ta="center" className={classes.title}>
@@ -70,41 +55,41 @@ const LoginPage = () => {
                                 </Text>
 
                                 <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                                    <Field name="email" placeholder={"Enter your email address"} className="input input-bordered bg-white w-full "/>                                    
+                                    <Field
+                                        name="email"
+                                        placeholder="Enter your email address"
+                                        className="input input-bordered bg-white w-full"
+                                    />
                                     <div className="label text-error">
-                                        {errors.email && touched.email ? (
-                                            <div>{errors.email}</div>
-                                        ) : null}
-                                    </div>                          
-                                    <Field type="password" name="password" placeholder={"Enter your password"} className="input input-bordered bg-white w-full "/>
+                                        {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                                    </div>
+                                    <Field
+                                        type="password"
+                                        name="password"
+                                        placeholder="Enter your password"
+                                        className="input input-bordered bg-white w-full"
+                                    />
                                     <div className="label text-error">
-                                        {errors.password && touched.password ? (
-                                            <div>{errors.password}</div>
-                                        ) : null}
-                                    </div>  
+                                        {errors.password && touched.password ? <div>{errors.password}</div> : null}
+                                    </div>
                                     <Group justify="space-between" mt="lg">
                                         <Checkbox label="Remember me" />
                                         <Anchor component="button" size="sm" onClick={() => navigate('/forgot-password')}>
                                             Forgot password?
                                         </Anchor>
                                     </Group>
-                                    <Button type='submit' fullWidth mt="xl" className='bg-primary'>
+                                    <Button type="submit" fullWidth mt="xl" className="bg-primary">
                                         Sign in
                                     </Button>
-                                    <div className="label text-error">
-                                        {error ? (
-                                            <div>{error}</div>
-                                        ) : null}
-                                    </div>  
+                                    <div className="label text-error">{error ? <div>{error}</div> : null}</div>
                                 </Paper>
                             </Container>
                         </Center>
                     </div>
-                </Form>  
-            )}        
+                </Form>
+            )}
         </Formik>
     );
 };
 
-
-export default LoginPage
+export default LoginPage;

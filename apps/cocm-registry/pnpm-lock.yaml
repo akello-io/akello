@@ -84,7 +84,7 @@ devDependencies:
     version: 18.2.55
   '@types/react-dom':
     specifier: ^18.2.17
-    version: 18.2.18
+    version: 18.2.19
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.14.0
     version: 6.21.0(@typescript-eslint/parser@6.21.0)(eslint@8.56.0)(typescript@5.3.3)
@@ -2531,8 +2531,8 @@ packages:
   /@types/prop-types@15.7.11:
     resolution: {integrity: sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==}
 
-  /@types/react-dom@18.2.18:
-    resolution: {integrity: sha512-TJxDm6OfAX2KJWJdMEVTwWke5Sc/E/RlnPGvGfS0W7+6ocy2xhDVQVh/KvC2Uf7kACs+gDytdusDSdWfWkaNzw==}
+  /@types/react-dom@18.2.19:
+    resolution: {integrity: sha512-aZvQL6uUbIJpjZk4U8JZGbau9KDeAwMfmhyWorxgBkqDIEf6ROjRozcmPIicqsUwPUjbkDfHKgGee1Lq65APcA==}
     dependencies:
       '@types/react': 18.2.55
     dev: true
@@ -4889,7 +4889,7 @@ packages:
     dev: false
 
   file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-xG3rV1PxMIHt3t/1bxjCjmbokE4WoDpGHuKFKYH4MxBnfE7efNitOkC+Uv8LHbRLsW2fKD5iapYja7i6Y3qgkw==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
+    resolution: {integrity: sha512-VzR1HVsI6VKE+ugN2KbLgoyZYw9YK0ZhbfrE+NFSipVIG5hkFsWSlRhspMvNyaTSKL6R/HKbDUHQ8PN+nIZHzg==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
     id: file:../../packages/core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4

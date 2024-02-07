@@ -1,25 +1,20 @@
 import {
-    TextInput,
-    PasswordInput,
-    Checkbox,
-    Anchor,
+    TextInput,    
     Paper,
-    Title,
-    Text,
-    Container,
-    Group,
+    Title,    
+    Container,    
     Button,
-    Center
+    Center,
+    Group,
+    Anchor,
+    Box,
+    rem
   } from '@mantine/core';
-// import classes from './AuthenticationTitle.module.css';
-
-import { SignInForm } from '@akello/react';
-import { useNavigate } from 'react-router';
-import { useRegistry } from '@akello/react-hook';
-
+import {IconArrowLeft} from '@tabler/icons-react';
 import classes from './LoginPage.module.css';
+import { useNavigate } from 'react-router';
 
-const ForgotPasswordPage = () => {
+const ForgotPasswordPage = () => {    
     const navigate = useNavigate();
 
     return (
@@ -30,10 +25,16 @@ const ForgotPasswordPage = () => {
                         Reset your password
                     </Title>                    
                     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                        <TextInput label="Email" placeholder="you@mantine.dev" required />                                                
-                        <Button fullWidth mt="xl" className='bg-primary'>
-                            Reset Password
-                        </Button>
+                        <TextInput label="Email" placeholder="you@mantine.dev" required />                                                                        
+                        <Group justify="space-between" mt="lg" className={classes.controls}>
+                            <Anchor c="dimmed" size="sm" className={classes.control} onClick={() => navigate('/')}>
+                                <Center inline>
+                                <IconArrowLeft style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
+                                <Box ml={5}>Back to the login page</Box>
+                                </Center>
+                            </Anchor>
+                            <Button className={'bg-primary'}>Reset password</Button>
+                        </Group>
                     </Paper>
                 </Container>
             </Center>

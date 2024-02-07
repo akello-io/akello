@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import {PatientRegistry} from "@akello/core";
 import { useNavigate } from 'react-router';
 import {useAkello} from '@akello/react-hook'
+import {Input, Button} from "@mantine/core"
 
 
 const PatientReferralPage = () => {
@@ -71,10 +72,9 @@ const PatientReferralPage = () => {
                                                htmlFor="mrn">
                                             MRN
                                         </label>
-                                        <input
+                                        <Input
                                             id="mrn"
-                                            type="text"
-                                            className="border rounded bg-white w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                            type="text"                                            
                                             {...formik.getFieldProps('mrn')}
                                         />
                                         {formik.touched.mrn && formik.errors.mrn ? (
@@ -87,10 +87,9 @@ const PatientReferralPage = () => {
                                                htmlFor="payer">
                                             Payer
                                         </label>
-                                        <input
+                                        <Input
                                             id="payer"
-                                            type="text"
-                                            className="border rounded bg-white w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                            type="text"                                        
                                             {...formik.getFieldProps('payer')}
                                         />
                                         {formik.touched.payer && formik.errors.payer ? (
@@ -103,10 +102,9 @@ const PatientReferralPage = () => {
                                                htmlFor="firstName">
                                             First Name
                                         </label>
-                                        <input
+                                        <Input
                                             id="firstName"
-                                            type="text"
-                                            className="border rounded bg-white w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                            type="text"                                            
                                             {...formik.getFieldProps('firstName')}
                                         />
                                         {formik.touched.firstName && formik.errors.firstName ? (
@@ -119,9 +117,8 @@ const PatientReferralPage = () => {
                                                htmlFor="lastName">
                                             Last Name
                                         </label>
-                                        <input id="lastName"
-                                               type="text"
-                                               className="border rounded bg-white w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                        <Input id="lastName"
+                                               type="text"                                               
                                                {...formik.getFieldProps('lastName')}
                                         />
                                         {formik.touched.lastName && formik.errors.lastName ? (
@@ -133,9 +130,8 @@ const PatientReferralPage = () => {
                                                htmlFor="dob">
                                             Date of Birth
                                         </label>
-                                        <input id="dob"
-                                               type="date"
-                                               className="border rounded bg-white w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+                                        <Input id="dob"
+                                               type="date"                                               
                                                {...formik.getFieldProps('dob')}
                                         />
                                         {formik.touched.dob && formik.errors.dob ? (
@@ -148,9 +144,8 @@ const PatientReferralPage = () => {
                                                htmlFor="phoneNumber">
                                             email
                                         </label>
-                                        <input id="lastName"
-                                               type="email"
-                                               className="border rounded bg-white w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+                                        <Input id="lastName"
+                                               type="email"                                               
                                                {...formik.getFieldProps('email')}
                                         />
                                         {formik.touched.email && formik.errors.email ? (
@@ -163,9 +158,8 @@ const PatientReferralPage = () => {
                                                htmlFor="phoneNumber">
                                             Phone Number
                                         </label>
-                                        <input id="lastName"
-                                               type="text"
-                                               className="border rounded bg-white w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                        <Input id="lastName"
+                                               type="text"                                               
                                                {...formik.getFieldProps('phoneNumber')}
                                         />
                                         {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
@@ -173,12 +167,12 @@ const PatientReferralPage = () => {
                                         ) : null}
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <button
-                                            type="submit"
-                                            className="btn btn-primary text-white  btn-md"
+                                        <Button
+                                            type="submit"                                            
+                                            variant="filled"
                                         >
                                             Add Patient
-                                        </button>
+                                        </Button>
                                     </div>
                                 </form>
                             </div>

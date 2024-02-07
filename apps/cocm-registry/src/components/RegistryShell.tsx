@@ -1,12 +1,14 @@
 import { AppShell, NavLink, Container } from '@mantine/core';
 import { IconHome2, IconTable, IconUserCircle, IconReportAnalytics } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
-import { useNavigate, Outlet } from 'react-router-dom';
+import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
+import PatientDetail from './PatientDetail';
 
 const RegistryShell = () => {
     const akello = useAkello();
     const navigate = useNavigate();
+    const {pathname} = useLocation();
 
     return (
         <AppShell
@@ -21,10 +23,10 @@ const RegistryShell = () => {
                 },
             }}
             aside={{
-                width: 0,
+                width: pathname === '/registry/'+akello.getSelectedRegistry().id ? 400 : 0,                
                 collapsed: {
                     desktop: false,
-                    mobile: false,
+                    mobile: true,
                 },
                 breakpoint: 'md',
             }}
@@ -38,6 +40,7 @@ const RegistryShell = () => {
                     }}
                     label="Dashboard"
                     leftSection={<IconHome2 size="1rem" stroke={1.5} />}
+                    active={window.location.pathname === '/registry/' + akello.getSelectedRegistry().id + '/dashboard'}
                 />
                 <NavLink
                     onClick={() => {
@@ -45,6 +48,7 @@ const RegistryShell = () => {
                     }}
                     label="Registry"
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
+                    active={window.location.pathname === '/registry/' + akello.getSelectedRegistry().id}
                 />
                 <NavLink
                     onClick={() => {
@@ -52,6 +56,7 @@ const RegistryShell = () => {
                     }}
                     label="Team"
                     leftSection={<IconUserCircle size="1rem" stroke={1.5} />}
+                    active={window.location.pathname === '/registry/' + akello.getSelectedRegistry().id + '/team'}
                 />
                 <NavLink
                     onClick={() => {
@@ -59,11 +64,15 @@ const RegistryShell = () => {
                     }}
                     label="Billing Report"
                     leftSection={<IconReportAnalytics size="1rem" stroke={1.5} />}
+                    active={window.location.pathname === '/registry/' + akello.getSelectedRegistry().id + '/reports'}
                 />
             </AppShell.Navbar>
             <AppShell.Main>
                 <Outlet />
             </AppShell.Main>
+            <AppShell.Aside>
+                <PatientDetail />
+            </AppShell.Aside>
         </AppShell>
     );
 };
