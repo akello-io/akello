@@ -18,12 +18,15 @@ const HeaderMenu = () => {
         </UnstyledButton>
       </Menu.Target>
       <Menu.Dropdown>
+        
         <Menu.Label>
           <div className='flex flex-row justify-between'>
             <div>
               Account
             </div>
-            <ThemeToggle />
+            {/* 
+              <ThemeToggle />
+            */}
           </div>
         </Menu.Label>
         <Menu.Item

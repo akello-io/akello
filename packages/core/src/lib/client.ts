@@ -126,6 +126,10 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         return this.username;
     }
 
+    setUserName(username: string) {
+        this.username = username;
+    }
+
     /**
      * Confirms the signup of a user with the provided username and confirmation code.
      *

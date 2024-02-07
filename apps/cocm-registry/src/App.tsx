@@ -28,10 +28,7 @@ export default function App() {
   const akello = useAkello();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if(akello.getSelectedRegistry() == undefined) {  
-      navigate('/')
-    }  
+  useEffect(() => {    
     if(akello.getSelectedRegistry() != undefined) {        
       navigate(`/registry/${akello.getSelectedRegistry().id}`)                                           
     }

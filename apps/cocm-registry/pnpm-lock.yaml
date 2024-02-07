@@ -10,7 +10,7 @@ dependencies:
     version: file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@akello/react':
     specifier: file:../../packages/react/akello-react-2.0.4.tgz
-    version: file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.8)(@mui/lab@5.0.0-alpha.164)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.15)(@mui/styled-engine@5.15.8)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss@8.4.34)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1)
+    version: file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.8)(@mui/lab@5.0.0-alpha.164)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.15)(@mui/styled-engine@5.15.8)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss@8.4.35)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@akello/react-hook':
     specifier: file:../../packages/react-hook/akello-react-hook-2.0.4.tgz
     version: file:../../packages/react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
@@ -96,10 +96,10 @@ devDependencies:
     version: 4.2.1(vite@5.0.12)
   autoprefixer:
     specifier: ^10.4.17
-    version: 10.4.17(postcss@8.4.34)
+    version: 10.4.17(postcss@8.4.35)
   daisyui:
     specifier: ^4.6.1
-    version: 4.6.2(postcss@8.4.34)
+    version: 4.6.2(postcss@8.4.35)
   eslint:
     specifier: ^8.55.0
     version: 8.56.0
@@ -111,13 +111,13 @@ devDependencies:
     version: 0.4.5(eslint@8.56.0)
   postcss:
     specifier: ^8.4.34
-    version: 8.4.34
+    version: 8.4.35
   postcss-preset-mantine:
     specifier: ^1.13.0
-    version: 1.13.0(postcss@8.4.34)
+    version: 1.13.0(postcss@8.4.35)
   postcss-simple-vars:
     specifier: ^7.0.1
-    version: 7.0.1(postcss@8.4.34)
+    version: 7.0.1(postcss@8.4.35)
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
@@ -2808,7 +2808,7 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: false
 
-  /autoprefixer@10.4.17(postcss@8.4.34):
+  /autoprefixer@10.4.17(postcss@8.4.35):
     resolution: {integrity: sha512-/cpVNRLSfhOtcGflT13P2794gVSgmPgTR+erw5ifnMLZb0UnSlkK4tquLmkd3BhA+nLo5tX8Cu0upUsGKvKbmg==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -2816,11 +2816,11 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.22.3
-      caniuse-lite: 1.0.30001584
+      caniuse-lite: 1.0.30001585
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.0
-      postcss: 8.4.34
+      postcss: 8.4.35
       postcss-value-parser: 4.2.0
 
   /aws-amplify@6.0.15:
@@ -2895,7 +2895,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001584
+      caniuse-lite: 1.0.30001585
       electron-to-chromium: 1.4.659
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.3)
@@ -2920,8 +2920,8 @@ packages:
     resolution: {integrity: sha512-dU+Tx2fsypxTgtLoE36npi3UqcjSSMNYfkqgmoEhtZrraP5VWq0K7FkWVTYa8eMPtnU/G2txVsfdCJTn9uzpuQ==}
     dev: false
 
-  /caniuse-lite@1.0.30001584:
-    resolution: {integrity: sha512-LOz7CCQ9M1G7OjJOF9/mzmqmj3jE/7VOmrfw6Mgs0E8cjOsbRXQJHsPBfmBOXDskXKrHLyyW3n7kpDW/4BsfpQ==}
+  /caniuse-lite@1.0.30001585:
+    resolution: {integrity: sha512-yr2BWR1yLXQ8fMpdS/4ZZXpseBgE7o4g41x3a6AJOqZuOi+iE/WdJYAuZ6Y95i4Ohd2Y+9MzIWRR+uGABH4s3Q==}
 
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -3117,14 +3117,14 @@ packages:
       d3-array: 3.2.4
     dev: false
 
-  /daisyui@4.6.2(postcss@8.4.34):
+  /daisyui@4.6.2(postcss@8.4.35):
     resolution: {integrity: sha512-LBIbI76wVVRCQt1Uis2Y2/PRdGfMkNMFsHOjfpav8n7SamwRwPOCiNUClIrnX2jerWW3mLZlzRMCnQfxmGEjow==}
     engines: {node: '>=16.9.0'}
     dependencies:
       css-selector-tokenizer: 0.8.0
       culori: 3.3.0
       picocolors: 1.0.0
-      postcss-js: 4.0.1(postcss@8.4.34)
+      postcss-js: 4.0.1(postcss@8.4.35)
     transitivePeerDependencies:
       - postcss
 
@@ -4040,27 +4040,27 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  /postcss-import@15.1.0(postcss@8.4.34):
+  /postcss-import@15.1.0(postcss@8.4.35):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:
-      postcss: 8.4.34
+      postcss: 8.4.35
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.8
 
-  /postcss-js@4.0.1(postcss@8.4.34):
+  /postcss-js@4.0.1(postcss@8.4.35):
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
     engines: {node: ^12 || ^14 || >= 16}
     peerDependencies:
       postcss: ^8.4.21
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.34
+      postcss: 8.4.35
 
-  /postcss-load-config@4.0.2(postcss@8.4.34):
+  /postcss-load-config@4.0.2(postcss@8.4.35):
     resolution: {integrity: sha512-bSVhyJGL00wMVoPUzAVAnbEoWyqRxkjv64tUl427SKnPrENtq6hJwUojroMz2VB+Q1edmi4IfrAPpami5VVgMQ==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -4073,39 +4073,39 @@ packages:
         optional: true
     dependencies:
       lilconfig: 3.0.0
-      postcss: 8.4.34
+      postcss: 8.4.35
       yaml: 2.3.4
 
-  /postcss-mixins@9.0.4(postcss@8.4.34):
+  /postcss-mixins@9.0.4(postcss@8.4.35):
     resolution: {integrity: sha512-XVq5jwQJDRu5M1XGkdpgASqLk37OqkH4JCFDXl/Dn7janOJjCTEKL+36cnRVy7bMtoBzALfO7bV7nTIsFnUWLA==}
     engines: {node: '>=14.0'}
     peerDependencies:
       postcss: ^8.2.14
     dependencies:
       fast-glob: 3.3.2
-      postcss: 8.4.34
-      postcss-js: 4.0.1(postcss@8.4.34)
-      postcss-simple-vars: 7.0.1(postcss@8.4.34)
-      sugarss: 4.0.1(postcss@8.4.34)
+      postcss: 8.4.35
+      postcss-js: 4.0.1(postcss@8.4.35)
+      postcss-simple-vars: 7.0.1(postcss@8.4.35)
+      sugarss: 4.0.1(postcss@8.4.35)
     dev: true
 
-  /postcss-nested@6.0.1(postcss@8.4.34):
+  /postcss-nested@6.0.1(postcss@8.4.35):
     resolution: {integrity: sha512-mEp4xPMi5bSWiMbsgoPfcP74lsWLHkQbZc3sY+jWYd65CUwXrUaTp0fmNpa01ZcETKlIgUdFN/MpS2xZtqL9dQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.2.14
     dependencies:
-      postcss: 8.4.34
+      postcss: 8.4.35
       postcss-selector-parser: 6.0.15
 
-  /postcss-preset-mantine@1.13.0(postcss@8.4.34):
+  /postcss-preset-mantine@1.13.0(postcss@8.4.35):
     resolution: {integrity: sha512-1bv/mQz2K+/FixIMxYd83BYH7PusDZaI7LpUtKbb1l/5N5w6t1p/V9ONHfRJeeAZyfa6Xc+AtR+95VKdFXRH1g==}
     peerDependencies:
       postcss: '>=8.0.0'
     dependencies:
-      postcss: 8.4.34
-      postcss-mixins: 9.0.4(postcss@8.4.34)
-      postcss-nested: 6.0.1(postcss@8.4.34)
+      postcss: 8.4.35
+      postcss-mixins: 9.0.4(postcss@8.4.35)
+      postcss-nested: 6.0.1(postcss@8.4.35)
     dev: true
 
   /postcss-selector-parser@6.0.15:
@@ -4115,13 +4115,13 @@ packages:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  /postcss-simple-vars@7.0.1(postcss@8.4.34):
+  /postcss-simple-vars@7.0.1(postcss@8.4.35):
     resolution: {integrity: sha512-5GLLXaS8qmzHMOjVxqkk1TZPf1jMqesiI7qLhnlyERalG0sMbHIbJqrcnrpmZdKCLglHnRHoEBB61RtGTsj++A==}
     engines: {node: '>=14.0'}
     peerDependencies:
       postcss: ^8.2.1
     dependencies:
-      postcss: 8.4.34
+      postcss: 8.4.35
     dev: true
 
   /postcss-value-parser@4.2.0:
@@ -4136,8 +4136,8 @@ packages:
       source-map-js: 1.0.2
     dev: false
 
-  /postcss@8.4.34:
-    resolution: {integrity: sha512-4eLTO36woPSocqZ1zIrFD2K1v6wH7pY1uBh0JIM2KKfrVtGvPFiAku6aNOP0W1Wr9qwnaCsF0Z+CrVnryB2A8Q==}
+  /postcss@8.4.35:
+    resolution: {integrity: sha512-u5U8qYpBCpN13BsiEB0CbR1Hhh4Gc0zLFuedrHJKMctHCHAGrMdG0PRM/KErzAL3CU6/eckEtmHNB3x6e3c0vA==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.7
@@ -4535,13 +4535,13 @@ packages:
       pirates: 4.0.6
       ts-interface-checker: 0.1.13
 
-  /sugarss@4.0.1(postcss@8.4.34):
+  /sugarss@4.0.1(postcss@8.4.35):
     resolution: {integrity: sha512-WCjS5NfuVJjkQzK10s8WOBY+hhDxxNt/N6ZaGwxFZ+wN3/lKKFSaaKUNecULcTTvE4urLcKaZFQD8vO0mOZujw==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.3.3
     dependencies:
-      postcss: 8.4.34
+      postcss: 8.4.35
     dev: true
 
   /supports-color@5.5.0:
@@ -4583,11 +4583,11 @@ packages:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.34
-      postcss-import: 15.1.0(postcss@8.4.34)
-      postcss-js: 4.0.1(postcss@8.4.34)
-      postcss-load-config: 4.0.2(postcss@8.4.34)
-      postcss-nested: 6.0.1(postcss@8.4.34)
+      postcss: 8.4.35
+      postcss-import: 15.1.0(postcss@8.4.35)
+      postcss-js: 4.0.1(postcss@8.4.35)
+      postcss-load-config: 4.0.2(postcss@8.4.35)
+      postcss-nested: 6.0.1(postcss@8.4.35)
       postcss-selector-parser: 6.0.15
       resolve: 1.22.8
       sucrase: 3.35.0
@@ -4813,7 +4813,7 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.19.12
-      postcss: 8.4.34
+      postcss: 8.4.35
       rollup: 4.9.6
     optionalDependencies:
       fsevents: 2.3.3
@@ -4889,7 +4889,7 @@ packages:
     dev: false
 
   file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-Jh4+OboV3+L1ssdTa5foKu+yuOiwliRicHAQIwcJVtNzgVcReJjKhUrF1nR58DLcjgCxOGWNkB1VrNrEbRVIng==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
+    resolution: {integrity: sha512-xG3rV1PxMIHt3t/1bxjCjmbokE4WoDpGHuKFKYH4MxBnfE7efNitOkC+Uv8LHbRLsW2fKD5iapYja7i6Y3qgkw==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
     id: file:../../packages/core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4
@@ -4934,8 +4934,8 @@ packages:
       tailwindcss: 3.4.1
     dev: false
 
-  file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.8)(@mui/lab@5.0.0-alpha.164)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.15)(@mui/styled-engine@5.15.8)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss@8.4.34)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-zXdhzJcxqlxjQJY2uN06u7ms7yjJHm7NI8IyczJsbG8L392XWLiJf+od6hLnnGHwMMS4P4yxhlsNCtdqGWhYoQ==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
+  file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.8)(@mui/lab@5.0.0-alpha.164)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.15)(@mui/styled-engine@5.15.8)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss@8.4.35)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-u4fzzlEn/pyZ1kMj3q5SI7NkBWVjAi5m6x7BolcMqI7/10ZTu3biSmwVO+PCfhJzhjIC2IkWHEnXiwYCdw/YfQ==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
     id: file:../../packages/react/akello-react-2.0.4.tgz
     name: '@akello/react'
     version: 2.0.4
@@ -4951,7 +4951,7 @@ packages:
       '@mui/x-data-grid': ^6.19.3
       autoprefixer: ^10.4.17
       daisyui: ^4.6.2
-      postcss: ^8.4.34
+      postcss: ^8.4.35
       react: ^18.2.0
       react-dom: ^18.2.0
       react-router: ^6.16.0
@@ -4965,9 +4965,9 @@ packages:
       '@mui/styled-engine': 5.15.8(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(react@18.2.0)
       '@mui/styled-engine-sc': 6.0.0-alpha.15(styled-components@6.1.8)
       '@mui/x-data-grid': 6.19.3(@mui/material@5.15.7)(@mui/system@5.15.8)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      autoprefixer: 10.4.17(postcss@8.4.34)
-      daisyui: 4.6.2(postcss@8.4.34)
-      postcss: 8.4.34
+      autoprefixer: 10.4.17(postcss@8.4.35)
+      daisyui: 4.6.2(postcss@8.4.35)
+      postcss: 8.4.35
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router: 6.22.0(react@18.2.0)
