@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {PatientRegistry, Questionnaire} from "@akello/core";
 import {RegistryDataGrid} from "@akello/react";
 import {useAkello} from "@akello/react-hook"
+import { useNavigate } from 'react-router';
 
 interface RegistryPageProps {
     drawerHandlers: any
@@ -10,6 +11,7 @@ interface RegistryPageProps {
 const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     const [patients, setPatients] = useState<PatientRegistry[]>([])
     const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
+    const navigate = useNavigate()
 
     drawerHandlers.open()
     const akello = useAkello()
@@ -17,8 +19,10 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     useEffect(() => {
         akello.registryService.getRegistryPatients(akello.getSelectedRegistry().id, (data) => {            
             setPatients(data['successfully_loaded'])
-        }, (data) => {
-            debugger;
+            if(data['successfully_loaded'].length == 0) {
+                navigate('/registry/'+akello.getSelectedRegistry().id+'/patient-referral')
+            }
+        }, (data) => {            
         })
     }, [])
 

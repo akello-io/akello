@@ -1,8 +1,7 @@
-import { Menu, UnstyledButton, rem } from '@mantine/core';
-import { IconArrowsLeftRight } from '@tabler/icons-react';
-import ThemeToggle from './ThemeToggle';
+import { rem } from '@mantine/core';
+import { IconLogout } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
-import { Avatar } from '@mantine/core';
+import { Avatar, Menu, UnstyledButton } from '@mantine/core';
 
 const HeaderMenu = () => {
   const akello = useAkello();
@@ -30,7 +29,7 @@ const HeaderMenu = () => {
           </div>
         </Menu.Label>
         <Menu.Item
-          leftSection={<IconArrowsLeftRight style={{ width: rem(14), height: rem(14) }} />}
+          leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
           onClick={() => { akello.logout() }}
         >
           Sign Out

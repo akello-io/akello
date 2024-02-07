@@ -3,6 +3,9 @@ import {ReactNode, useState} from "react";
 import {useNavigate} from "react-router";
 import { useAkello } from "@akello/react-hook";
 import {Registry} from "@akello/core";
+import {    
+    Button 
+  } from '@mantine/core';
 
 interface UserInvite {
     email: string
@@ -79,7 +82,7 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                         }
                         {
                             step == total_steps && (
-                                <button disabled={registryName == undefined || registryName == '' }  className={"btn btn-primary"} onClick={()=> {                                    
+                                <Button disabled={registryName == undefined || registryName == '' }  className={" bg-primary"} onClick={()=> {                                    
 
                                     akello.registryService.createRegistry({
                                         'name': registryName!,
@@ -94,7 +97,7 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                                         akello.selectRegistry(registry)
                                         navigate("/registry/" + data['id'])
                                     })
-                                }}>Create Registry</button>
+                                }}>Create Registry</Button>
                             )
                         }
                     </div>

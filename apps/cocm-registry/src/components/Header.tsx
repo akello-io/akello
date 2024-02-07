@@ -44,7 +44,12 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, toggle }) => {
           )}
 
           {!akello.getSelectedRegistry() && (
-            <button className='btn btn-secondary text-white btn-sm rounded-xl my-auto' onClick={() => { navigate('/create-registry'); }}>
+            <button
+              className='btn btn-secondary text-white btn-sm rounded-xl my-auto'
+              onClick={() => {
+                navigate('/create-registry');
+              }}
+            >
               Create Registry              
             </button>
           )}

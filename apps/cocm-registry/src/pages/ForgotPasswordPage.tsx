@@ -1,26 +1,14 @@
 import {
-    TextInput,
-    PasswordInput,
-    Checkbox,
-    Anchor,
+    TextInput,    
     Paper,
-    Title,
-    Text,
-    Container,
-    Group,
+    Title,    
+    Container,    
     Button,
     Center
   } from '@mantine/core';
-// import classes from './AuthenticationTitle.module.css';
-
-import { SignInForm } from '@akello/react';
-import { useNavigate } from 'react-router';
-import { useRegistry } from '@akello/react-hook';
-
 import classes from './LoginPage.module.css';
 
-const ForgotPasswordPage = () => {
-    const navigate = useNavigate();
+const ForgotPasswordPage = () => {    
 
     return (
         <div className='w-screen'>

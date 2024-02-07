@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAkello } from "@akello/react-hook";
 import { useNavigate } from 'react-router-dom';
-import { Grid, Container } from '@mantine/core';
 import { Registry } from '@akello/core';
-import { RegistryMemberships, WelcomeBanner, Loader, RegistrySelectRow } from "@akello/react";
+import { WelcomeBanner } from "@akello/react";
 import RegistryCard from '../components/RegistryCard';
 
 interface AppHomePageProps {

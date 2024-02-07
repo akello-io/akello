@@ -41,6 +41,7 @@ export default function App() {
         <Route path={"/forgot-password"} element={<ForgotPasswordPage />} />
         <Route path={"/signup"} element={<SignUpPage />} />
         <Route path={"/signup/confirm"} element={<SignUpConfirm />} />
+        <Route path={"*"} element={<Navigate to={"/"} />} />
       </Routes>
     )
   }
