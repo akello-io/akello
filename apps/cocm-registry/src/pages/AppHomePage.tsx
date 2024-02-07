@@ -28,7 +28,7 @@ const AppHomePage:React.FC<AppHomePageProps> = ({drawerHandlers}) => {
     return (
         <div className="lg:px-24 overscroll-hidden overscroll-none	space-y-12">
             <WelcomeBanner first_name={"Vijay"} />                    
-            <div>
+            <div className='space-y-3'>
             {
                 !isLoading && registries.map((registry) => {
                     return (

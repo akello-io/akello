@@ -4,7 +4,7 @@ import App from './App.tsx'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { AkelloProvider } from '@akello/react-hook'
-import { akello } from './client'
+import { akello } from './client.ts'
 import { MantineProvider} from '@mantine/core';
 import { BrowserRouter } from 'react-router-dom';
 
