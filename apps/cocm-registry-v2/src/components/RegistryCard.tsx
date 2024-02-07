@@ -3,15 +3,18 @@ import { MantineLogo } from '@mantinex/mantine-logo';
 import { IconUpload } from '@tabler/icons-react';
 import {useNavigate} from 'react-router-dom'
 import {useAkello} from "@akello/react-hook"
-
+import AkelloLog from '../assets/Logo/PNGs/D2-AH-CBBP-Logo-V3-240323-AS_icon-akello-blue.png'
 
 interface RegistryCardProps {
     id: string;
     name: string;
     description: string;
-    tasksCompleted: number;
-    totalTasks: number;
-    daysLeft: number;   
+    totalPatients: number;
+    avgTreatmentDuration: number; // weeks
+    needsDiscussion: number;
+    safetyRisk: number;
+    minutesTracked: number;    
+    totalMinutes: number;
     avatars: string[]; 
 }
 
@@ -22,8 +25,12 @@ const RegistryCard:React.FC<RegistryCardProps> = (props) => {
   return (
     <Card withBorder padding="lg" radius="md">
       <Group justify="space-between">
-        <MantineLogo type="mark" size="2rem" />
-        <Badge>{props.daysLeft} days left</Badge>
+        <Avatar src={AkelloLog} radius="xl" />
+        <div className='flex flex-row space-x-3'>
+          {props.safetyRisk > 0 && (<><Badge>Safety Risk</Badge></>)}        
+          {props.needsDiscussion > 0 && (<><Badge>Needs Discussion</Badge></>)}        
+        </div>
+        
       </Group>
 
       <Text fz="lg" fw={500} mt="md">
@@ -36,11 +43,11 @@ const RegistryCard:React.FC<RegistryCardProps> = (props) => {
       <Text c="dimmed" fz="sm" mt="md">
         Tasks completed:{' '}
         <Text span fw={500} c="bright">
-          {props.tasksCompleted}/{props.totalTasks}
+          {props.minutesTracked}/{props.totalMinutes}
         </Text>
       </Text>
 
-      <Progress value={(23 / 36) * 100} mt={5} />
+      <Progress value={(props.minutesTracked / props.totalMinutes) * 100} mt={5} />
 
       <Group justify="space-between" mt="md">
         <Avatar.Group spacing="sm">

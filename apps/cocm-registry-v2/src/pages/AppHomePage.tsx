@@ -26,30 +26,34 @@ const AppHomePage:React.FC<AppHomePageProps> = ({drawerHandlers}) => {
 
 
     return (
-        <div className="lg:px-24 overscroll-hidden overscroll-none	">
+        <div className="lg:px-24 overscroll-hidden overscroll-none	space-y-12">
             <WelcomeBanner first_name={"Vijay"} />                    
-            <RegistryMemberships onCreate={() => navigate('/registry/create')}>
-                {
-                    !isLoading && registries.map((registry) => {
-                        return (
-                            <>
+            <div>
+            {
+                !isLoading && registries.map((registry) => {
+                    return (
+                        <>
                             <RegistryCard
                                 id={registry['id']}
                                 name={registry['name']}
-                                description={registry['description']}
-                                tasksCompleted={-1}
-                                totalTasks={-1}
-                                daysLeft={-1}
+                                description={'description information here...'}
+                                safetyRisk={4}
+                                minutesTracked={12}
+                                totalMinutes={24}
+                                totalPatients={12}
+                                avgTreatmentDuration={12}
                                 avatars={[
                                     'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-2.png',
                                     'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-4.png'                                
                                 ]}
-                             />                            
-                            </>
-                        )
-                    })
-                }
-            </RegistryMemberships>    
+                                needsDiscussion={3} // Add the 'needsDiscussion' property here
+                            />                            
+                        </>
+                    )
+                })
+            }            
+            </div>
+            
         </div>
     )
 }
