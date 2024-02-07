@@ -3,13 +3,15 @@ import {PatientTreatmentHistoryDataGrid} from "@akello/react";
 import {PatientRegistry, Questionnaire} from "@akello/core";
 import moment from "moment";
 import { useAkello } from "@akello/react-hook";
-import {Select } from '@mantine/core';
+import {Select, Container, Grid, Button } from '@mantine/core';
+import { useNavigate } from "react-router";
 
 const PatientDetail = () => {       
     const akello = useAkello();
     const selectedPatient = akello.getSelectedPatientRegistry();    
     const questionnaires: Questionnaire[] = [];
     
+    const navigate = useNavigate();
     const getWeeksSince = (date: number) => {
         var today = moment(date);
         var ia = moment();
@@ -87,6 +89,11 @@ const PatientDetail = () => {
                         </div>
                     </div>
                 </div>
+                <Container size="xs">
+                    <Button fullWidth onClick={() => navigate('/registry/' + akello.getSelectedRegistry().id + '/patient/' + akello.getSelectedPatientRegistry().id)}>
+                        Start Session
+                    </Button>
+                </Container>
                 {
                     selectedPatient.treatment_logs!.length > 0 && (
                         <>

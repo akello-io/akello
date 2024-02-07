@@ -20,6 +20,7 @@ import CreateRegistryPage from './pages/CreateRegistryPage';
 import RegistryShell from './components/RegistryShell';
 import AkelloAppShell from './components/AkelloAppShell';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import PatientSession from './pages/registry/PatientSession';
 
 
 
@@ -59,7 +60,8 @@ export default function App() {
           <Route path={":registry_id/dashboard"} element={<DashboardPage />} />
           <Route path={":registry_id/team"} element={<TeamPage />} />
           <Route path={":registry_id/reports"} element={<ReportsPage />} />
-          <Route path={":registry_id/patient-referral"} element={<PatientReferralPage />} />      
+          <Route path={":registry_id/patient-referral"} element={<PatientReferralPage />} />
+          <Route path={":registry_id/patient/:patient_id"} element={<PatientSession />} />
         </Route>        
       </Routes>
       
