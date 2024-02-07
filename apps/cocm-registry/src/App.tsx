@@ -36,8 +36,7 @@ export default function App() {
       navigate(`/registry/${akello.getSelectedRegistry().id}`)                                           
     }
   }, [akello]);
-  
-  debugger;
+    
   if(akello.accessToken == undefined) {
     return (
       <Routes>

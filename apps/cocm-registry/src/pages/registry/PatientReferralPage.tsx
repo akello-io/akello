@@ -3,12 +3,13 @@ import {DrawerLayout} from "@akello/react";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import {PatientRegistry} from "@akello/core";
-import {useSelector} from "react-redux";
+import { useNavigate } from 'react-router';
 import {useAkello} from '@akello/react-hook'
 
 
 const PatientReferralPage = () => {
     const akello = useAkello()
+    const navigate = useNavigate()
 
     const formik = useFormik({
         initialValues: {
@@ -47,7 +48,7 @@ const PatientReferralPage = () => {
             new_patient.treatment_logs =  []
             new_patient.payer = values['payer']
             akello.registryService.referPatient(akello.getSelectedRegistry().id, new_patient, (data) => {
-                
+                navigate(`/registry/${akello.getSelectedRegistry().id}`)
             })
         },
     });
@@ -73,7 +74,7 @@ const PatientReferralPage = () => {
                                         <input
                                             id="mrn"
                                             type="text"
-                                            className="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                            className="border rounded bg-white w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                             {...formik.getFieldProps('mrn')}
                                         />
                                         {formik.touched.mrn && formik.errors.mrn ? (
@@ -89,7 +90,7 @@ const PatientReferralPage = () => {
                                         <input
                                             id="payer"
                                             type="text"
-                                            className="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                            className="border rounded bg-white w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                             {...formik.getFieldProps('payer')}
                                         />
                                         {formik.touched.payer && formik.errors.payer ? (
@@ -105,7 +106,7 @@ const PatientReferralPage = () => {
                                         <input
                                             id="firstName"
                                             type="text"
-                                            className="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                            className="border rounded bg-white w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                             {...formik.getFieldProps('firstName')}
                                         />
                                         {formik.touched.firstName && formik.errors.firstName ? (
@@ -120,7 +121,7 @@ const PatientReferralPage = () => {
                                         </label>
                                         <input id="lastName"
                                                type="text"
-                                               className="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                               className="border rounded bg-white w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                                {...formik.getFieldProps('lastName')}
                                         />
                                         {formik.touched.lastName && formik.errors.lastName ? (
@@ -134,7 +135,7 @@ const PatientReferralPage = () => {
                                         </label>
                                         <input id="dob"
                                                type="date"
-                                               className="border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+                                               className="border rounded bg-white w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                                                {...formik.getFieldProps('dob')}
                                         />
                                         {formik.touched.dob && formik.errors.dob ? (
@@ -149,7 +150,7 @@ const PatientReferralPage = () => {
                                         </label>
                                         <input id="lastName"
                                                type="email"
-                                               className="border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+                                               className="border rounded bg-white w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
                                                {...formik.getFieldProps('email')}
                                         />
                                         {formik.touched.email && formik.errors.email ? (
@@ -164,7 +165,7 @@ const PatientReferralPage = () => {
                                         </label>
                                         <input id="lastName"
                                                type="text"
-                                               className="border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                                               className="border rounded bg-white w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
                                                {...formik.getFieldProps('phoneNumber')}
                                         />
                                         {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
@@ -174,7 +175,7 @@ const PatientReferralPage = () => {
                                     <div className="flex items-center justify-between">
                                         <button
                                             type="submit"
-                                            className="btn btn-primary"
+                                            className="btn btn-primary text-white  btn-md"
                                         >
                                             Add Patient
                                         </button>
