@@ -3,8 +3,9 @@ import {PatientTreatmentHistoryDataGrid} from "@akello/react";
 import {PatientRegistry, Questionnaire} from "@akello/core";
 import moment from "moment";
 import { useAkello } from "@akello/react-hook";
-import {Select, Container, Grid, Button } from '@mantine/core';
+import {Select, Container, Grid, Button, ScrollArea, ThemeIcon} from '@mantine/core';
 import { useNavigate } from "react-router";
+import { IconPhone } from "@tabler/icons-react";
 
 const PatientDetail = () => {       
     const akello = useAkello();
@@ -35,13 +36,19 @@ const PatientDetail = () => {
 
     return (
         <>
-            <div className={"space-y-4"}>
+            <div className={"space-y-4 h-screen overflow-scroll	"}>
                 <div className={"w-full border border-1"}>
                     <div className={"flex flex-row justify-between  border-b border-1 px-3 py-2"}>
                         <p className={"text-xl font-semibold"}>
                             {selectedPatient.first_name} {selectedPatient.last_name}
-                        </p>                        
-                        <div className={'text-md'}>{selectedPatient.phone_number}</div>
+                        </p>     
+                        <div className='flex flex-row space-x-3'>
+                            <ThemeIcon>
+                                <IconPhone style={{ width: '70%', height: '70%' }} />
+                            </ThemeIcon>                   
+                            <div className={'text-md'}>{selectedPatient.phone_number}</div>
+                        </div>
+                        
                     </div>
                     <div className={"p-2"}>
                         <div className={"grid grid-cols-2"}>                                                                                   
@@ -94,6 +101,7 @@ const PatientDetail = () => {
                         Start Session
                     </Button>
                 </Container>
+
                 {
                     selectedPatient.treatment_logs!.length > 0 && (
                         <>
@@ -115,7 +123,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2"}>
-                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={questionnaires} />
+                                <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={questionnaires} />                                    
                                 </div>
                             </div>
                         </>

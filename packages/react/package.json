@@ -35,6 +35,8 @@
   "peerDependencies": {
     "@akello/core": "file:../core/akello-core-2.0.4.tgz",
     "@akello/react-hook": "file:../react-hook/akello-react-hook-2.0.4.tgz",
+    "@mantine/core": "^7.5.1",
+    "@mantine/hooks": "^7.5.1",
     "@mui/icons-material": "^5.15.6",
     "@mui/lab": "^5.0.0-alpha.162",
     "@mui/material": "^5.15.7",
@@ -44,6 +46,8 @@
     "autoprefixer": "^10.4.17",
     "daisyui": "^4.6.2",
     "postcss": "^8.4.35",
+    "postcss-preset-mantine": "^1.13.0",
+    "postcss-simple-vars": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.16.0",

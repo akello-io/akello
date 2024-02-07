@@ -43,6 +43,14 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
     return {'id': registry_id, 'name': data['name']}
 
 
+@router.get("/{registry_id}")
+async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
+    registry = RegistryService.get_registry(registry_id)
+    registry['is_admin'] = registry_access['is_admin']
+    registry['role'] = registry_access['role']
+    return registry
+
 @router.get("/{registry_id}/team-members")
 async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
     registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
