@@ -116,7 +116,7 @@ export default function App() {
               setShowPatientDetail(false)                      
               navigate('/registry/' + akello.selectedRegistry + '/reports')
             }}
-            label="Reports"
+            label="Billing Report"
             leftSection={<IconReportAnalytics size="1rem" stroke={1.5} />}
           />
         </AppShell.Navbar>

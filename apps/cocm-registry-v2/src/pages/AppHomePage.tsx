@@ -27,7 +27,6 @@ const AppHomePage:React.FC<AppHomePageProps> = ({drawerHandlers}) => {
 
     return (
         <div className="px-24 overscroll-hidden overscroll-none	">
-            test
             <WelcomeBanner first_name={"Vijay"} />                    
             <RegistryMemberships onCreate={() => navigate('/registry/create')}>
                 {
