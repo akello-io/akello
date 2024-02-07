@@ -19,6 +19,7 @@ import PatientDetail from './components/PatientDetail';
 import CreateRegistryPage from './pages/CreateRegistryPage';
 import RegistryShell from './components/RegistryShell';
 import AkelloAppShell from './components/AkelloAppShell';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 
 
@@ -36,10 +37,12 @@ export default function App() {
     }
   }, [akello]);
   
+  debugger;
   if(akello.accessToken == undefined) {
     return (
       <Routes>
         <Route path={"/"} element={<LoginPage />} />
+        <Route path={"/forgot-password"} element={<ForgotPasswordPage />} />
         <Route path={"/signup"} element={<SignUpPage />} />
         <Route path={"/signup/confirm"} element={<SignUpConfirm />} />
       </Routes>

@@ -76,7 +76,7 @@ const DashboardPage = () => {
 
     return (
         <>
-            <div>
+            <div className='grid grid-cols-2 gap-4'>
                 <ScreeningComponent title={"Treatment Performance"}>
                     <div className={" p-12 w-full pb-6 flex flex-row space-x-12"}>
                         <div className={"text-center space-y-4"}>
