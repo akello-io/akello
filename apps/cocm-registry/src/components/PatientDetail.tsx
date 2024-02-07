@@ -4,26 +4,24 @@ import {PatientRegistry, Questionnaire} from "@akello/core";
 import moment from "moment";
 import { useAkello } from "@akello/react-hook";
 
-const PatientDetail = () => {
-    const selectedPatient: PatientRegistry = {
-        id: "",
-        patient_mrn: "",
-        first_name: "",
-        last_name: "",
-        phone_number: "", 
-        email: "", 
-        date_of_birth: "", 
-        treatment_logs: []
-    };
-    const questionnaires: Questionnaire[] = [];
+const PatientDetail = () => {       
     const akello = useAkello();
-
+    const selectedPatient = akello.getSelectedPatientRegistry();    
+    const questionnaires: Questionnaire[] = [];
+    
     const getWeeksSince = (date: number) => {
         var today = moment(date);
         var ia = moment();
         var diff = moment.duration(ia.diff(today));
         return diff.weeks();
     };
+
+    if(selectedPatient === undefined) {
+        return (
+            <></>
+        )
+    }
+    
 
     return (
         <>

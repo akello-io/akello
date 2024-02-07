@@ -14,14 +14,17 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     const navigate = useNavigate()
 
     drawerHandlers.open()
-    const akello = useAkello()
+    const akello = useAkello()    
 
-    useEffect(() => {
+    useEffect(() => {        
         akello.registryService.getRegistryPatients(akello.getSelectedRegistry().id, (data) => {            
             setPatients(data['successfully_loaded'])
             if(data['successfully_loaded'].length == 0) {
                 navigate('/registry/'+akello.getSelectedRegistry().id+'/patient-referral')
-            }
+            } else {
+                akello.selectPatient(data['successfully_loaded'][0])
+                akello.dispatchEvent({ type: 'change' });
+            }            
         }, (data) => {            
         })
     }, [])
@@ -29,7 +32,11 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     return (
         <>
             <div className=''>
-                <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={()=> {}} />    
+                <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={(object)=> {
+                    const clickedPatient = object.row as PatientRegistry
+                    akello.selectPatient(clickedPatient)   
+                    akello.dispatchEvent({ type: 'change' });
+                }} />    
             </div>
             
         </>
