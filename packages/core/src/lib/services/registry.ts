@@ -8,6 +8,27 @@ export class RegistryService extends BaseService {
     }
 
     /**
+     * Retrieves a registry by its ID.
+     * @param registry_id - The ID of the registry to retrieve.
+     * @param onSuccess - The callback function to be called when the request is successful.
+     * @param onFail - The optional callback function to be called when the request fails.
+     */
+    async getRegistry(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "registry/" + registry_id;
+        const resp = this.apiRequest({
+            api_url: this.client.getOptions().baseUrl!,
+            method: 'get',
+            endpoint: endpoint,
+            token: this.client.accessToken!,
+            onSuccess: (resp: any) => {
+                onSuccess(resp)
+            }, onFail: (error: any) => {
+                this.handleFail(error, onFail)
+            }
+        });
+    }
+
+    /**
      * Creates a new registry.
      * @param payload - The payload for creating the registry.
      * @param onSuccess - The callback function to be called on successful creation.

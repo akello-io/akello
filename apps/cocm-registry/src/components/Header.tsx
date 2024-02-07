@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, toggle }) => {
           >
             <img src={Logo} alt='logo' className='h-8 w-auto' />
           </UnstyledButton>
-          <div className='text-xl font-bold my-auto'>
+          <div className='text-3xl font-semibold my-auto text-sky-500 bg-sky-100 px-6'>
             {akello.getSelectedRegistry() ? akello.getSelectedRegistry().name : ''}            
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { AppShell, NavLink, Container } from '@mantine/core';
+import { AppShell, NavLink, Container, ScrollArea } from '@mantine/core';
 import { IconHome2, IconTable, IconUserCircle, IconReportAnalytics } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
@@ -23,7 +23,7 @@ const RegistryShell = () => {
                 },
             }}
             aside={{
-                width: pathname === '/registry/'+akello.getSelectedRegistry().id ? 400 : 0,                
+                width: pathname === '/registry/'+akello.getSelectedRegistry().id ? 500 : 0,                
                 collapsed: {
                     desktop: false,
                     mobile: true,
@@ -72,6 +72,7 @@ const RegistryShell = () => {
             </AppShell.Main>
             <AppShell.Aside>
                 <PatientDetail />
+                                
             </AppShell.Aside>
         </AppShell>
     );
