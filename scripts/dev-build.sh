@@ -90,6 +90,8 @@ pnpm install --save-peer postcss
 pnpm install --save-peer autoprefixer
 pnpm install --save-peer @mui/x-data-grid
 pnpm install --save-peer daisyui
+pnpm install --save-peer @mantine/core @mantine/hooks
+pnpm install --save-peer postcss-preset-mantine postcss-simple-vars
 pnpm install --save yup
 pnpm install --save formik
 

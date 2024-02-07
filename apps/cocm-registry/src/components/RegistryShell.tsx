@@ -26,7 +26,7 @@ const RegistryShell = () => {
                 width: pathname === '/registry/'+akello.getSelectedRegistry().id ? 400 : 0,                
                 collapsed: {
                     desktop: false,
-                    mobile: false,
+                    mobile: true,
                 },
                 breakpoint: 'md',
             }}

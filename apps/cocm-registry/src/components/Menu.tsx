@@ -2,6 +2,7 @@ import { rem } from '@mantine/core';
 import { IconLogout } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { Avatar, Menu, UnstyledButton } from '@mantine/core';
+import ThemeToggle from './ThemeToggle';
 
 const HeaderMenu = () => {
   const akello = useAkello();
@@ -23,9 +24,9 @@ const HeaderMenu = () => {
             <div>
               Account
             </div>
-            {/* 
+            
               <ThemeToggle />
-            */}
+            
           </div>
         </Menu.Label>
         <Menu.Item

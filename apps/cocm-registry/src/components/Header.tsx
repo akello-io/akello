@@ -24,9 +24,9 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, toggle }) => {
               akello.selectRegistry('');
               navigate('/');
             }}
-            className='flex h-6 w-auto my-auto'
+            className='flex h-8 w-auto my-auto'
           >
-            <img src={Logo} alt='logo' className='h-6 w-auto' />
+            <img src={Logo} alt='logo' className='h-8 w-auto' />
           </UnstyledButton>
           <div className='text-xl font-bold my-auto'>
             {akello.getSelectedRegistry() ? akello.getSelectedRegistry().name : ''}            

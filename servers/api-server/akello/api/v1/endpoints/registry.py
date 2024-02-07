@@ -58,10 +58,10 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
     patients = RegistryService.get_patients(registry_id)
     successfully_loaded = []
     failed_patients = []
-    for patient in patients:
+    for patient in patients:        
         try:
             successfully_loaded.append(PatientRegistry(**patient))
-        except Exception as e:
+        except Exception as e:            
             failed_patients.append(patient['patient_mrn'])
 
     return {
