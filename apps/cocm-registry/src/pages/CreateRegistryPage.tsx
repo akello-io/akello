@@ -1,10 +1,8 @@
-import {SideNavigation, Dropdown} from "@akello/react";
+import {Dropdown} from "@akello/react";
 import {ReactNode, useState} from "react";
 import {useNavigate} from "react-router";
-import {useSelector} from "react-redux";
-import {RootState} from "../../store";
 import { useAkello } from "@akello/react-hook";
-
+import {Registry} from "@akello/core";
 
 interface UserInvite {
     email: string
@@ -47,17 +45,14 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
 
     const navigate = useNavigate()
     const akello = useAkello()
-
-    
-    
-    const userProfile = useSelector ((state: RootState) => state.app.userProfile)
-
     return (
         <>
             <div className={"p-24"}>
+                {/* 
                 <div className={"text-xl"}>
                     Step {step} of {total_steps}
                 </div>
+                */}
                 <div>
                     <div className={"font-black text-6xl"}>
                         {title}
@@ -89,13 +84,15 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                                     akello.registryService.createRegistry({
                                         'name': registryName!,
                                         'invited-users': invites,
-                                        'first_name': userProfile.first_name ? userProfile.first_name : '',
-                                        'last_name': userProfile.last_name ? userProfile.last_name : '',
-                                        'email': userProfile.email,
+                                        'first_name': 'Vijay',
+                                        'last_name': 'Selvaraj',
+                                        'email': 'vijay.selvaraj@gmail.com',
                                         'integrations': integrations,
                                         'logo_url': logo_url
-                                    }, (data) => {
-                                        navigate("/registry")
+                                    }, (data) => {                                        
+                                        const registry = new Registry(data['id'], data['name'], [], [], {})
+                                        akello.selectRegistry(registry)
+                                        navigate("/registry/" + data['id'])
                                     })
                                 }}>Create Registry</button>
                             )
@@ -108,9 +105,7 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
     )
 }
 
-
-const RegistryCreate = () => {
-
+const CreateRegistryPage = () => {
     const [invites, setInvites] = useState<UserInvite[]>([])
     const [stepIdx, setStepIdx] = useState(0)
     const [screeners, setScreeners] = useState([])
@@ -129,7 +124,7 @@ const RegistryCreate = () => {
                             id={"registry-name"}
                             type="text"
                             placeholder="Registry name"
-                            className="input input-bordered w-full max-w-xs"
+                            className="input input-bordered bg-white w-full max-w-xs"
                             value={registryName}
                             onChange={(e: React.FormEvent<HTMLInputElement>) => {
                                 setRegistryName(e.currentTarget.value)
@@ -142,13 +137,7 @@ const RegistryCreate = () => {
     ]
 
     return (
-        <>
-            <SideNavigation
-                logo={<a href={"/"}><img src={"/akello-logo.png"} alt="Akello Health" /></a>}
-                selectedBtn={{name: "Registry", short_name: "Registry", icon: <>{}</>, is_active: true, navigate: () => {}}}
-                top_navigation={[]}
-                bottom_navigation={[]}
-            />
+        <>            
             <main className="pl-20 pt-4  h-full">
                 <RegistryCreateSection
                     step={create_steps[stepIdx].step}
@@ -168,4 +157,5 @@ const RegistryCreate = () => {
     )
 }
 
-export default RegistryCreate
+export default CreateRegistryPage
+

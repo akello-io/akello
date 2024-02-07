@@ -41,9 +41,9 @@ const DashboardPage = () => {
     const [screening, setScreening] = useState({} as any)
 
     useEffect(() => {                
-        if(akello.selectedRegistry && value.startDate && value.endDate) {
+        if(akello.getSelectedRegistry().id && value.startDate && value.endDate) {
             
-            akello.reportsService.getRegistryStats(akello.selectedRegistry, new Date(value.startDate).getTime(), new Date(value.endDate).getTime(), (data) => {                            
+            akello.reportsService.getRegistryStats(akello.getSelectedRegistry().id, new Date(value.startDate).getTime(), new Date(value.endDate).getTime(), (data) => {                            
                 if(data) {
                     setPayerDistribution(data['payer_distribution'])
                     setScreening(data['screening'])
@@ -53,7 +53,7 @@ const DashboardPage = () => {
             })
         }
 
-    }, [akello.selectedRegistry, value])
+    }, [akello.getSelectedRegistry().id, value])
 
     const darkTheme = createTheme({
         palette: {
@@ -76,7 +76,7 @@ const DashboardPage = () => {
 
     return (
         <>
-            <div>
+            <div className='grid grid-cols-2 gap-4'>
                 <ScreeningComponent title={"Treatment Performance"}>
                     <div className={" p-12 w-full pb-6 flex flex-row space-x-12"}>
                         <div className={"text-center space-y-4"}>

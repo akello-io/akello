@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
 import { ActionIcon } from '@mantine/core';
 import { useMantineColorScheme } from '@mantine/core';
 import { SunIcon, MoonIcon } from '@modulz/radix-icons';
 
 const ThemeToggle = () => { 
-  const { setColorScheme, clearColorScheme, colorScheme } = useMantineColorScheme();
+  const { setColorScheme, colorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
 
   return (

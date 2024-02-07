@@ -98,7 +98,7 @@ const TeamPage = () => {
 
 
     useEffect(() => {        
-        akello.registryService.getMembers(akello.selectedRegistry, (data) => {
+        akello.registryService.getMembers(akello.getSelectedRegistry().id, (data) => {
             setTeamMebmers(data)
         })
     }, [])

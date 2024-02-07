@@ -19,6 +19,7 @@ import PatientDetail from './components/PatientDetail';
 import CreateRegistryPage from './pages/CreateRegistryPage';
 import RegistryShell from './components/RegistryShell';
 import AkelloAppShell from './components/AkelloAppShell';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 
 
@@ -27,19 +28,17 @@ export default function App() {
   const akello = useAkello();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if(akello.getSelectedRegistry() == undefined) {  
-      navigate('/')
-    }  
+  useEffect(() => {    
     if(akello.getSelectedRegistry() != undefined) {        
-      navigate(`/registry/${akello.getSelectedRegistry()}`)                                           
+      navigate(`/registry/${akello.getSelectedRegistry().id}`)                                           
     }
   }, [akello]);
-  
+    
   if(akello.accessToken == undefined) {
     return (
       <Routes>
         <Route path={"/"} element={<LoginPage />} />
+        <Route path={"/forgot-password"} element={<ForgotPasswordPage />} />
         <Route path={"/signup"} element={<SignUpPage />} />
         <Route path={"/signup/confirm"} element={<SignUpConfirm />} />
       </Routes>

@@ -23,7 +23,7 @@ const ReportsPage = () => {
                     Generate and download your billing report                            
                 </div>
                                         
-                <div className="w-96 border border-1  bg-primary rounded-md">
+                <div className="w-96 border border-1  rounded-md">
                     <Datepicker
                         value={value}
                         onChange={handleValueChange}

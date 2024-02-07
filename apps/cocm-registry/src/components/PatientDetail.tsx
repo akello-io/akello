@@ -1,5 +1,3 @@
-import * as React from "react";
-import {useNavigate} from "react-router";
 import {PatientProgressChart, Dropdown} from "@akello/react";
 import {PatientTreatmentHistoryDataGrid} from "@akello/react";
 import {PatientRegistry, Questionnaire} from "@akello/core";
@@ -12,6 +10,9 @@ const PatientDetail = () => {
         patient_mrn: "",
         first_name: "",
         last_name: "",
+        phone_number: "", 
+        email: "", 
+        date_of_birth: "", 
         treatment_logs: []
     };
     const questionnaires: Questionnaire[] = [];
@@ -59,22 +60,22 @@ const PatientDetail = () => {
                                         { id: '2', value: 'Review with Psychiatrist'},
                                         { id: '3', value: 'Safety Risk'}
                                     ]} setSelectedOption={(option) => {
-                                        akello.registryService.setFlag(akello.getSelectedRegistry(), selectedPatient.patient_mrn, option, (data) => {
-                                            // setSelectedPatient({...selectedPatient, flag: option})
-                                        })
-                                }}/>
-                            </div>
-                            <div className={"font-semibold"}>Status</div>
-                            <div>
-                                <Dropdown
-                                    placeholder={ selectedPatient.status!  }
-                                    options={[
-                                        { id: '1', value: 'Enrolled'},
-                                        { id: '2', value: 'Treatment'},
-                                        { id: '3', value: 'Relapse Prevention Plan'},
-                                        { id: '4', value: 'Deactivated'},
-                                    ]} setSelectedOption={(option) => {
-                                        akello.registryService.setStatus(akello.getSelectedRegistry(), selectedPatient.patient_mrn, option, (data) => {
+                                                    akello.registryService.setFlag(akello.getSelectedRegistry().id, selectedPatient.patient_mrn, option, () => {
+                                                        // setSelectedPatient({...selectedPatient, flag: option})
+                                                    })
+                                            }}/>
+                                        </div>
+                                        <div className={"font-semibold"}>Status</div>
+                                        <div>
+                                            <Dropdown
+                                                placeholder={ selectedPatient.status!  }
+                                                options={[
+                                                    { id: '1', value: 'Enrolled'},
+                                                    { id: '2', value: 'Treatment'},
+                                                    { id: '3', value: 'Relapse Prevention Plan'},
+                                                    { id: '4', value: 'Deactivated'},
+                                                ]} setSelectedOption={(option) => {
+                                                    akello.registryService.setStatus(akello.getSelectedRegistry().id, selectedPatient.patient_mrn, option, () => {
                                             // setSelectedPatient({...selectedPatient, flag: option})
                                         })
 

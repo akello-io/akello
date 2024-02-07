@@ -104,8 +104,8 @@ pnpm pack
 cd ../../
 
 
-echo '>>>>>>>>>>  CoCM v2'
-cd apps/cocm-registry-v2
+echo '>>>>>>>>>>  CoCM'
+cd apps/cocm-registry
 rm -rf node_modules
 rm pnpm-lock.yaml
 
