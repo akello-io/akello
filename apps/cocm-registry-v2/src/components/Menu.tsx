@@ -11,6 +11,7 @@ import ThemeToggle from './ThemeToggle';
 import { useAkello } from "@akello/react-hook";
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Avatar } from '@mantine/core';
 
 
 const HeaderMenu = () => {
@@ -18,11 +19,15 @@ const HeaderMenu = () => {
   const navigate = useNavigate();
 
   return (
-    <Menu shadow="md" width={200}>
-      <Menu.Target>
-        <UnstyledButton>Toggle menu</UnstyledButton>
+    <Menu shadow="md" width={200}>      
+      <Menu.Target>        
+        <UnstyledButton className='flex flex-row space-x-2'>
+          <Avatar className='my-auto' color="cyan" radius="xl">VS</Avatar>
+          <div className='my-auto'>
+            Vijay Selvaraj
+          </div>          
+        </UnstyledButton>
       </Menu.Target>
-
       <Menu.Dropdown>
         <Menu.Label>
             <div className='flex flex-row justify-between'>
@@ -32,56 +37,15 @@ const HeaderMenu = () => {
                 <ThemeToggle />
             </div>            
         </Menu.Label>
-        <Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>
-          Settings
-        </Menu.Item>
-        <Menu.Item leftSection={<IconMessageCircle style={{ width: rem(14), height: rem(14) }} />}>
-          Messages
-        </Menu.Item>
-        <Menu.Item leftSection={<IconPhoto style={{ width: rem(14), height: rem(14) }} />}>
-          Gallery
-        </Menu.Item>
-        <Menu.Item
-          leftSection={<IconSearch style={{ width: rem(14), height: rem(14) }} />}
-          rightSection={
-            <Text size="xs" c="dimmed">
-              ⌘K
-            </Text>
-          }
-        >
-          Search
-        </Menu.Item>                
-        <Menu.Divider />
-
-        {akello.getSelectedRegistry() != undefined && (
-          <>
-            <Menu.Label>Registry</Menu.Label>
-            <Menu.Item
-              leftSection={<IconSearch style={{ width: rem(14), height: rem(14) }} />}
-              onClick={() => {navigate(`/registry/${akello.getSelectedRegistry()}/patient-referral`)}}
-            >
-              Invite Team Member
-            </Menu.Item>
-            <Menu.Item
-              color="red"
-              leftSection={<IconTrash style={{ width: rem(14), height: rem(14) }} />}
-            >
-              Delete Registry
-            </Menu.Item>
-            <Menu.Divider />
-          </>
-
-        )
-        }
-
-
-        <Menu.Label>Danger zone</Menu.Label>
         <Menu.Item
           leftSection={<IconArrowsLeftRight style={{ width: rem(14), height: rem(14) }} />}
           onClick={() => {akello.logout()}}
         >
           Sign Out
-        </Menu.Item>        
+        </Menu.Item>       
+       
+
+         
       </Menu.Dropdown>
     </Menu>
   );
