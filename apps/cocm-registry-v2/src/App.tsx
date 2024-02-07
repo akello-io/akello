@@ -8,13 +8,14 @@ import { useAkello } from "@akello/react-hook";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import RegistryPage from './pages/registry/RegistryPage';
 import AppHomePage from './pages/AppHomePage';
-import { useEffect } from 'react';
-import { IconHome2, IconGauge, IconChevronRight, IconActivity, IconCircleOff } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { IconHome2, IconTable, IconGauge, IconUserCircle, IconReportAnalytics } from '@tabler/icons-react';
 import { useLocation } from 'react-router-dom';
 import DashboardPage from './pages/registry/DashboardPage';
 import TeamPage from './pages/registry/TeamPage';
 import ReportsPage from './pages/registry/ReportsPage';
 import PatientReferralPage from './pages/registry/PatientReferralPage';
+import PatientDetail from './components/PatientDetail';
 
 
 
@@ -22,6 +23,7 @@ export default function App() {
   const [opened, drawerHandlers] = useDisclosure({ initialOpened: true });  
   const akello = useAkello();
   const navigate = useNavigate();
+  const [showPatientDetail, setShowPatientDetail] = useState(false);
   const {pathname} = useLocation()
 
   useEffect(() => {
@@ -71,7 +73,14 @@ export default function App() {
           mobile: !opened,
         },
       }}
-      aside={{ width: 400 }}
+      aside={{ 
+        width: 400,
+        collapsed: {
+          desktop: !showPatientDetail,
+          mobile: !showPatientDetail,
+        },
+        breakpoint: 'md', // Add the missing 'breakpoint' property with a valid value
+      }}
       padding="md"
     >
       <Header loggedIn={loggedIn} toggle={drawerHandlers.toggle} />
@@ -79,33 +88,36 @@ export default function App() {
       loggedIn && pathname.indexOf('registry') != -1 &&       
         <AppShell.Navbar height={600} p="xs" width={{ base: 300 }}>          
           <NavLink
-            onClick={() => {       
-              debugger;      
+            onClick={() => {        
+              setShowPatientDetail(false)             
               navigate('/registry/' + akello.selectedRegistry +'/dashboard')
             }}
             label="Dashboard"
-            leftSection={<IconHome2 size="1rem" stroke={1.5} />}
+            leftSection={<IconGauge size="1rem" stroke={1.5} />}
           />
           <NavLink
             onClick={() => {              
+              setShowPatientDetail(true)             
               navigate('/registry/' + akello.selectedRegistry )
             }}
             label="Registry"
-            leftSection={<IconHome2 size="1rem" stroke={1.5} />}
+            leftSection={<IconTable size="1rem" stroke={1.5} />}
           />
           <NavLink
             onClick={() => {              
+              setShowPatientDetail(false)             
               navigate('/registry/' + akello.selectedRegistry + '/team')
             }}
             label="Team"
-            leftSection={<IconHome2 size="1rem" stroke={1.5} />}
+            leftSection={<IconUserCircle size="1rem" stroke={1.5} />}
           />
           <NavLink
-            onClick={() => {              
+            onClick={() => {     
+              setShowPatientDetail(false)                      
               navigate('/registry/' + akello.selectedRegistry + '/reports')
             }}
             label="Reports"
-            leftSection={<IconHome2 size="1rem" stroke={1.5} />}
+            leftSection={<IconReportAnalytics size="1rem" stroke={1.5} />}
           />
         </AppShell.Navbar>
       }
@@ -119,7 +131,9 @@ export default function App() {
       </AppShell.Main>
       {
         loggedIn && pathname.indexOf('registry') != -1  && (
-          <AppShell.Aside p="md">Aside</AppShell.Aside>
+          <AppShell.Aside p="md">
+            <PatientDetail />
+          </AppShell.Aside>
         )
       }
           
