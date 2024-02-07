@@ -15,17 +15,19 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     const akello = useAkello()
 
     useEffect(() => {
-        akello.registryService.getRegistryPatients(akello.selectedRegistry, (data) => {
+        akello.registryService.getRegistryPatients(akello.getSelectedRegistry().id, (data) => {            
             setPatients(data['successfully_loaded'])
         }, (data) => {
             debugger;
         })
     }, [])
 
-
     return (
         <>
-            <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={()=> {}} />
+            <div className=''>
+                <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={()=> {}} />    
+            </div>
+            
         </>
     )
 }

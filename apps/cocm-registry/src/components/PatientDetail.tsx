@@ -60,7 +60,7 @@ const PatientDetail = () => {
                                         { id: '2', value: 'Review with Psychiatrist'},
                                         { id: '3', value: 'Safety Risk'}
                                     ]} setSelectedOption={(option) => {
-                                                    akello.registryService.setFlag(akello.getSelectedRegistry(), selectedPatient.patient_mrn, option, () => {
+                                                    akello.registryService.setFlag(akello.getSelectedRegistry().id, selectedPatient.patient_mrn, option, () => {
                                                         // setSelectedPatient({...selectedPatient, flag: option})
                                                     })
                                             }}/>
@@ -75,7 +75,7 @@ const PatientDetail = () => {
                                                     { id: '3', value: 'Relapse Prevention Plan'},
                                                     { id: '4', value: 'Deactivated'},
                                                 ]} setSelectedOption={(option) => {
-                                                    akello.registryService.setStatus(akello.getSelectedRegistry(), selectedPatient.patient_mrn, option, () => {
+                                                    akello.registryService.setStatus(akello.getSelectedRegistry().id, selectedPatient.patient_mrn, option, () => {
                                             // setSelectedPatient({...selectedPatient, flag: option})
                                         })
 

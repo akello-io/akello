@@ -10,7 +10,7 @@ dependencies:
     version: file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@akello/react':
     specifier: file:../../packages/react/akello-react-2.0.4.tgz
-    version: file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.8)(@mui/lab@5.0.0-alpha.164)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.15)(@mui/styled-engine@5.15.8)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.1)(postcss@8.4.34)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1)
+    version: file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.8)(@mui/lab@5.0.0-alpha.164)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.15)(@mui/styled-engine@5.15.8)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss@8.4.34)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@akello/react-hook':
     specifier: file:../../packages/react-hook/akello-react-hook-2.0.4.tgz
     version: file:../../packages/react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
@@ -99,7 +99,7 @@ devDependencies:
     version: 10.4.17(postcss@8.4.34)
   daisyui:
     specifier: ^4.6.1
-    version: 4.6.1(postcss@8.4.34)
+    version: 4.6.2(postcss@8.4.34)
   eslint:
     specifier: ^8.55.0
     version: 8.56.0
@@ -2896,7 +2896,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001584
-      electron-to-chromium: 1.4.658
+      electron-to-chromium: 1.4.659
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.3)
 
@@ -2939,8 +2939,8 @@ packages:
       supports-color: 7.2.0
     dev: true
 
-  /chokidar@3.5.3:
-    resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
+  /chokidar@3.6.0:
+    resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
     dependencies:
       anymatch: 3.1.3
@@ -3117,8 +3117,8 @@ packages:
       d3-array: 3.2.4
     dev: false
 
-  /daisyui@4.6.1(postcss@8.4.34):
-    resolution: {integrity: sha512-IXI8ypN/hkl1AKsag1XPlWt0wfvL4NedTUtUkv/VFP5q/xDbBZrZthq3/9M2yU1egcbbLhp01rluIz0GICUc+g==}
+  /daisyui@4.6.2(postcss@8.4.34):
+    resolution: {integrity: sha512-LBIbI76wVVRCQt1Uis2Y2/PRdGfMkNMFsHOjfpav8n7SamwRwPOCiNUClIrnX2jerWW3mLZlzRMCnQfxmGEjow==}
     engines: {node: '>=16.9.0'}
     dependencies:
       css-selector-tokenizer: 0.8.0
@@ -3191,8 +3191,8 @@ packages:
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  /electron-to-chromium@1.4.658:
-    resolution: {integrity: sha512-LGkxndHz7OEv6ipmL95E83SOZmK96PHk6Njw0nf5UaOLbvPxxJhejlBWl4esuU6JHMiCjysLhKRQmLTd5s2ZPw==}
+  /electron-to-chromium@1.4.659:
+    resolution: {integrity: sha512-sRJ3nV3HowrYpBtPF9bASQV7OW49IgZC01Xiq43WfSE3RTCkK0/JidoCmR73Hyc1mN+l/H4Yqx0eNiomvExFZg==}
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -4571,7 +4571,7 @@ packages:
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
-      chokidar: 3.5.3
+      chokidar: 3.6.0
       didyoumean: 1.2.2
       dlv: 1.1.3
       fast-glob: 3.3.2
@@ -4889,7 +4889,7 @@ packages:
     dev: false
 
   file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-3ekxsmCOOziWcSS6aXh7MjPNOrj0MLqyF/UFVP9f5dd7ViPY+OxgBtwj6qrTac0/ejIu2TE6eUF1nQJe4BM8Yg==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
+    resolution: {integrity: sha512-Jh4+OboV3+L1ssdTa5foKu+yuOiwliRicHAQIwcJVtNzgVcReJjKhUrF1nR58DLcjgCxOGWNkB1VrNrEbRVIng==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
     id: file:../../packages/core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4
@@ -4934,8 +4934,8 @@ packages:
       tailwindcss: 3.4.1
     dev: false
 
-  file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.8)(@mui/lab@5.0.0-alpha.164)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.15)(@mui/styled-engine@5.15.8)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.1)(postcss@8.4.34)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-N1tdX+L+HiB0/cFbEohwSn+GAjKyYz8z8ADco7KFMFd4ZP4wwCqBsefCNrSZWhBAQr244TN32bIwXw+8L0/+LQ==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
+  file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mui/icons-material@5.15.8)(@mui/lab@5.0.0-alpha.164)(@mui/material@5.15.7)(@mui/styled-engine-sc@6.0.0-alpha.15)(@mui/styled-engine@5.15.8)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss@8.4.34)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-zXdhzJcxqlxjQJY2uN06u7ms7yjJHm7NI8IyczJsbG8L392XWLiJf+od6hLnnGHwMMS4P4yxhlsNCtdqGWhYoQ==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
     id: file:../../packages/react/akello-react-2.0.4.tgz
     name: '@akello/react'
     version: 2.0.4
@@ -4946,11 +4946,11 @@ packages:
       '@mui/icons-material': ^5.15.6
       '@mui/lab': ^5.0.0-alpha.162
       '@mui/material': ^5.15.7
-      '@mui/styled-engine': ^5.15.7
+      '@mui/styled-engine': ^5.15.8
       '@mui/styled-engine-sc': ^6.0.0-alpha.13
       '@mui/x-data-grid': ^6.19.3
       autoprefixer: ^10.4.17
-      daisyui: ^4.6.1
+      daisyui: ^4.6.2
       postcss: ^8.4.34
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -4966,7 +4966,7 @@ packages:
       '@mui/styled-engine-sc': 6.0.0-alpha.15(styled-components@6.1.8)
       '@mui/x-data-grid': 6.19.3(@mui/material@5.15.7)(@mui/system@5.15.8)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       autoprefixer: 10.4.17(postcss@8.4.34)
-      daisyui: 4.6.1(postcss@8.4.34)
+      daisyui: 4.6.2(postcss@8.4.34)
       postcss: 8.4.34
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)

@@ -1,3 +1,25 @@
+export class Registry  {
+    id: string
+    name: string
+    patients: PatientRegistry[] = []
+    questionnaires: Questionnaire[] = []
+    stats: any
+
+    constructor(
+        id: string,
+        name: string,
+        patients: PatientRegistry[],
+        questionnaires: Questionnaire[],
+        stats: any
+    ) {
+        this.id = id
+        this.name = name
+        this.patients = patients
+        this.questionnaires = questionnaires
+        this.stats = stats
+    }    
+}
+
 export class TreatmentLogScore {
     score_name: string
     score_value: number

@@ -21,7 +21,7 @@ const RegistryShell = () => {
                 },
             }}
             aside={{
-                width: 400,
+                width: 0,
                 collapsed: {
                     desktop: false,
                     mobile: false,
@@ -34,37 +34,35 @@ const RegistryShell = () => {
             <AppShell.Navbar>
                 <NavLink
                     onClick={() => {
-                        navigate('/registry/' + akello.getSelectedRegistry() + '/dashboard');
+                        navigate('/registry/' + akello.getSelectedRegistry().id + '/dashboard');
                     }}
                     label="Dashboard"
                     leftSection={<IconHome2 size="1rem" stroke={1.5} />}
                 />
                 <NavLink
                     onClick={() => {
-                        navigate('/registry/' + akello.getSelectedRegistry());
+                        navigate('/registry/' + akello.getSelectedRegistry().id);
                     }}
                     label="Registry"
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
                 />
                 <NavLink
                     onClick={() => {
-                        navigate('/registry/' + akello.getSelectedRegistry() + '/team');
+                        navigate('/registry/' + akello.getSelectedRegistry().id + '/team');
                     }}
                     label="Team"
                     leftSection={<IconUserCircle size="1rem" stroke={1.5} />}
                 />
                 <NavLink
                     onClick={() => {
-                        navigate('/registry/' + akello.getSelectedRegistry() + '/reports');
+                        navigate('/registry/' + akello.getSelectedRegistry().id + '/reports');
                     }}
                     label="Billing Report"
                     leftSection={<IconReportAnalytics size="1rem" stroke={1.5} />}
                 />
             </AppShell.Navbar>
             <AppShell.Main>
-                <Container>
-                    <Outlet />
-                </Container>
+                <Outlet />
             </AppShell.Main>
         </AppShell>
     );

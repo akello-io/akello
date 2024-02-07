@@ -32,7 +32,7 @@ export default function App() {
       navigate('/')
     }  
     if(akello.getSelectedRegistry() != undefined) {        
-      navigate(`/registry/${akello.getSelectedRegistry()}`)                                           
+      navigate(`/registry/${akello.getSelectedRegistry().id}`)                                           
     }
   }, [akello]);
   
