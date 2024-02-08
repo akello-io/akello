@@ -12,7 +12,8 @@ interface RegistryCardProps {
 const RegistryCard: React.FC<RegistryCardProps> = (props) => {
   const navigate = useNavigate();
   const akello = useAkello();
-    
+      
+  debugger;
   return (    
     <Card className='cursor-pointer' withBorder padding="lg" radius="md" onClick={() => {
       navigate('/registry/' + props.registry.id);
@@ -22,7 +23,10 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
         <Avatar src={AkelloLog} radius="xl" />
         <div></div>        
         <div className='flex flex-row space-x-3'>
-          <Badge>Badge</Badge>      
+          {
+            props.registry.stats['safety_risk'] && <Badge color='red'>Safety Risk</Badge>      
+          }
+          
         </div>        
       </Group>
 
@@ -42,8 +46,7 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
         </Text>
       </Text>
       <Progress value={props.registry.stats.completed_minutes/props.registry.stats.total_minutes * 100} mt={5} />
-      
-
+    
       
       <Group justify="space-between" mt="md">
 

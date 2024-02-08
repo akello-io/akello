@@ -19,6 +19,7 @@ const AppHomePage: React.FC<AppHomePageProps> = ({ drawerHandlers }) => {
         setIsLoading(true);
         akello.userService.getUserRegistries((data) => {
             const registries = data.map((registry: any) => {
+                debugger;
                 return new Registry(
                     registry['id'],
                     registry['name'],
@@ -28,6 +29,7 @@ const AppHomePage: React.FC<AppHomePageProps> = ({ drawerHandlers }) => {
                     {
                         total_minutes: registry['total_minutes'],
                         completed_minutes: registry['completed_minutes'],
+                        safety_risk: registry['safety_risk']
                     }
                 );
             });

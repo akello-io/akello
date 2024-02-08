@@ -77,8 +77,8 @@ const PatientSession = ({}) => {
     
 
     const [mm, setMM] = useState(0)
-    const [ss, setSS] = useState(0)
-    const [ms, setMS] = useState(0)
+    // const [ss, setSS] = useState(0)
+    // const [ms, setMS] = useState(0)
 
     const [noShow, setNoShow] = useState(false)
 
@@ -96,8 +96,8 @@ const PatientSession = ({}) => {
                         <p className={"text-xl my-auto"}>
                             <StopWatch timeCallback={(mm, ss, ms) => {
                                 setMM(mm)
-                                setSS(ss)
-                                setMS(ms)
+                                // setSS(ss)
+                                // setMS(ms)
                             }}/>
                         </p>
                         

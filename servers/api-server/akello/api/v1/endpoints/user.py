@@ -58,6 +58,13 @@ async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_chec
         registry['role'] = registry_access['role']
         registry_metadata = RegistryService.get_registry(registry_id)
         registry['members'] = RegistryService.get_members(registry_id)
+        
+        patients = RegistryService.get_patients(registry_id)
+                
+        for patient in patients:            
+            if 'flag' in patient and patient['patient_flag'] == 'Safety Risk':                
+                registry['safety_risk'] = True                   
+
         # registry['members'] = registry_metadata['members']
         registry['active_patients'] = registry_metadata['active_patients']
 
