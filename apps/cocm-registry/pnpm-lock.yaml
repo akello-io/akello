@@ -5080,7 +5080,7 @@ packages:
     dev: false
 
   file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(@mui/icons-material@5.15.9)(@mui/lab@5.0.0-alpha.165)(@mui/material@5.15.9)(@mui/styled-engine-sc@6.0.0-alpha.16)(@mui/styled-engine@5.15.9)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss-preset-mantine@1.13.0)(postcss-simple-vars@7.0.1)(postcss@8.4.35)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-vQUkZs560eDmIEWjCHrjXOtm9OS9nsWEMao/Mcu895xU11D69+nm3Fp1laR3PwLOCcby2f093RA/D9/innTFsw==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
+    resolution: {integrity: sha512-Q8/fuJ6/1yR5FTHAniQGWjDKztzFZh+ySUy4poKD0dYLvVwtIbEF7B5Yy9xLPeoSQ2KsPQSB8LuK6GojVqqz6g==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
     id: file:../../packages/react/akello-react-2.0.4.tgz
     name: '@akello/react'
     version: 2.0.4
