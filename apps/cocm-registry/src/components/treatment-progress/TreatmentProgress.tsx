@@ -12,10 +12,10 @@ const TreatmentProgress:React.FC<TreatmentProgressProps> = ({weeks}) => {
         Treatment Progress
       </Text>
       <Text fz="lg" fw={500} className={classes.stats}>
-        {weeks} / {6*4}
+        10 / {6*4} weeks
       </Text>
       <Progress
-        value={ weeks / 6*4}
+        value={ (10 / (6*4)) * 100}
         mt="md"
         size="lg"
         radius="xl"
