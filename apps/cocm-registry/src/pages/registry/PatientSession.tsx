@@ -3,6 +3,7 @@ import StopWatch from "../../components/stopwatch/StopWatch";
 import {useEffect, useState} from "react";
 import classNames from "classnames";
 import {Dropdown} from "@akello/react";
+import {Button, Select, Radio, Group, Switch} from "@mantine/core";
 import {
     PatientRegistry,
     Questionnaire,
@@ -19,26 +20,33 @@ interface SelectorProps {
     onSelection: (response: QuestionnaireResponse) => void
 }
 const Selector:React.FC<SelectorProps> = ({selectedId, onSelection, question}) => {
-    const [selectedResponseId, setSelectedResponseId] = useState('')
+    const [selectedResponse, setSelectedResponse] = useState(0)
+
+    useEffect(() => {
+        console.log(selectedResponse)
+        debugger;
+    }, [selectedResponse])
+
     return (
         <>
-            <div className={"rounded w-full border border-1"}>
-                {
-                    question.responses.map((response) => {
-                        return (
-                            <div className={ classNames ("flex flex-row justify-between cursor-pointer py-1 px-2 text-xs font-semibold ", {"border-2 border-base-content": response.id==selectedResponseId})}
-                                 onClick={() => {
-                                     onSelection(response)
-                                     setSelectedResponseId(response.id)
-                                 }}>
-                                <div className={""}>{response.response}</div><div className={classNames("p-1")}>{response.score}</div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
+        <Radio.Group
+        name={question.id}
+        label={question.question}
+        description="This is anonymous"
+        withAsterisk
+        >
+        <Group mt="xs">                
+            {
+                question.responses.map((response) => {                                
+                    return (
+                        <Radio label={response.response} value={response.response} onClick={(event) => onSelection(response)} />
+                    )
+                })
+            }                                
+        </Group>
+        </Radio.Group>
         </>
-    )
+    )    
 }
 
 interface StartSessionTabProps {
@@ -52,7 +60,7 @@ const PatientSession = ({}) => {
     
     const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
     const [visitType, setVisitType] = useState('')
-    const [contactType, setContactTye] = useState('')
+    const [contactType, setContactType] = useState('')
     const [flag, setFlag] = useState<string>()
 
     const navigate = useNavigate()
@@ -79,23 +87,25 @@ const PatientSession = ({}) => {
     };
     const [questionnaire_responses, setQuestionnaireResponses] = useState<{ [questionnaire: string] : ScoreDictionary }>({})
 
+    
     return (
         <>
             <div className={"space-y-4"}>
-                <div className={"w-full border border-1"}>
-                    <div className={"flex flex-row justify-between font-semibold border-b border-1 p-2"}>
-                        <p className={"text-xl"}>
+                <div className={"border border-1"}>
+                    <div className={"flex flex-row font-semibold border-b border-1 p-2"}>
+                        <p className={"text-xl my-auto"}>
                             <StopWatch timeCallback={(mm, ss, ms) => {
                                 setMM(mm)
                                 setSS(ss)
                                 setMS(ms)
                             }}/>
                         </p>
-                        <div className={"flex flex-row space-x-4"}>
-                            <button className={"btn btn-secondary"} onClick={() => setSelectedTab("Main")}>
+                        
+                        <div className={"flex flex-row space-x-4 my-auto"}>
+                            <Button variant="filled" color="red" onClick={() => setSelectedTab("Main")}>
                                 cancel
-                            </button>
-                            <button className={"btn btn-primary"} onClick={() => {
+                            </Button>
+                            <Button variant="filled" onClick={() => {
                                 
                                 let scores = []                                   
                                 for (let questionnaire_uid in questionnaire_responses) {
@@ -130,58 +140,46 @@ const PatientSession = ({}) => {
 
                             }}>
                                 save session
-                            </button>
+                            </Button>
                         </div>
                     </div>
                     <div className={"flex p-2"}>
-                        <div className={"grid grid-cols-2 w-full gap-y-2"}>
-                            <div className={"font-semibold "}>Flag</div>
+                        <div className={"flex space-x-3"}>
+                            <Select
+                                label="Flag patient"
+                                placeholder="Pick value"
+                                data={['Needs Discussion', 'Review with Psychiatrist', 'Safety Risk']}
+                                onChange={(value) => {
+                                    setFlag(value)
+                                }}
+                            />   
+                            <Select
+                                label="Select Visit Type"
+                                placeholder="Pick value"
+                                data={['Clinic', 'Phone', 'In-person w/ Patient']}
+                                onChange={(value) => {
+                                    setVisitType(value)
+                                }}
+                            />                                
+                            <Select
+                                label="Select Contact Type"
+                                placeholder="Pick value"
+                                data={[
+                                    'Initial Assessment', 
+                                    'Follow Up', 
+                                    'Psychiatric Consultation',
+                                    'Relapse Prevention Plan'
+                                ]}
+                                onChange={(value) => {                                        
+                                    setContactType(value)
+                            }}/>
+                            
                             <div className={"text-right"}>
-                                <Dropdown
-                                    placeholder={'Flag Patient'}
-                                    options={[
-                                        { id: '1', value: 'Needs Discussion'},
-                                        { id: '2', value: 'Review with Psychiatrist'},
-                                        { id: '3', value: 'Safety Risk'}
-                                    ]} setSelectedOption={(option) => {
-                                    setFlag(option)
-                                }}/>
-                            </div>
-                            <div className={"font-semibold "}>Visit Type</div>
-                            <div className={"text-right"}>
-                                <Dropdown
-                                    placeholder={'Select Visit Type'}
-                                    options={[
-                                    { id: '1', value: 'Clinic'},
-                                    { id: '2', value: 'Phone'},
-                                    { id: '3', value: 'In-person w/ Patient'}
-                                ]} setSelectedOption={(option) => {
-                                    setVisitType(option)
-                                }}/>
-                            </div>
-                            <div className={"font-semibold"}>Contact Type</div>
-                            <div className={"text-right"}>
-                                <Dropdown
-                                    placeholder={'Select Contact Type'}
-                                    options={[
-                                        { id: '1', value: 'Initial Assessment'},
-                                        { id: '2', value: 'Follow Up'},
-                                        { id: '3', value: 'Psychiatric Consultation'},
-                                        { id: '4', value: 'Relapse Prevention Plan'},
-                                    ]} setSelectedOption={(option) => {
-                                    setContactTye(option)
-                                }}/>
-                            </div>
-                            <div className={"font-semibold"}>No Show</div>
-                            <div className={"text-right"}>
-                                <input
-                                    type="checkbox"
+                                <Switch
                                     checked={noShow}
-                                    className="checkbox"
-                                    onChange={()=> {
-                                        setNoShow(!noShow)
-                                    }}
+                                    onChange={(event) => setNoShow(event.currentTarget.checked)}
                                 />
+                                
                             </div>
                         </div>
                     </div>
@@ -190,21 +188,18 @@ const PatientSession = ({}) => {
                     questionnaires.map((questionnaire) => {                        
                         return (
                             <>
-                                <div className={"w-full border border-1"}>
+                                <div className={"border border-1"}>
                                     <div className={"font-semibold border-b border-1 p-2"}>
                                         <p className={"text-xl"}>
                                             {questionnaire.name}
                                         </p>
                                     </div>
-                                    <div className={"p-2"}>
-                                        <div className={"grid grid-cols-3 gap-y-2"}>
-                                            {
+                                    <div className={"p-2 space-y-5"}>
+                                        {
                                                 questionnaire.questions.map((questionnaire_question) => {
                                                     return (
                                                         <>
-                                                            <div className={"col-span-2 text-sm font-semibold"}> {questionnaire_question.question}</div>
-                                                            <div>
-                                                                <Selector question={questionnaire_question}  onSelection={(selectedResponse: QuestionnaireResponse) => {
+                                                            <Selector question={questionnaire_question}  onSelection={(selectedResponse: QuestionnaireResponse) => {
                                                                     if(questionnaire_responses[questionnaire.uid] == undefined) {
                                                                         questionnaire_responses[questionnaire.uid] = {
                                                                             "responses": {},
@@ -215,13 +210,10 @@ const PatientSession = ({}) => {
                                                                     setQuestionnaireResponses({...questionnaire_responses})
                                                                     console.log(questionnaire_responses)
                                                                 }}/>
-
-                                                            </div>
                                                         </>
                                                     )
                                                 })
                                             }
-                                        </div>
                                     </div>
                                 </div>
                             </>
