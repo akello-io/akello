@@ -21,24 +21,21 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
     }}>
       <Group justify="space-between">
         <Avatar src={AkelloLog} radius="xl" />
-        <div></div>
-        {/* 
+        <div></div>        
         <div className='flex flex-row space-x-3'>
           <Badge>Badge</Badge>      
-        </div>
-        */}
+        </div>        
       </Group>
 
       <Text fz="lg" fw={500} mt="md">
         {props.registry.name}
       </Text>
-      {/* 
+      
       <Text fz="sm" c="dimmed" mt={5}>
       {props.registry.name}
-      </Text>
-      */}
+      </Text>      
 
-      {/* 
+      
       <Text c="dimmed" fz="sm" mt="md">
         Minutes completed this month:{' '}
         <Text span fw={500} c="bright">
@@ -46,9 +43,9 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
         </Text>
       </Text>
       <Progress value={.3 * 100} mt={5} />
-      */}
+      
 
-      {/*     
+      
       <Group justify="space-between" mt="md">
         
         <Avatar.Group spacing="sm">
@@ -64,7 +61,7 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
           <IconUpload size="1.1rem" />
         </ActionIcon>
       </Group>
-      */}
+      
     </Card>
   );
 };
