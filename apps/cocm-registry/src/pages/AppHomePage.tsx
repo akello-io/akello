@@ -23,8 +23,12 @@ const AppHomePage: React.FC<AppHomePageProps> = ({ drawerHandlers }) => {
                     registry['id'],
                     registry['name'],
                     registry['active_patients'],
+                    registry['members'],
                     registry['questionnaires'],
-                    {}
+                    {
+                        total_minutes: registry['total_minutes'],
+                        completed_minutes: registry['completed_minutes'],
+                    }
                 );
             });
             setRegistries(registries);
@@ -38,11 +42,7 @@ const AppHomePage: React.FC<AppHomePageProps> = ({ drawerHandlers }) => {
             <div className='space-y-3'>
                 {!isLoading && registries.map((registry: Registry) => (
                     <RegistryCard
-                        registry={registry}
-                        avatars={[
-                            'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-2.png',
-                            'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-4.png'
-                        ]}
+                        registry={registry}                        
                     />
                 ))}
             </div>

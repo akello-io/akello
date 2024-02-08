@@ -90,7 +90,7 @@ const PatientSession = ({}) => {
     
     return (
         <>
-            <div className={"space-y-4"}>
+            <div className={"space-y-4 mx-auto"}>
                 <div className={"border border-1"}>
                     <div className={"flex flex-row font-semibold border-b border-1 p-2"}>
                         <p className={"text-xl my-auto"}>
@@ -102,6 +102,16 @@ const PatientSession = ({}) => {
                         </p>
                         
                         <div className={"flex flex-row space-x-4 my-auto"}>
+                            <div>
+                                <p className={"text-sm"}>
+                                    No Show
+                                </p>
+                                <Switch
+                                    checked={noShow}
+                                    onChange={(event) => setNoShow(event.currentTarget.checked)}
+                                />
+                                
+                            </div>
                             <Button variant="filled" color="red" onClick={() => setSelectedTab("Main")}>
                                 cancel
                             </Button>
@@ -143,6 +153,7 @@ const PatientSession = ({}) => {
                             </Button>
                         </div>
                     </div>
+                    
                     <div className={"flex p-2"}>
                         <div className={"flex space-x-3"}>
                             <Select
@@ -172,15 +183,7 @@ const PatientSession = ({}) => {
                                 ]}
                                 onChange={(value) => {                                        
                                     setContactType(value)
-                            }}/>
-                            
-                            <div className={"text-right"}>
-                                <Switch
-                                    checked={noShow}
-                                    onChange={(event) => setNoShow(event.currentTarget.checked)}
-                                />
-                                
-                            </div>
+                            }}/>                                                        
                         </div>
                     </div>
                 </div>
@@ -194,7 +197,7 @@ const PatientSession = ({}) => {
                                             {questionnaire.name}
                                         </p>
                                     </div>
-                                    <div className={"p-2 space-y-5"}>
+                                    <div className={"p-2 space-y-5 "}>
                                         {
                                                 questionnaire.questions.map((questionnaire_question) => {
                                                     return (

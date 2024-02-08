@@ -2,6 +2,7 @@ export class Registry  {
     id: string
     name: string
     patients: PatientRegistry[] = []
+    members: RegistryMember[] = []    
     questionnaires: Questionnaire[] = []
     stats: any
 
@@ -9,15 +10,45 @@ export class Registry  {
         id: string,
         name: string,
         patients: PatientRegistry[],
+        members: RegistryMember[],
         questionnaires: Questionnaire[],
         stats: any
     ) {
         this.id = id
         this.name = name
         this.patients = patients
+        this.members = members
         this.questionnaires = questionnaires
         this.stats = stats
     }    
+}
+
+export class RegistryMember {
+    is_admin: boolean
+    role: string
+    user_id: string
+    date_created: number
+    last_name: string
+    first_name: string
+    email: string
+
+    constructor(
+        is_admin: boolean,
+        role: string,
+        user_id: string,
+        date_created: number,
+        last_name: string,
+        first_name: string,
+        email: string
+    ) {
+        this.is_admin = is_admin
+        this.role = role
+        this.user_id = user_id
+        this.date_created = date_created
+        this.last_name = last_name
+        this.first_name = first_name
+        this.email = email
+    }
 }
 
 export class TreatmentLogScore {

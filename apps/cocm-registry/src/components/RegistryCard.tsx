@@ -7,13 +7,12 @@ import AkelloLog from '../assets/Logo/PNGs/D2-AH-CBBP-Logo-V3-240323-AS_icon-ake
 
 interface RegistryCardProps {
   registry: Registry;  
-  avatars: string[];
 }
 
 const RegistryCard: React.FC<RegistryCardProps> = (props) => {
   const navigate = useNavigate();
   const akello = useAkello();
-
+    
   return (    
     <Card className='cursor-pointer' withBorder padding="lg" radius="md" onClick={() => {
       navigate('/registry/' + props.registry.id);
@@ -39,18 +38,18 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
       <Text c="dimmed" fz="sm" mt="md">
         Minutes completed this month:{' '}
         <Text span fw={500} c="bright">
-          
+          {props.registry.stats.completed_minutes}
         </Text>
       </Text>
-      <Progress value={.3 * 100} mt={5} />
+      <Progress value={props.registry.stats.completed_minutes/props.registry.stats.total_minutes * 100} mt={5} />
       
 
       
       <Group justify="space-between" mt="md">
-        
+
         <Avatar.Group spacing="sm">
-          {props.avatars.map((avatar, index) => {
-            return <Avatar src={avatar} radius="xl" key={index} />;
+          {props.registry.members.map((member, index) => {                
+            return <Avatar color="red"  radius="xl" key={index}>{member.first_name[0]}{member.last_name[0]}</Avatar>;
           })}
         </Avatar.Group>
               

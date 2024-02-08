@@ -23,7 +23,8 @@ class ReportsService(BaseService):
             'patients': {
 
             }
-        }
+        }        
+
         for patient in patients:
             mrn = patient['patient_mrn']
             if mrn not in patient_report:
@@ -31,25 +32,29 @@ class ReportsService(BaseService):
                     'minute_stats': {},
                     'info': patient
                 }
-
+            
             for treatment_log in patient['treatment_logs']:
-                t = TreatmentLog(**treatment_log)
+
+                t = TreatmentLog(**treatment_log) 
                 utc_dt = datetime.utcfromtimestamp(t.date / 1000)
                 if not (utc_dt.timestamp() >= from_date and utc_dt.timestamp() <= to_date):
                     continue
                 year = utc_dt.year
                 month = utc_dt.month
-                utc_dt_str = '%s-%s' % (year, month)
+                utc_dt_str = '%s-%s' % (year, month)                
 
                 if utc_dt_str not in patient_report['patients'][mrn]['minute_stats']:
-                    patient_report['patients'][mrn]['minute_stats'][utc_dt_str] = 0
-                patient_report['patients'][mrn]['minute_stats'][utc_dt_str] += t.minutes
+                    patient_report['patients'][mrn]['minute_stats'][utc_dt_str] = 0                
 
+                patient_report['patients'][mrn]['minute_stats'][utc_dt_str] += t.minutes                    
+        
+        
         # flatten the data
         r = []
+                         
         for mrn in patient_report['patients']:
-            p = patient_report['patients'][mrn]['info']
-            for s in patient_report['patients'][mrn]['minute_stats']:
+            p = patient_report['patients'][mrn]['info']            
+            for s in patient_report['patients'][mrn]['minute_stats']:                
                 r.append({
                     'first_name': p['first_name'],
                     'last_name': p['last_name'],

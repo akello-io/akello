@@ -29,9 +29,9 @@ export default function App() {
   const akello = useAkello();
   const navigate = useNavigate();
 
-  useEffect(() => {    
+  useEffect(() => {        
     if(akello.getSelectedRegistry() != undefined) {              
-      navigate(`/registry/${akello.getSelectedRegistry().id}`)                                           
+      // navigate(`/registry/${akello.getSelectedRegistry().id}`)                                           
     }
   }, [akello]);
     
@@ -61,7 +61,7 @@ export default function App() {
           <Route path={":registry_id/team"} element={<TeamPage />} />
           <Route path={":registry_id/reports"} element={<ReportsPage />} />
           <Route path={":registry_id/patient-referral"} element={<PatientReferralPage />} />
-          <Route path={":registry_id/patient/:patient_id"} element={<PatientSession />} />
+          <Route path={":registry_id/patient/:patient_id/treatment-session"} element={<PatientSession />} />
         </Route>        
       </Routes>
       

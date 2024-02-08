@@ -104,7 +104,7 @@ const PatientDetail = () => {
                     </div>
                 </div>
                 <Container size="xs">
-                    <Button color="pink" fullWidth onClick={() => navigate('/registry/' + akello.getSelectedRegistry().id + '/patient/' + akello.getSelectedPatientRegistry().id)}>
+                    <Button color="pink" fullWidth onClick={() => navigate('/registry/' + akello.getSelectedRegistry().id + '/patient/' + akello.getSelectedPatientRegistry().id + '/treatment-session')}>
                         Start Session
                     </Button>
                 </Container>
