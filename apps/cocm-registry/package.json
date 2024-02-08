@@ -16,6 +16,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.1.1",
+    "@mantine/charts": "^7.5.1",
     "@mantinex/mantine-logo": "^1.0.1",
     "@modulz/radix-icons": "^4.0.0",
     "@mui/material": "^5.15.7",

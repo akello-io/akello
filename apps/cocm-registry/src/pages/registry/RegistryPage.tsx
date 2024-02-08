@@ -16,11 +16,14 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     drawerHandlers.open()
     const akello = useAkello()    
 
+    if(akello.getSelectedRegistry().id === undefined) {
+        navigate('/')    
+    }
+
     useEffect(() => {        
-        akello.registryService.getRegistryPatients(akello.getSelectedRegistry().id, (data) => {            
+        akello.registryService.getRegistryPatients(akello.getSelectedRegistry().id, (data) => {                        
             setPatients(data['successfully_loaded'])
-            setQuestionnaires(data['questionnaires'])
-            debugger;
+            setQuestionnaires(data['questionnaires'])            
             if(data['successfully_loaded'].length == 0) {
                 navigate('/registry/'+akello.getSelectedRegistry().id+'/patient-referral')
             } else {
