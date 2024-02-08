@@ -18,11 +18,11 @@ const AppHomePage: React.FC<AppHomePageProps> = ({ drawerHandlers }) => {
     useEffect(() => {
         setIsLoading(true);
         akello.userService.getUserRegistries((data) => {
-            const registries = data.map((registry: any) => {
-                debugger;
+            const registries = data.map((registry: any) => {                
                 return new Registry(
                     registry['id'],
                     registry['name'],
+                    registry['description'],
                     registry['active_patients'],
                     registry['members'],
                     registry['questionnaires'],

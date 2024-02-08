@@ -90,6 +90,7 @@ class RegistryIntegration(BaseModel):
 class RegistryModel(RegistryDBBaseModel):
     id: str
     name: str
+    description: str
     modified_date: float
     created_date: float
     members: int = 0

@@ -16,13 +16,14 @@ class RegistryService(BaseService):
     # the user object should be a validated one. Meaning there is no way its directly
     # from a web request where a user can set their roles
     @staticmethod
-    def create_registry(name, questionnaires, integrations, logo_url=None):
+    def create_registry(name, description, questionnaires, integrations, logo_url=None):
         current_timestamp = datetime.datetime.utcnow().timestamp()
         rd = random.Random()
 
         registry = RegistryModel(
             id=str(uuid.UUID(int=rd.getrandbits(128))),
             name=name,
+            description=description,
             questionnaires=questionnaires,
             integrations=integrations,
             logo_url=logo_url,

@@ -52,7 +52,8 @@ async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_chec
 
     user_id = auth.cognito_id
     for registry in registries:
-        registry_id = registry['id']
+        registry_id = registry['id']        
+
         registry_access = UserService.check_registry_access(user_id, registry_id)
         registry['is_admin'] = registry_access['is_admin']
         registry['role'] = registry_access['role']
