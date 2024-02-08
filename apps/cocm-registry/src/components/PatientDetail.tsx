@@ -11,7 +11,7 @@ import TreatmentProgress from './treatment-progress/TreatmentProgress';
 const PatientDetail = () => {       
     const akello = useAkello();    
     const selectedPatient = akello.getSelectedPatientRegistry();        
-    const questionnaires: Questionnaire[] = [];    
+    const selectedRegistry = akello.getSelectedRegistry();    
     
     const navigate = useNavigate();
     const getWeeksSince = (date: number) => {
@@ -20,6 +20,9 @@ const PatientDetail = () => {
         var diff = moment.duration(ia.diff(today));
         return diff.weeks();
     };
+
+    
+
 
 
     if(selectedPatient === undefined) {
@@ -33,8 +36,7 @@ const PatientDetail = () => {
         
     } else {
         console.log(selectedPatient.patient_flag);
-    }
-
+    }    
 
     return (
         <>
@@ -117,7 +119,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2 h-64 w-full"}>
-                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={questionnaires} />
+                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires} />
                                 </div>
                             </div>
 
@@ -128,7 +130,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2"}>
-                                <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={questionnaires} />                                    
+                                <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires} />                                    
                                 </div>
                             </div>
                         </>

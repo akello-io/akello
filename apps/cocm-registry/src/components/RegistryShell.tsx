@@ -71,8 +71,7 @@ const RegistryShell = () => {
                 <Outlet />                
             </AppShell.Main>
             <AppShell.Aside>
-                <PatientDetail />
-                                
+                <PatientDetail />                                
             </AppShell.Aside>
         </AppShell>
     );
