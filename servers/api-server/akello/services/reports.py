@@ -74,12 +74,14 @@ class ReportsService(BaseService):
         payer_distribution = []
         scores = {}
         payers = {}
+        status_distribution = {}
+
         treatment_performance = {
             'avg_weeks': 0,
             'median_weeks': 0,
             'max_weeks': 0
         }
-        list_weeks = []
+        list_weeks = []        
         for patient in patients:
             patient_registry = PatientRegistry(**patient)
 
@@ -87,6 +89,11 @@ class ReportsService(BaseService):
                 payers[patient_registry.payer] = 1
             else:
                 payers[patient_registry.payer] += 1
+
+            if patient_registry.status.value not in status_distribution:
+                status_distribution[patient_registry.status.value] = 0
+
+            status_distribution[patient_registry.status.value] += 1
 
             if len(patient_registry.treatment_logs) == 0: continue
 
@@ -134,7 +141,7 @@ class ReportsService(BaseService):
             'screening': scores,
             'payer_distribution': payer_distribution,
             'patient_status_distribution': {
-                'status': 'status_keys',
-                'values': 'status_values'
+                'status': list(status_distribution.keys()),
+                'values': [value for key, value in status_distribution.items()]
             }
         }

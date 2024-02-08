@@ -6,6 +6,10 @@ interface TreatmentProgressProps {
     weeks: number;
 }
 const TreatmentProgress:React.FC<TreatmentProgressProps> = ({weeks}) => {
+  if(Number.isNaN(weeks)) {
+    weeks = 0
+  }
+
   return (
     <Card withBorder radius="md" p="xl" className={classes.card}>
       <Text fz="xs" tt="uppercase" fw={700} className={classes.title}>
