@@ -18,13 +18,19 @@ const AppHomePage: React.FC<AppHomePageProps> = ({ drawerHandlers }) => {
     useEffect(() => {
         setIsLoading(true);
         akello.userService.getUserRegistries((data) => {
-            const registries = data.map((registry: any) => {
+            const registries = data.map((registry: any) => {                
                 return new Registry(
                     registry['id'],
                     registry['name'],
+                    registry['description'],
                     registry['active_patients'],
+                    registry['members'],
                     registry['questionnaires'],
-                    {}
+                    {
+                        total_minutes: registry['total_minutes'],
+                        completed_minutes: registry['completed_minutes'],
+                        safety_risk: registry['safety_risk']
+                    }
                 );
             });
             setRegistries(registries);
@@ -38,11 +44,7 @@ const AppHomePage: React.FC<AppHomePageProps> = ({ drawerHandlers }) => {
             <div className='space-y-3'>
                 {!isLoading && registries.map((registry: Registry) => (
                     <RegistryCard
-                        registry={registry}
-                        avatars={[
-                            'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-2.png',
-                            'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-4.png'
-                        ]}
+                        registry={registry}                        
                     />
                 ))}
             </div>

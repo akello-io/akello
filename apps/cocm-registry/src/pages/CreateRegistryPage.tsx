@@ -26,6 +26,7 @@ interface RegistryCreateSectionProps {
     setIdx: (idx: number) => void
     inputs: ReactNode
     registryName?: string
+    registryDescription?: string 
     invites?: UserInvite[]
     integrations?: APIIntegration[]
     logo_url?: string
@@ -40,6 +41,7 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
         setIdx,
         inputs,
         registryName,
+        registryDescription,
         invites,
         integrations,
         logo_url
@@ -86,6 +88,7 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
 
                                     akello.registryService.createRegistry({
                                         'name': registryName!,
+                                        'description': registryDescription!,
                                         'invited-users': invites,
                                         'first_name': 'Vijay',
                                         'last_name': 'Selvaraj',
@@ -113,6 +116,7 @@ const CreateRegistryPage = () => {
     const [stepIdx, setStepIdx] = useState(0)
     const [screeners, setScreeners] = useState([])
     const [registryName, setRegistryName] = useState('')
+    const [registryDescription, setRegistryDescription] = useState('')
     const [integrations, setIntegrations] = useState<APIIntegration[]>([])
     const [logoUrl, setLogoUrl] = useState('')
 
@@ -122,18 +126,33 @@ const CreateRegistryPage = () => {
             description: "This will be the name of your Akello registry - Chose something that your team will recognize",
             inputs: (
                 <>
-                    <div className="flex flex-col space-y-4">
-                        <input
-                            id={"registry-name"}
-                            type="text"
-                            placeholder="Registry name"
-                            className="input input-bordered bg-white w-full max-w-xs"
-                            value={registryName}
-                            onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                                setRegistryName(e.currentTarget.value)
-                            }}
-                        />                        
+                    <div>
+                        <div className="flex flex-col space-y-4">
+                            <input
+                                id={"registry-name"}
+                                type="text"
+                                placeholder="Registry name"
+                                className="input input-bordered bg-white w-full max-w-xs"
+                                value={registryName}
+                                onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                                    setRegistryName(e.currentTarget.value)
+                                }}
+                            />                        
+                        </div>
+                        <div className="flex flex-col space-y-4">
+                            <input
+                                id={"registry-description"}
+                                type="text"
+                                placeholder="Description"
+                                className="input input-bordered bg-white w-full max-w-xs"
+                                value={registryDescription}
+                                onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                                    setRegistryDescription(e.currentTarget.value)
+                                }}
+                            />                        
+                        </div>
                     </div>
+                    
                 </>
             )
         }        
@@ -150,6 +169,7 @@ const CreateRegistryPage = () => {
                     setIdx={(idx) => setStepIdx(idx)}
                     inputs={create_steps[stepIdx].inputs}
                     registryName={registryName}
+                    registryDescription={registryDescription}
                     invites={invites}
                     integrations={integrations}
                     logo_url={logoUrl}

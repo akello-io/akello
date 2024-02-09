@@ -23,7 +23,8 @@ class ReportsService(BaseService):
             'patients': {
 
             }
-        }
+        }        
+
         for patient in patients:
             mrn = patient['patient_mrn']
             if mrn not in patient_report:
@@ -31,25 +32,29 @@ class ReportsService(BaseService):
                     'minute_stats': {},
                     'info': patient
                 }
-
+            
             for treatment_log in patient['treatment_logs']:
-                t = TreatmentLog(**treatment_log)
+
+                t = TreatmentLog(**treatment_log) 
                 utc_dt = datetime.utcfromtimestamp(t.date / 1000)
                 if not (utc_dt.timestamp() >= from_date and utc_dt.timestamp() <= to_date):
                     continue
                 year = utc_dt.year
                 month = utc_dt.month
-                utc_dt_str = '%s-%s' % (year, month)
+                utc_dt_str = '%s-%s' % (year, month)                
 
                 if utc_dt_str not in patient_report['patients'][mrn]['minute_stats']:
-                    patient_report['patients'][mrn]['minute_stats'][utc_dt_str] = 0
-                patient_report['patients'][mrn]['minute_stats'][utc_dt_str] += t.minutes
+                    patient_report['patients'][mrn]['minute_stats'][utc_dt_str] = 0                
 
+                patient_report['patients'][mrn]['minute_stats'][utc_dt_str] += t.minutes                    
+        
+        
         # flatten the data
         r = []
+                         
         for mrn in patient_report['patients']:
-            p = patient_report['patients'][mrn]['info']
-            for s in patient_report['patients'][mrn]['minute_stats']:
+            p = patient_report['patients'][mrn]['info']            
+            for s in patient_report['patients'][mrn]['minute_stats']:                
                 r.append({
                     'first_name': p['first_name'],
                     'last_name': p['last_name'],
@@ -69,12 +74,14 @@ class ReportsService(BaseService):
         payer_distribution = []
         scores = {}
         payers = {}
+        status_distribution = {}
+
         treatment_performance = {
             'avg_weeks': 0,
             'median_weeks': 0,
             'max_weeks': 0
         }
-        list_weeks = []
+        list_weeks = []        
         for patient in patients:
             patient_registry = PatientRegistry(**patient)
 
@@ -82,6 +89,11 @@ class ReportsService(BaseService):
                 payers[patient_registry.payer] = 1
             else:
                 payers[patient_registry.payer] += 1
+
+            if patient_registry.status.value not in status_distribution:
+                status_distribution[patient_registry.status.value] = 0
+
+            status_distribution[patient_registry.status.value] += 1
 
             if len(patient_registry.treatment_logs) == 0: continue
 
@@ -129,7 +141,7 @@ class ReportsService(BaseService):
             'screening': scores,
             'payer_distribution': payer_distribution,
             'patient_status_distribution': {
-                'status': 'status_keys',
-                'values': 'status_values'
+                'status': list(status_distribution.keys()),
+                'values': [value for key, value in status_distribution.items()]
             }
         }

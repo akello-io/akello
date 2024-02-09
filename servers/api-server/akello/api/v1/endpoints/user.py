@@ -4,6 +4,8 @@ from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.dynamodb.models.user import UserInvite
 from akello.services.user import UserService
 from akello.services.registry import RegistryService
+from akello.services.reports import ReportsService  
+from datetime import datetime, timedelta
 
 import logging
 
@@ -50,13 +52,28 @@ async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_chec
 
     user_id = auth.cognito_id
     for registry in registries:
-        registry_id = registry['id']
+        registry_id = registry['id']        
+
         registry_access = UserService.check_registry_access(user_id, registry_id)
         registry['is_admin'] = registry_access['is_admin']
         registry['role'] = registry_access['role']
         registry_metadata = RegistryService.get_registry(registry_id)
-        registry['members'] = registry_metadata['members']
+        registry['members'] = RegistryService.get_members(registry_id)
+        
+        patients = RegistryService.get_patients(registry_id)
+                
+        for patient in patients:            
+            if 'flag' in patient and patient['patient_flag'] == 'Safety Risk':                
+                registry['safety_risk'] = True                   
+
+        # registry['members'] = registry_metadata['members']
         registry['active_patients'] = registry_metadata['active_patients']
+
+        registry['total_minutes'] = registry_metadata['active_patients'] * 70   # 70 mins minimum per patient
+        first_day_month = datetime.today().replace(day=1)   
+        last_day_month = first_day_month + timedelta(days=31)        
+        billing_data = ReportsService.get_billing_report(registry_id, first_day_month.timestamp(), last_day_month.timestamp() )
+        registry['completed_minutes'] = sum([patient['total_minutes'] for patient in billing_data])
 
         # TODO: This could be a farily large object since we are returning the full FHIR Resource
         registry['questionnaires'] = registry_metadata['questionnaires']

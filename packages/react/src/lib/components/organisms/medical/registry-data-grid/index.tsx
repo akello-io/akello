@@ -134,9 +134,11 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             editable: true,
             valueGetter: (params) => {
                 let total = 0
-                params.row.treatment_logs.map((treatment_log: TreatmentLog) => {
-                    total += treatment_log.minutes!
-                })
+                if(params.row.treatment_logs && params.row.treatment_logs.length > 0) {
+                    params.row.treatment_logs.map((treatment_log: TreatmentLog) => {
+                        total += treatment_log.minutes!
+                    })                    
+                }                
                 return total
             }
         },

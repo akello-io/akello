@@ -32,14 +32,11 @@ const StopWatch:React.FC<StopWatchProps> = ({timeCallback}) => {
             if(timeCallback) {
                 timeCallback(mm_, ss_, ms_)
             }
-
-
             // console.log('tick')
         }, 10)
 
 
     }, [])
-
 
     // 1 => 01
     const format = (num: number) => {

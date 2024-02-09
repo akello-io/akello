@@ -1,16 +1,17 @@
 import * as React from "react";
 import {DrawerLayout} from "@akello/react";
-import {useFormik} from "formik";
+import {useFormik, Field} from "formik";
 import * as Yup from "yup";
 import {PatientRegistry} from "@akello/core";
 import { useNavigate } from 'react-router';
 import {useAkello} from '@akello/react-hook'
-import {Input, Button} from "@mantine/core"
+import {Input, Button, Center, Container, Select} from "@mantine/core"
 
 
 const PatientReferralPage = () => {
     const akello = useAkello()
     const navigate = useNavigate()
+
 
     const formik = useFormik({
         initialValues: {
@@ -26,7 +27,7 @@ const PatientReferralPage = () => {
             mrn: Yup.string()                
                 .required('Required'),
             payer: Yup.string()
-                .max(15, 'Must be 15 characters or less'),
+                .required('Required'),
             firstName: Yup.string()
                 .max(15, 'Must be 15 characters or less')
                 .required('Required'),
@@ -56,19 +57,24 @@ const PatientReferralPage = () => {
 
     return (
         <div>
-            <div className={"space-y-4"}>
-                    <div className={"w-full border border-1"}>
+            <Center>
+
+            
+            <Container>
+
+            
+            <div className={"border border-1 min-w-96"}>
                         <div className={"font-semibold border-b border-1 p-2"}>
                             <p className={"text-xl"}>
                                 Add Patient
                             </p>
                         </div>
                         <div className={"p-2 space-y-4"}>
-                            <div className="w-full max-w-xs">
+                            <div className="max-w-xs">
                                 <form className="rounded px-2 pt-6 pb-8 mb-4"
                                       onSubmit={formik.handleSubmit}>
                                     <div className="mb-4">
-                                        <label className="blocktext-sm font-bold mb-2"
+                                        <label className="block text-xs font-bold mb-2"
                                                htmlFor="mrn">
                                             MRN
                                         </label>
@@ -83,14 +89,26 @@ const PatientReferralPage = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block  text-sm font-bold mb-2"
-                                               htmlFor="payer">
+                                        <label className="block  text-xs font-bold mb-2" htmlFor="payer">
                                             Payer
-                                        </label>
-                                        <Input
-                                            id="payer"
-                                            type="text"                                        
-                                            {...formik.getFieldProps('payer')}
+                                        </label>  
+                                                     
+                                        <Select
+                                            id="payer"                                            
+                                            searchValue={formik.values.payer}
+                                            onSearchChange={(value) => formik.setFieldValue('payer', value)}
+                                            data={[
+                                                'UnitedHealth Group',
+                                                'Anthem, Inc.',
+                                                'Aetna (CVS Health)',
+                                                'Cigna',
+                                                'Humana',
+                                                'Centene Corporation',
+                                                'Molina Healthcare',
+                                                'Blue Cross Blue Shield',
+                                                'Independence Blue Cross',
+                                                'Other'
+                                            ]}   
                                         />
                                         {formik.touched.payer && formik.errors.payer ? (
                                             <div className={"text-error"}>{formik.errors.payer}</div>
@@ -98,7 +116,7 @@ const PatientReferralPage = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block text-sm font-bold mb-2"
+                                        <label className="block text-xs font-bold mb-2"
                                                htmlFor="firstName">
                                             First Name
                                         </label>
@@ -113,7 +131,7 @@ const PatientReferralPage = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block  text-sm font-bold mb-2"
+                                        <label className="block text-xs font-bold mb-2"
                                                htmlFor="lastName">
                                             Last Name
                                         </label>
@@ -126,7 +144,7 @@ const PatientReferralPage = () => {
                                         ) : null}
                                     </div>
                                     <div className="mb-4">
-                                        <label className="block  text-sm font-bold mb-2"
+                                        <label className="block text-xs font-bold mb-2"
                                                htmlFor="dob">
                                             Date of Birth
                                         </label>
@@ -140,7 +158,7 @@ const PatientReferralPage = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block  text-sm font-bold mb-2"
+                                        <label className="block text-xs font-bold mb-2"
                                                htmlFor="phoneNumber">
                                             email
                                         </label>
@@ -154,7 +172,7 @@ const PatientReferralPage = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block  text-sm font-bold mb-2"
+                                        <label className="block text-xs font-bold mb-2"
                                                htmlFor="phoneNumber">
                                             Phone Number
                                         </label>
@@ -178,7 +196,8 @@ const PatientReferralPage = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+            </Container>
+            </Center>
         </div>
     )
 }

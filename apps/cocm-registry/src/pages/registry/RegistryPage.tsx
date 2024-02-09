@@ -18,9 +18,9 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
 
     if(akello.getSelectedRegistry().id === undefined) {
         navigate('/')    
-    }
+    }    
 
-    useEffect(() => {        
+    useEffect(() => {                        
         akello.registryService.getRegistryPatients(akello.getSelectedRegistry().id, (data) => {                        
             setPatients(data['successfully_loaded'])
             setQuestionnaires(data['questionnaires'])            
@@ -32,7 +32,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
             }            
         }, (data) => {            
         })
-    }, [])
+    }, [akello])
 
     return (
         <>

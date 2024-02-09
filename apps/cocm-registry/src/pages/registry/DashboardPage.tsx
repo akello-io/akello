@@ -80,17 +80,17 @@ const DashboardPage = () => {
                 <ScreeningComponent title={"Treatment Performance"}>
                     <div className={" p-12 w-full pb-6 flex flex-row space-x-12"}>
                         <div className={"text-center space-y-4"}>
-                            <div className={"font-black text-5xl"}>{treatment['avg_weeks']}</div>
+                            <div className={"font-black text-5xl"}>{Math.round(treatment['avg_weeks'])}</div>
                             <div>Avg. Weeks in treatment</div>
                         </div>
 
                         <div className={"text-center space-y-4"}>
-                            <div className={"font-black text-5xl"}>{treatment['median_weeks']}</div>
+                            <div className={"font-black text-5xl"}>{Math.round(treatment['median_weeks'])}</div>
                             <div>Median Weeks in treatment</div>
                         </div>
 
                         <div className={"text-center space-y-4"}>
-                            <div className={"font-black text-5xl"}>{treatment['max_weeks']}</div>
+                            <div className={"font-black text-5xl"}>{Math.round(treatment['max_weeks'])}</div>
                             <div>Max Weeks in treatment</div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@ const DashboardPage = () => {
                             Object.keys(screening).map((key, index) => {
                                 return (
                                     <div className={"text-center space-y-4"}>
-                                        <div className={"font-black text-5xl"}>{screening[key]['avg']}</div>
+                                        <div className={"font-black text-5xl"}>{Math.round(screening[key]['avg'])}</div>
                                         <div>{key}</div>
                                     </div>
                                 )
@@ -128,8 +128,8 @@ const DashboardPage = () => {
 
                     <ThemeProvider theme={muiTheme}>
                         <BarChart
-                            xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
-                            series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
+                            xAxis={[{ scaleType: 'band', data: statusDistribution['status'] }]}
+                            series={[{ data: statusDistribution['values'] }]}
                             width={500}
                             height={300}
                         />

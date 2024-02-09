@@ -21,23 +21,12 @@ const PatientDetail = () => {
         return diff.weeks();
     };
 
-    
-
-
-
     if(selectedPatient === undefined) {
         return (
             <></>
         )
     } 
     
-    
-    if(selectedPatient.patient_flag === null) {    
-        
-    } else {
-        console.log(selectedPatient.patient_flag);
-    }    
-
     return (
         <>
             <div className={"space-y-4 h-screen overflow-scroll	"}>
@@ -104,7 +93,7 @@ const PatientDetail = () => {
                     </div>
                 </div>
                 <Container size="xs">
-                    <Button color="pink" fullWidth onClick={() => navigate('/registry/' + akello.getSelectedRegistry().id + '/patient/' + akello.getSelectedPatientRegistry().id)}>
+                    <Button color="pink" fullWidth onClick={() => navigate('/registry/' + akello.getSelectedRegistry().id + '/patient/' + akello.getSelectedPatientRegistry().id + '/treatment-session')}>
                         Start Session
                     </Button>
                 </Container>
