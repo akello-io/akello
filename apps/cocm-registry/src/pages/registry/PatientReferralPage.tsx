@@ -1,6 +1,6 @@
 import * as React from "react";
 import {DrawerLayout} from "@akello/react";
-import {useFormik} from "formik";
+import {useFormik, Field} from "formik";
 import * as Yup from "yup";
 import {PatientRegistry} from "@akello/core";
 import { useNavigate } from 'react-router';
@@ -11,6 +11,7 @@ import {Input, Button, Center, Container, Select} from "@mantine/core"
 const PatientReferralPage = () => {
     const akello = useAkello()
     const navigate = useNavigate()
+
 
     const formik = useFormik({
         initialValues: {
@@ -26,7 +27,7 @@ const PatientReferralPage = () => {
             mrn: Yup.string()                
                 .required('Required'),
             payer: Yup.string()
-                .max(15, 'Must be 15 characters or less'),
+                .required('Required'),
             firstName: Yup.string()
                 .max(15, 'Must be 15 characters or less')
                 .required('Required'),
@@ -88,14 +89,14 @@ const PatientReferralPage = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block  text-xs font-bold mb-2"
-                                               htmlFor="payer">
+                                        <label className="block  text-xs font-bold mb-2" htmlFor="payer">
                                             Payer
-                                        </label>
-                                        <Input
-                                            id="payer"
-                                            type="text"   
-                                            //placeholder="Select payer"
+                                        </label>  
+                                                     
+                                        <Select
+                                            id="payer"                                            
+                                            searchValue={formik.values.payer}
+                                            onSearchChange={(value) => formik.setFieldValue('payer', value)}
                                             data={[
                                                 'UnitedHealth Group',
                                                 'Anthem, Inc.',
@@ -107,9 +108,7 @@ const PatientReferralPage = () => {
                                                 'Blue Cross Blue Shield',
                                                 'Independence Blue Cross',
                                                 'Other'
-                                            ]}
-                                            searchable
-                                            {...formik.getFieldProps('payer')}
+                                            ]}   
                                         />
                                         {formik.touched.payer && formik.errors.payer ? (
                                             <div className={"text-error"}>{formik.errors.payer}</div>
