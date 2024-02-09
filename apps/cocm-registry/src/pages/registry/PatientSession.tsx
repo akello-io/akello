@@ -13,6 +13,9 @@ import {
 import { useAkello } from "@akello/react-hook";
 import { useNavigate } from "react-router";
 
+import QuestionnaireForm from "../../components/QuestionnaireForm";
+
+
 
 interface SelectorProps {
     selectedId?: number
@@ -20,31 +23,32 @@ interface SelectorProps {
     onSelection: (response: QuestionnaireResponse) => void
 }
 const Selector:React.FC<SelectorProps> = ({selectedId, onSelection, question}) => {
-    const [selectedResponse, setSelectedResponse] = useState(0)
+    const [selectedResponseId, setSelectedResponseId] = useState(0)
 
     useEffect(() => {
-        console.log(selectedResponse)
-        debugger;
-    }, [selectedResponse])
+        console.log(selectedResponseId)        
+    }, [selectedResponseId])
 
     return (
         <>
-        <Radio.Group
-        name={question.id}
-        label={question.question}
-        description="This is anonymous"
-        withAsterisk
-        >
-        <Group mt="xs">                
-            {
-                question.responses.map((response) => {                                
-                    return (
-                        <Radio label={response.response} value={response.response} onClick={(event) => onSelection(response)} />
-                    )
-                })
-            }                                
-        </Group>
-        </Radio.Group>
+            <Radio.Group                
+                name={question.id}
+                label={question.question}                
+                description="This is anonymous"
+                withAsterisk>
+                    <Group mt="xs">                
+                        {
+                            question.responses.map((response) => {                                 
+                                return (
+                                    <Radio checked={response.id===selectedResponseId}  label={response.response} value={response.response} onClick={(event) => {
+                                        onSelection(response)
+                                        setSelectedResponseId(response.id)
+                                    }}  />
+                                )
+                            })
+                        }                                
+                    </Group>
+            </Radio.Group>
         </>
     )    
 }
@@ -66,6 +70,11 @@ const PatientSession = ({}) => {
     const navigate = useNavigate()
     const akello = useAkello()
 
+    type ScoreDictionary = {
+        [question: string]: any;
+    };
+    const [questionnaire_responses, setQuestionnaireResponses] = useState<{ [questionnaire: string] : ScoreDictionary }>({})
+
     
     useEffect(() => {
         akello.registryService.getRegistry(akello.getSelectedRegistry().id, (data) => {
@@ -74,6 +83,10 @@ const PatientSession = ({}) => {
             debugger;
         })
     }, [])
+
+    useEffect(() => {
+        console.log(questionnaire_responses)
+    }, [questionnaire_responses])    
     
 
     const [mm, setMM] = useState(0)
@@ -81,13 +94,17 @@ const PatientSession = ({}) => {
     // const [ms, setMS] = useState(0)
 
     const [noShow, setNoShow] = useState(false)
-
-    type ScoreDictionary = {
-        [question: string]: any;
-    };
-    const [questionnaire_responses, setQuestionnaireResponses] = useState<{ [questionnaire: string] : ScoreDictionary }>({})
-
     
+
+    if(questionnaires.length == 0) {
+        return (
+            <div>
+                Loading...
+            </div>
+        )
+    }
+
+
     return (
         <>
             <div className={"space-y-4 mx-auto"}>
@@ -120,7 +137,7 @@ const PatientSession = ({}) => {
                                 let scores = []                                   
                                 for (let questionnaire_uid in questionnaire_responses) {
                                     let responses = questionnaire_responses[questionnaire_uid]["responses"];                                                               
-                                    let score = 0
+                                    let score = 0                                    
                                     for(let response_id in responses) {
                                         score += questionnaire_responses[questionnaire_uid]["responses"][response_id]
                                     }                                    
@@ -188,43 +205,20 @@ const PatientSession = ({}) => {
                     </div>
                 </div>
                 {
-                    questionnaires.map((questionnaire) => {                        
+                    questionnaires.map((questionnaire: Questionnaire) => {
                         return (
-                            <>
-                                <div className={"border border-1"}>
-                                    <div className={"font-semibold border-b border-1 p-2"}>
-                                        <p className={"text-xl"}>
-                                            {questionnaire.name}
-                                        </p>
-                                    </div>
-                                    <div className={"p-2 space-y-5 "}>
-                                        {
-                                                questionnaire.questions.map((questionnaire_question) => {
-                                                    return (
-                                                        <>
-                                                            <Selector question={questionnaire_question}  onSelection={(selectedResponse: QuestionnaireResponse) => {
-                                                                    if(questionnaire_responses[questionnaire.uid] == undefined) {
-                                                                        questionnaire_responses[questionnaire.uid] = {
-                                                                            "responses": {},
-                                                                            "name": questionnaire.name
-                                                                        }
-                                                                    }
-                                                                    questionnaire_responses[questionnaire.uid]["responses"][questionnaire_question.id] = selectedResponse.score
-                                                                    setQuestionnaireResponses({...questionnaire_responses})
-                                                                    console.log(questionnaire_responses)
-                                                                }}/>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                    </div>
-                                </div>
-                            </>
-                        )
-                    })
+                            <QuestionnaireForm 
+                                questionnaire={questionnaire} 
+                                onSelectedResponsesChange={(response) => {                                                                
+                                    setQuestionnaireResponses((prevResponses) => ({
+                                        ...prevResponses,
+                                        [questionnaire.uid]: response
+                                    }));
+                                }} 
+                            />
+                        );
+                    })            
                 }
-
-
             </div>
         </>
     )
