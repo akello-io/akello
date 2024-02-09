@@ -58,6 +58,7 @@ const PatientDetail = () => {
                                         clearable
                                         fullWidth
                                         defaultValue={akello.getSelectedPatientRegistry()?.patient_flag}
+                                        value={akello.getSelectedPatientRegistry()?.patient_flag}
                                         data={[                        
                                             'Needs Discussion',
                                             'Review with Psychiatrist',
@@ -67,7 +68,7 @@ const PatientDetail = () => {
                                             akello.registryService.setFlag(akello.getSelectedRegistry().id, selectedPatient.patient_mrn, value, () => {                                                
                                                 selectedPatient.patient_flag = value;
                                                 akello.selectPatient(selectedPatient);                                                
-                                                akello.dispatchEvent({ type: 'change' });                                                
+                                                akello.dispatchEvent({ type: 'change' });
                                             })
                                         }}
                                     />       
@@ -79,7 +80,8 @@ const PatientDetail = () => {
                                     'Deactivated'
                                 ]}
                                 className='col-span-2' 
-                                defaultValue={akello.getSelectedPatientRegistry()?.status}                                
+                                defaultValue={selectedPatient.status}
+                                value={selectedPatient.status}
                                 onChange={(value) => {
                                     akello.registryService.setStatus(akello.getSelectedRegistry().id, selectedPatient.patient_mrn, value, () => {                                                                                
                                         selectedPatient.status = value;

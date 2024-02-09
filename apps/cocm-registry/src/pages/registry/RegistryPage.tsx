@@ -41,6 +41,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
                     const clickedPatient = object.row as PatientRegistry
                     akello.selectPatient(clickedPatient)   
                     akello.dispatchEvent({ type: 'change' });
+                    console.log(clickedPatient.status)
                 }} />    
             </div>
             
