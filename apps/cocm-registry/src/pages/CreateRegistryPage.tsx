@@ -126,7 +126,7 @@ const CreateRegistryPage = () => {
             description: "This will be the name of your Akello registry - Chose something that your team will recognize",
             inputs: (
                 <>
-                    <div>
+                    <div className='flex flex-col space-y-3'>
                         <div className="flex flex-col space-y-4">
                             <input
                                 id={"registry-name"}
