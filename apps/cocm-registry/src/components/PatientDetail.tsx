@@ -37,7 +37,7 @@ const PatientDetail = () => {
                                 {selectedPatient.first_name} {selectedPatient.last_name}
                             </div>
                             <div className={'text-xs font-light text-gray-600'}>
-                                vijay@g.com
+                            {selectedPatient.email}
                             </div>                            
                         </div>     
                         <div className='flex flex-row space-x-3'>

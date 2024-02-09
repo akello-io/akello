@@ -7,6 +7,14 @@ class MetriportMixin(PatientMixinBase):
 
     def run(self, *args, **kwargs):
         print("running MetriportMixin")
+        
+        """
+        TODO:
+        - Get Patient and register an event log
+        - attach the event ID to metriport's meta data
+        - lookup the metriport event ID in the patients event logs and attach the data
+        """
+        
         api_key = os.getenv('METRIPORT_API_KEY', None)
         api_url = os.getenv('METRIPORT_API_URL', None)
         assert api_key and api_url

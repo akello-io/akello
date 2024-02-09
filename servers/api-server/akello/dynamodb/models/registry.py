@@ -31,10 +31,9 @@ class TreatmentLogScore(BaseModel):
 
 
 class TreatmentLog(BaseModel):
-    patient_mrn: Optional[str] = None
+    patient_mrn: Optional[str] = None  # TODO: We should remove this field since it's already in PatientRegistry
     provider: Optional[str] = None
-
-    # TODO: Add a UI to flag if a user was a no-show
+    
     no_show: Optional[bool] = False
 
     flag: Optional[FlagTypes] = None
@@ -57,7 +56,14 @@ class TreatmentLog(BaseModel):
     total_email_reminders_sent: Optional[int] = 0
 
     # TODO: Allow the ability to schedule future sessions
-    date: float
+    date: float #TODO: Refactor this to created_date     
+
+class EventLog(BaseModel):
+    id: str    
+    system: Optional[str] = None
+    data: Optional[dict] = None
+    created_date: float
+    modified_date: float
 
 
 class AuditLog(BaseModel):
@@ -118,14 +124,13 @@ class PatientRegistry(RegistryDBBaseModel):
 
     payer: Optional[str] = None
 
-    integration_metriport_fhir_data: Optional[dict] = None
-
     first_name: str
     last_name: str
     phone_number: str
     email: str
     date_of_birth: str
     treatment_logs: List[TreatmentLog] = []
+    event_logs: List[EventLog] = []
     audit_logs: List[AuditLog] = []
     flags: List[dict] = []
 
