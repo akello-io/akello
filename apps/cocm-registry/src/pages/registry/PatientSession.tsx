@@ -3,7 +3,7 @@ import StopWatch from "../../components/stopwatch/StopWatch";
 import {useEffect, useState} from "react";
 import classNames from "classnames";
 import {Dropdown} from "@akello/react";
-import {Button, Select, Radio, Group, Switch} from "@mantine/core";
+import {Button, Select, Radio, Group, Switch, Checkbox} from "@mantine/core";
 import {
     PatientRegistry,
     Questionnaire,
@@ -110,25 +110,14 @@ const PatientSession = ({}) => {
             <div className={"space-y-4 mx-auto"}>
                 <div className={"border border-1"}>
                     <div className={"flex flex-row font-semibold border-b border-1 p-2"}>
-                        <p className={"text-xl my-auto"}>
+                        <p className={"text-3xl font-semibold"}>
                             <StopWatch timeCallback={(mm, ss, ms) => {
                                 setMM(mm)
                                 // setSS(ss)
                                 // setMS(ms)
                             }}/>
                         </p>
-                        
-                        <div className={"flex flex-row space-x-4 my-auto"}>
-                            <div>
-                                <p className={"text-sm"}>
-                                    No Show
-                                </p>
-                                <Switch
-                                    checked={noShow}
-                                    onChange={(event) => setNoShow(event.currentTarget.checked)}
-                                />
-                                
-                            </div>
+                        <div className={"flex flex-row space-x-4 my-auto"}>                                                                                     
                             <Button variant="filled" color="red" onClick={() => setSelectedTab("Main")}>
                                 cancel
                             </Button>
@@ -160,16 +149,28 @@ const PatientSession = ({}) => {
                                     date: Date.now() // UTC time
                                 }, (data) => {
                                     // let treatment_logs = [...selectedPatient.treatment_logs!, data]
-                                    // selectedPatient.treatment_logs = treatment_logs
-                                    debugger;
+                                    // selectedPatient.treatment_logs = treatment_logs                                    
                                     navigate('/registry/' + akello.getSelectedRegistry().id)
                                 })
 
                             }}>
                                 save session
                             </Button>
+                            <div className='my-auto'>
+                                <Checkbox                                    
+                                        label="Patient did not show up for appointment"
+                                        checked={noShow}
+                                        onChange={(event) => setNoShow(event.currentTarget.checked)}
+                                    />   
+                            </div>
+                            
                         </div>
+                             
+                        
+                        
+                        
                     </div>
+                    
                     
                     <div className={"flex p-2"}>
                         <div className={"flex space-x-3"}>
