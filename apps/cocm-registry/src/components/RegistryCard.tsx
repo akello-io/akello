@@ -13,7 +13,8 @@ interface RegistryCardProps {
 const RegistryCard: React.FC<RegistryCardProps> = (props) => {
   const navigate = useNavigate();
   const akello = useAkello();
-            
+          
+  
   return (    
     <Card className='cursor-pointer' withBorder padding="lg" radius="md" onClick={() => {
       navigate('/registry/' + props.registry.id);
@@ -39,7 +40,7 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
       <Text c="dimmed" fz="sm" mt="md">
         Minutes completed this month:{' '}
         <Text span fw={500} c="bright">
-          {props.registry.stats.completed_minutes}
+          {props.registry.stats.completed_minutes.toFixed(2)}
         </Text>      
       </Text>
       <Text c="dimmed" fz="sm">

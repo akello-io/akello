@@ -44,6 +44,7 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
             field: 'minutes',
             headerName: 'Minutes',
             width: 160,
+            valueFormatter: ({ value }) => value.toFixed(2)
         },
         {
             field: 'no_show',
