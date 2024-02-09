@@ -1,8 +1,9 @@
 import { Card, Avatar, Text, Progress, Badge, Group, ActionIcon } from '@mantine/core';
-import { IconUpload } from '@tabler/icons-react';
+import { IconArrowBadgeRightFilled } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import { useAkello } from "@akello/react-hook";
 import { Registry } from '@akello/core';
+import { IconUsersGroup } from '@tabler/icons-react';
 import AkelloLog from '../assets/Logo/PNGs/D2-AH-CBBP-Logo-V3-240323-AS_icon-akello-blue.png';
 
 interface RegistryCardProps {
@@ -12,7 +13,7 @@ interface RegistryCardProps {
 const RegistryCard: React.FC<RegistryCardProps> = (props) => {
   const navigate = useNavigate();
   const akello = useAkello();
-        
+          
   return (    
     <Card className='cursor-pointer' withBorder padding="lg" radius="md" onClick={() => {
       navigate('/registry/' + props.registry.id);
@@ -20,13 +21,10 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
     }}>
       <Group justify="space-between">
         <Avatar src={AkelloLog} radius="xl" />
-        <div></div>        
-        <div className='flex flex-row space-x-3'>
-          {
+        <div></div>           
+        {
             props.registry.stats['safety_risk'] && <Badge color='red'>Safety Risk</Badge>      
-          }
-          
-        </div>        
+        }           
       </Group>
 
       <Text fz="lg" fw={500} mt="md">
@@ -42,8 +40,15 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
         Minutes completed this month:{' '}
         <Text span fw={500} c="bright">
           {props.registry.stats.completed_minutes}
-        </Text>
+        </Text>      
       </Text>
+      <Text c="dimmed" fz="sm">
+        Patients:{' '}
+        <Text span fw={500} c="bright">
+        {props.registry.patients} 
+        </Text>           
+      </Text>
+      
       <Progress value={props.registry.stats.completed_minutes/props.registry.stats.total_minutes * 100} mt={5} />
     
       
@@ -59,7 +64,7 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
           navigate('/registry/' + props.registry.id);
           akello.selectRegistry(props.registry);
         }}>
-          <IconUpload size="1.1rem" />
+          <IconArrowBadgeRightFilled size="1.1rem" />
         </ActionIcon>
       </Group>
       
