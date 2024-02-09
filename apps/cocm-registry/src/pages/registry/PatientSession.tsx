@@ -90,7 +90,7 @@ const PatientSession = ({}) => {
     
 
     const [mm, setMM] = useState(0)
-    // const [ss, setSS] = useState(0)
+    const [ss, setSS] = useState(0)
     // const [ms, setMS] = useState(0)
 
     const [noShow, setNoShow] = useState(false)
@@ -113,7 +113,7 @@ const PatientSession = ({}) => {
                         <p className={"text-3xl font-semibold"}>
                             <StopWatch timeCallback={(mm, ss, ms) => {
                                 setMM(mm)
-                                // setSS(ss)
+                                setSS(ss)
                                 // setMS(ms)
                             }}/>
                         </p>
@@ -144,7 +144,7 @@ const PatientSession = ({}) => {
                                     weeks_in_treatment: 0,
                                     visit_type: visitType,
                                     scores: scores,
-                                    minutes: mm,
+                                    minutes: mm + (ss/60),
                                     no_show: noShow,
                                     date: Date.now() // UTC time
                                 }, (data) => {

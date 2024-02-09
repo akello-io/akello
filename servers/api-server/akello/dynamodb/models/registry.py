@@ -44,7 +44,7 @@ class TreatmentLog(BaseModel):
 
     scores: List[TreatmentLogScore] = []
 
-    minutes: Optional[int] = None
+    minutes: Optional[float] = None
 
     # TODO: Need to implement a notification workflow
     sms_reminder_sent_date: Optional[float] = None
