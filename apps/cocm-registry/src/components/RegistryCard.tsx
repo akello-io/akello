@@ -13,7 +13,7 @@ interface RegistryCardProps {
 const RegistryCard: React.FC<RegistryCardProps> = (props) => {
   const navigate = useNavigate();
   const akello = useAkello();
-          
+            
   return (    
     <Card className='cursor-pointer' withBorder padding="lg" radius="md" onClick={() => {
       navigate('/registry/' + props.registry.id);
