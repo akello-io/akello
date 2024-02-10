@@ -7,13 +7,13 @@ settings:
 dependencies:
   '@akello/core':
     specifier: file:../../packages/core/akello-core-2.0.4.tgz
-    version: file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
+    version: file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.16)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@akello/react':
     specifier: file:../../packages/react/akello-react-2.0.4.tgz
-    version: file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(@mui/icons-material@5.15.9)(@mui/lab@5.0.0-alpha.165)(@mui/material@5.15.9)(@mui/styled-engine-sc@6.0.0-alpha.16)(@mui/styled-engine@5.15.9)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss-preset-mantine@1.13.0)(postcss-simple-vars@7.0.1)(postcss@8.4.35)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1)
+    version: file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mantine/core@7.5.2)(@mantine/hooks@7.5.2)(@mui/icons-material@5.15.9)(@mui/lab@5.0.0-alpha.165)(@mui/material@5.15.9)(@mui/styled-engine-sc@6.0.0-alpha.16)(@mui/styled-engine@5.15.9)(@mui/x-data-grid@6.19.4)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss-preset-mantine@1.13.0)(postcss-simple-vars@7.0.1)(postcss@8.4.35)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@akello/react-hook':
     specifier: file:../../packages/react-hook/akello-react-hook-2.0.4.tgz
-    version: file:../../packages/react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
+    version: file:../../packages/react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.16)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@emotion/react':
     specifier: ^11.11.3
     version: 11.11.3(@types/react@18.2.55)(react@18.2.0)
@@ -25,10 +25,10 @@ dependencies:
     version: 2.1.1(react@18.2.0)
   '@mantine/charts':
     specifier: ^7.5.1
-    version: 7.5.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(react-dom@18.2.0)(react@18.2.0)(recharts@2.12.0)
+    version: 7.5.2(@mantine/core@7.5.2)(@mantine/hooks@7.5.2)(react-dom@18.2.0)(react@18.2.0)(recharts@2.12.0)
   '@mantinex/mantine-logo':
     specifier: ^1.0.1
-    version: 1.0.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(react-dom@18.2.0)(react@18.2.0)
+    version: 1.0.1(@mantine/core@7.5.2)(@mantine/hooks@7.5.2)(react-dom@18.2.0)(react@18.2.0)
   '@modulz/radix-icons':
     specifier: ^4.0.0
     version: 4.0.0(react@18.2.0)
@@ -37,10 +37,10 @@ dependencies:
     version: 5.15.9(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
   '@mui/x-charts':
     specifier: ^6.19.3
-    version: 6.19.3(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.9)(@mui/system@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+    version: 6.19.4(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.9)(@mui/system@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
   '@mui/x-data-grid':
     specifier: ^6.19.3
-    version: 6.19.3(@mui/material@5.15.9)(@mui/system@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+    version: 6.19.4(@mui/material@5.15.9)(@mui/system@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
   '@tabler/icons-react':
     specifier: ^2.47.0
     version: 2.47.0(react@18.2.0)
@@ -78,10 +78,10 @@ dependencies:
 devDependencies:
   '@mantine/core':
     specifier: ^7.5.1
-    version: 7.5.1(@mantine/hooks@7.5.1)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+    version: 7.5.2(@mantine/hooks@7.5.2)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
   '@mantine/hooks':
     specifier: ^7.5.1
-    version: 7.5.1(react@18.2.0)
+    version: 7.5.2(react@18.2.0)
   '@types/react':
     specifier: ^18.2.43
     version: 18.2.55
@@ -96,7 +96,7 @@ devDependencies:
     version: 6.21.0(eslint@8.56.0)(typescript@5.3.3)
   '@vitejs/plugin-react':
     specifier: ^4.2.1
-    version: 4.2.1(vite@5.1.0)
+    version: 4.2.1(vite@5.1.1)
   autoprefixer:
     specifier: ^10.4.17
     version: 10.4.17(postcss@8.4.35)
@@ -129,7 +129,7 @@ devDependencies:
     version: 5.3.3
   vite:
     specifier: ^5.0.12
-    version: 5.1.0
+    version: 5.1.1
 
 packages:
 
@@ -150,12 +150,12 @@ packages:
       '@jridgewell/trace-mapping': 0.3.22
     dev: true
 
-  /@aws-amplify/analytics@7.0.15(@aws-amplify/core@6.0.15):
-    resolution: {integrity: sha512-o65xEqvZ2KsGERHgR8ha+XfJOobvTpTuyZf78lk4I/qLY5r8xigiDK5svjpYUFY5V3xeE7qqrCuep/K0SAHeig==}
+  /@aws-amplify/analytics@7.0.16(@aws-amplify/core@6.0.16):
+    resolution: {integrity: sha512-K/1h/IxUBcDVjB48XTAu+rYSoQkgtYkcHwALu8hKW111Uw/mzApxiXlF/vvN71EnD1SeFmTPHoSmmjjVfFS4lA==}
     peerDependencies:
       '@aws-amplify/core': ^6.0.0
     dependencies:
-      '@aws-amplify/core': 6.0.15
+      '@aws-amplify/core': 6.0.16
       '@aws-sdk/client-firehose': 3.398.0
       '@aws-sdk/client-kinesis': 3.398.0
       '@aws-sdk/client-personalize-events': 3.398.0
@@ -165,12 +165,12 @@ packages:
       - aws-crt
     dev: false
 
-  /@aws-amplify/api-graphql@4.0.15:
-    resolution: {integrity: sha512-kDN1cP2mOjRnJ/PlbJ+DndMO0WHgONISGxRNIJfoqpbdHIloEyPIwICfPofMGeonewmGj9v+r3klyCEJUwpS5Q==}
+  /@aws-amplify/api-graphql@4.0.16:
+    resolution: {integrity: sha512-Ttx3bU6xuoVhDWqQt1x5zANo5/VaurFG3BiEyqDF2Nt0z8D4vSefQ7HVQ29S9Y9Q5X7Wcn2cSAHACUKgMgpFrw==}
     dependencies:
-      '@aws-amplify/api-rest': 4.0.15(@aws-amplify/core@6.0.15)
-      '@aws-amplify/core': 6.0.15
-      '@aws-amplify/data-schema-types': 0.6.12
+      '@aws-amplify/api-rest': 4.0.16(@aws-amplify/core@6.0.16)
+      '@aws-amplify/core': 6.0.16
+      '@aws-amplify/data-schema-types': 0.7.2
       '@aws-sdk/types': 3.387.0
       graphql: 15.8.0
       rxjs: 7.8.1
@@ -178,36 +178,36 @@ packages:
       uuid: 9.0.1
     dev: false
 
-  /@aws-amplify/api-rest@4.0.15(@aws-amplify/core@6.0.15):
-    resolution: {integrity: sha512-1ORx1inw2MNJ6XHKPcVu5CKrI42AIlKoVnMdCXN+c7bfG3G1G99P8MapS5ioJG/BQ1uqCVMNC1Vkk2RlfZT2Tw==}
+  /@aws-amplify/api-rest@4.0.16(@aws-amplify/core@6.0.16):
+    resolution: {integrity: sha512-S7e4ySWhiZziEoF5QdBqvGMjTgQjShyEEkCHdRQUITsz6C8gwj7xrRci5mh0Szy4LKD7gyTqIcVyKMViy5GEVw==}
     peerDependencies:
       '@aws-amplify/core': ^6.0.0
     dependencies:
-      '@aws-amplify/core': 6.0.15
+      '@aws-amplify/core': 6.0.16
       tslib: 2.6.2
     dev: false
 
-  /@aws-amplify/api@6.0.15(@aws-amplify/core@6.0.15):
-    resolution: {integrity: sha512-aGQAbLqLAmpK5ju2a7NA0S9EHejT7bnohSMH/BCoIIXG7xAO5DB9gjdbsdOY+M2qMfuvVe10FQK1f3Ym+dxVcQ==}
+  /@aws-amplify/api@6.0.16(@aws-amplify/core@6.0.16):
+    resolution: {integrity: sha512-XKutBlvPZRB6AN0JZA5S1sQbS34xKYMXQiccvC/xDUPaJyNG/I6vw6zlGO0GH6TjzGdLJBlDWann5/1W+7FUvA==}
     dependencies:
-      '@aws-amplify/api-graphql': 4.0.15
-      '@aws-amplify/api-rest': 4.0.15(@aws-amplify/core@6.0.15)
+      '@aws-amplify/api-graphql': 4.0.16
+      '@aws-amplify/api-rest': 4.0.16(@aws-amplify/core@6.0.16)
       tslib: 2.6.2
     transitivePeerDependencies:
       - '@aws-amplify/core'
     dev: false
 
-  /@aws-amplify/auth@6.0.15(@aws-amplify/core@6.0.15):
-    resolution: {integrity: sha512-cp5h9rUbHskJWVnwkEuGFAFxCcsDUTV9+O1I9bo2nyD8byuK+OedH55B+Bglbnhb/se7IV93cjrgrjXK6m+d6A==}
+  /@aws-amplify/auth@6.0.16(@aws-amplify/core@6.0.16):
+    resolution: {integrity: sha512-s5Yi+4T6+fyLgcqQnAkBdsGKWDAQ4t5OYcSfC3EyAHeVeR6te5nTRuKGuS3cwHJmJ15SlAgL0Zkzy0m9tWjHfw==}
     peerDependencies:
       '@aws-amplify/core': ^6.0.0
     dependencies:
-      '@aws-amplify/core': 6.0.15
+      '@aws-amplify/core': 6.0.16
       tslib: 2.6.2
     dev: false
 
-  /@aws-amplify/core@6.0.15:
-    resolution: {integrity: sha512-JtA197VMV9fXQ/gDP7ynRArkWSQlUr2o9bR5Qvmfstu2xnlS+0LnRo9I4FuivOioAb4UjmI0Yjo2t33iUkuZDw==}
+  /@aws-amplify/core@6.0.16:
+    resolution: {integrity: sha512-Y2Nq1961Qg3U67H3IsBvohknw53gsvrghFPln2JZhMtsCVyqmnVC2/P/ah4+F4AkQQTpo6ny2lKqtN0PrYFP5w==}
     dependencies:
       '@aws-crypto/sha256-js': 5.2.0
       '@aws-sdk/types': 3.398.0
@@ -219,19 +219,19 @@ packages:
       uuid: 9.0.1
     dev: false
 
-  /@aws-amplify/data-schema-types@0.6.12:
-    resolution: {integrity: sha512-0ZpWnN+UxrUHHyj9rtoz/wljo8PvvZYt1nxu7lR1HFFa2dQqYVHD4a8umMIi5pQBo4DfCOkITri18hmslzhBOw==}
+  /@aws-amplify/data-schema-types@0.7.2:
+    resolution: {integrity: sha512-X3AE95rfeeT8NmUwI4PfWlijn3354OpIxIGigzTpPTmRwg/OAKQE7cB9HL1ITfKNh4hrCbPMdl8I7jePSwpNGQ==}
     dependencies:
       rxjs: 7.8.1
     dev: false
 
-  /@aws-amplify/datastore@5.0.15(@aws-amplify/core@6.0.15):
-    resolution: {integrity: sha512-wptJjnjKDoYK0WjNOoVhesP9K4csWjBujQnMMbBoFDjewzfzujifw16+C3WGul+mENd1HD5qVsUA4eINDv1k8w==}
+  /@aws-amplify/datastore@5.0.16(@aws-amplify/core@6.0.16):
+    resolution: {integrity: sha512-jIo5VDij3uPHqZ9guOnU2taLQydBbFbwUgm/GaW47tAUeFCPgImlxOBvXk+Nae09EF37IENUsJ9Ng60UmmLVpA==}
     peerDependencies:
       '@aws-amplify/core': ^6.0.0
     dependencies:
-      '@aws-amplify/api': 6.0.15(@aws-amplify/core@6.0.15)
-      '@aws-amplify/core': 6.0.15
+      '@aws-amplify/api': 6.0.16(@aws-amplify/core@6.0.16)
+      '@aws-amplify/core': 6.0.16
       buffer: 4.9.2
       idb: 5.0.6
       immer: 9.0.6
@@ -239,22 +239,22 @@ packages:
       ulid: 2.3.0
     dev: false
 
-  /@aws-amplify/notifications@2.0.15(@aws-amplify/core@6.0.15):
-    resolution: {integrity: sha512-naynh1VfwJrhgjaQFXuvv3Ev4xOUXTmSHky/AYkpBWm/hzlWKgTbmctYhhh4ThNIs8DErgR6zG2TFQ4q+cTl0Q==}
+  /@aws-amplify/notifications@2.0.16(@aws-amplify/core@6.0.16):
+    resolution: {integrity: sha512-SrrOSH6khaeo7WuDMmHKiEq+H9D3ch6cnX2EHMoD7eCGgjLu3zsCdRwYDVUlnNTexa0t4Fb58hiSUC8WyDP2HA==}
     peerDependencies:
       '@aws-amplify/core': ^6.0.0
     dependencies:
-      '@aws-amplify/core': 6.0.15
+      '@aws-amplify/core': 6.0.16
       lodash: 4.17.21
       tslib: 2.6.2
     dev: false
 
-  /@aws-amplify/storage@6.0.15(@aws-amplify/core@6.0.15):
-    resolution: {integrity: sha512-ikRlZqLp7ut+K9/7ThmWyeCY3mclqsyQwh6MRzSAKzZNmkrhql/4xQre9Nb5uB1hh/co6Bm4DQKNBCLhhDh8TA==}
+  /@aws-amplify/storage@6.0.16(@aws-amplify/core@6.0.16):
+    resolution: {integrity: sha512-Ck1aHP4tD3WXAwnFQpbcadOnW2tfnOoeJWhrzDQl1UZ27zbKkEsKKF0qPa1hfg7aRLQHAsu0bR2T166ZMcMoqw==}
     peerDependencies:
       '@aws-amplify/core': ^6.0.0
     dependencies:
-      '@aws-amplify/core': 6.0.15
+      '@aws-amplify/core': 6.0.16
       '@aws-sdk/types': 3.398.0
       '@smithy/md5-js': 2.0.7
       buffer: 4.9.2
@@ -266,7 +266,7 @@ packages:
     resolution: {integrity: sha512-IzSgsrxUcsrejQbPVilIKy16kAT52EwB6zSaI+M3xxIhKh5+aldEyvI+z6erM7TCLB2BJsFrtHjp6/4/sr+3dA==}
     dependencies:
       '@aws-crypto/util': 3.0.0
-      '@aws-sdk/types': 3.502.0
+      '@aws-sdk/types': 3.511.0
       tslib: 1.14.1
     dev: false
 
@@ -283,7 +283,7 @@ packages:
       '@aws-crypto/sha256-js': 3.0.0
       '@aws-crypto/supports-web-crypto': 3.0.0
       '@aws-crypto/util': 3.0.0
-      '@aws-sdk/types': 3.502.0
+      '@aws-sdk/types': 3.511.0
       '@aws-sdk/util-locate-window': 3.495.0
       '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
@@ -293,7 +293,7 @@ packages:
     resolution: {integrity: sha512-Nr1QJIbW/afYYGzYvrF70LtaHrIRtd4TNAglX8BvlfxJLZ45SAmueIKYl5tWoNBPzp65ymXGFK0Bb1vZUpuc9g==}
     dependencies:
       '@aws-crypto/util': 1.2.2
-      '@aws-sdk/types': 3.502.0
+      '@aws-sdk/types': 3.511.0
       tslib: 1.14.1
     dev: false
 
@@ -301,7 +301,7 @@ packages:
     resolution: {integrity: sha512-PnNN7os0+yd1XvXAy23CFOmTbMaDxgxXtTKHybrJ39Y8kGzBATgBFibWJKH6BhytLI/Zyszs87xCOBNyBig6vQ==}
     dependencies:
       '@aws-crypto/util': 3.0.0
-      '@aws-sdk/types': 3.502.0
+      '@aws-sdk/types': 3.511.0
       tslib: 1.14.1
     dev: false
 
@@ -310,7 +310,7 @@ packages:
     engines: {node: '>=16.0.0'}
     dependencies:
       '@aws-crypto/util': 5.2.0
-      '@aws-sdk/types': 3.502.0
+      '@aws-sdk/types': 3.511.0
       tslib: 2.6.2
     dev: false
 
@@ -323,7 +323,7 @@ packages:
   /@aws-crypto/util@1.2.2:
     resolution: {integrity: sha512-H8PjG5WJ4wz0UXAFXeJjWCW1vkvIJ3qUUD+rGRwJ2/hj+xT58Qle2MTql/2MGzkU+1JLAFuR6aJpLAjHwhmwwg==}
     dependencies:
-      '@aws-sdk/types': 3.502.0
+      '@aws-sdk/types': 3.511.0
       '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
     dev: false
@@ -331,7 +331,7 @@ packages:
   /@aws-crypto/util@3.0.0:
     resolution: {integrity: sha512-2OJlpeJpCR48CC8r+uKVChzs9Iungj9wkZrl8Z041DWEWvyIHILYKCPNzJghKsivj+S3mLo6BVc7mBNzdxA46w==}
     dependencies:
-      '@aws-sdk/types': 3.502.0
+      '@aws-sdk/types': 3.511.0
       '@aws-sdk/util-utf8-browser': 3.259.0
       tslib: 1.14.1
     dev: false
@@ -339,7 +339,7 @@ packages:
   /@aws-crypto/util@5.2.0:
     resolution: {integrity: sha512-4RkU9EsI6ZpBve5fseQlGNUWKMa1RLPQ1dnjnQoe07ldfIzcsGb5hC5W0Dm7u423KWzawlrpbjXBrXCEv9zazQ==}
     dependencies:
-      '@aws-sdk/types': 3.502.0
+      '@aws-sdk/types': 3.511.0
       '@smithy/util-utf8': 2.1.1
       tslib: 2.6.2
     dev: false
@@ -771,8 +771,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@aws-sdk/types@3.502.0:
-    resolution: {integrity: sha512-M0DSPYe/gXhwD2QHgoukaZv5oDxhW3FfvYIrJptyqUq3OnPJBcDbihHjrE0PBtfh/9kgMZT60/fQ2NVFANfa2g==}
+  /@aws-sdk/types@3.511.0:
+    resolution: {integrity: sha512-P03ufufxmkvd7nO46oOeEqYIMPJ8qMCKxAsfJk1JBVPQ1XctVntbail4/UFnrnzij8DTl4Mk/D62uGo7+RolXA==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@smithy/types': 2.9.1
@@ -1504,31 +1504,31 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@mantine/charts@7.5.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(react-dom@18.2.0)(react@18.2.0)(recharts@2.12.0):
-    resolution: {integrity: sha512-mz0sSOqOwnQNgbcELlkHUseMScBOWwmvmZ1LjEhxvXajmhEs0F3Bx1SV39zGlUi/mbRuzurs0BSITdb8nK6KHw==}
+  /@mantine/charts@7.5.2(@mantine/core@7.5.2)(@mantine/hooks@7.5.2)(react-dom@18.2.0)(react@18.2.0)(recharts@2.12.0):
+    resolution: {integrity: sha512-olBulCKVJH/fDL5udIe98lGXKM/Uld0Q8pk+n3MSpLVWpvknJBBly4XHsWNEwQXdlBWgKb1tykizLL7PP2bH/A==}
     peerDependencies:
-      '@mantine/core': 7.5.1
-      '@mantine/hooks': 7.5.1
+      '@mantine/core': 7.5.2
+      '@mantine/hooks': 7.5.2
       react: ^18.2.0
       react-dom: ^18.2.0
       recharts: ^2.10.3
     dependencies:
-      '@mantine/core': 7.5.1(@mantine/hooks@7.5.1)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      '@mantine/hooks': 7.5.1(react@18.2.0)
+      '@mantine/core': 7.5.2(@mantine/hooks@7.5.2)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 7.5.2(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       recharts: 2.12.0(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
-  /@mantine/core@7.5.1(@mantine/hooks@7.5.1)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-V7apuQuRubqxTRXb1uxOM43K7tkLRzpbb1ONJ/sj8QRp/26bShkdYp7EVuSKyrQ8DQ5EGYyBBGyzBOQARh41gA==}
+  /@mantine/core@7.5.2(@mantine/hooks@7.5.2)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-e58qTiLEp9qLxQ5JZlPNykJWBR+oi0q2J8JPKTjTJD+4UM58uh9oL4wuMEdUyBgiYGvDc/cVYF+rftMpuCt+KQ==}
     peerDependencies:
-      '@mantine/hooks': 7.5.1
+      '@mantine/hooks': 7.5.2
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
       '@floating-ui/react': 0.24.8(react-dom@18.2.0)(react@18.2.0)
-      '@mantine/hooks': 7.5.1(react@18.2.0)
+      '@mantine/hooks': 7.5.2(react@18.2.0)
       clsx: 2.0.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -1539,14 +1539,14 @@ packages:
     transitivePeerDependencies:
       - '@types/react'
 
-  /@mantine/hooks@7.5.1(react@18.2.0):
-    resolution: {integrity: sha512-LfrEOkX8U2KbkYAU5BMA7FPbMva/TSd65c45W35wHSx3iqYMsoPN9+Ll1zc/HT0XNFp73jGet9cU7VREbAl0/A==}
+  /@mantine/hooks@7.5.2(react@18.2.0):
+    resolution: {integrity: sha512-4POujH5Xx84VB/xfM6EttDq725dqqL2DntoeMjHz3Ua94aK5Y0VSc1IwlETxCuF7yNV5/w/Z8kgeVVa5cDgrPg==}
     peerDependencies:
       react: ^18.2.0
     dependencies:
       react: 18.2.0
 
-  /@mantinex/mantine-logo@1.0.1(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(react-dom@18.2.0)(react@18.2.0):
+  /@mantinex/mantine-logo@1.0.1(@mantine/core@7.5.2)(@mantine/hooks@7.5.2)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-t5Lp4Bpae+EVydBr5n0bDG6EXhQ3QY/fw29PCvnwn9LwWReIaYUKhQ4mRINyb7ted2R3MuG7VS1MZQcJ1Qh6Cg==}
     peerDependencies:
       '@mantine/core': '>=7.0.0'
@@ -1554,8 +1554,8 @@ packages:
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@mantine/core': 7.5.1(@mantine/hooks@7.5.1)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      '@mantine/hooks': 7.5.1(react@18.2.0)
+      '@mantine/core': 7.5.2(@mantine/hooks@7.5.2)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 7.5.2(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -1792,8 +1792,8 @@ packages:
       react-is: 18.2.0
     dev: false
 
-  /@mui/x-charts@6.19.3(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.9)(@mui/system@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-VxF+mHXtmR2LxalH2KRzF4gLT6KFDbYMvis6rkcyr+w6J17KBxMsEGx8V0nn1CIEslzcSXgbv41jIzodhiFyMQ==}
+  /@mui/x-charts@6.19.4(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.9)(@mui/system@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-0kNg/6jVuG4GoZbV6qb9pYmL8Bhor1m55VIuVlu3p9WdsZFLUyksS4r08viII3YMxosl6MJdFnEfMjWJDAswXw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@emotion/react': ^11.9.0
@@ -1827,8 +1827,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mui/x-data-grid@6.19.3(@mui/material@5.15.9)(@mui/system@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-RHt+MhTgvpXTWY0MYvzSNLF8npo+mlmWuTO+qKRt42Zj634IlUYDwW5jjQ9fWZnIpWJLunw253KqHoAlSAOXaw==}
+  /@mui/x-data-grid@6.19.4(@mui/material@5.15.9)(@mui/system@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-qXBe2mSetdsl3ZPqB/1LpKNkEiaYUiFXIaMHTIjuzLyusXgt+w7UsHYO7R+aJYUU7c3FeHla0R1nwRMY3kZ5ng==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@mui/material': ^5.4.1
@@ -2739,7 +2739,7 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vitejs/plugin-react@4.2.1(vite@5.1.0):
+  /@vitejs/plugin-react@4.2.1(vite@5.1.1):
     resolution: {integrity: sha512-oojO9IDc4nCUUi8qIR11KoQm0XFFLIwsRBwHRR4d/88IWghn1y6ckz/bJ8GHDCsYEJee8mDzqtJxh15/cisJNQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -2750,7 +2750,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.23.9)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: 5.1.0
+      vite: 5.1.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2861,16 +2861,16 @@ packages:
       postcss: 8.4.35
       postcss-value-parser: 4.2.0
 
-  /aws-amplify@6.0.15:
-    resolution: {integrity: sha512-uJFA3DTJWlzVeG6k4S6qqoTNHgu3OBXf+ukiCgPC7OMuGaodtcOTXPxPgFYIjz7mgtq5T5g8vTGx5YbrWfGkMQ==}
+  /aws-amplify@6.0.16:
+    resolution: {integrity: sha512-6pJti0sju6+GNZ/f68XK0DPVdpXMYCnfaVZgGOwqkp81f3I0kkleNFqXltFCLB+en7GGsX7E7HGmtnJb1RziOQ==}
     dependencies:
-      '@aws-amplify/analytics': 7.0.15(@aws-amplify/core@6.0.15)
-      '@aws-amplify/api': 6.0.15(@aws-amplify/core@6.0.15)
-      '@aws-amplify/auth': 6.0.15(@aws-amplify/core@6.0.15)
-      '@aws-amplify/core': 6.0.15
-      '@aws-amplify/datastore': 5.0.15(@aws-amplify/core@6.0.15)
-      '@aws-amplify/notifications': 2.0.15(@aws-amplify/core@6.0.15)
-      '@aws-amplify/storage': 6.0.15(@aws-amplify/core@6.0.15)
+      '@aws-amplify/analytics': 7.0.16(@aws-amplify/core@6.0.16)
+      '@aws-amplify/api': 6.0.16(@aws-amplify/core@6.0.16)
+      '@aws-amplify/auth': 6.0.16(@aws-amplify/core@6.0.16)
+      '@aws-amplify/core': 6.0.16
+      '@aws-amplify/datastore': 5.0.16(@aws-amplify/core@6.0.16)
+      '@aws-amplify/notifications': 2.0.16(@aws-amplify/core@6.0.16)
+      '@aws-amplify/storage': 6.0.16(@aws-amplify/core@6.0.16)
       tslib: 2.6.2
     transitivePeerDependencies:
       - aws-crt
@@ -2934,7 +2934,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001585
-      electron-to-chromium: 1.4.663
+      electron-to-chromium: 1.4.665
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.3)
 
@@ -3243,8 +3243,8 @@ packages:
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  /electron-to-chromium@1.4.663:
-    resolution: {integrity: sha512-P4B6wnMUV2aLvqmny1RPlAQPUBTY+skNw4WLX0cVxYQVEzmLQ2h7K2Knc69szclEjcRW63Uj06IXQwOG7GbInQ==}
+  /electron-to-chromium@1.4.665:
+    resolution: {integrity: sha512-UpyCWObBoD+nSZgOC2ToaIdZB0r9GhqT2WahPKiSki6ckkSuKhQNso8V2PrFcHBMleI/eqbKgVQgVC4Wni4ilw==}
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -4902,8 +4902,8 @@ packages:
       d3-timer: 3.0.1
     dev: false
 
-  /vite@5.1.0:
-    resolution: {integrity: sha512-STmSFzhY4ljuhz14bg9LkMTk3d98IO6DIArnTY6MeBwiD1Za2StcQtz7fzOUnRCqrHSD5+OS2reg4HOz1eoLnw==}
+  /vite@5.1.1:
+    resolution: {integrity: sha512-wclpAgY3F1tR7t9LL5CcHC41YPkQIpKUGeIuT8MdNwNZr6OqOTLs7JX5vIHAtzqLWXts0T+GDrh9pN2arneKqg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -5006,8 +5006,8 @@ packages:
       type-fest: 2.19.0
     dev: false
 
-  file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-tXfcpDx46O6MLg8KezmMpo/1D7WmORoX+Tb5jdPvT9Lxw1mLBgVm1smgLNP7PINP2onF7ivk8QNDF6C2XglnrA==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
+  file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.16)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-VXE7bEm/2tfEeEFn41vR4ZzdvLP5VKNrzso5BD0mODclw2qbgQTh3/ZQ5NxZzbeO8Scs62zNLD+2rY4vQxHRwA==, tarball: file:../../packages/core/akello-core-2.0.4.tgz}
     id: file:../../packages/core/akello-core-2.0.4.tgz
     name: '@akello/core'
     version: 2.0.4
@@ -5021,14 +5021,14 @@ packages:
       tailwindcss: ^3.4.1
     dependencies:
       amazon-cognito-identity-js: 6.3.7
-      aws-amplify: 6.0.15
+      aws-amplify: 6.0.16
       axios: 1.6.7
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tailwindcss: 3.4.1
     dev: false
 
-  file:../../packages/react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
+  file:../../packages/react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.16)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-Nc5Tct7DVCIW/T7whf9laL02v4L3gxE2SFocgWKTT60+hGucu8emaPpzQd0xw6ajlEP3V96NMLdu9FJ9Y24qcA==, tarball: file:../../packages/react-hook/akello-react-hook-2.0.4.tgz}
     id: file:../../packages/react-hook/akello-react-hook-2.0.4.tgz
     name: '@akello/react-hook'
@@ -5043,17 +5043,17 @@ packages:
       react-dom: ^18.2.0
       tailwindcss: ^3.4.1
     dependencies:
-      '@akello/core': file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
+      '@akello/core': file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.16)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
       amazon-cognito-identity-js: 6.3.7
-      aws-amplify: 6.0.15
+      aws-amplify: 6.0.16
       axios: 1.6.7
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tailwindcss: 3.4.1
     dev: false
 
-  file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mantine/core@7.5.1)(@mantine/hooks@7.5.1)(@mui/icons-material@5.15.9)(@mui/lab@5.0.0-alpha.165)(@mui/material@5.15.9)(@mui/styled-engine-sc@6.0.0-alpha.16)(@mui/styled-engine@5.15.9)(@mui/x-data-grid@6.19.3)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss-preset-mantine@1.13.0)(postcss-simple-vars@7.0.1)(postcss@8.4.35)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-QC1UQdHJ7aiiIqwggCconEHWKKP0hp2ZmepcVrJj0AbB3Bf8Ogvz0MFd9y26WYgjgbeMPDA8kEb41T/plaV4WQ==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
+  file:../../packages/react/akello-react-2.0.4.tgz(@akello/core@2.0.4)(@akello/react-hook@2.0.4)(@mantine/core@7.5.2)(@mantine/hooks@7.5.2)(@mui/icons-material@5.15.9)(@mui/lab@5.0.0-alpha.165)(@mui/material@5.15.9)(@mui/styled-engine-sc@6.0.0-alpha.16)(@mui/styled-engine@5.15.9)(@mui/x-data-grid@6.19.4)(autoprefixer@10.4.17)(daisyui@4.6.2)(postcss-preset-mantine@1.13.0)(postcss-simple-vars@7.0.1)(postcss@8.4.35)(react-dom@18.2.0)(react-router@6.22.0)(react@18.2.0)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-taC3QdG54eYjD0iSeb7ZQFfg4/putqi6zWNAvmoCjeyBko4q82fdr54abD/Tyj+Cvz7zuy5fcydF0OFqeCXDdg==, tarball: file:../../packages/react/akello-react-2.0.4.tgz}
     id: file:../../packages/react/akello-react-2.0.4.tgz
     name: '@akello/react'
     version: 2.0.4
@@ -5061,14 +5061,14 @@ packages:
     peerDependencies:
       '@akello/core': file:../core/akello-core-2.0.4.tgz
       '@akello/react-hook': file:../react-hook/akello-react-hook-2.0.4.tgz
-      '@mantine/core': ^7.5.1
-      '@mantine/hooks': ^7.5.1
+      '@mantine/core': ^7.5.2
+      '@mantine/hooks': ^7.5.2
       '@mui/icons-material': ^5.15.6
       '@mui/lab': ^5.0.0-alpha.162
       '@mui/material': ^5.15.9
       '@mui/styled-engine': ^5.15.9
       '@mui/styled-engine-sc': ^6.0.0-alpha.13
-      '@mui/x-data-grid': ^6.19.3
+      '@mui/x-data-grid': ^6.19.4
       autoprefixer: ^10.4.17
       daisyui: ^4.6.2
       postcss: ^8.4.35
@@ -5079,16 +5079,16 @@ packages:
       react-router: ^6.16.0
       tailwindcss: ^3.4.1
     dependencies:
-      '@akello/core': file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
-      '@akello/react-hook': file:../../packages/react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.15)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
-      '@mantine/core': 7.5.1(@mantine/hooks@7.5.1)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
-      '@mantine/hooks': 7.5.1(react@18.2.0)
+      '@akello/core': file:../../packages/core/akello-core-2.0.4.tgz(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.16)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
+      '@akello/react-hook': file:../../packages/react-hook/akello-react-hook-2.0.4.tgz(@akello/core@2.0.4)(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.16)(axios@1.6.7)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
+      '@mantine/core': 7.5.2(@mantine/hooks@7.5.2)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 7.5.2(react@18.2.0)
       '@mui/icons-material': 5.15.9(@mui/material@5.15.9)(@types/react@18.2.55)(react@18.2.0)
       '@mui/lab': 5.0.0-alpha.165(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/material': 5.15.9(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       '@mui/styled-engine': 5.15.9(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(react@18.2.0)
       '@mui/styled-engine-sc': 6.0.0-alpha.16(styled-components@6.1.8)
-      '@mui/x-data-grid': 6.19.3(@mui/material@5.15.9)(@mui/system@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@mui/x-data-grid': 6.19.4(@mui/material@5.15.9)(@mui/system@5.15.9)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
       autoprefixer: 10.4.17(postcss@8.4.35)
       daisyui: 4.6.2(postcss@8.4.35)
       postcss: 8.4.35

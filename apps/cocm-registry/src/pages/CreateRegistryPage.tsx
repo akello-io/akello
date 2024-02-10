@@ -95,9 +95,11 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                                         'email': 'vijay.selvaraj@gmail.com',
                                         'integrations': integrations,
                                         'logo_url': logo_url
-                                    }, (data) => {                                        
-                                        const registry = new Registry(data['id'], data['name'], [], [], {})
+                                    }, (data) => {    
+                                        // id: string, name: string, description: string, patients: PatientRegistry[], members: RegistryMember[], questionnaires: Questionnaire[], stats: any                                    
+                                        const registry = new Registry(data['id'], data['name'], data['description'], [], [], [], {})                                        
                                         akello.selectRegistry(registry)
+                                        akello.dispatchEvent({ type: 'change' });                                        
                                         navigate("/registry/" + data['id'])
                                     })
                                 }}>Create Registry</Button>

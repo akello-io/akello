@@ -98,6 +98,28 @@ export class TreatmentLog {
 
 }
 
+export class EventLog {
+    id: string    
+    system?: string
+    data?: any
+    created_date: number
+    modified_date: number
+
+    constructor(
+        id: string,  
+        system: string,
+        data: any,
+        created_date: number,
+        modified_date: number
+    ) {
+        this.id = id
+        this.system = system
+        this.data = data
+        this.created_date = created_date
+        this.modified_date = modified_date
+    }
+}
+
 
 export class QuestionnaireResponse {
     id: string
@@ -176,8 +198,10 @@ export class PatientRegistry {
     integration_metriport_fhir_data?: any
 
     treatment_logs?: TreatmentLog[] = []
+    event_logs?: EventLog[] = []
 
     constructor(
+        registry_id: string,
         patient_mrn: string,
         first_name: string,
         last_name: string,
@@ -185,7 +209,7 @@ export class PatientRegistry {
         email: string,
         date_of_birth: string
     ) {
-        this.id = patient_mrn
+        this.id = registry_id
         this.patient_mrn = patient_mrn
         this.first_name = first_name
         this.last_name = last_name

@@ -3,6 +3,8 @@ from fastapi import FastAPI
 from akello.settings import *
 from akello.api.v1.api import router as api_router
 from fastapi.middleware.cors import CORSMiddleware
+from akello.plugins.metriport.webhook import router as metriport_webhook
+from akello.plugins.metriport import MetriportMixin
 from mangum import Mangum
 from aws_lambda_powertools import Logger
 from pydantic_settings import BaseSettings
@@ -23,6 +25,7 @@ def init_webhooks(base_url):
 
 # Initialize the FastAPI app for a simple web server
 app = FastAPI()
+
 
 if settings.USE_NGROK and os.environ.get("NGROK_AUTHTOKEN"):
     # pyngrok should only ever be installed or initialized in a dev environment when this flag is set
@@ -58,7 +61,7 @@ def root():
 app.include_router(api_router, prefix="/v1")
 
 
-app.state.after_patient_referral_mixins = []
+app.state.after_patient_referral_mixins = [MetriportMixin]
 app.state.before_patient_session_mixins = []
 app.state.sms_plugin = None
 app.state.email_plugin = None
@@ -71,6 +74,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+## Registry plugin webhooks
+app.include_router(metriport_webhook, prefix="/v1/integrations", tags=["Integrations"])
 
 handler = Mangum(app)
 handler = logger.inject_lambda_context(handler, clear_state=True)

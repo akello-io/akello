@@ -89,6 +89,9 @@ class RegistryService(BaseService):
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
+        if 'Item' not in response:
+            return None
+        
         return response['Item']
 
     @staticmethod
