@@ -178,6 +178,7 @@ export class PatientRegistry {
     treatment_logs?: TreatmentLog[] = []
 
     constructor(
+        registry_id: string,
         patient_mrn: string,
         first_name: string,
         last_name: string,
@@ -185,7 +186,7 @@ export class PatientRegistry {
         email: string,
         date_of_birth: string
     ) {
-        this.id = patient_mrn
+        this.id = registry_id
         this.patient_mrn = patient_mrn
         this.first_name = first_name
         this.last_name = last_name
