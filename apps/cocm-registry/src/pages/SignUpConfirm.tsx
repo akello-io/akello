@@ -18,9 +18,10 @@ const SignUpConfirm = () => {
 
     const handleFormSubmit = (values: { code: string }) => {
         akello.confirmSignup(
-            email,
+            email ?? '',
             values.code,
             (user: any) => {
+                console.log(user);
                 navigate('/');
             },
             (err: any) => {
@@ -32,7 +33,7 @@ const SignUpConfirm = () => {
 
     const handleResendCode = () => {
         akello.resendCode(
-            email,
+            email ?? '',
             (user: any) => {
                 console.log(user);
             },

@@ -1,11 +1,8 @@
 import Datepicker from "react-tailwindcss-datepicker";
 import BillingReportDataGrid from "./reports/BillingReportDataGrid";
-import React, {useEffect, useState} from "react";
-import { useAkello } from "@akello/react-hook";
+import {useState} from "react";
 
 const ReportsPage = () => {
-    const [statData, setStatData] = useState([])
-    const akello = useAkello()
 
     const [value, setValue] = useState({
         startDate: null,
@@ -30,7 +27,7 @@ const ReportsPage = () => {
                         showShortcuts={true}
                     />
                 </div>                        
-                <BillingReportDataGrid data={statData}/>                                                        
+                <BillingReportDataGrid data={[]}/>                                                        
             </div>
         </>
     )

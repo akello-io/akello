@@ -2,7 +2,7 @@ export class Registry  {
     id: string
     name: string
     description: string
-    patients: PatientRegistry[] = []
+    patients: number
     members: RegistryMember[] = []    
     questionnaires: Questionnaire[] = []
     stats: any
@@ -11,7 +11,7 @@ export class Registry  {
         id: string,
         name: string,
         description: string,
-        patients: PatientRegistry[],
+        patients: number,
         members: RegistryMember[],
         questionnaires: Questionnaire[],
         stats: any

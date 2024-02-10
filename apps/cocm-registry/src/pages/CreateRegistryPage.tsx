@@ -1,4 +1,3 @@
-import {Dropdown} from "@akello/react";
 import {ReactNode, useState} from "react";
 import {useNavigate} from "react-router";
 import { useAkello } from "@akello/react-hook";
@@ -97,7 +96,7 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
                                         'logo_url': logo_url
                                     }, (data) => {    
                                         // id: string, name: string, description: string, patients: PatientRegistry[], members: RegistryMember[], questionnaires: Questionnaire[], stats: any                                    
-                                        const registry = new Registry(data['id'], data['name'], data['description'], [], [], [], {})                                        
+                                        const registry = new Registry(data['id'], data['name'], data['description'], 0, [], [], {})                                        
                                         akello.selectRegistry(registry)
                                         akello.dispatchEvent({ type: 'change' });                                        
                                         navigate("/registry/" + data['id'])
@@ -113,14 +112,10 @@ const RegistryCreateSection:React.FC<RegistryCreateSectionProps> = (
     )
 }
 
-const CreateRegistryPage = () => {
-    const [invites, setInvites] = useState<UserInvite[]>([])
+const CreateRegistryPage = () => {    
     const [stepIdx, setStepIdx] = useState(0)
-    const [screeners, setScreeners] = useState([])
     const [registryName, setRegistryName] = useState('')
     const [registryDescription, setRegistryDescription] = useState('')
-    const [integrations, setIntegrations] = useState<APIIntegration[]>([])
-    const [logoUrl, setLogoUrl] = useState('')
 
     const create_steps = [
         {   step: 1,
@@ -172,9 +167,9 @@ const CreateRegistryPage = () => {
                     inputs={create_steps[stepIdx].inputs}
                     registryName={registryName}
                     registryDescription={registryDescription}
-                    invites={invites}
-                    integrations={integrations}
-                    logo_url={logoUrl}
+                    invites={[]}
+                    integrations={[]}
+                    logo_url={''}
                 />
 
             </main>
