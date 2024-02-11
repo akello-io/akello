@@ -17,8 +17,8 @@ router = APIRouter()
 
 
 @router.post("/create")
-async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    logger.info('creating a new registry name: %s - created by user: %s' % (data['name'], auth.email))
+async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):    
+    logger.info('creating a new registry name: %s - created by user: %s' % (data['name'], auth.username))
 
     # Create the registry and link the user to the registry
     questionnaires = ScreenerService.get_screeners()
@@ -32,7 +32,12 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
         data['logo_url']
     )
     UserService.create_registry_user(
-        registry_id, data['first_name'], data['last_name'], auth.email, auth.cognito_id, UserRole.care_manager, is_admin=True)
+        registry_id, data['first_name'], 
+        data['last_name'], 
+        auth.username, 
+        auth.cognito_id, 
+        UserRole.care_manager, 
+        is_admin=True)
     UserService.create_user_registry(auth.cognito_id, registry_id)
 
     # Add additional user invites
@@ -57,7 +62,7 @@ async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom =
     registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
     members = RegistryService.get_members(registry_id)
     for member in members:
-        member['is_user'] = member['email'] == auth.email
+        member['is_user'] = member['email'] == auth.username
     return members
 
 @router.get("/{registry_id}/patients")

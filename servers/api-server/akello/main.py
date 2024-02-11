@@ -60,12 +60,17 @@ def root():
 
 app.include_router(api_router, prefix="/v1")
 
-
-app.state.after_patient_referral_mixins = [MetriportMixin]
+app.state.after_patient_referral_mixins = []
 app.state.before_patient_session_mixins = []
 app.state.sms_plugin = None
 app.state.email_plugin = None
 app.state.patient_form_plugin = None
+
+metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
+metriport_api_url = os.getenv('METRIPORT_API_URL', None)
+if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:    
+    app.state.after_patient_referral_mixins.append(MetriportMixin)
+
 
 app.add_middleware(
     CORSMiddleware,
