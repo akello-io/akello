@@ -1,9 +1,8 @@
-import {Button, Select, Radio, Group, Switch} from "@mantine/core";
+import {Radio} from "@mantine/core";
 
 import {
     Questionnaire,
-    QuestionnaireQuestion,
-    QuestionnaireResponse
+    QuestionnaireQuestion
 } from "@akello/core";
 import { useState, useEffect } from "react";
 

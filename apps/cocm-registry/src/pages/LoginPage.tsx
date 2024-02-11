@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Checkbox, Anchor, Paper, Title, Text, Container, Group, Button, Center } from '@mantine/core';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -22,6 +22,7 @@ const LoginPage = () => {
             values.email,
             values.password,
             (token: string) => {
+                console.log(token);
                 navigate('/');
             },
             (err: any) => {

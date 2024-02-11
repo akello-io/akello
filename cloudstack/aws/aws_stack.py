@@ -16,13 +16,12 @@ class AwsStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Setup DNS
-        R53(self, 'r53_akello.io', name='akello.io', zone_name='akello.io')
+        # R53(self, 'r53_akello.io', name='app.akello.io', zone_name='akello.io')
 
         # Setup data stores
-        DynamoDB(self, 'dynamo_akellodb', table_name='multi-tenant-registry', partition_key='pk', sort_key='sk')
-        S3(self, 's3_akello.io', bucket_name='akello.io')
-        S3(self, 's3_app.akello.io', bucket_name='app.akello.io')
-        S3(self, 's3_docs.akello.io', bucket_name='docs.akello.io')
+        DynamoDB(self, 'dynamo_akellodb', table_name='akello-multi-tenant', partition_key='pk', sort_key='sk')
+    
+        # S3(self, 's3_app.akello.io', bucket_name='app.akello.io')        
         
         # Setup Auth
         Cognito(self, 'cognito_akello', name='akello', user_pool_name='akello')

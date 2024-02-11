@@ -1,64 +1,14 @@
-import * as React from "react";
 import StopWatch from "../../components/stopwatch/StopWatch";
 import {useEffect, useState} from "react";
-import classNames from "classnames";
-import {Dropdown} from "@akello/react";
-import {Button, Select, Radio, Group, Switch, Checkbox} from "@mantine/core";
-import {
-    PatientRegistry,
-    Questionnaire,
-    QuestionnaireQuestion,
-    QuestionnaireResponse
+import {Button, Select, Checkbox} from "@mantine/core";
+import {    
+    Questionnaire    
 } from "@akello/core";
 import { useAkello } from "@akello/react-hook";
 import { useNavigate } from "react-router";
-
 import QuestionnaireForm from "../../components/QuestionnaireForm";
 
 
-
-interface SelectorProps {
-    selectedId?: number
-    question: QuestionnaireQuestion
-    onSelection: (response: QuestionnaireResponse) => void
-}
-const Selector:React.FC<SelectorProps> = ({selectedId, onSelection, question}) => {
-    const [selectedResponseId, setSelectedResponseId] = useState(0)
-
-    useEffect(() => {
-        console.log(selectedResponseId)        
-    }, [selectedResponseId])
-
-    return (
-        <>
-            <Radio.Group                
-                name={question.id}
-                label={question.question}                
-                description="This is anonymous"
-                withAsterisk>
-                    <Group mt="xs">                
-                        {
-                            question.responses.map((response) => {                                 
-                                return (
-                                    <Radio checked={response.id===selectedResponseId}  label={response.response} value={response.response} onClick={(event) => {
-                                        onSelection(response)
-                                        setSelectedResponseId(response.id)
-                                    }}  />
-                                )
-                            })
-                        }                                
-                    </Group>
-            </Radio.Group>
-        </>
-    )    
-}
-
-interface StartSessionTabProps {
-    setSelectedTab: (tab: string) => void
-    selectedPatient: PatientRegistry
-    questionnaires: Questionnaire[]
-    setSelectedPatient: (patient: PatientRegistry) => void
-}
 
 const PatientSession = ({}) => {
     
@@ -77,11 +27,14 @@ const PatientSession = ({}) => {
 
     
     useEffect(() => {
-        akello.registryService.getRegistry(akello.getSelectedRegistry().id, (data) => {
-            setQuestionnaires(data['questionnaires'])            
-        }, (error) => {
-            debugger;
-        })
+        const selectedRegistryId = akello.getSelectedRegistry()?.id;
+        if (selectedRegistryId) {
+            akello.registryService.getRegistry(selectedRegistryId, (data) => {
+                setQuestionnaires(data['questionnaires'])            
+            }, (error) => {
+                console.log(error)
+            })
+        }
     }, [])
 
     useEffect(() => {
@@ -91,7 +44,7 @@ const PatientSession = ({}) => {
 
     const [mm, setMM] = useState(0)
     const [ss, setSS] = useState(0)
-    // const [ms, setMS] = useState(0)
+    //const [ms, setMS] = useState(0)
 
     const [noShow, setNoShow] = useState(false)
     
@@ -111,14 +64,14 @@ const PatientSession = ({}) => {
                 <div className={"border border-1"}>
                     <div className={"flex flex-row font-semibold border-b border-1 p-2"}>
                         <p className={"text-3xl font-semibold"}>
-                            <StopWatch timeCallback={(mm, ss, ms) => {
+                            <StopWatch timeCallback={(mm, ss, _) => {
                                 setMM(mm)
                                 setSS(ss)
-                                // setMS(ms)
+                                //setMS(ms)
                             }}/>
                         </p>
                         <div className={"flex flex-row space-x-4 my-auto"}>                                                                                     
-                            <Button variant="filled" color="red" onClick={() => setSelectedTab("Main")}>
+                            <Button variant="filled" color="red" onClick={() => {}}>
                                 cancel
                             </Button>
                             <Button variant="filled" onClick={() => {
@@ -137,21 +90,23 @@ const PatientSession = ({}) => {
                                     })
                                     
                                 }                                
-                                akello.registryService.saveTreatmentSession(akello.getSelectedRegistry().id, {
-                                    patient_mrn: akello.getSelectedPatientRegistry().patient_mrn,
-                                    contact_type: contactType,
-                                    flag: flag,
-                                    weeks_in_treatment: 0,
-                                    visit_type: visitType,
-                                    scores: scores,
-                                    minutes: mm + (ss/60),
-                                    no_show: noShow,
-                                    date: Date.now() // UTC time
-                                }, (data) => {
-                                    // let treatment_logs = [...selectedPatient.treatment_logs!, data]
-                                    // selectedPatient.treatment_logs = treatment_logs                                    
-                                    navigate('/registry/' + akello.getSelectedRegistry().id)
-                                })
+                                const selectedRegistry = akello.getSelectedRegistry();
+                                if (selectedRegistry) {
+                                    akello.registryService.saveTreatmentSession(selectedRegistry.id, {
+                                        patient_mrn: akello.getSelectedPatientRegistry()?.patient_mrn ?? '',
+                                        contact_type: contactType,
+                                        flag: flag,
+                                        weeks_in_treatment: 0,
+                                        visit_type: visitType,
+                                        scores: scores,
+                                        minutes: mm + (ss/60),
+                                        no_show: noShow,
+                                        date: Date.now() // UTC time
+                                    }, (data) => {
+                                        console.log(data)
+                                        navigate('/registry/' + selectedRegistry.id);
+                                    });
+                                }
 
                             }}>
                                 save session
@@ -179,7 +134,7 @@ const PatientSession = ({}) => {
                                 placeholder="Pick value"
                                 data={['Needs Discussion', 'Review with Psychiatrist', 'Safety Risk']}
                                 onChange={(value) => {
-                                    setFlag(value)
+                                    setFlag(value ?? undefined)
                                 }}
                             />   
                             <Select
@@ -187,7 +142,7 @@ const PatientSession = ({}) => {
                                 placeholder="Pick value"
                                 data={['Clinic', 'Phone', 'In-person w/ Patient']}
                                 onChange={(value) => {
-                                    setVisitType(value)
+                                    setVisitType(value ?? "")
                                 }}
                             />                                
                             <Select
@@ -200,7 +155,7 @@ const PatientSession = ({}) => {
                                     'Relapse Prevention Plan'
                                 ]}
                                 onChange={(value) => {                                        
-                                    setContactType(value)
+                                    setContactType(value ?? "")
                             }}/>                                                        
                         </div>
                     </div>

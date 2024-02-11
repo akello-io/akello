@@ -1,6 +1,6 @@
 import { AkelloClient } from '@akello/core'
 
-export const akello = new AkelloClient({
+const config = {
     baseUrl: import.meta.env.VITE_API,
     cognitoUserPoolId: import.meta.env.VITE_AWS_COGNITO_USERPOOL_ID,
     cognitoClientId: import.meta.env.VITE_AWS_COGNITO_APP_CLIENT_ID,
@@ -11,4 +11,6 @@ export const akello = new AkelloClient({
     onUnauthenticated: () => {
         window.location.href = '/login'
     }
-})
+}
+console.log(config)
+export const akello = new AkelloClient(config)
