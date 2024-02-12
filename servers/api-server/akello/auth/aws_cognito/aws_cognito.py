@@ -42,7 +42,8 @@ class CognitoTokenCustom(BaseModel):
     jti: str
     client_id: Optional[str] = None
     username: Optional[str] = None
-    email: str
+    # email: str - pull this from the user attributes
+    sub: str
 
 
 async def local_auth_required(request: Request) -> CognitoTokenCustom:

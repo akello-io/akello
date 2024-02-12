@@ -15,21 +15,21 @@ router = APIRouter()
 
 @router.get("")
 async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
-    logger.info('calling get_user: email:%s' % auth.email)
+    logger.info('calling get_user: email:%s' % auth.username)
     user = UserService.get_user(auth.cognito_id)
     if not user:
-        logger.info('registering a new User for the first time - %s ' % auth.email)
-        UserService.create_user(auth.cognito_id, auth.email)
+        logger.info('registering a new User for the first time - %s ' % auth.username)
+        UserService.create_user(auth.cognito_id, auth.username)
     else:
         UserService.set_user_active(auth.cognito_id)
 
     # TODO: WE SHOULD ONLY DO THIS ONCE ON LOGIN
-    invites = UserInvite.get_invites(auth.email)
-    print('invites: %s ' % auth.email)
+    invites = UserInvite.get_invites(auth.username)
+    print('invites: %s ' % auth.username)
     print('invites')
     print(invites)
     for invite in invites:
-        logger.info('adding user - %s to registry %s ' % (auth.email, invite['registry_id']))
+        logger.info('adding user - %s to registry %s ' % (auth.username, invite['registry_id']))
         UserService.create_registry_user(
             registry_id=invite['registry_id'],
             first_name='',

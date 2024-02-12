@@ -6,7 +6,14 @@ from akello.dynamodb.models.registry import PatientRegistry
 
 class TestMetriportMixin(TestCase):
     
-    def test_mixin(selfx):        
+    def test_mixin(selfx):
+        
+        METRIPORT_API_KEY = os.getenv('METRIPORT_API_KEY') 
+        METRIPORT_API_URL = os.getenv('METRIPORT_API_URL')  
+        if METRIPORT_API_KEY is None or METRIPORT_API_URL is None:
+            print('METRIPORT_API_KEY and METRIPORT_API_URL are not set')
+            return
+
         id = '018ca636-5838-7560-b64f-0ea98d51b321'
         registry_id = 'c6dd885d-79ad-ab94-f648-af11e645d0b2'
         patient_registry = PatientRegistry(
