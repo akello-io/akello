@@ -12,6 +12,8 @@ from pydantic_settings import BaseSettings
 logger = Logger(service="mangum")
 
 
+
+
 class Settings(BaseSettings):
     BASE_URL: str  = "http://localhost:8000"
     USE_NGROK: bool = os.environ.get("USE_NGROK", "False") == "True"
@@ -21,11 +23,6 @@ settings = Settings()
 def init_webhooks(base_url):
     # Update inbound traffic via APIs to use the public-facing ngrok URL
     pass
-
-
-# Initialize the FastAPI app for a simple web server
-app = FastAPI()
-
 
 if settings.USE_NGROK and os.environ.get("NGROK_AUTHTOKEN"):
     # pyngrok should only ever be installed or initialized in a dev environment when this flag is set
@@ -70,6 +67,7 @@ metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
 metriport_api_url = os.getenv('METRIPORT_API_URL', None)
 if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:    
     app.state.after_patient_referral_mixins.append(MetriportMixin)
+    app.include_router(metriport_webhook, prefix="/v1/integrations", tags=["Integrations"])
 
 
 app.add_middleware(
@@ -79,10 +77,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-## Registry plugin webhooks
-app.include_router(metriport_webhook, prefix="/v1/integrations", tags=["Integrations"])
 
 handler = Mangum(app)
 handler = logger.inject_lambda_context(handler, clear_state=True)
