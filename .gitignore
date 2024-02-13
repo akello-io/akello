@@ -8,3 +8,4 @@ venv
 # docker volume for cognito
 .cognito
 .vscode/
+*.tgz
