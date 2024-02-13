@@ -60,9 +60,7 @@ def setup():
     print(f"export AWS_COGNITO_APP_CLIENT_ID={client_id}")
     print(f"export AWS_DYNAMODB_TABLE='akello-local'")
     print(f"export AKELLO_API_URL=http://127.0.0.1:8000/v1")
-    print(f"export AKELLO_COGNITO_LOCAL=TRUE")
     print(f"export AKELLO_COGNITO_URL=http://localhost:9229")
-    print(f"export AKELLO_DYNAMODB_LOCAL=TRUE")
     print(f"export AKELLO_DYNAMODB_LOCAL_URL=http://localhost:8001")
     print("\n\n")
 

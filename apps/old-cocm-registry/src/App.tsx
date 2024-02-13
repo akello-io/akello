@@ -31,26 +31,6 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconGauge, IconFingerprint, IconActivity, IconChevronRight } from '@tabler/icons-react';
 
 
-// Configure Amplify in index file or root file
-
-/*
-if(process.env.REACT_APP_MOCK != 'true') {
-    console.log(process.env)    
-    Amplify.configure({
-        Auth: {
-            region: process.env.REACT_APP_AWS_REGION,
-            userPoolId: process.env.REACT_APP_AWS_COGNITO_USERPOOL_ID,
-            userPoolWebClientId: process.env.REACT_APP_AWS_COGNITO_APP_CLIENT_ID,
-            ...(process.env.REACT_APP_AKELLO_COGNITO_LOCAL === "TRUE" && {
-                endpoint: process.env.REACT_APP_AKELLO_COGNITO_URL,
-                authenticationFlowType: "USER_PASSWORD_AUTH",
-              })
-            }
-    })
-}
- */
-
-
 const theme = createTheme({
     /** Your theme override here */
 });

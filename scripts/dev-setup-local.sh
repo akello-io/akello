@@ -72,9 +72,7 @@ printf "
 ✅ Setup Complete
 📝 Add this in your $rcFile
 ${CYAN}export AKELLO_API_URL=http://127.0.0.1:8000/v1
-${CYAN}export AKELLO_COGNITO_LOCAL=TRUE
 ${CYAN}export AKELLO_COGNITO_URL=http://localhost:9229
-${CYAN}export AKELLO_DYNAMODB_LOCAL=TRUE
 ${CYAN}export AKELLO_DYNAMODB_LOCAL_URL=http://localhost:8001
 ${CYAN}export AWS_ACCESS_KEY_ID=''
 ${CYAN}export AWS_ACCOUNT_ID=''
@@ -86,5 +84,4 @@ ${CYAN}export AWS_DYNAMODB_TABLE='akello-local'
 ${CYAN}export AWS_REGION=''
 ${CYAN}export AWS_SECRET_ACCESS_KEY=''
 ${CYAN}export AWS_SECRET_NAME=''
-${CYAN}export AWS_STORYBOOK_BUCKET=''
 "
