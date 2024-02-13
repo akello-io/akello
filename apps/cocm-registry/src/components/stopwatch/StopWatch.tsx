@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './StopWatch.css';
 
 interface StopWatchProps {
@@ -14,7 +14,7 @@ const StopWatch:React.FC<StopWatchProps> = ({timeCallback}) => {
         let mm_ = 0
         let ms_ = 0
         let ss_ = 0
-        let interval_id = setInterval(() => {
+        setInterval(() => {
             ms_ ++
             if (ms_ >= 100) {
                 ss_ = ss_ + 1

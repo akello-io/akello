@@ -51,7 +51,7 @@ const akello = new AkelloClient({
     baseUrl: process.env.REACT_APP_API,
     cognitoUserPoolId: process.env.REACT_APP_AWS_COGNITO_USERPOOL_ID,
     cognitoClientId: process.env.REACT_APP_AWS_COGNITO_APP_CLIENT_ID,
-            ...(process.env.REACT_APP_AKELLO_COGNITO_LOCAL === "TRUE" && {
+            ...(process.env.REACT_APP_AKELLO_COGNITO_URL && {
                 cognitoEndpoint: process.env.REACT_APP_AKELLO_COGNITO_URL,
                 authenticationFlowType: "USER_PASSWORD_AUTH",
     }),

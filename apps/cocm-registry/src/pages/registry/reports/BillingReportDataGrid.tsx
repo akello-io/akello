@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {DataGrid, GridColDef, GridToolbar} from '@mui/x-data-grid';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 
 
 const columns: GridColDef[] = [

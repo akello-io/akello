@@ -3,7 +3,6 @@ import { IconArrowBadgeRightFilled } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import { useAkello } from "@akello/react-hook";
 import { Registry } from '@akello/core';
-import { IconUsersGroup } from '@tabler/icons-react';
 import AkelloLog from '../assets/Logo/PNGs/D2-AH-CBBP-Logo-V3-240323-AS_icon-akello-blue.png';
 
 interface RegistryCardProps {
@@ -46,7 +45,7 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
       <Text c="dimmed" fz="sm">
         Patients:{' '}
         <Text span fw={500} c="bright">
-        {props.registry.patients} 
+        {props.registry.patients}
         </Text>           
       </Text>
       

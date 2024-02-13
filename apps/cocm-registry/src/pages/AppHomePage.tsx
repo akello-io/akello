@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAkello } from "@akello/react-hook";
-import { useNavigate } from 'react-router-dom';
 import { Registry } from '@akello/core';
 import { WelcomeBanner } from "@akello/react";
 import RegistryCard from '../components/RegistryCard';
 
-interface AppHomePageProps {
-    drawerHandlers: any;
-}
-
-const AppHomePage: React.FC<AppHomePageProps> = ({ drawerHandlers }) => {
+const AppHomePage = () => {
     const akello = useAkello();
-    const navigate = useNavigate();
     const [registries, setRegistries] = useState<Registry[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 

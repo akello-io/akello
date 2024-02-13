@@ -1,11 +1,10 @@
-import {PatientProgressChart, Dropdown} from "@akello/react";
+import {PatientProgressChart} from "@akello/react";
 import {PatientTreatmentHistoryDataGrid} from "@akello/react";
-import {PatientRegistry, Questionnaire} from "@akello/core";
 import moment from "moment";
 import { useAkello } from "@akello/react-hook";
-import {Select, Container, Grid, Button, ScrollArea, ThemeIcon, SegmentedControl} from '@mantine/core';
+import {Select, Container, Button, ThemeIcon, SegmentedControl} from '@mantine/core';
 import { useNavigate } from "react-router";
-import { IconPhone, IconFlag } from "@tabler/icons-react";
+import { IconPhone } from "@tabler/icons-react";
 import TreatmentProgress from './treatment-progress/TreatmentProgress';
 
 const PatientDetail = () => {       
@@ -55,21 +54,24 @@ const PatientDetail = () => {
                             <div className={'col-span-2'}>
                                 <Select
                                         placeholder="Select patient flag "                                
-                                        clearable
-                                        fullWidth
-                                        defaultValue={akello.getSelectedPatientRegistry()?.patient_flag}
-                                        value={akello.getSelectedPatientRegistry()?.patient_flag}
+                                        clearable                                        
+                                        defaultValue={akello.getSelectedPatientRegistry()?.flag}
+                                        value={akello.getSelectedPatientRegistry()?.flag}
                                         data={[                        
                                             'Needs Discussion',
                                             'Review with Psychiatrist',
                                             'Safety Risk'
                                         ]}
                                         onChange={(value) => {
-                                            akello.registryService.setFlag(akello.getSelectedRegistry().id, selectedPatient.patient_mrn, value, () => {                                                
-                                                selectedPatient.patient_flag = value;
-                                                akello.selectPatient(selectedPatient);                                                
-                                                akello.dispatchEvent({ type: 'change' });
-                                            })
+                                            const selectedRegistry = akello.getSelectedRegistry();
+                                            const patientMRN = selectedPatient?.patient_mrn;
+                                            if (selectedRegistry && patientMRN) {
+                                                akello.registryService.setFlag(selectedRegistry.id, patientMRN, value !== null ? value : '', () => {
+                                                    selectedPatient.flag = value !== null ? value : undefined;
+                                                    akello.selectPatient(selectedPatient);
+                                                    akello.dispatchEvent({ type: 'change' });
+                                                });
+                                            }
                                         }}
                                     />       
                             </div>                                                                                 
@@ -83,11 +85,14 @@ const PatientDetail = () => {
                                 defaultValue={selectedPatient.status}
                                 value={selectedPatient.status}
                                 onChange={(value) => {
-                                    akello.registryService.setStatus(akello.getSelectedRegistry().id, selectedPatient.patient_mrn, value, () => {                                                                                
-                                        selectedPatient.status = value;
-                                        akello.selectPatient(selectedPatient);
-                                        akello.dispatchEvent({ type: 'change' });
-                                    })
+                                    const selectedRegistry = akello.getSelectedRegistry();
+                                    if (selectedRegistry) {
+                                        akello.registryService.setStatus(selectedRegistry.id, selectedPatient.patient_mrn, value, () => {
+                                            selectedPatient.status = value;
+                                            akello.selectPatient(selectedPatient);
+                                            akello.dispatchEvent({ type: 'change' });
+                                        });
+                                    }
                                 }}
                             />
 
@@ -95,7 +100,7 @@ const PatientDetail = () => {
                     </div>
                 </div>
                 <Container size="xs">
-                    <Button color="pink" fullWidth onClick={() => navigate('/registry/' + akello.getSelectedRegistry().id + '/patient/' + akello.getSelectedPatientRegistry().id + '/treatment-session')}>
+                    <Button color="pink" fullWidth onClick={() => navigate('/registry/' + (akello.getSelectedRegistry()?.id ?? '') + '/patient/' + (akello.getSelectedPatientRegistry()?.id ?? '') + '/treatment-session')}>
                         Start Session
                     </Button>
                 </Container>
@@ -110,7 +115,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2 h-64 w-full"}>
-                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires} />
+                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires ?? []} />
                                 </div>
                             </div>
 
@@ -121,7 +126,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2"}>
-                                <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires} />                                    
+                                <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires ?? []} />                                    
                                 </div>
                             </div>
                         </>

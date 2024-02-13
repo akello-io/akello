@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Anchor, Paper, Title, Text, Container, Button, Center } from '@mantine/core';
 import { useNavigate } from 'react-router';
 import { Field, Form, Formik } from 'formik';
@@ -12,13 +12,7 @@ const SignupSchema = Yup.object().shape({
     password: Yup.string().required('Required')
 });
 
-interface SignUpFormProps {
-    onSuccess?: () => void;
-    onFail?: () => void;
-    onSiginClick: () => void;
-}
-
-const SignUpPage: React.FC<SignUpFormProps> = () => {
+const SignUpPage = () => {
     const [submissionError, setSubmissionError] = useState('');
     const akello = useAkello();
     const navigate = useNavigate();

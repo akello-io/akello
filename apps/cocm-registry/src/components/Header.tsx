@@ -7,11 +7,10 @@ import { useAkello } from "@akello/react-hook";
 import { IconUserPlus, IconPlus } from '@tabler/icons-react';
 
 interface HeaderProps {
-  loggedIn: boolean;
-  toggle: () => void;
+  loggedIn: boolean;  
 }
 
-const Header: React.FC<HeaderProps> = ({ loggedIn, toggle }) => {
+const Header: React.FC<HeaderProps> = ({ loggedIn }) => {
   const navigate = useNavigate();
   const akello = useAkello();
 
@@ -21,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, toggle }) => {
         <div className='flex flex-row space-x-3'>
           <UnstyledButton
             onClick={() => {
-              akello.selectRegistry('');
+              akello.selectRegistry(undefined);
               navigate('/');
             }}
             className='flex h-8 w-auto my-auto'
@@ -29,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, toggle }) => {
             <img src={Logo} alt='logo' className='h-8 w-auto' />
           </UnstyledButton>
           <div className='text-3xl font-semibold my-auto text-sky-500 bg-sky-100 px-6'>
-            {akello.getSelectedRegistry() ? akello.getSelectedRegistry().name : ''}            
+            {akello.getSelectedRegistry()?.name ?? ''}            
           </div>
         </div>
         <div className='flex flex-row my-auto space-x-6'>
@@ -38,7 +37,10 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, toggle }) => {
               variant="default"
               leftSection={<IconUserPlus size={14} />} 
               onClick={() => {
-                navigate(`/registry/${akello.getSelectedRegistry().id}/patient-referral`);
+                const selectedRegistry = akello.getSelectedRegistry();
+                if (selectedRegistry) {
+                  navigate(`/registry/${selectedRegistry.id}/patient-referral`);
+                }
               }}
             >
               Add Patient
