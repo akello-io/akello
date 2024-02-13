@@ -11,5 +11,5 @@ def set_aws():
     setenvars(secrets)
 
 
-if not os.getenv('AKELLO_COGNITO_LOCAL') and not os.getenv('AKELLO_UNIT_TEST'):
+if not os.getenv('AKELLO_COGNITO_URL') and not os.getenv('AKELLO_UNIT_TEST'):
     set_aws()

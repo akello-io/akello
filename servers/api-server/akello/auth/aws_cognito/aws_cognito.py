@@ -24,7 +24,7 @@ class Settings(BaseSettings):
             "region": AWS_REGION,
             "userpool_id": AWS_COGNITO_USERPOOL_ID,
             "app_client_id": AWS_COGNITO_APP_CLIENT_ID,
-            **({"endpoint": AKELLO_COGNITO_URL} if os.environ.get('AKELLO_COGNITO_LOCAL') == 'TRUE' else {})
+            **({"endpoint": AKELLO_COGNITO_URL} if os.environ.get('AKELLO_COGNITO_URL') else {})
         },
     }
 
