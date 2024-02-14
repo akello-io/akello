@@ -3,6 +3,7 @@ import subprocess
 from aws_cdk import (    
     Stack,
     aws_cognito as cognito,
+    CfnOutput
 )
 from constructs import Construct
 from aws.components.storage import S3
@@ -14,32 +15,61 @@ from aws.components.ecr import ECR
 from aws.components.fn_lambda import fn_Lambda
 from aws.components.deploy_static_site import DeployStaticSite
 
+import os
 
 class AwsStack(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
-
+        
         # Run build    
         #process = subprocess.run(["../scripts/dev-build.sh"]) 
         #process.wait()
 
-
-        # Setup DNS
-        R53(self, 'r53_akello.io', name='app.akello.io', zone_name='akello.io')
-
-        # Setup data stores
-        DynamoDB(self, 'dynamo_akellodb', table_name='akello-multi-tenant', partition_key='partition_key', sort_key='sort_key')
-    
-        # Setup Storage
-        # S3(self, 's3_app.akello.io', bucket_name='app.akello.io')
-               
-
-        DeployStaticSite(self, 'app.akello.io', name='app.akello.io')
+        domain = 'akello.io'
+        db_table_name = 'akello-multi-tenant'
+        aws_region = 'us-east-1'
 
         # Setup Auth
         cognito_pool = CognitoPool(self, 'cognito_akello', name='akello', user_pool_name='akello')
         cognito_client = CognitoClient(self, 'cognito_client_akello', user_pool=cognito_pool.user_pool, name='app-client')
+        
+
+        self.user_pool = cognito_pool.user_pool
+        self.user_pool_client = cognito_client.client
+        CfnOutput(self, "AWS_COGNITO_USERPOOL_ID", value=cognito_pool.user_pool.user_pool_id)
+        CfnOutput(self, "AWS_COGNITO_APP_CLIENT_ID", value=cognito_client.client.user_pool_client_id)
+            
+
+        local_envars = os.environ.copy()
+
+        
+
+        # Set Env Vars
+        env_vars = {
+            'AKELLO_API_URL': f'api.{domain}',
+            'AWS_DYNAMODB_TABLE': db_table_name,
+            'AWS_COGNITO_USERPOOL_ID': cognito_pool.user_pool.user_pool_id,
+            'AWS_COGNITO_APP_CLIENT_ID': cognito_client.client.user_pool_client_id,
+        }
+
+        
+
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ENV VARS", env_vars)
+        
+        
+        
+
+        # Update environment variables
+        for key, value in env_vars.items():
+            local_envars[key] = value
+
+
+        # Setup DNS
+        r53 = R53(self, 'app_r53_akello.io', zone_name=domain)
+
+        # Setup data stores
+        DynamoDB(self, 'dynamo_akellodb', table_name='akello-multi-tenant', partition_key='partition_key', sort_key='sort_key')
 
         # Setup Lambda         
         fn_Lambda(
@@ -48,20 +78,18 @@ class AwsStack(Stack):
             lambda_name='akello-api', 
             path='../servers/api-server', 
             dockerfile='Dockerfile.aws.lambda', 
-            lambda_env={
-                'AWS_DYNAMODB_TABLE': 'akello-multi-tenant',
-                'AWS_COGNITO_USERPOOL_ID': cognito_pool.user_pool.user_pool_id,
-                'AWS_COGNITO_APP_CLIENT_ID': cognito_client.client.user_pool_client_id
-            }
-        )        
-        
+            lambda_env=env_vars
+        )
 
-        # Setup ECR
-        # ECR(self, 'akello_ecr', name='akello')
-
-        #TODO: Lambdas (docker build)
         #TODO: API Gateway
+        #  - build the open api spec
+        #  - create the api gateway
+        #  - connect the lambda to the api gateway
 
+         # Setup a static stie
+        # - sets up S3, CloudFront
+        self.deploy_static_site = DeployStaticSite(self, 'app.akello.io', subdomain='app-dev', domain=domain, public_hosted_zone=r53.public_hosted_zone, env_vars=local_envars)        
+        
 
             
         

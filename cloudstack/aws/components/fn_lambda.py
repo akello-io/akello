@@ -1,7 +1,8 @@
 import aws_cdk as cdk
 from constructs import Construct
 from aws_cdk import (    
-    aws_lambda as _lambda
+    aws_lambda as _lambda,
+    aws_logs as logs
 )
 
 
@@ -26,8 +27,16 @@ class fn_Lambda(Construct):
                 directory=path,
                 file=dockerfile
             ),
-            environment=lambda_env
-        )
+            environment=lambda_env,
+            log_group=logs.LogGroup(
+                scope=self,
+                id=f"{lambda_name}LogGroup",
+                log_group_name=f"/aws/lambda/{lambda_name}",
+                removal_policy=cdk.RemovalPolicy.DESTROY
+            )            
+        )        
+
+        # self.fn_lambda.log_group.add_stream(lambda_name)
 
         if role_policy:
             self.fn_lambda.add_to_role_policy(role_policy)

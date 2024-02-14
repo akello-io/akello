@@ -4,10 +4,12 @@ import os
 import aws_cdk as cdk
 
 from aws.aws_stack import AwsStack
+from aws.deploy_stack import DeployStack
 
 
 app = cdk.App()
-AwsStack(app, "AwsStack",
+
+aws_stack = AwsStack(app, "AwsStack",
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
     # but a single synthesized template can be deployed anywhere.
@@ -24,5 +26,10 @@ AwsStack(app, "AwsStack",
 
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
     )
+
+DeployStack(app, "DeployStack",
+    env=cdk.Environment(account=os.environ['CDK_DEFAULT_ACCOUNT'], region=os.environ['CDK_DEFAULT_REGION']),
+    bucket=aws_stack.deploy_static_site.bucket
+)
 
 app.synth()
