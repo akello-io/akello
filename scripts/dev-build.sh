@@ -8,6 +8,9 @@ cd ../../
 
 echo '>>>>>>>>>>  CORE'
 cd packages/core
+
+echo $PWD
+
 rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml
@@ -24,8 +27,10 @@ pnpm install --save vitest
 pnpm install --save json
 pnpm install --save-peer tailwindcss
 
+echo $PWD
 pnpm i
 pnpm build:lib
+ech $PWD
 pnpm pack
 # rm -rf node_modules
 cd ../../
