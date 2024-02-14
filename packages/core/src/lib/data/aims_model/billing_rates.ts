@@ -1,7 +1,3 @@
-import {stat} from "fs";
-import {Payer} from "./payer";
-
-
 export class BillingRateCollection {
 
     billing_rates: BillingRate[]
