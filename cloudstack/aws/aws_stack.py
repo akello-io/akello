@@ -1,12 +1,15 @@
 from aws_cdk import (    
-    Stack
+    Stack,
+    aws_cognito as cognito,
 )
 from constructs import Construct
 from aws.components.storage import S3
 from aws.components.storage import DynamoDB
 from aws.components.r53 import R53
-from aws.components.auth import Cognito
+from aws.components.cognito_pool import CognitoPool
+from aws.components.cognito_client import CognitoClient
 from aws.components.ecr import ECR
+from aws.components.fn_lambda import fn_Lambda
 
 
 
@@ -21,13 +24,30 @@ class AwsStack(Stack):
         # Setup data stores
         DynamoDB(self, 'dynamo_akellodb', table_name='akello-multi-tenant', partition_key='pk', sort_key='sk')
     
-        # S3(self, 's3_app.akello.io', bucket_name='app.akello.io')        
-        
+        S3(self, 's3_app.akello.io', bucket_name='app.akello.io')
+               
+
         # Setup Auth
-        Cognito(self, 'cognito_akello', name='akello', user_pool_name='akello')
+        cognito_pool = CognitoPool(self, 'cognito_akello', name='akello', user_pool_name='akello')
+        cognito_client = CognitoClient(self, 'cognito_client_akello', user_pool=cognito_pool.user_pool, name='app-client')        
+
+        
+        
+        fn_Lambda(
+            self, 
+            'fn_akello_api', 
+            lambda_name='akello-api', 
+            path='../servers/api-server', 
+            dockerfile='Dockerfile.aws.lambda', 
+            lambda_env={
+                'AWS_COGNITO_USERPOOL_ID': cognito_pool.user_pool.user_pool_id,
+                'AWS_COGNITO_APP_CLIENT_ID': cognito_client.client.user_pool_client_id
+            }
+        )        
+        
 
         # Setup ECR
-        ECR(self, 'akello_ecr', name='akello')
+        # ECR(self, 'akello_ecr', name='akello')
 
         #TODO: Lambdas (docker build)
         #TODO: API Gateway
