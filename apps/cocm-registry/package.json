@@ -27,6 +27,7 @@
     "formik": "^2.4.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.3",
+    "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.22.0",
