@@ -21,7 +21,7 @@ def setup_registry_db():
         client = boto3.client('dynamodb')
         dynamodb = boto3.resource('dynamodb')
 
-
+    """
     try:
         print('creating registry table')
         table = dynamodb.create_table(
@@ -58,6 +58,7 @@ def setup_registry_db():
     except Exception as e:
         print(e)
         print("tables probably already exist")
+    """
 
     return  client, dynamodb, dynamodb.Table(DYNAMODB_TABLE)
 

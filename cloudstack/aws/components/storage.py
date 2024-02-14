@@ -14,7 +14,17 @@ class S3(Construct):
     ):
         super().__init__(scope, id_)
         
-        self.bucket = s3.Bucket(self, bucket_name, bucket_name=bucket_name, versioned=False, access_control=s3.BucketAccessControl.PRIVATE, removal_policy=cdk.RemovalPolicy.DESTROY, encryption=s3.BucketEncryption.KMS_MANAGED, bucket_key_enabled=True) #NOSONAR
+        self.bucket = s3.Bucket(
+            self, 
+            bucket_name, 
+            bucket_name=bucket_name, 
+            versioned=False, 
+            access_control=s3.BucketAccessControl.PRIVATE, 
+            removal_policy=cdk.RemovalPolicy.DESTROY, 
+            encryption=s3.BucketEncryption.KMS_MANAGED, 
+            bucket_key_enabled=True,
+            auto_delete_objects=True
+        )
         
         if lambda_notification:
             self.bucket.add_event_notification(
@@ -40,6 +50,11 @@ class DynamoDB(Construct):
                 removal_policy=cdk.RemovalPolicy.DESTROY
             )        
 
+
+"""
+DO NOT USE THIS COMPONENT
+
+
 class Healthlake(Construct):
     def __init__(
         self, scope: Construct, id_: str, *, healthlake_db_name: str
@@ -62,3 +77,4 @@ class Healthlake(Construct):
             removal_policy=cdk.RemovalPolicy.DESTROY
         )
         self.cfn_fHIRDatastore.apply_removal_policy(cdk.RemovalPolicy.DESTROY)        
+"""
