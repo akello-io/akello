@@ -12,6 +12,10 @@ rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml
 rm akello-core-2.0.4.tgz
+pnpm install typescript
+pnpm install moment
+pnpm install fhir
+pnpm install --save-dev @types/fhir
 pnpm install  --save-dev husky
 pnpm install  --save-dev @types/react
 pnpm install  --save-dev @types/react-dom
@@ -53,6 +57,7 @@ pnpm install --save vitest
 pnpm install --save json
 pnpm install --save-peer tailwindcss
 pnpm install --save amazon-cognito-identity-js
+pnpm install --save-dev typescript
 
 pnpm i
 pnpm build:lib
@@ -71,9 +76,13 @@ pnpm install  --save-dev storybook
 pnpm install  --save-dev @storybook/react-vite
 pnpm install  --save-dev @storybook/react
 pnpm install --save-dev @heroicons/react
+pnpm install --save-dev typescript
+pnpm install --save-dev @types/fhir
+pnpm install --save fhir
 pnpm install  --save @types/react
 pnpm install --save classnames
 pnpm install --save vite
+pnpm install --save react-router-dom
 pnpm install --save @vitejs/plugin-react
 pnpm install --save vitest
 pnpm install --save vite-plugin-dts
@@ -94,6 +103,7 @@ pnpm install --save-peer @mantine/core @mantine/hooks
 pnpm install --save-peer postcss-preset-mantine postcss-simple-vars
 pnpm install --save yup
 pnpm install --save formik
+pnpm install --save moment 
 
 pnpm install --save-peer ../react-hook/akello-react-hook-2.0.4.tgz
 pnpm install --save-peer ../core/akello-core-2.0.4.tgz
