@@ -1,10 +1,6 @@
-import os, json
 import aws_cdk as cdk
-from aws_cdk import (    
-    Stack,
-    aws_cognito as cognito,
-    aws_apigateway as apigateway,
-    CfnOutput
+from aws_cdk import (        
+    aws_apigateway as apigateway    
 )
 
 from constructs import Construct
@@ -16,18 +12,9 @@ class ApiGateway(Construct):
             ) -> None:
         super().__init__(scope, id_)
 
-        # apigateway.SpecRestApi(self, name,
-        #    api_definition=apigateway.ApiDefinition.from_asset("./openapi.json")            
-        #)    
-
-        api = apigateway.LambdaRestApi(self, name,
+        self.api = apigateway.LambdaRestApi(self, name,
             handler=fn_lambda
         )
-        api.apply_removal_policy(cdk.RemovalPolicy.DESTROY)        
+        self.api.apply_removal_policy(cdk.RemovalPolicy.DESTROY)        
 
-        deployment = apigateway.Deployment(self, "Deployment", api=api)
-
-        
-        
-        
-
+        apigateway.Deployment(self, "Deployment", api=self.api)

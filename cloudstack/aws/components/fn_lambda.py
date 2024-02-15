@@ -36,8 +36,6 @@ class fn_Lambda(Construct):
             )            
         )        
 
-        # self.fn_lambda.log_group.add_stream(lambda_name)
-
         if role_policy:
             self.fn_lambda.add_to_role_policy(role_policy)
         
