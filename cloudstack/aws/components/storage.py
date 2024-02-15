@@ -40,7 +40,7 @@ class DynamoDB(Construct):
         self, scope: Construct, id_: str, *, table_name: str, partition_key: str, sort_key: str = None
     ):
         super().__init__(scope, id_)
-        table = dynamodb.TableV2(self, 'Table',
+        self.table = dynamodb.TableV2(self, 'Table',
                 table_name=table_name,
                 partition_key=dynamodb.Attribute(name=partition_key, type=dynamodb.AttributeType.STRING),
                 sort_key=dynamodb.Attribute(name=sort_key, type=dynamodb.AttributeType.STRING), 

@@ -17,5 +17,7 @@ class CognitoPool(Construct):
         self.user_pool = cognito.UserPool(self, name,
             user_pool_name=user_pool_name,
             sign_in_case_sensitive=False,
-            removal_policy=cdk.RemovalPolicy.DESTROY,            
+            removal_policy=cdk.RemovalPolicy.DESTROY, 
+            self_sign_up_enabled=True,
+            auto_verify=cognito.AutoVerifiedAttrs(email=True)
         )
