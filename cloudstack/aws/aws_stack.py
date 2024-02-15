@@ -50,3 +50,4 @@ class AwsStack(Stack):
         CfnOutput(self, "AWS_API_GATEWAY", value=self.api_gateway.api.url)
         CfnOutput(self, "AWS_COGNITO_USERPOOL_ID", value=cognito_pool.user_pool.user_pool_id)
         CfnOutput(self, "AWS_COGNITO_APP_CLIENT_ID", value=cognito_client.client.user_pool_client_id)
+        CfnOutput(self, "AWS_CLOUDFRONT_URL", value=self.deploy_static_site.distribution.domain_name)        
