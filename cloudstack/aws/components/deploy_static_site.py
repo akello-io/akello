@@ -28,7 +28,8 @@ class DeployStaticSite(Construct):
             public_read_access=True,
             block_public_access=s3.BlockPublicAccess(block_public_policy=False),
             removal_policy=cdk.RemovalPolicy.DESTROY,                         
-            website_index_document="index.html",             
+            website_index_document="index.html",    
+            website_error_document="index.html",         
             auto_delete_objects=True
         )      
                 
