@@ -65,7 +65,7 @@ class AwsStack(Stack):
         r53 = R53(self, 'app_r53_akello.io', zone_name=domain)
 
         # Setup data stores
-        DynamoDB(self, 'dynamo_akellodb', table_name='akello-multi-tenant', partition_key='partition_key', sort_key='sort_key')
+        dynamodb = DynamoDB(self, 'dynamo_akellodb', table_name='akello-multi-tenant', partition_key='partition_key', sort_key='sort_key')
 
         # Setup Lambda         
         self.fn_lambda = fn_Lambda(
@@ -76,6 +76,8 @@ class AwsStack(Stack):
             dockerfile='Dockerfile.aws.lambda', 
             lambda_env=env_vars
         )
+
+        dynamodb.table.grant_read_write_data(self.fn_lambda.fn_lambda)
 
         ApiGateway(self, 'api_gateway_akello', name='akello-api', fn_lambda=self.fn_lambda.fn_lambda)
 
