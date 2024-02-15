@@ -29,16 +29,16 @@ class DeployStaticSite(Construct):
             auto_delete_objects=True
         )      
                 
-        distribution = cloudfront.Distribution(
+        self.distribution = cloudfront.Distribution(
             self, 
             f"StaticSiteDistribution", 
             default_root_object="index.html",
             default_behavior=cloudfront.BehaviorOptions(origin=origins.S3Origin(self.bucket))            
-        )              
-
+        )
+        
         route53.AaaaRecord(self, "Alias",
             zone=public_hosted_zone,
             record_name=subdomain,
-            target=route53.RecordTarget.from_alias(route53targets.CloudFrontTarget(distribution))
+            target=route53.RecordTarget.from_alias(route53targets.CloudFrontTarget(self.distribution))
         )
         

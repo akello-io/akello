@@ -80,11 +80,11 @@ const SignUpConfirm = () => {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <Button type="submit" className="bg-primary w-full">
+                                        <Button type="submit" fullWidth>
                                             Confirm code
                                         </Button>
                                         <div>
-                                            <Button className="btn-secondary w-full" onClick={handleResendCode}>
+                                            <Button onClick={handleResendCode} color="violet" fullWidth>
                                                 Resend code
                                             </Button>
                                             {apierror && <div className="text-red-600 text-center ">{apierror}</div>}

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cdk deploy AwsStack --profile Dev --outputs-file aws-stack-deploy-output.json 
+cdk deploy AwsStack --profile $1 --outputs-file aws-stack-deploy-output.json 
 
 # Set environment vairables using outputs from the previous command
 
@@ -12,4 +12,4 @@ export AWS_COGNITO_APP_CLIENT_ID=$(jq -r '.AwsStack.AWSCOGNITOAPPCLIENTID' aws-s
 sh ../scripts/dev-build-cloudstack-deploy.sh
 
 # Deploy the app
-cdk deploy DeployStack --profile Dev
+cdk deploy DeployStack --profile $1
