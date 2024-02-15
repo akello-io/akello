@@ -36,8 +36,8 @@ class DeployStaticSite(Construct):
             self, 
             f"StaticSiteDistribution", 
             default_root_object="index.html",
-            default_behavior=cloudfront.BehaviorOptions(origin=origins.S3Origin(self.bucket))
-        )      
+            default_behavior=cloudfront.BehaviorOptions(origin=origins.S3Origin(self.bucket))            
+        )              
 
         route53.AaaaRecord(self, "Alias",
             zone=public_hosted_zone,

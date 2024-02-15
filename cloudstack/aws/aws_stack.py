@@ -14,6 +14,7 @@ from aws.components.cognito_client import CognitoClient
 from aws.components.ecr import ECR
 from aws.components.fn_lambda import fn_Lambda
 from aws.components.deploy_static_site import DeployStaticSite
+from aws.components.api_gateway import ApiGateway
 
 import os
 
@@ -53,12 +54,7 @@ class AwsStack(Stack):
             'AWS_COGNITO_APP_CLIENT_ID': cognito_client.client.user_pool_client_id,
         }
 
-        
-
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ENV VARS", env_vars)
-        
-        
-        
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ENV VARS", env_vars)                
 
         # Update environment variables
         for key, value in env_vars.items():
@@ -72,7 +68,7 @@ class AwsStack(Stack):
         DynamoDB(self, 'dynamo_akellodb', table_name='akello-multi-tenant', partition_key='partition_key', sort_key='sort_key')
 
         # Setup Lambda         
-        fn_Lambda(
+        self.fn_lambda = fn_Lambda(
             self, 
             'fn_akello_api', 
             lambda_name='akello-api', 
@@ -80,6 +76,8 @@ class AwsStack(Stack):
             dockerfile='Dockerfile.aws.lambda', 
             lambda_env=env_vars
         )
+
+        ApiGateway(self, 'api_gateway_akello', name='akello-api', fn_lambda=self.fn_lambda.fn_lambda)
 
         #TODO: API Gateway
         #  - build the open api spec
