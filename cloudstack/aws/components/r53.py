@@ -1,17 +1,6 @@
-import os, json
-import aws_cdk as cdk
 from aws_cdk import (
-    CfnTag,
-    Stack,    
-    aws_iam as iam,
-    aws_s3 as s3,    
-    aws_s3_notifications as s3n,
-    aws_route53 as route53,
-    aws_route53_targets as route53targets
+    aws_route53 as route53
 )
-from aws_cdk import aws_route53resolver as route53resolver
-from aws_cdk import aws_route53_targets as route53targets
-
 
 from constructs import Construct
 

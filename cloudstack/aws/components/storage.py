@@ -1,11 +1,9 @@
 import aws_cdk as cdk
 from constructs import Construct
 from aws_cdk import (    
-    aws_s3 as s3,
-    aws_s3_notifications,
+    aws_s3 as s3,    
     aws_dynamodb as dynamodb
 )
-from aws_cdk import aws_healthlake as healthlake
 
 
 class S3(Construct):
@@ -52,9 +50,9 @@ class DynamoDB(Construct):
 
 
 """
-DO NOT USE THIS COMPONENT
+DO NOT USE THIS COMPONENT - for reference only
 
-
+from aws_cdk import aws_healthlake as healthlake
 class Healthlake(Construct):
     def __init__(
         self, scope: Construct, id_: str, *, healthlake_db_name: str

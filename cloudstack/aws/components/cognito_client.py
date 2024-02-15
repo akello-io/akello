@@ -1,8 +1,5 @@
-import os, json
-import aws_cdk as cdk
 from aws_cdk import (    
-    Stack,
-    aws_cognito as cognito,
+    aws_cognito as cognito
 )
 
 from constructs import Construct
