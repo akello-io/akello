@@ -4,6 +4,7 @@ from akello.dynamodb.models.registry import PatientRegistry, EventLog
 import uuid
 import logging
 import datetime 
+import json
 
 
 logger = logging.getLogger('mangum')
@@ -13,9 +14,20 @@ router = APIRouter()
 async def metriport_webhook(payload: dict):
     print("received metriport webhook call")
     print("-----------------------------------")
-    print(payload)
+    print(json.dumps(payload, indent = 4))    
     print("-----------------------------------")
 
+    if 'data' not in payload['meta']:
+        print("No data in payload")
+        return
+    
+    registry_id = payload['meta']['data']['registry_id']
+    
+    with open(f'{registry_id}-data.json', 'w') as f:
+        json.dump(payload, f)
+
+
+    """
     if payload['meta']['type'] == 'medical.consolidated-data':
         registry_id = payload['meta']['data']['registry_id']
         for patient in payload['patients']:                                       
@@ -39,3 +51,4 @@ async def metriport_webhook(payload: dict):
             # patient_registry.integration_metriport_fhir_data = patient # TODO: only for debugging
             RegistryService.update_patient(patient_registry)
             print("---------------------METRIPORT WEBHOOK COMPELTED!!--------------------------")        
+    """
