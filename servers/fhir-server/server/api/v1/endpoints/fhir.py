@@ -15,8 +15,8 @@ async def create_fhir_resource(request: Request):
             fhir_resource = resource_entry['resource']            
             flat_fhir_resource = flatten(fhir_resource)
             print('resource flattened: %s' % flat_fhir_resource['resourceType'])
-            # print(flat_fhir_resource.keys())
-            import pdb;pdb.set_trace()
+            # print(flat_fhir_resource.keys())            
+            import pdb;pdb.set_trace() #TODO: remove this line
 
     # Create resource
 
