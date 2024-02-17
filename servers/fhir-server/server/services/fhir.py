@@ -1,10 +1,9 @@
 import json
 from jsonschema import validate
-from data.models import Policy, FHIRResource
-from data.database import XFHIRDatabaseManager
+# from data.database import XFHIRDatabaseManager
 from typing import List
 
-with open('./data/fhir.schema.json') as schema_file:
+with open('./server/data/fhir.schema.json') as schema_file:
     fhir_schema = json.loads(schema_file.read())
 
 class FHIRService:
@@ -25,24 +24,19 @@ class FHIRService:
         return f'{account_id}-{resource_id}-{resource_type}'
 
     @staticmethod
-    def create_resource(account_id: str, key: str, fhir_json: dict, policies: List[Policy] = []):
-        fhir_resource = FHIRResource(fhir_resource=fhir_json, policies=policies)
-        fhir_db.create(account_id=account_id, key=key, path='.', data=fhir_resource.model_dump_json())
+    def create_resource(account_id: str, key: str, fhir_json: dict):
+        #fhir_resource = FHIRResource(fhir_resource=fhir_json, policies=policies)
+        #fhir_db.create(account_id=account_id, key=key, path='.', data=fhir_resource.model_dump_json())
+        pass
 
     @staticmethod
     def delete_resource(account_id: str, key: str):
-        fhir_db.delete(account_id=account_id, key=key)
+        #fhir_db.delete(account_id=account_id, key=key)
+        pass
 
     @staticmethod
     def get_resource(key: str):
-        db_obj = xfhir_db.get(key=key)
-        fhir_resource = FHIRResource(**json.loads(db_obj))
-        return fhir_resource
-
-    @staticmethod
-    def attach_policy(key: str, policy: Policy):
-        pass
-
-    @staticmethod
-    def detach_policy(key: str, policy: Policy):
-        pass
+        #db_obj = xfhir_db.get(key=key)
+        #fhir_resource = FHIRResource(**json.loads(db_obj))
+        #return fhir_resource
+        pass    

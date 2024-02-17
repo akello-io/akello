@@ -6,4 +6,3 @@ from typing import List, Optional, Literal
 
 class FHIRResource(BaseModel):
     fhir_resource: dict
-    policies: List[Policy]

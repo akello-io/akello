@@ -29,7 +29,7 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-    return {"message": "api.akello.io"}
+    return {"message": "fhir.akello.io"}
 
 
 handler = Mangum(app)

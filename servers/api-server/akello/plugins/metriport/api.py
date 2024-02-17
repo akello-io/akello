@@ -85,8 +85,10 @@ class Patient(MetriportAPI):
     def create_patient(self):
         raise Exception("Not Implemented")
 
-    def get_patient(self):
-        raise Exception("Not Implemented")
+    def get_patient(self, patient_mrn):
+        response = self.get_request(self.endpoint + '/' + patient_mrn)
+        return response
+        
 
     def update_patient(self):
         raise Exception("Not Implemented")
