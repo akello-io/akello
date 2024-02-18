@@ -88,6 +88,7 @@ pnpm install --save @testing-library/react
 pnpm install --save json
 pnpm install --save recharts
 pnpm install --save @headlessui/react
+pnpm install --save @tabler/icons-react
 pnpm install --save-peer @mui/material
 pnpm install --save-peer @mui/styled-engine
 pnpm install --save-peer tailwindcss

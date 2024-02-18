@@ -35,8 +35,8 @@
   "peerDependencies": {
     "@akello/core": "file:../core/akello-core-2.0.4.tgz",
     "@akello/react-hook": "file:../react-hook/akello-react-hook-2.0.4.tgz",
-    "@mantine/core": "^7.5.2",
-    "@mantine/hooks": "^7.5.2",
+    "@mantine/core": "^7.5.3",
+    "@mantine/hooks": "^7.5.3",
     "@mui/icons-material": "^5.15.6",
     "@mui/lab": "^5.0.0-alpha.162",
     "@mui/material": "^5.15.10",

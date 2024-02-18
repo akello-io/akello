@@ -37,7 +37,7 @@ const app = async (): Promise<UserConfigExport> => {
         fileName: (format) => `${formattedName}.${format}.js`,
       },
       rollupOptions: {
-        external: ['react', 'react/jsx-runtime', 'react-dom', 'tailwindcss', 'daisyui', '@akello/core', '@akello/react-hook'],
+        external: ['react', 'react/jsx-runtime', 'react-dom', 'tailwindcss', 'daisyui', '@akello/core', '@akello/react-hook', '@mantine/core'],
         output: {
           globals: {
             react: 'React',
