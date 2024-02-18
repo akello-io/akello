@@ -1,8 +1,5 @@
-import os, json
-import aws_cdk as cdk
 from aws_cdk import (
-    Stack,    
-    aws_ecr as ecr,
+    aws_ecr as ecr
 )
 
 from constructs import Construct
@@ -14,7 +11,7 @@ class ECR(Construct):
             ) -> None:
         super().__init__(scope, id_)
 
-        repository = ecr.Repository(
+        ecr.Repository(
             self, 
             id_,
             repository_name=name,

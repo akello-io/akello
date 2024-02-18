@@ -3,11 +3,15 @@ from fastapi import FastAPI
 from akello.settings import *
 from akello.api.v1.api import router as api_router
 from fastapi.middleware.cors import CORSMiddleware
+from akello.plugins.metriport.webhook import router as metriport_webhook
+from akello.plugins.metriport import MetriportMixin
 from mangum import Mangum
 from aws_lambda_powertools import Logger
 from pydantic_settings import BaseSettings
 
 logger = Logger(service="mangum")
+
+
 
 
 class Settings(BaseSettings):
@@ -19,10 +23,6 @@ settings = Settings()
 def init_webhooks(base_url):
     # Update inbound traffic via APIs to use the public-facing ngrok URL
     pass
-
-
-# Initialize the FastAPI app for a simple web server
-app = FastAPI()
 
 if settings.USE_NGROK and os.environ.get("NGROK_AUTHTOKEN"):
     # pyngrok should only ever be installed or initialized in a dev environment when this flag is set
@@ -57,12 +57,18 @@ def root():
 
 app.include_router(api_router, prefix="/v1")
 
-
 app.state.after_patient_referral_mixins = []
 app.state.before_patient_session_mixins = []
 app.state.sms_plugin = None
 app.state.email_plugin = None
 app.state.patient_form_plugin = None
+
+metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
+metriport_api_url = os.getenv('METRIPORT_API_URL', None)
+if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:    
+    app.state.after_patient_referral_mixins.append(MetriportMixin)
+    app.include_router(metriport_webhook, prefix="/v1/integrations", tags=["Integrations"])
+
 
 app.add_middleware(
     CORSMiddleware,

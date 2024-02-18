@@ -109,8 +109,9 @@ class UserService(BaseService):
                 # TODO: Need to generate the Item Object using the data model
                 registries.append(
                     {
-                        'name': response['Items'][0]['name'],
-                        'id': response['Items'][0]['id']
+                        'id': response['Items'][0]['id'],
+                        'name': response['Items'][0]['name'],                        
+                        'description': response['Items'][0]['description'] if 'description' in response['Items'][0] else  None
                     }
                 )
             return registries

@@ -1,11 +1,9 @@
 import aws_cdk as cdk
 from constructs import Construct
 from aws_cdk import (    
-    aws_s3 as s3,
-    aws_s3_notifications,
+    aws_s3 as s3,    
     aws_dynamodb as dynamodb
 )
-from aws_cdk import aws_healthlake as healthlake
 
 
 class S3(Construct):
@@ -14,7 +12,17 @@ class S3(Construct):
     ):
         super().__init__(scope, id_)
         
-        self.bucket = s3.Bucket(self, bucket_name, bucket_name=bucket_name, versioned=False, access_control=s3.BucketAccessControl.PRIVATE, removal_policy=cdk.RemovalPolicy.DESTROY, encryption=s3.BucketEncryption.KMS_MANAGED, bucket_key_enabled=True) #NOSONAR
+        self.bucket = s3.Bucket(
+            self, 
+            bucket_name, 
+            bucket_name=bucket_name, 
+            versioned=False, 
+            access_control=s3.BucketAccessControl.PRIVATE, 
+            removal_policy=cdk.RemovalPolicy.DESTROY, 
+            encryption=s3.BucketEncryption.KMS_MANAGED, 
+            bucket_key_enabled=True,
+            auto_delete_objects=True
+        )
         
         if lambda_notification:
             self.bucket.add_event_notification(
@@ -30,7 +38,7 @@ class DynamoDB(Construct):
         self, scope: Construct, id_: str, *, table_name: str, partition_key: str, sort_key: str = None
     ):
         super().__init__(scope, id_)
-        table = dynamodb.TableV2(self, 'Table',
+        self.table = dynamodb.TableV2(self, 'Table',
                 table_name=table_name,
                 partition_key=dynamodb.Attribute(name=partition_key, type=dynamodb.AttributeType.STRING),
                 sort_key=dynamodb.Attribute(name=sort_key, type=dynamodb.AttributeType.STRING), 
@@ -40,6 +48,11 @@ class DynamoDB(Construct):
                 removal_policy=cdk.RemovalPolicy.DESTROY
             )        
 
+
+"""
+DO NOT USE THIS COMPONENT - for reference only
+
+from aws_cdk import aws_healthlake as healthlake
 class Healthlake(Construct):
     def __init__(
         self, scope: Construct, id_: str, *, healthlake_db_name: str
@@ -62,3 +75,4 @@ class Healthlake(Construct):
             removal_policy=cdk.RemovalPolicy.DESTROY
         )
         self.cfn_fHIRDatastore.apply_removal_policy(cdk.RemovalPolicy.DESTROY)        
+"""

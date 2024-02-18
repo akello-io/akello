@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@akello/react": "file:../../packages/react",
+    "@akello/react": "^0.0.20",
     "@headlessui/react": "^1.7.17",
-    "@heroicons/react": "^2.0.18",
-    "@testing-library/jest-dom": "^5.17.0",
+    "@heroicons/react": "^2.0.18",    
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",

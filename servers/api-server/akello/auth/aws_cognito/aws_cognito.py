@@ -1,5 +1,5 @@
 import os
-from fastapi import Request
+from fastapi import Request, HTTPException
 from pydantic_settings import BaseSettings
 from pydantic.types import Any
 from typing import Optional
@@ -24,7 +24,7 @@ class Settings(BaseSettings):
             "region": AWS_REGION,
             "userpool_id": AWS_COGNITO_USERPOOL_ID,
             "app_client_id": AWS_COGNITO_APP_CLIENT_ID,
-            **({"endpoint": AKELLO_COGNITO_URL} if os.environ.get('AKELLO_COGNITO_LOCAL') == 'TRUE' else {})
+            **({"endpoint": AKELLO_COGNITO_URL} if os.environ.get('AKELLO_COGNITO_URL') else {})
         },
     }
 
@@ -42,13 +42,18 @@ class CognitoTokenCustom(BaseModel):
     jti: str
     client_id: Optional[str] = None
     username: Optional[str] = None
-    email: str
+    # email: str - pull this from the user attributes
+    sub: str
 
 
 async def local_auth_required(request: Request) -> CognitoTokenCustom:
-    auth_token = request.headers.get('Authorization').replace('Bearer ', '')
-    decoded_token = jwt.get_unverified_claims(auth_token) #NOSONAR
-    decoded_token["email"] = decoded_token["cognito:username"]
+    try:        
+        auth_token = request.headers.get('Authorization').replace('Bearer ', '')        
+        decoded_token = jwt.get_unverified_claims(auth_token) #NOSONAR
+        decoded_token["email"] = decoded_token["username"]
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=401, detail="Unauthroized")
     return parse_obj_as(CognitoTokenCustom, decoded_token)
 
 auth_provider = CognitoAuth(
