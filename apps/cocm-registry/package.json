@@ -31,8 +31,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.22.0",
     "react-router-dom": "^6.22.0",
-    "react-tailwindcss-datepicker": "^1.6.6",
-    "sort-by": "^1.2.0",
+    "react-tailwindcss-datepicker": "^1.6.6",    
     "yup": "^1.3.3"
   },
   "devDependencies": {
