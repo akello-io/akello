@@ -33,7 +33,7 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
   "peerDependencies": {
-    "@akello/core": "^0.0.1",
+    "@akello/core": "^0.0.7",
     "amazon-cognito-identity-js": "^6.3.7",
     "aws-amplify": "^6.0.13",
     "axios": "^1.6.1",
