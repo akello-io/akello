@@ -16,7 +16,7 @@ click==8.1.7
 cognitojwt==1.4.1
 cryptography==41.0.5
 ecdsa==0.18.0
-fastapi==0.104.1
+fastapi==0.109.1
 fastapi-cognito==2.4.2
 frozenlist==1.4.0
 h11==0.14.0
