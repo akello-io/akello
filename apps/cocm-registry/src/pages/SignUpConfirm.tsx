@@ -5,9 +5,7 @@ const SignUpConfirm = () => {
     const navigate = useNavigate();
 
     return (
-        <>
-            <SignUpConfirmComponent onConfirmSuccess={() => navigate('/')} />
-        </>
+        <SignUpConfirmComponent onConfirmSuccess={() => navigate('/')} />
     )
     
 };

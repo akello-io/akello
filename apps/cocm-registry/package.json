@@ -11,9 +11,9 @@
     "s3deploy": "pnpm build && aws s3 sync dist/ s3://app.akello.io"
   },
   "dependencies": {
-    "@akello/core": "file:../../packages/core/akello-core-2.0.4.tgz",
-    "@akello/react": "file:../../packages/react/akello-react-2.0.4.tgz",
-    "@akello/react-hook": "file:../../packages/react-hook/akello-react-hook-2.0.4.tgz",
+    "@akello/core": "^0.0.7",
+    "@akello/react": "^0.0.20",    
+    "@akello/react-hook": "^0.0.1",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.1.1",
@@ -31,14 +31,13 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.22.0",
     "react-router-dom": "^6.22.0",
-    "react-tailwindcss-datepicker": "^1.6.6",
-    "sort-by": "^1.2.0",
+    "react-tailwindcss-datepicker": "^1.6.6",    
     "yup": "^1.3.3"
   },
   "devDependencies": {
-    "@akello/core": "file:../../packages/core/akello-core-2.0.4.tgz",
-    "@akello/react": "file:../../packages/react/akello-react-2.0.4.tgz",
-    "@akello/react-hook": "file:../../packages/react-hook/akello-react-hook-2.0.4.tgz",
+    "@akello/core": "file:../../packages/core",
+    "@akello/react": "file:../../packages/react",
+    "@akello/react-hook": "file:../../packages/react-hook",
     "@heroicons/react": "^2.1.1",
     "@mantine/core": "^7.5.3",
     "@mantine/hooks": "^7.5.3",
