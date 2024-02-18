@@ -19,6 +19,9 @@ dependencies:
   '@mui/styled-engine-sc':
     specifier: ^6.0.0-alpha.13
     version: 6.0.0-alpha.13(styled-components@6.1.8)
+  '@tabler/icons-react':
+    specifier: ^2.47.0
+    version: 2.47.0(react@18.2.0)
   '@testing-library/react':
     specifier: ^14.2.1
     version: 14.2.1(react-dom@18.2.0)(react@18.2.0)
@@ -4920,6 +4923,20 @@ packages:
       '@types/express': 4.17.21
       file-system-cache: 2.3.0
     dev: true
+
+  /@tabler/icons-react@2.47.0(react@18.2.0):
+    resolution: {integrity: sha512-iqly2FvCF/qUbgmvS8E40rVeYY7laltc5GUjRxQj59DuX0x/6CpKHTXt86YlI2whg4czvd/c8Ce8YR08uEku0g==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@tabler/icons': 2.47.0
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
+  /@tabler/icons@2.47.0:
+    resolution: {integrity: sha512-4w5evLh+7FUUiA1GucvGj2ReX2TvOjEr4ejXdwL/bsjoSkof6r1gQmzqI+VHrE2CpJpB3al7bCTulOkFa/RcyA==}
+    dev: false
 
   /@tanstack/react-virtual@3.1.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-nT/LvcBHrkVIpmQIYoCBOY89cuG00v8VBIwOFRMW95Id+ksVEAj8PHto2/VKh0PsVUIVxEpphjv7fQN+IWBTRw==}

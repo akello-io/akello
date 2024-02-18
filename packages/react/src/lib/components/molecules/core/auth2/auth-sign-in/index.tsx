@@ -4,7 +4,7 @@ import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useAkello } from '@akello/react-hook';
 
-import classes from './LoginPage.module.css';
+import classes from '../LoginPage.module.css';
 
 interface LoginPageProps {
     onSuccess?: (token: string) => void;
