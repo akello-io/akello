@@ -25,6 +25,7 @@ class VisitTypes(str, Enum):
     in_person = 'In-person w/ Patient'
 
 
+#TODO: rename to TreatmentLogStat so that we can store stats
 class TreatmentLogScore(BaseModel):
     score_name: str
     score_value: int
