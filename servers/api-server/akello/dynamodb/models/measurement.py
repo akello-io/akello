@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional
+from typing import Union
 
 
 class Response(BaseModel):
@@ -14,8 +15,15 @@ class Question(BaseModel):
     responses: List[Response]
     score: int = 0
 
+class FHIRWeight(BaseModel):
+    name: str
+    jsonPath: str
+    codes: List[str]
+    weight: int
 
-class Questionnaire(BaseModel):
+
+class Measurement(BaseModel):
     name: str
     uid: str
-    questions: List[Question]
+    type: str
+    measurements: Union[List[Question], List[FHIRWeight]]
