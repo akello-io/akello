@@ -1,4 +1,5 @@
 from akello.dynamodb.models import RegistryDBBaseModel
+from akello.dynamodb.models.measurement import Measurement
 from enum import Enum
 from pydantic import BaseModel
 from typing import List, Optional
@@ -102,7 +103,7 @@ class RegistryModel(RegistryDBBaseModel):
     created_date: float
     members: int = 0
     active_patients: int = 0
-    questionnaires: List[dict] = None
+    questionnaires: List[Measurement] = None
     integrations: List[RegistryIntegration] = []
     logo_url: Optional[str] = None
 

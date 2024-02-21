@@ -1,0 +1,13 @@
+---
+ uid: "fhir-weights" 
+ type: "fhir-object-query"
+ name: "Score FHIR Bundle"  
+ measurements:
+   - name: "Family History of Stroke 1"
+     jsonPath: '$.patients[*].bundle.entry[*][?(resourceType=="FamilyMemberHistory")].condition[*].code.coding[*]'
+     codes: ["371041009", "371041009"]
+     weight: 3
+   - name: "Family History of Stroke 1"
+     jsonPath: '$.patients[*].bundle.entry[*][?(resourceType=="FamilyMemberHistory")].condition[*].code.coding[*]'
+     codes: ["371041009", "371041009"]
+     weight: 3       
