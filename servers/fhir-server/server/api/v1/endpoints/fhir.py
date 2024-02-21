@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi import Request
-from flatten_json import flatten
-from server.services.fhir import FHIRService
+from flatten_json import flatten, unflatten
+from server.services.fhir_resource import FHIRResourceService
 
 router = APIRouter()
 
@@ -9,19 +9,16 @@ router = APIRouter()
 async def create_fhir_resource(request: Request):    
     fhir_resource = await request.json()
     
-    for patient in fhir_resource['patients']:
-        for resource_entry in patient['bundle']['entry']:
-            #TODO: validate the resource        
-            fhir_resource = resource_entry['resource']            
-            flat_fhir_resource = flatten(fhir_resource)
-            print('resource flattened: %s' % flat_fhir_resource['resourceType'])
-            # print(flat_fhir_resource.keys())            
-            import pdb;pdb.set_trace() #TODO: remove this line
+    #TODO: validate the resource
 
-    # Create resource
-
+    flat_fhir_resource = flatten(fhir_resource)    
+    FHIRResourceService().create_fhir_resource(flat_fhir_resource)    
     return {"message": "Resource Created"}
 
 @router.get("/{resource_type}/{identifier}")
-async def get_fhir_resource():
-    pass
+async def get_fhir_resource(resource_type: str, identifier: str):
+
+    #TODO: verify access
+
+    reource = FHIRResourceService().get_fhir_resource(resource_type, identifier)    
+    return unflatten(reource)

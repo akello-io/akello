@@ -1,14 +1,14 @@
 import { Questionnaire, QuestionnaireResponse }  from 'fhir/r4'
 import { TextInput, Checkbox, Button, Group, Box, Select } from '@mantine/core';
 import { useForm } from '@mantine/form';
-
+import axios from "axios";
 
 
 export interface QuestionnaireFormProps {
     questionnaire: Questionnaire
 }
 
-export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnaire}) => {
+export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnaire}) => {    
     
     const valueSet = questionnaire.contained?.find((item) => item.resourceType === 'ValueSet')
         
@@ -24,13 +24,8 @@ export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnair
 
     const form = useForm({
         initialValues: {          
-        },
-    
-        
-        
-      });
-    
-
+        },    
+    });
 
     return (
         <Box maw={340} mx="auto">                    
@@ -39,6 +34,7 @@ export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnair
                 'resourceType': 'QuestionnaireResponse',
                 'status': 'completed',
                 'questionnaire': questionnaire.url,
+                'contained': questionnaire.contained,
                 'item': [
                     {
                         'linkId': 'H1/T1',
@@ -51,8 +47,13 @@ export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnair
                         })
                     }
                 ]                
-            } as QuestionnaireResponse
-            debugger;
+            } as QuestionnaireResponse        
+            console.log(response)    
+            axios.post('http://127.0.0.1:8000/v1/fhir', response)
+                .then((resp) => {                    
+                })
+                .catch((error) => {                    
+                });
         })}>
           
           {questionnaire.item?.map((item, index) => {
@@ -60,9 +61,14 @@ export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnair
                 <div key={index}>
                     {item.text}
                     {item.item?.map((subItem, subIndex) => {
+
+                        if(subItem.type !== 'choice')
+                        {
+                            return (<></>)
+                        }
                         return (
                             <div key={subIndex}>                                                                
-                                <Select
+                                <Select                                    
                                     label={subItem.text}                                    
                                     placeholder="Pick value"                                                                        
                                     onChange={(value) => {                                        
@@ -72,11 +78,10 @@ export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnair
                                             'text': subItem.text,
                                             'answer': [
                                                 {
-                                                    "valueCoding": valueCoding                  
+                                                    "valueCoding": valueCoding          
                                                 }
                                             ]
-                                        }
-                                        debugger;
+                                        }                                        
                                         form.setFieldValue(subItem.linkId, answer)
                                     }}
                                     data={optionCodes[0].map((option) => {return option.display})}
