@@ -62,7 +62,7 @@
     ]
   },
   "devDependencies": {
-    "@akello/core": "file:../../packages/core",    
+    "@akello/core": "file:../../packages/core",
     "@akello/react-hook": "file:../../packages/react-hook",
     "@heroicons/react": "^2.1.1",
     "@mantine/core": "^7.5.3",
@@ -86,8 +86,10 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.18",
+    "@mantine/form": "^7.5.3",
     "@tabler/icons-react": "^2.47.0",
     "@testing-library/react": "^14.2.1",
+    "@types/fhir": "^0.0.41",
     "@types/react": "^18.2.56",
     "@vitejs/plugin-react": "^4.2.1",
     "classnames": "^2.5.1",
