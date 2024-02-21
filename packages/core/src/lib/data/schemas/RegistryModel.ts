@@ -155,6 +155,7 @@ export class QuestionnaireQuestion {
     }
 }
 
+// TODO: This doesn't represent the model from the server
 export class Questionnaire {
     uid: string
     name: string
@@ -164,8 +165,7 @@ export class Questionnaire {
         uid: string,
         name: string,
         questions: any
-    ) {
-        debugger
+    ) { 
         this.uid  = uid
         this.name = name
         this.questions = questions

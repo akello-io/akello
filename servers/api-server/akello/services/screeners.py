@@ -23,7 +23,7 @@ class ScreenerService(BaseService):
                 with open(f'akello/screeners/measurements/{measurement}') as f:                
                     try:                                                
                         mobj = Measurement(**yaml.safe_load(f))
-                        if mobj.type == 'questionnaire':
+                        if mobj.type == 'survey':
                             measurement_list.append(mobj) 
                     except yaml.YAMLError as exc:
                         print(exc)                    

@@ -29,7 +29,7 @@ const PatientSession = ({}) => {
     useEffect(() => {
         const selectedRegistryId = akello.getSelectedRegistry()?.id;
         if (selectedRegistryId) {
-            akello.registryService.getRegistry(selectedRegistryId, (data) => {
+            akello.registryService.getRegistry(selectedRegistryId, (data) => {                
                 setQuestionnaires(data['questionnaires'])            
             }, (error) => {
                 console.log(error)

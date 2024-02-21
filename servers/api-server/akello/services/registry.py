@@ -19,7 +19,7 @@ class RegistryService(BaseService):
     def create_registry(name, description, questionnaires, integrations, logo_url=None):
         current_timestamp = datetime.datetime.utcnow().timestamp()
         rd = random.Random()
-
+        
         registry = RegistryModel(
             id=str(uuid.UUID(int=rd.getrandbits(128))),
             name=name,

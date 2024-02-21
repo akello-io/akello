@@ -25,12 +25,14 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ questionnaire, on
             
         )
     }, [selectedResponses])
-
+    
     return (
         <>
             <div>
                 <div>{questionnaire.name}</div>                
                 {
+                    
+                    //TODO: need to fix the schema definiation for questionnaire
                     questionnaire.questions.map((question: QuestionnaireQuestion) => {
                         
                         return (

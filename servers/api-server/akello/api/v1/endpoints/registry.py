@@ -22,7 +22,7 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
 
     # Create the registry and link the user to the registry
     questionnaires = ScreenerService.get_screeners()    
-    
+        
     # Create the registry and link the user to the registry    
     registry_id = RegistryService.create_registry(
         data['name'],
