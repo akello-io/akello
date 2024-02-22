@@ -23,7 +23,7 @@ charset-normalizer==3.3.0
 click==8.1.7
 cognitojwt==1.4.1
 constructs==10.3.0
-cryptography==42.0.2
+cryptography==42.0.4
 dnspython==2.4.2
 docutils==0.20.1
 ecdsa==0.18.0
