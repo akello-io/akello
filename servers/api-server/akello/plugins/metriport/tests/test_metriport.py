@@ -1,7 +1,7 @@
 import os
 from unittest import TestCase, mock
 from unittest.mock import patch
-from akello.plugins.metriport import MetriportMixin
+from akello.plugins.metriport import MetriportMixinStartFHIRConsolidatedQuery
 from akello.dynamodb.models.registry import PatientRegistry
 
 class TestMetriportMixin(TestCase):
@@ -25,6 +25,6 @@ class TestMetriportMixin(TestCase):
             email='v@v.com',
             date_of_birth='01-01-1990'
         )
-        mixin = MetriportMixin()
+        mixin = MetriportMixinStartFHIRConsolidatedQuery()
         resp = mixin.run(patient_registry=patient_registry)        
         print(resp)

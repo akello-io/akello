@@ -1,7 +1,8 @@
 import os, sys
 from fastapi import FastAPI
 from akello.settings import *
-from akello.api.v1.api import router as api_router
+from akello.api.app.v1.api import router as api_router
+from akello.api.fhir.v1.api import router as fhir_router
 from fastapi.middleware.cors import CORSMiddleware
 from akello.plugins.metriport.webhook import router as metriport_webhook
 from akello.plugins.metriport import MetriportMixinStartFHIRConsolidatedQuery
@@ -56,6 +57,7 @@ def root():
 
 
 app.include_router(api_router, prefix="/v1")
+app.include_router(fhir_router, prefix="/fhir/v1")
 
 #TODO: make sure to use pyddantic to ensure the settings are type safe
 app.state.after_patient_referral_mixins = []

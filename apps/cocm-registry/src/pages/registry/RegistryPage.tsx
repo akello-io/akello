@@ -18,7 +18,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
 
     if (akello.getSelectedRegistry()?.id === undefined) {
         navigate('/');
-    }
+    }    
 
     useEffect(() => {                        
         if (akello.getSelectedRegistry()) {
@@ -44,10 +44,9 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
         <>
             <div className=''>
                 <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={(object)=> {
-                    const clickedPatient = object.row as PatientRegistry
+                    const clickedPatient = object.row as PatientRegistry                    
                     akello.selectPatient(clickedPatient)   
-                    akello.dispatchEvent({ type: 'change' });
-                    console.log(clickedPatient.status)
+                    akello.dispatchEvent({ type: 'change' });                    
                 }} />    
             </div>
             
