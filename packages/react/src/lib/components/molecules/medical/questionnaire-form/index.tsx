@@ -1,4 +1,4 @@
-import { Questionnaire, QuestionnaireResponse }  from 'fhir/r4'
+import { FhirResource, Questionnaire, QuestionnaireResponse, ValueSet }  from 'fhir/r4'
 import { TextInput, Checkbox, Button, Group, Box, Select } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import axios from "axios";
@@ -10,9 +10,9 @@ export interface QuestionnaireFormProps {
 
 export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnaire}) => {    
     
-    const valueSet = questionnaire.contained?.find((item) => item.resourceType === 'ValueSet')
+    const valueSet = questionnaire.contained?.find((item) => item.resourceType === 'ValueSet') as ValueSet
         
-    let optionCodes = valueSet?.compose?.include?.map((item) => {
+    let optionCodes = valueSet!.compose!.include.map((item) => {
         return item.concept?.map((concept) => {            
             return {
                 code: concept.code,
@@ -29,7 +29,7 @@ export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnair
 
     return (
         <Box maw={340} mx="auto">                    
-        <form onSubmit={form.onSubmit((values) => {            
+        <form onSubmit={form.onSubmit((values: any) => {            
             const response = {
                 'resourceType': 'QuestionnaireResponse',
                 'status': 'completed',
@@ -67,24 +67,26 @@ export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnair
                             return (<></>)
                         }
                         return (
-                            <div key={subIndex}>                                                                
+                            <div key={subIndex}>                                                                                                    
                                 <Select                                    
                                     label={subItem.text}                                    
-                                    placeholder="Pick value"                                                                        
-                                    onChange={(value) => {                                        
-                                        let valueCoding = optionCodes[0].find((option) => option.display === value)                                        
-                                        const answer = {
-                                            'linkId': subItem.linkId,
-                                            'text': subItem.text,
-                                            'answer': [
-                                                {
-                                                    "valueCoding": valueCoding          
-                                                }
-                                            ]
-                                        }                                        
-                                        form.setFieldValue(subItem.linkId, answer)
+                                    placeholder="Pick value"                                           
+                                    onChange={(value: any) => {  
+                                        let valueCoding = optionCodes?.[0]?.find((option) => option.display === value);
+                                        if (valueCoding) {
+                                            const answer = {
+                                                'linkId': subItem.linkId,
+                                                'text': subItem.text,
+                                                'answer': [
+                                                    {
+                                                        "valueCoding": valueCoding          
+                                                    }
+                                                ]
+                                            };
+                                            form.setFieldValue(subItem.linkId, answer);
+                                        }
                                     }}
-                                    data={optionCodes[0].map((option) => {return option.display})}
+                                    data={optionCodes![0]!.map((option) => option!.display!)}
                                 />
                             </div>
                         )

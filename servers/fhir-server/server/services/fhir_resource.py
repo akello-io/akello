@@ -1,13 +1,29 @@
 import uuid, random, json
 from server.dynamodb import fhir_db
+from jsonschema import validate
+
 from decimal import Decimal
+
+
+with open('./server/data/fhir.schema.json') as schema_file:
+    fhir_schema = json.loads(schema_file.read())
 
 
 class FHIRResourceService:
     
+    @staticmethod
+    def is_resource_valid(resource):
+        try:
+            validate(instance=resource, schema=fhir_schema)
+            return True
+        except Exception as e:
+            return False
     
     @staticmethod
     def create_fhir_resource(resource):
+
+        if not FHIRResourceService.is_resource_valid(resource):
+            raise Exception('Invalid FHIR Resource')
 
         rd = random.Random()
         resource['id'] = str(uuid.UUID(int=rd.getrandbits(128)))
