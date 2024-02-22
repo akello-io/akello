@@ -25,7 +25,7 @@ const PatientDetail = () => {
             <></>
         )
     }     
-    
+
     return (
         <>
             <div className={"space-y-4 h-screen overflow-scroll	"}>
@@ -55,8 +55,8 @@ const PatientDetail = () => {
                                 <Select
                                         placeholder="Select patient flag "                                
                                         clearable                                        
-                                        defaultValue={akello.getSelectedPatientRegistry()?.flag}
-                                        value={akello.getSelectedPatientRegistry()?.flag}
+                                        defaultValue={selectedPatient.flag}
+                                        value={selectedPatient.flag}
                                         data={[                        
                                             'Needs Discussion',
                                             'Review with Psychiatrist',
@@ -64,7 +64,7 @@ const PatientDetail = () => {
                                         ]}
                                         onChange={(value) => {
                                             const selectedRegistry = akello.getSelectedRegistry();
-                                            const patientMRN = selectedPatient?.patient_mrn;
+                                            const patientMRN = selectedPatient?.patient_mrn;                                            
                                             if (selectedRegistry && patientMRN) {
                                                 akello.registryService.setFlag(selectedRegistry.id, patientMRN, value !== null ? value : '', () => {
                                                     selectedPatient.flag = value !== null ? value : undefined;
@@ -85,10 +85,10 @@ const PatientDetail = () => {
                                 defaultValue={selectedPatient.status}
                                 value={selectedPatient.status}
                                 onChange={(value) => {
-                                    const selectedRegistry = akello.getSelectedRegistry();
+                                    const selectedRegistry = akello.getSelectedRegistry();                                    
                                     if (selectedRegistry) {
                                         akello.registryService.setStatus(selectedRegistry.id, selectedPatient.patient_mrn, value, () => {
-                                            selectedPatient.status = value;
+                                            selectedPatient.status = value;                                            
                                             akello.selectPatient(selectedPatient);
                                             akello.dispatchEvent({ type: 'change' });
                                         });

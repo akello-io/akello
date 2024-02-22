@@ -3,10 +3,11 @@ import {useEffect, useState} from "react";
 import {Button, Select, Checkbox} from "@mantine/core";
 import { useAkello } from "@akello/react-hook";
 import { useNavigate } from "react-router";
-import { QuestionnaireForm } from "@akello/react";
+//import { QuestionnaireForm } from "@akello/react";
+import QuestionnaireForm from "../../components/QuestionnaireForm";
 
 
-
+/*
 const phq9 = {
     "resourceType": "Questionnaire",
     "id": "PHQ9",
@@ -213,11 +214,12 @@ const phq9 = {
     ]
   }
 
-  
+ */
+
 const PatientSession = ({}) => {
     
-    //const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([phq9 as Questionnaire])
-    const [questionnaires, setQuestionnaires] = useState<[]>([phq9])
+    const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
+    //const [questionnaires, setQuestionnaires] = useState<[]>([phq9])
     const [visitType, setVisitType] = useState('')
     const [contactType, setContactType] = useState('')
     const [flag, setFlag] = useState<string>()
@@ -235,7 +237,7 @@ const PatientSession = ({}) => {
         const selectedRegistryId = akello.getSelectedRegistry()?.id;
         if (selectedRegistryId) {
             akello.registryService.getRegistry(selectedRegistryId, (data) => {                
-                // setQuestionnaires(data['questionnaires'])
+                setQuestionnaires(data['questionnaires'])
             }, (error) => {
                 console.log(error)
             })
@@ -366,7 +368,7 @@ const PatientSession = ({}) => {
                     </div>
                 </div>
                 {
-                    questionnaires.map((questionnaire: Questionnaire) => {
+                    questionnaires.map((questionnaire: Questionnaire) => {                        
                         return (
                             <QuestionnaireForm 
                                 questionnaire={questionnaire} 

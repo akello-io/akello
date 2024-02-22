@@ -25,7 +25,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ questionnaire, on
             
         )
     }, [selectedResponses])
-    
+        
     return (
         <>
             <div>
@@ -33,7 +33,7 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ questionnaire, on
                 {
                     
                     //TODO: need to fix the schema definiation for questionnaire
-                    questionnaire.questions.map((question: QuestionnaireQuestion) => {
+                    questionnaire.measurements.map((question: QuestionnaireQuestion) => {
                         
                         return (
                             <>

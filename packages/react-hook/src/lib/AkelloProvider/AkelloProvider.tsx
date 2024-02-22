@@ -20,7 +20,7 @@ export const AkelloProvider = (props: AkelloProviderProps): JSX.Element => {
   useEffect(() => {
     const eventListener = (): void => {      
       console.log('--------------EVENT LISTENER----------------------')
-      console.log("akello.accessToken: " + akello.accessToken)      
+      console.log("akello.accessToken: " + akello.accessToken)           
       setState({
         ...state,
         isAuthenticated: akello.accessToken !== undefined,
