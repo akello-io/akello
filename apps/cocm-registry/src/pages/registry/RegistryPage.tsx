@@ -39,7 +39,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
             }
         }
     }, [akello])
-
+    
     return (
         <>
             <div className=''>

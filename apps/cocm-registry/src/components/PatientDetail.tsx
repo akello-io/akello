@@ -25,7 +25,7 @@ const PatientDetail = () => {
             <></>
         )
     }     
-
+    
     return (
         <>
             <div className={"space-y-4 h-screen overflow-scroll	"}>
