@@ -173,12 +173,12 @@ export default function Example() {
                         <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
 
                             <div className="mt-24 sm:mt-32 lg:mt-16">
-                                <a href="https://github.com/akello-io/akello/releases/tag/v0.0.6" className="inline-flex space-x-6">
+                                <a href="https://github.com/akello-io/akello/releases/tag/v0.0.7" className="inline-flex space-x-6">
                                     <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-semibold leading-6  ring-1 ring-inset ">
                                       Latest updates
                                     </span>
                                     <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6">
-                                    <span>Just shipped v0.0.6</span>
+                                    <span>Just shipped v0.0.7</span>
                                     <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
                                   </span>
                                 </a>
