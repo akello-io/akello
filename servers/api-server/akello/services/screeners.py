@@ -17,10 +17,12 @@ class ScreenerService(BaseService):
     #def get_measurements():
     def get_screeners():
         measurement_list = []
-        measurements = os.listdir('akello/screeners/measurements')
+        measurements = os.listdir('akello/screeners/measurements')        
         for measurement in measurements:
+            
             if measurement.endswith('.yaml'):
-                with open(f'akello/screeners/measurements/{measurement}') as f:                
+                with open(f'akello/screeners/measurements/{measurement}') as f:
+                    
                     try:                                                
                         mobj = Measurement(**yaml.safe_load(f))
                         if mobj.type == 'survey':

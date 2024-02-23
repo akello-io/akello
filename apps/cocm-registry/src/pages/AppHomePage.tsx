@@ -12,7 +12,7 @@ const AppHomePage = () => {
     useEffect(() => {
         setIsLoading(true);
         akello.userService.getUserRegistries((data) => {
-            const registries = data.map((registry: any) => {                
+            const registries = data.map((registry: any) => {                                
                 return new Registry(
                     registry['id'],
                     registry['name'],
@@ -26,7 +26,7 @@ const AppHomePage = () => {
                         safety_risk: registry['safety_risk']
                     }
                 );
-            });
+            });            
             setRegistries(registries);
             setIsLoading(false);
         });
