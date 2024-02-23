@@ -20,7 +20,6 @@ cattrs==23.1.2
 certifi==2023.7.22
 cffi==1.16.0
 charset-normalizer==3.3.0
-click==8.1.7
 cognitojwt==1.4.1
 constructs==10.3.0
 cryptography==42.0.4
@@ -92,7 +91,6 @@ typing_extensions==4.8.0
 ujson==5.8.0
 urllib3==1.26.18
 uvicorn==0.23.2
-uvloop==0.17.0
 watchfiles==0.20.0
 websockets==11.0.3
 yarl==1.9.2

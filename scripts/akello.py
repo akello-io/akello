@@ -38,8 +38,8 @@ def cli():
 
 @click.command()
 def setup():
-    os.system("cd servers/api-server && python -m venv .venv && pip install -r requirements.txt")
-    os.system("cd apps/cocm-registry && npm install")    
+    os.system("cd servers/api-server && python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt")
+    os.system("cd apps/cocm-registry && pnpm i")    
     os.system("cp scripts/.template.env apps/cocm-registry/.env")
     os.system("cp scripts/.template.api.env servers/api-server/akello/.env")
 
@@ -80,7 +80,7 @@ def start(name):
         cmd = """
             sh scripts/dev-build.sh &&            
             cd apps/cocm-registry &&        
-            npm run start"""
+            pnpm dev"""
         os.system(cmd)
 
 cli.add_command(setup)
