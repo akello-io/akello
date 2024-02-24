@@ -1,6 +1,6 @@
 import typer
 from akello.commands.generate_mock_demo_registry import generate_registry
-from akello.dynamodb import drop_tables
+from akello.db.connector.dynamodb import drop_tables
 from akello.services.admin import AdminService
 from datetime import datetime
 app = typer.Typer()

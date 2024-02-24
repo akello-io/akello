@@ -1,5 +1,5 @@
 import uuid, random, json
-from akello.dynamodb import registry_db
+from akello.db.connector.dynamodb import registry_db
 from jsonschema import validate
 from decimal import Decimal
 

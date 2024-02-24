@@ -39,7 +39,7 @@ moderate_depression = registry.create_registry('Moderate Depression')
 Refer a patient
 ```python
 from akello import registry
-from akello.dynamodb.models.registry import PatientRegistry
+from akello.db.models.registry import PatientRegistry
 
 # build a patient object using the PatientRegistry model
 patient_registry = PatientRegistry(
@@ -55,7 +55,7 @@ registry.refer_patient(patient_registry)
 Add a patient encounter
 ```python
 from akello import registry
-from akello.dynamodb.models.registry import TreatmentLog
+from akello.db.models.registry import TreatmentLog
 
 treatment_log = TreatmentLog(
     patient_mrn='<patients mrn>',

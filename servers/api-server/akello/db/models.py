@@ -5,7 +5,7 @@ from botocore.exceptions import ClientError
 import datetime, json
 from decimal import Decimal
 from enum import Enum
-from akello.dynamodb import registry_db, RegistryDBBaseModel
+from akello.db.connector.dynamodb import registry_db, RegistryDBBaseModel
 
 
 class Response(BaseModel):

@@ -2,7 +2,7 @@ import os
 from unittest import TestCase, mock
 from unittest.mock import patch
 from akello.plugins.metriport import MetriportMixinStartFHIRConsolidatedQuery
-from akello.dynamodb.models import PatientRegistry
+from akello.db.models import PatientRegistry
 
 class TestMetriportMixin(TestCase):
     
