@@ -7,6 +7,7 @@ AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
 DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
 AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
 
+
 def setup_registry_db():
     if AKELLO_UNIT_TEST == 'TRUE':
         return MagicMock(), MagicMock(), MagicMock()
@@ -21,6 +22,9 @@ def setup_registry_db():
 
     if AKELLO_DYNAMODB_LOCAL_URL:
         try:
+            DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
+            client.delete_table(TableName=DYNAMODB_TABLE)
+
             print('creating registry table')
             table = dynamodb.create_table(
                 TableName=DYNAMODB_TABLE,

@@ -54,6 +54,7 @@ from akello.db.models import UserInvite, UserRole
 
 DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
 client.delete_table(TableName=DYNAMODB_TABLE)
+
 table = dynamodb.create_table(
     TableName=DYNAMODB_TABLE,
     KeySchema=[
@@ -93,10 +94,9 @@ UserInvite.create(
         registry_id=registry_id
 )
 
-mock_patient = PatientMock().create_patient(registry_id)
-registry.refer_patient(mock_patient)
+for b in range(100):
+    mock_patient = PatientMock().create_patient(registry_id)
+    registry.refer_patient(mock_patient)
 
-
-
-registry.add_treatment_log(mock_patient)
-
+    for i in range(8):
+        registry.add_treatment_log(mock_patient, i)

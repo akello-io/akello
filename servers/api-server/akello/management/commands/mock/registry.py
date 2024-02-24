@@ -29,11 +29,11 @@ class RegistryMock:
         RegistryService.refer_patient(patient_registry)
         RegistryService.update_stats(patient_registry.id)
 
-    def add_treatment_log(self, patient_registry: PatientRegistry):
+    def add_treatment_log(self, patient_registry: PatientRegistry, weeks_in_treatment: int):
         treatment_log = TreatmentLogMock().create_treatment_log(
             patient_mrn=patient_registry.patient_mrn, 
-            weeks_in_treatment=3, 
-            date=0
+            weeks_in_treatment=weeks_in_treatment, 
+            date=int(fake.unix_time()),
         )  
          
         RegistryService.add_treatment_log(patient_registry.id, patient_registry.patient_mrn, treatment_log)

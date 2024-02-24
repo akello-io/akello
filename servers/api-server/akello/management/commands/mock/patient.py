@@ -31,5 +31,12 @@ class PatientMock:
             last_name=fake.unique.last_name(),
             phone_number=fake.phone_number(),
             email=fake.email(),
-            date_of_birth=fake.date()            
+            date_of_birth=fake.date(),
+
+            initial_assessment=int(fake.unix_time()),
+            last_follow_up=int(fake.unix_time()),
+            last_psychiatric_consult=int(fake.unix_time()),
+            total_sessions=fake.random_int(1, 10),
+            weeks_since_initial_assessment=fake.random_int(1, 10),
+            minutes_this_month=fake.random_int(1, 100)
         )

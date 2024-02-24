@@ -11,16 +11,17 @@ class TreatmentLogMock:
 
     def create_treatment_log(self, patient_mrn: str, weeks_in_treatment: int, date: int):
 
+        
         phq9 = TreatmentLogScore(
             score_name='PHQ-9',
-            score_value=random.randint(0, 27)
+            score_value=random.randint(5, 24)
         )
 
         gad7 = TreatmentLogScore(
             score_name='GAD-7',
-            score_value=random.randint(0, 21)
+            score_value=random.randint(5, 24)
         )    
-
+        
         return TreatmentLog(
             id=fake.uuid4(),
             patient_mrn=patient_mrn,            
