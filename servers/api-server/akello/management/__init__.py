@@ -1,3 +1,4 @@
+"""
 import typer
 from akello.commands.generate_mock_demo_registry import generate_registry
 from akello.db.connector.dynamodb import drop_tables
@@ -40,3 +41,62 @@ def scan_akello_stats():
 
 if __name__ == "__main__":
     app()
+
+"""
+
+import os
+from akello.management.commands.mock.registry import RegistryMock
+from akello.management.commands.mock.user import UserMock
+from akello.management.commands.mock.patient import PatientMock
+from akello.services.screeners import ScreenerService
+from akello.db.connector.dynamodb import client, dynamodb
+from akello.db.models import UserInvite, UserRole
+
+DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
+client.delete_table(TableName=DYNAMODB_TABLE)
+table = dynamodb.create_table(
+    TableName=DYNAMODB_TABLE,
+    KeySchema=[
+        {
+            'AttributeName': 'partition_key',  # registry_id, auth_user_id
+            'KeyType': 'HASH'
+        },
+        {
+            'AttributeName': 'sort_key',
+            'KeyType': 'RANGE'
+        }
+    ],
+    AttributeDefinitions=[
+        {
+            'AttributeName': 'partition_key',
+            'AttributeType': 'S'
+        },
+        {
+            'AttributeName': 'sort_key',
+            'AttributeType': 'S'
+        },
+    ],
+    ProvisionedThroughput={
+        'ReadCapacityUnits': 10,
+        'WriteCapacityUnits': 10
+    }
+)
+
+screeners = ScreenerService.get_screeners()
+registry = RegistryMock()
+registry_id = registry.create_registry(name='Test Registry', description='Test Description', questionnaires=screeners)
+
+UserInvite.create(
+        cognito_user_id='system',
+        email='vijay.selvaraj@gmail.com',
+        role=UserRole.care_manager,
+        registry_id=registry_id
+)
+
+mock_patient = PatientMock().create_patient(registry_id)
+registry.refer_patient(mock_patient)
+
+
+
+registry.add_treatment_log(mock_patient)
+

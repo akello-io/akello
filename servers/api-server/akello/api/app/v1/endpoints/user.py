@@ -22,8 +22,9 @@ async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
         UserService.create_user(auth.cognito_id, auth.username)
     else:
         UserService.set_user_active(auth.cognito_id)
-
-    # TODO: WE SHOULD ONLY DO THIS ONCE ON LOGIN
+    
+    # TODO: WE SHOULD ONLY DO THIS ONCE ON LOGIN    
+    
     invites = UserInvite.get_invites(auth.username)
     print('invites: %s ' % auth.username)
     print('invites')
@@ -49,7 +50,7 @@ async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
 @router.get("/registries")
 async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_check)):
     registries = UserService.get_registries(auth.cognito_id)
-
+    
     user_id = auth.cognito_id
     for registry in registries:
         registry_id = registry['id']        

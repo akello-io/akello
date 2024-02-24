@@ -115,7 +115,7 @@ class RegistryService(BaseService):
         item['sort_key'] = patient_registry.sort_key
         response = registry_db.put_item(
             Item=item
-        )
+        )        
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
