@@ -10,6 +10,25 @@ from pydantic import BaseModel
 from akello.db.connector.dynamodb import registry_db, RegistryDBBaseModel
 
 
+"""
+from fhir.resources.organization import Organization
+class FhirResourceLink(RegistryDBBaseModel):    
+
+
+    @property
+    def partition_key(self) -> str:
+        # resourceType:id::resourceType:id
+        # patient:1234::organization::5678
+        # pk:episode_of_care:1234 | sk:encounter::5678
+        # episode_of_care:1234::consent::5678
+        # store LINKs
+        return 'user:' + self.cognito_user_id
+
+    @property
+    def sort_key(self) -> str:
+        return 'profile'
+
+"""
 
 class Response(BaseModel):
     id: str

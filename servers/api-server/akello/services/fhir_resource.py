@@ -2,6 +2,8 @@ import uuid, random, json
 from akello.db.connector.dynamodb import registry_db
 from jsonschema import validate
 from decimal import Decimal
+from flatten_json import flatten, unflatten
+
 
 
 with open('./akello/fhir/fhir.schema.json') as schema_file:
@@ -17,20 +19,22 @@ class FHIRResourceService:
             return True
         except Exception as e:
             return False
-    
+
     @staticmethod
     def create_fhir_resource(resource):
 
         if not FHIRResourceService.is_resource_valid(resource):
             raise Exception('Invalid FHIR Resource')
 
-        rd = random.Random()
+        rd = random.Random()        
         resource['id'] = str(uuid.UUID(int=rd.getrandbits(128)))
         resource['partition_key'] = resource['resourceType']
-        resource['sort_key'] = resource['id']
+        resource['sort_key'] = resource['id']        
+
+        flat_fhir_resource = flatten(resource)            
 
         response = registry_db.put_item(
-            Item=resource
+            Item=flat_fhir_resource
         )
         
         status_code = response['ResponseMetadata']['HTTPStatusCode']
@@ -45,5 +49,5 @@ class FHIRResourceService:
                 'sort_key': resource_id
             }
         )
-        
-        return response['Item']
+
+        return unflatten(response['Item'])                
