@@ -77,12 +77,22 @@ const TeamPage = () => {
     const akello = useAkello()
 
     const darkTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+        },
         palette: {
           mode: 'dark',
         },
       });
       
     const lightTheme = createTheme({
+        typography: {
+            fontFamily: [
+                'Work Sans',
+            ].join(','),
+      },
       palette: {
         mode: 'light'
       }

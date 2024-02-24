@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import {PatientRegistry, TreatmentLogScore, Questionnaire} from "@akello/core";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
 
@@ -82,23 +83,31 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
         })
     }
 
-
+    const muiTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+          },
+    });
 
     return (
-        <Box sx={{ height: 400, width: '100%' }}>
-            <DataGrid
-                rows={selectedPatient.treatment_logs}
-                columns={columns}
-                getRowId={(row) => row.date + '-' + row.weeks_in_treatment + '-' + row.visit_type}
-                initialState={{
-                    pagination: {
-                        paginationModel: {
-                            pageSize: 5,
+        <ThemeProvider theme={muiTheme}>            
+            <Box sx={{ height: 400, width: '100%' }}>            
+                <DataGrid
+                    rows={selectedPatient.treatment_logs}
+                    columns={columns}
+                    getRowId={(row) => row.date + '-' + row.weeks_in_treatment + '-' + row.visit_type}
+                    initialState={{
+                        pagination: {
+                            paginationModel: {
+                                pageSize: 5,
+                            },
                         },
-                    },
-                }}
-                pageSizeOptions={[5]}
-            />
-        </Box>
+                    }}
+                    pageSizeOptions={[5]}
+                />
+            </Box>
+        </ThemeProvider>
     );
 }

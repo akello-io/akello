@@ -35,12 +35,22 @@ interface BillingReportDataGridProps {
 
 const BillingReportDataGrid:React.FC<BillingReportDataGridProps> = ({data}) => {
     const darkTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+          },
         palette: {
           mode: 'dark',
         },
       });
       
     const lightTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+          },
       palette: {
         mode: 'light'
       }

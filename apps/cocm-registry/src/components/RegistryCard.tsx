@@ -3,7 +3,6 @@ import { IconArrowBadgeRightFilled } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import { useAkello } from "@akello/react-hook";
 import { Registry } from '@akello/core';
-import AkelloLog from '../assets/Logo/PNGs/D2-AH-CBBP-Logo-V3-240323-AS_icon-akello-blue.png';
 
 interface RegistryCardProps {
   registry: Registry;  
@@ -20,7 +19,7 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
       akello.selectRegistry(props.registry);
     }}>
       <Group justify="space-between">
-        <Avatar src={AkelloLog} radius="xl" />
+        <Avatar  radius="xl" />
         <div></div>           
         {
             props.registry.stats['safety_risk'] && <Badge color='red'>Safety Risk</Badge>      

@@ -2,6 +2,7 @@ import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridVa
 import moment from "moment";
 import {PatientRegistry, Questionnaire, TreatmentLog} from "@akello/core";
 import * as React from "react";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
 
@@ -196,21 +197,32 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
         })
         setColumns([...default_columns, ...new_columns]);
         
-    }, [patients])    
+    }, [patients])   
+    
+    
+    const muiTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+          },
+    });
 
     return (
         <>
-            <DataGrid
-                onRowClick={handlePatientClickEvent}
-                rows={patients}
-                getRowId={(row) => row.patient_mrn}
-                columns={columns}
-                experimentalFeatures={{ columnGrouping: true }}
-                columnGroupingModel={columnGroupingModel}
-                slots={{
-                    toolbar: GridToolbar,
-                }}
-            />
+            <ThemeProvider theme={muiTheme}>
+                <DataGrid
+                    onRowClick={handlePatientClickEvent}
+                    rows={patients}
+                    getRowId={(row) => row.patient_mrn}
+                    columns={columns}
+                    experimentalFeatures={{ columnGrouping: true }}
+                    columnGroupingModel={columnGroupingModel}
+                    slots={{
+                        toolbar: GridToolbar,
+                    }}
+                />
+            </ThemeProvider>
         </>
     )
 }
