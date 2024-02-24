@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
-from akello.dynamodb.models.user import UserInvite, UserRole
-from akello.dynamodb.models.registry import TreatmentLog
-from akello.dynamodb.models.registry import PatientRegistry
+from akello.db.models import UserInvite, UserRole
+from akello.db.models import TreatmentLog
+from akello.db.models import PatientRegistry
 from akello.services.registry import RegistryService
 from akello.services.user import  UserService
 from akello.auth.provider import auth_token_check

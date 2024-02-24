@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 from fastapi import Depends
 from typing import List
-from akello.dynamodb.models.financial_model import FinancialModel
+from akello.db.models import FinancialModel
 from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
-from akello.dynamodb.query import FinancialModelQuery
+from akello.services.financial_model import FinancialModelQuery
 
 router = APIRouter()
 
