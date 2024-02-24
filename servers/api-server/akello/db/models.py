@@ -1,11 +1,14 @@
-from pydantic import BaseModel
+from decimal import Decimal
+import datetime, json
+from enum import Enum
 from typing import List, Optional, Union
+
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
-import datetime, json
-from decimal import Decimal
-from enum import Enum
+from pydantic import BaseModel
+
 from akello.db.connector.dynamodb import registry_db, RegistryDBBaseModel
+
 
 
 class Response(BaseModel):
@@ -312,6 +315,88 @@ class PatientRegistry(RegistryDBBaseModel):
 
 
 class FinancialModel(BaseModel):
+    """
+    Represents a financial model.
+
+    Attributes:
+        schema_version (str): The version of the schema.
+        user_id (str): The ID of the user associated with the model.
+        name (str): The name of the model.
+        description (str): The description of the model.
+        address_state (str): The state of the address.
+
+        full_time_pcps (int): The number of full-time primary care physicians.
+        pct_pcps_participation (float): The percentage of PCPs participating.
+        monthly_pcp_referrals (int): The number of monthly PCP referrals.
+        pct_patients_accepting_cocm (float): The percentage of patients accepting COCM.
+        pct_patients_graduating (float): The percentage of patients graduating.
+
+        payer_distribution_medicare (float): The distribution of Medicare payers.
+        payer_distribution_medicare_cocm_expected (float): The expected distribution of Medicare payers with COCM.
+        payer_distribution_medicaid (float): The distribution of Medicaid payers.
+        payer_distribution_medicaid_cocm_expected (float): The expected distribution of Medicaid payers with COCM.
+        payer_distribution_commercial_cocm (float): The distribution of commercial payers with COCM.
+        payer_distribution_commercial_cocm_cocm_expected (float): The expected distribution of commercial payers with COCM.
+        payer_distribution_commercial_no_cocm (float): The distribution of commercial payers without COCM.
+
+        caseload_complexity_pct_patients_suicidality (float): The percentage of patients with suicidality.
+        caseload_complexity_pct_patients_prior_ed (float): The percentage of patients with prior ED visits.
+        caseload_complexity_pct_patients_substance_abuse (float): The percentage of patients with substance abuse.
+        caseload_complexity_pct_patients_above_moderate (float): The percentage of patients with above moderate complexity.
+
+        care_manager_salary (float): The salary of the care manager.
+        care_manager_benefits (float): The benefits of the care manager.
+        psychiatrist_salary (float): The salary of the psychiatrist.
+        psychiatrist_benefits (float): The benefits of the psychiatrist.
+
+        service_unit_direct_bhm__warm_connection_over_16 (float): The service unit for direct BHM warm connection over 16.
+        service_unit_direct_bhm__initial_assessment_visit (float): The service unit for direct BHM initial assessment visit.
+        service_unit_direct_bhm__follow_up_visit (float): The service unit for direct BHM follow-up visit.
+        service_unit_direct_bhm__group_treatment (float): The service unit for direct BHM group treatment.
+        service_unit_other_bhm__warm_connection_under1_16 (float): The service unit for other BHM warm connection under 1-16.
+        service_unit_other_bhm__outreach_attempts (float): The service unit for other BHM outreach attempts.
+        service_unit_other_bhm__telephone_visit (float): The service unit for other BHM telephone visit.
+        service_unit_other_bhm__caseload_patient_and_psych_consult (float): The service unit for other BHM caseload patient and psych consult.
+        service_unit_other_bhm__team_communication (float): The service unit for other BHM team communication.
+        service_unit_other_bhm__registry_management (float): The service unit for other BHM registry management.
+        service_unit_admin_bhm__charting (float): The service unit for admin BHM charting.
+        service_unit_admin_bhm__other (float): The service unit for admin BHM other.
+
+        service_unit_direct_cp_treatment_visit (float): The service unit for direct CP treatment visit.
+        service_unit_direct_cp_follow_up (float): The service unit for direct CP follow-up.
+        service_unit_other_cp_registry_review (float): The service unit for other CP registry review.
+        service_unit_other_cp_direct_pcp_communication (float): The service unit for other CP direct PCP communication.
+        service_unit_other_cp_caseload_review (float): The service unit for other CP caseload review.
+        service_unit_other_cp_charting (float): The service unit for other CP charting.
+        service_unit_other_cp_other (float): The service unit for other CP other.
+
+        billing_rate_not_seen__patients (float): The billing rate for not seen patients.
+        billing_rate_not_seen__avg_amount (float): The average amount for not seen patients.
+        billing_rate_G2214__patients (float): The billing rate for G2214 patients.
+        billing_rate_G2214__avg_amount (float): The average amount for G2214 patients.
+        billing_rate_99492__patients (float): The billing rate for 99492 patients.
+        billing_rate_99492__avg_amount (float): The average amount for 99492 patients.
+        billing_rate_99492_99494__patients (float): The billing rate for 99492-99494 patients.
+        billing_rate_99492_99494__avg_amount (float): The average amount for 99492-99494 patients.
+        billing_rate_99492_99494x2__patients (float): The billing rate for 99492-99494x2 patients.
+        billing_rate_99492_99494x2__avg_amount (float): The average amount for 99492-99494x2 patients.
+        billing_rate_99493__patients (float): The billing rate for 99493 patients.
+        billing_rate_99493__avg_amount (float): The average amount for 99493 patients.
+        billing_rate_99493_99494__patients (float): The billing rate for 99493-99494 patients.
+        billing_rate_99493_99494__avg_amount (float): The average amount for 99493-99494 patients.
+        billing_rate_99493_99494x2__patients (float): The billing rate for 99493-99494x2 patients.
+        billing_rate_99493_99494x2__avg_amount (float): The average amount for 99493-99494x2 patients.
+
+        modified_date (float): The modified date of the model.
+        created_date (float): The created date of the model.
+
+    Properties:
+        partition_key (str): The partition key for the model.
+        sort_key (str): The sort key for the model.
+
+    Methods:
+        None
+    """
     schema_version: str
     user_id: str
     name: str
