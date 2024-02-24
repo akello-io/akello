@@ -5,6 +5,7 @@ from akello.dynamodb import registry_db
 from akello.services import BaseService
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
+from typing import List
 
 
 

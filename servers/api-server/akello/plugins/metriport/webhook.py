@@ -21,11 +21,26 @@ async def metriport_webhook(payload: dict):
         print("No data in payload")
         return
     
+    mixin = payload['meta']['data']['mixin']
     registry_id = payload['meta']['data']['registry_id']
-    
-    with open(f'{registry_id}-data.json', 'w') as f:
-        json.dump(payload, f)
 
+
+    if mixin == 'MetriportPatientSessionTreatmentLog':                
+        patient_mrn = payload['meta']['data']['patient_mrn']
+        treatment_log_id = payload['meta']['data']['treatment_log_id']
+        patient = RegistryService.get_patient(registry_id, patient_mrn)
+        patient = PatientRegistry(**patient)        
+        scores = [
+            {
+                'score_name': 'test-score-total',
+                'score_value': 10
+            }
+        ]
+        for treatment_log in patient.treatment_logs:
+            if treatment_log.id == treatment_log_id:
+                treatment_log.scores = scores
+        RegistryService.update_patient(patient)
+                
 
     """
     if payload['meta']['type'] == 'medical.consolidated-data':

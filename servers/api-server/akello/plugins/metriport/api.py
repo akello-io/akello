@@ -100,10 +100,10 @@ class Patient(MetriportAPI):
     def delete_patient(self):
         raise Exception("Not Implemented")
 
-    def start_fhir_consolidated_data_query(self, patient_mrn, registry_id):  
+    def start_fhir_consolidated_data_query(self, patient_mrn, meta_data):  
         response = self.post_request(
             self.endpoint + f'/{patient_mrn}/consolidated/query',            
-            payload=json.dumps({"metadata": {"registry_id": registry_id}}))        
+            payload=json.dumps({"metadata": meta_data}))
         return response
 
     def get_fhir_consolidated_data_query_status(self, patient_id):
