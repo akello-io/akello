@@ -79,7 +79,7 @@ export default function DataGridDemo() {
 
     let muiTheme = lightTheme
 
-    const theme = document.querySelector('html')?.getAttribute('data-theme');
+    const theme = document.querySelector('html')?.getAttribute('data-mantine-color-scheme');
     if(theme == 'dark') {
         muiTheme = darkTheme
     }

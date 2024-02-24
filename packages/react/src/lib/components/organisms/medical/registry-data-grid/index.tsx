@@ -200,13 +200,35 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
     }, [patients])   
     
     
-    const muiTheme = createTheme({
+    const darkTheme = createTheme({
         typography: {
             fontFamily: [
               'Work Sans',
             ].join(','),
           },
-    });
+        palette: {
+          mode: 'dark',
+        },
+      });
+      
+    const lightTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+          },
+      palette: {
+        mode: 'light'
+      }
+    })
+
+    let muiTheme = lightTheme
+
+    const theme = document.querySelector('html')?.getAttribute('data-mantine-color-scheme');
+    if(theme == 'dark') {
+        muiTheme = darkTheme
+    }
+    
 
     return (
         <>
