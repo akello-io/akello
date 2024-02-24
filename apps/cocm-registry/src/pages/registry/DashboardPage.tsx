@@ -27,10 +27,11 @@ const ScreeningComponent:React.FC<ScreeningComponentProps> = ({title, children})
 const DashboardPage = () => {
     const akello = useAkello()
     const [payerDistribution, setPayerDistribution] = useState([] as any[])
-    const value = {
+    const [value, setValue] = useState({
         startDate: new Date(),
         endDate: new Date()
-    }    
+    })
+    
     const [statusDistribution, setStatusDistribution] = useState({
         'status': ['n/a'] as any,
         'values': [0] as any
@@ -51,7 +52,7 @@ const DashboardPage = () => {
             })
         }
 
-    }, [akello.getSelectedRegistry()?.id, value])
+    }, [value])
 
     const darkTheme = createTheme({
         palette: {
