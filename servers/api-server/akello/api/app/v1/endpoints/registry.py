@@ -112,9 +112,10 @@ async def refer_patient(request: Request, registry_id: str, patient_registry: Pa
 
 
 @router.post("/{registry_id}/record-session")
-async def record_session(registry_id: str, treatment_log: TreatmentLog, auth: CognitoTokenCustom = Depends(auth_token_check)): 
+@mixin(mixins=['before_patient_session_mixins'])
+async def record_session(request: Request, registry_id: str, treatment_log: TreatmentLog, auth: CognitoTokenCustom = Depends(auth_token_check)): 
     UserService.check_registry_access(auth.cognito_id, registry_id)
-    RegistryService.add_treatment_log(registry_id, treatment_log.patient_mrn, treatment_log)
+    RegistryService.add_treatment_log(registry_id, treatment_log.patient_mrn, treatment_log)    
     return treatment_log
 
 

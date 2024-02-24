@@ -33,6 +33,7 @@ class TreatmentLogScore(BaseModel):
 
 
 class TreatmentLog(BaseModel):
+    id: str = None
     patient_mrn: Optional[str] = None  # TODO: We should remove this field since it's already in PatientRegistry
     provider: Optional[str] = None
     

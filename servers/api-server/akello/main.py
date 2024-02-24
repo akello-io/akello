@@ -5,7 +5,7 @@ from akello.api.app.v1.api import router as api_router
 from akello.api.fhir.v1.api import router as fhir_router
 from fastapi.middleware.cors import CORSMiddleware
 from akello.plugins.metriport.webhook import router as metriport_webhook
-from akello.plugins.metriport import MetriportMixinStartFHIRConsolidatedQuery
+from akello.plugins.metriport import MetriportPatientSessionTreatmentLog
 from mangum import Mangum
 from aws_lambda_powertools import Logger
 from pydantic_settings import BaseSettings
@@ -61,7 +61,7 @@ app.include_router(fhir_router, prefix="/fhir/v1")
 
 #TODO: make sure to use pyddantic to ensure the settings are type safe
 app.state.after_patient_referral_mixins = []
-app.state.before_patient_session_mixins = []
+app.state.before_patient_session_mixins = [MetriportPatientSessionTreatmentLog]
 app.state.fetch_patient_fhir_data_mixin = None  # fetch from stored FHIR Server
 app.state.fetch_patient_fhir_data_hie_mixin = None  # fetch across HIEs
 app.state.sms_plugin = None
@@ -69,16 +69,16 @@ app.state.email_plugin = None
 app.state.patient_form_plugin = None
 
 
-"""
-TODO: Should be implemented by apps that extend the base server
+
+#TODO: Should be implemented by apps that extend the base server
 
 metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
 metriport_api_url = os.getenv('METRIPORT_API_URL', None)
-if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:    
+if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:
     #app.state.after_patient_referral_mixins.append(MetriportMixinStartFHIRConsolidatedQuery)
-    app.state.fetch_patient_fhir_data_mixin = MetriportMixinStartFHIRConsolidatedQuery
+    #app.state.fetch_patient_fhir_data_mixin = MetriportMixinStartFHIRConsolidatedQuery
     app.include_router(metriport_webhook, prefix="/v1/integrations", tags=["Integrations"])
-"""
+
 
 
 app.add_middleware(

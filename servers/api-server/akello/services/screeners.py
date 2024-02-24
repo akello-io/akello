@@ -25,8 +25,7 @@ class ScreenerService(BaseService):
                     
                     try:                                                
                         mobj = Measurement(**yaml.safe_load(f))
-                        if mobj.type == 'survey':
-                            measurement_list.append(mobj) 
+                        measurement_list.append(mobj)                                                 
                     except yaml.YAMLError as exc:
                         print(exc)                    
         
