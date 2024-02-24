@@ -1,7 +1,7 @@
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
 from akello.dynamodb import dynamodb
-from akello.dynamodb.models.financial_model import FinancialModel
+from akello.dynamodb.models import FinancialModel
 from decimal import Decimal
 import json
 

@@ -2,8 +2,8 @@ import random
 from faker import Faker
 from datetime import datetime
 from akello.services.registry import RegistryService
-from akello.dynamodb.models.registry import PatientRegistry, TreatmentLog, ContactTypes, VisitTypes, FlagTypes, PatientStatysTypes
-from akello.dynamodb.models.user import UserInvite, UserRole
+from akello.dynamodb.models import PatientRegistry, TreatmentLog, ContactTypes, VisitTypes, FlagTypes, PatientStatysTypes
+from akello.dynamodb.models import UserInvite, UserRole
 from akello.dynamodb import drop_tables, create_tables
 
 

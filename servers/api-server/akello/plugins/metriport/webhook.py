@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from akello.services.registry import RegistryService
-from akello.dynamodb.models.registry import PatientRegistry, EventLog
+from akello.dynamodb.models import PatientRegistry, EventLog
 import uuid
 import logging
 import datetime 

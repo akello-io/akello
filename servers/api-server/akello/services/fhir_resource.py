@@ -4,7 +4,7 @@ from jsonschema import validate
 from decimal import Decimal
 
 
-with open('./akello/data/fhir.schema.json') as schema_file:
+with open('./akello/fhir/fhir.schema.json') as schema_file:
     fhir_schema = json.loads(schema_file.read())
 
 
