@@ -165,14 +165,13 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "width": 110,
                 "editable": true,
                 valueGetter: (params: GridValueGetterParams<any, any>) => {                 
-                    if (params.row.treatment_logs.length > 0) {   
-                        console.log(questionnaire.uid + "_score")
-                        console.log('initial')                                             
+                    if (params.row.treatment_logs.length > 0) {                                                                           
                         let element = params.row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(element) {
                             return element.score_value
-                        }    
+                        }                        
                     }
+                    return 'N/A'
                 }
             }
             const last_column = {
@@ -183,13 +182,13 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "width": 110,
                 "editable": true,
                 valueGetter: (params: GridValueGetterParams<any, any>) => {
-                    if (params.row.treatment_logs.length > 0) {
-                        console.log(questionnaire.uid + "_score")
+                    if (params.row.treatment_logs.length > 0) {                        
                         let element = params.row.treatment_logs[params.row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(element) {
                             return element.score_value
                         }
                     }
+                    return 'N/A'
                 }
             }
             new_columns.push(first_column)
