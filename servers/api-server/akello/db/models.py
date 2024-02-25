@@ -68,7 +68,7 @@ class UserRole(str, Enum):
 class UserInvite(BaseModel):
     email: str
     first_name: str
-    last_name: str
+    last_name: str    
     invited_by: str
     registry_id: str
     date_created: int
@@ -119,7 +119,7 @@ class UserInvite(BaseModel):
 
 class UserModel(RegistryDBBaseModel):
     cognito_user_id: int
-    email: Optional[str] = None
+    email: Optional[str] = None    
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     phone_number: Optional[str] = None

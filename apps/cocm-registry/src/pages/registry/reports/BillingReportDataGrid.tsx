@@ -35,12 +35,22 @@ interface BillingReportDataGridProps {
 
 const BillingReportDataGrid:React.FC<BillingReportDataGridProps> = ({data}) => {
     const darkTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+          },
         palette: {
           mode: 'dark',
         },
       });
       
     const lightTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+          },
       palette: {
         mode: 'light'
       }
@@ -48,10 +58,10 @@ const BillingReportDataGrid:React.FC<BillingReportDataGridProps> = ({data}) => {
 
     let muiTheme = lightTheme
 
-    const theme = document.querySelector('html')?.getAttribute('data-theme');
+    const theme = document.querySelector('html')?.getAttribute('data-mantine-color-scheme');    
     if(theme == 'dark') {
         muiTheme = darkTheme
-    }
+    }    
 
     return (
         <div className={"w-full"}>

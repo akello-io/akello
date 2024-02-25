@@ -1,6 +1,6 @@
 import os, datetime, random, uuid, json
 from decimal import Decimal
-from akello.db.models import RegistryModel, TreatmentLog, PatientRegistry
+from akello.db.models import RegistryModel, TreatmentLog, PatientRegistry, ContactTypes
 from akello.db.connector.dynamodb import registry_db
 from akello.services import BaseService
 from boto3.dynamodb.conditions import Key
@@ -115,7 +115,7 @@ class RegistryService(BaseService):
         item['sort_key'] = patient_registry.sort_key
         response = registry_db.put_item(
             Item=item
-        )
+        )        
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
@@ -136,25 +136,34 @@ class RegistryService(BaseService):
     @staticmethod
     def add_treatment_log(registry_id, sort_key, treatment_log: TreatmentLog):
 
+        
         UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
                            "flag = :flag," \
                            "no_show = :no_show," \
-                           "initial_assessment = :initial_assessment, " \
-                           "last_follow_up = :last_follow_up, " \
-                           "last_psychiatric_consult = :last_psychiatric_consult, " \
-                           "relapse_prevention_plan = :relapse_prevention_plan, " \
-                           "weeks_since_initial_assessment = :weeks_since_initial_assessment "
+                            "weeks_since_initial_assessment = :weeks_since_initial_assessment"
 
         ExpressionAttributeValues = {
             ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
             ':flag': treatment_log.flag,
-            ':no_show': treatment_log.no_show,
-            ':initial_assessment': Decimal(treatment_log.date),
-            ':last_follow_up': Decimal(treatment_log.date),
-            ":last_psychiatric_consult": Decimal(treatment_log.date),
-            ":relapse_prevention_plan": Decimal(treatment_log.date),
+            ':no_show': treatment_log.no_show,                                    
             ":weeks_since_initial_assessment": 0
         }
+
+        if treatment_log.contact_type == ContactTypes.follow_up:
+            UpdateExpression += ",last_follow_up = :last_follow_up"
+            ExpressionAttributeValues[':last_follow_up'] = Decimal(treatment_log.date)
+
+        if treatment_log.contact_type == ContactTypes.initial_assessment:
+            UpdateExpression += ",initial_assessment = :initial_assessment"
+            ExpressionAttributeValues[':initial_assessment'] = Decimal(treatment_log.date)
+
+        if treatment_log.contact_type == ContactTypes.psychiatric_consultation:
+            UpdateExpression += ",last_psychiatric_consult = :last_psychiatric_consult"
+            ExpressionAttributeValues[':last_psychiatric_consult'] = Decimal(treatment_log.date)
+
+        if treatment_log.contact_type == ContactTypes.relapse_prevention:
+            UpdateExpression += ",relapse_prevention_plan = :relapse_prevention_plan"
+            ExpressionAttributeValues[':relapse_prevention_plan'] = Decimal(treatment_log.date)
 
         response = registry_db.update_item(
             Key={

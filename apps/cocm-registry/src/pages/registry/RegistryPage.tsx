@@ -3,6 +3,7 @@ import {PatientRegistry, Questionnaire} from "@akello/core";
 import {RegistryDataGrid} from "@akello/react";
 import {useAkello} from "@akello/react-hook"
 import { useNavigate } from 'react-router';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 interface RegistryPageProps {
     drawerHandlers: any
@@ -19,6 +20,17 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     if (akello.getSelectedRegistry()?.id === undefined) {
         navigate('/');
     }    
+
+
+    const muiTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+          },
+      });
+        
+
 
     useEffect(() => {                        
         if (akello.getSelectedRegistry()) {
@@ -43,11 +55,14 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     return (
         <>
             <div className=''>
-                <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={(object)=> {
-                    const clickedPatient = object.row as PatientRegistry                    
-                    akello.selectPatient(clickedPatient)   
-                    akello.dispatchEvent({ type: 'change' });                    
-                }} />    
+                <ThemeProvider theme={muiTheme}>
+                    <RegistryDataGrid patients={patients} questionnaires={Object.assign([], questionnaires)} handlePatientClickEvent={(object)=> {
+                        const clickedPatient = object.row as PatientRegistry                    
+                        akello.selectPatient(clickedPatient)   
+                        akello.dispatchEvent({ type: 'change' });                    
+                    }} />    
+                </ThemeProvider>
+                
             </div>
             
         </>

@@ -75,8 +75,9 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
     for patient in patients:        
         try:
             successfully_loaded.append(PatientRegistry(**patient))
-        except Exception as e:            
-            failed_patients.append(patient['patient_mrn'])
+        except Exception as e:       
+            print(e)     
+            failed_patients.append(patient)
 
     return {
         'is_admin': registry_access['is_admin'],

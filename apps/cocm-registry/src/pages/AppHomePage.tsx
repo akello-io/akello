@@ -11,6 +11,10 @@ const AppHomePage = () => {
 
     useEffect(() => {
         setIsLoading(true);
+
+        akello.userService.getUser((data) => {            
+            console.log(data);
+        });
         akello.userService.getUserRegistries((data) => {
             const registries = data.map((registry: any) => {                                
                 return new Registry(

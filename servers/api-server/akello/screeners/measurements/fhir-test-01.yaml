@@ -1,7 +1,7 @@
 ---
- uid: "test-score-total" 
+ uid: "test-01" 
  type: "fhir-object-query"
- name: "test-score-total"  
+ name: "test-01"  
  measurements:
    - name: "Family History of Stroke 1"
      jsonPath: '$.patients[*].bundle.entry[*][?(resourceType=="FamilyMemberHistory")].condition[*].code.coding[*]'

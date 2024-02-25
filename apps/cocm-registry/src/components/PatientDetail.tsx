@@ -2,7 +2,7 @@ import {PatientProgressChart} from "@akello/react";
 import {PatientTreatmentHistoryDataGrid} from "@akello/react";
 import moment from "moment";
 import { useAkello } from "@akello/react-hook";
-import {Select, Container, Button, ThemeIcon, SegmentedControl} from '@mantine/core';
+import {Select, Container, Button, ThemeIcon, SegmentedControl, Text} from '@mantine/core';
 import { useNavigate } from "react-router";
 import { IconPhone } from "@tabler/icons-react";
 import TreatmentProgress from './treatment-progress/TreatmentProgress';
@@ -30,14 +30,14 @@ const PatientDetail = () => {
         <>
             <div className={"space-y-4 h-screen overflow-scroll	"}>
                 <div className={"w-full border border-1"}>
-                    <div className={"flex flex-row justify-between  border-b border-1 px-3 py-2"}>
+                    <div className={"flex flex-row justify-between border-b border-1 px-3 py-2"}>
                         <div className='flex flex-col'>
                             <div className={"text-xl font-semibold"}>
                                 {selectedPatient.first_name} {selectedPatient.last_name}
                             </div>
-                            <div className={'text-xs font-light text-gray-600'}>
-                            {selectedPatient.email}
-                            </div>                            
+                            <Text size={'xs'} >
+                                {selectedPatient.email}    
+                            </Text>                            
                         </div>     
                         <div className='flex flex-row space-x-3'>
                             <ThemeIcon>

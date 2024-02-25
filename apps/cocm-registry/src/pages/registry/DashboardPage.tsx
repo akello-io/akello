@@ -27,10 +27,11 @@ const ScreeningComponent:React.FC<ScreeningComponentProps> = ({title, children})
 const DashboardPage = () => {
     const akello = useAkello()
     const [payerDistribution, setPayerDistribution] = useState([] as any[])
-    const value = {
+    const [value, setValue] = useState({
         startDate: new Date(),
         endDate: new Date()
-    }    
+    })
+    
     const [statusDistribution, setStatusDistribution] = useState({
         'status': ['n/a'] as any,
         'values': [0] as any
@@ -51,7 +52,7 @@ const DashboardPage = () => {
             })
         }
 
-    }, [akello.getSelectedRegistry()?.id, value])
+    }, [value])
 
     const darkTheme = createTheme({
         palette: {
@@ -67,11 +68,11 @@ const DashboardPage = () => {
     
     let muiTheme = lightTheme
 
-    const theme = document.querySelector('html')?.getAttribute('data-theme');
+    const theme = document.querySelector('html')?.getAttribute('data-mantine-color-scheme');
     if(theme == 'dark') {
         muiTheme = darkTheme
     }
-
+    
     return (
         <>
             <div className='grid grid-cols-2 gap-4'>
@@ -126,9 +127,10 @@ const DashboardPage = () => {
 
                     <ThemeProvider theme={muiTheme}>
                         <BarChart
-                            xAxis={[{ scaleType: 'band', data: statusDistribution['status'] }]}
+                            xAxis={[{ scaleType: 'band', data: ['Enrolled', 'Treatment', 'Relapse Prevention Plan', 'Deactivated'] }]}
+
                             series={[{ data: statusDistribution['values'] }]}
-                            width={500}
+                            
                             height={300}
                         />
                     </ThemeProvider>                                

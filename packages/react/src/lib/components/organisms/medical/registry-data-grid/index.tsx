@@ -2,6 +2,7 @@ import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridVa
 import moment from "moment";
 import {PatientRegistry, Questionnaire, TreatmentLog} from "@akello/core";
 import * as React from "react";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
 
@@ -196,21 +197,54 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
         })
         setColumns([...default_columns, ...new_columns]);
         
-    }, [patients])    
+    }, [patients])   
+    
+    
+    const darkTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+          },
+        palette: {
+          mode: 'dark',
+        },
+      });
+      
+    const lightTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+          },
+      palette: {
+        mode: 'light'
+      }
+    })
+
+    let muiTheme = lightTheme
+
+    const theme = document.querySelector('html')?.getAttribute('data-mantine-color-scheme');
+    if(theme == 'dark') {
+        muiTheme = darkTheme
+    }
+    
 
     return (
         <>
-            <DataGrid
-                onRowClick={handlePatientClickEvent}
-                rows={patients}
-                getRowId={(row) => row.patient_mrn}
-                columns={columns}
-                experimentalFeatures={{ columnGrouping: true }}
-                columnGroupingModel={columnGroupingModel}
-                slots={{
-                    toolbar: GridToolbar,
-                }}
-            />
+            <ThemeProvider theme={muiTheme}>
+                <DataGrid
+                    onRowClick={handlePatientClickEvent}
+                    rows={patients}
+                    getRowId={(row) => row.patient_mrn}
+                    columns={columns}
+                    experimentalFeatures={{ columnGrouping: true }}
+                    columnGroupingModel={columnGroupingModel}
+                    slots={{
+                        toolbar: GridToolbar,
+                    }}
+                />
+            </ThemeProvider>
         </>
     )
 }

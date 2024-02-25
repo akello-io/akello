@@ -8,11 +8,12 @@ import {useAkello} from "@akello/react-hook";
 
 const columns: GridColDef[] = [
     {
-        field: 'email',
-        headerName: 'email',
-        width: 250,
+        field: 'role',
+        headerName: 'Role',
+        type: 'string',
+        width: 210,
         editable: true,
-    },
+    },    
     {
         field: 'first_name',
         headerName: 'First name',
@@ -26,21 +27,11 @@ const columns: GridColDef[] = [
         editable: true,
     },
     {
-        field: 'fullName',
-        headerName: 'Full name',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 160,
-        valueGetter: (params: GridValueGetterParams) =>
-            `${params.row.first_name || ''} ${params.row.last_name || ''}`,
-    },
-    {
-        field: 'role',
-        headerName: 'Role',
-        type: 'string',
-        width: 210,
+        field: 'email',
+        headerName: 'email',
+        width: 250,
         editable: true,
-    },
+    },        
     {
         field: 'is_admin',
         headerName: 'Admin',
@@ -77,12 +68,22 @@ const TeamPage = () => {
     const akello = useAkello()
 
     const darkTheme = createTheme({
+        typography: {
+            fontFamily: [
+              'Work Sans',
+            ].join(','),
+        },
         palette: {
           mode: 'dark',
         },
       });
       
     const lightTheme = createTheme({
+        typography: {
+            fontFamily: [
+                'Work Sans',
+            ].join(','),
+      },
       palette: {
         mode: 'light'
       }
@@ -90,7 +91,7 @@ const TeamPage = () => {
 
     let muiTheme = lightTheme
 
-    const theme = document.querySelector('html')?.getAttribute('data-theme');
+    const theme = document.querySelector('html')?.getAttribute('data-mantine-color-scheme');
     if(theme == 'dark') {
         muiTheme = darkTheme
     }
