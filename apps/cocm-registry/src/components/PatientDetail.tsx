@@ -13,11 +13,10 @@ const PatientDetail = () => {
     const selectedRegistry = akello.getSelectedRegistry();    
     
     const navigate = useNavigate();
-    const getWeeksSince = (date: number) => {
-        var today = moment(date);
-        var ia = moment();
-        var diff = moment.duration(ia.diff(today));
-        return diff.weeks();
+    const getWeeksSince = (date: number) => {        
+        var today = moment(date);        
+        var ia = moment();        
+        return ia.diff(today, 'week')
     };
 
     if(selectedPatient === undefined) {

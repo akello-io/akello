@@ -17,11 +17,12 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
     const columns: GridColDef[] = [
         {
             field: 'date',
+            type: 'date',
             headerName: 'Date',
             width: 160,            
             valueGetter: (params) => {
                 if(params.row.date) {
-                    return new Date(params.row.date).toLocaleDateString()
+                    return new Date(params.row.date)
                 }
             }
         },
@@ -119,8 +120,11 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
                 <DataGrid
                     rows={selectedPatient.treatment_logs}
                     columns={columns}
-                    getRowId={(row) => row.date + '-' + row.weeks_in_treatment + '-' + row.visit_type}
+                    getRowId={(row) => row.date + '-' + row.weeks_in_treatment + '-' + row.visit_type}                    
                     initialState={{
+                        sorting: {
+                            sortModel: [{ field: 'date', sort: 'asc' }],
+                        },
                         pagination: {
                             paginationModel: {
                                 pageSize: 20,

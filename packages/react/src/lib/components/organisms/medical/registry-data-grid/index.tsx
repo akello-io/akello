@@ -4,8 +4,6 @@ import {PatientRegistry, Questionnaire, TreatmentLog} from "@akello/core";
 import * as React from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-
-
 export interface RegistryDataGridProps {
     patients: PatientRegistry[]
     questionnaires: Questionnaire[]
@@ -15,8 +13,7 @@ export interface RegistryDataGridProps {
 const default_columns = [
     {
         field: 'patient_flag',
-        headerName: 'Flag',
-        width: 210,
+        headerName: 'Flag',        
     },
     {
         field: 'patient_mrn',
@@ -35,17 +32,13 @@ const default_columns = [
         field: 'status',
         headerName: 'Status',
         description: 'Patient Status: E - Enrolled, T - Treatment, RPP - Relapse Prevention Plan, D - Deactivated',
-        type: 'string',
-        width: 110,
-        editable: true,
+        type: 'string',                
     },
     {
         field: 'initial_assessment',
         headerName: 'I/A',
         description: 'Date of the most recent initial assessment.',
-        type: 'date',
-        width: 110,
-        editable: true,
+        type: 'date',                
         valueGetter: (params) => {
             if(params.row.initial_assessment) {
                 return new Date(params.row.initial_assessment)
@@ -56,9 +49,7 @@ const default_columns = [
         field: 'last_follow_up',
         headerName: 'F/U',
         description: 'Date of the most recent Follow Up, excluding those marked as no patient contact.',
-        type: 'date',
-        width: 110,
-        editable: true,
+        type: 'date',                
         valueGetter: (params) => {
             if(params.row.last_follow_up) {
                 return new Date(params.row.last_follow_up)
@@ -69,9 +60,7 @@ const default_columns = [
         field: 'last_psychiatric_consult',
         headerName: 'P/C',
         description: 'Date of most recent Psychiatric Consultation',
-        type: 'date',
-        width: 110,
-        editable: true,
+        type: 'date',         
         valueGetter: (params) => {
             if(params.row.last_psychiatric_consult) {
                 return new Date(params.row.last_psychiatric_consult)
@@ -82,9 +71,7 @@ const default_columns = [
         field: 'relapse_prevention_plan',
         headerName: 'R/P',
         description: 'Date of most recent Relapse Prevention Plan.',
-        type: 'date',
-        width: 110,
-        editable: true,
+        type: 'date',                
         valueGetter: (params) => {
             if(params.row.relapse_prevention_plan) {
                 return new Date(params.row.relapse_prevention_plan)
@@ -94,9 +81,7 @@ const default_columns = [
     {
         field: 'total_sessions',
         headerName: '# Session',
-        type: 'string',
-        width: 110,
-        editable: true,
+        type: 'string',        
         valueGetter: (params) => {
             return params.row.treatment_logs.length
         }
@@ -104,15 +89,12 @@ const default_columns = [
     {
         field: 'payer',
         headerName: 'Payer',
-        type: 'string',
-        width: 210,
+        type: 'string',        
     },
     {
         field: 'weeks_since_initial_assessment',
         headerName: 'Weeks Since I/A',
-        type: 'number',
-        width: 150,
-        editable: true,
+        type: 'number',                
         valueGetter: (params) => {
             if(params.row.initial_assessment) {
                 var ia = moment(params.row.initial_assessment);
@@ -126,9 +108,7 @@ const default_columns = [
         field: 'minutes_this_month',
         headerName: 'Minutes this month',
         description: 'The sum of all minutes recorded for the patient during the current calendar month.',
-        type: 'number',
-        width: 150,
-        editable: true,
+        type: 'number',                
         valueGetter: (params) => {
             let total = 0
             if(params.row.treatment_logs && params.row.treatment_logs.length > 0) {
@@ -233,7 +213,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
     return (
         <>
             <ThemeProvider theme={muiTheme}>
-                <DataGrid
+                <DataGrid                                
                     onRowClick={handlePatientClickEvent}
                     rows={patients}
                     getRowId={(row) => row.patient_mrn}
