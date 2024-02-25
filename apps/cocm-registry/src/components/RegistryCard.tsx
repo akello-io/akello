@@ -55,7 +55,7 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
 
         <Avatar.Group spacing="sm">
           {props.registry.members.map((member, index) => {                
-            return <Avatar color="red"  radius="xl" key={index}>{member.first_name[0]}{member.last_name[0]}</Avatar>;
+            return <Avatar color="red"  radius="xl" key={index} src={"https://i.pravatar.cc/250?u=" + member.email}></Avatar>;
           })}
         </Avatar.Group>
               

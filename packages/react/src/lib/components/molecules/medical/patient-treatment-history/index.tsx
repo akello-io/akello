@@ -115,7 +115,7 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
 
     return (
         <ThemeProvider theme={muiTheme}>            
-            <Box sx={{ height: 400, width: '100%' }}>            
+            <Box sx={{ width: '100%' }}>            
                 <DataGrid
                     rows={selectedPatient.treatment_logs}
                     columns={columns}
@@ -123,11 +123,11 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
                     initialState={{
                         pagination: {
                             paginationModel: {
-                                pageSize: 5,
+                                pageSize: 20,
                             },
                         },
                     }}
-                    pageSizeOptions={[5]}
+                    pageSizeOptions={[20]}
                 />
             </Box>
         </ThemeProvider>

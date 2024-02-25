@@ -33,8 +33,8 @@ async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
         logger.info('adding user - %s to registry %s ' % (auth.username, invite['registry_id']))
         UserService.create_registry_user(
             registry_id=invite['registry_id'],
-            first_name='',
-            last_name='',
+            first_name='Vijay',  #TODO: Remove hardcoded value
+            last_name='Selvaraj', #TODO: Remove hardcoded value
             email=invite['email'],
             user_id=auth.cognito_id,
             role=invite['role'],
