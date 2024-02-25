@@ -3,8 +3,7 @@ import moment from "moment";
 import {PatientRegistry, Questionnaire, TreatmentLog} from "@akello/core";
 import * as React from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-
+import './index.css'
 
 export interface RegistryDataGridProps {
     patients: PatientRegistry[]
@@ -233,7 +232,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
     return (
         <>
             <ThemeProvider theme={muiTheme}>
-                <DataGrid
+                <DataGrid                                
                     onRowClick={handlePatientClickEvent}
                     rows={patients}
                     getRowId={(row) => row.patient_mrn}
