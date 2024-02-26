@@ -12,16 +12,16 @@ class UserService(BaseService):
 
     @staticmethod
     def get_user(cognito_user_id):
-        try:
+        try:            
             response = registry_db.query(
                 KeyConditionExpression=Key('partition_key').eq('user:%s' % cognito_user_id)
                                        & Key('sort_key').eq('profile')
             )
+            return response['Items']
         except ClientError as e:
             print(e)
-            print(e.response['No item found'])
-        else:
-            return response['Items']
+            print(e.response['No item found'])        
+            
 
     @staticmethod
     def create_user(cognito_user_id, email):
