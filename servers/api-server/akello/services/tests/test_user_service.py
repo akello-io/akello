@@ -6,7 +6,7 @@ from akello.services.tests import mock_env_configs
 @mock.patch.dict(os.environ, mock_env_configs)
 class TestUserService(TestCase):
 
-    @patch('akello.db.registry_db')
+    @patch('akello.db.connector.dynamodb.registry_db')
     def test_service_get_user(self, mock_query):
         from akello.services.user import UserService
 
