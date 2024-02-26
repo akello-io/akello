@@ -80,13 +80,6 @@ if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPOR
     app.include_router(metriport_webhook, prefix="/v1/integrations", tags=["Integrations"])
 
 
-
-# set when you would like Metriport to be triggered
-app.state.before_patient_session_mixins = [MetriportPatientSessionTreatmentLog]
-# add the metriport webhook to your app
-app.include_router(metriport_webhook, prefix="/v1/integrations", tags=["Integrations"])
-
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
