@@ -1,39 +1,5 @@
 import requests, json
 
-"""
-import os
-from akello.integrations.metriport.api import Organization, Facility, Patient, Document
-api_key=os.getenv('METRIPORT_API_KEY')
-api_url=os.getenv('METRIPORT_API_URL')
-org = Organization(api_key=api_key, api_url=api_url)
-facility = Facility(api_key=api_key, api_url=api_url)
-patient = Patient(api_key=api_key, api_url=api_url)
-document = Document(api_key=api_key, api_url=api_url)
-
-r = org.get_organizations()
-r.json()
-
-r = facility.list_facilities()
-facility_id = r.json()['facilities'][0]['id']
-
-r = patient.list_patients_at_facility(facility_id=facility_id)
-patient_id = r.json()['patients'][0]['id']
-
-r = document.start_document_query(patient_id=patient_id, facility_id=facility_id)
-r.json()
-
-r = document.get_document_query_status(patient_id=patient_id)
-r.json()
-
-r = patient.start_fhir_consolidated_data_query(patient_id=patient_id)
-r.json()
-
-r = patient.get_fhir_consolidated_data_query_status(patient_id=patient_id)
-r.json()
-
-
-"""
-
 
 class MetriportAPI(object):
 
