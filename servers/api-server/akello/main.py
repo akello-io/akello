@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from akello.settings import *
 from akello.api.app.v1.api import router as api_router
 from akello.api.fhir.v1.api import router as fhir_router
+from akello.plugins.metriport.webhooks.metriport_webhook import router as metriport_webhook
 from fastapi.middleware.cors import CORSMiddleware
 #from akello.plugins.metriport.webhook import router as metriport_webhook
 from mangum import Mangum
@@ -24,7 +25,7 @@ def init_webhooks(base_url):
     # Update inbound traffic via APIs to use the public-facing ngrok URL
     pass
 
-"""
+
 if settings.USE_NGROK and os.environ.get("NGROK_AUTHTOKEN"):
     # pyngrok should only ever be installed or initialized in a dev environment when this flag is set
     from pyngrok import ngrok
@@ -40,7 +41,7 @@ if settings.USE_NGROK and os.environ.get("NGROK_AUTHTOKEN"):
     # Update any base URLs or webhooks to use the public ngrok URL
     settings.BASE_URL = public_url
     init_webhooks(public_url)
-"""
+
 
 app = FastAPI(
     title="Akello",
@@ -60,14 +61,12 @@ app.include_router(api_router, prefix="/v1")
 app.include_router(fhir_router, prefix="/fhir/v1")
 
 #TODO: Should be implemented by apps that extend the base server
-"""
+
 metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
 metriport_api_url = os.getenv('METRIPORT_API_URL', None)
-if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:
-    #app.state.after_patient_referral_mixins.append(MetriportMixinStartFHIRConsolidatedQuery)
-    #app.state.fetch_patient_fhir_data_mixin = MetriportMixinStartFHIRConsolidatedQuery
-    app.include_router(metriport_webhook, prefix="/v1/integrations", tags=["Integrations"])
-"""
+if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:    
+    app.include_router(metriport_webhook, prefix="/v1/integrations/metriport", tags=["Integrations"])
+
 
 app.add_middleware(
     CORSMiddleware,

@@ -18,7 +18,7 @@ def run_plugin(_mixin, **kwargs):
             module = arg_split[0]                                                        
             parameters[arg_split[-1]] = getattr(kwargs[module], arg_split[-1])
         else:                            
-            parameters[arg] = arg_split[0]
+            parameters[arg] = kwargs[arg_split[0]]
     getattr(_mixin.plugin, _mixin.method)(**parameters)
 
 

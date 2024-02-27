@@ -1,6 +1,7 @@
 from akello.plugins.base import CorePluginMixin, FHIRPluginMixin
 from akello.plugins.metriport.client import MetriportAPIClient
 from akello.db.models import PatientRegistry
+from akello.plugins.metriport.client import MetaData, OperationEnum
 
 import os
 
@@ -27,7 +28,8 @@ class MetriportPlugin(CorePluginMixin, FHIRPluginMixin):
         return self.client.get_patient(patient_id)
             
     def start_fhir_consolidated_data_query(self, patient_mrn, registry_id):
-        resp = self.client.start_fhir_consolidated_data_query(patient_mrn, {'registry_id': registry_id})       
+        metadata = MetaData(registry_id=registry_id, patient_mrn=patient_mrn, operation=OperationEnum.score)        
+        resp = self.client.start_fhir_consolidated_data_query(patient_mrn, metadata.dict())
         return resp
 
     def get_client(self, api_key, api_url):

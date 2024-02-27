@@ -1,5 +1,17 @@
 from akello.plugins.client import BaseAPIClient
+from pydantic import BaseModel
+from enum import Enum, IntEnum
+
 import json
+
+class OperationEnum(str, Enum):
+    score = 'score'    
+
+class MetaData(BaseModel):
+    registry_id: str
+    patient_mrn: str
+    operation: OperationEnum
+    treatment_log_id: str = 'none'
 
 class MetriportAPIClient(BaseAPIClient):
 
@@ -43,8 +55,10 @@ class MetriportAPIClient(BaseAPIClient):
         raise Exception("Not Implemented")
     
     def start_fhir_consolidated_data_query(self, patient_mrn, meta_data):                        
-        resp = self.post(f'patient/{patient_mrn}/consolidated/query', json.dumps({'metadata': meta_data}))     
-        assert resp.status_code == 200           
+        resp = self.post(f'patient/{patient_mrn}/consolidated/query', json.dumps({'metadata': meta_data}))             
+        if resp.status_code != 200:
+            print(resp.text)
+            raise Exception("Failed to start fhir consolidated data query")        
         return resp
     
     def get_fhir_consolidated_data_query_status(self, patient_mrn):
