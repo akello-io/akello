@@ -25,7 +25,7 @@ from akello.decorators.mixin import mixin
 ### Step 1: Add the webhook into your app routes
 
 ```python
-from akello.plugins.metriport.webhooks.metriport_webhook import router as metriport_webhook
+from akello_plugins.metriport.webhooks.metriport_webhook import router as metriport_webhook
 app.include_router(metriport_webhook, prefix="/v1/integrations/metriport", tags=["Integrations"])
 ```
 

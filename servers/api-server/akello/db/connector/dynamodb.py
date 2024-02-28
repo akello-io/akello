@@ -21,9 +21,9 @@ def setup_registry_db():
         dynamodb = boto3.resource('dynamodb')
 
     if AKELLO_DYNAMODB_LOCAL_URL:
-        try:
+        try:            
             DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
-            client.delete_table(TableName=DYNAMODB_TABLE)
+            #client.delete_table(TableName=DYNAMODB_TABLE)
 
             print('creating registry table')
             table = dynamodb.create_table(
