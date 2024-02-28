@@ -3,9 +3,8 @@ from fastapi import FastAPI
 from akello.settings import *
 from akello.api.app.v1.api import router as api_router
 from akello.api.fhir.v1.api import router as fhir_router
-from akello.plugins.metriport.webhooks.metriport_webhook import router as metriport_webhook
+from akello_plugins.metriport.webhooks.metriport_webhook import router as metriport_webhook
 from fastapi.middleware.cors import CORSMiddleware
-#from akello.plugins.metriport.webhook import router as metriport_webhook
 from mangum import Mangum
 from aws_lambda_powertools import Logger
 from pydantic_settings import BaseSettings

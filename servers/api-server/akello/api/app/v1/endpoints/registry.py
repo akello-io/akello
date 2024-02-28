@@ -8,7 +8,7 @@ from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.services.screeners import ScreenerService
 from akello.decorators.mixin import APIMixin
-from akello.plugins.metriport.plugin import MetriportPlugin
+from akello_plugins.metriport.plugin import MetriportPlugin
 from fastapi import Request
 from akello.decorators.mixin import mixin
 
@@ -17,6 +17,13 @@ logger = logging.getLogger('mangum')
 
 metriport = MetriportPlugin()
 router = APIRouter()
+
+# Register the mixins based on enabled plugins
+mixins = []
+metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
+metriport_api_url = os.getenv('METRIPORT_API_URL', None)
+if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:
+    mixins.append(APIMixin(order='pre', plugin=metriport, method='start_fhir_consolidated_data_query', args=['treatment_log.patient_mrn', 'registry_id']))
 
 
 @router.post("/create")
@@ -110,14 +117,11 @@ async def refer_patient(request: Request, registry_id: str, patient_registry: Pa
     )
     RegistryService.refer_patient(patient_registry)
     RegistryService.update_stats(registry_id)
-
     return patient_registry
 
 
 @router.post("/{registry_id}/record-session")
-@mixin(mixins=[
-    APIMixin(order='pre', plugin=metriport, method='start_fhir_consolidated_data_query', args=['treatment_log.patient_mrn', 'registry_id']),
-])
+@mixin(mixins=mixins)
 async def record_session(request: Request, registry_id: str, treatment_log: TreatmentLog, auth: CognitoTokenCustom = Depends(auth_token_check)): 
     UserService.check_registry_access(auth.cognito_id, registry_id)
     RegistryService.add_treatment_log(registry_id, treatment_log.patient_mrn, treatment_log)    

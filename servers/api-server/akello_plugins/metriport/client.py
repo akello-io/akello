@@ -1,4 +1,4 @@
-from akello.plugins.client import BaseAPIClient
+from akello_plugins.client import BaseAPIClient
 from pydantic import BaseModel
 from enum import Enum, IntEnum
 

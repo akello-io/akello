@@ -11,7 +11,7 @@ class APIMixin(BaseModel):
     args: List[str] = []
 
 def run_plugin(_mixin, **kwargs):
-    parameters = {}
+    parameters = {}    
     for arg in _mixin.args:                        
         arg_split = arg.split('.')
         if len(arg_split) > 1:
@@ -27,7 +27,7 @@ def mixin(*, mixins: List[APIMixin]):
         @wraps(func)
         async def wrapper(*args, **kwargs):                    
             # run any pre-mixin plugins                        
-            for _mixin in mixins:
+            for _mixin in mixins:                
                 if _mixin.order == 'pre':                    
                     run_plugin(_mixin, **kwargs)
                                                             
