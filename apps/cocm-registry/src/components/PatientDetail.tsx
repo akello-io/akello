@@ -4,7 +4,7 @@ import moment from "moment";
 import { useAkello } from "@akello/react-hook";
 import {Select, Container, Button, ThemeIcon, SegmentedControl, Text} from '@mantine/core';
 import { useNavigate } from "react-router";
-import { IconPhone } from "@tabler/icons-react";
+import { IconPhone, IconArrowsMaximize } from "@tabler/icons-react";
 import TreatmentProgress from './treatment-progress/TreatmentProgress';
 
 const PatientDetail = () => {       
@@ -43,7 +43,14 @@ const PatientDetail = () => {
                                 <IconPhone style={{ width: '70%', height: '70%' }} />
                             </ThemeIcon>                   
                             <div className={'text-md'}>{selectedPatient.phone_number}</div>
-                        </div>                        
+                        </div>         
+                        <div>
+                            <ThemeIcon onClick={() => {
+                                navigate('/registry/' + (akello.getSelectedRegistry()?.id ?? '') + '/patient/' + (akello.getSelectedPatientRegistry()?.id ?? ''));
+                            }}>
+                                <IconArrowsMaximize style={{ width: '70%', height: '70%' }} />  
+                            </ThemeIcon>
+                        </div>               
                     </div>
                     <div className={"p-2"}>
                         <div className={"grid grid-cols-2 space-y-6"}>  

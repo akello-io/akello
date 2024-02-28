@@ -4,6 +4,10 @@ import {RegistryDataGrid} from "@akello/react";
 import {useAkello} from "@akello/react-hook"
 import { useNavigate } from 'react-router';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { em } from '@mantine/core';
+
+import { useMediaQuery } from '@mantine/hooks';
+
 
 interface RegistryPageProps {
     drawerHandlers: any
@@ -16,6 +20,8 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
 
     drawerHandlers.open()
     const akello = useAkello()    
+
+    const isMobile = useMediaQuery(`(max-width: ${em(880)})`);
 
     if (akello.getSelectedRegistry()?.id === undefined) {
         navigate('/');
@@ -39,7 +45,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
                 akello.registryService.getRegistryPatients(registryId, (data) => {                        
                     setPatients(data['successfully_loaded'])
                     setQuestionnaires(data['questionnaires'])            
-                    if(data['successfully_loaded'].length == 0) {
+                    if(data['successfully_loaded'].length == 0) {                        
                         navigate('/registry/'+registryId+'/patient-referral')
                     } else {
                         akello.selectPatient(data['successfully_loaded'][0])
@@ -52,6 +58,8 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
         }
     }, [akello])
     
+    
+
     return (
         <>
             <div className=''>
@@ -60,6 +68,10 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
                         const clickedPatient = object.row as PatientRegistry                    
                         akello.selectPatient(clickedPatient)   
                         akello.dispatchEvent({ type: 'change' });                    
+                        if(isMobile) {
+                            const registryId = akello.getSelectedRegistry()?.id;
+                            navigate('/registry/'+registryId+'/patient/'+clickedPatient.patient_mrn)
+                        }
                     }} />    
                 </ThemeProvider>
                 
