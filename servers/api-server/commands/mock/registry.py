@@ -1,6 +1,6 @@
-from akello.management.commands.mock.user import UserMock
-from akello.management.commands.mock.patient import PatientMock
-from akello.management.commands.mock.treatment_log import TreatmentLogMock
+from commands.mock.user import UserMock
+from commands.mock.patient import PatientMock
+from commands.mock.treatment_log import TreatmentLogMock
 from akello.db.models import RegistryModel, PatientRegistry, ContactTypes
 from akello.services.registry import RegistryService
 from akello.services.user import UserService    

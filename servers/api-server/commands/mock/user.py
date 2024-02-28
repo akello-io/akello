@@ -1,4 +1,4 @@
-from akello.management.commands.mock.patient import PatientMock
+from commands.mock.patient import PatientMock
 
 
 
