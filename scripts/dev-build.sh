@@ -13,21 +13,21 @@ echo $PWD
 
 rm -rf node_modules
 rm -rf dist
-# rm pnpm-lock.yaml
+rm pnpm-lock.yaml
 
 echo $PWD
 pnpm i
 pnpm build:lib
 ech $PWD
 # pnpm pack
-# rm -rf node_modules
+rm -rf node_modules
 cd ../../
 
 echo '>>>>>>>>>>  REACT HOOK'
 cd packages/react-hook
 rm -rf node_modules
 rm -rf dist
-# rm pnpm-lock.yaml
+rm pnpm-lock.yaml
 
 pnpm i
 pnpm build:lib
@@ -38,7 +38,7 @@ echo '>>>>>>>>>>  REACT'
 cd packages/react
 rm -rf node_modules
 rm -rf dist
-# rm pnpm-lock.yaml
+rm pnpm-lock.yaml
 
 pnpm i
 pnpm build:lib
@@ -49,7 +49,7 @@ cd ../../
 echo '>>>>>>>>>>  CoCM'
 cd apps/cocm-registry
 rm -rf node_modules
-# rm pnpm-lock.yaml
+rm pnpm-lock.yaml
 
 pnpm i
 pnpm dev

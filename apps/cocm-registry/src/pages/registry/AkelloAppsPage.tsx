@@ -6,7 +6,13 @@ const AkelloAppsPage = () => {
 
     const navigate = useNavigate();
     const akello = useAkello()    
+    
+    const selectedRegistry = akello.getSelectedRegistry();    
 
+    akello.registryService.getAppConfigs(selectedRegistry!.id, (data: any) => {
+        console.log(data);
+        debugger;
+    })
 
     const apps = [
         {

@@ -7,6 +7,7 @@ from akello.services.user import  UserService
 from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.services.screeners import ScreenerService
+from akello.services.akello_apps import AkelloAppsService
 from akello.decorators.mixin import APIMixin
 from akello_plugins.metriport.plugin import MetriportPlugin
 from fastapi import Request
@@ -134,3 +135,9 @@ async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoToken
 
     #TODO: static methods are not that helpful when you have to set the partition key
     PatientRegistry.set_attribute('registry-patient:%s' % registry_id, data['mrn'], data['attr_name'], data['attr_value'])
+
+
+@router.get("/{registry_id}/app-configs")
+async def get_app_configs(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    UserService.check_registry_access(auth.cognito_id, registry_id)
+    return AkelloAppsService.get_app_configs()
