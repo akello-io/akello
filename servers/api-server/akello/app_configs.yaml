@@ -1,39 +1,39 @@
 name: app-configs
-app-gorups:
-  fhir_hie_api:
+app-gorups:  
+  - name: FHIR HIE API
+    description: FHIR HIE API provides access to patient health records and clinical data.
+    apps:      
     - metriport
-    - healthgorilla    
+    - healthgorilla  
 apps:
-  metriport:
-    status: active
-    id: metriport
+  - id: metriport
+    status: active    
     name: Metriport
     description: Metriport is a FHIR HIE API that provides access to patient health records and clinical data.        
     logo: https://assets-global.website-files.com/640036547d68f8c201789d8c/640036e90b4a44838695e030_metriport-logo.png    
     configs:
       - type: string
-        key: api_url
+        key: API URL
         value: https://api.sandbox.metriport.com
       - type: string
-        key: api_key
+        key: API Key
         value: 
       - type: string
-        key: secret_key
+        key: Secret Key
         value:    
-  healthgorilla:
-    status: coming_soon
-    id: healthgorilla
+  - id: healthgorilla
+    status: coming_soon    
     name: Health Gorilla
     description: Health Gorilla is a FHIR HIE API that provides access to patient health records and clinical data.        
     logo: https://assets-global.website-files.com/62719a041d28d7b5603dd995/62d573faa506b053c3197bb1_Health%20Gorilla%20logo_standard.png
     api_url: 
     configs:
       - type: string
-        key: api_url
+        key: API URL
         value: 
       - type: string
-        key: api_key
+        key: API Key
         value: 
       - type: string
-        key: secret_key
+        key: Secret Key
         value:
