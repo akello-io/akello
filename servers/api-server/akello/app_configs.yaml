@@ -1,39 +1,33 @@
-name: app-configs
-app-gorups:  
-  - name: FHIR HIE API
-    description: FHIR HIE API provides access to patient health records and clinical data.
-    apps:      
-    - metriport
-    - healthgorilla  
-apps:
-  - id: metriport
-    status: active    
-    name: Metriport
-    description: Metriport is a FHIR HIE API that provides access to patient health records and clinical data.        
-    logo: https://assets-global.website-files.com/640036547d68f8c201789d8c/640036e90b4a44838695e030_metriport-logo.png    
-    configs:
-      - type: string
-        key: API URL
-        value: https://api.sandbox.metriport.com
-      - type: string
-        key: API Key
-        value: 
-      - type: string
-        key: Secret Key
-        value:    
-  - id: healthgorilla
-    status: coming_soon    
-    name: Health Gorilla
-    description: Health Gorilla is a FHIR HIE API that provides access to patient health records and clinical data.        
-    logo: https://assets-global.website-files.com/62719a041d28d7b5603dd995/62d573faa506b053c3197bb1_Health%20Gorilla%20logo_standard.png
-    api_url: 
-    configs:
-      - type: string
-        key: API URL
-        value: 
-      - type: string
-        key: API Key
-        value: 
-      - type: string
-        key: Secret Key
-        value:
+- id: metriport
+  group: FHIR HIE API
+  status: active    
+  name: Metriport
+  description: Metriport is a FHIR HIE API that provides access to patient health records and clinical data.        
+  logo: https://assets-global.website-files.com/640036547d68f8c201789d8c/640036e90b4a44838695e030_metriport-logo.png    
+  configs:
+    - type: string
+      key: API URL
+      value: https://api.sandbox.metriport.com
+    - type: string
+      key: API Key
+      value: 
+    - type: string
+      key: Secret Key
+      value:    
+- id: healthgorilla
+  group: FHIR HIE API
+  status: coming_soon    
+  name: Health Gorilla
+  description: Health Gorilla is a FHIR HIE API that provides access to patient health records and clinical data.        
+  logo: https://assets-global.website-files.com/62719a041d28d7b5603dd995/62d573faa506b053c3197bb1_Health%20Gorilla%20logo_standard.png
+  api_url: 
+  configs:
+    - type: string
+      key: API URL
+      value: 
+    - type: string
+      key: API Key
+      value: 
+    - type: string
+      key: Secret Key
+      value:

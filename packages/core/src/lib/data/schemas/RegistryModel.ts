@@ -219,3 +219,49 @@ export class PatientRegistry {
     }
 
 }
+
+
+export class AkelloAppConfig {
+    type: string
+    key: string
+    value?: string
+
+    constructor(
+        type: string,
+        key: string,
+        value: string
+    ) {
+        this.type = type
+        this.key = key
+        this.value = value
+    }
+}
+    
+export class AkelloApp {
+    id: string
+    group: string
+    status: string
+    name: string
+    description: string
+    logo: string
+    configs: AkelloAppConfig[] = []
+
+    constructor(
+        id: string,
+        group: string,
+        status: string,
+        name: string,
+        description: string,
+        logo: string,
+        configs: AkelloAppConfig[]
+    ) {
+        this.id = id
+        this.group = group
+        this.status = status
+        this.name = name
+        this.description = description
+        this.logo = logo
+        this.configs = configs
+    }
+
+}

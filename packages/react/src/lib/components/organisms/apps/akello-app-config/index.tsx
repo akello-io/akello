@@ -1,22 +1,25 @@
 import { Card, Group, Switch, Text, Input, Button } from '@mantine/core';
-import classes from './metriport.module.css';
+import classes from './app_config.module.css';
+import { AkelloApp, AkelloAppConfig } from '@akello/core';
 
 
 
 export interface AppConfigProps {  
-  configs: any[]; // [{key: string, value: string}
+  app: AkelloApp 
+  setApp: (app: AkelloApp) => void;
+  onClick?: () => void;
 }
 
-export const AppConfig:React.FC<AppConfigProps> = ({configs}) => {
+export const AppConfig:React.FC<AppConfigProps> = ({app, setApp, onClick}) => {
 
-  const data = configs.map((config: any) => { 
+  const data = app.configs.map((config: AkelloAppConfig) => { 
     return {
-      title: config['key'],
+      title: config.key,
       description: 'none'
     }
   })
 
-  const items = data.map((item: any) => (
+  const items = data.map((item: any, idx) => (
     <Group justify="space-between" className={classes.item} wrap="nowrap" gap="xl" key={item.title}>
       <div>
         <Text>{item.title}</Text>
@@ -24,20 +27,24 @@ export const AppConfig:React.FC<AppConfigProps> = ({configs}) => {
           {item.description}
         </Text>
       </div>
-      <Input placeholder="enter metriport secret api key" w={500} />      
+      <Input value={app.configs[idx].value} w={500}  onChange={(event) => {
+        const newApp = {...app}
+        newApp.configs[idx].value = event.target.value
+        setApp(newApp)
+      }}/>      
     </Group>
   ));
 
   return (    
     <Card withBorder radius="md" p="xl" className={classes.card}>
       <Text fz="lg" className={classes.title} fw={500}>
-        Configure Metriport Integration
+        Configure Integration
       </Text>
       <Text fz="xs" c="dimmed" mt={3} mb="xl">
-        Set your API key from Metriport to start using the integration
+        Configure.....
       </Text>
       {items}
-      <Button fullWidth>Save</Button>
+      <Button onClick={onClick} fullWidth>Save</Button>
     </Card>
   );
 }

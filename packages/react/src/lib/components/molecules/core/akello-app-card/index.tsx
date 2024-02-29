@@ -1,23 +1,16 @@
 import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+import { AkelloApp } from '@akello/core'
 import {ReactNode} from "react";
 import * as React from "react";
 
 
 export interface AkelloAppCardProps {
-    id: string
-    logo: string
-    title: string
-    description: string
-    active: boolean
+    akello_app: AkelloApp
     onClick?: () => void
 }
 
-export const AkelloAppCard:React.FC<AkelloAppCardProps> = ({
-    id,
-    logo,
-    title,
-    description,
-    active,
+export const AkelloAppCard: React.FC<AkelloAppCardProps> = ({
+    akello_app,
     onClick
 }) => {
 
@@ -28,7 +21,7 @@ export const AkelloAppCard:React.FC<AkelloAppCardProps> = ({
             <Card shadow="sm" padding="lg" radius="md" withBorder>
                 <Card.Section>
                     <Image
-                        src={logo}
+                        src={akello_app.logo}
                         h={35}    
                         w="auto"
                         fit="contain"                    
@@ -36,14 +29,14 @@ export const AkelloAppCard:React.FC<AkelloAppCardProps> = ({
                 </Card.Section>
 
                 <Group justify="space-between" mt="md" mb="xs">
-                    <Text fw={500}>{title}</Text>
-                    <Badge color={active ? "blue" : "pink"}>{
-                        active ? "Active" : "Inactive"                    
+                    <Text fw={500}>{akello_app.name}</Text>
+                    <Badge color={akello_app.status == 'active' ? "blue" : "pink"}>{
+                        akello_app.status == 'active' ? "Active" : "Inactive"                    
                     }</Badge>
                 </Group>
 
                 <Text size="sm" c="dimmed">
-                    {description}
+                    {akello_app.description}
                 </Text>
 
                 <Button color="blue" fullWidth mt="md" radius="md" onClick={onClick}>
