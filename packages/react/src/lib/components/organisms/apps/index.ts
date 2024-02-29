@@ -1,1 +1,1 @@
-export * from './metriport'
+export * from './akello-app-config'

@@ -1,12 +1,22 @@
 import { Card, Group, Switch, Text, Input, Button } from '@mantine/core';
 import classes from './metriport.module.css';
 
-const data = [
-  { title: 'Secret Key', description: 'API Key found under Developers > API Keys > Secret Key' }  
-];
 
-export function Metriport() {
-  const items = data.map((item) => (
+
+export interface AppConfigProps {  
+  configs: any[]; // [{key: string, value: string}
+}
+
+export const AppConfig:React.FC<AppConfigProps> = ({configs}) => {
+
+  const data = configs.map((config: any) => { 
+    return {
+      title: config['key'],
+      description: 'none'
+    }
+  })
+
+  const items = data.map((item: any) => (
     <Group justify="space-between" className={classes.item} wrap="nowrap" gap="xl" key={item.title}>
       <div>
         <Text>{item.title}</Text>
@@ -18,7 +28,7 @@ export function Metriport() {
     </Group>
   ));
 
-  return (
+  return (    
     <Card withBorder radius="md" p="xl" className={classes.card}>
       <Text fz="lg" className={classes.title} fw={500}>
         Configure Metriport Integration

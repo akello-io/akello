@@ -1,40 +1,42 @@
 import {AkelloAppCard} from '@akello/react'
 import { useNavigate } from 'react-router-dom'
 import { useAkello } from '@akello/react-hook'
+import {useState, useEffect} from 'react'
+
+
+
 
 const AkelloAppsPage = () => {
+
+    const [appGroups, setAppGroups] = useState<{}>([])
+    const [apps, setApps] = useState([])
 
     const navigate = useNavigate();
     const akello = useAkello()    
     
     const selectedRegistry = akello.getSelectedRegistry();    
 
-    akello.registryService.getAppConfigs(selectedRegistry!.id, (data: any) => {
-        console.log(data);
-        debugger;
-    })
+    useEffect(() => {
+        akello.registryService.getAppConfigs(selectedRegistry!.id, (data: any) => {
+            setAppGroups(data['app-groups'])        
+            setApps(data['apps'])
+        })
+    }, [])
+    
 
-    const apps = [
-        {
-            id: "metriport",
-            logo: "https://mintlify.s3-us-west-1.amazonaws.com/metriport/logo/light.png",
-            title: "Metriport",
-            description: "description",
-            active: true            
-        }
-    ]
+    
 
     return (
-        <>
+        <>            
             {apps.map(app => (
                 <AkelloAppCard 
-                    id={app.id} 
-                    logo={app.logo} 
-                    title={app.title} 
-                    description={app.description} 
-                    active={app.active}
+                    id={app['id']} 
+                    logo={app['logo']} 
+                    title={app['name']} 
+                    description={app['description']} 
+                    active={app['status'] === 'active'}
                     onClick={() => {                        
-                        navigate('/registry/' + akello.getSelectedRegistry()?.id + '/apps/' + app.id)
+                        navigate('/registry/' + akello.getSelectedRegistry()?.id + '/apps/' + app['id'])
                     }}
                 />
             ))}            
