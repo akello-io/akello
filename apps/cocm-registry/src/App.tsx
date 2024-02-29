@@ -7,6 +7,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import RegistryPage from './pages/registry/RegistryPage';
 import AppHomePage from './pages/AppHomePage';
 import { useEffect } from 'react';
+import PatientDetail from './components/PatientDetail';
 import DashboardPage from './pages/registry/DashboardPage';
 import TeamPage from './pages/registry/TeamPage';
 import ReportsPage from './pages/registry/ReportsPage';
@@ -15,7 +16,10 @@ import CreateRegistryPage from './pages/CreateRegistryPage';
 import RegistryShell from './components/RegistryShell';
 import AkelloAppShell from './components/AkelloAppShell';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import AkelloApps from './pages/registry/AkelloAppsPage';
+import AkelloAppSettingsPage from './pages/registry/AkelloAppSettingsPage';
 import PatientSession from './pages/registry/PatientSession';
+
 
 
 
@@ -54,11 +58,13 @@ export default function App() {
           <Route path={":registry_id/dashboard"} element={<DashboardPage />} />
           <Route path={":registry_id/team"} element={<TeamPage />} />
           <Route path={":registry_id/reports"} element={<ReportsPage />} />
+          <Route path={":registry_id/apps"} element={<AkelloApps />} />
+          <Route path={":registry_id/apps/:app_id"} element={<AkelloAppSettingsPage />} />
           <Route path={":registry_id/patient-referral"} element={<PatientReferralPage />} />
           <Route path={":registry_id/patient/:patient_id/treatment-session"} element={<PatientSession />} />
+          <Route path={":registry_id/patient/:patient_id"} element={<PatientDetail />} />
         </Route>        
-      </Routes>
-      
+      </Routes>      
     </>
   )
 

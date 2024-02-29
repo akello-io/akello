@@ -1,4 +1,5 @@
-import { AppShell, Button, UnstyledButton, Text } from '@mantine/core';
+import { AppShell, Button, UnstyledButton, Text, Burger } from '@mantine/core';
+
 import Logo from '../assets/logo.png';
 import ThemeToggle from './ThemeToggle';
 import HeaderMenu from './Menu';
@@ -8,16 +9,29 @@ import { IconUserPlus, IconPlus } from '@tabler/icons-react';
 
 interface HeaderProps {
   loggedIn: boolean;  
+  opened: boolean;
+  toggle: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ loggedIn }) => {
+const Header: React.FC<HeaderProps> = ({ loggedIn, opened, toggle }) => {
   const navigate = useNavigate();
-  const akello = useAkello();
+  const akello = useAkello();  
+
 
   if (loggedIn) {
     return (
-      <AppShell.Header className='flex justify-between px-4'>
+      <AppShell.Header className='flex justify-between px-4'>   
+        
+
         <div className='flex flex-row space-x-3'>
+          <Burger
+            className='my-auto'
+            opened={opened}
+            onClick={toggle}
+            hiddenFrom="sm"
+            size="sm"
+          >             
+          </Burger>
           <UnstyledButton
             onClick={() => {
               akello.selectRegistry(undefined);
@@ -27,13 +41,14 @@ const Header: React.FC<HeaderProps> = ({ loggedIn }) => {
           >
             <img src={Logo} alt='logo' className='h-8 w-auto' />
           </UnstyledButton>
+          
           <div className='my-auto'>
-            <Text fw={600} size={'xl'} >
+            <Text fw={600} size={'xl'}>
               {akello.getSelectedRegistry()?.name ?? ''}            
             </Text>
-          </div>
-          
+          </div>          
         </div>
+        
         <div className='flex flex-row my-auto space-x-6'>
           {akello.getSelectedRegistry() && (
             <Button
