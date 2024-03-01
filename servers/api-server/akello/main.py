@@ -60,11 +60,10 @@ app.include_router(api_router, prefix="/v1")
 app.include_router(fhir_router, prefix="/fhir/v1")
 
 #TODO: Should be implemented by apps that extend the base server
-
-metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
-metriport_api_url = os.getenv('METRIPORT_API_URL', None)
-if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:    
-    app.include_router(metriport_webhook, prefix="/v1/integrations/metriport", tags=["Integrations"])
+#metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
+#metriport_api_url = os.getenv('METRIPORT_API_URL', None)
+#if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:
+app.include_router(metriport_webhook, prefix="/v1/integrations/metriport", tags=["Integrations"])
 
 
 app.add_middleware(

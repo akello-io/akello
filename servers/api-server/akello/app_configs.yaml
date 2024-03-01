@@ -9,9 +9,6 @@
       key: API URL
       value: https://api.sandbox.metriport.com
     - type: string
-      key: API Key
-      value: 
-    - type: string
       key: Secret Key
       value:    
 - id: healthgorilla

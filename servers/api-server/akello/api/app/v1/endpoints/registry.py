@@ -20,10 +20,10 @@ router = APIRouter()
 
 # Register the mixins based on enabled plugins
 mixins = []
-metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
-metriport_api_url = os.getenv('METRIPORT_API_URL', None)
-if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:
-    mixins.append(APIMixin(order='pre', plugin=metriport, method='start_fhir_consolidated_data_query', args=['treatment_log.patient_mrn', 'registry_id']))
+#metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
+#metriport_api_url = os.getenv('METRIPORT_API_URL', None)
+#if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:
+mixins.append(APIMixin(order='pre', plugin=metriport, method='start_fhir_consolidated_data_query', args=['treatment_log.patient_mrn', 'registry_id']))
 
 
 @router.post("/create")
