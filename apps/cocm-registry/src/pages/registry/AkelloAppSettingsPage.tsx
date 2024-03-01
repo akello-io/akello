@@ -1,30 +1,36 @@
 import { AppConfig } from '@akello/react'
+import { AkelloApp } from '@akello/core'
 import { useAkello } from '@akello/react-hook'
 import {useState, useEffect} from 'react'
 
 const AkelloAppSettingsPage = () => {    
     const akello = useAkello()
-    const [app, setApp] = useState({})
+    const [app, setApp] = useState<AkelloApp | null>(null)
+
     const selectedRegistry = akello.getSelectedRegistry()
 
     useEffect(() => {
-        akello.registryService.getAppConfigs(selectedRegistry!.id, (data: any) => {            
-            const selectedApp = window.location.pathname.split('/').pop()
-            for (const app of data['apps']) {
-                if (app['id'] === selectedApp) {
+        akello.registryService.getAppConfigs(selectedRegistry!.id, (data: AkelloApp[]) => {            
+            const selectedApp = window.location.pathname.split('/').pop()            
+            for (const app of data) {
+                if (app.id === selectedApp) {
                     setApp(app)
                 }
             }            
         })
     }, [])
 
-    const configs = app['configs']
 
     return (
         <div>
         <h1>Akello App Settings</h1>
         
-        {configs && <AppConfig configs={configs} />}        
+        {app?.configs && <AppConfig app={app} setApp={setApp} onClick={() => {
+            console.log('clicked')       
+            akello.registryService.saveAkelloApp(selectedRegistry!.id, app, () => {
+                console.log('saved')
+            }) 
+        }} />}        
         </div>
     );
 }

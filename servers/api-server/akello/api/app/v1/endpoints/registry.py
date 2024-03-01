@@ -1,9 +1,8 @@
 from fastapi import APIRouter, Depends
-from akello.db.models import UserInvite, UserRole
-from akello.db.models import TreatmentLog
-from akello.db.models import PatientRegistry
+from akello.db.models import UserInvite, UserRole, AkelloApp, TreatmentLog, PatientRegistry, RegistryModel
 from akello.services.registry import RegistryService
 from akello.services.user import  UserService
+from akello.services.akello_apps import AkelloAppsService
 from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.services.screeners import ScreenerService
@@ -140,4 +139,13 @@ async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoToken
 @router.get("/{registry_id}/app-configs")
 async def get_app_configs(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
     UserService.check_registry_access(auth.cognito_id, registry_id)
-    return AkelloAppsService.get_app_configs()
+    app_configs = AkelloAppsService.get_app_configs(registry_id)
+    return [app for app in app_configs]
+
+@router.post("/{registry_id}/app-configs/{app_id}/save")
+async def save_akello_app(registry_id: str, akello_app: AkelloApp, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    UserService.check_registry_access(auth.cognito_id, registry_id)
+    registry = RegistryService.get_registry(registry_id)
+    registry = RegistryModel(**registry)
+    AkelloAppsService.save_akello_app(registry_id, akello_app)
+
