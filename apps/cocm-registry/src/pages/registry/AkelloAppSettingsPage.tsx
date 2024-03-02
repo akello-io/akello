@@ -22,15 +22,15 @@ const AkelloAppSettingsPage = () => {
 
 
     return (
-        <div>
-        <h1>Akello App Settings</h1>
+        <div className='space-y-4'>
+            <p className='font-semibold text-2xl'>{app?.name} Settings</p>            
+            {app?.configs && <AppConfig app={app} setApp={setApp} onClick={() => {
+                console.log('clicked')       
+                akello.registryService.saveAkelloApp(selectedRegistry!.id, app, () => {
+                    console.log('saved')
+                }) 
+            }} />}                
         
-        {app?.configs && <AppConfig app={app} setApp={setApp} onClick={() => {
-            console.log('clicked')       
-            akello.registryService.saveAkelloApp(selectedRegistry!.id, app, () => {
-                console.log('saved')
-            }) 
-        }} />}        
         </div>
     );
 }

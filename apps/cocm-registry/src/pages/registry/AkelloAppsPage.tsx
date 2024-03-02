@@ -22,15 +22,18 @@ const AkelloAppsPage = () => {
     
 
     return (
-        <>            
-            {apps.map(app => (
-                <AkelloAppCard 
-                    akello_app={app}                    
-                    onClick={() => {                        
-                        navigate('/registry/' + akello.getSelectedRegistry()?.id + '/apps/' + app['id'])
-                    }}
-                />
-            ))}            
+        <>  
+            <div className='grid grid-cols-2 gap-4'>
+                {apps.map(app => (
+                    <AkelloAppCard 
+                        akello_app={app}                    
+                        onClick={() => {                        
+                            navigate('/registry/' + akello.getSelectedRegistry()?.id + '/apps/' + app['id'])
+                        }}
+                    />
+                ))}            
+            </div>          
+            
         </>
     )
 }
