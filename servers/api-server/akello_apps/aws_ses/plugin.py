@@ -1,4 +1,4 @@
-from akello_plugins.aws_ses.client import client
+from akello_apps.aws_ses.client import client
 from botocore.exceptions import ClientError
 
 CHARSET = "UTF-8"

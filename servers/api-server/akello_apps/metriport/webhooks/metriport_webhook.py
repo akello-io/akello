@@ -5,7 +5,7 @@ from fastapi import APIRouter
 
 from akello.db.models import PatientRegistry, EventLog, RegistryModel, Measurement
 from akello.services.registry import RegistryService
-from akello_plugins.metriport.plugin import MetaData, OperationEnum
+from akello_apps.metriport.plugin import MetaData, OperationEnum
 from enum import Enum, IntEnum
     
 logger = logging.getLogger('mangum')

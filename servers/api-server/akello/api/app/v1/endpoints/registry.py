@@ -8,7 +8,7 @@ from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.services.screeners import ScreenerService
 from akello.services.akello_apps import AkelloAppsService
 from akello.decorators.mixin import APIMixin
-from akello_plugins.metriport.plugin import MetriportPlugin
+from akello_apps.metriport.plugin import MetriportPlugin
 from fastapi import Request
 from akello.decorators.mixin import mixin
 
