@@ -15,9 +15,9 @@ app = typer.Typer()
 
 
 
-@app.command("create_plugin")
-def create_plugin(name: str):
-    print('Creating plugin %s' % name)
+@app.command("create-app")
+def create_app(name: str):
+    print('Creating akello-app %s' % name)
     try:
         shutil.copytree('./akello/plugins/_template_plugin', './akello/plugins/%s' % name)
     except OSError as exc: # python >2.5

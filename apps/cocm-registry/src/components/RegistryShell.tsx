@@ -94,7 +94,7 @@ const RegistryShell = () => {
                     }}
                     label="Akello Apps"
                     leftSection={<IconRobot size="1rem" stroke={1.5} />}
-                    active={window.location.pathname === '/registry/' + akello.getSelectedRegistry()?.id + '/apps'}
+                    active={window.location.pathname.includes('/registry/' + akello.getSelectedRegistry()?.id + '/apps')}
                 />
             </AppShell.Navbar>
             <AppShell.Main>
