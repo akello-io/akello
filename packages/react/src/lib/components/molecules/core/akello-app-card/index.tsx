@@ -16,30 +16,24 @@ export const AkelloAppCard: React.FC<AkelloAppCardProps> = ({
 
     return (
         <>
-
             <div>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-                <Card.Section>
-                    <Image
-                        src={akello_app.logo}
-                        h={35}    
-                        w="auto"
-                        fit="contain"                    
-                    />
-                </Card.Section>
-
+            <Card shadow="sm" padding="lg" radius="md" withBorder>                                
                 <Group justify="space-between" mt="md" mb="xs">
                     <Text fw={500}>{akello_app.name}</Text>
-                    <Badge color={akello_app.status == 'active' ? "blue" : "pink"}>{
-                        akello_app.status == 'active' ? "Active" : "Inactive"                    
-                    }</Badge>
+                    {
+                        akello_app.status == 'active' && (
+                            <Badge color="green">
+                                Active
+                            </Badge>
+                        )
+                    }                    
                 </Group>
 
                 <Text size="sm" c="dimmed">
                     {akello_app.description}
                 </Text>
 
-                <Button color="blue" fullWidth mt="md" radius="md" onClick={onClick}>
+                <Button color="blue" disabled={akello_app.status !== 'active'}  fullWidth mt="md" radius="md" onClick={onClick}>
                     Configure
                 </Button>
                 </Card>
