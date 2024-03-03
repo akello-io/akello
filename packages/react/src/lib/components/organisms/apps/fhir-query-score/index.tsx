@@ -4,7 +4,7 @@ import { TextInput } from '@mantine/core';
 import React, { useState } from 'react';
 
 export interface FhirQueryScoreProps {
-
+    onSubmit?: (data: FHIRQuery[]) => void
 }
 
 interface FHIRQuery {
@@ -14,6 +14,7 @@ interface FHIRQuery {
 }
 
 export const FhirQueryScore: React.FC<FhirQueryScoreProps> = ({
+    onSubmit
 }) => {
     const [newRow, setNewRow] = useState<FHIRQuery>({query: '', codes: '', score: 0})
     const [rows, setRows] = useState<FHIRQuery[]>([]);    
@@ -48,12 +49,13 @@ export const FhirQueryScore: React.FC<FhirQueryScoreProps> = ({
                     />
                     <NumberInput value={newRow.score} onChange={
                         (event) => {
-                            setNewRow({ ...newRow, score: event! });
+                            setNewRow({ ...newRow, score: parseInt(String(event), 10) });
                         }                        
                     }/>  
                     <Button
                         variant="filled"
-                        color="pink"
+                        color="green"
+                        disabled={!newRow.query || !newRow.codes || !newRow.score}
                         onClick={() => {
                             setRows((prevRows) => [...prevRows, newRow]);
                             setNewRow({ query: '', codes: '', score: 0 });
@@ -65,7 +67,11 @@ export const FhirQueryScore: React.FC<FhirQueryScoreProps> = ({
                     <div></div>
                     <div></div>
                     <div></div>
-                    <Button variant="filled">Save</Button>
+                    <Button variant="filled"
+                        onClick={() => {                            
+                            onSubmit && onSubmit(rows);                            
+                        }}
+                    >Save</Button>
                 </div>                     
             </div>
                 
