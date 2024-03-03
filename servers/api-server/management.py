@@ -19,7 +19,7 @@ app = typer.Typer()
 def create_app(name: str):
     print('Creating akello-app %s' % name)
     try:
-        shutil.copytree('./akello/plugins/_template_plugin', './akello/plugins/%s' % name)
+        shutil.copytree('./akello_apps/_template_app', './akello_apps/%s' % name)
     except OSError as exc: # python >2.5
         if exc.errno in (errno.ENOTDIR, errno.EINVAL):
             shutil.copy(src, dst)
