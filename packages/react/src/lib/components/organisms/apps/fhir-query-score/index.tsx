@@ -1,7 +1,7 @@
 
 import { Select, NumberInput, Button, Text } from '@mantine/core';
 import { TextInput } from '@mantine/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export interface FhirQueryScoreProps {
     onSubmit?: (data: FHIRQuery[]) => void
@@ -18,10 +18,26 @@ export const FhirQueryScore: React.FC<FhirQueryScoreProps> = ({
 }) => {
     const [newRow, setNewRow] = useState<FHIRQuery>({query: '', codes: '', score: 0})
     const [rows, setRows] = useState<FHIRQuery[]>([]);    
+    const [scoreTotal, setScoreTotal] = useState<number>(0);
+
+    useEffect(() => {
+        let total = 0;
+        for (const row of rows) {
+            total += row.score;
+        }
+        setScoreTotal(total);
+    }, [rows])
 
     return (
         <>
             <div className='flex flex-col space-y-4'>
+                <div className='text-3xl'>
+                    SBIRT Configuration
+                </div>      
+                <div>
+                    <Text fw={800}>Query Name</Text>
+                    <TextInput />
+                </div>
                 <div className='grid grid-cols-4 gap-4'>
                     <Text fw={600}>Query</Text>
                     <Text fw={600}>Codes</Text>
@@ -63,16 +79,64 @@ export const FhirQueryScore: React.FC<FhirQueryScoreProps> = ({
                     >
                         Add
                     </Button>
+                </div>          
+                <div className='text-3xl'>
+                    Score [0 to {scoreTotal}] 
+                </div>      
+                <div className='grid grid-cols-3'>
+                    <div>                        
+                    </div>
+                    <div className='font-semibold text-xl'>
+                        Min
+                    </div>
+                    <div className='font-semibold text-xl'>
+                        Max
+                    </div>
 
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div>
+                        Minimal or none
+                    </div>
+                    <NumberInput />  
+                    <NumberInput />  
+
+                    <div>
+                        Mild
+                    </div>
+                    <NumberInput />  
+                    <NumberInput />  
+
+                    <div>
+                        Moderately severe
+                    </div>
+                    <NumberInput />  
+                    <NumberInput />  
+
+                    <div>
+                        Severe
+                    </div>
+                    <NumberInput />  
+                    <NumberInput />  
+                </div>
+                
+                <div className='text-3xl'>
+                    Screener
+                </div>                         
+                <div>
+                    <Select  data={['PHQ-9','GAD-7']}/>
+                </div>
+                <div className='text-3xl'>
+                    Referral Registry
+                </div>
+                <div>
+                    <Select  data={['Depression Registry','Anxiety Registry']}/>
+                </div>
+                <div className='flex justify-end space-x-4'>                    
                     <Button variant="filled"
                         onClick={() => {                            
                             onSubmit && onSubmit(rows);                            
                         }}
                     >Save</Button>
-                </div>                     
+                </div>                      
             </div>
                 
             
