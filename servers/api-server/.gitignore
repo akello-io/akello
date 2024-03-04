@@ -1,6 +1,6 @@
 .pypirc
 
-synthetic_data/
+synthetic_data/fhir*
 
 venv/
 # Byte-compiled / optimized / DLL files
