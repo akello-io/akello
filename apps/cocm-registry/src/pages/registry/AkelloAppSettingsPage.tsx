@@ -32,7 +32,6 @@ const AkelloAppSettingsPage = () => {
         }} />),
         'fhir-query-score': (<FhirQueryScore scoreName='Metriport FHIR Query Score' onSubmit={(data) => {
             console.log(data)
-            debugger;
             app.configs = [
                 {
                     type: 'fhir-query-score',
@@ -40,6 +39,10 @@ const AkelloAppSettingsPage = () => {
                     value: data
                 }
             ]
+
+            akello.registryService.saveAkelloApp(selectedRegistry!.id, app, () => {
+                console.log('saved')
+            }) 
         }}/>)
     } as any;
 

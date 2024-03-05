@@ -219,23 +219,6 @@ export class PatientRegistry {
     }
 
 }
-
-
-export class AkelloAppConfig {
-    type: string
-    key: string
-    value?: string | any
-
-    constructor(
-        type: string,
-        key: string,
-        value: string | any
-    ) {
-        this.type = type
-        this.key = key
-        this.value = value
-    }
-}
     
 export class AkelloApp {
     id: string
@@ -245,7 +228,7 @@ export class AkelloApp {
     description: string
     logo: string
     react_component: string
-    configs: AkelloAppConfig[] = []
+    configs: any
 
     constructor(
         id: string,
@@ -255,7 +238,7 @@ export class AkelloApp {
         description: string,
         logo: string,
         react_component: string,
-        configs: AkelloAppConfig[]
+        configs: any
     ) {
         this.id = id
         this.group = group
