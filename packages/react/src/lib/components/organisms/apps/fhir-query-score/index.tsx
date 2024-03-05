@@ -1,10 +1,11 @@
 
 import { Select, NumberInput, Button, Text } from '@mantine/core';
 import { TextInput } from '@mantine/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export interface FhirQueryScoreProps {
+export interface FhirQueryScoreProps {    
     onSubmit?: (data: FHIRQuery[]) => void
+    scoreName?: string
 }
 
 interface FHIRQuery {
@@ -14,14 +15,27 @@ interface FHIRQuery {
 }
 
 export const FhirQueryScore: React.FC<FhirQueryScoreProps> = ({
-    onSubmit
+    onSubmit,
+    scoreName = 'FHIR Query Score'
 }) => {
     const [newRow, setNewRow] = useState<FHIRQuery>({query: '', codes: '', score: 0})
     const [rows, setRows] = useState<FHIRQuery[]>([]);    
+    const [scoreTotal, setScoreTotal] = useState<number>(0);
+
+    useEffect(() => {
+        let total = 0;
+        for (const row of rows) {
+            total += row.score;
+        }
+        setScoreTotal(total);
+    }, [rows])
 
     return (
         <>
             <div className='flex flex-col space-y-4'>
+                <div className='text-3xl'>
+                    {scoreName}
+                </div>                      
                 <div className='grid grid-cols-4 gap-4'>
                     <Text fw={600}>Query</Text>
                     <Text fw={600}>Codes</Text>
@@ -63,16 +77,14 @@ export const FhirQueryScore: React.FC<FhirQueryScoreProps> = ({
                     >
                         Add
                     </Button>
-
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                </div>                          
+                <div className='flex justify-end space-x-4'>                    
                     <Button variant="filled"
                         onClick={() => {                            
                             onSubmit && onSubmit(rows);                            
                         }}
                     >Save</Button>
-                </div>                     
+                </div>                      
             </div>
                 
             

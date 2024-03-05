@@ -255,11 +255,6 @@ class PatientStatysTypes(str, Enum):
     deactivated = 'Deactivated'
 
 
-class AkelloAppConfig(BaseModel):
-    type: str
-    key: str
-    value: Optional[str] = None
-
 class AkelloApp(BaseModel):
     id: str
     group: str
@@ -267,7 +262,7 @@ class AkelloApp(BaseModel):
     name: str
     description: str
     logo: str
-    configs: List[AkelloAppConfig]    
+    configs: dict
 
 class RegistryModel(RegistryDBBaseModel):
     id: str
