@@ -4,7 +4,7 @@ import { useAkello } from "@akello/react-hook";
 import {Registry} from "@akello/core";
 import {    
     Button 
-  } from '@mantine/core';
+} from '@mantine/core';
 
 interface UserInvite {
     email: string

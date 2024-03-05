@@ -3,7 +3,8 @@
   status: active    
   name: Metriport
   description: Metriport is a FHIR HIE API that provides access to patient health records and clinical data.        
-  logo: https://assets-global.website-files.com/640036547d68f8c201789d8c/640036e90b4a44838695e030_metriport-logo.png    
+  logo: https://assets-global.website-files.com/640036547d68f8c201789d8c/640036e90b4a44838695e030_metriport-logo.png
+  react_component: 'akello-app-config'
   configs:
     - type: string
       key: API URL
@@ -11,105 +12,12 @@
     - type: string
       key: Secret Key
       value:    
-- id: slack
-  group: Team Communication
-  status: coming_soon
-  name: Slack
-  description: Receive notifications and alerts into your slack channel. Also directly run workflows via slack.
+- id: fhirqueryscore
+  group: FHIR
+  status: active
+  name: FHIR Query Score
+  description: FHIR Query Score
   logo: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Slack_icon_2019.svg/2048px-Slack_icon_2019.svg.png
+  react_component: 'fhir-query-score'
   api_url: 
   configs:
-    - type: string
-      key: API URL
-      value: 
-    - type: string
-      key: API Key
-      value: 
-    - type: string
-      key: Secret Key
-      value:
-- id: sendgrid
-  group: Email
-  status: coming_soon
-  name: SendGrid
-  description: Use Sendgrid to send emails and notifications to your users.
-  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Slack_icon_2019.svg/2048px-Slack_icon_2019.svg.png
-  api_url:
-  configs:
-    - type: string
-      key: API URL
-      value:
-    - type: string
-      key: API Key
-      value:
-    - type: string
-      key: Secret Key
-      value:
-- id: intakeq
-  group: Patient Intake
-  status: coming_soon
-  name: IntakeQ
-  description: Run screeners from IntakeQ and receive the results in your Registry
-  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Slack_icon_2019.svg/2048px-Slack_icon_2019.svg.png
-  api_url:
-  configs:
-    - type: string
-      key: API URL
-      value:
-    - type: string
-      key: API Key
-      value:
-    - type: string
-      key: Secret Key
-      value:
-- id: athenahealth
-  group: EHR
-  status: coming_soon
-  name: Athenahealth
-  description: Integrate with Athenahealth to access patient health records and sync data with your Registry
-  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Slack_icon_2019.svg/2048px-Slack_icon_2019.svg.png
-  api_url:
-  configs:
-    - type: string
-      key: API URL
-      value:
-    - type: string
-      key: API Key
-      value:
-    - type: string
-      key: Secret Key
-      value:
-- id: twilio
-  group: Twilio
-  status: coming_soon
-  name: Twilio
-  description: Send SMS and voice messages to your patients and receive responses in your Registry
-  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Slack_icon_2019.svg/2048px-Slack_icon_2019.svg.png
-  api_url:
-  configs:
-    - type: string
-      key: API URL
-      value:
-    - type: string
-      key: API Key
-      value:
-    - type: string
-      key: Secret Key
-      value:
-- id: segment
-  group: Analytics
-  status: coming_soon
-  name: Segment
-  description: Build custom event-driven workflows and analytics using Segment
-  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Slack_icon_2019.svg/2048px-Slack_icon_2019.svg.png
-  api_url:
-  configs:
-    - type: string
-      key: API URL
-      value:
-    - type: string
-      key: API Key
-      value:
-    - type: string
-      key: Secret Key
-      value:

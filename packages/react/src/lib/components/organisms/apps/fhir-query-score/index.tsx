@@ -3,7 +3,7 @@ import { Select, NumberInput, Button, Text } from '@mantine/core';
 import { TextInput } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 
-export interface FhirQueryScoreProps {
+export interface FhirQueryScoreProps {    
     onSubmit?: (data: FHIRQuery[]) => void
     scoreName?: string
 }
