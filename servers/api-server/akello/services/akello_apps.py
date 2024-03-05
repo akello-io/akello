@@ -6,9 +6,10 @@ from akello.services.registry import RegistryService
 
 logger = logging.getLogger('mangum')
 
+
 class AkelloAppsService(BaseService):
 
-    @staticmethod    
+    @staticmethod
     def get_app_configs(registry_id: str):
         registry = RegistryService.get_registry(registry_id)
         registry = RegistryModel(**registry)
@@ -18,7 +19,7 @@ class AkelloAppsService(BaseService):
 
                 for i in range(len(akello_app_configs)):
                     for registry_app in registry.akello_apps:
-                        if akello_app_configs[i]['id'] ==  registry_app.id:
+                        if akello_app_configs[i]['id'] == registry_app.id:
                             akello_app_configs[i] = registry_app
 
                 return akello_app_configs
