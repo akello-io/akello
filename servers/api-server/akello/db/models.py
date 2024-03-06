@@ -262,6 +262,7 @@ class AkelloApp(BaseModel):
     name: str
     description: str
     logo: str
+    react_component: str
     configs: dict
 
 class RegistryModel(RegistryDBBaseModel):

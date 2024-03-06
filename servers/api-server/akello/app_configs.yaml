@@ -6,12 +6,8 @@
   logo: https://assets-global.website-files.com/640036547d68f8c201789d8c/640036e90b4a44838695e030_metriport-logo.png
   react_component: 'akello-app-config'
   configs:
-    - type: string
-      key: API URL
-      value: https://api.sandbox.metriport.com
-    - type: string
-      key: Secret Key
-      value:    
+    API URL:
+    Secret Key:
 - id: fhirqueryscore
   group: FHIR
   status: active

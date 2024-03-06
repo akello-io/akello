@@ -15,16 +15,10 @@ class MetriportPlugin(CorePluginMixin, FHIRPluginMixin):
     def get_metriport_client(self, registry_id):
         registry = RegistryService.get_registry(registry_id)
         registry = RegistryModel(**registry)
-        api_key = None
-        api_url = None
         for app in registry.akello_apps:
             if app.id == self.slug:
-                for config in app.configs:
-                    if config.key == 'Secret Key':
-                        api_key = config.value
-                    if config.key == 'API URL':
-                        api_url = config.value
-
+                api_key = app.configs.get('Secret Key')
+                api_url = app.configs.get('API URL')
                 if not api_key:
                     raise ValueError('METRIPORT_API_KEY is not set')
                 if not api_url:
