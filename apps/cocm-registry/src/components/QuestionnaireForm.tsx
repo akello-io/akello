@@ -1,4 +1,4 @@
-import {Radio} from "@mantine/core";
+import {Radio, Container, Center, Box, Text} from "@mantine/core";
 
 import {
     Questionnaire,
@@ -12,10 +12,8 @@ interface QuestionnaireFormProps {
     onSelectedResponsesChange: (responses: {}) => void;
 }
 
-const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ questionnaire, onSelectedResponsesChange }) => {
-        
-    const [selectedResponses, setSelectedResponses] = useState({})
-    
+const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ questionnaire, onSelectedResponsesChange }) => {        
+    const [selectedResponses, setSelectedResponses] = useState({})    
     useEffect(() => {
         onSelectedResponsesChange(
             {
@@ -24,22 +22,35 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ questionnaire, on
             }
             
         )
-    }, [selectedResponses])
-        
+    }, [selectedResponses])    
+    
+    const demoProps = {
+        bg: 'var(--mantine-color-blue-light)',        
+        py: 'md',
+      };
+
     return (
         <>
-            <div>
-                <div>{questionnaire.name}</div>                
-                {
-                    
+            <div className='border border-1'>
+                <Container fluid {...demoProps}>
+                    <Center inline>                                                
+                        <Box ml={5}>
+                            <Text fw={500}>
+                                {questionnaire.name}
+                            </Text>                            
+                        </Box>
+                    </Center>                    
+                </Container>
+                
+                <div className='p-2 space-y-2'>
+                {                    
                     //TODO: need to fix the schema definiation for questionnaire
-                    questionnaire.measurements.map((question: QuestionnaireQuestion) => {
-                        
+                    questionnaire.measurements.map((question: QuestionnaireQuestion) => {                        
                         return (
                             <>
                                 <Radio.Group                                                                        
                                     label={question.question}                                          
-                                    required                                     
+                                    required                                                                         
                                 >                                            
                                     <div className='flex flex-col space-y-1'>
                                         {
@@ -64,7 +75,8 @@ const QuestionnaireForm: React.FC<QuestionnaireFormProps> = ({ questionnaire, on
                             </>
                         )
                     })
-                }  
+                } 
+                </div>                               
             </div>
         </>
     )
