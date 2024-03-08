@@ -48,25 +48,15 @@ export default function App() {
 
   return (
     <>
-      <Routes>
-        <Route path={"/"} element={<AkelloAppShell />} >
-          <Route path={"/"} element={<AppHomePage />} />
-          <Route path={"/create-registry"} element={<CreateRegistryPage />} />            
-        </Route>        
-        <Route path="/registry" element={<RegistryShell />}>
-          <Route path={":registry_id"} element={<RegistryPage drawerHandlers={drawerHandlers} />} />
-          <Route path={":registry_id/dashboard"} element={<DashboardPage />} />
-          {/* 
-          <Route path={":registry_id/team"} element={<TeamPage />} />
-          */}
-          <Route path={":registry_id/reports"} element={<ReportsPage />} />
-          {/*
-          <Route path={":registry_id/apps"} element={<AkelloApps />} />
-          */}          
-          <Route path={":registry_id/apps/:app_id"} element={<AkelloAppSettingsPage />} />
-          <Route path={":registry_id/patient-referral"} element={<PatientReferralPage />} />
-          <Route path={":registry_id/patient/:patient_id/treatment-session"} element={<PatientSession />} />
-          <Route path={":registry_id/patient/:patient_id"} element={<PatientDetail />} />
+      <Routes>        
+      <Route path={"/create-registry"} element={<CreateRegistryPage />} />
+        <Route path="/" element={<RegistryShell />}>          
+          <Route path="/" element={<RegistryPage drawerHandlers={drawerHandlers} />} />
+          <Route path={"/dashboard"} element={<DashboardPage />} />          
+          <Route path={"/reports"} element={<ReportsPage />} />                    
+          <Route path={"/patient-referral"} element={<PatientReferralPage />} />
+          <Route path={"/patient/:patient_id/treatment-session"} element={<PatientSession />} />
+          <Route path={"/patient/:patient_id"} element={<PatientDetail />} />
         </Route>        
       </Routes>      
     </>

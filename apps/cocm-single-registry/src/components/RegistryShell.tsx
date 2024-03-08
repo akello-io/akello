@@ -2,7 +2,8 @@ import { AppShell, NavLink, Burger } from '@mantine/core';
 import { IconHome2, IconTable, IconUserCircle, IconReportAnalytics, IconRobot } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { useDisclosure } from '@mantine/hooks';
-
+import { useState, useEffect } from 'react';
+import { Registry } from '@akello/core';
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import PatientDetail from './PatientDetail';
@@ -12,8 +13,40 @@ const RegistryShell = () => {
     const navigate = useNavigate();
     const {pathname} = useLocation();
     const [opened, { toggle }] = useDisclosure();
+    const [registries, setRegistries] = useState<Registry[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+        setIsLoading(true);
 
+        akello.userService.getUser((data) => {            
+            console.log(data);
+        });
+        akello.userService.getUserRegistries((data) => {
+            const registries = data.map((registry: any) => {                                
+                return new Registry(
+                    registry['id'],
+                    registry['name'],
+                    registry['description'],
+                    registry['active_patients'],
+                    registry['members'],
+                    registry['questionnaires'],
+                    {
+                        total_minutes: registry['total_minutes'],
+                        completed_minutes: registry['completed_minutes'],
+                        safety_risk: registry['safety_risk']
+                    }
+                );
+            });            
+            if(registries.length == 0) { 
+                navigate('/create-registry');
+            } else {
+                akello.selectRegistry(registries[0]);
+            }
+            setRegistries(registries);
+            setIsLoading(false);                        
+        });
+    }, []);
     return (
         <AppShell
             className={'w-screen'}
@@ -28,7 +61,7 @@ const RegistryShell = () => {
                 },
             }}
             aside={{
-                width: pathname === '/registry/'+(akello.getSelectedRegistry()?.id ?? '') ? 500 : 0,                
+                width: pathname === '/' ? 500 : 0,                
                 collapsed: {
                     desktop: false,
                     mobile: true,
@@ -43,68 +76,44 @@ const RegistryShell = () => {
                     onClick={() => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
-                            navigate('/registry/' + selectedRegistry.id + '/dashboard');
+                            navigate('/dashboard');
                         }
                         toggle();
                     }}
                     label="Dashboard"
                     leftSection={<IconHome2 size="1rem" stroke={1.5} />}
-                    active={window.location.pathname === '/registry/' + akello.getSelectedRegistry()?.id + '/dashboard'}
+                    active={window.location.pathname === '/dashboard'}
                 />
                 <NavLink
                     onClick={() => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
-                            navigate('/registry/' + selectedRegistry.id);
+                            navigate('/');
                         }
                         toggle();
                     }}
                     label="Registry"
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
-                    active={window.location.pathname === '/registry/' + akello.getSelectedRegistry()?.id}
-                />
-                {/* 
-                <NavLink
-                    onClick={() => {
-                        navigate('/registry/' + (akello.getSelectedRegistry()?.id ?? '') + '/team');
-                        toggle();
-                    }}
-                    label="Team"
-                    leftSection={<IconUserCircle size="1rem" stroke={1.5} />}
-                    active={window.location.pathname === '/registry/' + (akello.getSelectedRegistry()?.id ?? '') + '/team'}
-                />
-                */}
+                    active={window.location.pathname === '/'}
+                />                
                 <NavLink
                     onClick={() => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
-                            navigate('/registry/' + selectedRegistry.id + '/reports');
+                            navigate('/reports');
                         }
                         toggle();
                     }}
                     label="Billing Report"
                     leftSection={<IconReportAnalytics size="1rem" stroke={1.5} />}
-                    active={window.location.pathname === '/registry/' + akello.getSelectedRegistry()?.id + '/reports'}
-                />
-                {/*
-                <NavLink
-                    onClick={() => {
-                        const selectedRegistry = akello.getSelectedRegistry();
-                        if (selectedRegistry) {
-                            navigate('/registry/' + selectedRegistry.id + '/apps');
-                        }
-                        toggle();
-                    }}
-                    label="Akello Apps"
-                    leftSection={<IconRobot size="1rem" stroke={1.5} />}
-                    active={window.location.pathname.includes('/registry/' + akello.getSelectedRegistry()?.id + '/apps')}
-                /> */}
+                    active={window.location.pathname === '/reports'}
+                />                
             </AppShell.Navbar>
             <AppShell.Main>
-                <Outlet />                
+                <Outlet />                 
             </AppShell.Main>
             <AppShell.Aside>
-                <PatientDetail />                                
+                <PatientDetail />
             </AppShell.Aside>
         </AppShell>
     );
