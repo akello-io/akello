@@ -7,10 +7,7 @@ sidebar_position: 1
 Creating a registry in your system is a straightforward process, designed to be user-friendly and efficient. Here's a step-by-step guide to setting up a registry, starting right after you log in.
 
 ### Initial Step: Creating the Registry
-- **Starting Point**: After logging in, head to the top right corner of your screen and click on `CREATE REGISTRY`.
-- **Workflow Experience**: Entering the create workflow will guide you through the necessary steps to establish your registry.
-
-### Detailed Steps in Registry Creation
+**Starting Point**: After logging in, head to the top right corner of your screen and click on `CREATE REGISTRY`.
 
 #### 1. Naming Your Registry
 - **Importance of a Descriptive Name**: Choose a name that accurately describes your patient population. This is particularly helpful if you're managing multiple population models or coordinating with team members across different registries.
