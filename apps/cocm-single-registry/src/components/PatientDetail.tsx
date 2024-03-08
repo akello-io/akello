@@ -17,8 +17,8 @@ const PatientDetail = () => {
         var today = moment(date);        
         var ia = moment();        
         return ia.diff(today, 'week')
-    };
-
+    };    
+    
     if(selectedPatient === undefined) {
         return (
             <></>
@@ -99,7 +99,7 @@ const PatientDetail = () => {
                     </div>
                 </div>
                 <Container size="xs">
-                    <Button color="pink" fullWidth onClick={() => navigate('/registry/' + (akello.getSelectedRegistry()?.id ?? '') + '/patient/' + (akello.getSelectedPatientRegistry()?.id ?? '') + '/treatment-session')}>
+                    <Button color="pink" fullWidth onClick={() => navigate('/patient/' + (akello.getSelectedPatientRegistry()?.id ?? '') + '/treatment-session')}>
                         Start Session
                     </Button>
                 </Container>
