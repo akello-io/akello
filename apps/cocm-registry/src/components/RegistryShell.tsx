@@ -62,8 +62,7 @@ const RegistryShell = () => {
                     label="Registry"
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
                     active={window.location.pathname === '/registry/' + akello.getSelectedRegistry()?.id}
-                />
-                {/* 
+                />                
                 <NavLink
                     onClick={() => {
                         navigate('/registry/' + (akello.getSelectedRegistry()?.id ?? '') + '/team');
@@ -72,8 +71,7 @@ const RegistryShell = () => {
                     label="Team"
                     leftSection={<IconUserCircle size="1rem" stroke={1.5} />}
                     active={window.location.pathname === '/registry/' + (akello.getSelectedRegistry()?.id ?? '') + '/team'}
-                />
-                */}
+                />                
                 <NavLink
                     onClick={() => {
                         const selectedRegistry = akello.getSelectedRegistry();
@@ -85,8 +83,7 @@ const RegistryShell = () => {
                     label="Billing Report"
                     leftSection={<IconReportAnalytics size="1rem" stroke={1.5} />}
                     active={window.location.pathname === '/registry/' + akello.getSelectedRegistry()?.id + '/reports'}
-                />
-                {/*
+                />                
                 <NavLink
                     onClick={() => {
                         const selectedRegistry = akello.getSelectedRegistry();
@@ -98,7 +95,7 @@ const RegistryShell = () => {
                     label="Akello Apps"
                     leftSection={<IconRobot size="1rem" stroke={1.5} />}
                     active={window.location.pathname.includes('/registry/' + akello.getSelectedRegistry()?.id + '/apps')}
-                /> */}
+                /> 
             </AppShell.Navbar>
             <AppShell.Main>
                 <Outlet />                

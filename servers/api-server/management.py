@@ -8,8 +8,11 @@ from akello.services.user import UserService
 from akello.services.registry import RegistryService
 from akello.db.connector.dynamodb import client, dynamodb
 from akello.db.models import UserInvite, UserRole, UserRegistry, ContactTypes
+from faker import Faker
 import shutil, errno
 
+fake = Faker()
+Faker.seed(0)
 app = typer.Typer()
 
 
@@ -61,27 +64,32 @@ def mock_registry():
 
     screeners = ScreenerService.get_screeners()
     registry = RegistryMock()
-    registry_id = registry.create_registry(name='Test Registry', description='Test Description', questionnaires=screeners)
 
-    UserInvite.create(
-            cognito_user_id='system',
-            email='vijay.selvaraj@gmail.com',
-            role=UserRole.care_manager,
-            registry_id=registry_id
-    )
+    pediatrics_id = registry.create_registry(name='Pediatrics', description='Patients within the region of San Francisco', questionnaires=screeners)
+    adult_depression_id = registry.create_registry(name='Adult Moderate Depression & Anxiety', description='General SF Bay Area', questionnaires=screeners)
+    bipolar_id = registry.create_registry(name='Stanford University - Bipolar', description='Current students with Bipolar disorder', questionnaires=screeners)
+    postaprtum_id = registry.create_registry(name='Facebook/Google - Postpartum Depression', description='Employees with Postpartum Depression', questionnaires=screeners)
 
 
-    UserService.create_registry_user(registry_id=registry_id, first_name='Vijay1', last_name='Selvaraj', email='v1@t.com', user_id='3', role=UserRole.care_manager, is_admin=False)
-    UserService.create_registry_user(registry_id=registry_id, first_name='Vijay2', last_name='Selvaraj',  email='v2@t.com', user_id='2',role=UserRole.care_manager, is_admin=False)
-    UserService.create_registry_user(registry_id=registry_id, first_name='Vijay3', last_name='Selvaraj', email='v3@t.com', user_id='1', role=UserRole.care_manager, is_admin=False)
+    for registry_id in [pediatrics_id, adult_depression_id, bipolar_id, postaprtum_id]:
+        UserInvite.create(
+                cognito_user_id='system',
+                email='vijay.selvaraj@gmail.com',
+                role=UserRole.care_manager,
+                registry_id=registry_id
+        )
+
+        for b in range(random.randint(3, 6)):
+            UserService.create_registry_user(registry_id=registry_id, first_name=fake.first_name(), last_name=fake.last_name(), email=fake.email(), user_id=fake.uuid4(), role=UserRole.care_manager, is_admin=False)
 
 
-    for b in range(100):
-        pm = PatientMock(registry_id=registry_id)
-        registry.refer_patient(pm.patient_registry)
-        for treatment_log in pm.treatment_logs:
-            print(len(pm.treatment_logs))
-            RegistryService.add_treatment_log(pm.patient_registry.id, pm.patient_registry.patient_mrn, treatment_log)
+
+        for b in range(random.randint(50, 300)):
+            pm = PatientMock(registry_id=registry_id)
+            registry.refer_patient(pm.patient_registry)
+            for treatment_log in pm.treatment_logs:
+                print(len(pm.treatment_logs))
+                RegistryService.add_treatment_log(pm.patient_registry.id, pm.patient_registry.patient_mrn, treatment_log)
 
 
 if __name__ == "__main__":
