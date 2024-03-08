@@ -18,6 +18,7 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
       navigate('/registry/' + props.registry.id);
       akello.selectRegistry(props.registry);
     }}>
+      {/*
       <Group justify="space-between">
         <Avatar  radius="xl" />
         <div></div>           
@@ -25,6 +26,7 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
             props.registry.stats['safety_risk'] && <Badge color='red'>Safety Risk</Badge>      
         }           
       </Group>
+      */}
 
       <Text fz="lg" fw={500} mt="md">
         {props.registry.name}
@@ -35,12 +37,14 @@ const RegistryCard: React.FC<RegistryCardProps> = (props) => {
       </Text>      
 
       
+      {/* 
       <Text c="dimmed" fz="sm" mt="md">
         Minutes completed this month:{' '}
         <Text span fw={500} c="bright">
           {props.registry.stats.completed_minutes.toFixed(2)}
         </Text>      
       </Text>
+      */}
       <Text c="dimmed" fz="sm">
         Patients:{' '}
         <Text span fw={500} c="bright">
