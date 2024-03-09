@@ -39,11 +39,11 @@ def create_registry():
 
 def create_user():
     user = UserModel(
-        cognito_user_id=''
+        cognito_user_id='',
         email='',
         first_name='',
         last_name='',
-        phone_number=''
+        phone_number='',
         registries=[]
     )
     UserService.create_user(user.cognito_user_id, user.email)

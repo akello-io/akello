@@ -57,7 +57,7 @@ const RegistryShell = () => {
                 },
             }}
             aside={{
-                width: pathname === '/' ? 500 : 0,                
+                width: pathname.indexOf('registry') != -1 ? 500 : 0,                
                 collapsed: {
                     desktop: false,
                     mobile: true,
@@ -72,13 +72,13 @@ const RegistryShell = () => {
                     onClick={() => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
-                            navigate('/');
+                            navigate('/registry');
                         }
                         toggle();
                     }}
                     label="Registry"
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
-                    active={window.location.pathname === '/'}
+                    active={window.location.pathname.indexOf('registry') != -1}
                 />                
                 <NavLink
                     onClick={() => {
