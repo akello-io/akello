@@ -8,7 +8,6 @@ from botocore.exceptions import ClientError
 from typing import List
 
 
-
 class RegistryService(BaseService):
 
     # TODO: We need decorator for permissions
@@ -20,7 +19,7 @@ class RegistryService(BaseService):
     def create_registry(name, description, questionnaires, integrations, logo_url=None):
         current_timestamp = datetime.datetime.utcnow().timestamp()
         rd = random.Random()
-        
+
         registry = RegistryModel(
             id=str(uuid.UUID(int=rd.getrandbits(128))),
             name=name,
@@ -66,7 +65,6 @@ class RegistryService(BaseService):
 
         return response['Item']
 
-
     @staticmethod
     def update_registry_akello_apps(registry_id, akello_apps):
         RegistryModel.set_attribute('registry:%s' % registry_id, 'metadata', 'akello_apps', akello_apps)
@@ -77,7 +75,6 @@ class RegistryService(BaseService):
         members = RegistryService.get_members(registry_id)
         RegistryModel.set_attribute('registry:%s' % registry_id, 'metadata', 'members', len(members))
         RegistryModel.set_attribute('registry:%s' % registry_id, 'metadata', 'active_patients', len(patients))
-
 
     @staticmethod
     def get_patient(registry_id, patient_id):
@@ -97,7 +94,7 @@ class RegistryService(BaseService):
 
         if 'Item' not in response:
             return None
-        
+
         return response['Item']
 
     @staticmethod
@@ -120,14 +117,13 @@ class RegistryService(BaseService):
         item['sort_key'] = patient_registry.sort_key
         response = registry_db.put_item(
             Item=item
-        )        
+        )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
     @staticmethod
     def update_patient(patient_registry: PatientRegistry):
         item = patient_registry.toJson()
-
         item = json.loads(json.dumps(item), parse_float=Decimal)
         item['partition_key'] = patient_registry.partition_key
         item['sort_key'] = patient_registry.sort_key
@@ -137,20 +133,18 @@ class RegistryService(BaseService):
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
-
     @staticmethod
     def add_treatment_log(registry_id, sort_key, treatment_log: TreatmentLog):
 
-        
         UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
                            "flag = :flag," \
                            "no_show = :no_show," \
-                            "weeks_since_initial_assessment = :weeks_since_initial_assessment"
+                           "weeks_since_initial_assessment = :weeks_since_initial_assessment"
 
         ExpressionAttributeValues = {
             ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
             ':flag': treatment_log.flag,
-            ':no_show': treatment_log.no_show,                                    
+            ':no_show': treatment_log.no_show,
             ":weeks_since_initial_assessment": 0
         }
 
@@ -184,7 +178,6 @@ class RegistryService(BaseService):
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
-
 
     @staticmethod
     def get_members(registry_id):

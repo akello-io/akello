@@ -49,7 +49,8 @@ const PatientReferralPage = () => {
             new_patient.treatment_logs =  []
             new_patient.payer = values['payer']
             akello.registryService.referPatient(akello.getSelectedRegistry()?.id ?? '', new_patient, (data) => {                
-                navigate('/')
+                navigate('/registry/' + new_patient.patient_mrn)
+                akello.selectPatient(new_patient)
             })
         },
     });
