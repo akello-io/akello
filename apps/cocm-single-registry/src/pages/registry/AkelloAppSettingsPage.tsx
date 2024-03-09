@@ -36,17 +36,14 @@ const AkelloAppSettingsPage = () => {
     if(!app) { 
         return <div>Loading...</div>
     }
-    console.log('app')
-    console.log(app)
-
+    
     const SelectedAppConfig = {
         'akello-app-config': (<AppConfig app={app} onClick={(appData) => {              
             akello.registryService.saveAkelloApp(selectedRegistry!.id, appData, () => {                
-                console.log('saved')
+                
             }) 
         }} />),
-        'fhir-query-score': (<FhirQueryScore scoreName='Metriport FHIR Query Score' onSubmit={(data) => {
-            console.log(data)
+        'fhir-query-score': (<FhirQueryScore scoreName='Metriport FHIR Query Score' onSubmit={(data) => {            
             app.configs = [
                 {
                     type: 'fhir-query-score',
@@ -55,8 +52,7 @@ const AkelloAppSettingsPage = () => {
                 }
             ]
 
-            akello.registryService.saveAkelloApp(selectedRegistry!.id, app, () => {
-                console.log('saved')
+            akello.registryService.saveAkelloApp(selectedRegistry!.id, app, () => {                
             }) 
         }}/>)
     } as any;

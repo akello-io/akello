@@ -3,6 +3,7 @@ import moment from "moment";
 import {PatientRegistry, Questionnaire, TreatmentLog} from "@akello/core";
 import * as React from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useAkello } from "@akello/react-hook";
 
 export interface RegistryDataGridProps {
     patients: PatientRegistry[]
@@ -134,10 +135,12 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
 
     const [columns, setColumns] = React.useState<GridColDef[]>([])    
 
+    const akello = useAkello()
+    const selectedPatient = akello.getSelectedPatientRegistry()
+
     React.useEffect(() => {
         let new_columns = [] as GridColDef[]    
-        questionnaires.map((questionnaire) => {
-            console.log(questionnaire.name)
+        questionnaires.map((questionnaire) => {            
             const first_column = {
                 "field": questionnaire.uid + '_first',
                 "headerName": questionnaire.name + ' Initial',
@@ -220,6 +223,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                     columns={columns}
                     experimentalFeatures={{ columnGrouping: true }}
                     columnGroupingModel={columnGroupingModel}
+                    rowSelectionModel={selectedPatient?.patient_mrn}
                     slots={{
                         toolbar: GridToolbar,
                     }}

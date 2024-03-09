@@ -38,14 +38,9 @@ export const SignupConfirmationForm:React.FC<SignupConfirmationFormProps> = ({em
                             }}
                             validationSchema={EmailCodeSchema}
                             onSubmit={values => {
-                                akello.confirmSignup(email, values.code, (user: any) => {
-                                    debugger;
-                                    console.log('user successfully confirmed')
-                                    console.log(user)
+                                akello.confirmSignup(email, values.code, (user: any) => {                                                                                                
                                     onSuccess && onSuccess()
-                                }, (err: any) => {
-                                    debugger;
-                                    console.log(err)
+                                }, (err: any) => {                                    
                                     onFail && onFail()
                                 })                                
                             }}
@@ -74,11 +69,7 @@ export const SignupConfirmationForm:React.FC<SignupConfirmationFormProps> = ({em
                             <button className="btn btn-secondary w-full" onClick={() => {
                                 //resendCode(email!)
                                 akello.resendCode(email, (user: any) => {
-                                    debugger;
-                                    console.log(user)
-                                }, (err: any) => {
-                                    debugger;
-                                    console.log(err)
+                                }, (err: any) => {                                                                        
                                 })
                             }}>Resend code</button>
                         </div>

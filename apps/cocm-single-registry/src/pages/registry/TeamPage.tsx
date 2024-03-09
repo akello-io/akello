@@ -47,8 +47,7 @@ const columns: GridColDef[] = [
                     {
                         !cellValues.row.is_user && (
                             <div className={"btn btn-error"}
-                                 onClick={(event) => {
-                                    console.log(event)
+                                 onClick={(event) => {                                    
                                  }}
                             >
                                 Delete

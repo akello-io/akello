@@ -47,8 +47,7 @@ export const QuestionnaireForm:React.FC<QuestionnaireFormProps> = ({questionnair
                         })
                     }
                 ]                
-            } as QuestionnaireResponse        
-            console.log(response)    
+            } as QuestionnaireResponse                    
             axios.post('http://127.0.0.1:8000/v1/fhir', response)
                 .then((resp) => {                    
                 })

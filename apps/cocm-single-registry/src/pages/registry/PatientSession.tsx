@@ -37,11 +37,6 @@ const PatientSession = ({}) => {
         }
     }, [])
 
-    useEffect(() => {
-        console.log(questionnaire_responses)
-    }, [questionnaire_responses])    
-    
-
     const [mm, setMM] = useState(0)
     const [ss, setSS] = useState(0)
     //const [ms, setMS] = useState(0)
@@ -142,9 +137,8 @@ const PatientSession = ({}) => {
                                                 minutes: mm + (ss/60),
                                                 no_show: noShow,
                                                 date: Date.now() // UTC time
-                                            }, (data) => {
-                                                console.log(data)
-                                                navigate('/registry/' + selectedRegistry.id);
+                                            }, (data) => {                                                
+                                                navigate('/');
                                             });
                                         }
 

@@ -18,13 +18,9 @@ If you have questions or want to talk to us, join us on our [Discord Server](htt
 
 In healthcare, the use of exclusive software often means that how clinical data is handled remains a secret. This can prevent healthcare systems from working together smoothly and slow down improvements in patient care. It also makes it harder to deliver care that focuses on the patient's needs, leading to a more disjointed healthcare system.
 
-Akello offers something different from what's usually found in the market. We're the first open-source platform that focuses on the health of entire populations.
+Akello offers something different from what's usually found in the market. We're the first open-source platform that focuses on integrated care models.
 
-:::tip
-### Akello is about doing things openly and differently
 In short, Akello is about doing things openly and differently, with the aim of improving healthcare for everyone.
-:::
-
 
 We believe in open-source for five main reasons:
 
@@ -46,7 +42,7 @@ Our platform is designed to encourage new ideas in healthcare technology. By pro
 
 ## Why Choose Akello?
 
-Akello is unique because it offers unmatched flexibility. You're not stuck with just one supplier, giving you the freedom to mix and match different options to create care experiences that meet your exact needs. Plus, if you'd rather not spend time on technical details, Akello provides a full management solution.
+Akello is unique because it offers unmatched flexibility. You're not locked into a vendor, giving you the freedom to mix and match different options to create care experiences that meet your exact needs. 
 
 ## Join the movement
 

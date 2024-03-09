@@ -17,11 +17,7 @@ const RegistryShell = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setIsLoading(true);
-
-        akello.userService.getUser((data) => {            
-            console.log(data);
-        });
+        setIsLoading(true);        
         akello.userService.getUserRegistries((data) => {
             const registries = data.map((registry: any) => {                                
                 return new Registry(
@@ -61,7 +57,7 @@ const RegistryShell = () => {
                 },
             }}
             aside={{
-                width: pathname === '/' ? 500 : 0,                
+                width: pathname.indexOf('registry') != -1 ? 500 : 0,                
                 collapsed: {
                     desktop: false,
                     mobile: true,
@@ -71,30 +67,18 @@ const RegistryShell = () => {
             padding="md"
         >            
             <Header loggedIn={true}  opened={opened} toggle={toggle}/>
-            <AppShell.Navbar>
+            <AppShell.Navbar>                
                 <NavLink
                     onClick={() => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
-                            navigate('/dashboard');
-                        }
-                        toggle();
-                    }}
-                    label="Dashboard"
-                    leftSection={<IconHome2 size="1rem" stroke={1.5} />}
-                    active={window.location.pathname === '/dashboard'}
-                />
-                <NavLink
-                    onClick={() => {
-                        const selectedRegistry = akello.getSelectedRegistry();
-                        if (selectedRegistry) {
-                            navigate('/');
+                            navigate('/registry');
                         }
                         toggle();
                     }}
                     label="Registry"
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
-                    active={window.location.pathname === '/'}
+                    active={window.location.pathname.indexOf('registry') != -1}
                 />                
                 <NavLink
                     onClick={() => {

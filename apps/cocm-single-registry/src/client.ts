@@ -12,5 +12,4 @@ const config = {
         window.location.href = '/login'
     }
 }
-console.log(config)
 export const akello = new AkelloClient(config)

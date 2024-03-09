@@ -47,9 +47,7 @@ const PatientDetail = () => {
                     </div>
                     <div className={"p-2"}>
                         <div className={"grid grid-cols-2 space-y-6"}>  
-                            <div className='col-span-2'>
-                                <TreatmentProgress weeks={getWeeksSince(selectedPatient.initial_assessment!)} />
-                            </div>                            
+                                                    
                             <div className={'col-span-2'}>
                                 <Select
                                         placeholder="Select patient flag "                                
@@ -125,7 +123,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2"}>
-                                <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires ?? []} />                                    
+                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires ?? []} />                                    
                                 </div>
                             </div>
                         </>
