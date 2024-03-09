@@ -20,9 +20,7 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, opened, toggle }) => {
 
   if (loggedIn) {
     return (
-      <AppShell.Header className='flex justify-between px-4'>   
-        
-
+      <AppShell.Header className='flex justify-between px-4'>           
         <div className='flex flex-row space-x-3'>
           <Burger
             className='my-auto'
@@ -34,14 +32,13 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, opened, toggle }) => {
           </Burger>
           <UnstyledButton
             onClick={() => {
-              akello.selectRegistry(undefined);
-              navigate('/');
+              // akello.selectRegistry(undefined);
+              navigate('/registry');
             }}
             className='flex h-8 w-auto my-auto'
           >
             <img src={Logo} alt='logo' className='h-8 w-auto' />
-          </UnstyledButton>
-          
+          </UnstyledButton>          
           <div className='my-auto'>
             <Text fw={600} size={'xl'}>
               {akello.getSelectedRegistry()?.name ?? ''}            
@@ -85,7 +82,9 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, opened, toggle }) => {
 
   return (
     <AppShell.Header className='flex justify-between px-4 my-auto'>
-      <UnstyledButton onClick={() => {}} className='flex h-10 w-auto my-auto'>
+      <UnstyledButton onClick={() => {
+        navigate('/registry');
+      }} className='flex h-10 w-auto my-auto'>
         <img src={Logo} alt='logo' className='h-10 w-auto' />
       </UnstyledButton>
       <div className='flex w-auto h-10 my-auto'>
