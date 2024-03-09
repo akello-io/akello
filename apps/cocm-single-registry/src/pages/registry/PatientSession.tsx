@@ -104,7 +104,9 @@ const PatientSession = ({}) => {
                                     }}/> 
                                 </Grid.Col>
                                 <Grid.Col span={0}>
-                                    <Button variant="filled" color="red"  onClick={() => {}}>
+                                    <Button variant="filled" color="red"  onClick={() => {
+                                        navigate('/registry/' + akello.getSelectedPatientRegistry()?.patient_mrn);
+                                    }}>
                                         cancel
                                     </Button>
                                 </Grid.Col>
