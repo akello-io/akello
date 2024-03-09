@@ -71,19 +71,7 @@ const RegistryShell = () => {
             padding="md"
         >            
             <Header loggedIn={true}  opened={opened} toggle={toggle}/>
-            <AppShell.Navbar>
-                <NavLink
-                    onClick={() => {
-                        const selectedRegistry = akello.getSelectedRegistry();
-                        if (selectedRegistry) {
-                            navigate('/dashboard');
-                        }
-                        toggle();
-                    }}
-                    label="Dashboard"
-                    leftSection={<IconHome2 size="1rem" stroke={1.5} />}
-                    active={window.location.pathname === '/dashboard'}
-                />
+            <AppShell.Navbar>                
                 <NavLink
                     onClick={() => {
                         const selectedRegistry = akello.getSelectedRegistry();
