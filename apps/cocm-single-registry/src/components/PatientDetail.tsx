@@ -2,7 +2,7 @@ import {PatientProgressChart} from "@akello/react";
 import {PatientTreatmentHistoryDataGrid} from "@akello/react";
 import moment from "moment";
 import { useAkello } from "@akello/react-hook";
-import {Select, Container, Button, ThemeIcon, SegmentedControl, Text} from '@mantine/core';
+import {Select, Container, Button, ThemeIcon, SegmentedControl, Anchor, Text} from '@mantine/core';
 import { useNavigate } from "react-router";
 import { IconPhone, IconArrowsMaximize } from "@tabler/icons-react";
 import TreatmentProgress from './treatment-progress/TreatmentProgress';
@@ -34,15 +34,15 @@ const PatientDetail = () => {
                             <div className={"text-xl font-semibold"}>
                                 {selectedPatient.first_name} {selectedPatient.last_name}
                             </div>
-                            <Text size={'xs'} >
+                            <Anchor size="md" href={"mailto:" + selectedPatient.email} target="_blank">
                                 {selectedPatient.email}    
-                            </Text>                            
+                            </Anchor>                            
                         </div>     
                         <div className='flex flex-row space-x-3'>
                             <ThemeIcon>
                                 <IconPhone style={{ width: '70%', height: '70%' }} />
                             </ThemeIcon>                   
-                            <div className={'text-md'}>{selectedPatient.phone_number}</div>
+                            <a className={'text-md'} href={'tel:' + selectedPatient.phone_number}>{selectedPatient.phone_number}</a>
                         </div>                                            
                     </div>
                     <div className={"p-2"}>
