@@ -257,7 +257,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                 [],
                 (err, result) => {
                     if (err) {
-                        console.log(err);
+                        onFail(err);            
                         return;
                     }
                     this.username = username;
@@ -266,7 +266,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                 }
             );
         } catch (error) {
-            console.log(error);
+            console.log(error);        
         }
     }
 
