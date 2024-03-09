@@ -175,8 +175,29 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                     return 'N/A'
                 }
             }
+
+            const delta_column = {
+                "field": questionnaire.uid + '_delta',
+                "headerName": questionnaire.name + ' Delta',
+                "description": "Delta for " + questionnaire.uid + " between initial and last",
+                "type": "number",
+                "width": 110,
+                "editable": true,
+                valueGetter: (params: GridValueGetterParams<any, any>) => {
+                    if (params.row.treatment_logs.length > 0) {                        
+                        let first_element = params.row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.name)
+                        let last_element = params.row.treatment_logs[params.row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.name)
+                        if(first_element && last_element) {
+                            let diff = last_element.score_value - first_element.score_value
+                            return diff / first_element.score_value * 100
+                        }
+                    }
+                    return 'N/A'
+                }
+            }
             new_columns.push(first_column)
-            new_columns.push(last_column)                                
+            new_columns.push(last_column)     
+            new_columns.push(delta_column)                           
         })
         setColumns([...default_columns, ...new_columns]);
         
