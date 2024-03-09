@@ -6,7 +6,8 @@ import { useAkello } from '@akello/react-hook';
 import classes from '../LoginPage.module.css';
 
 const SignupSchema = Yup.object().shape({
-    name: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
+    first_name: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
+    last_name: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().required('Required')
 });
@@ -38,13 +39,14 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
                         <Formik
                             initialValues={{
-                                name: '',
+                                first_name: '',
+                                last_name: '',
                                 email: '',
                                 password: ''
                             }}
                             validationSchema={SignupSchema}
                             onSubmit={values => {
-                                akello.signup(values.email, values.password, (user: any) => {                                    
+                                akello.signup(values.first_name, values.last_name, values.email, values.password, (user: any) => {                                    
                                     akello.setUserName(values.email);
                                     //navigate('/signup/confirm');
                                     onSignupSuccess();
@@ -58,15 +60,28 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                                     <Form className="space-y-4">
                                         <div className="flex flex-wrap -mx-3 mb-4">
                                             <div className="w-full px-3">
-                                                <label className="block text-sm font-medium mb-1" htmlFor="name">
-                                                    Name <span className="text-red-600">*</span>
+                                                <label className="block text-sm font-medium mb-1" htmlFor="first_name">
+                                                    First Name <span className="text-red-600">*</span>
                                                 </label>
                                                 <Field
-                                                    name="name"
-                                                    placeholder="Enter your name"
+                                                    name="first_name"
+                                                    placeholder="Enter your first name"
                                                     className="input input-bordered w-full bg-white"
                                                 />
-                                                {errors.name && touched.name ? <div>{errors.name}</div> : null}
+                                                {errors.first_name && touched.first_name ? <div>{errors.first_name}</div> : null}
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-wrap -mx-3 mb-4">
+                                            <div className="w-full px-3">
+                                                <label className="block text-sm font-medium mb-1" htmlFor="last_name">
+                                                    Last Name <span className="text-red-600">*</span>
+                                                </label>
+                                                <Field
+                                                    name="last_name"
+                                                    placeholder="Enter your last name"
+                                                    className="input input-bordered w-full bg-white"
+                                                />
+                                                {errors.last_name && touched.last_name ? <div>{errors.last_name}</div> : null}
                                             </div>
                                         </div>
 

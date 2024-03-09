@@ -4,6 +4,8 @@ from pydantic_settings import BaseSettings
 from pydantic.types import Any
 from typing import Optional
 from fastapi_cognito import CognitoAuth, CognitoSettings
+from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
+
 from pydantic import BaseModel, HttpUrl, Field,parse_obj_as
 from jose import jwt
 
@@ -27,23 +29,6 @@ class Settings(BaseSettings):
             **({"endpoint": AKELLO_COGNITO_URL} if os.environ.get('AKELLO_COGNITO_URL') else {})
         },
     }
-
-
-class CognitoTokenCustom(BaseModel):
-    origin_jti: Optional[str] = None
-    cognito_id: str = Field(alias="sub")
-    event_id: Optional[str] = None
-    token_use: str
-    scope: Optional[str] = None
-    auth_time: int
-    iss: HttpUrl
-    exp: int
-    iat: int
-    jti: str
-    client_id: Optional[str] = None
-    username: Optional[str] = None
-    # email: str - pull this from the user attributes
-    sub: str
 
 
 async def local_auth_required(request: Request) -> CognitoTokenCustom:
