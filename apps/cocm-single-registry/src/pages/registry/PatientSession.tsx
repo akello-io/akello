@@ -24,7 +24,6 @@ const PatientSession = ({}) => {
         [question: string]: any;
     };
     const [questionnaire_responses, setQuestionnaireResponses] = useState<{ [questionnaire: string] : ScoreDictionary }>({})
-
     
     useEffect(() => {
         const selectedRegistryId = akello.getSelectedRegistry()?.id;
@@ -138,7 +137,7 @@ const PatientSession = ({}) => {
                                                 no_show: noShow,
                                                 date: Date.now() // UTC time
                                             }, (data) => {                                                
-                                                navigate('/');
+                                                navigate('/registry/' + akello.getSelectedPatientRegistry()?.patient_mrn);
                                             });
                                         }
 
