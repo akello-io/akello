@@ -30,8 +30,6 @@ const ReportsPage = () => {
 
     return (
         <>
-
-
                 <div className={"p-4 space-y-6"}>
                     <div className={"w-full border border-1 "}>
                         <div className={"font-semibold border-b border-1 p-2"}>

@@ -138,7 +138,7 @@ const PatientSession = ({}) => {
                                                 no_show: noShow,
                                                 date: Date.now() // UTC time
                                             }, (data) => {                                                
-                                                navigate('/registry/' + selectedRegistry.id);
+                                                navigate('/');
                                             });
                                         }
 
