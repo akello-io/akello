@@ -123,7 +123,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2"}>
-                                <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires ?? []} />                                    
+                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires ?? []} />                                    
                                 </div>
                             </div>
                         </>

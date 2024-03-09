@@ -46,14 +46,10 @@ export const SignUpForm:React.FC<SignUpFormProps> = ({onSuccess, onFail, onSigin
                     }}
                     validationSchema={SignupSchema}
                     onSubmit={values => {
-                        akello.signup(values.email, values.password, (user: any) => {
-                            debugger;
-                            console.log(user)
+                        akello.signup(values.email, values.password, (user: any) => {                            
                             onSuccess && onSuccess()
                             
-                        }, (err: any) => {
-                            debugger;
-                            console.log(err)
+                        }, (err: any) => {                            
                             onFail && onFail()
                         })                        
                     }}

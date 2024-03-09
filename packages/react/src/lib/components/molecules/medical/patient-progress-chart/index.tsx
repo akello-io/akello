@@ -39,10 +39,6 @@ export const PatientProgressChart:React.FC<PatientProgressChartProps> = ({select
         scores.push(treatment_log_score)
     })
 
-
-    console.log(scores)
-    console.log(score_names)
-
     //TODO: Need to handle the case when a registry might have more than 5 measurements
     let colors = [
         "#6fe520",
@@ -75,7 +71,7 @@ export const PatientProgressChart:React.FC<PatientProgressChartProps> = ({select
                         //TODO: Need to handle the case when a registry might have more than 5 measurements
                         return (
                             <>
-                                <Line type="monotone" dataKey={score_key} stroke={colors[index]}  />
+                                <Line key={index} type="monotone" dataKey={score_key} stroke={colors[index]}  />
                             </>
                         )
                     })

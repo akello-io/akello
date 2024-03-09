@@ -18,7 +18,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
     const navigate = useNavigate()
 
-    drawerHandlers.open()
+    
     const akello = useAkello()    
 
     const isMobile = useMediaQuery(`(max-width: ${em(880)})`);
@@ -38,7 +38,8 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
         
 
 
-    useEffect(() => {                        
+    useEffect(() => {    
+        drawerHandlers.open()                    
         if (akello.getSelectedRegistry()) {
             const registryId = akello.getSelectedRegistry()?.id;            
             if (registryId) {
@@ -52,7 +53,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
                         akello.dispatchEvent({ type: 'change' });
                     }            
                 }, (data) => {   
-                    console.log(data)         
+                    
                 })
             }
         }

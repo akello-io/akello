@@ -17,11 +17,7 @@ const RegistryShell = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setIsLoading(true);
-
-        akello.userService.getUser((data) => {            
-            console.log(data);
-        });
+        setIsLoading(true);        
         akello.userService.getUserRegistries((data) => {
             const registries = data.map((registry: any) => {                                
                 return new Registry(

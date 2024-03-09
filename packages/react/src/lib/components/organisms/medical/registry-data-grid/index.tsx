@@ -136,8 +136,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
 
     React.useEffect(() => {
         let new_columns = [] as GridColDef[]    
-        questionnaires.map((questionnaire) => {
-            console.log(questionnaire.name)
+        questionnaires.map((questionnaire) => {            
             const first_column = {
                 "field": questionnaire.uid + '_first',
                 "headerName": questionnaire.name + ' Initial',

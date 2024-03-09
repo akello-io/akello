@@ -24,12 +24,10 @@ export const SignUpConfirm:React.FC<SignUpConfirmProps> = ({onConfirmSuccess}) =
         akello.confirmSignup(
             email ?? '',
             values.code,
-            (user: any) => {
-                console.log(user);
+            (user: any) => {                
                 onConfirmSuccess()
             },
-            (err: any) => {
-                console.log(err);
+            (err: any) => {                
                 setAPIError(err.message);
             }
         );
@@ -38,11 +36,9 @@ export const SignUpConfirm:React.FC<SignUpConfirmProps> = ({onConfirmSuccess}) =
     const handleResendCode = () => {
         akello.resendCode(
             email ?? '',
-            (user: any) => {
-                console.log(user);
+            (user: any) => {                
             },
-            (err: any) => {
-                console.log(err);
+            (err: any) => {                
                 setAPIError(err.message);
             }
         );

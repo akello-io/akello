@@ -29,13 +29,11 @@ export const SignInForm:React.FC<SignInFormProps> = ({onSuccess, onFail, onSignu
                 email: '',
                 password: ''
             }} onSubmit={values => {  
-              akello.login(values.email, values.password, (token: string) => {
-                console.log(token)
+              akello.login(values.email, values.password, (token: string) => {                
                 if (onSuccess) {
                   onSuccess(token);
                 }
-              }, (err: any) => {
-                console.log(err)
+              }, (err: any) => {                
                 if (onFail) {
                   onFail(err);
                 }                   

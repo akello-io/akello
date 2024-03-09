@@ -13,7 +13,7 @@
   "dependencies": {
     "@akello/core": "file:../../packages/core",
     "@akello/react": "link:../../packages/react",
-    "@akello/react-hook": "^0.0.1",
+    "@akello/react-hook": "link:../../packages/react-hook",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.1.1",

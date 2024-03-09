@@ -26,8 +26,7 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
         akello.login(
             values.email,
             values.password,
-            (token: string) => {
-                console.log(token);
+            (token: string) => {                
                 onSuccess && onSuccess(token);                
             },
             (err: any) => {

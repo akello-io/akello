@@ -44,8 +44,7 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                             }}
                             validationSchema={SignupSchema}
                             onSubmit={values => {
-                                akello.signup(values.email, values.password, (user: any) => {
-                                    console.log(user);
+                                akello.signup(values.email, values.password, (user: any) => {                                    
                                     akello.setUserName(values.email);
                                     //navigate('/signup/confirm');
                                     onSignupSuccess();
