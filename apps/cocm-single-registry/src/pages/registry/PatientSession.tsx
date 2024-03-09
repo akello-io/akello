@@ -32,7 +32,7 @@ const PatientSession = ({}) => {
     const items = [
         { title: 'Registry', href: '/registry' },
         { title: patient?.first_name + ' ' + patient?.last_name, href: '/registry/' + patient?.patient_mrn },
-        { title: 'screening', href: '#' },
+        { title: 'Treatment Session', href: '#' },
       ].map((item, index) => (
         <Anchor href={item.href} key={index}>
           {item.title}
