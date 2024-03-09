@@ -1,11 +1,17 @@
 import { rem } from '@mantine/core';
 import { IconLogout } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
-import { Avatar, Menu, UnstyledButton } from '@mantine/core';
+import { Avatar, Button, Menu, UnstyledButton } from '@mantine/core';
 import ThemeToggle from './ThemeToggle';
 
 const HeaderMenu = () => {
   const akello = useAkello();
+
+  return (
+    <>
+      <Button variant='default' onClick={() => akello.logout()}>Sign Out</Button>
+    </>
+  )
 
   return (
     <Menu shadow="md" width={200}>

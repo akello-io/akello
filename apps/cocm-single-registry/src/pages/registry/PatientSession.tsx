@@ -18,6 +18,7 @@ const PatientSession = ({}) => {
     const [visitType, setVisitType] = useState('')
     const [contactType, setContactType] = useState('')
     const [flag, setFlag] = useState<string>()
+    const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false)
 
     const navigate = useNavigate()
     const akello = useAkello()
@@ -49,10 +50,28 @@ const PatientSession = ({}) => {
         }
     }, [])
 
+
+    useEffect(() => {        
+        let total_questionnaires_answered = 0
+        questionnaires.map((questionnaire: Questionnaire) => {            
+            if(questionnaire_responses[questionnaire.uid]) {                
+                if(Object.keys(questionnaire_responses[questionnaire.uid].responses).length == questionnaire.measurements.length) {                                        
+                    total_questionnaires_answered += 1                    
+                }
+            }            
+        })
+
+        debugger
+        if(total_questionnaires_answered!=0 && total_questionnaires_answered == questionnaires.length) {                                    
+            setAllQuestionsAnswered(true)
+        }
+
+    }, [questionnaire_responses])
+
     const [mm, setMM] = useState(0)
     const [ss, setSS] = useState(0)
     //const [ms, setMS] = useState(0)
-
+    
 
     if(questionnaires.length == 0) {
         return (
@@ -60,7 +79,7 @@ const PatientSession = ({}) => {
                 Loading...
             </div>
         )
-    }
+    }    
 
 
     const saveTreatmentSession = (no_show?: boolean) => {
@@ -78,8 +97,7 @@ const PatientSession = ({}) => {
             })                                            
         }  
         const selectedRegistry = akello.getSelectedRegistry();
-        if (selectedRegistry) {
-            debugger;
+        if (selectedRegistry) {            
             akello.registryService.saveTreatmentSession(selectedRegistry.id, {
                 id: uuidv4(),
                 patient_mrn: akello.getSelectedPatientRegistry()?.patient_mrn ?? '',
@@ -159,7 +177,9 @@ const PatientSession = ({}) => {
                                     visitType && contactType && (
                                         <>                                            
                                             <Grid.Col span={0}>
-                                                <Button variant="filled" onClick={() => {                                
+                                                <Button variant="filled" 
+                                                    disabled={!allQuestionsAnswered}
+                                                    onClick={() => {                                
                                                     saveTreatmentSession()                                                    
                                                 }}>
                                                     save session
