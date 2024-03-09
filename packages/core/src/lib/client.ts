@@ -37,7 +37,9 @@ export interface AkelloClientInterface {
         onSuccess: (result: any) => void,
         onFail: (err: any) => void
     ): void;
-    signup(
+    signup(        
+        given_name: string,
+        family_name: string,
         username: string,
         password: string,
         onSuccess: (user: CognitoUser) => void,
@@ -220,13 +222,17 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     /**
      * Signs up a user with the provided username and password.
      *
+     * @param given_name - The first name of the user to sign up.
+     * @param family_name - The last name of the user to sign up.
      * @param username - The username of the user to sign up.
      * @param password - The password of the user to sign up.
      * @param onSuccess - A callback function that will be called when the user is successfully signed up. It will receive the signed up user as a parameter.
      * @param onFail - A callback function that will be called if there is an error during the sign up process. It will receive the error as a parameter.
      */
     signup(
-        username: string,
+        given_name: string,
+        family_name: string,
+        username: string,        
         password: string,
         onSuccess: (user: CognitoUser) => void,
         onFail: (err: any) => void
@@ -243,7 +249,11 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
             userPool.signUp(
                 username,
                 password,
-                [new CognitoUserAttribute({ Name: 'email', Value: username })],
+                [
+                    new CognitoUserAttribute({ Name: 'email', Value: username }),
+                    new CognitoUserAttribute({ Name: 'given_name', Value: given_name }),
+                    new CognitoUserAttribute({ Name: 'family_name', Value: family_name })
+                ],
                 [],
                 (err, result) => {
                     if (err) {
@@ -273,7 +283,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         password: string,
         onSuccess: (token: string) => void,
         onFail: (err: any) => void
-    ) {
+    ) {        
         const authenticationData = {
             Username: username,
             Password: password
@@ -283,12 +293,12 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
             UserPoolId: this.options.cognitoUserPoolId!,
             ClientId: this.options.cognitoClientId!,
             endpoint: this.options.cognitoEndpoint!
-        };
+        };        
         const userPool = new CognitoUserPool(poolData);
         const userData = {
             Username: username,
             Pool: userPool
-        };
+        };        
         const cognitoUser = new CognitoUser(userData);
         cognitoUser.setAuthenticationFlowType('USER_PASSWORD_AUTH');
         cognitoUser.authenticateUser(authenticationDetails, {
@@ -297,7 +307,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                 /* Use the idToken for Logins Map when Federating User Pools with identity pools or when passing through an Authorization Header to an API Gateway Authorizer */
                 const idToken = result.idToken.jwtToken;
                 this.accessToken = accessToken;
-                this.username = username;
+                this.username = username;                
                 onSuccess(accessToken);
                 this.storage.setString('accessToken', accessToken);
                 this.dispatchEvent({ type: 'change' });

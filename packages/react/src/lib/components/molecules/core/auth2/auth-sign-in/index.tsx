@@ -22,11 +22,12 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
         password: Yup.string().required('Required')
     });
 
-    const handleSubmit = (values: { email: string; password: string }) => {
+    const handleSubmit = (values: { email: string; password: string }) => {        
         akello.login(
             values.email,
             values.password,
-            (token: string) => {                
+            (token: string) => {  
+                akello.setUserName(values.email);                  
                 onSuccess && onSuccess(token);                
             },
             (err: any) => {

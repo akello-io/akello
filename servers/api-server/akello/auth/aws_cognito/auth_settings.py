@@ -37,3 +37,5 @@ class CognitoTokenCustom(BaseModel):
     client_id: Optional[str] = None
     username: Optional[str] = None
     email: str
+    family_name: Optional[str] = None
+    given_name: Optional[str] = None

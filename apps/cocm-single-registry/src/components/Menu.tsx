@@ -11,9 +11,11 @@ const HeaderMenu = () => {
     <Menu shadow="md" width={200}>
       <Menu.Target>
         <UnstyledButton className='flex flex-row space-x-2'>
+          {/* 
           <Avatar className='my-auto' color="cyan" radius="xl">VS</Avatar>
+          */}          
           <div className='my-auto'>
-            Vijay Selvaraj
+            {akello.getUserName()}
           </div>
         </UnstyledButton>
       </Menu.Target>
