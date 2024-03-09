@@ -22,6 +22,11 @@ export const PatientProgressChart:React.FC<PatientProgressChartProps> = ({select
 
     selectedPatient.treatment_logs.map((treatment_log) => {
 
+        if(treatment_log.no_show) {
+            // filter out no-shows
+            return
+        }
+
         let treatment_log_score:any = {
             "weeks_in_treatment" : treatment_log.weeks_in_treatment
         }

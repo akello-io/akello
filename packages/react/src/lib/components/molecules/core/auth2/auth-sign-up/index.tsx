@@ -50,7 +50,8 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                                     akello.setUserName(values.email);
                                     //navigate('/signup/confirm');
                                     onSignupSuccess();
-                                }, (err: any) => {
+                                }, (err: any) => {   
+                                    console.log(err)                                 
                                     setSubmissionError(err.message);
                                 });
                             }}
