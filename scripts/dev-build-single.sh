@@ -10,7 +10,6 @@ echo '>>>>>>>>>>  CORE'
 cd packages/core
 
 echo $PWD
-
 rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml

@@ -1,23 +1,16 @@
 import {PatientProgressChart} from "@akello/react";
 import {PatientTreatmentHistoryDataGrid} from "@akello/react";
-import moment from "moment";
 import { useAkello } from "@akello/react-hook";
-import {Select, Container, Button, ThemeIcon, SegmentedControl, Anchor, Text} from '@mantine/core';
+import {Select, Container, Button, ThemeIcon, SegmentedControl, Anchor} from '@mantine/core';
 import { useNavigate } from "react-router";
-import { IconPhone, IconArrowsMaximize } from "@tabler/icons-react";
-import TreatmentProgress from './treatment-progress/TreatmentProgress';
+import { IconPhone } from "@tabler/icons-react";
 
 const PatientDetail = () => {       
     const akello = useAkello();    
     const selectedPatient = akello.getSelectedPatientRegistry();        
     const selectedRegistry = akello.getSelectedRegistry();    
     
-    const navigate = useNavigate();
-    const getWeeksSince = (date: number) => {        
-        var today = moment(date);        
-        var ia = moment();        
-        return ia.diff(today, 'week')
-    };    
+    const navigate = useNavigate();    
     
     if(selectedPatient === undefined) {
         return (
