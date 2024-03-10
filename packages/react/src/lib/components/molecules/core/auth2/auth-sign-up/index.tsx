@@ -3,7 +3,6 @@ import { Anchor, Paper, Title, Text, Container, Button, Center } from '@mantine/
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useAkello } from '@akello/react-hook';
-import classes from '../LoginPage.module.css';
 
 const SignupSchema = Yup.object().shape({
     first_name: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
@@ -26,7 +25,7 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
         <div className="w-screen">
             <Center>
                 <Container size={420} my={40}>
-                    <Title ta="center" className={classes.title}>
+                    <Title ta="center">
                         Welcome.
                     </Title>
                     <Text c="dimmed" size="sm" ta="center" mt={5}>
