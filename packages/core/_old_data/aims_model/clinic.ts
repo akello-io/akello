@@ -3,7 +3,7 @@ import {PayerCollection} from "./payer";
 import {BillingRateCollection} from "./billing_rates";
 import {CaseloadVolumeCapacity} from "./caseload_capacity";
 import moment from "moment";
-import FinancialModelDBRecordTypeV1 from "../../data/schemas/FinancialModel";
+import FinancialModelDBRecordTypeV1 from "../schemas/FinancialModel";
 
 
 export class Clinic {

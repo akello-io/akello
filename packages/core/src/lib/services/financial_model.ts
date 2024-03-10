@@ -1,7 +1,7 @@
 import { AkelloClient } from '../client';
 import { BaseService } from './base';
-import {Clinic} from "../data/aims_model/clinic";
-import FinancialModelDBRecordTypeV1 from "../data/schemas/FinancialModel";
+import {Clinic} from "../../../_old_data/aims_model/clinic";
+import FinancialModelDBRecordTypeV1 from "../../../_old_data/schemas/FinancialModel";
 
 export class FinancialModelService extends BaseService {
     

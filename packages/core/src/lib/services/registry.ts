@@ -1,5 +1,5 @@
 import { AkelloClient } from '../client';
-import { AkelloApp } from '../data';
+import { AkelloApp } from '../models';
 import { BaseService } from './base';
 
 export class RegistryService extends BaseService {
