@@ -116,7 +116,8 @@ class RegistryService(BaseService):
         item['partition_key'] = patient_registry.partition_key
         item['sort_key'] = patient_registry.sort_key
         response = registry_db.put_item(
-            Item=item
+            Item=item,
+            ConditionExpression='attribute_not_exists(partition_key) AND attribute_not_exists(sort_key)'
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
