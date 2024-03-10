@@ -1,7 +1,7 @@
 import { rem } from '@mantine/core';
 import { IconLogout } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
-import { Avatar, Button, Menu, UnstyledButton } from '@mantine/core';
+import { Button, Menu, UnstyledButton } from '@mantine/core';
 import ThemeToggle from './ThemeToggle';
 
 const HeaderMenu = () => {

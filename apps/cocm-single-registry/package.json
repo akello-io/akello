@@ -11,9 +11,9 @@
     "s3deploy": "pnpm build && aws s3 sync dist/ s3://app.akello.io"
   },
   "dependencies": {
-    "@akello/core": "file:../../packages/core",
-    "@akello/react": "link:../../packages/react",
-    "@akello/react-hook": "link:../../packages/react-hook",
+    "@akello/core": "^0.0.8",
+    "@akello/react": "^0.0.21",
+    "@akello/react-hook": "^0.0.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.1.1",

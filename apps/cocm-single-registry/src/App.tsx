@@ -5,19 +5,13 @@ import { useDisclosure } from '@mantine/hooks';
 import { useAkello } from "@akello/react-hook";
 import { Routes, Route, Navigate } from "react-router-dom";
 import RegistryPage from './pages/registry/RegistryPage';
-import AppHomePage from './pages/AppHomePage';
 import { useEffect } from 'react';
 import PatientDetail from './components/PatientDetail';
-import DashboardPage from './pages/registry/DashboardPage';
-import TeamPage from './pages/registry/TeamPage';
 import ReportsPage from './pages/registry/ReportsPage';
 import PatientReferralPage from './pages/registry/PatientReferralPage';
 import CreateRegistryPage from './pages/CreateRegistryPage';
 import RegistryShell from './components/RegistryShell';
-import AkelloAppShell from './components/AkelloAppShell';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
-import AkelloApps from './pages/registry/AkelloAppsPage';
-import AkelloAppSettingsPage from './pages/registry/AkelloAppSettingsPage';
 import PatientSession from './pages/registry/PatientSession';
 
 

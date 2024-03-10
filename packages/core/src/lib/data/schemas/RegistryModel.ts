@@ -4,7 +4,7 @@ export class Registry  {
     description: string
     patients: number
     members: RegistryMember[] = []    
-    questionnaires: Questionnaire[] = []
+    measurements: Questionnaire[] = []
     stats: any
 
     constructor(
@@ -13,7 +13,7 @@ export class Registry  {
         description: string,
         patients: number,
         members: RegistryMember[],
-        questionnaires: Questionnaire[],
+        measurements: Questionnaire[],
         stats: any
     ) {
         this.id = id
@@ -21,7 +21,7 @@ export class Registry  {
         this.description = description
         this.patients = patients
         this.members = members
-        this.questionnaires = questionnaires
+        this.measurements = measurements
         this.stats = stats
     }    
 }
