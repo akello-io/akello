@@ -4,11 +4,15 @@ import {PatientRegistry} from "@akello/core";
 import { useNavigate } from 'react-router';
 import {useAkello} from '@akello/react-hook'
 import {Input, Button, Center, Container, Select} from "@mantine/core"
+import { Notification, rem } from '@mantine/core';
+import {useState} from "react";
+
 
 
 const PatientReferralPage = () => {
     const akello = useAkello()
     const navigate = useNavigate()
+    const [error, setError] = useState(false)
 
 
     const formik = useFormik({
@@ -51,12 +55,15 @@ const PatientReferralPage = () => {
             akello.registryService.referPatient(akello.getSelectedRegistry()?.id ?? '', new_patient, (data) => {                
                 navigate('/registry/' + new_patient.patient_mrn)
                 akello.selectPatient(new_patient)
+            }, (error) => {
+                setError(true)
             })
         },
     });
 
     return (
         <div>
+            {error && <Notification  onClose={() => {setError(false)}} color="red" title="Something went wrong"> We had a problem adding this patient. Make sure you you have their information correct. </Notification>}            
             <Center>
                 <Container>                
                     <div className={"border border-1 min-w-96"}>
