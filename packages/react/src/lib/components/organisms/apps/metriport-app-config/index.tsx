@@ -1,5 +1,4 @@
 import { Card, Group, Switch, Text, Input, Button, Space } from '@mantine/core';
-import classes from './metriport-app-config.module.css';
 import { AkelloApp } from '@akello/core';
 
 export interface MetriportAppConfigProps {  
@@ -10,9 +9,9 @@ export interface MetriportAppConfigProps {
 export const AppConfig:React.FC<MetriportAppConfigProps> = ({app, onClick}) => {
 
   return (    
-    <Card withBorder radius="md" p="xl" className={classes.card}>            
+    <Card withBorder radius="md" p="xl">            
       <div className='space-y-3'>
-        <Group justify="space-between" className={classes.item} wrap="nowrap" gap="xl">
+        <Group justify="space-between" wrap="nowrap" gap="xl">
             <div>
                 <Text>API URL</Text>        
             </div>
@@ -20,7 +19,7 @@ export const AppConfig:React.FC<MetriportAppConfigProps> = ({app, onClick}) => {
                 app.configs["API URL"] = event.target.value                
             }}/>            
         </Group>
-        <Group justify="space-between" className={classes.item} wrap="nowrap" gap="xl">
+        <Group justify="space-between" wrap="nowrap" gap="xl">
             <div>
                 <Text>Secret Key</Text>        
             </div>

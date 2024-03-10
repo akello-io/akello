@@ -3,7 +3,6 @@ import { Paper, Title, Text, Container, Button, Center } from '@mantine/core';
 import * as Yup from 'yup';
 import { Field, Form, Formik } from 'formik';
 import { useState } from 'react';
-import classes from '../LoginPage.module.css';
 
 
 interface SignUpConfirmProps {
@@ -48,10 +47,10 @@ export const SignUpConfirm:React.FC<SignUpConfirmProps> = ({onConfirmSuccess}) =
         <div className="w-screen">
             <Center>
                 <Container size={420} my={40}>
-                    <Title ta="center" className={classes.title}>
+                    <Title ta="center">
                         Confirm your email
                     </Title>
-                    <Text ta="center" className={classes.subtitle}>
+                    <Text ta="center">
                         We sent you a code to your email. Enter it below.
                     </Text>
 

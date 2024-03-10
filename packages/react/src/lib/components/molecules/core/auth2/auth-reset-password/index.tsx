@@ -11,7 +11,6 @@ import {
     rem
   } from '@mantine/core';
 import {IconArrowLeft} from '@tabler/icons-react';
-import classes from '../LoginPage.module.css';
 
 interface ForgotPasswordPageProps {
     onSuccess?: (token: string) => void;
@@ -25,13 +24,13 @@ export const ForgotPasswordPage:React.FC<ForgotPasswordPageProps> = ({onSuccess,
         <div className='w-screen'>
             <Center>
                 <Container size={420} my={40}>
-                    <Title ta="center" className={classes.title}>
+                    <Title ta="center">
                         Reset your password
                     </Title>                    
                     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
                         <TextInput label="Email" placeholder="you@mantine.dev" required />                                                                        
-                        <Group justify="space-between" mt="lg" className={classes.controls}>
-                            <Anchor c="dimmed" size="sm" className={classes.control} onClick={() => onLoginClick()}>
+                        <Group justify="space-between" mt="lg" >
+                            <Anchor c="dimmed" size="sm" onClick={() => onLoginClick()}>
                                 <Center inline>
                                 <IconArrowLeft style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
                                 <Box ml={5}>Back to the login page</Box>

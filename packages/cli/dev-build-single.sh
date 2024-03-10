@@ -1,11 +1,5 @@
 #!/bin/bash
 
-echo '>>>>>>>>>>  COMMON'
-cd packages/common
-rm -rf node_modules
-npm install
-cd ../../
-
 echo '>>>>>>>>>>  CORE'
 cd packages/core
 
@@ -46,7 +40,7 @@ pnpm build:lib
 cd ../../
 
 echo '>>>>>>>>>>  CoCM'
-cd apps/cocm-single-registry
+cd packages/app
 rm -rf node_modules
 rm pnpm-lock.yaml
 

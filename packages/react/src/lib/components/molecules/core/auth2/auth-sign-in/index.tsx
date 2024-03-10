@@ -4,7 +4,6 @@ import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useAkello } from '@akello/react-hook';
 
-import classes from '../LoginPage.module.css';
 
 interface LoginPageProps {
     onSuccess?: (token: string) => void;
@@ -51,7 +50,7 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
                     <div className="w-screen">
                         <Center>
                             <Container size={420} my={40}>
-                                <Title ta="center" className={classes.title}>
+                                <Title ta="center">
                                     Welcome back!
                                 </Title>
                                 <Text c="dimmed" size="sm" ta="center" mt={5}>
