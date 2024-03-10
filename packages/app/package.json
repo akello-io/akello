@@ -1,7 +1,7 @@
 {
   "name": "@akello/app",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -36,9 +36,9 @@
     "yup": "^1.3.3"
   },
   "devDependencies": {
-    "@akello/core": "file:../../packages/core",
-    "@akello/react": "file:../../packages/react",
-    "@akello/react-hook": "file:../../packages/react-hook",
+    "@akello/core": "file:../core",
+    "@akello/react": "file:../react",
+    "@akello/react-hook": "file:../react-hook",
     "@heroicons/react": "^2.1.1",
     "@mantine/core": "^7.5.3",
     "@mantine/hooks": "^7.5.3",
