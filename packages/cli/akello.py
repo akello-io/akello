@@ -38,10 +38,10 @@ def cli():
 
 @click.command()
 def setup():
-    os.system("cd servers/api-server && python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt")
-    os.system("cd apps/cocm-registry && pnpm i")    
-    os.system("cp scripts/.template.env apps/cocm-registry/.env")
-    os.system("cp scripts/.template.api.env servers/api-server/akello/.env")
+    os.system("cd ../server && python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt")
+    os.system("cd ../app && pnpm i")
+    os.system("cp .template.env ../app/.env")
+    os.system("cp .template.api.env ../server/akello/.env")
 
     try:
         client_id = get_saved_client()
@@ -70,7 +70,7 @@ def setup():
 def start(name):
     if name=='server':
         cmd = """
-                cd servers/api-server &&
+                cd ../server &&
                 source .venv/bin/activate &&
                 pip install -r requirements.txt &&
                 uvicorn akello.main:app --reload
@@ -78,8 +78,8 @@ def start(name):
         os.system(cmd)
     elif name=='cocm':
         cmd = """
-            sh scripts/dev-build.sh &&            
-            cd apps/cocm-registry &&        
+            sh ./dev-build.sh &&            
+            cd ../app &&        
             pnpm dev"""
         os.system(cmd)
 

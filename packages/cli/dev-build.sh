@@ -1,13 +1,8 @@
 #!/bin/bash
 
-echo '>>>>>>>>>>  COMMON'
-cd packages/common
-rm -rf node_modules
-npm install
-cd ../../
-
+cd ..
 echo '>>>>>>>>>>  CORE'
-cd packages/core
+cd core
 
 echo $PWD
 
@@ -21,10 +16,10 @@ pnpm build:lib
 ech $PWD
 # pnpm pack
 rm -rf node_modules
-cd ../../
 
+cd ..
 echo '>>>>>>>>>>  REACT HOOK'
-cd packages/react-hook
+cd react-hook
 rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml
@@ -32,10 +27,11 @@ rm pnpm-lock.yaml
 pnpm i
 pnpm build:lib
 # pnpm pack
-cd ../../
 
+cd ..
 echo '>>>>>>>>>>  REACT'
-cd packages/react
+cd react
+
 rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml
@@ -44,13 +40,6 @@ pnpm i
 pnpm build:lib
 # pnpm pack
 # rm -rf node_modules
-cd ../../
 
-echo '>>>>>>>>>>  CoCM'
-cd apps/cocm-registry
-rm -rf node_modules
-rm pnpm-lock.yaml
 
-pnpm i
-pnpm dev
 
