@@ -6,7 +6,8 @@ const LoginPage = () => {
 
     return (
         <LoginPageComponent
-            onSuccess={(token: string) => {                
+            onSuccess={(token: string) => {
+                console.log('token', token);
                 navigate('/');
             }}            
             onSignupClick={() => navigate('/signup')}

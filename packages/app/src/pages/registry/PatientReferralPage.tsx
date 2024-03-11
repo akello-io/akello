@@ -4,7 +4,7 @@ import {PatientRegistry} from "@akello/core";
 import { useNavigate } from 'react-router';
 import {useAkello} from '@akello/react-hook'
 import {Input, Button, Center, Container, Select} from "@mantine/core"
-import { Notification, rem } from '@mantine/core';
+import { Notification,  } from '@mantine/core';
 import {useState} from "react";
 
 
@@ -53,9 +53,11 @@ const PatientReferralPage = () => {
             new_patient.treatment_logs =  []
             new_patient.payer = values['payer']
             akello.registryService.referPatient(akello.getSelectedRegistry()?.id ?? '', new_patient, (data) => {                
+                console.log(data)
                 navigate('/registry/' + new_patient.patient_mrn)
                 akello.selectPatient(new_patient)
-            }, (error) => {
+            }, (error: any) => {
+                console.log(error)
                 setError(true)
             })
         },

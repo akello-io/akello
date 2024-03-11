@@ -11,9 +11,9 @@
     "s3deploy": "pnpm build && aws s3 sync dist/ s3://app.akello.io"
   },
   "dependencies": {
-    "@akello/core": "^0.0.8",
-    "@akello/react": "^0.0.21",
-    "@akello/react-hook": "^0.0.2",
+    "@akello/core": "file:../core",
+    "@akello/react": "file:../react",
+    "@akello/react-hook": "file:../react-hook",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@heroicons/react": "^2.1.1",
@@ -43,7 +43,7 @@
     "@heroicons/react": "^2.1.1",
     "@mantine/core": "^7.5.3",
     "@mantine/hooks": "^7.5.3",
-    "@types/react": "^18.2.43",
+    "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
@@ -61,6 +61,6 @@
     "react-router": "^6.16.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
-    "vite": "^5.0.12"
+    "vite": "^5.1.5"
   }
 }

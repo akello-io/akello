@@ -16,7 +16,7 @@ const PatientDetail = () => {
         return (
             <></>
         )
-    }     
+    }         
     
     return (
         <>
@@ -105,7 +105,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2 h-64 w-full"}>
-                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires ?? []} />
+                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements ?? []} />
                                 </div>
                             </div>
 
@@ -116,7 +116,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2"}>
-                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.questionnaires ?? []} />                                    
+                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements ?? []} />                                    
                                 </div>
                             </div>
                         </>

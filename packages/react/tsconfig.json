@@ -17,5 +17,6 @@
     "jsx": "react-jsx"
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"],
-  "exclude": ["./src/**/*.stories.*"]
+  "exclude": ["./src/**/*.stories.*", "/virtual:/", "/node_modules/"]  
+
 }

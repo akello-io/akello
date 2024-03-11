@@ -1,8 +1,8 @@
-import { AppShell, NavLink, Burger } from '@mantine/core';
-import { IconHome2, IconTable, IconUserCircle, IconReportAnalytics, IconRobot } from '@tabler/icons-react';
+import { AppShell, NavLink } from '@mantine/core';
+import { IconTable, IconReportAnalytics } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { useDisclosure } from '@mantine/hooks';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Registry } from '@akello/core';
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
@@ -13,13 +13,10 @@ const RegistryShell = () => {
     const navigate = useNavigate();
     const {pathname} = useLocation();
     const [opened, { toggle }] = useDisclosure();
-    const [registries, setRegistries] = useState<Registry[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        setIsLoading(true);        
+    useEffect(() => {        
         akello.userService.getUserRegistries((data) => {
-            const registries = data.map((registry: any) => {                                
+            const registeries = data.map((registry: any) => {                                
                 return new Registry(
                     registry['id'],
                     registry['name'],
@@ -34,13 +31,11 @@ const RegistryShell = () => {
                     }
                 );
             });            
-            if(registries.length == 0) { 
+            if(registeries.length == 0) { 
                 navigate('/create-registry');
             } else {
-                akello.selectRegistry(registries[0]);
+                akello.selectRegistry(registeries[0]);
             }
-            setRegistries(registries);
-            setIsLoading(false);                        
         });
     }, []);
     return (

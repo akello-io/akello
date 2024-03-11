@@ -26,8 +26,8 @@ const ScreeningComponent:React.FC<ScreeningComponentProps> = ({title, children})
 
 const DashboardPage = () => {
     const akello = useAkello()
-    const [payerDistribution, setPayerDistribution] = useState([] as any[])
-    const [value, setValue] = useState({
+    const [payerDistribution, setPayerDistribution] = useState([] as any[])    
+    const [value, _] = useState({
         startDate: new Date(),
         endDate: new Date()
     })

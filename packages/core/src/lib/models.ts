@@ -159,16 +159,19 @@ export class QuestionnaireQuestion {
 export class Questionnaire {
     uid: string
     name: string
-    questions: QuestionnaireQuestion[]
+    type: string
+    measurements: QuestionnaireQuestion[]
 
     constructor(
         uid: string,
         name: string,
-        questions: any
+        type: string,
+        measurements: any
     ) { 
         this.uid  = uid
         this.name = name
-        this.questions = questions
+        this.type = type
+        this.measurements = measurements
     }
 
 }

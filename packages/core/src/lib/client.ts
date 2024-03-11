@@ -10,7 +10,7 @@ import { UserService } from './services';
 import { FinancialModelService } from './services/financial_model';
 import { ReportsService } from './services/reports';
 import { ClientStorage } from './storage';
-import { Registry, PatientRegistry } from './data/schemas/RegistryModel';
+import { Registry, PatientRegistry } from './models';
 
 
 export const DEFAULT_BASE_URL = 'http://localhost:8000';

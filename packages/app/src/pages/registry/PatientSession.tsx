@@ -1,9 +1,10 @@
 import StopWatch from "../../components/stopwatch/StopWatch";
 import {useEffect, useState} from "react";
-import {Button, Select, Checkbox, Container, Grid, Text} from "@mantine/core";
+import {Button, Select, Container, Grid } from "@mantine/core";
 import { useAkello } from "@akello/react-hook";
 import { useNavigate } from "react-router";
 import { Breadcrumbs, Anchor } from '@mantine/core';
+import { Questionnaire } from "@akello/core";
 
 //import { QuestionnaireForm } from "@akello/react";
 import QuestionnaireForm from "../../components/QuestionnaireForm";
@@ -42,9 +43,9 @@ const PatientSession = ({}) => {
     useEffect(() => {
         const selectedRegistryId = akello.getSelectedRegistry()?.id;
         if (selectedRegistryId) {
-            akello.registryService.getRegistry(selectedRegistryId, (data) => {                
+            akello.registryService.getRegistry(selectedRegistryId, (data: any) => {                
                 setQuestionnaires(data['questionnaires'])
-            }, (error) => {
+            }, (error: any) => {
                 console.log(error)
             })
         }
@@ -109,7 +110,8 @@ const PatientSession = ({}) => {
                 minutes: mm + (ss/60),
                 no_show: no_show,
                 date: Date.now() // UTC time
-            }, (data) => {                                                
+            }, (data: any) => {   
+                console.log(data)                                             
                 navigate('/registry/' + akello.getSelectedPatientRegistry()?.patient_mrn);
             });
         }
@@ -207,7 +209,7 @@ const PatientSession = ({}) => {
                     visitType && contactType && (
                         <div>
                             {
-                                questionnaires.map((questionnaire: Questionnaire) => {                        
+                                questionnaires.map((questionnaire: Questionnaire) => {                                      
                                     if(questionnaire['type'] == "survey") {
                                       return (
                                         <QuestionnaireForm 
