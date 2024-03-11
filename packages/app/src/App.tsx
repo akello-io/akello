@@ -26,6 +26,7 @@ export default function App() {
       // navigate(`/registry/${akello.getSelectedRegistry().id}`)                                           
     }
   }, [akello]);
+
     
   if(akello.accessToken == undefined) {
     return (

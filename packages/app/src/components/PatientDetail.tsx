@@ -16,7 +16,7 @@ const PatientDetail = () => {
         return (
             <></>
         )
-    }     
+    }         
     
     return (
         <>

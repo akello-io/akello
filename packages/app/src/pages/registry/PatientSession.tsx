@@ -209,7 +209,7 @@ const PatientSession = ({}) => {
                     visitType && contactType && (
                         <div>
                             {
-                                questionnaires.map((questionnaire: Questionnaire) => {                        
+                                questionnaires.map((questionnaire: Questionnaire) => {                                      
                                     if(questionnaire['type'] == "survey") {
                                       return (
                                         <QuestionnaireForm 
