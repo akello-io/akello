@@ -32,9 +32,8 @@ def get_saved_user_pool():
 
 
 @click.group()
-def cli():
+def local_commands():
     pass
-
 
 @click.command()
 def setup():
@@ -83,9 +82,6 @@ def start(name):
             pnpm dev"""
         os.system(cmd)
 
-cli.add_command(setup)
-cli.add_command(start)
 
-
-if __name__ == '__main__':
-    cli()
+local_commands.add_command(setup)
+local_commands.add_command(start)
