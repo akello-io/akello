@@ -3,11 +3,11 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["akello-cli"]
+packages = ["akellocli"]
 
 [project]
-name = "akello-cli"
-version = "0.0.1"
+name = "akellocli"
+version = "0.0.5"
 authors = [
   { name="Vijay Selvaraj", email="vijay@akellohealth.com" },
 ]
@@ -28,3 +28,5 @@ dependencies = [
 Homepage = "https://akello.io"
 Issues = "https://github.com/akello-io/akello/issues"
 
+[project.scripts]
+akellocli = "akellocli.akello:cli()"
