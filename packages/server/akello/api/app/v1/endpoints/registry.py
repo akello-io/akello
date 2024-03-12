@@ -53,7 +53,7 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
         is_admin=True)
     UserService.create_user_registry(auth.cognito_id, registry_id)
 
-    # Add additional user invites
+    # Add additional user invites    
     for invited_user in data['invited-users']:
         # TODO: This should be a service under registry
         # Create the UserInvite only if the user doesn't exist. if they do add them in

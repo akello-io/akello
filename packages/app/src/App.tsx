@@ -46,6 +46,7 @@ export default function App() {
       <Routes>        
       <Route path={"/create-registry"} element={<CreateRegistryPage />} />
         <Route path="/" element={<RegistryShell />}>          
+          <Route index element={<RegistryPage drawerHandlers={drawerHandlers} />} />
           <Route path="/registry" element={<RegistryPage drawerHandlers={drawerHandlers} />} />
           <Route path="/registry/:patient_id" element={<RegistryPage drawerHandlers={drawerHandlers} />} />
           <Route path={"/reports"} element={<ReportsPage />} />                    

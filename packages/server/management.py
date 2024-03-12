@@ -66,12 +66,12 @@ def mock_registry():
     registry = RegistryMock()
 
     pediatrics_id = registry.create_registry(name='Pediatrics', description='Patients within the region of San Francisco', questionnaires=screeners)
-    adult_depression_id = registry.create_registry(name='Adult Moderate Depression & Anxiety', description='General SF Bay Area', questionnaires=screeners)
-    bipolar_id = registry.create_registry(name='Stanford University - Bipolar', description='Current students with Bipolar disorder', questionnaires=screeners)
-    postaprtum_id = registry.create_registry(name='Facebook/Google - Postpartum Depression', description='Employees with Postpartum Depression', questionnaires=screeners)
+    # adult_depression_id = registry.create_registry(name='Adult Moderate Depression & Anxiety', description='General SF Bay Area', questionnaires=screeners)
+    # bipolar_id = registry.create_registry(name='Stanford University - Bipolar', description='Current students with Bipolar disorder', questionnaires=screeners)
+    #postaprtum_id = registry.create_registry(name='Facebook/Google - Postpartum Depression', description='Employees with Postpartum Depression', questionnaires=screeners)
 
 
-    for registry_id in [pediatrics_id, adult_depression_id, bipolar_id, postaprtum_id]:
+    for registry_id in [pediatrics_id]:
         UserInvite.create(
                 cognito_user_id='system',
                 email='vijay.selvaraj@gmail.com',

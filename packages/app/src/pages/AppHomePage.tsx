@@ -30,7 +30,7 @@ const AppHomePage = () => {
                 );
             });            
             setRegistries(registries);
-            setIsLoading(false);
+            setIsLoading(false);            
 
             navigate(`/registry/${registries[0].id}`);
             akello.selectRegistry(registries[0]);

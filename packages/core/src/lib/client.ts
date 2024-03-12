@@ -307,10 +307,18 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                 /* Use the idToken for Logins Map when Federating User Pools with identity pools or when passing through an Authorization Header to an API Gateway Authorizer */
                 const idToken = result.idToken.jwtToken;
                 this.accessToken = accessToken;
-                this.username = username;                
-                onSuccess(accessToken);
-                this.storage.setString('accessToken', accessToken);
-                this.dispatchEvent({ type: 'change' });
+                this.username = username;   
+                
+                this.userService.getUser((user) => {
+                    this.dispatchEvent({ type: 'change' });
+                    onSuccess(accessToken);
+                    this.storage.setString('accessToken', accessToken);
+                    //this.storage.setString('username', username);
+                    //this.storage.setObject('user', user);
+                })
+                //onSuccess(accessToken);
+                //this.storage.setString('accessToken', accessToken);
+                //this.dispatchEvent({ type: 'change' });
             },
             onFailure: (err: any) => {
                 this.accessToken = undefined;
