@@ -1,7 +1,6 @@
 import click
 import os, json
 
-
 def run_docker():
     print("starting docker")
     resp = os.popen("docker-compose down").read()
@@ -37,10 +36,10 @@ def local_commands():
 
 @click.command()
 def setup():
-    os.system("cd ../server && python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt")
-    os.system("cd ../app && pnpm i")
-    os.system("cp .template.env ../app/.env")
-    os.system("cp .template.api.env ../server/akello/.env")
+    path = os.getcwd()            
+    packages_path = os.path.join(path, '../../../')
+    os.system(f"cd {path}/.. cp .template.env {packages_path}/app/.env")
+    os.system(f"cd {path}/.. cp .template.api.env {packages_path}/server/akello/.env")
 
     try:
         client_id = get_saved_client()

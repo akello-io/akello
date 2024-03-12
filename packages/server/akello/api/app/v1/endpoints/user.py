@@ -24,11 +24,12 @@ async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
         UserService.set_user_active(auth.cognito_id)
     
     # TODO: WE SHOULD ONLY DO THIS ONCE ON LOGIN    
-    
+        
+    import pdb;pdb.set_trace()
     invites = UserInvite.get_invites(auth.username)
     print('invites: %s ' % auth.username)
     print('invites')
-    print(invites)
+    print(invites)    
     for invite in invites:
         logger.info('adding user - %s to registry %s ' % (auth.username, invite['registry_id']))
         UserService.create_registry_user(

@@ -33,7 +33,7 @@ const RegistryShell = () => {
             });            
             if(registeries.length == 0) { 
                 navigate('/create-registry');
-            } else {
+            } else {                
                 akello.selectRegistry(registeries[0]);
             }
         });
