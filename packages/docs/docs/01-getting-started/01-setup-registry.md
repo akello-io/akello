@@ -11,7 +11,7 @@ Creating a registry in your system is a straightforward process, designed to be 
 
 #### 1. Naming Your Registry
 - **Importance of a Descriptive Name**: Choose a name that accurately describes your patient population. This is particularly helpful if you're managing multiple population models or coordinating with team members across different registries.
-- **Strategy for Naming**: Consider using names that reflect the specific group or condition you're managing, making it easier to identify and access the registry.
+- **Strategy for Naming**: Consider using names that reflect the specific group or condition you're managing, as this makes it easier to identify and access the registry.
 
 #### 2. Selecting Screeners
 - **Choosing Screeners**: From the provided dropdown menu, select one or more screeners that are relevant to assessing your population.
