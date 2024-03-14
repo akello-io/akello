@@ -4,13 +4,13 @@ sidebar_position: 3
 
 # 3. Start Treatment Session
 
-Beginning a treatment session at the start of a patient's appointment is key to ensuring that all minutes and measurements are accurately recorded. This process not only aids in effective patient management but also ensures that every aspect of the patient's care is meticulously documented.
+Beginning a treatment session at the start of a patient's appointment is critical to ensuring that all minutes and measurements are accurately recorded. This process not only aids in effective patient management but also ensures that every aspect of the patient's care is meticulously documented.
 
 ### Steps to Initiate and Manage a Treatment Session
 
 #### 1. Accessing the Patient's Profile
-- **Finding the Right Patient**: Navigate to the patient's profile who is scheduled for the session. This can be done by selecting their profile from your list of patients.
-- **Preparation for the Session**: Accessing the profile is the first step in preparing for the treatment session. It gives you a quick overview of the patient's history and any notes you might need before starting.
+- **Finding the Right Patient**: Navigate to the patient's profile scheduled for the current session. This can be done by selecting their profile from your list of patients.
+- **Preparation for the Session**: Accessing the profile is the first step in preparing for the treatment session. It gives you a quick overview of the patient's history and any notes you might need to review before starting.
 
 #### 2. Starting the Treatment Session
 - **Activating Session Tracking**: To begin the actual treatment session, click on 'Start Session'. This action initiates the tracking of the session's duration and other important metrics.
