@@ -14,7 +14,7 @@ Creating a registry in your system is a straightforward process, designed to be 
 - **Strategy for Naming**: Consider using names that reflect the specific group or condition you're managing, as this makes it easier to identify and access the registry.
 
 #### 2. Selecting Screeners
-- **Choosing Screeners**: From the provided dropdown menu, select one or more screeners that are relevant to assessing your population.
+- **Choosing Screeners**: From the provided dropdown menu, select one or more relevant screeners to assess your population.
 - **Custom Screeners Option**: If you have specific needs, you can opt to use custom screeners. Instructions for this can be found [here](/).
 
 #### 3. Adding Team Members
