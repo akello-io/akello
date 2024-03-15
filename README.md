@@ -21,17 +21,17 @@ Akello enables clinical services to run and bill for Collaborative Care (CoCM). 
 ```sh
 akello/
 ├── agent                  # automated workflows / AI enablement
-├── apps                   # client web and mobile apps
 ├── cloudstack         # AWS CDK scripts to setup akello infra
 ├── examples               # end-to-end examples using akello packages
 ├── packages   
+│   ├── app                # app code for app.akello.io
+│   ├── cdk                # app code for app.akello.io
+│   ├── cli                # app code for app.akello.io
 │   ├── core               # data models and API utilities
 │   ├── docs               # docs hosted under docs.akello.io
 │   ├── react              # React components and storybook
-├── scripts                # General helper scripts (placeholder for now)
-└── servers                 
-│   ├── api-server         # Fast API server
-│   ├── fhir-server        # FHIR Server
+│   ├── react-hook         # React components and storybook
+│   ├── server             # Fast API Server
 
 ```
 
