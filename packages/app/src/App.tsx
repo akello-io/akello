@@ -13,6 +13,7 @@ import CreateRegistryPage from './pages/CreateRegistryPage';
 import RegistryShell from './components/RegistryShell';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import PatientSession from './pages/registry/PatientSession';
+import RegistrySecurityPage from './pages/registry/RegistrySecurityPage';
 
 
 
@@ -48,6 +49,7 @@ export default function App() {
         <Route path="/" element={<RegistryShell />}>          
           <Route index element={<RegistryPage drawerHandlers={drawerHandlers} />} />
           <Route path="/registry" element={<RegistryPage drawerHandlers={drawerHandlers} />} />
+          <Route path="/security" element={<RegistrySecurityPage />} />
           <Route path="/registry/:patient_id" element={<RegistryPage drawerHandlers={drawerHandlers} />} />
           <Route path={"/reports"} element={<ReportsPage />} />                    
           <Route path={"/patient-referral"} element={<PatientReferralPage />} />

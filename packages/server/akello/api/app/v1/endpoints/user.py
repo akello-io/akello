@@ -24,8 +24,7 @@ async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
         UserService.set_user_active(auth.cognito_id)
     
     # TODO: WE SHOULD ONLY DO THIS ONCE ON LOGIN    
-        
-    import pdb;pdb.set_trace()
+            
     invites = UserInvite.get_invites(auth.username)
     print('invites: %s ' % auth.username)
     print('invites')
