@@ -73,7 +73,7 @@ const RegistryShell = () => {
                     }}
                     label="Registry"
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
-                    active={window.location.pathname.indexOf('registry') != -1}
+                    active={window.location.pathname.indexOf('registry') != -1 || window.location.pathname === '/'}
                 />                
                 <NavLink
                     onClick={() => {
@@ -90,10 +90,15 @@ const RegistryShell = () => {
             </AppShell.Navbar>
             <AppShell.Main>
                 <Outlet />                 
-            </AppShell.Main>
+            </AppShell.Main>            
             <AppShell.Aside>
                 <PatientDetail />
             </AppShell.Aside>
+            <AppShell.Footer zIndex={300}>
+                <div className="text-center">
+                    ❤️ built with <a href='https://akello.io'>Akello.io</a>
+                </div>
+            </AppShell.Footer>
         </AppShell>
     );
 };
