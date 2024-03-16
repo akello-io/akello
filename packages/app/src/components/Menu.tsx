@@ -22,7 +22,7 @@ const HeaderMenu = () => {
         <UnstyledButton className='flex flex-row space-x-2'>          
           <Avatar className='my-auto' color="cyan" radius="xl">VS</Avatar>          
           <div className='my-auto'>
-            {akello.getUserName()}
+            { localStorage.getItem('given_name')} { localStorage.getItem('family_name')}
           </div>
         </UnstyledButton>
       </Menu.Target>

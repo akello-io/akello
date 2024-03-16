@@ -3021,7 +3021,7 @@ packages:
       acorn: 8.11.3
       pathe: 1.1.2
       pkg-types: 1.0.3
-      ufo: 1.5.0
+      ufo: 1.5.1
     dev: false
 
   /moment@2.30.1:
@@ -3666,8 +3666,8 @@ packages:
     hasBin: true
     dev: false
 
-  /ufo@1.5.0:
-    resolution: {integrity: sha512-c7SxU8XB0LTO7hALl6CcE1Q92ZrLzr1iE0IVIsUa9SlFfkn2B2p6YLO6dLxOj7qCWY98PB3Q3EZbN6bEu8p7jA==}
+  /ufo@1.5.1:
+    resolution: {integrity: sha512-HGyF79+/qZ4soRvM+nHERR2pJ3VXDZ/8sL1uLahdgEDf580NkgiWOxLk33FetExqOWp352JZRsgXbG/4MaGOSg==}
     dev: false
 
   /ulid@2.3.0:

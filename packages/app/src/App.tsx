@@ -14,6 +14,7 @@ import RegistryShell from './components/RegistryShell';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import PatientSession from './pages/registry/PatientSession';
 import RegistrySecurityPage from './pages/registry/RegistrySecurityPage';
+import NothingFoundBackground from './pages/404';
 
 
 
@@ -56,6 +57,7 @@ export default function App() {
           <Route path={"/patient/:patient_id/treatment-session"} element={<PatientSession />} />
           <Route path={"/patient/:patient_id"} element={<PatientDetail />} />
         </Route>        
+        <Route path={"*"} element={<NothingFoundBackground  />} />
       </Routes>      
     </>
   )

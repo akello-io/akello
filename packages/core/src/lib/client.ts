@@ -265,6 +265,8 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                     this.dispatchEvent({ type: 'change' });
                 }
             );
+            
+            
         } catch (error) {
             console.log(error);        
         }
@@ -299,20 +301,46 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
             Username: username,
             Pool: userPool
         };        
-        const cognitoUser = new CognitoUser(userData);
+        const cognitoUser = new CognitoUser(userData);     
+                
+
         cognitoUser.setAuthenticationFlowType('USER_PASSWORD_AUTH');
+
+        
         cognitoUser.authenticateUser(authenticationDetails, {
-            onSuccess: (result: any) => {
-                const accessToken = result.getAccessToken().getJwtToken();
+            onSuccess: (result: any) => {                
+                const accessToken = result.getAccessToken().getJwtToken();                
+
                 /* Use the idToken for Logins Map when Federating User Pools with identity pools or when passing through an Authorization Header to an API Gateway Authorizer */
                 const idToken = result.idToken.jwtToken;
                 this.accessToken = accessToken;
-                this.username = username;   
+                this.username = username;       
                 
-                this.userService.getUser((user) => {
-                    this.dispatchEvent({ type: 'change' });
-                    onSuccess(accessToken);
+                userPool.getCurrentUser()?.getSession((err: any, session: any) => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+                                        
+                    cognitoUser.getUserAttributes((err: any, result: any) => {
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
+                        console.log(result);         
+                        
+
+                        result.forEach((attribute: any) => {
+                            this.storage.setString(attribute.Name, attribute.Value);                            
+                        });
+
+                    });
+                })
+                
+                this.userService.getUser((user) => {                                                            
+                    this.dispatchEvent({ type: 'change' });                    
                     this.storage.setString('accessToken', accessToken);
+                    onSuccess(accessToken);                                        
                     //this.storage.setString('username', username);
                     //this.storage.setObject('user', user);
                 })

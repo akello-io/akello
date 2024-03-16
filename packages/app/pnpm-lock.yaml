@@ -25,7 +25,7 @@ dependencies:
     version: 2.1.1(react@18.2.0)
   '@mantine/charts':
     specifier: ^7.5.1
-    version: 7.6.2(@mantine/core@7.6.2)(@mantine/hooks@7.6.2)(react-dom@18.2.0)(react@18.2.0)(recharts@2.12.2)
+    version: 7.6.2(@mantine/core@7.6.2)(@mantine/hooks@7.6.2)(react-dom@18.2.0)(react@18.2.0)(recharts@2.12.3)
   '@mantinex/mantine-logo':
     specifier: ^1.0.1
     version: 1.0.1(@mantine/core@7.6.2)(@mantine/hooks@7.6.2)(react-dom@18.2.0)(react@18.2.0)
@@ -2804,7 +2804,7 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@mantine/charts@7.6.2(@mantine/core@7.6.2)(@mantine/hooks@7.6.2)(react-dom@18.2.0)(react@18.2.0)(recharts@2.12.2):
+  /@mantine/charts@7.6.2(@mantine/core@7.6.2)(@mantine/hooks@7.6.2)(react-dom@18.2.0)(react@18.2.0)(recharts@2.12.3):
     resolution: {integrity: sha512-03XZ+kPfZHOsq5hPT/ONEgO2U8YjQoRZ0uNYfcYGXdhsSW0IzR9oA+BYOyR0NSfu0OLlG6loRfJc3gvA34AjTQ==}
     peerDependencies:
       '@mantine/core': 7.6.2
@@ -2817,7 +2817,7 @@ packages:
       '@mantine/hooks': 7.6.2(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      recharts: 2.12.2(react-dom@18.2.0)(react@18.2.0)
+      recharts: 2.12.3(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /@mantine/core@7.6.2(@mantine/hooks@7.6.2)(@types/react@18.2.66)(react-dom@18.2.0)(react@18.2.0):
@@ -7577,7 +7577,7 @@ packages:
       acorn: 8.11.3
       pathe: 1.1.2
       pkg-types: 1.0.3
-      ufo: 1.5.0
+      ufo: 1.5.1
     dev: false
 
   /moment@2.30.1:
@@ -7690,7 +7690,7 @@ packages:
       consola: 3.2.3
       execa: 8.0.1
       pathe: 1.1.2
-      ufo: 1.5.0
+      ufo: 1.5.1
     dev: false
 
   /object-assign@4.1.1:
@@ -8529,8 +8529,8 @@ packages:
       decimal.js-light: 2.5.1
     dev: false
 
-  /recharts@2.12.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-9bpxjXSF5g81YsKkTSlaX7mM4b6oYI1mIYck6YkUcWuL3tomADccI51/6thY4LmvhYuRTwpfrOvE80Zc3oBRfQ==}
+  /recharts@2.12.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-vE/F7wTlokf5mtCqVDJlVKelCjliLSJ+DJxj79XlMREm7gpV7ljwbrwE3CfeaoDlOaLX+6iwHaVRn9587YkwIg==}
     engines: {node: '>=14'}
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
@@ -9324,8 +9324,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  /ufo@1.5.0:
-    resolution: {integrity: sha512-c7SxU8XB0LTO7hALl6CcE1Q92ZrLzr1iE0IVIsUa9SlFfkn2B2p6YLO6dLxOj7qCWY98PB3Q3EZbN6bEu8p7jA==}
+  /ufo@1.5.1:
+    resolution: {integrity: sha512-HGyF79+/qZ4soRvM+nHERR2pJ3VXDZ/8sL1uLahdgEDf580NkgiWOxLk33FetExqOWp352JZRsgXbG/4MaGOSg==}
     dev: false
 
   /uglify-js@3.17.4:
@@ -9987,7 +9987,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
       react-router: 6.22.3(react@18.2.0)
       react-router-dom: 6.22.3(react-dom@18.2.0)(react@18.2.0)
-      recharts: 2.12.2(react-dom@18.2.0)(react@18.2.0)
+      recharts: 2.12.3(react-dom@18.2.0)(react@18.2.0)
       storybook: 7.6.17
       tailwindcss: 3.4.1
       vite: 5.1.6(sass@1.72.0)

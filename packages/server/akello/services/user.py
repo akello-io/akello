@@ -24,7 +24,7 @@ class UserService(BaseService):
             
 
     @staticmethod
-    def create_user(cognito_user_id, email):
+    def create_user(cognito_user_id, email, first_name, last_name, profile_photo):
 
         # This gets created once a user signs up
         # We need to create the user and assign roles to registeries they are linked to
@@ -35,6 +35,9 @@ class UserService(BaseService):
                 "partition_key": 'user:%s' % cognito_user_id,
                 "sort_key": 'profile',
                 "email": email,
+                "first_name": first_name,
+                "last_name": last_name,
+                "profile_photo": profile_photo,
                 "role": '',
                 "is_admin": False,
                 "date_created": Decimal(datetime.datetime.utcnow().timestamp()),

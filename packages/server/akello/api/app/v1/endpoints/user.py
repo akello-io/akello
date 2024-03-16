@@ -14,12 +14,14 @@ router = APIRouter()
 
 
 @router.get("")
-async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
+async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):    
+    
     logger.info('calling get_user: email:%s' % auth.username)
-    user = UserService.get_user(auth.cognito_id)
+    user = UserService.get_user(auth.cognito_id)    
     if not user:
-        logger.info('registering a new User for the first time - %s ' % auth.username)
-        UserService.create_user(auth.cognito_id, auth.username)
+        raise Exception('User not found')
+        #logger.info('registering a new User for the first time - %s ' % auth.username)
+        #UserService.create_user(auth.cognito_id, auth.username)
     else:
         UserService.set_user_active(auth.cognito_id)
     
@@ -42,6 +44,9 @@ async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
         )
         UserService.create_user_registry(auth.cognito_id, invite['registry_id'])
         RegistryService.update_stats(invite['registry_id'])
+        
+    return user
+
 
 
 # TODO: Should this be the root API for registry?

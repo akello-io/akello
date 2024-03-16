@@ -123,6 +123,7 @@ class UserModel(RegistryDBBaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     phone_number: Optional[str] = None
+    profile_picture: Optional[str] = None
     registries: List[str] = []
 
     @property

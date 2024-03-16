@@ -12,6 +12,9 @@ const UserInfoCard = () => {
   const akello = useAkello();
 
   
+  const given_name = localStorage.getItem('given_name');
+  const family_name = localStorage.getItem('family_name');
+
   return (
     <Card withBorder radius="md" >            
             <Avatar        
@@ -21,10 +24,10 @@ const UserInfoCard = () => {
                 mt={10}        
                 className={classes.avatar}
             >
-                VS
+                {given_name?.charAt(0)}{family_name?.charAt(0)}
             </Avatar>
             <Text ta="center" fz="lg" fw={500} mt="sm" >
-                Bill Headbanger
+              {given_name} {family_name}
             </Text>
             <Text ta="center" fz="sm" c="dimmed">
                 Care Manager
