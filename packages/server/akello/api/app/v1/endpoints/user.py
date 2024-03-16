@@ -1,16 +1,24 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile
+import aiofiles
 from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.db.models import UserInvite
 from akello.services.user import UserService
 from akello.services.registry import RegistryService
 from akello.services.reports import ReportsService  
+from akello.db.connector.s3 import S3StorageLocal
 from datetime import datetime, timedelta
 
 import logging
 
 logger = logging.getLogger('mangum')
 router = APIRouter()
+
+
+@router.post("/profile_photo")
+async def update_profile_photo(file: UploadFile, auth: CognitoTokenCustom = Depends(auth_token_check)):    
+    file_path = await S3StorageLocal().set_item(file.filename, file)      
+    return file_path
 
 
 @router.get("")

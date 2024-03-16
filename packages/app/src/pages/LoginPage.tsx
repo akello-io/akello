@@ -4,6 +4,8 @@ import { LoginPage as LoginPageComponent } from "@akello/react";
 const LoginPage = () => {
     const navigate = useNavigate();    
 
+
+
     return (
         <LoginPageComponent
             onSuccess={(token: string) => {

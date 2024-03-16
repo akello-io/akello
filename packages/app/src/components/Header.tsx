@@ -1,6 +1,6 @@
 import { AppShell, Button, UnstyledButton, Text, Burger } from '@mantine/core';
 
-import Logo from '../assets/logo.png';
+import Logo from '../assets/akello-blue.svg';
 import ThemeToggle from './ThemeToggle';
 import HeaderMenu from './Menu';
 import { useNavigate } from 'react-router-dom';
@@ -30,15 +30,16 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, opened, toggle }) => {
             size="sm"
           >             
           </Burger>
-          <UnstyledButton
+          <div 
             onClick={() => {
               // akello.selectRegistry(undefined);
-              navigate('/registry');
+              // navigate('/registry');         
+              toggle();          
             }}
-            className='flex h-8 w-auto my-auto'
+            className='flex h-8 w-auto my-auto cursor-pointer'
           >
             <img src={Logo} alt='logo' className='h-8 w-auto' />
-          </UnstyledButton>          
+          </div>          
           <div className='my-auto'>
             <Text fw={600} size={'xl'}>
               {akello.getSelectedRegistry()?.name ?? ''}            

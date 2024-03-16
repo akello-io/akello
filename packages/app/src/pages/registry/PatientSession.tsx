@@ -5,7 +5,7 @@ import { useAkello } from "@akello/react-hook";
 import { useNavigate } from "react-router";
 import { Breadcrumbs, Anchor } from '@mantine/core';
 import { Questionnaire } from "@akello/core";
-
+import { notifications } from '@mantine/notifications';
 //import { QuestionnaireForm } from "@akello/react";
 import QuestionnaireForm from "../../components/QuestionnaireForm";
 import { v4 as uuidv4 } from 'uuid';
@@ -111,7 +111,12 @@ const PatientSession = ({}) => {
                 no_show: no_show,
                 date: Date.now() // UTC time
             }, (data: any) => {   
-                console.log(data)                                             
+                console.log(data)      
+                notifications.show({
+                    title: patient?.first_name + ' ' + patient?.last_name + ' Treatment Session Completed',
+                    message: 'Session completed for ' + patient?.first_name + ' ' + patient?.last_name +'. Total time: ' + mm + ' minutes ' + ss + ' seconds',
+                })
+
                 navigate('/registry/' + akello.getSelectedPatientRegistry()?.patient_mrn);
             });
         }
