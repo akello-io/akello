@@ -7,9 +7,12 @@ const RegistrySecurityPage = () => {
     const akello = useAkello();
     const navigate = useNavigate();
 
+
+    
+
     return (
         <div>
-        
+            
             <div>
                 <Container>                    
                     <Paper withBorder shadow="md" p={30} mt={30} radius="md">

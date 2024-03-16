@@ -4,6 +4,8 @@ import { useAkello } from "@akello/react-hook";
 import {Select, Container, Button, ThemeIcon, SegmentedControl, Anchor} from '@mantine/core';
 import { useNavigate } from "react-router";
 import { IconPhone } from "@tabler/icons-react";
+import { notifications } from '@mantine/notifications';
+
 
 const PatientDetail = () => {       
     const akello = useAkello();    
@@ -60,8 +62,15 @@ const PatientDetail = () => {
                                                     selectedPatient.flag = value !== null ? value : undefined;
                                                     akello.selectPatient(selectedPatient);
                                                     akello.dispatchEvent({ type: 'change' });
+
+                                                    notifications.show({
+                                                        title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Flagged',
+                                                        message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' has been flagged as ' + value,
+                                                    })
                                                 });
                                             }
+
+                                            
                                         }}
                                     />       
                             </div>                                                                                 
@@ -81,6 +90,11 @@ const PatientDetail = () => {
                                             selectedPatient.status = value;                                            
                                             akello.selectPatient(selectedPatient);
                                             akello.dispatchEvent({ type: 'change' });
+
+                                            notifications.show({
+                                                title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Status Changed',
+                                                message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' has been moved to ' + value,
+                                            })
                                         });
                                     }
                                 }}
