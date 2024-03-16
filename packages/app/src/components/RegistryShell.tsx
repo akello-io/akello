@@ -1,5 +1,5 @@
 import { AppShell, NavLink, Text } from '@mantine/core';
-import { IconTable, IconReportAnalytics, IconLock } from '@tabler/icons-react';
+import { IconTable, IconReportAnalytics, IconLock, IconShieldCheck } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { useDisclosure } from '@mantine/hooks';
 import { useEffect } from 'react';
@@ -13,6 +13,10 @@ const RegistryShell = () => {
     const navigate = useNavigate();
     const {pathname} = useLocation();
     const [opened, { toggle }] = useDisclosure();
+
+    useEffect(() => {
+        debugger;
+    }, [opened]);
 
     useEffect(() => {        
         akello.userService.getUserRegistries((data) => {
@@ -47,7 +51,7 @@ const RegistryShell = () => {
                 width: 200,
                 breakpoint: 'sm',
                 collapsed: {
-                    desktop: false,
+                    desktop: opened,
                     mobile: !opened,
                 },
             }}
@@ -62,15 +66,14 @@ const RegistryShell = () => {
             padding="md"
         >            
             <Header loggedIn={true}  opened={opened} toggle={toggle}/>
-            <AppShell.Navbar>                
+            <AppShell.Navbar>
                 <Text pl={12} fz="xs" fw={450} mt="sm" >FAVORITES</Text>
                 <NavLink
                     onClick={() => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
                             navigate('/registry');
-                        }
-                        toggle();
+                        }                        
                     }}
                     label="Registry"
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
@@ -82,8 +85,7 @@ const RegistryShell = () => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
                             navigate('/reports');
-                        }
-                        toggle();
+                        }                        
                     }}
                     label="Billing Report"
                     leftSection={<IconReportAnalytics size="1rem" stroke={1.5} />}
@@ -95,12 +97,18 @@ const RegistryShell = () => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
                             navigate('/security');
-                        }
-                        toggle();
+                        }                        
                     }}
                     label="Secruity"
                     leftSection={<IconLock size="1rem" stroke={1.5} />}
                     active={window.location.pathname === '/security'}
+                /> 
+                <Text pl={12} fz="xs" fw={450} mt="sm" >SYSTEM AUDIT</Text>
+                <NavLink
+                    href='https://trust.akello.io/'
+                    label="Trust Center"
+                    target='_blank'
+                    leftSection={<IconShieldCheck size="1rem" stroke={1.5} />}                    
                 /> 
             </AppShell.Navbar>
             <AppShell.Main>
@@ -111,7 +119,7 @@ const RegistryShell = () => {
             </AppShell.Aside>
             <AppShell.Footer zIndex={300}>
                 <div className="text-center">
-                    ❤️ built with <a href='https://akello.io'>Akello.io</a>
+                    built with ❤️ by Akello
                 </div>
             </AppShell.Footer>
         </AppShell>

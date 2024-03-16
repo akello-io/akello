@@ -63,10 +63,17 @@ const PatientDetail = () => {
                                                     akello.selectPatient(selectedPatient);
                                                     akello.dispatchEvent({ type: 'change' });
 
-                                                    notifications.show({
-                                                        title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Flagged',
-                                                        message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' has been flagged as ' + value,
-                                                    })
+                                                    if (value !== null) {
+                                                        notifications.show({
+                                                            title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Flagged',
+                                                            message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' has been flagged as ' + value,
+                                                        })
+                                                    } else {
+                                                        notifications.show({
+                                                            title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Unflagged',
+                                                            message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' has unflagged',
+                                                        })
+                                                    }
                                                 });
                                             }
 
