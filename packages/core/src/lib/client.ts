@@ -376,4 +376,5 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         }
         this.storage.clear();
     }
+   
 }

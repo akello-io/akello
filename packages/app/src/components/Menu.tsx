@@ -1,26 +1,27 @@
 import { rem } from '@mantine/core';
 import { IconLogout } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
-import { Button, Menu, UnstyledButton, Avatar } from '@mantine/core';
+import { Button, Menu, UnstyledButton, Avatar, Image} from '@mantine/core';
 import ThemeToggle from './ThemeToggle';
+import { useState } from 'react';
 import UserInfoCard from './UserInfoCard';
 
 const HeaderMenu = () => {
   const akello = useAkello();
+  const [file, setFile] = useState(localStorage.getItem('profile-photo'));
 
-  /* 
-  return (
-    <>
-      <Button variant='default' onClick={() => akello.logout()}>Sign Out</Button>
-    </>
-  )
-  */
-
+  const given_name = localStorage.getItem('given_name');
+  const family_name = localStorage.getItem('family_name');
+  
   return (
     <Menu shadow="md" width={300}>
       <Menu.Target>
         <UnstyledButton className='flex flex-row space-x-2'>          
-          <Avatar className='my-auto' color="cyan" radius="xl">VS</Avatar>          
+          <Avatar className='my-auto' color="cyan" radius="xl">
+          {
+            file ? <Image src={file} alt="profile photo" radius="xl" /> : given_name?.charAt(0)+family_name?.charAt(0)
+          }                  
+          </Avatar>          
           <div className='my-auto'>
             { localStorage.getItem('given_name')} { localStorage.getItem('family_name')}
           </div>

@@ -21,7 +21,11 @@ class UserService(BaseService):
         except ClientError as e:
             print(e)
             print(e.response['No item found'])        
-            
+                
+        
+    @staticmethod
+    def update_profile_photo(cognito_user_id, photo_url):
+        UserModel.set_attribute("user:%s" % cognito_user_id, "profile", "profile_photo", photo_url)
 
     @staticmethod
     def create_user(cognito_user_id, email, first_name, last_name, profile_photo):

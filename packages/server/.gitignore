@@ -1,5 +1,7 @@
 .pypirc
 
+.storage/
+
 synthetic_data/fhir*
 
 venv/

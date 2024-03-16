@@ -5,6 +5,7 @@ export interface RequestParam {
     api_url: string,
     method: string,
     endpoint: string,
+    file_upload?: boolean,
     token: string,
     payload?: any
     onSuccess: (resp: any) => void
@@ -38,6 +39,24 @@ export class BaseService {
     }
     
     async apiRequest(params: RequestParam) {
+
+        if(params.file_upload) {
+            const formData = new FormData();
+            formData.append('file', params.payload);
+            await axios.post(params.api_url + '/' + params.endpoint, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': "Bearer " + params.token
+                }
+            })
+                .then((resp) => {
+                    params.onSuccess(resp.data)
+                })
+                .catch((error) => {
+                    this.handleFail(error, params.onFail)
+                });
+            return
+        }
 
         if(params.method == 'get') {
             await axios.get(params.api_url + '/' + params.endpoint, {
