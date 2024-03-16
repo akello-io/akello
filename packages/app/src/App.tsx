@@ -15,6 +15,7 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import PatientSession from './pages/registry/PatientSession';
 import RegistrySecurityPage from './pages/registry/RegistrySecurityPage';
 import NothingFoundBackground from './pages/404';
+import ChangePasswordPage from './pages/registry/ChangePasswordPage';
 
 
 
@@ -49,6 +50,7 @@ export default function App() {
       <Route path={"/create-registry"} element={<CreateRegistryPage />} />
         <Route path="/" element={<RegistryShell />}>          
           <Route index element={<RegistryPage drawerHandlers={drawerHandlers} />} />
+          <Route path="/change-password" element={<ChangePasswordPage />} />
           <Route path="/registry" element={<RegistryPage drawerHandlers={drawerHandlers} />} />
           <Route path="/security" element={<RegistrySecurityPage />} />
           <Route path="/registry/:patient_id" element={<RegistryPage drawerHandlers={drawerHandlers} />} />

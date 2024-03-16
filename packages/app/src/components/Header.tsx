@@ -1,6 +1,6 @@
 import { AppShell, Button, UnstyledButton, Text, Burger } from '@mantine/core';
 
-import Logo from '../assets/logo.png';
+import Logo from '../assets/akello-blue.svg';
 import ThemeToggle from './ThemeToggle';
 import HeaderMenu from './Menu';
 import { useNavigate } from 'react-router-dom';

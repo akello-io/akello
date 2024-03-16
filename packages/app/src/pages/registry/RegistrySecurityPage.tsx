@@ -16,8 +16,7 @@ const RegistrySecurityPage = () => {
                         <Text>Password</Text>
                         <Group justify="space-between" mt="lg" >                                                                                     
                             <Button className={'bg-primary'} onClick={() => {
-                                
-                                
+                                navigate('/change-password')                                
                             }}>Change password</Button>
                         </Group>
                     </Paper>
