@@ -8,6 +8,27 @@ export class UserService extends BaseService {
         super(client);        
     }
 
+    async createUser(data: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+
+        const endpoint =  "user";
+
+        this.apiRequest({
+            api_url: this.client.getOptions().baseUrl!,
+            method: 'post',
+            endpoint: endpoint,
+            token: this.client.accessToken!,
+            payload: data,
+            onSuccess: (resp: any) => {
+                onSuccess(resp)
+            }, onFail: (error: any) => {
+                if(onFail) {
+                    onFail(error)
+                }
+            }
+        });
+    }
+    
+
     async getUser(onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "user";
         this.apiRequest({
