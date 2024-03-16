@@ -16,6 +16,7 @@ import PatientSession from './pages/registry/PatientSession';
 import RegistrySecurityPage from './pages/registry/RegistrySecurityPage';
 import NothingFoundBackground from './pages/404';
 import ChangePasswordPage from './pages/registry/ChangePasswordPage';
+import MeasurementsPage from './pages/registry/MeasurementsPage';
 
 
 
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="/security" element={<RegistrySecurityPage />} />
           <Route path="/registry/:patient_id" element={<RegistryPage drawerHandlers={drawerHandlers} />} />
           <Route path={"/reports"} element={<ReportsPage />} />                    
+          <Route path={"/measurements"} element={<MeasurementsPage />} />                    
           <Route path={"/patient-referral"} element={<PatientReferralPage />} />
           <Route path={"/patient/:patient_id/treatment-session"} element={<PatientSession />} />
           <Route path={"/patient/:patient_id"} element={<PatientDetail />} />
