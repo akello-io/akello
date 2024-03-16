@@ -1,6 +1,7 @@
-import { Card, Avatar, Text, Group, Button, FileButton } from '@mantine/core';
+import { Card, Avatar, Text, Center, Group, Button, FileButton } from '@mantine/core';
 import { useAkello } from "@akello/react-hook";
 import { useState } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 
 
@@ -50,14 +51,17 @@ const UserInfoCard = () => {
                 </Avatar>               
             )}
             </FileButton>
-            
-            
+                        
             <Text ta="center" fz="lg" fw={500} mt="sm" >
               {given_name} {family_name}
             </Text>            
             <Text ta="center" fz="sm" c="dimmed">
                 Care Manager
-            </Text>            
+            </Text>      
+            <Center pt={15}>
+              <ThemeToggle />
+            </Center>      
+            
             <Button fullWidth onClick={() => akello.logout()} radius="md" mt="xl" size="md" variant="default">
                 Sign Out
             </Button>
