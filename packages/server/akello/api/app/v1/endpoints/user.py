@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, UploadFile
+from fastapi import APIRouter, Request, Depends, UploadFile
 import aiofiles
 from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
@@ -8,6 +8,7 @@ from akello.services.registry import RegistryService
 from akello.services.reports import ReportsService  
 from akello.db.connector.s3 import S3StorageLocal
 from datetime import datetime, timedelta
+from user_agents import parse
 
 import logging
 
@@ -22,8 +23,8 @@ async def update_profile_photo(file: UploadFile, auth: CognitoTokenCustom = Depe
 
 
 @router.get("")
-async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):    
-    
+async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_token_check)):            
+    UserService.save_user_session(auth.cognito_id, request.headers['user-agent'], request.client.host)
     logger.info('calling get_user: email:%s' % auth.username)
     user = UserService.get_user(auth.cognito_id)    
     if not user:
@@ -55,6 +56,10 @@ async def get_user(auth: CognitoTokenCustom = Depends(auth_token_check)):
         
     return user
 
+
+@router.get("/sessions")
+async def get_user_sessions(auth: CognitoTokenCustom = Depends(auth_token_check)):
+    return UserService.get_user_sessions(auth.cognito_id)
 
 
 # TODO: Should this be the root API for registry?

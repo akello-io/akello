@@ -22,7 +22,35 @@ class UserService(BaseService):
             print(e)
             print(e.response['No item found'])        
                 
-        
+
+    @staticmethod
+    def get_user_sessions(cognito_user_id):
+        try:                        
+            response = registry_db.query(
+                KeyConditionExpression=Key('partition_key').eq('user-session:%s' % cognito_user_id)                                       
+            )
+            return response['Items']
+        except ClientError as e:
+            print(e)
+            print(e.response['No item found'])
+
+    @staticmethod
+    def save_user_session(cognito_user_id, user_agent, ip_address):
+        try:            
+            response = registry_db.put_item(
+                Item={
+                    "partition_key": 'user-session:%s' % cognito_user_id,
+                    "sort_key": str(Decimal(datetime.datetime.utcnow().timestamp())),
+                    "user_agent": user_agent,
+                    "ip_address": ip_address
+                }
+            )
+            status_code = response['ResponseMetadata']['HTTPStatusCode']            
+            assert status_code == 200
+        except ClientError as e:            
+            print(e)        
+
+
     @staticmethod
     def update_profile_photo(cognito_user_id, photo_url):
         UserModel.set_attribute("user:%s" % cognito_user_id, "profile", "profile_photo", photo_url)

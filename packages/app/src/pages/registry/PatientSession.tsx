@@ -61,8 +61,7 @@ const PatientSession = ({}) => {
                 }
             }            
         })
-
-        debugger
+ 
         if(total_questionnaires_answered!=0 && total_questionnaires_answered == questionnaires.length) {                                    
             setAllQuestionsAnswered(true)
         }

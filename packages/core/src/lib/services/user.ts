@@ -65,6 +65,23 @@ export class UserService extends BaseService {
         });
         
     }
+
+    async getUserSessions(onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "user/sessions";
+        this.apiRequest({
+            api_url: this.client.getOptions().baseUrl!,
+            method: 'get',
+            endpoint: endpoint,
+            token: this.client.accessToken!,
+            onSuccess: (resp: any) => {
+                onSuccess(resp)
+            }, onFail: (error: any) => {
+                if(onFail) {
+                    onFail(error)
+                }
+            }
+        });
+    }
     
     async getUserRegistries(onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "user/registries";

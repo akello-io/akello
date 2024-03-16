@@ -16,7 +16,9 @@ import PatientSession from './pages/registry/PatientSession';
 import RegistrySecurityPage from './pages/registry/RegistrySecurityPage';
 import NothingFoundBackground from './pages/404';
 import ChangePasswordPage from './pages/registry/ChangePasswordPage';
-
+import MeasurementsPage from './pages/registry/MeasurementsPage';
+import PayerSettings from './pages/registry/PayerSettings';
+import ProviderSettings from './pages/registry/ProviderSettings';
 
 
 
@@ -51,10 +53,10 @@ export default function App() {
         <Route path="/" element={<RegistryShell />}>          
           <Route index element={<RegistryPage drawerHandlers={drawerHandlers} />} />
           <Route path="/change-password" element={<ChangePasswordPage />} />
-          <Route path="/registry" element={<RegistryPage drawerHandlers={drawerHandlers} />} />
+          <Route path="/registry" element={<RegistryPage drawerHandlers={drawerHandlers} />} />                    
           <Route path="/security" element={<RegistrySecurityPage />} />
           <Route path="/registry/:patient_id" element={<RegistryPage drawerHandlers={drawerHandlers} />} />
-          <Route path={"/reports"} element={<ReportsPage />} />                    
+          <Route path={"/reports"} element={<ReportsPage />} />                              
           <Route path={"/patient-referral"} element={<PatientReferralPage />} />
           <Route path={"/patient/:patient_id/treatment-session"} element={<PatientSession />} />
           <Route path={"/patient/:patient_id"} element={<PatientDetail />} />
