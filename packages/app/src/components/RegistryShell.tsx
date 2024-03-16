@@ -1,5 +1,5 @@
 import { AppShell, NavLink, Text } from '@mantine/core';
-import { IconTable, IconReportAnalytics, IconLock, IconShieldCheck, IconReportMedical } from '@tabler/icons-react';
+import { IconTable, IconReportAnalytics, IconLock, IconShieldCheck, IconReportMedical, IconReceipt2, IconUsers } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { useDisclosure } from '@mantine/hooks';
 import { useEffect } from 'react';
@@ -13,11 +13,7 @@ const RegistryShell = () => {
     const navigate = useNavigate();
     const {pathname} = useLocation();
     const [opened, { toggle }] = useDisclosure();
-
-    useEffect(() => {
-        debugger;
-    }, [opened]);
-
+    
     useEffect(() => {        
         akello.userService.getUserRegistries((data) => {
             const registeries = data.map((registry: any) => {                                
@@ -79,18 +75,9 @@ const RegistryShell = () => {
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
                     active={window.location.pathname.indexOf('registry') != -1 || window.location.pathname === '/'}
                 />                
-                <NavLink
-                    onClick={() => {
-                        const selectedRegistry = akello.getSelectedRegistry();
-                        if (selectedRegistry) {
-                            navigate('/measurements');
-                        }                        
-                    }}
-                    label="Measurements"
-                    leftSection={<IconReportMedical size="1rem" stroke={1.5} />}
-                    active={window.location.pathname.indexOf('measurements') != -1 || window.location.pathname === '/'}
-                />                
+                
                 <Text pl={12} fz="xs" fw={450} mt="sm" >BILLING</Text>
+                  
                 <NavLink
                     onClick={() => {
                         const selectedRegistry = akello.getSelectedRegistry();
@@ -101,7 +88,7 @@ const RegistryShell = () => {
                     label="Billing Report"
                     leftSection={<IconReportAnalytics size="1rem" stroke={1.5} />}
                     active={window.location.pathname === '/reports'}
-                />                
+                />                                          
                 <Text pl={12} fz="xs" fw={450} mt="sm" >SETTINGS</Text>
                 <NavLink
                     onClick={() => {

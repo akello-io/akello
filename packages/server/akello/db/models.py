@@ -134,6 +134,20 @@ class UserModel(RegistryDBBaseModel):
     def sort_key(self) -> str:
         return 'profile'
 
+class UserSession(RegistryDBBaseModel):
+    user_id: str    
+    date_created: int = datetime.datetime.utcnow().timestamp()
+    user_agent: dict    
+    ip: str    
+
+    @property
+    def partition_key(self) -> str:
+        return 'user-session:' + self.cognito_user_id
+
+    @property
+    def sort_key(self) -> str:
+        return self.date_created
+
 
 class UserRegistry(RegistryDBBaseModel):
     user_id: str
