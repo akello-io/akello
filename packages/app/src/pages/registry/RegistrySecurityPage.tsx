@@ -1,10 +1,11 @@
-import { Container, Text, Button, Title, Table, Paper, TextInput, Group, Anchor, Center } from '@mantine/core'
+import { Container, ScrollArea, Text, Button, Title, Table, Paper, TextInput, Group, Anchor, Center } from '@mantine/core'
 import { useAkello } from '@akello/react-hook'
 import { useNavigate } from 'react-router-dom'
 import { ForgotPasswordPage } from '@akello/react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import parser from 'ua-parser-js'
+import moment from 'moment'
 
 const RegistrySecurityPage = () => {
     const akello = useAkello();
@@ -25,7 +26,7 @@ const RegistrySecurityPage = () => {
                     ip: data[i]['ip_address'],
                     auth: data[i]['auth_method'],
                     date: data[i]['date'],
-                    time: data[i]['sort_key'],
+                    time: moment.unix(data[i]['sort_key']).format("MM/DD/YYYY HH:mm:ss"),
                     location: data[i]['location']
                 })
                 
@@ -53,7 +54,8 @@ const RegistrySecurityPage = () => {
 
                 <Container>                    
                     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                        <Text fw={600}>Logins</Text>                    
+                        <Text fw={600}>Logins</Text>         
+                        <ScrollArea h={400}>
                         <Table>
                             <Table.Thead>
                                 <Table.Tr>
@@ -63,8 +65,10 @@ const RegistrySecurityPage = () => {
                                     <Table.Th>Time</Table.Th>                                    
                                 </Table.Tr>
                             </Table.Thead>
-                            <Table.Tbody>{rows}</Table.Tbody>
-                        </Table>                                                
+                            <Table.Tbody>{rows}</Table.Tbody>                            
+                        </Table>                                                        
+                        </ScrollArea>                                   
+                        
                     </Paper>
                 </Container>
 
@@ -78,18 +82,7 @@ const RegistrySecurityPage = () => {
                         </Group>
                     </Paper>
                 </Container>
-
-                <Container>                    
-                    <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                        <Text fw={600}>Multi-Factor Auth</Text>
-                        <Text>Emrolled: False</Text>
-                        <Group justify="space-between" mt="lg" >                                                                                     
-                            <Button className={'bg-primary'} onClick={() => {
-                                navigate('/change-password')                                
-                            }}>Enroll</Button>
-                        </Group>
-                    </Paper>
-                </Container>
+                
             </div>
         </div>
     );

@@ -27,7 +27,8 @@ class UserService(BaseService):
     def get_user_sessions(cognito_user_id):
         try:                        
             response = registry_db.query(
-                KeyConditionExpression=Key('partition_key').eq('user-session:%s' % cognito_user_id)                                       
+                KeyConditionExpression=Key('partition_key').eq('user-session:%s' % cognito_user_id), 
+                ScanIndexForward=False                                       
             )
             return response['Items']
         except ClientError as e:
