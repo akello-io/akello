@@ -129,7 +129,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2 h-64 w-full"}>
-                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements ?? []} />
+                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements.filter((measurement) => measurement.active === true) ?? []} />
                                 </div>
                             </div>
 
@@ -140,7 +140,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2"}>
-                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements ?? []} />                                    
+                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements.filter((measurement) => measurement.active === true) ?? []} />                                    
                                 </div>
                             </div>
                         </>

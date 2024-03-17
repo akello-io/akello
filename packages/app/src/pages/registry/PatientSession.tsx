@@ -44,7 +44,7 @@ const PatientSession = ({}) => {
         const selectedRegistryId = akello.getSelectedRegistry()?.id;
         if (selectedRegistryId) {
             akello.registryService.getRegistry(selectedRegistryId, (data: any) => {                
-                setQuestionnaires(data['questionnaires'])
+                setQuestionnaires(data['questionnaires'].filter((questionnaire: Questionnaire) => questionnaire.active === true))
             }, (error: any) => {
                 console.log(error)
             })

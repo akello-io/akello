@@ -44,7 +44,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
             if (registryId) {
                 akello.registryService.getRegistryPatients(registryId, (data) => {                        
                     setPatients(data['successfully_loaded'])
-                    setQuestionnaires(data['questionnaires'])            
+                    setQuestionnaires(data['questionnaires'].filter((questionnaire: Questionnaire) => questionnaire.active === true))        
                     if(data['successfully_loaded'].length == 0) {                        
                         navigate('/patient-referral')
                     } else {

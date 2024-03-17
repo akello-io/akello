@@ -68,6 +68,11 @@ async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth
     registry['role'] = registry_access['role']
     return registry
 
+@router.put("/{registry_id}/measurements")
+async def update_measurements(registry_id: str, request: Request, auth: CognitoTokenCustom = Depends(auth_token_check)):    
+    payload = await request.json()    
+    UserService.check_registry_access(auth.cognito_id, registry_id)
+    RegistryService.set_measurements(registry_id, payload)    
 
 @router.get("/{registry_id}/team-members")
 async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
@@ -91,7 +96,7 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
         except Exception as e:
             print(e)
             failed_patients.append(patient)
-
+    
     return {
         'is_admin': registry_access['is_admin'],
         'role': registry_access['role'],

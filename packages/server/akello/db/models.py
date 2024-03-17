@@ -54,6 +54,7 @@ class Measurement(BaseModel):
     name: str
     uid: str
     type: str
+    active: Optional[bool] = False
     measurements: Union[List[Question], List[FHIRWeight]]
 
 

@@ -160,17 +160,20 @@ export class Questionnaire {
     uid: string
     name: string
     type: string
+    active?: boolean
     measurements: QuestionnaireQuestion[]
 
     constructor(
         uid: string,
         name: string,
         type: string,
+        active: boolean,
         measurements: any
     ) { 
         this.uid  = uid
         this.name = name
         this.type = type
+        this.active = active
         this.measurements = measurements
     }
 
