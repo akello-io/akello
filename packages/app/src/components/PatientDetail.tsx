@@ -30,9 +30,12 @@ const PatientDetail = () => {
                                 {selectedPatient.first_name} {selectedPatient.last_name}
                             </div>
                             <Anchor size="md" href={"mailto:" + selectedPatient.email} target="_blank">
-                                {selectedPatient.email}    
+                                {selectedPatient.email}
                             </Anchor>                            
-                        </div>     
+                            <div className={"text-sm"}>
+                                Referring NPI: {selectedPatient.referring_provider_npi}    
+                            </div>
+                        </div>                          
                         <div className='flex flex-row space-x-3'>
                             <ThemeIcon>
                                 <IconPhone style={{ width: '70%', height: '70%' }} />

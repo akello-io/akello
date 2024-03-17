@@ -186,7 +186,7 @@ export class PatientRegistry {
     email: string
     date_of_birth: string
 
-
+    referring_provider_npi?: string
     payer?: string
     status?: string
 

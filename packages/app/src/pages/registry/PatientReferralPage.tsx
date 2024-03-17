@@ -19,6 +19,7 @@ const PatientReferralPage = () => {
         initialValues: {
             mrn: '',
             payer: '',
+            referring_provider_npi: '',
             firstName: '',
             lastName: '',
             phoneNumber: '',
@@ -29,6 +30,8 @@ const PatientReferralPage = () => {
             mrn: Yup.string()                
                 .required('Required'),
             payer: Yup.string()
+                .required('Required'),
+            referring_provider_npi: Yup.string()
                 .required('Required'),
             firstName: Yup.string()
                 .max(15, 'Must be 15 characters or less')
@@ -52,6 +55,7 @@ const PatientReferralPage = () => {
             )            
             new_patient.treatment_logs =  []
             new_patient.payer = values['payer']
+            new_patient.referring_provider_npi = values['referring_provider_npi']            
             akello.registryService.referPatient(akello.getSelectedRegistry()?.id ?? '', new_patient, (data) => {                
                 console.log(data)
                 navigate('/registry/' + new_patient.patient_mrn)
@@ -78,6 +82,20 @@ const PatientReferralPage = () => {
                                 <div className="max-w-xs">
                                     <form className="rounded px-2 pt-6 pb-8 mb-4"
                                         onSubmit={formik.handleSubmit}>
+
+                                        <div className="mb-4">
+                                            <label className="block  text-xs font-bold mb-2" htmlFor="payer">
+                                                Referring Provider NPI
+                                            </label>                                                          
+                                            <Input
+                                                id="referring_provider_npi"
+                                                type="text"                                            
+                                                {...formik.getFieldProps('referring_provider_npi')}
+                                            />
+                                            {formik.touched.payer && formik.errors.payer ? (
+                                                <div className={"text-error"}>{formik.errors.payer}</div>
+                                            ) : null}
+                                        </div>
                                         <div className="mb-4">
                                             <label className="block text-xs font-bold mb-2"
                                                 htmlFor="mrn">

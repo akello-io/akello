@@ -23,7 +23,7 @@ class PatientMock:
     treatment_logs = []
 
 
-    def __init__(self, registry_id) -> None:
+    def __init__(self, registry_id, referring_npi) -> None:
         self.treatment_logs = []
 
         self.patient_registry = PatientRegistry(                        
@@ -32,6 +32,7 @@ class PatientMock:
             patient_mrn=fake.uuid4(),
             date_created=int(time.mktime(fake.date_this_year(before_today=True).timetuple())) * 1000,
             status=random.choices(population=[PatientStatysTypes.enrolled, PatientStatysTypes.treatment,PatientStatysTypes.relapse_prevention_plan,PatientStatysTypes.deactivated,], weights=[ 0.2, 0.4, 0.2, 0.3])[0],
+            referring_provider_npi=referring_npi,
             payer=random.choices([
                 'UnitedHealth Group',
                 'Anthem, Inc.',

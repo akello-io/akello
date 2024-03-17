@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Request, Depends, UploadFile
-import aiofiles
 from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.db.models import UserInvite
@@ -8,8 +7,6 @@ from akello.services.registry import RegistryService
 from akello.services.reports import ReportsService  
 from akello.db.connector.s3 import S3StorageLocal
 from datetime import datetime, timedelta
-from user_agents import parse
-
 import logging
 
 logger = logging.getLogger('mangum')
@@ -28,9 +25,9 @@ async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_tok
     logger.info('calling get_user: email:%s' % auth.username)
     user = UserService.get_user(auth.cognito_id)    
     if not user:
-        raise Exception('User not found')
-        #logger.info('registering a new User for the first time - %s ' % auth.username)
-        #UserService.create_user(auth.cognito_id, auth.username)
+        logger.info('registering a new User for the first time - %s ' % auth.username)
+        UserService.create_user(auth.cognito_id, auth.username, auth.given_name, auth.family_name, None)
+        #raise Exception('User not found')
     else:
         UserService.set_user_active(auth.cognito_id)
     

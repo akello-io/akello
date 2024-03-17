@@ -5,6 +5,11 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const columns: GridColDef[] = [
     {
+        field: 'stat_date',
+        headerName: 'Date',
+        width: 110,
+    },
+    {
         field: 'first_name',
         headerName: 'First name',
         width: 150,
@@ -13,17 +18,22 @@ const columns: GridColDef[] = [
         field: 'last_name',
         headerName: 'Last name',
         width: 150,
-    },    
-    {
-        field: 'stat_date',
-        headerName: 'Date',
-        width: 110,
-    },
+    },        
     {
         field: 'total_minutes',
         headerName: 'Minutes',
         width: 110,
         type: "number"
+    },
+    {
+        field: 'payer',
+        headerName: 'Payer',
+        width: 350        
+    },
+    {
+        field: 'referring_provider_npi',
+        headerName: 'Referring Provider NPI',
+        width: 300        
     },
 ];
 
@@ -34,6 +44,7 @@ interface BillingReportDataGridProps {
 
 
 const BillingReportDataGrid:React.FC<BillingReportDataGridProps> = ({data}) => {
+    debugger;
     const darkTheme = createTheme({
         typography: {
             fontFamily: [
