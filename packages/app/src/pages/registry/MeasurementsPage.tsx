@@ -17,6 +17,16 @@ const MeasurementsPage = () => {
                             'Generalised Anxiety Disorder (GAD-7)',
                             'General Health Questionnaire (GHQ)', 
                             'Insomnia Severity Index (ISI)',
+                            'Beck Depression Inventory (BDI)',
+                            'Beck Anxiety Inventory (BAI)',
+                            'Primary Care PTSD Screen for DSM-5 (PC-PTSD-5)',
+                            'Columbia-Suicide Severity Rating Scale (C-SSRS)',
+                            'Mood Disorder Questionnaire (MDQ)',
+                            'Alcohol Use Disorders Identification Test (AUDIT)',
+                            'Drug Abuse Screening Test (DAST)',
+                            'Hamilton Anxiety Rating Scale (HAM-A)',
+                            'Edinburgh Postnatal Depression Scale (EPDS)',
+                            'Montreal Cognitive Assessment (MoCA)'
                         ]}
                         searchable                                            
                         label="Select screeners"

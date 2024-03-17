@@ -74,7 +74,18 @@ const RegistryShell = () => {
                     label="Registry"
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
                     active={window.location.pathname.indexOf('registry') != -1 || window.location.pathname === '/'}
-                />                
+                />     
+                <NavLink
+                    onClick={() => {
+                        const selectedRegistry = akello.getSelectedRegistry();
+                        if (selectedRegistry) {
+                            navigate('/measurements');
+                        }                        
+                    }}
+                    label="Measurements"
+                    leftSection={<IconReportMedical size="1rem" stroke={1.5} />}
+                    active={window.location.pathname === '/measurements'}
+                />           
                 
                 <Text pl={12} fz="xs" fw={450} mt="sm" >BILLING</Text>
                   
