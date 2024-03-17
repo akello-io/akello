@@ -1,6 +1,7 @@
 import os, datetime, random, uuid, json
 from decimal import Decimal
-from akello.db.models import RegistryModel, TreatmentLog, PatientRegistry, ContactTypes
+from akello.db.models import RegistryModel, TreatmentLog, PatientRegistry
+from akello.db.types import ContactTypes
 from akello.db.connector.dynamodb import registry_db
 from akello.services import BaseService
 from boto3.dynamodb.conditions import Key

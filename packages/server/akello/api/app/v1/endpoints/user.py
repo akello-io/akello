@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Depends, UploadFile
 from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
-from akello.db.models import UserInvite
+from akello.db.types import UserInvite
 from akello.services.user import UserService
 from akello.services.registry import RegistryService
 from akello.services.reports import ReportsService  
