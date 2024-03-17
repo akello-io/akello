@@ -54,6 +54,7 @@ class Measurement(BaseModel):
     name: str
     uid: str
     type: str
+    active: Optional[bool] = False
     measurements: Union[List[Question], List[FHIRWeight]]
 
 
@@ -180,7 +181,6 @@ class RegistryUser(RegistryDBBaseModel):
     @property
     def sort_key(self) -> str:
         return 'user:' + self.user_id
-
 
 class UserEmail(RegistryDBBaseModel):
     email: str
@@ -309,6 +309,7 @@ class PatientRegistry(RegistryDBBaseModel):
     date_graduated: Optional[float] = None
     date_modified: float = datetime.datetime.utcnow().timestamp()
     payer: Optional[str] = None
+    referring_provider_npi: Optional[str] = None
     first_name: str
     last_name: str
     phone_number: str

@@ -30,9 +30,12 @@ const PatientDetail = () => {
                                 {selectedPatient.first_name} {selectedPatient.last_name}
                             </div>
                             <Anchor size="md" href={"mailto:" + selectedPatient.email} target="_blank">
-                                {selectedPatient.email}    
+                                {selectedPatient.email}
                             </Anchor>                            
-                        </div>     
+                            <div className={"text-sm"}>
+                                Referring NPI: {selectedPatient.referring_provider_npi}    
+                            </div>
+                        </div>                          
                         <div className='flex flex-row space-x-3'>
                             <ThemeIcon>
                                 <IconPhone style={{ width: '70%', height: '70%' }} />
@@ -126,7 +129,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2 h-64 w-full"}>
-                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements ?? []} />
+                                    <PatientProgressChart selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements.filter((measurement) => measurement.active === true) ?? []} />
                                 </div>
                             </div>
 
@@ -137,7 +140,7 @@ const PatientDetail = () => {
                                     </p>
                                 </div>
                                 <div className={"p-2"}>
-                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements ?? []} />                                    
+                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements.filter((measurement) => measurement.active === true) ?? []} />                                    
                                 </div>
                             </div>
                         </>

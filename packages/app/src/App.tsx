@@ -55,6 +55,8 @@ export default function App() {
           <Route path="/change-password" element={<ChangePasswordPage />} />
           <Route path="/registry" element={<RegistryPage drawerHandlers={drawerHandlers} />} />                    
           <Route path="/security" element={<RegistrySecurityPage />} />
+          <Route path="/providers" element={<ProviderSettings />} />
+          <Route path="/measurements" element={<MeasurementsPage />} />
           <Route path="/registry/:patient_id" element={<RegistryPage drawerHandlers={drawerHandlers} />} />
           <Route path={"/reports"} element={<ReportsPage />} />                              
           <Route path={"/patient-referral"} element={<PatientReferralPage />} />

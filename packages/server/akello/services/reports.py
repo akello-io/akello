@@ -53,13 +53,15 @@ class ReportsService(BaseService):
         r = []
                          
         for mrn in patient_report['patients']:
-            p = patient_report['patients'][mrn]['info']            
+            p = patient_report['patients'][mrn]['info']
             for s in patient_report['patients'][mrn]['minute_stats']:                
                 r.append({
                     'first_name': p['first_name'],
                     'last_name': p['last_name'],
                     'mrn': mrn,
                     'stat_date': s,
+                    'payer': p['payer'],
+                    'referring_provider_npi': p['referring_provider_npi'],
                     'total_minutes': patient_report['patients'][mrn]['minute_stats'][s]
                 })
 

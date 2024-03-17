@@ -85,7 +85,7 @@ def mock_registry():
 
 
         for b in range(random.randint(50, 300)):
-            pm = PatientMock(registry_id=registry_id)
+            pm = PatientMock(registry_id=registry_id, referring_npi=fake.random.choice(['1234567890', '0987654321']))
             registry.refer_patient(pm.patient_registry)
             for treatment_log in pm.treatment_logs:
                 print(len(pm.treatment_logs))

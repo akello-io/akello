@@ -1,0 +1,89 @@
+---
+ uid: "heads-ed"
+ name: "HEADS-ED"  
+ type: "survey"
+ measurements:
+   - id: '1'
+     question: "Home - Example: How are things at home? How are things with your family?"
+     responses:
+      - response: "Supportive"
+        score: 0
+        id: "0"
+      - response: "Conflicts"
+        score: 1
+        id: "1"
+      - response: "Chaotic/dysfunctional"
+        score: 2
+        id: "2"      
+   - id: '2'
+     question: "Education, employment - Example: How are things at school or work?"
+     responses:
+      - response: "On track"
+        score: 0
+        id: "0"
+      - response: "Grades slipping, attendance problems, or job dissatisfaction"
+        score: 1
+        id: "1"
+      - response: "Failing/not attending school, fired from job"
+        score: 2
+        id: "2"      
+   - id: '3'
+     question: "Activities & peers - Example: How are things with your friends? How are things with your hobbies or sports?"
+     responses:
+      - response: "No change"
+        score: 0
+        id: "0"
+      - response: "Reduction in activities/increased peer conflict"
+        score: 1
+        id: "1"
+      - response: "Increasing to fully withdrawn/significant peer conflict"
+        score: 2
+        id: "2"      
+   - id: '4'
+     question: "Drugs & alcohol - Example: How are things with drugs and alcohol?"
+     responses:
+      - response: "None or infrequent"
+        score: 0
+        id: "0"
+      - response: "Occasional"
+        score: 1
+        id: "1"
+      - response: "Frequency/daily"
+        score: 2
+        id: "2"      
+   - id: '5'
+     question: "Suicidality - Example: Have you had thoughts of hurting yourself?"
+     responses:
+      - response: "No thoughts"
+        score: 0
+        id: "0"
+      - response: "Ideation"
+        score: 1
+        id: "1"
+      - response: "Plan or gesture"
+        score: 2
+        id: "2"      
+   - id: '6'
+     question: "Emontions, behavior, thought disturbance - Example: How are things with your mood? How are things with your behavior? How are things with your thoughts?"
+     responses:
+      - response: "Mildly anxious/sad/acting out"
+        score: 0
+        id: "0"
+      - response: "Moderately anxious/sad/acting out"
+        score: 1
+        id: "1"
+      - response: "Significantly distressed/unable to function/out of control/bizarre thoughts/significiant change in behavior"
+        score: 2
+        id: "2"
+   - id: '7'
+     question: "Discharge or current resources - Example: What are your current resources? What are your discharge resources (counseling, etc.)?"
+     responses:
+      - response: "Ongoing/well connected"
+        score: 0
+        id: "0"
+      - response: "Some/not meeting needs"
+        score: 1
+        id: "1"
+      - response: "None/on waitlist/noncomplaint"
+        score: 2
+        id: "2"         

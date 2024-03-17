@@ -70,6 +70,10 @@ class RegistryService(BaseService):
         RegistryModel.set_attribute('registry:%s' % registry_id, 'metadata', 'akello_apps', akello_apps)
 
     @staticmethod
+    def set_measurements(registry_id, measurements):
+        RegistryModel.set_attribute('registry:%s' % registry_id, 'metadata', 'questionnaires', measurements)
+
+    @staticmethod
     def update_stats(registry_id):
         patients = RegistryService.get_patients(registry_id)
         members = RegistryService.get_members(registry_id)

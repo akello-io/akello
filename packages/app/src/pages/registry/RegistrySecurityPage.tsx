@@ -39,7 +39,7 @@ const RegistrySecurityPage = () => {
         <Table.Tr key={element.id}>
             <Table.Td>{element.os}</Table.Td>
             <Table.Td>{element.browser}</Table.Td>
-            <Table.Td>{element.ip}</Table.Td>                    
+            <Table.Td>{element.ip.substring(0,20)}</Table.Td>                    
             <Table.Td>{element.time}</Table.Td>            
         </Table.Tr>
         ));
