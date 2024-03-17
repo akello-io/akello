@@ -1,4 +1,5 @@
-from akello.db.models import PatientRegistry, FlagTypes, PatientStatysTypes, ContactTypes, TreatmentLogScore, TreatmentLog, VisitTypes
+from akello.db.models import PatientRegistry, FlagTypes, PatientStatysTypes
+from akello.db.types import FlagTypes, PatientStatysTypes, ContactTypes, VisitTypes, TreatmentLog, TreatmentLogScore
 import random, time
 from datetime import datetime
 

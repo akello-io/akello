@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends
-from akello.db.models import UserInvite, UserRole, AkelloApp, TreatmentLog, PatientRegistry, RegistryModel
+from akello.db.models import UserRole, AkelloApp, TreatmentLog, PatientRegistry, RegistryModel
+from akello.db.types import UserInvite
 from akello.services.registry import RegistryService
 from akello.services.user import UserService
 from akello.auth.provider import auth_token_check

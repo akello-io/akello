@@ -1,4 +1,5 @@
-from akello.db.models import TreatmentLog, TreatmentLogScore, ContactTypes, VisitTypes
+from akello.db.models import TreatmentLog
+from akello.db.types import TreatmentLogScore, ContactTypes, VisitTypes
 import random
 from faker import Faker
 
