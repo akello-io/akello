@@ -356,6 +356,37 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         });
     }
 
+    changePassword(
+        oldPassword: string,
+        newPassword: string,
+        onSuccess: () => void,
+        onFail: (err: any) => void
+    ) {
+        const poolData = {
+            UserPoolId: this.options.cognitoUserPoolId!,
+            ClientId: this.options.cognitoClientId!,
+            endpoint: this.options.cognitoEndpoint!
+        };
+        const userPool = new CognitoUserPool(poolData);
+        const cognitoUser = userPool.getCurrentUser();
+        if (cognitoUser) {
+            cognitoUser.getSession((err: any, session: any) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                cognitoUser.changePassword(oldPassword, newPassword, (err: any, result: any) => {
+                    if (err) {
+                        console.log(err);
+                        onFail(err);
+                        return;
+                    }
+                    onSuccess();
+                });
+            });
+        }
+    }
+
     /**
      * Logs out the user by clearing the access token and triggering the onUnauthenticated callback if provided.
      */
