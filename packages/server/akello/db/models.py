@@ -2,7 +2,9 @@ import datetime
 import json
 from typing import List, Optional
 from akello.db.connector.dynamodb import RegistryDBBaseModel
-from akello.db.types import Measurement, UserRole, FlagTypes, PatientStatysTypes, AkelloApp, TreatmentLog, EventLog, AuditLog
+from akello.db.types import Measurement, UserRole, FlagTypes, PatientStatysTypes, AkelloApp, TreatmentLog, EventLog, \
+    AuditLog
+
 
 class UserModel(RegistryDBBaseModel):
     """
@@ -69,9 +71,9 @@ class RegistryUser(RegistryDBBaseModel):
     registry_id: str
     user_id: str
     date_created: int = datetime.datetime.utcnow().timestamp()
-    first_name: str  #TODO: consider removing this
-    last_name: str   #TODO: consider removing this
-    email: str       #TODO: consider removing this
+    first_name: str  # TODO: consider removing this
+    last_name: str  # TODO: consider removing this
+    email: str  # TODO: consider removing this
     role: UserRole
     is_admin: bool = False
 
@@ -124,7 +126,6 @@ class RegistryModel(RegistryDBBaseModel):
     @property
     def sort_key(self) -> str:
         return 'metadata'
-
 
 
 class PatientRegistry(RegistryDBBaseModel):
