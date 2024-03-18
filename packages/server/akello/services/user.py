@@ -254,6 +254,7 @@ class UserService(BaseService):
             Raises an exception if the user is not authorized to access the registry.
         """
         try:
+            # Look up from registry-user:<registry_id> and user:<cognito_user_id> to see if the user is authorized
             response = registry_db.query(
                 KeyConditionExpression=Key('partition_key').eq('registry-user:%s' % registry_id)
                                        & Key('sort_key').eq('user:%s' % cognito_user_id)
