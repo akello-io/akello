@@ -5,6 +5,9 @@ from akello.db.connector.dynamodb import RegistryDBBaseModel
 from akello.db.types import Measurement, UserRole, FlagTypes, PatientStatysTypes, AkelloApp, TreatmentLog, EventLog, AuditLog
 
 class UserModel(RegistryDBBaseModel):
+    """
+    Represents a user in the system. This is the primary model for the user.
+    """
     cognito_user_id: str
     email: Optional[str] = None
     first_name: Optional[str] = None
@@ -23,6 +26,10 @@ class UserModel(RegistryDBBaseModel):
 
 
 class UserSession(RegistryDBBaseModel):
+    """
+    Stores user session information to audit login and usage
+    """
+
     user_id: str
     date_created: int = datetime.datetime.utcnow().timestamp()
     user_agent: dict
@@ -38,6 +45,9 @@ class UserSession(RegistryDBBaseModel):
 
 
 class UserRegistry(RegistryDBBaseModel):
+    """
+    Stores the user to registry mapping
+    """
     user_id: str
     registry_id: str
     date_created: int = datetime.datetime.utcnow().timestamp()
@@ -52,12 +62,16 @@ class UserRegistry(RegistryDBBaseModel):
 
 
 class RegistryUser(RegistryDBBaseModel):
+    """
+    Stores the user information for a given registry
+    #TODO: This would duplicate user information, consider refactoring
+    """
     registry_id: str
     user_id: str
     date_created: int = datetime.datetime.utcnow().timestamp()
-    first_name: str
-    last_name: str
-    email: str
+    first_name: str  #TODO: consider removing this
+    last_name: str   #TODO: consider removing this
+    email: str       #TODO: consider removing this
     role: UserRole
     is_admin: bool = False
 
@@ -71,6 +85,10 @@ class RegistryUser(RegistryDBBaseModel):
 
 
 class UserEmail(RegistryDBBaseModel):
+    """
+    Used to map an email to the registry for fast lookups of unique emails
+    TODO: consider doing this with patients as well?
+    """
     email: str
     user_id: str
     date_created: int = datetime.datetime.utcnow().timestamp()
@@ -85,6 +103,9 @@ class UserEmail(RegistryDBBaseModel):
 
 
 class RegistryModel(RegistryDBBaseModel):
+    """
+    Represents a registry of patients. Stores all the metadata about the registry.
+    """
     id: str
     name: str
     description: str
@@ -105,7 +126,14 @@ class RegistryModel(RegistryDBBaseModel):
         return 'metadata'
 
 
+
 class PatientRegistry(RegistryDBBaseModel):
+    """
+    Keeps a direct 1-1 mapping of a patient to a registry.
+    Currently we don't support the same patient being in multiple registries.
+    Stores the complete patient record including all treatment logs
+    """
+
     id: Optional[str] = None
     patient_flag: Optional[FlagTypes] = None
     patient_mrn: str
