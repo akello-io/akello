@@ -1,4 +1,4 @@
-import os, datetime, random, uuid, json
+import datetime, random, uuid, json
 from decimal import Decimal
 from akello.db.models import RegistryModel, TreatmentLog, PatientRegistry
 from akello.db.types import ContactTypes
@@ -6,7 +6,6 @@ from akello.db.connector.dynamodb import registry_db
 from akello.services import BaseService
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
-from typing import List
 
 
 class RegistryService(BaseService):
@@ -141,6 +140,60 @@ class RegistryService(BaseService):
 
     @staticmethod
     def add_treatment_log(registry_id, sort_key, treatment_log: TreatmentLog):
+        """
+        Updates the treatment logs for a patient in the registry by appending a new treatment log entry.
+        It also updates specific attributes based on the contact type of the treatment log.
+
+        Args:
+            registry_id: The unique identifier for the registry.
+            sort_key: The sort key used for the database entry.
+            treatment_log: An instance of TreatmentLog representing the new treatment log to be added.
+        """
+        # Define the base update expression and attribute values
+        update_expression = ("SET #treatment_logs = list_append(#treatment_logs, :treatment_logs), "
+                             "flag = :flag, no_show = :no_show, "
+                             "weeks_since_initial_assessment = :weeks_since_initial_assessment")
+        expression_attribute_values = {
+            ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
+            ':flag': treatment_log.flag,
+            ':no_show': treatment_log.no_show,
+            ":weeks_since_initial_assessment": 0
+        }
+
+        # Conditional updates for specific contact types
+        contact_type_updates = {
+            ContactTypes.follow_up: "last_follow_up",
+            ContactTypes.initial_assessment: "initial_assessment",
+            ContactTypes.psychiatric_consultation: "last_psychiatric_consult",
+            ContactTypes.relapse_prevention: "relapse_prevention_plan",
+        }
+
+        if treatment_log.contact_type in contact_type_updates:
+            field_name = contact_type_updates[treatment_log.contact_type]
+            update_expression += f", {field_name} = :{field_name}"
+            expression_attribute_values[f":{field_name}"] = Decimal(treatment_log.date)
+
+        # Execute the update operation
+        response = registry_db.update_item(
+            Key={
+                'partition_key': f'registry-patient:{registry_id}',
+                'sort_key': sort_key
+            },
+            UpdateExpression=update_expression,
+            ExpressionAttributeNames={
+                "#treatment_logs": "treatment_logs",
+            },
+            ExpressionAttributeValues=expression_attribute_values,
+            ReturnValues="UPDATED_NEW"
+        )
+
+        # Check the response status code
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200, "Failed to update the treatment log."
+
+    """
+    @staticmethod
+    def add_treatment_log(registry_id, sort_key, treatment_log: TreatmentLog):
 
         UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
                            "flag = :flag," \
@@ -184,6 +237,7 @@ class RegistryService(BaseService):
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
+    """
 
     @staticmethod
     def get_members(registry_id):
