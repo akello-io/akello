@@ -1,30 +1,43 @@
-import datetime, random, uuid, json
-from decimal import Decimal
-from akello.db.models import RegistryModel, TreatmentLog, PatientRegistry
-from akello.db.types import ContactTypes
+import datetime, json, logging
+from akello.db.models import TreatmentLog, PatientRegistry
 from akello.services import BaseService
 from akello.services.registry import RegistryService
 from datetime import datetime
 
-
-import logging
 logger = logging.getLogger('mangum')
 
 
 class ReportsService(BaseService):
+    """
+    The ReportsService class is responsible for generating reports related to billing and registry dashboards
+    for a healthcare provider. It leverages static methods to access patient data and compute relevant statistics
+    for a specified period.
+    """
 
     @staticmethod
     def get_billing_report(registry_id, from_date, to_date):
+        """
+        Generates a billing report for a given registry within a specific date range.
+        The report includes patient treatment logs, summarized by minutes spent per month.
+
+        Parameters:
+        - registry_id: An identifier for the registry whose billing report is to be generated.
+        - from_date: The starting timestamp (inclusive) for filtering treatment logs.
+        - to_date: The ending timestamp (inclusive) for filtering treatment logs.
+
+        Returns:
+        - A list of dictionaries, each representing a billing entry for a patient including first name, last name,
+        medical record number (MRN), date, payer, referring provider NPI, and total minutes of treatment.
+        """
+
         logger.info('running report for registry: %s from: %s to: %s' % (registry_id, from_date, to_date))
         patients = RegistryService.get_patients(registry_id)
         patient_report = {
             'monthly': {
-
             },
             'patients': {
-
             }
-        }        
+        }
 
         for patient in patients:
             mrn = patient['patient_mrn']
@@ -35,24 +48,19 @@ class ReportsService(BaseService):
                 }
             
             for treatment_log in patient['treatment_logs']:
-
                 t = TreatmentLog(**treatment_log) 
                 utc_dt = datetime.utcfromtimestamp(t.date / 1000)
                 if not (utc_dt.timestamp() >= from_date and utc_dt.timestamp() <= to_date):
                     continue
                 year = utc_dt.year
                 month = utc_dt.month
-                utc_dt_str = '%s-%s' % (year, month)                
-
+                utc_dt_str = '%s-%s' % (year, month)
                 if utc_dt_str not in patient_report['patients'][mrn]['minute_stats']:
-                    patient_report['patients'][mrn]['minute_stats'][utc_dt_str] = 0                
-
+                    patient_report['patients'][mrn]['minute_stats'][utc_dt_str] = 0
                 patient_report['patients'][mrn]['minute_stats'][utc_dt_str] += t.minutes                    
-        
-        
+
         # flatten the data
         r = []
-                         
         for mrn in patient_report['patients']:
             p = patient_report['patients'][mrn]['info']
             for s in patient_report['patients'][mrn]['minute_stats']:                
@@ -71,6 +79,20 @@ class ReportsService(BaseService):
 
     @staticmethod
     def get_registry_dashboard(registry_id, from_date, to_date):
+        """
+        Generates a dashboard report for a given registry within a specific date range, including information
+        on payer distribution, patient statuses, and treatment performance metrics such as average, median,
+        and maximum treatment weeks.
+
+        Parameters:
+        - registry_id: An identifier for the registry whose dashboard report is to be generated.
+        - from_date: The starting timestamp (inclusive) for considering patient treatments.
+        - to_date: The ending timestamp (inclusive) for considering patient treatments.
+
+        Returns:
+        - A dictionary containing structured information about the treatment performance, screening scores,
+        payer distribution, and patient status distribution for the specified registry and date range.
+        """
 
         patients = RegistryService.get_patients(registry_id)
 
