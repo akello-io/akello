@@ -191,53 +191,6 @@ class RegistryService(BaseService):
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200, "Failed to update the treatment log."
 
-    """
-    @staticmethod
-    def add_treatment_log(registry_id, sort_key, treatment_log: TreatmentLog):
-
-        UpdateExpression = "SET #att_name = list_append(#att_name, :treatment_logs), " \
-                           "flag = :flag," \
-                           "no_show = :no_show," \
-                           "weeks_since_initial_assessment = :weeks_since_initial_assessment"
-
-        ExpressionAttributeValues = {
-            ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
-            ':flag': treatment_log.flag,
-            ':no_show': treatment_log.no_show,
-            ":weeks_since_initial_assessment": 0
-        }
-
-        if treatment_log.contact_type == ContactTypes.follow_up:
-            UpdateExpression += ",last_follow_up = :last_follow_up"
-            ExpressionAttributeValues[':last_follow_up'] = Decimal(treatment_log.date)
-
-        if treatment_log.contact_type == ContactTypes.initial_assessment:
-            UpdateExpression += ",initial_assessment = :initial_assessment"
-            ExpressionAttributeValues[':initial_assessment'] = Decimal(treatment_log.date)
-
-        if treatment_log.contact_type == ContactTypes.psychiatric_consultation:
-            UpdateExpression += ",last_psychiatric_consult = :last_psychiatric_consult"
-            ExpressionAttributeValues[':last_psychiatric_consult'] = Decimal(treatment_log.date)
-
-        if treatment_log.contact_type == ContactTypes.relapse_prevention:
-            UpdateExpression += ",relapse_prevention_plan = :relapse_prevention_plan"
-            ExpressionAttributeValues[':relapse_prevention_plan'] = Decimal(treatment_log.date)
-
-        response = registry_db.update_item(
-            Key={
-                'partition_key': 'registry-patient:%s' % registry_id,
-                'sort_key': sort_key
-            },
-            UpdateExpression=UpdateExpression,
-            ExpressionAttributeNames={
-                "#att_name": "treatment_logs",
-            },
-            ExpressionAttributeValues=ExpressionAttributeValues,
-            ReturnValues="UPDATED_NEW"
-        )
-        status_code = response['ResponseMetadata']['HTTPStatusCode']
-        assert status_code == 200
-    """
 
     @staticmethod
     def get_members(registry_id):
