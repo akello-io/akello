@@ -30,9 +30,29 @@ mixins = []
 
 @router.post("/create")
 async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
+    Creates a new registry with the specified details and links the creating user as an admin.
+
+    This endpoint creates a registry using information provided in the `data` parameter. It initializes the registry with a set of questionnaires (screeners), sets up integration details, and links the creating user as a care manager and admin. Additional users can be invited to the registry as specified in the `data['invited-users']` list.
+
+    Parameters:
+    - data (dict): A dictionary containing the registry's details. Expected keys are:
+        - 'name': The name of the registry.
+        - 'description': A brief description of the registry.
+        - 'integrations': Integration details for the registry.
+        - 'logo_url': URL to the registry's logo.
+        - 'first_name': The first name of the creating user.
+        - 'last_name': The last name of the creating user.
+        - 'invited-users': A list of dictionaries, each containing 'email' and 'role' keys for additional users to invite.
+    - auth (CognitoTokenCustom): An authentication token for the user, provided by the `auth_token_check` dependency. This token contains user information such as username and cognito_id.
+
+    Returns:
+    - dict: A dictionary with the created registry's ID and name.
+
+    The method logs the creation process, creates the registry, associates the creating user with it, invites additional users, and returns the registry's ID and name.
+    """
     logger.info('creating a new registry name: %s - created by user: %s' % (data['name'], auth.username))
 
-    # Create the registry and link the user to the registry
     questionnaires = ScreenerService.get_screeners()
 
     # Create the registry and link the user to the registry    
@@ -52,10 +72,8 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
         is_admin=True)
     UserService.create_user_registry(auth.cognito_id, registry_id)
 
-    # Add additional user invites    
+    # Add additional user invites
     for invited_user in data['invited-users']:
-        # TODO: This should be a service under registry
-        # Create the UserInvite only if the user doesn't exist. if they do add them in
         UserInvite.create(auth.cognito_id, invited_user['email'], invited_user['role'], registry_id)
 
     return {'id': registry_id, 'name': data['name']}
@@ -63,6 +81,20 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
 
 @router.get("/{registry_id}")
 async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
+    Retrieves the details of a specific registry by its ID, along with the access role of the requesting user.
+
+    This method checks if the user, identified by the `auth` parameter, has access to the specified registry and then retrieves the registry's details. It augments the registry details with information about the user's role and whether they are an admin in the context of this registry.
+
+    Parameters:
+    - registry_id (str): The unique identifier of the registry to retrieve.
+    - auth (CognitoTokenCustom): An authentication token for the user, provided by the `auth_token_check` dependency. This token contains user information such as the cognito_id.
+
+    Returns:
+    - dict: A dictionary containing the registry's details, including 'is_admin' and 'role' fields indicating the user's access level and role within the registry.
+
+    The method first checks the user's access to the registry. If access is granted, it fetches the registry's details from the `RegistryService` and appends information about the user's role and admin status before returning this data.
+    """
     registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
     registry = RegistryService.get_registry(registry_id)
     registry['is_admin'] = registry_access['is_admin']
@@ -70,14 +102,40 @@ async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth
     return registry
 
 @router.put("/{registry_id}/measurements")
-async def update_measurements(registry_id: str, request: Request, auth: CognitoTokenCustom = Depends(auth_token_check)):    
-    payload = await request.json()    
+async def update_measurements(registry_id: str, request: Request, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
+    Updates the measurements for a specified registry based on the provided JSON payload.
+
+    This endpoint allows for the updating of measurement data associated with a specific registry. It checks if the user has access to the registry and then updates the registry's measurements with the new data provided in the request body.
+
+    Parameters:
+    - registry_id (str): The unique identifier of the registry whose measurements are to be updated.
+    - request (Request): The request object, which includes the JSON payload with the measurement data to update. The expected structure of the payload is specific to the registry's requirements for measurements.
+    - auth (CognitoTokenCustom): An authentication token for the user, provided by the `auth_token_check` dependency. This token is used to verify that the user has the necessary permissions to update measurements for the specified registry.
+
+    The function does not explicitly return a value. Upon successful update, it may implicitly return a successful HTTP status code, such as 200 OK, depending on the framework's behavior.
+    """
     UserService.check_registry_access(auth.cognito_id, registry_id)
+    payload = await request.json()
     RegistryService.set_measurements(registry_id, payload)    
 
 @router.get("/{registry_id}/team-members")
 async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
+    """
+    Retrieves a list of team members associated with a specific registry, including information on whether the current user is a member.
+
+    This endpoint fetches and returns the list of all team members within a given registry. It checks if the authenticated user has access to the specified registry and, for each team member retrieved, adds a flag to indicate whether the team member is the user making the request based on their email address.
+
+    Parameters:
+    - registry_id (str): The unique identifier of the registry from which to retrieve team members.
+    - auth (CognitoTokenCustom): An authentication token for the user, provided by the `auth_token_check` dependency. This token contains the user's information such as username (email) and cognito_id, which is used for access verification and to identify if the user is part of the team members.
+
+    Returns:
+    - list: A list of dictionaries, each representing a team member. Each dictionary includes the team member's details and an 'is_user' flag indicating if this member is the user making the request.
+
+    The function ensures that only authorized users can fetch team member information and dynamically adjusts the returned information based on the requester's identity.
+    """
+    UserService.check_registry_access(auth.cognito_id, registry_id)
     members = RegistryService.get_members(registry_id)
     for member in members:
         member['is_user'] = member['email'] == auth.username
@@ -86,9 +144,28 @@ async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom =
 
 @router.get("/{registry_id}/patients")
 async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    registry_metadata = RegistryService.get_registry(registry_id)
+    """
+    Retrieves detailed information about patients within a specified registry, including their questionnaire data, and categorizes them into successfully loaded and failed patients based on data integrity.
+
+    This function first verifies the requesting user's access rights to the registry. It then fetches a list of all patients associated with the given registry and attempts to construct patient objects. Patients whose data complies with the expected schema are added to the 'successfully_loaded' list, while those with schema mismatches or missing data are listed under 'failed_patients'. Additionally, the function returns the user's role and admin status in the registry, along with a list of questionnaires associated with the registry.
+
+    Parameters:
+    - registry_id (str): The unique identifier of the registry whose patients are being queried.
+    - auth (CognitoTokenCustom): An authentication token for the user, provided by the `auth_token_check` dependency. This token includes the user's identification and authorization information to verify access to the registry.
+
+    Returns:
+    - dict: A dictionary containing:
+        - 'is_admin' (bool): Whether the requesting user has admin rights in the registry.
+        - 'role' (str): The user's role within the registry.
+        - 'questionnaires' (list): A list of questionnaires associated with the registry.
+        - 'successfully_loaded' (list): A list of patient objects that were successfully loaded.
+        - 'failed_patients' (list): A list of patient data that failed to load due to errors.
+
+    This endpoint is crucial for managing patient data integrity and ensuring that registry administrators have a clear overview of data loading issues.
+    """
     registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
     patients = RegistryService.get_patients(registry_id)
+    registry_metadata = RegistryService.get_registry(registry_id)
     successfully_loaded = []
     failed_patients = []
     for patient in patients:
@@ -97,7 +174,7 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
         except Exception as e:
             print(e)
             failed_patients.append(patient)
-    
+
     return {
         'is_admin': registry_access['is_admin'],
         'role': registry_access['role'],
@@ -110,6 +187,22 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
 @router.post("/{registry_id}/refer-patient")
 async def refer_patient(request: Request, registry_id: str, patient_registry: PatientRegistry,
                         auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
+    Creates a new patient referral in the specified registry, updating registry statistics upon successful referral.
+
+    This endpoint allows for the referral of a new patient to a specified registry. It ensures that the user making the request has access to the given registry and then creates a new patient entry based on the provided patient details. The patient data includes personal information, medical record number (MRN), payer details, and the referring provider's NPI, among others. Once the patient is successfully referred, the function updates the registry's statistics to reflect the new entry.
+
+    Parameters:
+    - request (Request): The request object, which may contain additional data or metadata about the request; not directly used in this function.
+    - registry_id (str): The unique identifier of the registry to which the patient is being referred.
+    - patient_registry (PatientRegistry): An object representing the patient to be referred, containing all necessary patient information such as MRN, payer information, referring provider's NPI, personal information (first name, last name, phone number, email, date of birth), and any treatment logs.
+    - auth (CognitoTokenCustom): An authentication token for the user, provided by the `auth_token_check` dependency. This token is used to verify that the user has the necessary permissions to refer a patient to the specified registry.
+
+    Returns:
+    - PatientRegistry: The patient registry object that was created and saved to the database, including the generated ID and the schema version set to 'V1'.
+
+    The function not only creates a new patient referral but also ensures that the process adheres to the access controls associated with the registry and updates the registry's statistical data to maintain accurate and current records.
+    """
     UserService.check_registry_access(auth.cognito_id, registry_id)
     patient_registry = PatientRegistry(
         id=registry_id,
@@ -133,6 +226,22 @@ async def refer_patient(request: Request, registry_id: str, patient_registry: Pa
 @mixin(mixins=mixins)
 async def record_session(request: Request, registry_id: str, treatment_log: TreatmentLog,
                          auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
+    Records a treatment session for a patient within a specific registry by adding a treatment log entry.
+
+    This endpoint facilitates the recording of a patient's treatment session by adding a new treatment log entry to the specified registry. It verifies the requesting user's access to the registry and then appends the provided treatment log, which contains detailed information about the patient's session, to the registry's treatment log entries. The treatment log includes, but is not limited to, the patient's medical record number (MRN) and the specifics of the treatment session.
+
+    Parameters:
+    - request (Request): The request object, containing data about the incoming HTTP request. This parameter is currently unused in the function body but is required for endpoint operation.
+    - registry_id (str): The identifier of the registry to which the treatment session will be recorded.
+    - treatment_log (TreatmentLog): An object representing the treatment session to be recorded, containing all necessary information such as the patient's MRN and details of the treatment session.
+    - auth (CognitoTokenCustom): An authentication token for the user, provided by the `auth_token_check` dependency. This token is used to ensure that the user has authorized access to add a treatment log to the specified registry.
+
+    Returns:
+    - TreatmentLog: The treatment log object that was added, indicating successful recording of the treatment session.
+
+    The function aims to seamlessly integrate treatment session recording into patient management within registries, ensuring data integrity and authorized access.
+    """
     UserService.check_registry_access(auth.cognito_id, registry_id)
     RegistryService.add_treatment_log(registry_id, treatment_log.patient_mrn, treatment_log)
     return treatment_log
@@ -140,6 +249,23 @@ async def record_session(request: Request, registry_id: str, treatment_log: Trea
 
 @router.post("/{registry_id}/patient-attribute")
 async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
+    Updates or sets a specific attribute for a patient within a given registry. This can include changing the patient's status or other key attributes.
+
+    This endpoint allows for the modification of patient attributes within a registry based on the provided attribute name and value in the request data. If the attribute being set is the patient's status to 'Relapse Prevention Plan', the method also records the current timestamp as the date for the plan. The function checks the user's access to the specified registry before proceeding with the update.
+
+    Parameters:
+    - registry_id (str): The identifier of the registry containing the patient whose attribute is to be updated.
+    - data (dict): A dictionary containing the key-value pairs necessary for the attribute update. Expected keys include:
+        - 'mrn' (str): The medical record number of the patient.
+        - 'attr_name' (str): The name of the attribute to be updated (e.g., 'status').
+        - 'attr_value' (str or int): The new value for the specified attribute. If updating to a 'Relapse Prevention Plan', this should be set accordingly.
+    - auth (CognitoTokenCustom): An authentication token, obtained through dependency injection with `auth_token_check`, to verify the user's authorization to make changes.
+
+    The method does not return a value but updates the patient's record in the database. If a specified attribute affects key treatment or patient management processes (like 'Relapse Prevention Plan'), additional steps are taken to ensure the update is accurately reflected in the patient's record.
+
+    It's important to handle this method's execution with care due to its potential impact on patient management and treatment plans.
+    """
     UserService.check_registry_access(auth.cognito_id, registry_id)
 
     # if we are setting the relapse prevention plan, we need to set the date in the registry
@@ -154,6 +280,20 @@ async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoToken
 
 @router.get("/{registry_id}/app-configs")
 async def get_app_configs(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
+    Retrieves the application configuration settings for a specified registry.
+
+    This endpoint fetches and returns a list of application configuration settings associated with the given registry. It ensures that the user requesting the configurations has the necessary access rights to the registry. The configurations returned can include a variety of settings that dictate how applications within the registry should behave or be displayed to the users.
+
+    Parameters:
+    - registry_id (str): The identifier of the registry whose application configurations are being requested.
+    - auth (CognitoTokenCustom): An authentication token for the user, provided by the `auth_token_check` dependency. This token is used to verify that the user has authorized access to view the application configurations of the specified registry.
+
+    Returns:
+    - list: A list of application configurations for the registry. Each item in the list represents a different configuration setting that applications within the registry might use.
+
+    This function is essential for managing and customizing the user experience within specific registries by providing the necessary configuration settings that applications need to operate correctly or according to the registry's requirements.
+    """
     UserService.check_registry_access(auth.cognito_id, registry_id)
     app_configs = AkelloAppsService.get_app_configs(registry_id)
     return [app for app in app_configs]
@@ -163,6 +303,4 @@ async def get_app_configs(registry_id: str, auth: CognitoTokenCustom = Depends(a
 async def save_akello_app(registry_id: str, akello_app: AkelloApp,
                           auth: CognitoTokenCustom = Depends(auth_token_check)):
     UserService.check_registry_access(auth.cognito_id, registry_id)
-    registry = RegistryService.get_registry(registry_id)
-    registry = RegistryModel(**registry)
     AkelloAppsService.save_akello_app(registry_id, akello_app)

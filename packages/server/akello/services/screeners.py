@@ -9,6 +9,10 @@ class ScreenerService(BaseService):
 
     @staticmethod
     def get_screeners():
+        """
+        Get all screeners from the screener's directory. The client will present to the user to select which screener they want active in a registry.
+        Returns: list of screeners
+        """
         measurement_list = []
         measurements = os.listdir('akello/screeners/measurements')
         for measurement in measurements:
