@@ -4,10 +4,11 @@ from unittest.mock import patch
 from akello.services.tests import mock_env_configs
 from akello.services.user import UserService
 
+
 @mock.patch.dict(os.environ, mock_env_configs)
 class TestUserService(TestCase):
 
-    @patch('akello.db.connector.dynamodb.registry_db.query')    
+    @patch('akello.db.connector.dynamodb.registry_db.query')
     def test_service_get_user(self, mock_query):
 
         db_data = [{'user-id': 1}]

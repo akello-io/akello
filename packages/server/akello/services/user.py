@@ -241,7 +241,6 @@ class UserService(BaseService):
         except ClientError as e:
             print(e)
 
-    #TODO: this needs to be fully tested with automation
     @staticmethod
     def check_registry_access(cognito_user_id, registry_id):
         """
