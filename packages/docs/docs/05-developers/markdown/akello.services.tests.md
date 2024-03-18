@@ -18,6 +18,12 @@ Bases: `TestCase`
 
 ## akello.services.tests.test_screeners_service module
 
+### *class* akello.services.tests.test_screeners_service.TestScreenerService(methodName='runTest')
+
+Bases: `TestCase`
+
+#### test_screener_count()
+
 ## akello.services.tests.test_user_service module
 
 ### *class* akello.services.tests.test_user_service.TestUserService(methodName='runTest')

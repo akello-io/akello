@@ -27,7 +27,7 @@
 
 ## akello.db.models module
 
-### *class* akello.db.models.PatientRegistry(\*, id: str | None = None, patient_flag: [FlagTypes](#akello.db.types.FlagTypes) | None = None, patient_mrn: str, date_created: float = 1710765972.591372, date_graduated: float | None = None, date_modified: float = 1710765972.591376, payer: str | None = None, referring_provider_npi: str | None = None, first_name: str, last_name: str, phone_number: str, email: str, date_of_birth: str, treatment_logs: List[[TreatmentLog](#akello.db.types.TreatmentLog)] = [], event_logs: List[[EventLog](#akello.db.types.EventLog)] = [], audit_logs: List[[AuditLog](#akello.db.types.AuditLog)] = [], flags: List[dict] = [], status: [PatientStatysTypes](#akello.db.types.PatientStatysTypes) = PatientStatysTypes.enrolled, initial_assessment: int | None = None, last_follow_up: int | None = None, last_psychiatric_consult: int | None = None, relapse_prevention_plan: int | None = None, total_sessions: int | None = 0, weeks_since_initial_assessment: int | None = 0, minutes_this_month: int | None = 0, schema_version: str | None = None)
+### *class* akello.db.models.PatientRegistry(\*, id: str | None = None, patient_flag: [FlagTypes](#akello.db.types.FlagTypes) | None = None, patient_mrn: str, date_created: float = 1710829848.380473, date_graduated: float | None = None, date_modified: float = 1710829848.380478, payer: str | None = None, referring_provider_npi: str | None = None, first_name: str, last_name: str, phone_number: str, email: str, date_of_birth: str, treatment_logs: List[[TreatmentLog](#akello.db.types.TreatmentLog)] = [], event_logs: List[[EventLog](#akello.db.types.EventLog)] = [], audit_logs: List[[AuditLog](#akello.db.types.AuditLog)] = [], flags: List[dict] = [], status: [PatientStatysTypes](#akello.db.types.PatientStatysTypes) = PatientStatysTypes.enrolled, initial_assessment: int | None = None, last_follow_up: int | None = None, last_psychiatric_consult: int | None = None, relapse_prevention_plan: int | None = None, total_sessions: int | None = 0, weeks_since_initial_assessment: int | None = 0, minutes_this_month: int | None = 0, schema_version: str | None = None)
 
 Bases: [`RegistryDBBaseModel`](akello.db.connector.md#akello.db.connector.dynamodb.RegistryDBBaseModel)
 
@@ -69,7 +69,7 @@ Stores the complete patient record including all treatment logs
 
 Configuration for the model, should be a dictionary conforming to [ConfigDict][pydantic.config.ConfigDict].
 
-#### model_fields *: ClassVar[dict[str, FieldInfo]]* *= {'audit_logs': FieldInfo(annotation=List[AuditLog], required=False, default=[]), 'date_created': FieldInfo(annotation=float, required=False, default=1710765972.591372), 'date_graduated': FieldInfo(annotation=Union[float, NoneType], required=False), 'date_modified': FieldInfo(annotation=float, required=False, default=1710765972.591376), 'date_of_birth': FieldInfo(annotation=str, required=True), 'email': FieldInfo(annotation=str, required=True), 'event_logs': FieldInfo(annotation=List[EventLog], required=False, default=[]), 'first_name': FieldInfo(annotation=str, required=True), 'flags': FieldInfo(annotation=List[dict], required=False, default=[]), 'id': FieldInfo(annotation=Union[str, NoneType], required=False), 'initial_assessment': FieldInfo(annotation=Union[int, NoneType], required=False), 'last_follow_up': FieldInfo(annotation=Union[int, NoneType], required=False), 'last_name': FieldInfo(annotation=str, required=True), 'last_psychiatric_consult': FieldInfo(annotation=Union[int, NoneType], required=False), 'minutes_this_month': FieldInfo(annotation=Union[int, NoneType], required=False, default=0), 'patient_flag': FieldInfo(annotation=Union[FlagTypes, NoneType], required=False), 'patient_mrn': FieldInfo(annotation=str, required=True), 'payer': FieldInfo(annotation=Union[str, NoneType], required=False), 'phone_number': FieldInfo(annotation=str, required=True), 'referring_provider_npi': FieldInfo(annotation=Union[str, NoneType], required=False), 'relapse_prevention_plan': FieldInfo(annotation=Union[int, NoneType], required=False), 'schema_version': FieldInfo(annotation=Union[str, NoneType], required=False), 'status': FieldInfo(annotation=PatientStatysTypes, required=False, default=<PatientStatysTypes.enrolled: 'Enrolled'>), 'total_sessions': FieldInfo(annotation=Union[int, NoneType], required=False, default=0), 'treatment_logs': FieldInfo(annotation=List[TreatmentLog], required=False, default=[]), 'weeks_since_initial_assessment': FieldInfo(annotation=Union[int, NoneType], required=False, default=0)}*
+#### model_fields *: ClassVar[dict[str, FieldInfo]]* *= {'audit_logs': FieldInfo(annotation=List[AuditLog], required=False, default=[]), 'date_created': FieldInfo(annotation=float, required=False, default=1710829848.380473), 'date_graduated': FieldInfo(annotation=Union[float, NoneType], required=False), 'date_modified': FieldInfo(annotation=float, required=False, default=1710829848.380478), 'date_of_birth': FieldInfo(annotation=str, required=True), 'email': FieldInfo(annotation=str, required=True), 'event_logs': FieldInfo(annotation=List[EventLog], required=False, default=[]), 'first_name': FieldInfo(annotation=str, required=True), 'flags': FieldInfo(annotation=List[dict], required=False, default=[]), 'id': FieldInfo(annotation=Union[str, NoneType], required=False), 'initial_assessment': FieldInfo(annotation=Union[int, NoneType], required=False), 'last_follow_up': FieldInfo(annotation=Union[int, NoneType], required=False), 'last_name': FieldInfo(annotation=str, required=True), 'last_psychiatric_consult': FieldInfo(annotation=Union[int, NoneType], required=False), 'minutes_this_month': FieldInfo(annotation=Union[int, NoneType], required=False, default=0), 'patient_flag': FieldInfo(annotation=Union[FlagTypes, NoneType], required=False), 'patient_mrn': FieldInfo(annotation=str, required=True), 'payer': FieldInfo(annotation=Union[str, NoneType], required=False), 'phone_number': FieldInfo(annotation=str, required=True), 'referring_provider_npi': FieldInfo(annotation=Union[str, NoneType], required=False), 'relapse_prevention_plan': FieldInfo(annotation=Union[int, NoneType], required=False), 'schema_version': FieldInfo(annotation=Union[str, NoneType], required=False), 'status': FieldInfo(annotation=PatientStatysTypes, required=False, default=<PatientStatysTypes.enrolled: 'Enrolled'>), 'total_sessions': FieldInfo(annotation=Union[int, NoneType], required=False, default=0), 'treatment_logs': FieldInfo(annotation=List[TreatmentLog], required=False, default=[]), 'weeks_since_initial_assessment': FieldInfo(annotation=Union[int, NoneType], required=False, default=0)}*
 
 Metadata about the fields defined on the model,
 mapping of field names to [FieldInfo][pydantic.fields.FieldInfo].
@@ -145,7 +145,7 @@ This replaces Model._\_fields_\_ from Pydantic V1.
 
 #### *property* sort_key *: str*
 
-### *class* akello.db.models.RegistryUser(\*, registry_id: str, user_id: str, date_created: int = 1710765972.589448, first_name: str, last_name: str, email: str, role: [UserRole](#akello.db.types.UserRole), is_admin: bool = False)
+### *class* akello.db.models.RegistryUser(\*, registry_id: str, user_id: str, date_created: int = 1710829848.378825, first_name: str, last_name: str, email: str, role: [UserRole](#akello.db.types.UserRole), is_admin: bool = False)
 
 Bases: [`RegistryDBBaseModel`](akello.db.connector.md#akello.db.connector.dynamodb.RegistryDBBaseModel)
 
@@ -166,7 +166,7 @@ Stores the user information for a given registry
 
 Configuration for the model, should be a dictionary conforming to [ConfigDict][pydantic.config.ConfigDict].
 
-#### model_fields *: ClassVar[dict[str, FieldInfo]]* *= {'date_created': FieldInfo(annotation=int, required=False, default=1710765972.589448), 'email': FieldInfo(annotation=str, required=True), 'first_name': FieldInfo(annotation=str, required=True), 'is_admin': FieldInfo(annotation=bool, required=False, default=False), 'last_name': FieldInfo(annotation=str, required=True), 'registry_id': FieldInfo(annotation=str, required=True), 'role': FieldInfo(annotation=UserRole, required=True), 'user_id': FieldInfo(annotation=str, required=True)}*
+#### model_fields *: ClassVar[dict[str, FieldInfo]]* *= {'date_created': FieldInfo(annotation=int, required=False, default=1710829848.378825), 'email': FieldInfo(annotation=str, required=True), 'first_name': FieldInfo(annotation=str, required=True), 'is_admin': FieldInfo(annotation=bool, required=False, default=False), 'last_name': FieldInfo(annotation=str, required=True), 'registry_id': FieldInfo(annotation=str, required=True), 'role': FieldInfo(annotation=UserRole, required=True), 'user_id': FieldInfo(annotation=str, required=True)}*
 
 Metadata about the fields defined on the model,
 mapping of field names to [FieldInfo][pydantic.fields.FieldInfo].
@@ -183,7 +183,7 @@ This replaces Model._\_fields_\_ from Pydantic V1.
 
 #### user_id *: str*
 
-### *class* akello.db.models.UserEmail(\*, email: str, user_id: str, date_created: int = 1710765972.589987)
+### *class* akello.db.models.UserEmail(\*, email: str, user_id: str, date_created: int = 1710829848.379278)
 
 Bases: [`RegistryDBBaseModel`](akello.db.connector.md#akello.db.connector.dynamodb.RegistryDBBaseModel)
 
@@ -198,7 +198,7 @@ TODO: consider doing this with patients as well?
 
 Configuration for the model, should be a dictionary conforming to [ConfigDict][pydantic.config.ConfigDict].
 
-#### model_fields *: ClassVar[dict[str, FieldInfo]]* *= {'date_created': FieldInfo(annotation=int, required=False, default=1710765972.589987), 'email': FieldInfo(annotation=str, required=True), 'user_id': FieldInfo(annotation=str, required=True)}*
+#### model_fields *: ClassVar[dict[str, FieldInfo]]* *= {'date_created': FieldInfo(annotation=int, required=False, default=1710829848.379278), 'email': FieldInfo(annotation=str, required=True), 'user_id': FieldInfo(annotation=str, required=True)}*
 
 Metadata about the fields defined on the model,
 mapping of field names to [FieldInfo][pydantic.fields.FieldInfo].
@@ -246,7 +246,7 @@ This replaces Model._\_fields_\_ from Pydantic V1.
 
 #### *property* sort_key *: str*
 
-### *class* akello.db.models.UserRegistry(\*, user_id: str, registry_id: str, date_created: int = 1710765972.58919)
+### *class* akello.db.models.UserRegistry(\*, user_id: str, registry_id: str, date_created: int = 1710829848.378535)
 
 Bases: [`RegistryDBBaseModel`](akello.db.connector.md#akello.db.connector.dynamodb.RegistryDBBaseModel)
 
@@ -258,7 +258,7 @@ Stores the user to registry mapping
 
 Configuration for the model, should be a dictionary conforming to [ConfigDict][pydantic.config.ConfigDict].
 
-#### model_fields *: ClassVar[dict[str, FieldInfo]]* *= {'date_created': FieldInfo(annotation=int, required=False, default=1710765972.58919), 'registry_id': FieldInfo(annotation=str, required=True), 'user_id': FieldInfo(annotation=str, required=True)}*
+#### model_fields *: ClassVar[dict[str, FieldInfo]]* *= {'date_created': FieldInfo(annotation=int, required=False, default=1710829848.378535), 'registry_id': FieldInfo(annotation=str, required=True), 'user_id': FieldInfo(annotation=str, required=True)}*
 
 Metadata about the fields defined on the model,
 mapping of field names to [FieldInfo][pydantic.fields.FieldInfo].
@@ -273,7 +273,7 @@ This replaces Model._\_fields_\_ from Pydantic V1.
 
 #### user_id *: str*
 
-### *class* akello.db.models.UserSession(\*, user_id: str, date_created: int = 1710765972.588832, user_agent: dict, ip: str)
+### *class* akello.db.models.UserSession(\*, user_id: str, date_created: int = 1710829848.378247, user_agent: dict, ip: str)
 
 Bases: [`RegistryDBBaseModel`](akello.db.connector.md#akello.db.connector.dynamodb.RegistryDBBaseModel)
 
@@ -287,7 +287,7 @@ Stores user session information to audit login and usage
 
 Configuration for the model, should be a dictionary conforming to [ConfigDict][pydantic.config.ConfigDict].
 
-#### model_fields *: ClassVar[dict[str, FieldInfo]]* *= {'date_created': FieldInfo(annotation=int, required=False, default=1710765972.588832), 'ip': FieldInfo(annotation=str, required=True), 'user_agent': FieldInfo(annotation=dict, required=True), 'user_id': FieldInfo(annotation=str, required=True)}*
+#### model_fields *: ClassVar[dict[str, FieldInfo]]* *= {'date_created': FieldInfo(annotation=int, required=False, default=1710829848.378247), 'ip': FieldInfo(annotation=str, required=True), 'user_agent': FieldInfo(annotation=dict, required=True), 'user_id': FieldInfo(annotation=str, required=True)}*
 
 Metadata about the fields defined on the model,
 mapping of field names to [FieldInfo][pydantic.fields.FieldInfo].

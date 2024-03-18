@@ -11,6 +11,8 @@
       * [`TestRegistryService.test_get_registry()`](akello.services.tests.md#akello.services.tests.test_registry_service.TestRegistryService.test_get_registry)
   * [akello.services.tests.test_reports_service module](akello.services.tests.md#module-akello.services.tests.test_reports_service)
   * [akello.services.tests.test_screeners_service module](akello.services.tests.md#module-akello.services.tests.test_screeners_service)
+    * [`TestScreenerService`](akello.services.tests.md#akello.services.tests.test_screeners_service.TestScreenerService)
+      * [`TestScreenerService.test_screener_count()`](akello.services.tests.md#akello.services.tests.test_screeners_service.TestScreenerService.test_screener_count)
   * [akello.services.tests.test_user_service module](akello.services.tests.md#module-akello.services.tests.test_user_service)
     * [`TestUserService`](akello.services.tests.md#akello.services.tests.test_user_service.TestUserService)
       * [`TestUserService.test_registry_access_does_not_exist()`](akello.services.tests.md#akello.services.tests.test_user_service.TestUserService.test_registry_access_does_not_exist)
@@ -43,10 +45,10 @@ Bases: [`BaseService`](#akello.services.BaseService)
 Updates the treatment logs for a patient in the registry by appending a new treatment log entry.
 It also updates specific attributes based on the contact type of the treatment log.
 
-Args:
-: registry_id: The unique identifier for the registry.
-  sort_key: The sort key used for the database entry.
-  treatment_log: An instance of TreatmentLog representing the new treatment log to be added.
+* **Parameters:**
+  * **registry_id** – The unique identifier for the registry.
+  * **sort_key** – The sort key used for the database entry.
+  * **treatment_log** – An instance of TreatmentLog representing the new treatment log to be added.
 
 #### *static* create_registry(name, description, questionnaires, integrations, logo_url=None)
 
@@ -115,6 +117,9 @@ Bases: [`BaseService`](#akello.services.BaseService)
 
 #### *static* get_screeners()
 
+Get all screeners from the screener’s directory. The client will present to the user to select which screener they want active in a registry.
+Returns: list of screeners
+
 ## akello.services.user module
 
 ### *class* akello.services.user.UserService
@@ -128,117 +133,112 @@ creating and updating user information, and checking user access to specific reg
 #### *static* check_registry_access(cognito_user_id, registry_id)
 
 Checks if a user has access to a registry.
-Parameters:
+:param cognito_user_id: The Cognito user ID of the user.
+:type cognito_user_id: str
+:param registry_id: The registry ID to associate the user with.
+:type registry_id: str
 
-> cognito_user_id (str): The Cognito user ID of the user.
-> registry_id (str): The registry ID to associate the user with.
-
-Returns:
-: Raises an exception if the user is not authorized to access the registry.
+* **Returns:**
+  Raises an exception if the user is not authorized to access the registry.
 
 #### *static* create_registry_user(registry_id, first_name, last_name, email, user_id, role: [UserRole](akello.db.md#akello.db.types.UserRole), is_admin: bool)
 
 Creates a new registry user association in the database.
 
-Parameters:
-: registry_id (str): The ID of the registry.
-  first_name (str): The first name of the user.
-  last_name (str): The last name of the user.
-  email (str): The email of the user.
-  user_id (str): The user ID.
-  role (UserRole): The role of the user in the registry.
-  is_admin (bool): Indicates if the user is an admin.
-
-Raises:
-: ClientError: If the registry user could not be created.
+* **Parameters:**
+  * **registry_id** (*str*) – The ID of the registry.
+  * **first_name** (*str*) – The first name of the user.
+  * **last_name** (*str*) – The last name of the user.
+  * **email** (*str*) – The email of the user.
+  * **user_id** (*str*) – The user ID.
+  * **role** ([*UserRole*](akello.db.md#akello.db.types.UserRole)) – The role of the user in the registry.
+  * **is_admin** (*bool*) – Indicates if the user is an admin.
+* **Raises:**
+  **ClientError** – If the registry user could not be created.
 
 #### *static* create_user(cognito_user_id, email, first_name, last_name, profile_photo)
 
 Creates a new user in the database.
 
-Parameters:
-: cognito_user_id (str): The Cognito user ID for the new user.
-  email (str): The email address of the new user.
-  first_name (str): The first name of the new user.
-  last_name (str): The last name of the new user.
-  profile_photo (str): The URL of the profile photo for the new user.
-
-Raises:
-: ClientError: If the user could not be created in the database.
+* **Parameters:**
+  * **cognito_user_id** (*str*) – The Cognito user ID for the new user.
+  * **email** (*str*) – The email address of the new user.
+  * **first_name** (*str*) – The first name of the new user.
+  * **last_name** (*str*) – The last name of the new user.
+  * **profile_photo** (*str*) – The URL of the profile photo for the new user.
+* **Raises:**
+  **ClientError** – If the user could not be created in the database.
 
 #### *static* create_user_registry(user_id, registry_id)
 
 Creates a new user-registry association in the database.
 
-Parameters:
-: user_id (str): The user ID of the user.
-  registry_id (str): The registry ID to associate the user with.
-
-Raises:
-: ClientError: If the association could not be created.
+* **Parameters:**
+  * **user_id** (*str*) – The user ID of the user.
+  * **registry_id** (*str*) – The registry ID to associate the user with.
+* **Raises:**
+  **ClientError** – If the association could not be created.
 
 #### *static* get_registries(cognito_user_id)
 
 Creates registry user association in the database.
 
-Parameters:
-: cognito_user_id (str): The Cognito user ID of the user.
-
-Raises:
-: ClientError: If the system fails to query the database.
+* **Parameters:**
+  **cognito_user_id** (*str*) – The Cognito user ID of the user.
+* **Raises:**
+  **ClientError** – If the system fails to query the database.
 
 #### *static* get_user(cognito_user_id)
 
 Retrieves the user profile from the database using the given Cognito user ID.
 
-Parameters:
-: cognito_user_id (str): The Cognito user ID of the user to retrieve.
-
-Returns:
-: List[Dict]: A list of items representing the user’s profile.
-
-Raises:
-: ClientError: If the query to the database fails.
+* **Parameters:**
+  **cognito_user_id** (*str*) – The Cognito user ID of the user to retrieve.
+* **Returns:**
+  A list of items representing the user’s profile.
+* **Return type:**
+  List[Dict]
+* **Raises:**
+  **ClientError** – If the query to the database fails.
 
 #### *static* get_user_sessions(cognito_user_id)
 
 Retrieves the sessions of a user sorted in reverse chronological order.
 
-Parameters:
-: cognito_user_id (str): The Cognito user ID of the user whose sessions are to be retrieved.
-
-Returns:
-: List[Dict]: A list of items representing the user’s sessions.
-
-Raises:
-: ClientError: If the query to the database fails.
+* **Parameters:**
+  **cognito_user_id** (*str*) – The Cognito user ID of the user whose sessions are to be retrieved.
+* **Returns:**
+  A list of items representing the user’s sessions.
+* **Return type:**
+  List[Dict]
+* **Raises:**
+  **ClientError** – If the query to the database fails.
 
 #### *static* save_user_session(cognito_user_id, user_agent, ip_address)
 
 Saves a new user session to the database.
 
-Parameters:
-: cognito_user_id (str): The Cognito user ID of the user.
-  user_agent (str): The user agent string of the user’s device.
-  ip_address (str): The IP address of the user’s device.
-
-Raises:
-: ClientError: If saving the session to the database fails.
+* **Parameters:**
+  * **cognito_user_id** (*str*) – The Cognito user ID of the user.
+  * **user_agent** (*str*) – The user agent string of the user’s device.
+  * **ip_address** (*str*) – The IP address of the user’s device.
+* **Raises:**
+  **ClientError** – If saving the session to the database fails.
 
 #### *static* set_user_active(cognito_user_id)
 
 Updates the last login timestamp for a user, effectively setting them as active.
 
-Parameters:
-: cognito_user_id (str): The Cognito user ID of the user to update.
+* **Parameters:**
+  **cognito_user_id** (*str*) – The Cognito user ID of the user to update.
 
 #### *static* update_profile_photo(cognito_user_id, photo_url)
 
 Updates the profile photo URL of a user.
 
-Parameters:
-: cognito_user_id (str): The Cognito user ID of the user.
-  photo_url (str): The new URL of the user’s profile photo.
+* **Parameters:**
+  * **cognito_user_id** (*str*) – The Cognito user ID of the user.
+  * **photo_url** (*str*) – The new URL of the user’s profile photo.
 
 ## Module contents
 

@@ -8,7 +8,7 @@
     * [akello.auth package](akello.auth.md)
       * [Subpackages](akello.auth.md#subpackages)
       * [Submodules](akello.auth.md#submodules)
-      * [akello.auth.provider module](akello.auth.md#akello-auth-provider-module)
+      * [akello.auth.provider module](akello.auth.md#module-akello.auth.provider)
       * [Module contents](akello.auth.md#module-akello.auth)
     * [akello.db package](akello.db.md)
       * [Subpackages](akello.db.md#subpackages)

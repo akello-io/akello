@@ -20,7 +20,8 @@ author = 'Vijay Selvaraj'
 
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx_md'
+    'sphinx_md',
+    'sphinx.ext.napoleon',
 ]
 
 
