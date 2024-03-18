@@ -11,7 +11,7 @@ from akello.db.connector.dynamodb import registry_db, RegistryDBBaseModel
 
 
 
-class Response(BaseModel):
+class QuestionResponse(BaseModel):
     id: str
     response: str
     score: int
@@ -20,7 +20,7 @@ class Response(BaseModel):
 class Question(BaseModel):
     id: str
     question: str
-    responses: List[Response]
+    responses: List[QuestionResponse]
     score: int = 0
 
 
@@ -99,7 +99,6 @@ class UserInvite(BaseModel):
             print(e)
 
 
-
 class FlagTypes(str, Enum):
     needs_discussion = 'Needs Discussion'
     review_with_psychiatrist = 'Review with Psychiatrist'
@@ -122,8 +121,6 @@ class VisitTypes(str, Enum):
 class TreatmentLogScore(BaseModel):
     score_name: str
     score_value: int
-
-
 
 
 class TreatmentLog(BaseModel):
