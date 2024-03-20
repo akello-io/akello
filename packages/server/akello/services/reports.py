@@ -16,11 +16,21 @@ class ReportsService(BaseService):
 
     @staticmethod
     def calculate_99492(patient, year, month, minutes):
-        initial_assessment = datetime.utcfromtimestamp(patient.initial_assessment / 1000)        
-        initial_assessment_year = initial_assessment.year
-        initial_assessment_month = initial_assessment.month
 
-        if initial_assessment_year != year and initial_assessment_month != month:            
+        try:
+
+            initial_assessment = datetime.utcfromtimestamp(patient.initial_assessment / 1000)
+            initial_assessment_year = initial_assessment.year
+            initial_assessment_month = initial_assessment.month
+        except Exception as e:
+            logger.error('Error calculating 99492: %s' % e)
+            return {
+                '99492': False,
+                '99494': 0
+            }
+
+
+        if initial_assessment_year != year and initial_assessment_month != month:
             return {
                 '99492': False,
                 '99494': 0
@@ -33,9 +43,16 @@ class ReportsService(BaseService):
     
     @staticmethod
     def calculate_99493(patient, year, month, minutes):
-        initial_assessment = datetime.utcfromtimestamp(patient.initial_assessment / 1000)        
-        initial_assessment_year = initial_assessment.year
-        initial_assessment_month = initial_assessment.month
+        try:
+            initial_assessment = datetime.utcfromtimestamp(patient.initial_assessment / 1000)
+            initial_assessment_year = initial_assessment.year
+            initial_assessment_month = initial_assessment.month
+        except Exception as e:
+            logger.error('Error calculating 99493: %s' % e)
+            return {
+                '99493': False,
+                '99494': 0
+            }
 
         if initial_assessment_year >= year and initial_assessment_month != month:            
             # return false if its for the month of the initial assessment

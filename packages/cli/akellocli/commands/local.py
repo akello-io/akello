@@ -68,17 +68,14 @@ def setup():
 def start(name):
     if name=='server':
         cmd = """
-                cd ../server &&
+                cd packages/server &&
                 source .venv/bin/activate &&
                 pip install -r requirements.txt &&
                 uvicorn akello.main:app --reload
         """
         os.system(cmd)
     elif name=='cocm':
-        cmd = """
-            sh ./dev-build.sh &&            
-            cd ../app &&        
-            pnpm dev"""
+        cmd = """sh packages/cli/akellocli/dev-build-single.sh"""
         os.system(cmd)
 
 

@@ -48,8 +48,12 @@ REQUIRED SOFTWARE
   
 
 ```shell
-sh run-setup.sh   # use the output to set your environment variables
-sh run-local.sh   # new local users created will have a SMS code of `1234``
+python3 -m venv .venv
+source .venv/bin/activate
+pip install packages/cli
+akellocli setup
+akellocli start server
+akellocli start cocm
 ```
 
 
