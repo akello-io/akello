@@ -13,13 +13,12 @@ const HeaderMenu = () => {
     </>
   )
 
+  /*
   return (
     <Menu shadow="md" width={200}>
       <Menu.Target>
-        <UnstyledButton className='flex flex-row space-x-2'>
-          {/* 
-          <Avatar className='my-auto' color="cyan" radius="xl">VS</Avatar>
-          */}          
+        <UnstyledButton className='flex flex-row space-x-2'>          
+          <Avatar className='my-auto' color="cyan" radius="xl">VS</Avatar>          
           <div className='my-auto'>
             {akello.getUserName()}
           </div>
@@ -46,6 +45,7 @@ const HeaderMenu = () => {
       </Menu.Dropdown>
     </Menu>
   );
+  */
 }
 
 export default HeaderMenu;

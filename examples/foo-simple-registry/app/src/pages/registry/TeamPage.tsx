@@ -46,12 +46,12 @@ const columns: GridColDef[] = [
                 <>
                     {
                         !cellValues.row.is_user && (
-                            <div className={"btn btn-error"}
-                                 onClick={(event) => {                                    
-                                 }}
-                            >
-                                Delete
-                            </div>
+                            <>
+                                <div className={"btn btn-error"}>
+                                    Delete
+                                </div>
+                            </>
+                            
                         )
                     }
                 </>

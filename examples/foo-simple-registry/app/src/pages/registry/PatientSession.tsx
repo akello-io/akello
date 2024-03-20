@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 
-const PatientSession = ({}) => {
+const PatientSession = () => {
     
     const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
     //const [questionnaires, setQuestionnaires] = useState<[]>([phq9])
