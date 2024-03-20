@@ -6,8 +6,16 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 const columns: GridColDef[] = [
     {
         field: 'stat_date',
-        headerName: 'Date',
-        width: 110,
+        headerName: 'Date',        
+        width: 110,        
+        valueGetter: (params) => {
+            return new Date(params.row.stat_date).toLocaleDateString()
+        }
+    },
+    {
+        field: 'mrn',
+        headerName: 'MRN',
+        width: 150,
     },
     {
         field: 'first_name',
@@ -29,6 +37,19 @@ const columns: GridColDef[] = [
         field: 'payer',
         headerName: 'Payer',
         width: 350        
+    },
+    {
+        field: '99492',
+        headerName: '99492'
+        
+    },
+    {
+        field: '99493',
+        headerName: '99493'      
+    },
+    {
+        field: '99494',
+        headerName: '99494'        
     },
     {
         field: 'referring_provider_npi',

@@ -22,7 +22,7 @@ const ReportsPage = () => {
 
     useEffect(() => {
         if(value.startDate && value.endDate) {            
-            akello.reportsService.getBillingReport(akello.getSelectedRegistry()!.id, moment(value.startDate).unix(), moment(value.endDate).unix(), (data) => {
+            akello.reportsService.getBillingReport(akello.getSelectedRegistry()!.id, moment(value.startDate).unix(), moment(value.endDate).unix(), (data) => {                
                 setStatData(data)
             })
         }

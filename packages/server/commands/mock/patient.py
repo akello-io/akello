@@ -17,7 +17,7 @@ class PatientMock:
     max_sessions = 12
 
     minimum_minutes = 1000
-    maximum_minutes = 1500    
+    maximum_minutes = 15000    
     engagement_level = 0.0
     no_show_rate = 0.0
     treatment_response = 0.0
