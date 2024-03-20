@@ -3,7 +3,6 @@ from akello.db.models import TreatmentLog, PatientRegistry
 from akello.services import BaseService
 from akello.services.registry import RegistryService
 from datetime import datetime
-import pandas as pd
 
 logger = logging.getLogger('mangum')
 
