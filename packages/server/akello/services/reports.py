@@ -3,6 +3,7 @@ from akello.db.models import TreatmentLog, PatientRegistry
 from akello.services import BaseService
 from akello.services.registry import RegistryService
 from datetime import datetime
+import pandas as pd
 
 logger = logging.getLogger('mangum')
 
@@ -15,67 +16,102 @@ class ReportsService(BaseService):
     """
 
     @staticmethod
-    def get_billing_report(registry_id, from_date, to_date):
-        """
-        Generates a billing report for a given registry within a specific date range.
-        The report includes patient treatment logs, summarized by minutes spent per month.
+    def calculate_99492(patient, year, month, minutes):
+        initial_assessment = datetime.utcfromtimestamp(patient.initial_assessment / 1000)        
+        initial_assessment_year = initial_assessment.year
+        initial_assessment_month = initial_assessment.month
 
-        Parameters:
-        - registry_id: An identifier for the registry whose billing report is to be generated.
-        - from_date: The starting timestamp (inclusive) for filtering treatment logs.
-        - to_date: The ending timestamp (inclusive) for filtering treatment logs.
-
-        Returns:
-        - A list of dictionaries, each representing a billing entry for a patient including first name, last name,
-        medical record number (MRN), date, payer, referring provider NPI, and total minutes of treatment.
-        """
-
-        logger.info('running report for registry: %s from: %s to: %s' % (registry_id, from_date, to_date))
-        patients = RegistryService.get_patients(registry_id)
-        patient_report = {
-            'monthly': {
-            },
-            'patients': {
+        if initial_assessment_year != year and initial_assessment_month != month:            
+            return {
+                '99492': False,
+                '99494': 0
             }
+                    
+        return {
+            '99492': minutes > 70,
+            '99494': int((minutes - 70) / 30) * 30
+        }
+    
+    @staticmethod
+    def calculate_99493(patient, year, month, minutes):
+        initial_assessment = datetime.utcfromtimestamp(patient.initial_assessment / 1000)        
+        initial_assessment_year = initial_assessment.year
+        initial_assessment_month = initial_assessment.month
+
+        if initial_assessment_year >= year and initial_assessment_month != month:            
+            # return false if its for the month of the initial assessment
+            return {
+                '99493': False,
+                '99494': 0
+            }
+                   
+        return {
+            '99493': minutes > 60,
+            '99494': int((minutes - 60) / 30) * 30
         }
 
+
+    @staticmethod
+    def get_billing_report(registry_id, from_date, to_date):    
+        logger.info('running report for registry: %s from: %s to: %s' % (registry_id, from_date, to_date))
+
+        report = {}
+        patients = RegistryService.get_patients(registry_id)        
+
+        # Generate the minute stats for each patient
         for patient in patients:
-            mrn = patient['patient_mrn']
-            if mrn not in patient_report:
-                patient_report['patients'][mrn] = {
-                    'minute_stats': {},
-                    'info': patient
-                }
-            
-            for treatment_log in patient['treatment_logs']:
-                t = TreatmentLog(**treatment_log) 
-                utc_dt = datetime.utcfromtimestamp(t.date / 1000)
-                if not (utc_dt.timestamp() >= from_date and utc_dt.timestamp() <= to_date):
-                    continue
-                year = utc_dt.year
-                month = utc_dt.month
-                utc_dt_str = '%s-%s' % (year, month)
-                if utc_dt_str not in patient_report['patients'][mrn]['minute_stats']:
-                    patient_report['patients'][mrn]['minute_stats'][utc_dt_str] = 0
-                patient_report['patients'][mrn]['minute_stats'][utc_dt_str] += t.minutes                    
+            patient = PatientRegistry(**patient)
+            patient.treatment_logs = sorted(patient.treatment_logs, key=lambda x: x.date, reverse=True)
+            patient_minute_stats = {}
+            for treatment_log in patient.treatment_logs:
+                month = datetime.utcfromtimestamp(treatment_log.date/1000).month
+                year = datetime.utcfromtimestamp(treatment_log.date/1000).year
+                if '%s-%s' % (month, year) not in patient_minute_stats:
+                    patient_minute_stats['%s-%s' % (month, year)] = {'minutes': 0, '99492': 0, '99493': 0, '99494': 0}
+                patient_minute_stats['%s-%s' % (month, year)]['minutes'] += treatment_log.minutes
+            if patient.patient_mrn not in report:
+                report[patient.patient_mrn] = {}
+
+            for month_year in patient_minute_stats:
+                month, year = month_year.split('-')
+                cpt99492 = ReportsService.calculate_99492(patient, int(year), int(month), patient_minute_stats[month_year]['minutes'])                
+                cpt99493 = ReportsService.calculate_99493(patient, int(year), int(month), patient_minute_stats[month_year]['minutes'])
+                
+                if cpt99492['99492']:
+                    patient_minute_stats[month_year]['99492'] = cpt99492['99492']
+                    patient_minute_stats[month_year]['99494'] = cpt99492['99494']
+
+                if cpt99493['99493']:
+                    patient_minute_stats[month_year]['99493'] = cpt99493['99493']
+                    patient_minute_stats[month_year]['99494'] = cpt99493['99494']
+
+
+            report[patient.patient_mrn] = {
+                'patient': patient.model_dump(),
+                'minute_stats': patient_minute_stats,
+            }            
+
 
         # flatten the data
         r = []
-        for mrn in patient_report['patients']:
-            p = patient_report['patients'][mrn]['info']
-            for s in patient_report['patients'][mrn]['minute_stats']:                
-                r.append({
-                    'first_name': p['first_name'],
-                    'last_name': p['last_name'],
+        for mrn in report:            
+            patient = report[mrn]['patient']
+            for stat_date in report[mrn]['minute_stats']:                    
+                r.append({      
+                    'first_name': patient['first_name'],
+                    'last_name': patient['last_name'],
+                    'payer': patient['payer'],
+                    'referring_provider_npi': patient['referring_provider_npi'],                                      
                     'mrn': mrn,
-                    'stat_date': s,
-                    'payer': p['payer'],
-                    'referring_provider_npi': p['referring_provider_npi'],
-                    'total_minutes': patient_report['patients'][mrn]['minute_stats'][s]
+                    'stat_date': datetime.strptime(stat_date, '%m-%Y').timestamp() * 1000,
+                    '99492': report[mrn]['minute_stats'][stat_date]['99492'],
+                    '99493': report[mrn]['minute_stats'][stat_date]['99493'],
+                    '99494': report[mrn]['minute_stats'][stat_date]['99494'],
+                    'total_minutes': report[mrn]['minute_stats'][stat_date]['minutes']
                 })
-
         result = json.dumps(r, default=str)
         return json.loads(result)
+        
 
     @staticmethod
     def get_registry_dashboard(registry_id, from_date, to_date):

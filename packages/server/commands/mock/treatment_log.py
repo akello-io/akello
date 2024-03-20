@@ -32,6 +32,6 @@ class TreatmentLogMock:
             contact_type=contact_type,
             visit_type=random.choice([VisitTypes.phone, VisitTypes.clinic, VisitTypes.in_person]),
             scores=[phq9, gad7],
-            minutes=random.randint(0, 15),            
+            minutes=random.randint(0, 150),            
             date=date
         )
