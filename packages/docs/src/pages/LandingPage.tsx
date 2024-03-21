@@ -19,7 +19,6 @@ export default function Example() {
             <main>
                 {/* Hero section */}
                 <div className="relative isolate overflow-hidden">
-
                     <div className="mx-auto px-6 pb-24 pt-10 sm:pb-40 lg:flex lg:px-24 lg:pt-40">
                         <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
 
@@ -66,6 +65,7 @@ export default function Example() {
                         </div>
                     </div>
                 </div>
+               
             </main>
         </div>
     )

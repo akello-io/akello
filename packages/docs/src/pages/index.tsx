@@ -4,6 +4,8 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import LandingPage from './LandingPage'
+import { CopyBlock } from 'react-code-blocks';
+
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -18,9 +20,10 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  const {siteConfig} = useDocusaurusContext();  
+  
   return (
-    <Layout>
+    <Layout>                    
         <LandingPage />
     </Layout>
   );
