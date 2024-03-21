@@ -9,4 +9,4 @@ class TestScreenerService(TestCase):
 
     def test_screener_count(self):
         screeners = ScreenerService.get_screeners()
-        assert len(screeners) == 3 # should be 3 screeners in the directory
+        assert len(screeners) == 4
