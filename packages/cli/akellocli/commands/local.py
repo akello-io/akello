@@ -1,10 +1,12 @@
 import click
 import os, json
+import pathlib
+current_file_path = pathlib.Path(__file__).parent.resolve()
 
-def run_docker():
+def run_docker():        
     print("starting docker")
-    resp = os.popen("docker-compose down").read()
-    resp = os.popen("docker-compose up -d").read()
+    resp = os.popen(f"docker-compose down").read()    
+    resp = os.popen(f"docker-compose -f {current_file_path}/../docker-compose.yml up -d ").read()        
     print("running docker")
 
 
@@ -36,10 +38,9 @@ def local_commands():
 
 @click.command()
 def setup():
-    path = os.getcwd()            
-    packages_path = os.path.join(path, '../../../')
-    os.system(f"cd {path}/.. cp .template.env {packages_path}/app/.env")
-    os.system(f"cd {path}/.. cp .template.api.env {packages_path}/server/akello/.env")
+    packages_path = os.path.join(current_file_path, '../../../')
+    os.system(f"cd {current_file_path}/.. cp .template.env {packages_path}/app/.env")
+    os.system(f"cd {current_file_path}/.. cp .template.api.env {packages_path}/server/akello/.env")
 
     try:
         client_id = get_saved_client()
@@ -50,7 +51,7 @@ def setup():
         user_pool_id = create_user_pool()
         client_id = create_user_pool_client(user_pool_id)
 
-    # run_docker()
+    run_docker()
 
     print("\n\n")
     print("Add the following to your .env file")
