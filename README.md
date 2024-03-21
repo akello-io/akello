@@ -5,8 +5,9 @@
   </picture>
 </a>
 
+<h3></h3>
 
-> ✨ Navigate at [akello.io](https://akello.io) and join our Discord [here](https://discord.gg/WSqNrWBKKw)
+> ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw) and checkout [akello.io](https://akello.io)
 
 ## Overview of the Repo
 
