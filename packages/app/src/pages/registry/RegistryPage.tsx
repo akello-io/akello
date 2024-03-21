@@ -17,13 +17,11 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     const [patients, setPatients] = useState<PatientRegistry[]>([])
     const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
     const navigate = useNavigate()
-    const {patient_id} = useParams
+    const {patient_id} = useParams()
     const akello = useAkello()    
     const isMobile = useMediaQuery(`(max-width: ${em(880)})`);
 
-    if (akello.getSelectedRegistry()?.id === undefined) {
-        navigate('/');
-    }    
+   
 
     const muiTheme = createTheme({
         typography: {
@@ -38,7 +36,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
         drawerHandlers.open()
     })
 
-    useEffect(() => {            
+    useEffect(() => {              
         if (akello.getSelectedRegistry()) {
             const registryId = akello.getSelectedRegistry()?.id;            
             if (registryId) {
@@ -60,7 +58,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
                 })
             }
         }        
-    }, [akello])
+    }, [akello, akello.getSelectedRegistry()])
         
 
     return (

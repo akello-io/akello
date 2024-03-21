@@ -15,7 +15,7 @@ const RegistryShell = () => {
     const [opened, { toggle }] = useDisclosure();
     
     useEffect(() => {        
-        akello.userService.getUserRegistries((data) => {
+        akello.userService.getUserRegistries((data) => {            
             const registeries = data.map((registry: any) => {                                
                 return new Registry(
                     registry['id'],
@@ -34,7 +34,7 @@ const RegistryShell = () => {
             if(registeries.length == 0) { 
                 navigate('/create-registry');
             } else {                
-                akello.selectRegistry(registeries[0]);
+                akello.selectRegistry(registeries[0]);                
             }
         });
     }, []);
