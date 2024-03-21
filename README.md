@@ -6,28 +6,13 @@
 </a>
 
 
-[![](https://dcbadge.vercel.app/api/server/WSqNrWBKKw)](https://discord.gg/WSqNrWBKKw)
-
-## What's Akello?
-
-Akello enables clinical services to run and bill for Collaborative Care (CoCM). It's an open-source platform that features:
-
-- A streamlined Patient Registry.
-- Easy management of multiple registries.
-- Customizable tools for population assessment.
-- Efficient time tracking for billing.
-- Easy to customize styles and branding.
-- AWS Infrastructure scripts to host and run your own registry.
-
+> ✨ Navigate at [akello.io](https://akello.io) and join our Discord [here](https://discord.gg/WSqNrWBKKw)
 
 ## Overview of the Repo
-
-### Folder structure
 
 ```sh
 akello/
 ├── agent                  # automated workflows / AI enablement
-├── cloudstack         # AWS CDK scripts to setup akello infra
 ├── examples               # end-to-end examples using akello packages
 ├── packages   
 │   ├── app                # app code for app.akello.io
@@ -38,28 +23,6 @@ akello/
 │   ├── react              # React components and storybook
 │   ├── react-hook         # React components and storybook
 │   ├── server             # Fast API Server
-
-```
-
-
-### Setting up your local environment
-
-> :warning: **You shouldn't need to use aws for local install**: Make sure you have Docker installed, there will be two Docker Containers running after you run the dev-setup script
-
-
-REQUIRED SOFTWARE
-- Python
-- Node
-- Docker
-  
-
-```shell
-python3 -m venv .venv
-source .venv/bin/activate
-pip install packages/cli
-akellocli setup
-akellocli start server
-akellocli start cocm
 ```
 
 
