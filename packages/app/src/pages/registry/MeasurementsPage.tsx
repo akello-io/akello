@@ -3,6 +3,7 @@ import { Container, Text, Button, Title, Table,Stack,  Paper, TextInput, Group, 
 import { MultiSelect } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { useAkello } from '@akello/react-hook';
+import { notifications } from '@mantine/notifications';
 
 const MeasurementsPage = () => {
     const akello = useAkello();
@@ -53,10 +54,16 @@ const MeasurementsPage = () => {
                             setMeasurements([...measurements])
                         }}
                     />
-                    <Button  className={'bg-primary'} onClick={() => {
-                        debugger;
+                    <Button  className={'bg-primary'} onClick={() => {                        
                         akello.registryService.setMeasurements(akello.getSelectedRegistry()?.id, measurements, (data) => {
                             console.log('measurements updated')
+
+                            notifications.show({
+                                title: 'Measurements updated',
+                                message: 'Measurements have been updated',
+                                color: 'green',                                
+                            });
+
                         });
                     }}>Save</Button>
                 </Paper>

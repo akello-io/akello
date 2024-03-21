@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 const PatientSession = ({}) => {
     
     const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
-    //const [questionnaires, setQuestionnaires] = useState<[]>([phq9])
+    const [loaded, setLoaded] = useState(false)    
     const [visitType, setVisitType] = useState('')
     const [contactType, setContactType] = useState('')
     const [flag, setFlag] = useState<string>()
@@ -45,6 +45,7 @@ const PatientSession = ({}) => {
         if (selectedRegistryId) {
             akello.registryService.getRegistry(selectedRegistryId, (data: any) => {                
                 setQuestionnaires(data['questionnaires'].filter((questionnaire: Questionnaire) => questionnaire.active === true))
+                setLoaded(true)
             }, (error: any) => {
                 console.log(error)
             })
@@ -61,7 +62,8 @@ const PatientSession = ({}) => {
                 }
             }            
         })
- 
+        
+        debugger;
         if(total_questionnaires_answered!=0 && total_questionnaires_answered == questionnaires.length) {                                    
             setAllQuestionsAnswered(true)
         }
@@ -73,13 +75,33 @@ const PatientSession = ({}) => {
     //const [ms, setMS] = useState(0)
     
 
+    
+    
+    if(loaded && questionnaires.length == 0) {
+        return (
+            <div className='space-y-4'>
+                <div>
+                    No questionnaires available. Make sure you have measurements and questionnaires set up in the registry.
+                </div>
+                
+
+                <Button onClick={() => {
+                    navigate('/measurements');
+                }
+                }>
+                    Add measurements
+                </Button>
+            </div>
+        )
+    }
+
     if(questionnaires.length == 0) {
         return (
             <div>
                 Loading...
             </div>
         )
-    }    
+    }   
 
 
     const saveTreatmentSession = (no_show?: boolean) => {

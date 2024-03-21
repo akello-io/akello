@@ -163,6 +163,7 @@ export class RegistryService extends BaseService {
             onSuccess: (resp: any) => {
                 onSuccess(resp)
             }, onFail: (error: any) => {
+                onFail!(error)
             }
         });
     }
@@ -190,6 +191,7 @@ export class RegistryService extends BaseService {
             onSuccess: (resp: any) => {
                 onSuccess(resp)
             }, onFail: (error: any) => {
+                onFail!(error)
             }
         });
     }
