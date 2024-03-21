@@ -38,7 +38,7 @@ const PatientDetail = () => {
                         </div>                          
                         <div className='flex flex-row space-x-3'>
                             <ThemeIcon>
-                                <IconPhone style={{ width: '70%', height: '70%' }} />
+                                <IconPhone style={{  width: '70%', height: '70%' }} />
                             </ThemeIcon>                   
                             <a className={'text-md'} href={'tel:' + selectedPatient.phone_number}>{selectedPatient.phone_number}</a>
                         </div>                                            
@@ -113,8 +113,8 @@ const PatientDetail = () => {
                         </div>
                     </div>
                 </div>
-                <Container size="xs">
-                    <Button color="pink" fullWidth onClick={() => navigate('/patient/' + (akello.getSelectedPatientRegistry()?.id ?? '') + '/treatment-session')}>
+                <Container size="xs">                    
+                    <Button color={'red'} fullWidth onClick={() => navigate('/patient/' + (akello.getSelectedPatientRegistry()?.id ?? '') + '/treatment-session')}>
                         Start Session
                     </Button>
                 </Container>

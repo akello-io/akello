@@ -19,8 +19,13 @@ module.exports = {
       colors: {
         'ak-light-blue': '#3081FA',
         'crx-red': '#FF755F',
-        'ak-dark-blue': '#001338',
-        'ak-yellow': '#FFEC1F'
+        'ak-red': '#FF4500',
+        'ak-green': '#51DA4C',
+        'ak-blue': '#0000FF',
+        'ak-yellow': '#FFF639',
+        'ak-magenta': '#FF45FF',
+        'ak-magenta': '#FF45FF',
+        'ak-cyan': '#00FFFF',        
       },
     }
 
