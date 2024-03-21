@@ -9,7 +9,7 @@
 
 > ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw) and checkout [akello.io](https://akello.io)
 
-Full open source code to run akello.io's infrastructure and apps. The backend services code is written in Python and all Front-End code is built suing React and Typescript.
+Full open source code to run akello.io's infrastructure and apps. The backend services code is written in Python and all front-end code is built suing React and Typescript.
 
 
 ## Overview of the Repo
