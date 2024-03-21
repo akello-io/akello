@@ -1,4 +1,9 @@
-<img src="/assets/akello-logo.png" alt="Akello Logo" height="100"/>
+<a href="https://akello.io" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="/assets/akello-logo-white.png" style="max-width: 100%; height: 50px; margin-bottom: 20px">    
+    <img src="/assets/akello-logo.png" alt="Akello Logo" height="50"/>
+  </picture>
+</a>
 
 
 [![](https://dcbadge.vercel.app/api/server/WSqNrWBKKw)](https://discord.gg/WSqNrWBKKw)
