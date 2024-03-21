@@ -1,4 +1,5 @@
-![Alt text](/assets/banner.png "Akello Banner")
+<img src="/assets/akello-logo.png" alt="Akello Logo" height="100"/>
+
 
 [![](https://dcbadge.vercel.app/api/server/WSqNrWBKKw)](https://discord.gg/WSqNrWBKKw)
 
