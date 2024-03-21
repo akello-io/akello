@@ -1,27 +1,22 @@
-![Alt text](/assets/banner.png "Akello Banner")
+<a href="https://akello.io" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="/assets/akello-logo-white.png" style="max-width: 100%; height: 50px; margin-bottom: 20px">    
+    <img src="/assets/akello-logo.png" alt="Akello Logo" height="50"/>
+  </picture>
+</a>
 
-[![](https://dcbadge.vercel.app/api/server/WSqNrWBKKw)](https://discord.gg/WSqNrWBKKw)
+<h3></h3>
 
-## What's Akello?
+> ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw) and checkout [akello.io](https://akello.io)
 
-Akello enables clinical services to run and bill for Collaborative Care (CoCM). It's an open-source platform that features:
-
-- A streamlined Patient Registry.
-- Easy management of multiple registries.
-- Customizable tools for population assessment.
-- Efficient time tracking for billing.
-- Easy to customize styles and branding.
-- AWS Infrastructure scripts to host and run your own registry.
+Full open source code to run akello.io's infrastructure and apps. The backend services code is written in Python and all Front-End code is built suing React and Typescript.
 
 
 ## Overview of the Repo
 
-### Folder structure
-
 ```sh
 akello/
 ├── agent                  # automated workflows / AI enablement
-├── cloudstack         # AWS CDK scripts to setup akello infra
 ├── examples               # end-to-end examples using akello packages
 ├── packages   
 │   ├── app                # app code for app.akello.io
@@ -32,29 +27,20 @@ akello/
 │   ├── react              # React components and storybook
 │   ├── react-hook         # React components and storybook
 │   ├── server             # Fast API Server
-
 ```
 
+## Contributing
 
-### Setting up your local environment
+Akello is a community-driven platform. Whether you're submitting an idea, fixing a typo, adding a new guide, or improving an existing one, your contributions are greatly appreciated!
 
-> :warning: **You shouldn't need to use aws for local install**: Make sure you have Docker installed, there will be two Docker Containers running after you run the dev-setup script
+Before contributing, read through the existing issues and pull requests to see if someone else is already working on something similar. That way you can avoid duplicating efforts.
+
+If there are examples or guides you'd like to see, feel free to suggest them on the [issues page](https://github.com/akello-io/akello/issues).
+
+If you'd like to contribute new content, make sure to read through our [contribution guidelines](https://akello.io/docs/developers/contributing). We welcome high-quality submissions of new examples and guides, as long as they meet our criteria and fit within the scope of the cookbook.
 
 
-REQUIRED SOFTWARE
-- Python
-- Node
-- Docker
-  
-
-```shell
-python3 -m venv .venv
-source .venv/bin/activate
-pip install packages/cli
-akellocli setup
-akellocli start server
-akellocli start cocm
-```
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=468576060&machine=basicLinux32gb&location=EastUs)
 
 
 ## License
