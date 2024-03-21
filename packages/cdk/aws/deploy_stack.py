@@ -14,6 +14,6 @@ class DeployStack(Stack):
         s3deploy.BucketDeployment(
             self, 
             f"DeployStaticSite", 
-            sources=[s3deploy.Source.asset(os.path.join(os.getcwd(), "../apps/cocm-registry/dist"))], 
+            sources=[s3deploy.Source.asset(os.path.join(os.getcwd(), "../app/dist"))], 
             destination_bucket=bucket
         )         

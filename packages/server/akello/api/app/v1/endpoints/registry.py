@@ -7,7 +7,7 @@ from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.services.screeners import ScreenerService
 from akello.services.akello_apps import AkelloAppsService
-from akello_apps.metriport.plugin import MetriportPlugin
+#from akello_apps.metriport.plugin import MetriportPlugin
 from fastapi import Request
 from akello.decorators.mixin import mixin
 import datetime
@@ -15,7 +15,7 @@ import logging, os
 
 logger = logging.getLogger('mangum')
 
-metriport = MetriportPlugin()
+#metriport = MetriportPlugin()
 router = APIRouter()
 
 # Register the mixins based on enabled plugins

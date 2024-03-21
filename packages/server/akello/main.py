@@ -3,8 +3,8 @@ from fastapi import FastAPI
 from akello.settings import *
 from akello.api.app.v1.api import router as api_router
 from akello.api.fhir.v1.api import router as fhir_router
-from akello_apps.metriport.webhooks.metriport_webhook import router as metriport_webhook
-from akello_apps.typeform.webhooks.typeform_webhook import router as typeform_webhook
+#from akello_apps.metriport.webhooks.metriport_webhook import router as metriport_webhook
+#from akello_apps.typeform.webhooks.typeform_webhook import router as typeform_webhook
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 from aws_lambda_powertools import Logger
@@ -64,8 +64,8 @@ app.include_router(fhir_router, prefix="/fhir/v1")
 #metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
 #metriport_api_url = os.getenv('METRIPORT_API_URL', None)
 #if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:
-app.include_router(metriport_webhook, prefix="/v1/integrations/metriport", tags=["Integrations"])
-app.include_router(typeform_webhook, prefix="/v1/integrations/typeform", tags=["Integrations"])
+#app.include_router(metriport_webhook, prefix="/v1/integrations/metriport", tags=["Integrations"])
+#app.include_router(typeform_webhook, prefix="/v1/integrations/typeform", tags=["Integrations"])
 
 
 app.add_middleware(

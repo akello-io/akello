@@ -9,6 +9,7 @@ from aws.deploy_stack import DeployStack
 
 app = cdk.App()
 
+
 aws_stack = AwsStack(app, "AwsStack",
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
@@ -31,5 +32,6 @@ DeployStack(app, "DeployStack",
     env=cdk.Environment(account=os.environ['CDK_DEFAULT_ACCOUNT'], region=os.environ['CDK_DEFAULT_REGION']),
     bucket=aws_stack.deploy_static_site.bucket
 )
+
 
 app.synth()

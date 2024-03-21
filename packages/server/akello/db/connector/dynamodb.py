@@ -10,53 +10,57 @@ AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
 
 def setup_registry_db():
     if AKELLO_UNIT_TEST == 'TRUE':
+        print("using mock dynamodb")
         return MagicMock(), MagicMock(), MagicMock()
-
-    if AKELLO_DYNAMODB_LOCAL_URL:
-        client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-        dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-    else:
+    
+    if not AKELLO_DYNAMODB_LOCAL_URL:
         print("using real dynamodb")
         client = boto3.client('dynamodb')
         dynamodb = boto3.resource('dynamodb')
+        DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
+        return client, dynamodb, dynamodb.Table(DYNAMODB_TABLE)
 
-    if AKELLO_DYNAMODB_LOCAL_URL:
-        try:            
-            DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
-            #client.delete_table(TableName=DYNAMODB_TABLE)
+    # use local dynamodb
+    print("using local dynamodb")
 
-            print('creating registry table')
-            table = dynamodb.create_table(
-                TableName=DYNAMODB_TABLE,
-                KeySchema=[
-                    {
-                        'AttributeName': 'partition_key',  # registry_id, auth_user_id
-                        'KeyType': 'HASH'
-                    },
-                    {
-                        'AttributeName': 'sort_key',
-                        'KeyType': 'RANGE'
-                    }
-                ],
-                AttributeDefinitions=[
-                    {
-                        'AttributeName': 'partition_key',
-                        'AttributeType': 'S'
-                    },
-                    {
-                        'AttributeName': 'sort_key',
-                        'AttributeType': 'S'
-                    },
-                ],
-                ProvisionedThroughput={
-                    'ReadCapacityUnits': 10,
-                    'WriteCapacityUnits': 10
+    client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+    dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+    
+    try:            
+        DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
+        #client.delete_table(TableName=DYNAMODB_TABLE)
+        print('creating registry table')
+        table = dynamodb.create_table(
+            TableName=DYNAMODB_TABLE,
+            KeySchema=[
+                {
+                    'AttributeName': 'partition_key',  # registry_id, auth_user_id
+                    'KeyType': 'HASH'
+                },
+                {
+                    'AttributeName': 'sort_key',
+                    'KeyType': 'RANGE'
                 }
-            )
-            print("Table status:", table.table_status)
-        except Exception as e:
-            print(e)
-            print("tables probably already exist")
+            ],
+            AttributeDefinitions=[
+                {
+                    'AttributeName': 'partition_key',
+                    'AttributeType': 'S'
+                },
+                {
+                    'AttributeName': 'sort_key',
+                    'AttributeType': 'S'
+                },
+            ],
+            ProvisionedThroughput={
+                'ReadCapacityUnits': 10,
+                'WriteCapacityUnits': 10
+            }
+        )
+        print("Table status:", table.table_status)
+    except Exception as e:
+        print(e)
+        print("tables probably already exist")
         
     return client, dynamodb, dynamodb.Table(DYNAMODB_TABLE)
 

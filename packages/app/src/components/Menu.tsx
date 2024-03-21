@@ -1,14 +1,9 @@
-import { rem } from '@mantine/core';
-import { IconLogout } from '@tabler/icons-react';
-import { useAkello } from "@akello/react-hook";
-import { Button, Menu, UnstyledButton, Avatar, Image} from '@mantine/core';
-import ThemeToggle from './ThemeToggle';
+import { Menu, UnstyledButton, Avatar, Image} from '@mantine/core';
 import { useState } from 'react';
 import UserInfoCard from './UserInfoCard';
 
 const HeaderMenu = () => {
-  const akello = useAkello();
-  const [file, setFile] = useState(localStorage.getItem('profile-photo'));
+  const [file, _] = useState(localStorage.getItem('profile-photo'));
 
   const given_name = localStorage.getItem('given_name');
   const family_name = localStorage.getItem('family_name');
