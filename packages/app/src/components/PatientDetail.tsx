@@ -61,22 +61,35 @@ const PatientDetail = () => {
                                             const selectedRegistry = akello.getSelectedRegistry();
                                             const patientMRN = selectedPatient?.patient_mrn;                                            
                                             if (selectedRegistry && patientMRN) {
-                                                akello.registryService.setFlag(selectedRegistry.id, patientMRN, value !== null ? value : '', () => {
-                                                    selectedPatient.flag = value !== null ? value : undefined;
-                                                    akello.selectPatient(selectedPatient);
-                                                    akello.dispatchEvent({ type: 'change' });
+                                                const previousSelectedFlagValue = selectedPatient.flag;
+                                                selectedPatient.flag = value !== null ? value : undefined;
+                                                akello.selectPatient(selectedPatient);
+                                                akello.dispatchEvent({ type: 'change' });
 
+                                                akello.registryService.setFlag(selectedRegistry.id, patientMRN, value !== null ? value : '', () => {                                                
                                                     if (value !== null) {
                                                         notifications.show({
+                                                            color: 'green',
                                                             title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Flagged',
                                                             message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' has been flagged as ' + value,
                                                         })
                                                     } else {
                                                         notifications.show({
+                                                            color: 'green',
                                                             title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Unflagged',
                                                             message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' has unflagged',
                                                         })
                                                     }
+                                                },  (error: any) => {
+                                                    console.error(error);
+                                                    selectedPatient.flag = previousSelectedFlagValue;
+                                                    akello.selectPatient(selectedPatient);
+                                                    akello.dispatchEvent({ type: 'change' });
+                                                    notifications.show({
+                                                        color: 'red',
+                                                        title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Error',
+                                                        message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' unable to set flag',
+                                                    })
                                                 });
                                             }
 
@@ -96,16 +109,28 @@ const PatientDetail = () => {
                                 onChange={(value) => {
                                     const selectedRegistry = akello.getSelectedRegistry();                                    
                                     if (selectedRegistry) {
-                                        akello.registryService.setStatus(selectedRegistry.id, selectedPatient.patient_mrn, value, () => {
-                                            selectedPatient.status = value;                                            
-                                            akello.selectPatient(selectedPatient);
-                                            akello.dispatchEvent({ type: 'change' });
-
+                                        const previousSelectedStatusValue = selectedPatient.status;
+                                        selectedPatient.status = value;                                            
+                                        akello.selectPatient(selectedPatient);
+                                        akello.dispatchEvent({ type: 'change' });
+                                        akello.registryService.setStatus(selectedRegistry.id, selectedPatient.patient_mrn, value, () => {                                            
                                             notifications.show({
+                                                color: 'green',
                                                 title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Status Changed',
                                                 message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' has been moved to ' + value,
                                             })
-                                        });
+                                        },  (error: any) => {                                                                                      
+                                            console.error(error);
+                                            selectedPatient.status = previousSelectedStatusValue;
+                                            akello.selectPatient(selectedPatient);
+                                            akello.dispatchEvent({ type: 'change' });
+                                            notifications.show({
+                                                color: 'red',
+                                                title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Error',
+                                                message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' unable to change status',
+                                            })
+                                        }
+                                        );
                                     }
                                 }}
                             />

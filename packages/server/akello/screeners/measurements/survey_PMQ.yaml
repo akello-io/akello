@@ -62,22 +62,7 @@
         id: "2"
       - response: "Nearly every day"
         score: 3        
-        id: "3"                        
-   - id: '4'
-     question: "Acted impulsively or done things without thinking about consequences"
-     responses:
-      - response: "Not at all"
-        score: 0
-        id: "0"
-      - response: "Several days"
-        score: 1
-        id: "1"
-      - response: "More than half the days"
-        score: 2
-        id: "2"
-      - response: "Nearly every day"
-        score: 3        
-        id: "3"                                
+        id: "3"                                                         
    - id: '5'
      question: "Felt sped up or restless"
      responses:
