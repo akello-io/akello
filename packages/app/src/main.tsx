@@ -13,7 +13,7 @@ import { Notifications } from '@mantine/notifications';
 
 const theme = createTheme({
   colors: {
-    // Add your color    
+    
   },
 
   shadows: {    

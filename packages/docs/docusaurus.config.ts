@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Akello',
   tagline: 'Open Source Registry for the Collaborative Care Model (CoCM)',
-  favicon: 'img/AkelloLogo.png',
+  favicon: 'img/AkelloLogo.png',  
 
   trailingSlash: true,
 
@@ -75,9 +75,12 @@ const config: Config = {
   ],
 
   themeConfig: {
+    colorMode: {
+      defaultMode: 'dark',      
+    },
     
     // Replace with your project's social card
-    image: 'img/akello-social.png',
+    image: 'img/akello-social.png',    
     algolia: {
       // The application ID provided by Algolia
       appId: 'ZPW8AHLDRJ',
@@ -185,7 +188,7 @@ const config: Config = {
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: prismThemes.github,
     },
   } satisfies Preset.ThemeConfig,
 };
