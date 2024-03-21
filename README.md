@@ -20,12 +20,12 @@ akello/
 ├── examples               # end-to-end examples using akello packages
 ├── packages   
 │   ├── app                # app code for app.akello.io
-│   ├── cdk                # app code for app.akello.io
-│   ├── cli                # app code for app.akello.io
+│   ├── cdk                # scripts to deploy to AWS
+│   ├── cli                # cli tool to manage akello infra and apps
 │   ├── core               # data models and API utilities
 │   ├── docs               # docs hosted under docs.akello.io
 │   ├── react              # React components and storybook
-│   ├── react-hook         # React components and storybook
+│   ├── react-hook         # React hooks
 │   ├── server             # Fast API Server
 ```
 
@@ -40,7 +40,7 @@ If there are examples or guides you'd like to see, feel free to suggest them on 
 If you'd like to contribute new content, make sure to read through our [contribution guidelines](https://akello.io/docs/developers/contributing). We welcome high-quality submissions of new examples and guides, as long as they meet our criteria and fit within the scope of the cookbook.
 
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=468576060&machine=basicLinux32gb&location=EastUs)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=akello-io/akello&machine=basicLinux32gb&location=EastUs)
 
 
 ## License
