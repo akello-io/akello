@@ -20,12 +20,12 @@ akello/
 ├── examples               # end-to-end examples using akello packages
 ├── packages   
 │   ├── app                # app code for app.akello.io
-│   ├── cdk                # app code for app.akello.io
-│   ├── cli                # app code for app.akello.io
+│   ├── cdk                # scripts to deploy to AWS
+│   ├── cli                # cli tool to manage akello infra and apps
 │   ├── core               # data models and API utilities
 │   ├── docs               # docs hosted under docs.akello.io
 │   ├── react              # React components and storybook
-│   ├── react-hook         # React components and storybook
+│   ├── react-hook         # React hooks
 │   ├── server             # Fast API Server
 ```
 
