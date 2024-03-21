@@ -4,31 +4,30 @@ sidebar_position: 1
 
 # Local Development
 
-### Setting up your local environment
+### Setting up your local environment using the cli tool
 
-Run the setup local script and add the environment variables into your environment file (e.g., ~/.zshrc)
-
+Install the cli
 ```shell
-sh dev-setup-local.sh    # sets up Local instance of DynamoDB and AWS Cognito
+python3 -m venv .venv
+source .venv/bin/activate
+pip install packages/cli
 ```
 
-
-Run the API server
+Get the environment variables and set it
 ```shell
-cd server
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-uvicorn akello.main:app --reload
+akellocli setup
 ```
 
-Run the React app
-
+Start the server in one terminal
 ```shell
-cd apps/cocm-registry
-npm install
-npm run start
+akellocli start server
 ```
+
+Run the registry in another
+```shell
+akellocli start cocm
+```
+
 
 When you signup as a new user, the local SMS confirmation code is set to `1234` for local development
 

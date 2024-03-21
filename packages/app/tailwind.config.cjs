@@ -24,7 +24,6 @@ module.exports = {
         'ak-blue': '#0000FF',
         'ak-yellow': '#FFF639',
         'ak-magenta': '#FF45FF',
-        'ak-magenta': '#FF45FF',
         'ak-cyan': '#00FFFF',        
       },
     }
