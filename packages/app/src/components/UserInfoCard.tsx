@@ -1,4 +1,4 @@
-import { Card, Avatar, Text, Center, Group, Button, FileButton } from '@mantine/core';
+import { Card, Avatar, Text, Center, Button, FileButton } from '@mantine/core';
 import { useAkello } from "@akello/react-hook";
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';

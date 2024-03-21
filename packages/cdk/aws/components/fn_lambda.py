@@ -14,7 +14,7 @@ class fn_Lambda(Construct):
 
         self.fn_lambda = _lambda.DockerImageFunction(
             scope=self,
-            architecture=_lambda.Architecture.ARM_64,
+            architecture=_lambda.Architecture.ARM_64,            
             timeout=cdk.Duration.seconds(15),
             id=lambda_name,
             # Function name on AWS

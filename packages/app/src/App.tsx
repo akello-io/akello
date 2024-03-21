@@ -17,7 +17,6 @@ import RegistrySecurityPage from './pages/registry/RegistrySecurityPage';
 import NothingFoundBackground from './pages/404';
 import ChangePasswordPage from './pages/registry/ChangePasswordPage';
 import MeasurementsPage from './pages/registry/MeasurementsPage';
-import PayerSettings from './pages/registry/PayerSettings';
 import ProviderSettings from './pages/registry/ProviderSettings';
 
 

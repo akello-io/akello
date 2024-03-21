@@ -1,5 +1,5 @@
 import { AppShell, NavLink, Text } from '@mantine/core';
-import { IconTable, IconReportAnalytics, IconLock, IconShieldCheck, IconReportMedical, IconReceipt2, IconUsers } from '@tabler/icons-react';
+import { IconTable, IconReportAnalytics, IconLock, IconShieldCheck, IconReportMedical } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { useDisclosure } from '@mantine/hooks';
 import { useEffect } from 'react';
