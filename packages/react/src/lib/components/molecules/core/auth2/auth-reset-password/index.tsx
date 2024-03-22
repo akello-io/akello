@@ -19,6 +19,14 @@ interface ForgotPasswordPageProps {
     onResetPasswordClick: () => void;
 }
 
+const handleOnKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
+}
+
 export const ForgotPasswordPage:React.FC<ForgotPasswordPageProps> = ({onSuccess, onFail, onResetPasswordClick, onLoginClick}) => {    
     
     return (
@@ -29,7 +37,10 @@ export const ForgotPasswordPage:React.FC<ForgotPasswordPageProps> = ({onSuccess,
                         Reset your password
                     </Title>                    
                     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                        <TextInput label="Email" placeholder="you@mantine.dev" required />                                                                        
+                        <TextInput 
+                            onKeyDown={handleOnKeyDown}
+                            label="Email" placeholder="you@mantine.dev" required 
+                        />                                                                        
                         <Group justify="space-between" mt="lg" >
                             {
                                 onLoginClick &&

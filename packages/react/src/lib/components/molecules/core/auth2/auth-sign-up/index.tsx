@@ -17,6 +17,15 @@ interface SignUpPageProps {
     onSignupSuccess: () => void;
 }
 
+const handleOnKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
+}
+
+
 export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSuccess}) => {
     const [submissionError, setSubmissionError] = useState('');
     const akello = useAkello();    
@@ -67,6 +76,7 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                                                     name="first_name"
                                                     placeholder="Enter your first name"
                                                     className="input input-bordered w-full bg-white"
+                                                    onKeyDown={handleOnKeyDown}
                                                 />
                                                 {errors.first_name && touched.first_name ? <div>{errors.first_name}</div> : null}
                                             </div>
@@ -80,6 +90,7 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                                                     name="last_name"
                                                     placeholder="Enter your last name"
                                                     className="input input-bordered w-full bg-white"
+                                                    onKeyDown={handleOnKeyDown}
                                                 />
                                                 {errors.last_name && touched.last_name ? <div>{errors.last_name}</div> : null}
                                             </div>
@@ -94,6 +105,7 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                                                     name="email"
                                                     placeholder="Enter your email address"
                                                     className="input input-bordered w-full bg-white"
+                                                    onKeyDown={handleOnKeyDown}
                                                 />
                                                 {errors.email && touched.email ? <div>{errors.email}</div> : null}
                                             </div>
@@ -109,6 +121,7 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                                                     name="password"
                                                     placeholder="Enter your password"
                                                     className="input input-bordered w-full bg-white"
+                                                    onKeyDown={handleOnKeyDown}
                                                 />
                                                 {errors.password && touched.password ? <div>{errors.password}</div> : null}
                                             </div>
