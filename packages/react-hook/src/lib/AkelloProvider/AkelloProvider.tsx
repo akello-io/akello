@@ -14,7 +14,8 @@ export const AkelloProvider = (props: AkelloProviderProps): JSX.Element => {
   const [state, setState] = useState({ 
     loading: false,
     isAuthenticated: akello.accessToken !== undefined,
-    username: akello.getUserName()
+    username: akello.getUserName(),
+    selectedRegistry: akello.getSelectedRegistry()
   });
 
   useEffect(() => {
@@ -22,7 +23,8 @@ export const AkelloProvider = (props: AkelloProviderProps): JSX.Element => {
       setState({
         ...state,
         isAuthenticated: akello.accessToken !== undefined,
-        username: akello.getUserName()
+        username: akello.getUserName(),
+        selectedRegistry: akello.getSelectedRegistry()
       });
     }
 
