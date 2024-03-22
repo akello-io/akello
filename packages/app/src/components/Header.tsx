@@ -36,21 +36,21 @@ const Header: React.FC<HeaderProps> = ({ loggedIn, opened, toggle }) => {
               // navigate('/registry');         
               toggle();          
             }}
-            className='flex h-8 w-auto my-auto cursor-pointer'
+            className='h-8 w-auto my-auto cursor-pointer'
           >
             <img src={Logo} alt='logo' className='h-8 w-auto' />
           </div>          
           <div className='my-auto'>
-            <Text fw={600} size={'xl'}>
+            <div className='text-xl font-semibold hidden sm:block'>
               {akello.getSelectedRegistry()?.name ?? ''}            
-            </Text>
+            </div>            
           </div>          
         </div>
         
         <div className='flex flex-row my-auto space-x-6'>
           {akello.getSelectedRegistry() && (
             <Button
-              variant="default"
+              variant="default"              
               leftSection={<IconUserPlus size={14} />} 
               onClick={() => {
                 const selectedRegistry = akello.getSelectedRegistry();

@@ -17,7 +17,7 @@ const HeaderMenu = () => {
             file ? <Image src={file} alt="profile photo" radius="xl" /> : given_name?.charAt(0)+family_name?.charAt(0)
           }                  
           </Avatar>          
-          <div className='my-auto'>
+          <div className='my-auto hidden sm:block'>
             { localStorage.getItem('given_name')} { localStorage.getItem('family_name')}
           </div>
         </UnstyledButton>
