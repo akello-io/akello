@@ -45,7 +45,7 @@ class AwsStack(Stack):
         )
         
         self.api_gateway = ApiGateway(self, 'ApiGateway', name='akello-api', fn_lambda=fn_lambda.fn_lambda)        
-        self.deploy_static_site = DeployStaticSite(self, 'DeployStaticSite', subdomain='app-dev', domain=domain, public_hosted_zone=r53.public_hosted_zone)
+        self.deploy_static_site = DeployStaticSite(self, 'DeployStaticSite', subdomain='app', domain=domain, public_hosted_zone=r53.public_hosted_zone)
         
         # Grant permissions
         dynamodb.table.grant_read_write_data(fn_lambda.fn_lambda)
