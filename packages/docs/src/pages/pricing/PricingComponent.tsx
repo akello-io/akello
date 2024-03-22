@@ -36,12 +36,12 @@ export default function Example() {
         <div className="mx-auto max-w-4xl">
           <h2 className="text-base font-semibold leading-7 ">Pricing</h2>
           <p className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
-            Run and grow your CoCM programs
+            Run and grow your MBC programs
           </p>
         </div>
         <div className="relative mt-6">
           <p className="mx-auto max-w-2xl text-lg leading-8 ">
-            Get started with billing for CoCM and scaling up your programs.
+            Get started for free by signing up, and grow with your needs.
           </p>
           
         </div>
