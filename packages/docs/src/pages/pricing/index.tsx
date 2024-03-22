@@ -34,10 +34,11 @@ const tiers = [
     mostPopular: false,
   },
   {
-    name: 'Teams',
+    name: 'Teams (per user)',
     id: 'tier-startup',
     href: '#',    
     price: { monthly: '$60', annually: '$2,0000' },
+    is_per_user: true,
     description: 'For teams that want to scale up programs',
     features: [
       'Unlimited registries',      
@@ -75,10 +76,11 @@ function PricingComponent() {
           <p className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
             Pricing plans for teams of&nbsp;all&nbsp;sizes
           </p>
-        </div>
+        </div>        
         <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 ">
-          We help support you from starting CoCM, adoption it and scaling up your programs.
+          Are you a nonprofit? If so Akello can be <span className='font-bold ' >FREE</span> for you. Contact us for more information.
         </p>
+        {/* 
         <div className="mt-16 flex justify-center">
           <RadioGroup
             value={frequency}
@@ -103,6 +105,7 @@ function PricingComponent() {
             ))}
           </RadioGroup>
         </div>
+        */}
         <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4">
           {tiers.map((tier) => (
             <div
@@ -119,22 +122,23 @@ function PricingComponent() {
                   'text-lg font-semibold leading-8'
                 )}
               >
-                {tier.name}
+                {tier.name}                               
               </h3>
               <p className="mt-4 text-sm leading-6 ">{tier.description}</p>
               <p className="mt-6 flex items-baseline gap-x-1">
+                
                 {
                   tier.custom_price ? 
                   <span className="text-4xl font-bold tracking-tight">{tier.custom_price}</span>
                   : (
                     <>
                       <span className="text-4xl font-bold tracking-tight ">{tier.price[frequency.value]}</span>
-                      <span className="text-sm font-semibold leading-6 ">{frequency.priceSuffix}</span>
+                      <span className="text-sm font-semibold leading-6 ">{frequency.priceSuffix}</span>                      
                     </>
                   )
-                }
-                
+                }                
               </p>
+              
               {/* 
               <a
                 href={tier.href}

@@ -120,6 +120,11 @@ const config: Config = {
           label: 'Documentation',
         },
         {
+          to: 'https://app.akello.io',
+          label: 'Sign In',
+          position: 'right',
+        },
+        {
           to: 'https://github.com/akello-io/akello',
           label: 'GitHub',
           position: 'right',
