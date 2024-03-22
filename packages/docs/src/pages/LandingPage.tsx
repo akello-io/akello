@@ -34,10 +34,10 @@ export default function Example() {
                                 </a>
                             </div>
                             <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-6xl">
-                                Integrated Mental Health Infrastructure
+                                Measurement Based Care Infrastructure
                             </h1>
                             <p className="mt-6 text-lg leading-8">
-                                An open source measurement based platform to run integrated care models for mental health.
+                                A complete platform for teams to run measurement based care models. Get started for free with Akello today.
                             </p>
                             <div className="mt-10 flex items-center gap-x-6">
                                 <a
