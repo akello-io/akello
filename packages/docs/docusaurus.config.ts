@@ -122,7 +122,8 @@ const config: Config = {
         {
           to: 'https://app.akello.io',
           label: 'Sign In',
-          position: 'right',
+          position: 'right',          
+          target: '_self',
         },
         {
           to: 'https://github.com/akello-io/akello',

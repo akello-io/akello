@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",    
     "build:dev": "dotenv -e .env.dev -- vite build",    
+    "build:prod": "dotenv -e .env.prod -- vite build",    
     "build:test": "GITSHA=git rev-parse --short HEAD && dotenv -e .env.test -- vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
