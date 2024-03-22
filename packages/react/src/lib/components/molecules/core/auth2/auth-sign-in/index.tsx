@@ -78,8 +78,7 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
                                     <div className="label text-error">
                                         {errors.password && touched.password ? <div>{errors.password}</div> : null}
                                     </div>
-                                    <Group justify="space-between" mt="lg">
-                                        <Checkbox label="Remember me" />
+                                    <Group justify="space-between" mt="lg">                                        
                                         <Anchor component="button" size="sm" onClick={() => onForgotPasswordClick()}>
                                             Forgot password?
                                         </Anchor>
