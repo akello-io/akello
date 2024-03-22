@@ -109,6 +109,11 @@ const config: Config = {
           label: 'Solutions',
         },
         {
+          to: '/pricing',
+          position: 'left',
+          label: 'Pricing',
+        },
+        {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
