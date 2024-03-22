@@ -66,53 +66,54 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
                     <Box pos="relative">
                         <LoadingOverlay visible={visible} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
                         {/* ...other content */}
-                    </Box>
-                    <div className="w-screen">
-                        <Center>
-                            <Container size={420} my={40}>
-                                <Title ta="center">
-                                    Welcome back!
-                                </Title>
-                                <Text c="dimmed" size="sm" ta="center" mt={5}>
-                                    Do not have an account yet?{' '}
-                                    <Anchor size="sm" component="button" onClick={() => onSignupClick()}>
-                                        Create account
-                                    </Anchor>
-                                </Text>
-
-                                <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                                    <Field
-                                        name="email"
-                                        placeholder="Enter your email address"
-                                        className="input input-bordered bg-white w-full"
-                                        onKeyDown={handleOnKeyDown}
-                                    />
-                                    <div className="label text-error">
-                                        {errors.email && touched.email ? <div>{errors.email}</div> : null}
-                                    </div>
-                                    <Field
-                                        type="password"
-                                        name="password"
-                                        placeholder="Enter your password"
-                                        className="input input-bordered bg-white w-full"
-                                        onKeyDown={handleOnKeyDown}
-                                    />
-                                    <div className="label text-error">
-                                        {errors.password && touched.password ? <div>{errors.password}</div> : null}
-                                    </div>
-                                    <Group justify="space-between" mt="lg">                                        
-                                        <Anchor component="button" size="sm" onClick={() => onForgotPasswordClick()}>
-                                            Forgot password?
+                        <div className="w-screen">
+                            <Center>
+                                <Container size={420} my={40}>
+                                    <Title ta="center">
+                                        Welcome back!
+                                    </Title>
+                                    <Text c="dimmed" size="sm" ta="center" mt={5}>
+                                        Do not have an account yet?{' '}
+                                        <Anchor size="sm" component="button" onClick={() => onSignupClick()}>
+                                            Create account
                                         </Anchor>
-                                    </Group>
-                                    <Button type="submit" fullWidth mt="xl" className="bg-primary">
-                                        Sign in
-                                    </Button>
-                                    <div className="label text-error">{error ? <div>{error}</div> : null}</div>
-                                </Paper>
-                            </Container>
-                        </Center>
-                    </div>
+                                    </Text>
+
+                                    <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+                                        <Field
+                                            name="email"
+                                            placeholder="Enter your email address"
+                                            className="input input-bordered bg-white w-full"
+                                            onKeyDown={handleOnKeyDown}
+                                        />
+                                        <div className="label text-error">
+                                            {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                                        </div>
+                                        <Field
+                                            type="password"
+                                            name="password"
+                                            placeholder="Enter your password"
+                                            className="input input-bordered bg-white w-full"
+                                            onKeyDown={handleOnKeyDown}
+                                        />
+                                        <div className="label text-error">
+                                            {errors.password && touched.password ? <div>{errors.password}</div> : null}
+                                        </div>
+                                        <Group justify="space-between" mt="lg">                                        
+                                            <Anchor component="button" size="sm" onClick={() => onForgotPasswordClick()}>
+                                                Forgot password?
+                                            </Anchor>
+                                        </Group>
+                                        <Button type="submit" fullWidth mt="xl" className="bg-primary">
+                                            Sign in
+                                        </Button>
+                                        <div className="label text-error">{error ? <div>{error}</div> : null}</div>
+                                    </Paper>
+                                </Container>
+                            </Center>
+                        </div>
+                    </Box>
+                    
                 </Form>
             )}
         </Formik>
