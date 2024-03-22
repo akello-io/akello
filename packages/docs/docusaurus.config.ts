@@ -109,10 +109,20 @@ const config: Config = {
           label: 'Solutions',
         },
         {
+          to: '/pricing',
+          position: 'left',
+          label: 'Pricing',
+        },
+        {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Documentation',
+        },
+        {
+          to: 'https://app.akello.io',
+          label: 'Sign In',
+          position: 'right',
         },
         {
           to: 'https://github.com/akello-io/akello',
