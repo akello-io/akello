@@ -34,7 +34,8 @@ const RegistryShell = () => {
             if(registeries.length == 0) { 
                 navigate('/create-registry');
             } else {                
-                akello.selectRegistry(registeries[0]);                
+                akello.selectRegistry(registeries[0]);        
+                akello.dispatchEvent({ type: 'change' });        
             }
         });
     }, []);

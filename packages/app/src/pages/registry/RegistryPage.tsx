@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {PatientRegistry, Questionnaire} from "@akello/core";
 import {RegistryDataGrid} from "@akello/react";
-import {useAkello} from "@akello/react-hook"
+import {useAkello, useSelectedRegistry} from "@akello/react-hook"
 import { useNavigate, useParams } from 'react-router';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { em } from '@mantine/core';
@@ -19,9 +19,8 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     const navigate = useNavigate()
     const {patient_id} = useParams()
     const akello = useAkello()    
+    const selectedRegistry = useSelectedRegistry()
     const isMobile = useMediaQuery(`(max-width: ${em(880)})`);
-
-   
 
     const muiTheme = createTheme({
         typography: {
@@ -36,9 +35,11 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
         drawerHandlers.open()
     })
 
-    useEffect(() => {              
-        if (akello.getSelectedRegistry()) {
-            const registryId = akello.getSelectedRegistry()?.id;            
+    useEffect(() => {               
+        
+        
+        if (selectedRegistry) {
+            const registryId = selectedRegistry.id;            
             if (registryId) {
                 akello.registryService.getRegistryPatients(registryId, (data) => {                        
                     setPatients(data['successfully_loaded'])
@@ -58,7 +59,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
                 })
             }
         }        
-    }, [akello, akello.getSelectedRegistry()])
+    }, [akello, selectedRegistry])
         
 
     return (
