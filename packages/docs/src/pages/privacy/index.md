@@ -1,21 +1,17 @@
 # PRIVACY NOTICE
 
 
-*Last updated November 30, 2022*
-
-
-
 This privacy notice for Akello Health Inc. ( “ *Company* ,” “*we*,” “*us*,” or “*our*” ), describes how and why we might collect, store, use, and/or share ( “*process*” ) your information when you use our services ( “*Services*” ), such as when you:
-* Visit our website at https://akello.io , or any website of ours that links to this privacy notice
 
+* Visit our website at https://akello.io , or any website of ours that links to this privacy notice
 * Engage with us in other related ways, including any sales, marketing, or events
 
-*Questions or concerns?*Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at support@akellohealth.com .
+*Questions or concerns?* Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at support@akellohealth.com .
 
 
 ### *SUMMARY OF KEY POINTS*
 
-*This summary provides key points from our privacy notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our table of contents below to find the section you are looking for. You can also click *here* to go directly to our table of contents.*
+*This summary provides key points from our privacy notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our table of contents on the side to find the section you are looking for. You can also click *here* to go directly to our table of contents.*
 
 ***What personal information do we process?*** When you visit, use, or navigate our Services, we may process personal information depending on how you interact with Akello Health Inc. and the Services, the choices you make, and the products and features you use. Click  *here* to learn more.
 
@@ -33,25 +29,6 @@ This privacy notice for Akello Health Inc. ( “ *Company* ,” “*we*,” “*
 
 ***How do you exercise your rights?*** The easiest way to exercise your rights is by filling out our data subject request form available  [here](https://app.termly.io/notify/abfe08e9-96b7-4096-a670-a337c4cddf3a)  , or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.
 
-Want to learn more about what Akello Health Inc. does with any information we collect? Click  *here* to review the notice in full.
-
-
-### *TABLE OF CONTENTS*
-
-*1. WHAT INFORMATION DO WE COLLECT?* <br/>
-*2. HOW DO WE PROCESS YOUR INFORMATION?* <br/>
-*3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?* <br/>
-*4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?* <br/>
-*5. HOW DO WE HANDLE YOUR SOCIAL LOGINS?* <br/>
-*6. HOW LONG DO WE KEEP YOUR INFORMATION?* <br/>
-*7. HOW DO WE KEEP YOUR INFORMATION SAFE?* <br/>
-*8. DO WE COLLECT INFORMATION FROM MINORS?* <br/>
-*9. WHAT ARE YOUR PRIVACY RIGHTS?* <br/>
-*10. CONTROLS FOR DO-NOT-TRACK FEATURES* <br/>
-*11. DO CALIFORNIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?* <br/>
-*12. DO WE MAKE UPDATES TO THIS NOTICE?* <br/>
-*13. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?* <br/>
-*14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?* <br/>
 
 
 ### **1. WHAT INFORMATION DO WE COLLECT?**

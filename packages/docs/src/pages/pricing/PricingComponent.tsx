@@ -2,12 +2,12 @@ import { CheckCircleIcon } from '@heroicons/react/20/solid'
 
 const tiers = [
   {
-    name: 'Evaluation',
+    name: 'Starter',
     id: 'tier-basic',
     href: 'https://app.akello.io',
     price: { monthly: '$15', annually: '$12' },
     price_custom: 'FREE',
-    description: 'Everything necessary to start. Ideal for teams evalulating their MBC needs.',
+    description: 'Everything necessary to start. Ideal for teams starting MBC.',
     features: [
       '100 active patients', 
       'CoCM Billing',             
@@ -20,7 +20,7 @@ const tiers = [
     id: 'tier-essential',
     href: 'https://app.akello.io',
     price: { monthly: '$30', annually: '$499' },
-    description: 'Everything in Evaluation, plus increased data retention and BAA.',
+    description: 'Everything in Starter, plus increased data retention and BAA.',
     features: [
       'Unlimited patients',
       'Access premium integrations',
@@ -36,7 +36,7 @@ const tiers = [
     href: 'https://app.akello.io',
     price: { monthly: '$60', annually: '$48' },
     price_custom: 'Custom',
-    description: 'Everything in individual, plus collaboration tools and deeper insights.',
+    description: 'Everything in Individual, plus collaboration tools and deeper insights.',
     features: [
       'Unlimited users',
       'Unlimited registeries',
