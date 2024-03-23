@@ -72,7 +72,7 @@ const columns: GridColDef[] = [
                 return ''
             }            
             debugger;
-            return params.row.cp_npi_visits.map((item: any) => 'npi: ' + item.cp_npi + '; cpt_codes: ' + item.problems).join(' || ')
+            return params.row.cp_npi_visits.map((item: any) => 'npi: ' + item.cp_npi + '; codes: ' + item.problems).join(' || ')
         }
     }
 ];
