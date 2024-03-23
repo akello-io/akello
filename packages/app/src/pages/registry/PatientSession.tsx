@@ -235,8 +235,8 @@ const PatientSession = ({}) => {
                                             <TextInput
                                                 required
                                                 label="Problems List"
-                                                description="Enter commas separated list of problems (CPT Codes)"
-                                                placeholder="List of diagnostic CPT codes"
+                                                description="Enter commas separated list of problems (ICD-10 Codes)"
+                                                placeholder="List of ICD-10 codes"
                                                 onChange={(event) => {
                                                     setProblemsList(event.currentTarget.value)
                                                 }}

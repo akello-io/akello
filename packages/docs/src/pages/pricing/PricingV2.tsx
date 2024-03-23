@@ -168,8 +168,8 @@ export default function PricingPage(): JSX.Element {
               <tr>
                 <td>Integrations</td>
                 <td>Basic</td>
-                <td>Premimum</td>
-                <td>Premimum</td>                
+                <td>Premium</td>
+                <td>Premium</td>                
                 <td>Custom</td>    
                 <td></td>             
                 <td>Contact us</td>               
