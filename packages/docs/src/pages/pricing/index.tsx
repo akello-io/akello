@@ -4,7 +4,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import PricingComponent from './PricingComponent'
+import PricingComponent from './PricingV2'
 
   
 function HomepageHeader() {

@@ -107,12 +107,7 @@ const config: Config = {
           to: '/solutions',
           position: 'left',
           label: 'Solutions',
-        },
-        {
-          to: '/pricing',
-          position: 'left',
-          label: 'Pricing',
-        },
+        },        
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
@@ -187,6 +182,10 @@ const config: Config = {
             {
               label: 'Privacy Policy',
               to: '/privacy',
+            },
+            {
+              to: '/pricing',              
+              label: 'Pricing',
             },
             {
               label: 'Blog',
