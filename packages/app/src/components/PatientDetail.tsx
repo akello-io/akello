@@ -153,7 +153,7 @@ const PatientDetail = () => {
                                         Patient Progress Chart
                                     </p>
                                 </div>
-                                <div className={"p-2 h-64 w-full"}>
+                                <div className={"p-1 h-64 w-full"}>
                                     <PatientProgressChart selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements.filter((measurement) => measurement.active === true) ?? []} />
                                 </div>
                             </div>
