@@ -23,24 +23,7 @@ Objectively determines severity of initial symptoms, and also monitors symptom c
 
 ### How to use it
 
-Ask the patient: 'how often have they been bothered by the following over the past 2 weeks?'
-
-### Scoring
-
-Sore the screener by summing up all the responses.
-
-| Score 	| Depression severity 	|                                               Comments                                              	|
-|:-----:	|:-------------------:	|:---------------------------------------------------------------------------------------------------:	|
-| 0-4   	| Minimal or none     	| Monitor; may not require treatment                                                                  	|
-| 5-9   	| Mild                	| Use clinical judgment (symptom duration, functional impairment) to determine necessity of treatment 	|
-| 10-14 	| Moderate            	|                                                                                                     	|
-| 15-19 	| Moderately severe   	| Warrants active treatment with psychotherapy, medications, or combination                           	|
-| 20-27 	| Severe              	|                                                                                                     	|
-
-### Advice
-
 Final diagnosis should be made with clinical interview and mental status examination including assessment of patient’s level of distress and functional impairment.
-
 
 :::danger
 
@@ -52,6 +35,8 @@ Final diagnosis should be made with clinical interview and mental status examina
 ---
 
 ## PHQ-9 Screener
+
+Ask the patient: 'how often have they been bothered by the following over the past 2 weeks?'
 
 
 | Questions                                         	| Not at all 	| Several Days 	| More than half the days 	| Nearly every day 	|
@@ -65,3 +50,17 @@ Final diagnosis should be made with clinical interview and mental status examina
 | 7. Trouble concentrating on things, such as reading the newspaper or watching television? 	|          0 	|            1 	|                       2 	|                3 	|
 | 8. Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual? 	|          0 	|            1 	|                       2 	|                3 	|
 | 9. Thoughts that you would be better off dead, or thoughts of hurting yourself in some way? 	|          0 	|            1 	|                       2 	|                3 	|
+
+
+
+### Scoring
+
+Sore the screener by summing up all the responses.
+
+| Score 	| Depression severity 	|                                               Comments                                              	|
+|:-----:	|:-------------------:	|:---------------------------------------------------------------------------------------------------:	|
+| 0-4   	| Minimal or none     	| Monitor; may not require treatment                                                                  	|
+| 5-9   	| Mild                	| Use clinical judgment (symptom duration, functional impairment) to determine necessity of treatment 	|
+| 10-14 	| Moderate            	|                                                                                                     	|
+| 15-19 	| Moderately severe   	| Warrants active treatment with psychotherapy, medications, or combination                           	|
+| 20-27 	| Severe              	|                                                                                                     	|
