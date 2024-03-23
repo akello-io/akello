@@ -242,7 +242,7 @@ async def record_session(request: Request, registry_id: str, treatment_log: Trea
 
     The function aims to seamlessly integrate treatment session recording into patient management within registries, ensuring data integrity and authorized access.
     """
-    UserService.check_registry_access(auth.cognito_id, registry_id)
+    UserService.check_registry_access(auth.cognito_id, registry_id)    
     RegistryService.add_treatment_log(registry_id, treatment_log.patient_mrn, treatment_log)
     return treatment_log
 

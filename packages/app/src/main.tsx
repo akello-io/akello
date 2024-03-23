@@ -19,7 +19,7 @@ const theme = createTheme({
   shadows: {    
   },
 
-  fontFamily: 'Work Sans',
+  //fontFamily: 'Work Sans',
 
   
   headings: {    

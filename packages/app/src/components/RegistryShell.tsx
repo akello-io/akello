@@ -142,11 +142,14 @@ const RegistryShell = () => {
             <AppShell.Aside>
                 <PatientDetail />
             </AppShell.Aside>
+            {/*
             <AppShell.Footer zIndex={300}>
+             
                 <div className="text-center">
                     built with ❤️ by Akello
                 </div>
             </AppShell.Footer>
+            */}
         </AppShell>
     );
 };

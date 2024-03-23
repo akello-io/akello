@@ -30,7 +30,7 @@ class ReportsService(BaseService):
             }
 
 
-        if initial_assessment_year != year and initial_assessment_month != month:
+        if initial_assessment_year != year or initial_assessment_month != month:
             return {
                 '99492': False,
                 '99494': 0
@@ -38,7 +38,7 @@ class ReportsService(BaseService):
                     
         return {
             '99492': minutes > 70,
-            '99494': int((minutes - 70) / 30) * 30
+            '99494': int((minutes - 70) / 30)
         }
     
     @staticmethod
@@ -53,8 +53,8 @@ class ReportsService(BaseService):
                 '99493': False,
                 '99494': 0
             }
-
-        if initial_assessment_year >= year and initial_assessment_month != month:            
+        
+        if initial_assessment_year == year and initial_assessment_month == month:            
             # return false if its for the month of the initial assessment
             return {
                 '99493': False,
@@ -63,7 +63,7 @@ class ReportsService(BaseService):
                    
         return {
             '99493': minutes > 60,
-            '99494': int((minutes - 60) / 30) * 30
+            '99494': int((minutes - 60) / 30)
         }
 
 
@@ -83,8 +83,20 @@ class ReportsService(BaseService):
                 month = datetime.utcfromtimestamp(treatment_log.date/1000).month
                 year = datetime.utcfromtimestamp(treatment_log.date/1000).year
                 if '%s-%s' % (month, year) not in patient_minute_stats:
-                    patient_minute_stats['%s-%s' % (month, year)] = {'minutes': 0, '99492': 0, '99493': 0, '99494': 0}
-                patient_minute_stats['%s-%s' % (month, year)]['minutes'] += treatment_log.minutes
+                    patient_minute_stats['%s-%s' % (month, year)] = {
+                        'minutes': 0, 
+                        '99492': 0, 
+                        '99493': 0, 
+                        '99494': 0,
+                        'cp_npi_visits': [],                        
+                    }
+                patient_minute_stats['%s-%s' % (month, year)]['minutes'] += treatment_log.minutes                
+                if treatment_log.cp_npi and treatment_log.problems_list:                    
+                    patient_minute_stats['%s-%s' % (month, year)]['cp_npi_visits'].append({
+                        'cp_npi': treatment_log.cp_npi,
+                        'problems': treatment_log.problems_list
+                    })                
+                
             if patient.patient_mrn not in report:
                 report[patient.patient_mrn] = {}
 
@@ -98,8 +110,11 @@ class ReportsService(BaseService):
                     patient_minute_stats[month_year]['99494'] = cpt99492['99494']
 
                 if cpt99493['99493']:
+                    #import pdb;pdb.set_trace()
                     patient_minute_stats[month_year]['99493'] = cpt99493['99493']
                     patient_minute_stats[month_year]['99494'] = cpt99493['99494']
+
+                
 
 
             report[patient.patient_mrn] = {
@@ -111,7 +126,7 @@ class ReportsService(BaseService):
         # flatten the data
         r = []
         for mrn in report:            
-            patient = report[mrn]['patient']
+            patient = report[mrn]['patient']            
             for stat_date in report[mrn]['minute_stats']:                    
                 r.append({      
                     'first_name': patient['first_name'],
@@ -120,10 +135,12 @@ class ReportsService(BaseService):
                     'referring_provider_npi': patient['referring_provider_npi'],                                      
                     'mrn': mrn,
                     'stat_date': datetime.strptime(stat_date, '%m-%Y').timestamp() * 1000,
+                    'initial_assessment': patient['initial_assessment'],
                     '99492': report[mrn]['minute_stats'][stat_date]['99492'],
                     '99493': report[mrn]['minute_stats'][stat_date]['99493'],
                     '99494': report[mrn]['minute_stats'][stat_date]['99494'],
-                    'total_minutes': report[mrn]['minute_stats'][stat_date]['minutes']
+                    'total_minutes': report[mrn]['minute_stats'][stat_date]['minutes'],
+                    'cp_npi_visits': report[mrn]['minute_stats'][stat_date]['cp_npi_visits']
                 })
         result = json.dumps(r, default=str)
         return json.loads(result)

@@ -28,7 +28,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     const muiTheme = createTheme({
         typography: {
             fontFamily: [
-              'Work Sans',
+              // 'Work Sans',
             ].join(','),
           },
       });

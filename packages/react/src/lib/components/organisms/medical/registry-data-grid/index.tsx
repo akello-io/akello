@@ -179,7 +179,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
             const delta_column = {
                 "field": questionnaire.uid + '_delta',
                 "headerName": questionnaire.name + ' Delta',
-                "description": "Delta for " + questionnaire.uid + " between initial and last",
+                "description": "% Delta for " + questionnaire.uid + " between initial and last",
                 "type": "number",
                 "width": 110,
                 "editable": true,
@@ -207,7 +207,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
     const darkTheme = createTheme({
         typography: {
             fontFamily: [
-              'Work Sans',
+              // 'Work Sans',
             ].join(','),
           },
         palette: {
@@ -218,7 +218,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
     const lightTheme = createTheme({
         typography: {
             fontFamily: [
-              'Work Sans',
+              //'Work Sans',
             ].join(','),
           },
       palette: {
