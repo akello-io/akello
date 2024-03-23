@@ -62,7 +62,7 @@ export const PatientProgressChart:React.FC<PatientProgressChartProps> = ({select
                 margin={{
                     top: 5,
                     right: 30,
-                    left: 20,
+                    left: 5,
                     bottom: 5,
                 }}
             >
