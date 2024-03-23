@@ -1,6 +1,6 @@
 import StopWatch from "../../components/stopwatch/StopWatch";
 import {useEffect, useState} from "react";
-import {Button, Select, Container, Grid } from "@mantine/core";
+import {Button, Select, Container, Grid, Input, TextInput } from "@mantine/core";
 import { useAkello } from "@akello/react-hook";
 import { useNavigate } from "react-router";
 import { Breadcrumbs, Anchor } from '@mantine/core';
@@ -20,6 +20,9 @@ const PatientSession = ({}) => {
     const [contactType, setContactType] = useState('')
     const [flag, setFlag] = useState<string>()
     const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false)
+    const [cpNPI, setCPNPI] = useState('')
+    const [problemsList, setProblemsList] = useState('')
+    const [showScreeners, setShowScreeners] = useState(false)
 
     const navigate = useNavigate()
     const akello = useAkello()
@@ -52,6 +55,18 @@ const PatientSession = ({}) => {
         }
     }, [])
 
+    useEffect(() => {
+        
+        if(contactType == 'Psychiatric Consultation' && cpNPI && problemsList && visitType) {            
+            setShowScreeners(true)
+        } else if(contactType != 'Psychiatric Consultation' && visitType && contactType){
+            setShowScreeners(true)
+        } else {
+            setShowScreeners(false)
+        }
+
+    }, [visitType, contactType, cpNPI, problemsList])
+
 
     useEffect(() => {        
         let total_questionnaires_answered = 0
@@ -62,8 +77,7 @@ const PatientSession = ({}) => {
                 }
             }            
         })
-        
-        debugger;
+                
         if(total_questionnaires_answered!=0 && total_questionnaires_answered == questionnaires.length) {                                    
             setAllQuestionsAnswered(true)
         }
@@ -124,6 +138,8 @@ const PatientSession = ({}) => {
                 id: uuidv4(),
                 patient_mrn: akello.getSelectedPatientRegistry()?.patient_mrn ?? '',
                 contact_type: contactType,
+                cp_npi: cpNPI,
+                problems_list: problemsList,
                 flag: flag,
                 weeks_in_treatment: 0,
                 visit_type: visitType,
@@ -197,9 +213,42 @@ const PatientSession = ({}) => {
                                             setFlag(value ?? undefined)
                                         }}
                                     />   
-                                </Grid.Col>
-                                
+                                </Grid.Col>                                
                             </Grid>     
+                            
+                            {contactType == 'Psychiatric Consultation' && (
+                                <>
+                                <Grid>
+                                    
+                                        <Grid.Col span={0}>
+                                            <TextInput
+                                                required
+                                                label="CP NPI"
+                                                description="NPI for the Consulting Psychaitrist"
+                                                placeholder="Enter NPI"
+                                                onChange={(event) => {
+                                                    setCPNPI(event.currentTarget.value)
+                                                }}
+                                            />
+                                        </Grid.Col>
+                                        <Grid.Col span={0}>
+                                            <TextInput
+                                                required
+                                                label="Problems List"
+                                                description="Enter commas separated list of problems (CPT Codes)"
+                                                placeholder="List of diagnostic CPT codes"
+                                                onChange={(event) => {
+                                                    setProblemsList(event.currentTarget.value)
+                                                }}
+                                            />
+                                        </Grid.Col>                                        
+                                    
+
+                                </Grid>
+                                
+                                </>
+                                )}
+                            
                             <Grid>
                                 {
                                     visitType && contactType && (
@@ -232,7 +281,7 @@ const PatientSession = ({}) => {
                         </Container>
                 </Container>
                 {
-                    visitType && contactType && (
+                    showScreeners && (
                         <div>
                             {
                                 questionnaires.map((questionnaire: Questionnaire) => {                                      

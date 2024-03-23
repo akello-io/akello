@@ -87,7 +87,7 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
     const darkTheme = createTheme({
         typography: {
             fontFamily: [
-              'Work Sans',
+              // 'Work Sans',
             ].join(','),
           },
         palette: {
@@ -98,7 +98,7 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
     const lightTheme = createTheme({
         typography: {
             fontFamily: [
-              'Work Sans',
+              // 'Work Sans',
             ].join(','),
           },
       palette: {

@@ -129,6 +129,8 @@ class TreatmentLog(BaseModel):
     provider: Optional[str] = None
     no_show: Optional[bool] = False
     flag: Optional[FlagTypes] = None
+    cp_npi: Optional[str] = None
+    problems_list: Optional[str] = None
     weeks_in_treatment: int
     contact_type: ContactTypes
     visit_type: VisitTypes

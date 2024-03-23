@@ -74,6 +74,8 @@ export class TreatmentLog {
     visit_type: string
     minutes?: number
     scores: TreatmentLogScore[]
+    cp_npi?: string
+    problems_list?: string
     date: number
     no_show?: boolean
 
@@ -83,6 +85,8 @@ export class TreatmentLog {
         visit_type: string,
         minutes: number,
         scores: TreatmentLogScore[],
+        cp_npi: string,
+        problems_list: string,
         date: number,
         no_show: boolean
     ) {
@@ -91,6 +95,8 @@ export class TreatmentLog {
         this.weeks_in_treatment = weeks_in_treatment
         this.visit_type = visit_type
         this.scores = scores
+        this.cp_npi = cp_npi
+        this.problems_list = problems_list
         this.minutes = minutes
         this.date = date
         this.no_show = no_show

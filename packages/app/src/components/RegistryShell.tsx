@@ -1,4 +1,4 @@
-import { AppShell, NavLink, Text } from '@mantine/core';
+import { AppShell, NavLink, Text, em } from '@mantine/core';
 import { IconTable, IconReportAnalytics, IconLock, IconShieldCheck, IconReportMedical } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { useDisclosure } from '@mantine/hooks';
@@ -7,12 +7,14 @@ import { Registry } from '@akello/core';
 import { useNavigate, Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import PatientDetail from './PatientDetail';
+import { useMediaQuery } from '@mantine/hooks';
 
 const RegistryShell = () => {
     const akello = useAkello();
     const navigate = useNavigate();
     const {pathname} = useLocation();
     const [opened, { toggle }] = useDisclosure();
+    const isMobile = useMediaQuery(`(max-width: ${em(880)})`);
     
     useEffect(() => {        
         akello.userService.getUserRegistries((data) => {            
@@ -70,7 +72,11 @@ const RegistryShell = () => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
                             navigate('/registry');
-                        }                        
+                        }       
+                        if(isMobile) {
+                            toggle()
+                        }
+                        
                     }}
                     label="Registry"
                     leftSection={<IconTable size="1rem" stroke={1.5} />}
@@ -81,7 +87,10 @@ const RegistryShell = () => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
                             navigate('/measurements');
-                        }                        
+                        }                   
+                        if(isMobile) {
+                            toggle()
+                        }     
                     }}
                     label="Measurements"
                     leftSection={<IconReportMedical size="1rem" stroke={1.5} />}
@@ -95,6 +104,9 @@ const RegistryShell = () => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
                             navigate('/reports');
+                        }
+                        if(isMobile) {
+                            toggle()
                         }                        
                     }}
                     label="Billing Report"
@@ -107,7 +119,10 @@ const RegistryShell = () => {
                         const selectedRegistry = akello.getSelectedRegistry();
                         if (selectedRegistry) {
                             navigate('/security');
-                        }                        
+                        }      
+                        if(isMobile) {
+                            toggle()
+                        }                  
                     }}
                     label="Secruity"
                     leftSection={<IconLock size="1rem" stroke={1.5} />}
@@ -127,11 +142,14 @@ const RegistryShell = () => {
             <AppShell.Aside>
                 <PatientDetail />
             </AppShell.Aside>
+            {/*
             <AppShell.Footer zIndex={300}>
+             
                 <div className="text-center">
                     built with ❤️ by Akello
                 </div>
             </AppShell.Footer>
+            */}
         </AppShell>
     );
 };

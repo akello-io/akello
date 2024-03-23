@@ -28,7 +28,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
     const muiTheme = createTheme({
         typography: {
             fontFamily: [
-              'Work Sans',
+              // 'Work Sans',
             ].join(','),
           },
       });
@@ -77,7 +77,7 @@ const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers}) => {
                             akello.selectPatient(clickedPatient)   
                             akello.dispatchEvent({ type: 'change' });
                             if(isMobile) {                            
-                                navigate('/registry/'+registryId+'/patient/'+clickedPatient.patient_mrn)
+                                navigate('/patient/'+clickedPatient.patient_mrn)
                             } else {                            
                                 navigate('/registry/'+clickedPatient.patient_mrn)
                             }

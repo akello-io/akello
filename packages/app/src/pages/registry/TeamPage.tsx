@@ -69,7 +69,7 @@ const TeamPage = () => {
     const darkTheme = createTheme({
         typography: {
             fontFamily: [
-              'Work Sans',
+              // 'Work Sans',
             ].join(','),
         },
         palette: {
@@ -80,7 +80,7 @@ const TeamPage = () => {
     const lightTheme = createTheme({
         typography: {
             fontFamily: [
-                'Work Sans',
+                // 'Work Sans',
             ].join(','),
       },
       palette: {

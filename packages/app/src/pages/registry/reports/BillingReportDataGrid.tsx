@@ -13,6 +13,14 @@ const columns: GridColDef[] = [
         }
     },
     {
+        field: 'initial_assessment',
+        headerName: 'Initial Assessment',
+        width: 150,
+        valueGetter: (params) => {            
+            return new Date(params.row.initial_assessment).toLocaleDateString()
+        }
+    },
+    {
         field: 'mrn',
         headerName: 'MRN',
         width: 150,
@@ -20,23 +28,22 @@ const columns: GridColDef[] = [
     {
         field: 'first_name',
         headerName: 'First name',
-        width: 150,
+        width: 100,
     },
     {
         field: 'last_name',
         headerName: 'Last name',
-        width: 150,
+        width: 100,
     },        
     {
         field: 'total_minutes',
-        headerName: 'Minutes',
-        width: 110,
+        headerName: 'Minutes',        
         type: "number"
     },
     {
         field: 'payer',
         headerName: 'Payer',
-        width: 350        
+        
     },
     {
         field: '99492',
@@ -54,8 +61,20 @@ const columns: GridColDef[] = [
     {
         field: 'referring_provider_npi',
         headerName: 'Referring Provider NPI',
-        width: 300        
+        width: 200        
     },
+    {
+        field: 'cp_npi_visits',
+        headerName: 'Problems List',
+        width: 200,
+        valueGetter: (params) => {      
+            if(params.row.cp_npi_visits.length == 0)      {
+                return ''
+            }            
+            debugger;
+            return params.row.cp_npi_visits.map((item: any) => 'npi: ' + item.cp_npi + '; cpt_codes: ' + item.problems).join(' || ')
+        }
+    }
 ];
 
 
@@ -64,12 +83,11 @@ interface BillingReportDataGridProps {
 }
 
 
-const BillingReportDataGrid:React.FC<BillingReportDataGridProps> = ({data}) => {
-    debugger;
+const BillingReportDataGrid:React.FC<BillingReportDataGridProps> = ({data}) => {    
     const darkTheme = createTheme({
         typography: {
             fontFamily: [
-              'Work Sans',
+            
             ].join(','),
           },
         palette: {
@@ -80,7 +98,7 @@ const BillingReportDataGrid:React.FC<BillingReportDataGridProps> = ({data}) => {
     const lightTheme = createTheme({
         typography: {
             fontFamily: [
-              'Work Sans',
+              
             ].join(','),
           },
       palette: {
