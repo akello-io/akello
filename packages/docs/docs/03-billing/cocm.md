@@ -1,14 +1,18 @@
 
 # Collaborative Care Model (CoCM)
 
+Time-based billing for the Collaborative Care Model (CoCM) allows healthcare providers to bill for mental health care services based on the amount of time spent on patient care activities, including both direct and indirect patient care. This encompasses time spent by various team members, such as care managers and psychiatric consultants, on activities like case reviews, care coordination, and treatment planning. It enables reimbursement for a broad range of non-face-to-face services essential to the integrated care approach of CoCM.
 
-### CPT® Code 99492
+
+## CPT® Codes
+
+### 99492
 Initial psychiatric collaborative care management, first 70 minutes in the first calendar month of behavioral health care manager activities, in consultation with a psychiatric consultant, and directed by the treating physician or other qualified health care professional
 
-### CPT® Code 99493
+### 99493
 Subsequent psychiatric collaborative care management, first 60 minutes in a subsequent month of behavioral health care manager activities, in consultation with a psychiatric consultant, and directed by the treating physician or other qualified health care professional
 
-### CPT® Code 99494
+### 99494
 Initial or subsequent psychiatric collaborative care management, each additional 30 minutes in a calendar month of behavioral health care manager activities, in consultation with a psychiatric consultant, and directed by the treating physician or other qualified health care professional (report in conjunction with 99492, 99493)
 
 
