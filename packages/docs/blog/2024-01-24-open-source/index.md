@@ -3,7 +3,9 @@ slug: akello-open-source
 title: Akello is Open Source!
 authors: vijay
 tags: [open-source]
+image: https://source.unsplash.com/woman-in-black-and-white-dress-painting-UwpPe2MRTfA
 ---
+
 
 ![image](image.jpg)
 

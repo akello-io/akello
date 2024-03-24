@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: Welcome
 ---
-# 🙏 Welcome
+# Welcome
 
 We're excited you're here! At Akello, we're building a platform centered on measurement-based methods. Our goals are:
 
@@ -48,4 +48,4 @@ Akello is unique because it offers unparalleled flexibility. You're not locked i
 
 Interested in contributing? You don't have to be an engineer to contribute! There are many ways to help out. Have a look at our guide over here: [Contributing to Akello](/docs/developers/contributing/)
 
-There is no contribution too small ❤️
+There is no contribution too small
