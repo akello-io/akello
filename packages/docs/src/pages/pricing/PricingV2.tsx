@@ -14,7 +14,7 @@ export default function PricingPage(): JSX.Element {
               <tr>
                 <th />
                 <th>
-                  Free
+                  Evaluation
                   <sup>
                     <a href="#note1">1</a>
                   </sup>
@@ -91,7 +91,7 @@ export default function PricingPage(): JSX.Element {
                 <td>
                   Billing Reports                  
                 </td>
-                <td>✔️</td>
+                <td></td>
                 <td>✔️</td>
                 <td>✔️</td>
                 <td>✔️</td>
@@ -102,10 +102,10 @@ export default function PricingPage(): JSX.Element {
                 <td>
                   Clinical Ops Automations                  
                 </td>
+                <td></td>
                 <td>✔️</td>
                 <td>✔️</td>
-                <td>✔️</td>
-                <td>✔️</td>
+                <td>Custom</td>
                 <td></td>
                 <td>✔️</td>
               </tr>
@@ -138,7 +138,7 @@ export default function PricingPage(): JSX.Element {
                     <a href="#note7">7</a>
                   </sup>
                 </td>
-                <td>50</td>
+                <td>100</td>
                 <td>300</td>
                 <td>Contact us</td>
                 <td>Contact us</td>   
@@ -167,9 +167,9 @@ export default function PricingPage(): JSX.Element {
               */}                            
               <tr>
                 <td>Integrations</td>
-                <td>Basic</td>
-                <td>Premium</td>
-                <td>Premium</td>                
+                <td>✔️</td>
+                <td>✔️</td>
+                <td>✔️</td>
                 <td>Custom</td>    
                 <td></td>             
                 <td>Contact us</td>               
@@ -201,10 +201,10 @@ export default function PricingPage(): JSX.Element {
             <h3>Notes</h3>
             <ol>
               <li id="note1">
-                <strong>Free</strong>: recommended for learning about Akello and a new clinical measurement-based program.
+                <strong>Evaluation</strong>: recommended for learning about Akello and a new clinical measurement-based program.
               </li>
               <li id="note2">
-                <strong>Individual</strong>: recommended for small implementations for a single care manager.
+                <strong>Individual</strong>: recommended for billing and small implementations for a single care manager ready.
               </li>
               <li id="note3">
                 <strong>Teams</strong>: recommended for teams that have adopted measurement-based care and want to scale up the program.                
