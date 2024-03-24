@@ -56,7 +56,7 @@ export default function PricingPage(): JSX.Element {
                 <td>Pricing</td>
                 <td>Free</td>
                 <td>
-                  <a>$500/yr</a>
+                  <a>$1,000/yr</a>
                 </td>
                 <td>
                   <a>Contact us</a>

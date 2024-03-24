@@ -31,6 +31,9 @@ dependencies:
   '@mantine/hooks':
     specifier: ^7.5.3
     version: 7.5.3(react@18.2.0)
+  '@mantine/notifications':
+    specifier: ^7.6.2
+    version: 7.6.2(@mantine/core@7.5.3)(@mantine/hooks@7.5.3)(react-dom@18.2.0)(react@18.2.0)
   '@mui/icons-material':
     specifier: ^5.15.6
     version: 5.15.6(@mui/material@5.15.10)(@types/react@18.2.64)(react@18.2.0)
@@ -2872,6 +2875,30 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@mantine/notifications@7.6.2(@mantine/core@7.5.3)(@mantine/hooks@7.5.3)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-vLs6Y5nnxHipGkA5TSsxgjeus0N9uS+0+E9KZ5OG5QEtz7BdOsKPtNmytsQzBN8P8fjttFImhhoSUOLpYv0xtA==}
+    peerDependencies:
+      '@mantine/core': 7.6.2
+      '@mantine/hooks': 7.6.2
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      '@mantine/core': 7.5.3(@mantine/hooks@7.5.3)(@types/react@18.2.64)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 7.5.3(react@18.2.0)
+      '@mantine/store': 7.6.2(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
+    dev: false
+
+  /@mantine/store@7.6.2(react@18.2.0):
+    resolution: {integrity: sha512-IEGbyIs7LIXYQtjR87GQPiw12klgsiKiqplGu9LekJb8uW/7XSRNs31ggqKmdF+cMWO/WyQhEXZdpWNib6tVOw==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /@microsoft/api-extractor-model@7.28.3:
     resolution: {integrity: sha512-wT/kB2oDbdZXITyDh2SQLzaWwTOFbV326fP0pUwNW00WeliARs0qjmXBWmGWardEzp2U3/axkO3Lboqun6vrig==}
     dependencies:
@@ -4066,7 +4093,7 @@ packages:
       '@types/semver': 7.5.8
       better-opn: 3.0.2
       chalk: 4.1.2
-      cli-table3: 0.6.3
+      cli-table3: 0.6.4
       compression: 1.7.4
       detect-port: 1.5.1
       express: 4.19.1
@@ -5290,8 +5317,8 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /cli-table3@0.6.3:
-    resolution: {integrity: sha512-w5Jac5SykAeZJKntOxJCrm63Eg5/4dhMWIcuTbo9rpE+brgaSZo0RuNJZeOyMgsUdhDeojvgyQLmjI+K50ZGyg==}
+  /cli-table3@0.6.4:
+    resolution: {integrity: sha512-Lm3L0p+/npIQWNIiyF/nAn7T5dnOwR3xNTHXYEBFBFVPXzCVNZ5lqEC/1eo/EVfpDsQ1I+TX4ORPQgp+UI0CRw==}
     engines: {node: 10.* || >= 12.*}
     dependencies:
       string-width: 4.2.3
