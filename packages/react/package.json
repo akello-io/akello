@@ -32,6 +32,10 @@
     "prepare": "husky install",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
+  "devDependencies": {
+    "@akello/core": "../core",
+    "@akello/react-hook": "../react-hook"
+  },  
   "peerDependencies": {
     "@akello/core": "^0.0.8",
     "@akello/react-hook": "^0.0.1",

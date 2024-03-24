@@ -32,6 +32,9 @@
     "prepare": "husky install",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
+  "devDependencies": {
+    "@akello/core": "../core"
+  },
   "peerDependencies": {
     "@akello/core": "^0.0.7",
     "amazon-cognito-identity-js": "^6.3.7",
