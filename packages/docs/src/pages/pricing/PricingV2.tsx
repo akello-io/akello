@@ -138,7 +138,7 @@ export default function PricingPage(): JSX.Element {
                     <a href="#note7">7</a>
                   </sup>
                 </td>
-                <td>100</td>
+                <td>50</td>
                 <td>300</td>
                 <td>Contact us</td>
                 <td>Contact us</td>   
