@@ -62,6 +62,7 @@
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@mantine/form": "^7.6.1",
+    "@mantine/notifications": "^7.6.2",
     "@mui/icons-material": "^5.15.6",
     "@mui/lab": "^5.0.0-alpha.162",
     "@mui/material": "^5.15.10",

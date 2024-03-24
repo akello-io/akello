@@ -19,7 +19,6 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
     const [error, setError] = useState<string | null>(null);
     const [visible, { toggle }] = useDisclosure(false);
 
-
     const LoginSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Required'),
         password: Yup.string().required('Required')
@@ -27,22 +26,28 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
 
     const handleSubmit = (values: { email: string; password: string }) => {        
         toggle();        
-        akello.login(
-            values.email,
-            values.password,
-            (token: string) => {  
-                akello.setUserName(values.email);                  
-                onSuccess && onSuccess(token);
-                toggle();
-            },
-            (err: any) => {
-                setError(err.message);
-                onFail && onFail(err);
-                toggle();
-            }
-        );
+        try {
+            akello.login(
+                values.email,
+                values.password,
+                (token: string) => {                      
+                    toggle();
+                    akello.setUserName(values.email);                  
+                    onSuccess && onSuccess(token);                    
+                },
+                (err: any) => {                    
+                    toggle();
+                    setError(err.message);
+                    onFail && onFail(err);                    
+                }
+            );
+            
+        } catch (err: any) {            
+            toggle();
+            setError(err.message);
+            onFail && onFail(err);            
+        }        
     };
-
 
     const handleOnKeyDown = (e: any) => {
         if (e.key === 'Enter') {
@@ -78,7 +83,6 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
                                             Create account
                                         </Anchor>
                                     </Text>
-
                                     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
                                         <Field
                                             name="email"

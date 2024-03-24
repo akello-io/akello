@@ -135,11 +135,11 @@ const config: Config = {
           items: [
             {
               label: 'Getting started',
-              to: '/docs/getting-started/setup-registry/',
+              to: '/docs/intro/',
             },
             {
               label: 'Developer Docs',
-              to: '/docs/developers/contributing',
+              to: '/docs/developers/',
             },
             {
               label: 'Storybook',
@@ -160,7 +160,7 @@ const config: Config = {
             },
             {
               label: 'Contributing',
-              to: '/docs/developers/contributing',
+              to: '/docs/developers/',
             },
           ],
         },

@@ -5,16 +5,8 @@ import { AkelloProvider } from '@akello/react-hook'
 import { Meta } from '@storybook/react'
 import { StoryFn } from '@storybook/react'
 import { AkelloClient } from '@akello/core'
+import { MantineProvider } from '@mantine/core'
 
-const config = {
-    baseUrl: '',
-    cognitoUserPoolId: '',
-    cognitoClientId: '',
-    onUnauthenticated: () => {
-        window.location.href = '/login'
-    }
-}
-export const akello = new AkelloClient(config)
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -27,18 +19,39 @@ const meta: Meta<typeof LoginPage> = {
 }
 export default meta
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+
+
+const config = {
+  baseUrl: import.meta.env.VITE_API,
+  cognitoUserPoolId: import.meta.env.VITE_AWS_COGNITO_USERPOOL_ID,
+  cognitoClientId: import.meta.env.VITE_AWS_COGNITO_APP_CLIENT_ID,
+          ...(import.meta.env.VITE_AKELLO_COGNITO_URL && {
+              cognitoEndpoint: import.meta.env.VITE_AKELLO_COGNITO_URL,
+              authenticationFlowType: "USER_PASSWORD_AUTH",
+  }),
+  onUnauthenticated: () => {
+      window.location.href = '/login'
+  }
+}
+const akello = new AkelloClient(config)
+
 const Template: StoryFn<typeof LoginPage> = (args: LoginPageProps) => {
   return (
-    <AkelloProvider akello={akello}>
-      <LoginPage {...args} />
-    </AkelloProvider>
+      <MantineProvider >
+        <AkelloProvider akello={akello}>
+          <LoginPage {...args} />
+        </AkelloProvider>          
+      </MantineProvider>    
   )
-
 }
-
 
 export const Primary = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {    
+Primary.args = {
+    signIn: () => {},
+    signOut: () => {},
+    logo: (<></>),
+    signed_in: true,
+    menu_items: [],
+    theme_swapper: (<></>)    
 }
