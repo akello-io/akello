@@ -3,7 +3,48 @@ import json
 from typing import List, Optional
 from akello.db.connector.dynamodb import RegistryDBBaseModel
 from akello.db.types import Measurement, UserRole, FlagTypes, PatientStatysTypes, AkelloApp, TreatmentLog, EventLog, \
-    AuditLog
+    AuditLog, UserMembershipType
+
+
+class OrganizationModel(RegistryDBBaseModel):
+    """
+    Represents an organization in the system. This is the primary model for the organization.
+    """
+    org_id: str
+    name: str
+    description: str    
+    logo_url: Optional[str] = None
+    type: str = 'Organization'
+
+
+    @property
+    def partition_key(self) -> str:
+        return 'org:' + self.org_id
+
+    @property
+    def sort_key(self) -> str:
+        return 'metadata'
+    
+
+class OrganizationAccountModel(RegistryDBBaseModel):
+    """
+    Represents an account in the system. This is the primary model for the account.
+    """
+    org_id: str
+    account_id: str
+    name: str
+    description: str
+    type: str = 'Account'
+    payment_tier: str = 'Free'
+    stripe_customer_id: Optional[str] = None
+
+    @property
+    def partition_key(self) -> str:
+        return 'org:' + self.org_id
+
+    @property
+    def sort_key(self) -> str:
+        return 'account:' + self.account_id
 
 
 class UserModel(RegistryDBBaseModel):
@@ -25,6 +66,30 @@ class UserModel(RegistryDBBaseModel):
     @property
     def sort_key(self) -> str:
         return 'profile'
+
+
+class UserMembershipModel(RegistryDBBaseModel):
+    """
+    Represents a user membership in the system. This is the primary model for the user membership.
+    """    
+    user_id: str
+    account_id: str = None
+    org_id: str = None
+    date_created: int = datetime.datetime.utcnow().timestamp()
+    role: UserRole
+    is_admin: bool = False
+    membership_type: UserMembershipType
+
+    @property
+    def partition_key(self) -> str:
+        return 'org:' + self.org_id
+
+    @property
+    def sort_key(self) -> str:
+        if self.membership_type == UserMembershipType.account:
+            return f'{UserMembershipType.account}:' + self.account_id
+        else:
+            return f'{UserMembershipType.org}:' + self.org_id
 
 
 class UserSession(RegistryDBBaseModel):

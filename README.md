@@ -18,8 +18,7 @@ Full open source code to run akello.io's infrastructure and apps. The backend se
 akello/
 ├── agent                  # automated workflows / AI enablement
 ├── examples               # end-to-end examples using akello packages
-├── packages   
-│   ├── app                # app code for app.akello.io
+├── packages
 │   ├── cdk                # scripts to deploy to AWS
 │   ├── cli                # cli tool to manage akello infra and apps
 │   ├── core               # data models and API utilities
