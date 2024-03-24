@@ -10,6 +10,9 @@ from pydantic import BaseModel
 from akello.db.connector.dynamodb import registry_db, RegistryDBBaseModel
 
 
+class UserMembershipType(str, Enum):
+    account = 'account'
+    organization = 'organization'
 
 class QuestionResponse(BaseModel):
     id: str

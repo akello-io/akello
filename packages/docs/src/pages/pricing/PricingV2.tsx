@@ -59,7 +59,7 @@ export default function PricingPage(): JSX.Element {
                   <a>$1,000/yr</a>
                 </td>
                 <td>
-                  <a>Contact us</a>
+                  <a>$2,000/yr/user</a>
                 </td>
                 <td>
                   <a>Contact us</a>
@@ -126,10 +126,10 @@ export default function PricingPage(): JSX.Element {
                 </td>
                 <td>1</td>
                 <td>1</td>
-                <td>Contact us</td>   
-                <td>Contact us</td>   
+                <td>Unlimited</td>   
+                <td>Unlimited</td>   
                 <td></td>             
-                <td>Contact us</td>   
+                <td>Unlimited</td>   
               </tr>                            
               <tr>
                 <td>
@@ -140,7 +140,7 @@ export default function PricingPage(): JSX.Element {
                 </td>
                 <td>100</td>
                 <td>300</td>
-                <td>Contact us</td>
+                <td>1,000 /user on team</td>
                 <td>Contact us</td>   
                 <td></td>             
                 <td>Contact us</td>   

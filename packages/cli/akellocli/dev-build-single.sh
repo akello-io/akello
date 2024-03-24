@@ -39,11 +39,3 @@ pnpm build:lib
 # rm -rf node_modules
 cd ../../
 
-echo '>>>>>>>>>>  CoCM'
-cd packages/app
-rm -rf node_modules
-rm pnpm-lock.yaml
-
-pnpm i
-pnpm dev
-
