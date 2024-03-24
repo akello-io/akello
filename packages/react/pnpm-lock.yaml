@@ -34,6 +34,9 @@ dependencies:
   '@mantine/notifications':
     specifier: ^7.6.2
     version: 7.6.2(@mantine/core@7.5.3)(@mantine/hooks@7.5.3)(react-dom@18.2.0)(react@18.2.0)
+  '@modulz/radix-icons':
+    specifier: ^4.0.0
+    version: 4.0.0(react@18.2.0)
   '@mui/icons-material':
     specifier: ^5.15.6
     version: 5.15.6(@mui/material@5.15.10)(@types/react@18.2.64)(react@18.2.0)
@@ -2940,6 +2943,14 @@ packages:
 
   /@microsoft/tsdoc@0.14.2:
     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
+    dev: false
+
+  /@modulz/radix-icons@4.0.0(react@18.2.0):
+    resolution: {integrity: sha512-d79T4cYvMGMocVC/q1WiMO578FPFfUoxmXIkduc8cUQAPDr7thuEV5HrCHhqqqkoVaYD0QPct180ilcNUyGPrg==}
+    peerDependencies:
+      react: ^16.x || ^17.x
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@mui/base@5.0.0-beta.33(@types/react@18.2.64)(react-dom@18.2.0)(react@18.2.0):
