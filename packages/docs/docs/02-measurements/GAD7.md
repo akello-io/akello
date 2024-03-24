@@ -2,8 +2,8 @@
 title: GAD-7
 ---
 
-
 # GAD-7 (General Anxiety Disorder-7)
+
 Objectively determine initial symptoms severity and monitor symptom changes/effect of treatment over time.
 
 

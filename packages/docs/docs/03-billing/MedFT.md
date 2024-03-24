@@ -4,6 +4,7 @@ title: MedFT
 
 # Medical family therapy (MedFT)
 
+
 Medical Family Therapy (MedFT) is a multidisciplinary approach to healthcare that integrates the biopsychosocial-spiritual (BPS-S) model within integrated behavioral health care (IBHC) settings. This approach emphasizes the importance of considering biological, psychological, social, and spiritual factors in the treatment and care of patients. MedFT practitioners work within healthcare teams, offering relational and family-oriented care to address a wide range of health issues across different healthcare contexts, from primary care to specialized settings.
 
 The BPS-S model is foundational to MedFT, acknowledging that health and wellness are influenced by a complex interplay of factors:
@@ -30,3 +31,29 @@ Billing for MedFT services can be complex and varies by healthcare systems, insu
 5. **Medicaid and Medicare**: Coverage for MedFT services under government programs like Medicaid and Medicare can vary, with specific rules depending on the state and the type of service provided.
 
 It's important for patients and families seeking MedFT services to understand their insurance coverage and any out-of-pocket costs they may incur. Healthcare providers and MedFT practitioners can often assist in navigating these billing questions, providing information on coverage, and helping with the necessary paperwork for insurance claims.
+
+
+
+## How Akello can help you run MedFT
+
+
+:::tip
+
+Use Akello to help automate sending and collecting measurements
+
+:::
+
+
+The clinical model MedFT (Medical Family Therapy) integrates the biopsychosocial-spiritual (BPSS) model of health into its framework, emphasizing the interconnection of biological, psychological, social, and spiritual factors in health and illness. By leveraging measurements, MedFT can assess and address these interconnected aspects comprehensively. Here's how measurements are typically leveraged in MedFT:
+
+1. **Assessment Tools**: MedFT practitioners use various standardized assessment tools to measure the biological, psychological, social, and spiritual aspects of a client's health. These tools might include questionnaires, surveys, and scales designed to evaluate mental health symptoms, family functioning, social support networks, and spiritual wellbeing.
+
+2. **Outcome Measurements**: MedFT focuses on measuring outcomes to evaluate the effectiveness of therapeutic interventions over time. Outcome measures might assess changes in individual symptoms, family dynamics, relationship satisfaction, or overall quality of life. This data helps therapists tailor interventions to meet the specific needs of clients and their families more effectively.
+
+3. **Biological Measurements**: In collaboration with medical professionals, MedFT practitioners might incorporate biological measurements such as blood tests, heart rate, or other medical diagnostics to understand the physical health status of clients. These measurements can provide insight into how physical health conditions might be impacting psychological and relational well-being.
+
+4. **Feedback-Informed Treatment**: MedFT utilizes feedback-informed treatment approaches, where ongoing measurement of client progress informs the therapeutic process. This approach ensures that therapy is responsive to the client's changing needs and circumstances, allowing for adjustments in treatment plans based on measurable outcomes.
+
+5. **Integrative Data Analysis**: By collecting and analyzing data from diverse sources, including psychological assessments, family interviews, medical records, and social support assessments, MedFT practitioners can develop a comprehensive understanding of a client's situation. This integrative analysis helps in creating a holistic treatment plan that addresses all dimensions of health.
+
+6. **Monitoring Systemic Interactions**: MedFT recognizes the importance of systemic interactions in health and illness. Measurements can be used to understand how changes in one area (e.g., improvement in mental health) might affect other areas (e.g., family relationships, physical health), facilitating a more integrated approach to treatment.

@@ -24,6 +24,14 @@ Initial or subsequent psychiatric collaborative care management, each additional
 
 ## Sample Billing Report for CoCM
 
+:::tip
+
+Directly generate CoCM billing reports from Akello
+
+:::
+
+
+
 |   Date      	|   Initial Assessment  	|   MRN                                   	|   First name  	|   Last name  	|   Minutes  	|   Payer               	|   99492  	|   99493  	|   99494  	|   Referring Provider NPI  	|   Problems List  	|
 |-------------	|-----------------------	|-----------------------------------------	|---------------	|--------------	|------------	|-----------------------	|----------	|----------	|----------	|---------------------------	|------------------	|
 |   6/1/2024  	|   1/3/2024            	|   01ce5fc6-32d1-46fe-8f08-963c96248805  	|   Holly       	|   Guzman     	|   131.26   	|   Cigna               	|   0      	|   TRUE   	|   2      	|   1234567890              	|                  	|
