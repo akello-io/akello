@@ -19,7 +19,6 @@ akello/
 ├── agent                  # automated workflows / AI enablement
 ├── examples               # end-to-end examples using akello packages
 ├── packages
-│   ├── cdk                # scripts to deploy to AWS
 │   ├── cli                # cli tool to manage akello infra and apps
 │   ├── core               # data models and API utilities
 │   ├── docs               # docs hosted under docs.akello.io
