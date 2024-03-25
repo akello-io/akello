@@ -42,6 +42,12 @@ class Measurement(BaseModel):
     measurements: Union[List[Question], List[FHIRWeight]]
 
 
+class AkelloPlanTier(str, Enum):
+    free = 'Free'
+    individual = 'Individual'
+    teams = 'Teams'
+    enterprise = 'Enterprise'
+
 class UserRole(str, Enum):
     care_manager = 'Care Manager'
     primary_care_physician = 'Primary Care Physician'

@@ -7,11 +7,13 @@ from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.services.screeners import ScreenerService
 from akello.services.akello_apps import AkelloAppsService
+from akello.decorators.akello_plan_tier import akello_plan_check
 #from akello_apps.metriport.plugin import MetriportPlugin
 from fastapi import Request
 from akello.decorators.mixin import mixin
 import datetime
 import logging, os
+import stripe
 
 logger = logging.getLogger('mangum')
 
@@ -27,6 +29,17 @@ mixins = []
 # if metriport_api_key != '$METRIPORT_API_KEY' and metriport_api_url != '$METRIPORT_API_URL' and metriport_api_key and metriport_api_url:
 # mixins.append(APIMixin(order='pre', plugin=metriport, method='start_fhir_consolidated_data_query', args=['treatment_log.patient_mrn', 'registry_id']))
 
+
+@router.post("/payment/{stripe_session_id}", include_in_schema=False)
+async def payment_confirmed(stripe_session_id: str):
+    # registry_id is the stripe customer id
+    #StripePaymentService.payment_confirmed(stripe_customer_id)
+    item = stripe.checkout.Session.retrieve(stripe_session_id)
+    registry_id = item['client_reference_id']
+    stripe_customer = item['customer']
+    # TODO: Set registry with the stripe info
+    # TODO: Set the plan the user has subscribed to
+    pass
 
 @router.post("/create")
 async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
@@ -140,6 +153,7 @@ async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom =
     for member in members:
         member['is_user'] = member['email'] == auth.username
     return members
+
 
 
 @router.get("/{registry_id}/patients")

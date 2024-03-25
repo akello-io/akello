@@ -119,6 +119,7 @@ sphinxcontrib-qthelp==1.0.7
 sphinxcontrib-serializinghtml==1.1.10
 starkbank-ecdsa==2.2.0
 starlette==0.35.1
+stripe==8.8.0
 tabulate==0.9.0
 twine==4.0.2
 typeguard==2.13.3
