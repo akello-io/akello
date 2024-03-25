@@ -31,7 +31,6 @@ export const Primary = Template.bind({})
 Primary.args = {
   questionnaire: {
     'name': 'Questionnaire',
-
     'measurements': [
       {
         "question": "Qeustion 1",
