@@ -359,7 +359,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     changePassword(
         oldPassword: string,
         newPassword: string,
-        onSuccess: () => void,
+        onSuccess: (data: any) => void,
         onFail: (err: any) => void
     ) {
         const poolData = {
@@ -381,7 +381,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                         onFail(err);
                         return;
                     }
-                    onSuccess();
+                    onSuccess(result);
                 });
             });
         }

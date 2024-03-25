@@ -53,13 +53,18 @@ export default function PricingPage(): JSX.Element {
             </thead>
             <tbody>
               <tr>
-                <td>Pricing</td>
+                <td>
+                  Pricing
+                  <sup>
+                    <a href="#note7">7</a>
+                  </sup>
+                </td>
                 <td>Free</td>
                 <td>
-                  <a>$1,000/yr</a>
+                  <a>$80/mo</a>
                 </td>
                 <td>
-                  <a>$2,000/yr/user</a>
+                  <a>$150/mo/user</a>
                 </td>
                 <td>
                   <a>Contact us</a>
@@ -135,7 +140,7 @@ export default function PricingPage(): JSX.Element {
                 <td>
                   Patients
                   <sup>
-                    <a href="#note7">7</a>
+                    <a href="#note8">8</a>
                   </sup>
                 </td>
                 <td>100</td>
@@ -219,6 +224,9 @@ export default function PricingPage(): JSX.Element {
                 <strong>Enterprise Managed</strong>: recommended for those who must host the application on their own cloud infrastructure and need support from Akello.
               </li>
               <li id="note7">
+                Pricing is charged annually and is subject to change.
+              </li>              
+              <li id="note8">
                 Patients refers to the total number of patients (active, deactivated) in a registry. If a maximum is reached the user will need to clear out old data in order to add new patients.
               </li>              
             </ol>
