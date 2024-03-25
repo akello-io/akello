@@ -4,7 +4,7 @@ title: PHQ-9
 
 
 # PHQ-9 (Patient Health Questionnaire-9)
-Objectively determines severity of initial depression symptoms, and also monitors symptom changes and treatment effects over time.
+The PHQ-9 measurement allows clinicians to objectively determine the severity of initial depression symptoms, and also monitor symptom changes and treatment effects over time.
 
 
 ### When to Use
