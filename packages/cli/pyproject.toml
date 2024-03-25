@@ -21,7 +21,8 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 dependencies = [
-    'click'    
+    'click',
+    'boto3'
 ]
 
 [project.urls]
@@ -29,4 +30,4 @@ Homepage = "https://akello.io"
 Issues = "https://github.com/akello-io/akello/issues"
 
 [project.scripts]
-akellocli = "akellocli.akello:cli()"
+akello = "akellocli.akello:cli()"
