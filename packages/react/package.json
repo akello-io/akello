@@ -32,6 +32,10 @@
     "prepare": "husky install",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
+  "devDependencies": {
+    "@akello/core": "../core",
+    "@akello/react-hook": "../react-hook"
+  },  
   "peerDependencies": {
     "@akello/core": "^0.0.8",
     "@akello/react-hook": "^0.0.1",
@@ -63,6 +67,7 @@
     "@heroicons/react": "^2.1.1",
     "@mantine/form": "^7.6.1",
     "@mantine/notifications": "^7.6.2",
+    "@modulz/radix-icons": "^4.0.0",
     "@mui/icons-material": "^5.15.6",
     "@mui/lab": "^5.0.0-alpha.162",
     "@mui/material": "^5.15.10",
