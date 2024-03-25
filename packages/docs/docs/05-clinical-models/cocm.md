@@ -5,7 +5,9 @@ title: CoCM
 
 # Collaborative Care Model (CoCM)
 
-Time-based billing for the Collaborative Care Model (CoCM) allows healthcare providers to bill for mental health care services based on the amount of time spent on patient care activities, including both direct and indirect patient care. This encompasses time spent by various team members, such as care managers and psychiatric consultants, on activities like case reviews, care coordination, and treatment planning. It enables reimbursement for a broad range of non-face-to-face services essential to the integrated care approach of CoCM.
+The Collaborative Care Model (CoCM) is a groundbreaking approach to behavioral healthcare that involves coordination among different healthcare professionals to provide comprehensive and integrated care for patients, particularly those with complex medical needs or chronic conditions. In this model, various professionals such as physicians, nurses, psychologists, social workers, and other specialists work together as a team to address the physical, mental, and social aspects of a patient's health. The model has been proven to be more cost-effective and provide better outcomes for several common mental health conditions than traditional approaches.
+
+Time-based billing for the Collaborative Care Model (CoCM) allows healthcare providers to bill for mental healthcare services based on the amount of time spent on patient care activities, including both direct and indirect patient care. This encompasses time spent by various team members, such as care managers and psychiatric consultants, on activities like case reviews, care coordination, and treatment planning. It enables reimbursement for a broad range of non-face-to-face services essential to the integrated care approach of CoCM.
 
 
 ## CPT® Codes
