@@ -171,7 +171,7 @@ export default function PricingPage(): JSX.Element {
                 <td>✔️</td>
                 <td>✔️</td>
                 <td>Custom</td>    
-                <td></td>             
+                <td>DIY</td>             
                 <td>Contact us</td>               
               </tr>      
               <tr>
