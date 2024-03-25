@@ -41,8 +41,9 @@ def setup():
     packages_path = os.path.join(current_file_path, '../../../')
     os.system(f"cd {current_file_path}/.. cp .template.env {packages_path}/app/.env")
     os.system(f"cd {current_file_path}/.. cp .template.api.env {packages_path}/server/akello/.env")
-
+    run_docker()
     try:
+        
         client_id = get_saved_client()
         user_pool_id = get_saved_user_pool()
         print("using saved client and user pool")
@@ -50,8 +51,6 @@ def setup():
         print("creating new client and user pool")
         user_pool_id = create_user_pool()
         client_id = create_user_pool_client(user_pool_id)
-
-    run_docker()
 
     print("\n\n")
     print("Add the following to your .env file")
