@@ -3,7 +3,7 @@ import json
 from typing import List, Optional
 from akello.db.connector.dynamodb import RegistryDBBaseModel
 from akello.db.types import Measurement, UserRole, FlagTypes, PatientStatysTypes, AkelloApp, TreatmentLog, EventLog, \
-    AuditLog, UserMembershipType
+    AuditLog, UserMembershipType, AkelloPlanTier
 
 
 class OrganizationModel(RegistryDBBaseModel):
@@ -183,6 +183,8 @@ class RegistryModel(RegistryDBBaseModel):
     questionnaires: List[Measurement] = None
     akello_apps: List[AkelloApp] = []
     logo_url: Optional[str] = None
+    plan_tier: AkelloPlanTier = AkelloPlanTier.free
+    stripe_customer_id: Optional[str] = None
 
     @property
     def object_type(self) -> str:
