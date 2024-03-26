@@ -20,23 +20,55 @@ const features = [
     {
       name: 'Measurements',
       description:
-        'Know the state of your patient population right now with real-time patient monitoring. Receive notifications when patients go off track from their treatment.',
+      "With Akello, you will have complete visibility with our real time patient monitoring service. You'll receive immediate notifications when patients deviate from their treatment plan.",
       imageSrc: MeasurementImage,
       imageAlt: '',
+      cta: (
+        <>
+            <a
+                href="/docs/measurements"
+                className="rounded bg-indigo-500 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 "
+
+            >
+                Learn more
+            </a>
+        </>
+      )
     },
     {
       name: 'Clinical Models',
       description:
-        'Run clinical models efficently all in one platform. Be able to scale models and get setup for value based payments from payers.',
+        'Efficiently run clinical models all in one platform. Akello enables you to scale models and equip your clinic to accept value based payments.',
       imageSrc: ClinicalModelsImage,
       imageAlt: '',
+      cta: (
+        <>
+            <a
+                href="/docs/clinical-models"
+                className="rounded bg-indigo-500 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 "
+
+            >
+                Learn more
+            </a>
+        </>
+      )
     },
     {
-        name: 'Team Collaboration',
+        name: 'Team Based Care',
         description:
-          'Akello helps automate work for you and your team. Integration is core to Akello to allow teams to work the way they want to work.',
+          'Akello helps automate workflows for you and your team and supports a wide range of integrations, empowering your organization to do its best work.',
         imageSrc: TeamCollaborationImage,
         imageAlt: '',
+        cta: (
+            <>
+                <a
+                    href="/docs/team-based-care"
+                    className="rounded bg-indigo-500 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 "
+                >
+                Learn more
+            </a>
+            </>
+          )
     },
   ]
   
@@ -92,7 +124,7 @@ export default function Example() {
                                 Measurement Based Care Infrastructure
                             </h1>
                             <p className="mt-6 text-lg leading-8">
-                                A complete platform for teams to run measurement based care models. Get started for free with Akello today.
+                                A complete platform for teams to run measurement based care models. Get started with Akello for free today.
                             </p>
                             <div className="mt-10 flex items-center gap-x-6">
                                 <a
@@ -124,7 +156,7 @@ export default function Example() {
                 <div className="bg-gray-900 py-24 sm:py-32">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         <h2 className="text-center text-lg font-semibold leading-8 text-white">
-                            Begin receiving reimbursements for evidence-based models today, trusted by healthcare professionals.
+                        Start getting reimbursed for proven healthcare models today.
                         </h2>
                         <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
                             {
@@ -165,6 +197,7 @@ export default function Example() {
                                 >
                                     <h3 className="text-2xl font-bold ">{feature.name}</h3>
                                     <p className="mt-2 text-sm ">{feature.description}</p>
+                                    <div className="mt-4">{feature.cta}</div>
                                 </div>
                                 <div
                                     className={classNames(
@@ -189,13 +222,13 @@ export default function Example() {
                     </h2>
                     <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
                     <a
-                        href="https://app.akello.io"
+                        href="https://app.akello.io/signup"
                         className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Get started
                     </a>
-                    <a href="/docs/intro" className="text-sm font-semibold leading-6 text-white">
-                        Learn more <span aria-hidden="true">→</span>
+                    <a href="https://calendly.com/akello-health/30-min-call" className="text-sm font-semibold leading-6 text-white">
+                        Book a demo <span aria-hidden="true">→</span>
                     </a>
                     </div>
                 </div>

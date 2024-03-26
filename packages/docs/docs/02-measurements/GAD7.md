@@ -53,3 +53,6 @@ Sore the screener by summing up all the responses. Scores ≥10: Further assessm
 | >15    	| Severe           	| Active treatment probably warranted       	|
 
 *For Panic Disorder, Social Phobia, & PTSD, cutoff score of 8 may be used for optimal sensitivity/specificity (see Evidence section).
+
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)

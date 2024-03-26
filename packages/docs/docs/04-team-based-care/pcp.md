@@ -51,3 +51,5 @@ Primary Care Physicians (PCPs) are at the forefront of integrated care models, s
 ## Conclusion
 
 Primary Care Physicians play a critical role in integrated care models, acting as the linchpin in patient care coordination and delivery. The adoption of time-based billing in these settings recognizes the extensive and varied nature of the care provided by PCPs, from direct patient interactions to the indirect coordination and management of patient care. This billing approach not only ensures fair compensation for PCPs but also promotes a healthcare environment that values quality, comprehensive care, and patient satisfaction.
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)

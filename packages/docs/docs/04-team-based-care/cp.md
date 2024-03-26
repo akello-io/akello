@@ -50,3 +50,5 @@ A Consulting Psychiatrist plays a pivotal role in integrated care models, offeri
 ## Conclusion
 
 In integrated care models, Consulting Psychiatrists are indispensable for their psychiatric expertise, enhancing the treatment of complex conditions through collaborative, multidisciplinary approaches. Time-based billing facilitates a fair and accurate compensation model that reflects the comprehensive nature of their contribution, from direct patient care to the indirect support and guidance provided to the care team. This billing approach promotes a focus on quality and outcomes, ensuring patients receive the best possible integrated care.
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)

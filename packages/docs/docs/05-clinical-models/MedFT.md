@@ -57,3 +57,6 @@ The clinical model MedFT (Medical Family Therapy) integrates the biopsychosocial
 5. **Integrative Data Analysis**: By collecting and analyzing data from diverse sources, including psychological assessments, family interviews, medical records, and social support assessments, MedFT practitioners can develop a comprehensive understanding of a client's situation. This integrative analysis helps in creating a holistic treatment plan that addresses all dimensions of health.
 
 6. **Monitoring Systemic Interactions**: MedFT recognizes the importance of systemic interactions in health and illness. Measurements can be used to understand how changes in one area (e.g., improvement in mental health) might affect other areas (e.g., family relationships, physical health), facilitating a more integrated approach to treatment.
+
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)

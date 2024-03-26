@@ -64,3 +64,6 @@ Sore the screener by summing up all the responses.
 | 10-14 	| Moderate            	|                                                                                                     	|
 | 15-19 	| Moderately severe   	| Warrants active treatment with psychotherapy, medications, or combination                           	|
 | 20-27 	| Severe              	|                                                                                                     	|
+
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)

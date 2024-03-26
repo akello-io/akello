@@ -25,3 +25,7 @@ We believe that no two healthcare practices are the same, and your tools shouldn
 **Get Started with Akello Today**
 
 Join the growing number of clinicians who are revolutionizing healthcare delivery with Akello. Our support team is here to guide you through every step, from setup to customization, ensuring a smooth transition to a more effective, financially sustainable practice. Welcome to the future of healthcare. Welcome to Akello.io.
+
+
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)
