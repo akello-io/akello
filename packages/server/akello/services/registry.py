@@ -4,6 +4,7 @@ from akello.db.models import RegistryModel, TreatmentLog, PatientRegistry
 from akello.db.types import ContactTypes
 from akello.db.connector.dynamodb import registry_db
 from akello.services import BaseService
+from akello.services.stripe_payment import StripePaymentService
 from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
 
@@ -54,16 +55,20 @@ class RegistryService(BaseService):
                     'partition_key': 'registry:%s' % registry_id,
                     'sort_key': 'metadata'
                 }
-            )
-            print(response)
+            )            
         except ClientError as e:
             print(e)
-            print(e.response['No item found'])
+            print(e.response['No item found'])        
 
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
+        
+        return response['Item']                
 
-        return response['Item']
+
+    @staticmethod
+    def set_stripe_customer_id(registry_id, stripe_customer_id):
+        RegistryModel.set_attribute('registry:%s' % registry_id, 'metadata', 'stripe_customer_id', stripe_customer_id)
 
     @staticmethod
     def update_registry_akello_apps(registry_id, akello_apps):

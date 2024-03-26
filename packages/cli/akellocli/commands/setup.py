@@ -35,9 +35,9 @@ def get_saved_user_pool():
 
 @click.command()
 def setup():
-    packages_path = os.path.join(current_file_path, '../../../')
-    os.system(f"cd {current_file_path}/.. cp .template.env {packages_path}/app/.env")
-    os.system(f"cd {current_file_path}/.. cp .template.api.env {packages_path}/server/akello/.env")
+    # packages_path = os.path.join(current_file_path, '../../../')    
+    # os.system(f"cd {current_file_path}/.. && ls {packages_path}/server/akello/ -all && cp .template.api.env {packages_path}/server/akello/.env")    
+    
     run_docker()
     try:
         
@@ -58,4 +58,5 @@ def setup():
     print(f"export AKELLO_API_URL=http://127.0.0.1:8000/v1")
     print(f"export AKELLO_COGNITO_URL=http://localhost:9229")
     print(f"export AKELLO_DYNAMODB_LOCAL_URL=http://localhost:8001")
+    print(f"export STRIPE_API_KEY=xxxx set it manually for now xxxxx")
     print("\n\n")

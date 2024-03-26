@@ -183,7 +183,6 @@ class RegistryModel(RegistryDBBaseModel):
     questionnaires: List[Measurement] = None
     akello_apps: List[AkelloApp] = []
     logo_url: Optional[str] = None
-    plan_tier: AkelloPlanTier = AkelloPlanTier.free
     stripe_customer_id: Optional[str] = None
 
     @property

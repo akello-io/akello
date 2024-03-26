@@ -8,6 +8,37 @@ export class RegistryService extends BaseService {
         super(client);        
     }
 
+    async completePayment(registry_id: string, stripe_session_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "registry/" + registry_id + "/payment/" + stripe_session_id;
+        const resp = this.apiRequest({
+            api_url: this.client.getOptions().baseUrl!,
+            method: 'post',
+            endpoint: endpoint,
+            token: this.client.accessToken!,
+            onSuccess: (resp: any) => {
+                onSuccess(resp)
+            }, onFail: (error: any) => {
+                this.handleFail(error, onFail)
+            }
+        });
+    }
+
+    async checkSubscription(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "registry/" + registry_id + "/subscription";
+        const resp = this.apiRequest({
+            api_url: this.client.getOptions().baseUrl!,
+            method: 'get',
+            endpoint: endpoint,
+            token: this.client.accessToken!,
+            onSuccess: (resp: any) => {
+                onSuccess(resp)
+            }, onFail: (error: any) => {
+                this.handleFail(error, onFail)
+            }
+        });
+    }
+
+
     /**
      * Retrieves a registry by its ID.
      * @param registry_id - The ID of the registry to retrieve.
