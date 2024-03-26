@@ -5,7 +5,7 @@ import {
     Cog6ToothIcon,
     FingerPrintIcon,
     LockClosedIcon,
-    ServerIcon,
+    ServerIcon,        
 } from '@heroicons/react/20/solid'
 import { BoltIcon, CalendarDaysIcon, UsersIcon } from '@heroicons/react/24/outline'
 import HeroImg  from './hero.png'
@@ -47,11 +47,26 @@ const features = [
 export default function Example() {
 
     const models = [
-        'CoCM',
-        'SBIRT',
-        'PCBH',
-        'PCCM',        
-        'MedFT'
+        {
+            'name': 'CoCM',
+            'link': '/docs/clinical-models/cocm'
+        },
+        {
+            'name': 'SBIRT',
+            'link': '/docs/clinical-models/sbirt'
+        },
+        {
+            'name': 'PCBH',
+            'link': '/docs/clinical-models/pcbh'
+        },
+        {
+            'name': 'PCCM',
+            'link': '/docs/clinical-models/pccm'
+        },
+        {
+            'name': 'MedFT',
+            'link': '/docs/clinical-models/MedFT'
+        }                        
     ]
 
     return (
@@ -114,9 +129,10 @@ export default function Example() {
                         <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
                             {
                                 models.map((model) => (
-                                    <div className="text-white text-3xl col-span-2 max-h-12 w-full object-contain lg:col-span-1">
-                                    {model}
-                                    </div>
+                                    <a className="text-white text-3xl col-span-2 max-h-12 w-full object-contain lg:col-span-1" href={model.link}>
+                                        {model.name}
+                                        <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+                                    </a>
                                 ))
                             }                                                                                                
                         </div>
@@ -125,13 +141,13 @@ export default function Example() {
 
 
 
-                    <div className="bg-white">
+                    <div className="">
                         <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
                             <div className="mx-auto max-w-3xl text-center">
                             <p className="mt-4 ">
                                 How does Akello work?
                             </p>
-                            <h2 className="text-3xl font-bold tracking-tight  sm:text-4xl">Akello helps you run Measurment-Based Care as a team and get paid</h2>
+                            <h2 className="text-3xl font-bold tracking-tight  sm:text-4xl">Akello helps you get paid for running MBC</h2>
                             
                             </div>
 
