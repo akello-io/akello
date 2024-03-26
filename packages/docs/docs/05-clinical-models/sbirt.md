@@ -43,3 +43,6 @@ To implement SBIRT effectively, healthcare settings may need:
 - A referral network for treatment services for patients needing more comprehensive care.
 
 The SBIRT model's strengths lie in its ability to be integrated into a wide range of healthcare settings, making substance use disorder screening part of routine care. This not only helps in identifying and addressing substance use disorders early but also reduces the stigma associated with these conditions, encouraging more individuals to seek help.
+
+
+:::info  Get started with a free account [here](https://app.akello.io)

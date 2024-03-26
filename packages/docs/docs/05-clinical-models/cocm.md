@@ -66,3 +66,6 @@ Directly generate CoCM billing reports from Akello
 |   4/1/2024  	|   2/18/2024           	|   0950fd13-1db5-4334-bb03-23a1d576d415  	|   James       	|   Arellano   	|   50.52    	|   Cigna               	|   0      	|   0      	|   0      	|   987654321               	|                  	|
 |   3/1/2024  	|   2/18/2024           	|   0950fd13-1db5-4334-bb03-23a1d576d415  	|   James       	|   Arellano   	|   120.73   	|   Cigna               	|   0      	|   TRUE   	|   2      	|   987654321               	|                  	|
 |   2/1/2024  	|   2/18/2024           	|   0950fd13-1db5-4334-bb03-23a1d576d415  	|   James       	|   Arellano   	|   52.66    	|   Cigna               	|   0      	|   0      	|   0      	|   987654321               	|                  	|
+
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)
