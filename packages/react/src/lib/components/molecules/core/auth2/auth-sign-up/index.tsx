@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { Anchor, Paper, Title, Text, Container, Button, Center } from '@mantine/core';
+import { Anchor, Paper, Image, Title, Text, Container, Button, Center } from '@mantine/core';
 import { Field, Form, Formik } from 'formik';
+import { IconArrowRight } from '@tabler/icons-react';
+
 import * as Yup from 'yup';
 import { useAkello } from '@akello/react-hook';
+import AkelloLogo from '../../../../../assets/images/logos/akello/akello-logo.png';
 
 const SignupSchema = Yup.object().shape({
     first_name: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
@@ -12,7 +15,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 
-interface SignUpPageProps {
+export interface SignUpPageProps {
     onLoginClick: () => void;
     onSignupSuccess: () => void;
 }
@@ -35,7 +38,21 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
             <Center>
                 <Container size={420} my={40}>
                     <Title ta="center">
-                        Welcome.
+                        <Image src={AkelloLogo} alt="Akello Logo" />
+                        
+                        <Text mt={12} size={"xs"} fw={700}>
+                            Start for free 
+
+                            <IconArrowRight size={20} className="inline-block ml-2" />
+
+                            No Credit Card Required
+
+                            <IconArrowRight size={20} className="inline-block ml-2" />
+
+                            Cancel Anytime
+                                                        
+                        </Text>                        
+                        
                     </Title>
                     <Text c="dimmed" size="sm" ta="center" mt={5}>
                         Already have an account?{' '}
@@ -127,7 +144,7 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                                             </div>
                                         </div>
 
-                                        <Button type="submit" fullWidth mt="xl" className="bg-primary">
+                                        <Button type="submit" fullWidth mt="xl">
                                             Sign Up
                                         </Button>
 
