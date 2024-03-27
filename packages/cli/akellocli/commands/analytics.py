@@ -85,7 +85,16 @@ def scan_patients(db_table, registry_id):
         FilterExpression=Key('partition_key').eq(partition_key) 
     )
     users = get_users_in_registry(db_table, registry_id)    
-    emails = [get_user(db_table, user['user_id'])['email'] for user in users]
+    
+    user_emails = []
+    for user in users:        
+        user_object = get_user(db_table, user['user_id'])
+        user_emails.append(
+            {
+                'email': user_object['email'], 
+                'last_login': datetime.strftime(datetime.fromtimestamp(int(user_object['last_login'])), '%d/%b/%y')
+            }
+        )
 
     patient_created_stats = {}
     for patient in response['Items']:
@@ -97,7 +106,7 @@ def scan_patients(db_table, registry_id):
 
     print ({
         'registry_id': registry_id,
-        'emails': emails,        
+        'emails': user_emails,        
         'patient_created_stats': patient_created_stats
     })
         
