@@ -4,7 +4,7 @@ sidebar: 3
 ---
 
 
-Time-based billing, offers a complementary financial model that aligns healthcare providers’ compensation with the quality and intensity of care delivered, rather than the quantity of services. This document provides an overview of integrating time-based billing with MBC, detailing its implications, benefits, and key considerations.
+Time-based billing offers a complementary financial model that aligns healthcare providers’ compensation with the quality and intensity of care delivered, rather than the quantity of services. This document provides an overview of integrating time-based billing with MBC, detailing its implications, benefits, and key considerations.
 
 ## The Intersection of MBC and Time-Based Billing
 
