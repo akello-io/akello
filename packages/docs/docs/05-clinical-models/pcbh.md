@@ -21,3 +21,6 @@ Billing for services under the PCBH model can be complex due to the integration 
 Billing for PCBH services requires an understanding of the nuances of both mental health and primary care billing practices. Providers often need to navigate insurance eligibility, patient consent, and documentation requirements carefully to ensure compliance and reimbursement. Additionally, the adoption of integrated care models has prompted some insurers and Medicare/Medicaid to adapt or expand their billing codes to more accurately reflect the nature of integrated services.
 
 Given the complexity of billing and the potential for variability between different payers, it's essential for providers to stay updated on the latest billing guidelines and work closely with billing specialists to optimize reimbursement for PCBH services.
+
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)

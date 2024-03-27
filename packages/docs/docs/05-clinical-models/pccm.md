@@ -26,3 +26,5 @@ Billing in a PCCM system can be complex, as it involves various payment mechanis
 - **Reimbursement:** The payer, which could be a government agency or a managed care organization, processes the claims and reimburses the provider according to the agreed-upon rates and payment models.
 
 It's important for providers participating in a PCCM program to understand the specific billing rules and requirements, which can vary by program and payer. Efficient billing practices and accurate documentation are essential for ensuring timely and appropriate reimbursement for services rendered under the PCCM model.
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)

@@ -16,3 +16,6 @@ For detailed information about the study and its findings, I would recommend loo
 4. https://bmcpublichealth.biomedcentral.com/articles/10.1186/1471-2458-11-780
 5. https://www.annfammed.org/content/2/4/305
 6. https://bmcpublichealth.biomedcentral.com/articles/10.1186/1471-2458-11-780
+
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)

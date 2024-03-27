@@ -35,3 +35,5 @@ Time-based billing, offers a complementary financial model that aligns healthcar
 ## Conclusion
 
 The integration of time-based billing with Measurement-Based Care represents a forward-thinking approach to healthcare that prioritizes patient outcomes and the quality of care. By focusing on the time healthcare providers invest in each patient's treatment, this model supports a more personalized, outcome-oriented healthcare system. Success requires careful implementation, with a focus on accurate time tracking, clear billing practices, and ongoing communication with patients.
+
+:::info  Get started with a free account [here](https://app.akello.io/signup)

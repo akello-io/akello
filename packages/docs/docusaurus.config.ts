@@ -38,7 +38,7 @@ const config: Config = {
   presets: [
     [
       'classic',
-      {
+      {        
         docs: {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
@@ -72,6 +72,13 @@ const config: Config = {
         },
       };
     },
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-RW14R2MMT9',
+        anonymizeIP: true,
+      },
+    ],
   ],
 
   themeConfig: {
