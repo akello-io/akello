@@ -38,11 +38,7 @@ const config: Config = {
   presets: [
     [
       'classic',
-      {
-        gtag: {
-          trackingID: 'G-999X9XX9XX',
-          anonymizeIP: true,
-        },
+      {        
         docs: {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
@@ -76,6 +72,13 @@ const config: Config = {
         },
       };
     },
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-RW14R2MMT9',
+        anonymizeIP: true,
+      },
+    ],
   ],
 
   themeConfig: {
