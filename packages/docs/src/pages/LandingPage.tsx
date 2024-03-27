@@ -6,6 +6,8 @@ import {
     FingerPrintIcon,
     LockClosedIcon,
     ServerIcon,        
+    InboxIcon,
+    TrashIcon
 } from '@heroicons/react/20/solid'
 import { BoltIcon, CalendarDaysIcon, UsersIcon } from '@heroicons/react/24/outline'
 import HeroImg  from './hero.png'
@@ -27,10 +29,9 @@ const features = [
         <>
             <a
                 href="/docs/measurements"
-                className="rounded bg-indigo-500 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 "
-
+                className="text-sm font-semibold leading-6 text-indigo-600"
             >
-                Learn more
+                Learn more <span aria-hidden="true">→</span>
             </a>
         </>
       )
@@ -45,10 +46,9 @@ const features = [
         <>
             <a
                 href="/docs/clinical-models"
-                className="rounded bg-indigo-500 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 "
-
+                className="text-sm font-semibold leading-6 text-indigo-600"
             >
-                Learn more
+                Learn more <span aria-hidden="true">→</span>
             </a>
         </>
       )
@@ -63,12 +63,36 @@ const features = [
             <>
                 <a
                     href="/docs/team-based-care"
-                    className="rounded bg-indigo-500 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 "
+                    className="text-sm font-semibold leading-6 text-indigo-600"
                 >
-                Learn more
-            </a>
+                    Learn more <span aria-hidden="true">→</span>
+                </a>
             </>
           )
+    },
+  ]
+
+  const features2 = [
+    {
+      name: 'Patient Registry',
+      description:
+        'Our registry enables teams to run Treat-to-Target strategy in Collaborative Care Management (CoCM) to monitor individual health metrics closely, ensuring tailored interventions are timely and aligned with predefined clinical goals for optimal outcomes.',
+      href: '/docs/patient-registry',
+      icon: InboxIcon,
+    },
+    {
+      name: 'Teams',
+      description:
+        'Work collaboratively and effectively by leveraging shared data insights, continuous communication, and specialized roles to dynamically adjust treatments and achieve targeted health outcomes efficiently.',
+      href: '/docs/team-based-care',
+      icon: UsersIcon,
+    },
+    {
+      name: 'Billing Reports',
+      description:
+        'Automate the CoCM process by tracking clinical time spent on each patient, automating documentation, and simplifying billing procedures, thereby enhancing operational efficiency and financial accuracy.',
+      href: '/docs/time-based-billing',
+      icon: TrashIcon,
     },
   ]
   
@@ -196,7 +220,7 @@ export default function Example() {
                                     )}
                                 >
                                     <h3 className="text-2xl font-bold ">{feature.name}</h3>
-                                    <p className="mt-2 text-sm ">{feature.description}</p>
+                                    <p className="mt-2 text-sm ">{feature.description}</p>                                    
                                     <div className="mt-4">{feature.cta}</div>
                                 </div>
                                 <div
@@ -212,6 +236,41 @@ export default function Example() {
                             </div>
                         </div>
                         </div>
+
+
+
+                        <div className="py-24 sm:py-32">
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                        <div className="mx-auto max-w-2xl lg:mx-0">
+                            <div>
+                                Our Products
+                            </div>
+                            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                                Explor the Akello platform
+                            </h2>
+                            <p className="mt-6 text-lg leading-8 ">                                
+                            </p>
+                            </div>
+                            <div className="mt-16 ">
+                                <dl className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3">
+                                    {features2.map((feature) => (
+                                        <div key={feature.name} className="flex flex-col">
+                                            <div className='my-auto ml-4 text-xl font-semibold'>
+                                                {feature.name}
+                                            </div>                                        
+                                            <p className="flex-auto ml-4">{feature.description}</p>
+                                            <p className="mt-6 ml-4">
+                                                <a href={feature.href} className="text-sm font-semibold leading-6 text-indigo-600">
+                                                Learn more <span aria-hidden="true">→</span>
+                                                </a>
+                                            </p>                                                                                        
+                                        </div>
+                                    ))}
+                                </dl>
+                        </div>
+                    </div>
+                    </div> 
+
 
                <div className="bg-black">
                 <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:justify-between lg:px-8">
@@ -233,6 +292,9 @@ export default function Example() {
                     </div>
                 </div>
                 </div>          
+
+
+                
                
             </main>
         </div>
