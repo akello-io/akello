@@ -58,6 +58,7 @@ class UserModel(RegistryDBBaseModel):
     phone_number: Optional[str] = None
     profile_picture: Optional[str] = None
     registries: List[str] = []
+    date_created: int = datetime.datetime.utcnow().timestamp()
 
     @property
     def partition_key(self) -> str:
@@ -177,7 +178,7 @@ class RegistryModel(RegistryDBBaseModel):
     name: str
     description: str
     modified_date: float
-    created_date: float
+    created_date: float    
     members: int = 0
     active_patients: int = 0
     questionnaires: List[Measurement] = None
