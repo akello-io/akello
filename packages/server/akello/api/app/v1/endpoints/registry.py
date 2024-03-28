@@ -36,9 +36,7 @@ stripe.api_key = os.getenv('STRIPE_API_KEY', None)
 
 
 @router.post("/{registry_id}/payment/{stripe_session_id}", include_in_schema=False)
-async def payment_confirmed(stripe_session_id: str):
-    # registry_id is the stripe customer id
-    #StripePaymentService.payment_confirmed(stripe_customer_id)    
+async def payment_confirmed(stripe_session_id: str):        
     item = stripe.checkout.Session.retrieve(stripe_session_id)
     registry_id = item['client_reference_id']
     stripe_customer_id = item['customer']    
