@@ -32,12 +32,13 @@ export const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers, onNavi
                 open()
                 akello.registryService.getRegistryPatients(registryId, (data) => {                        
                     close()
-                    setPatients(data['successfully_loaded'])
+                    const successfully_loaded = data['successfully_loaded'].filter((patient: PatientRegistry) => patient.status !== 'Deactivated')
+                    setPatients(successfully_loaded)
                     setQuestionnaires(data['questionnaires'].filter((questionnaire: Questionnaire) => questionnaire.active === true))        
-                    if(data['successfully_loaded'].length == 0) {                        
+                    if(successfully_loaded.length == 0) {                        
                         onNavigate('/first-patient')
                     } else {
-                        data['successfully_loaded'].forEach((patient: PatientRegistry) => {
+                        successfully_loaded.forEach((patient: PatientRegistry) => {
                             if(patient.patient_mrn == patient_id) {
                                 akello.selectPatient(patient)
                                 akello.dispatchEvent({ type: 'change' });
