@@ -47,8 +47,8 @@ async def payment_confirmed(stripe_session_id: str):
 
 @router.get("/{registry_id}/subscription")
 async def check_active_subscription(registry_id: str):
-    registry = RegistryService.get_registry(registry_id)
-    if registry['stripe_customer_id']:
+    registry = RegistryService.get_registry(registry_id)    
+    if 'stripe_customer_id' in registry and registry['stripe_customer_id']:
         subscription = StripePaymentService.get_active_stripe_subscriptions(registry['stripe_customer_id'])[0]    
         product = StripePaymentService.get_product(subscription['plan']['product'])        
         if subscription['status'] == 'active':

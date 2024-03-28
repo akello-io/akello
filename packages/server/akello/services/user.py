@@ -6,6 +6,8 @@ from botocore.exceptions import ClientError
 from decimal import Decimal
 import datetime
 import json
+from sendgrid import SendGridAPIClient
+import os
 
 
 class UserService(BaseService):
@@ -119,6 +121,8 @@ class UserService(BaseService):
             ClientError: If the user could not be created in the database.
         """
 
+
+
         # This gets created once a user signs up
         # We need to create the user and assign roles to registeries they are linked to
         response = registry_db.put_item(
@@ -137,6 +141,26 @@ class UserService(BaseService):
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
+
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        data = {
+            "contacts": [
+                {
+                    "email": email,
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "custom_fields": {                        
+                    }
+                }
+            ]
+        }
+        response = sg.client.marketing.contacts.put(
+            request_body=data
+        )
+
+
+
+
 
     @staticmethod
     def create_registry_user(registry_id, first_name, last_name, email, user_id, role: UserRole, is_admin: bool):
