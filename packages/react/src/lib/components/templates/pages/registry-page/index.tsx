@@ -35,8 +35,7 @@ export const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers, onNavi
                     setPatients(data['successfully_loaded'])
                     setQuestionnaires(data['questionnaires'].filter((questionnaire: Questionnaire) => questionnaire.active === true))        
                     if(data['successfully_loaded'].length == 0) {                        
-                        onNavigate('/patient-referral')
-                        // navigate('/patient-referral')
+                        onNavigate('/first-patient')
                     } else {
                         data['successfully_loaded'].forEach((patient: PatientRegistry) => {
                             if(patient.patient_mrn == patient_id) {
@@ -56,8 +55,7 @@ export const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers, onNavi
     const handlePatientClickEvent = (object: any) => {
         const clickedPatient = object.row as PatientRegistry                    
         akello.selectPatient(clickedPatient)   
-        akello.dispatchEvent({ type: 'change' });
-        debugger;
+        akello.dispatchEvent({ type: 'change' });        
         if(isMobile) {               
             onNavigate('/patient/'+clickedPatient.patient_mrn)                         
         } else {                                        
