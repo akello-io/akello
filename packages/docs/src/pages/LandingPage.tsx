@@ -29,7 +29,7 @@ const features = [
         <>
             <a
                 href="/docs/measurements"
-                className="text-sm font-semibold leading-6 text-indigo-600"
+                className="text-sm font-semibold leading-6 "
             >
                 Learn more <span aria-hidden="true">→</span>
             </a>
@@ -46,7 +46,7 @@ const features = [
         <>
             <a
                 href="/docs/clinical-models"
-                className="text-sm font-semibold leading-6 text-indigo-600"
+                className="text-sm font-semibold leading-6 "
             >
                 Learn more <span aria-hidden="true">→</span>
             </a>
@@ -63,7 +63,7 @@ const features = [
             <>
                 <a
                     href="/docs/team-based-care"
-                    className="text-sm font-semibold leading-6 text-indigo-600"
+                    className="text-sm font-semibold leading-6 "
                 >
                     Learn more <span aria-hidden="true">→</span>
                 </a>
@@ -126,7 +126,7 @@ export default function Example() {
     ]
 
     return (
-        <div className="">
+        <div className="bg-white dark:bg-black">
             <main>
                 {/* Hero section */}
                 <div className="relative isolate overflow-hidden">
@@ -153,13 +153,13 @@ export default function Example() {
                             <div className="mt-10 flex items-center gap-x-6">
                                 <a
                                     href="https://app.akello.io/signup"
-                                    className="rounded-md bg-black px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+                                    className="rounded-md bg-black px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                                 >
                                     Get started
                                 </a>
                                 <a
                                     href="/docs/intro"
-                                    className="rounded-md  px-3.5 py-2.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+                                    className="rounded-md  px-3.5 py-2.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                                 >
                                     Learn more
                                 </a>
@@ -177,15 +177,15 @@ export default function Example() {
                     </div>
                 </div>
 
-                <div className="bg-gray-900 py-24 sm:py-32">
+                <div className="bg-black dark:bg-slate-900 py-24 sm:py-32">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <h2 className="text-center text-lg font-semibold leading-8 text-white">
+                        <h2 className="text-center text-lg font-semibold leading-8 text-white ">
                         Start getting reimbursed for proven healthcare models today.
                         </h2>
                         <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
                             {
                                 models.map((model) => (
-                                    <a className="text-white text-3xl col-span-2 max-h-12 w-full object-contain lg:col-span-1" href={model.link}>
+                                    <a className="text-white font-bold text-3xl col-span-2 max-h-12 w-auto object-contain lg:col-span-1" href={model.link}>
                                         {model.name}
                                         <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
                                     </a>
@@ -208,39 +208,37 @@ export default function Example() {
                             </div>
 
                             <div className="mt-16 space-y-16">
-                            {features.map((feature, featureIdx) => (
-                                <div
-                                key={feature.name}
-                                className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8"
-                                >
-                                <div
-                                    className={classNames(
-                                    featureIdx % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8 xl:col-start-9',
-                                    'mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-4'
-                                    )}
-                                >
-                                    <h3 className="text-2xl font-bold ">{feature.name}</h3>
-                                    <p className="mt-2 text-sm ">{feature.description}</p>                                    
-                                    <div className="mt-4">{feature.cta}</div>
-                                </div>
-                                <div
-                                    className={classNames(
-                                    featureIdx % 2 === 0 ? 'lg:col-start-6 xl:col-start-8' : 'lg:col-start-1',
-                                    'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
-                                    )}
-                                >
-                                    <img  src={feature.imageSrc} alt={feature.imageAlt} className="h-96" />
-                                </div>
-                                </div>
-                            ))}
+                                {features.map((feature, featureIdx) => (
+                                    <div
+                                    key={feature.name}
+                                    className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+                                        <div
+                                            className={classNames(
+                                            featureIdx % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8 xl:col-start-9',
+                                            'mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-4'
+                                            )}>
+                                                <h3 className="text-2xl font-bold ">{feature.name}</h3>
+                                                <p className="mt-2 text-lg ">{feature.description}</p>                                    
+                                                <div className="mt-4">{feature.cta}</div>
+                                        </div>
+                                        <div
+                                            className={classNames(
+                                            featureIdx % 2 === 0 ? 'lg:col-start-6 xl:col-start-8' : 'lg:col-start-1',
+                                            'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
+                                            )}
+                                        >
+                                            <img  src={feature.imageSrc} alt={feature.imageAlt} className="max-h-96" />
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                         </div>
 
 
 
-                        <div className="py-24 sm:py-32">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div className="py-24 sm:py-32 bg-green-200 dark:bg-red-800">
+                    <div className="mx-auto max-w-7xl px-6 lg:px-8 ">
                         <div className="mx-auto max-w-2xl lg:mx-0">
                             <div>
                                 Our Products
@@ -255,12 +253,12 @@ export default function Example() {
                                 <dl className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3">
                                     {features2.map((feature) => (
                                         <div key={feature.name} className="flex flex-col">
-                                            <div className='my-auto ml-4 text-xl font-semibold'>
+                                            <div className='my-auto text-xl font-semibold'>
                                                 {feature.name}
                                             </div>                                        
-                                            <p className="flex-auto ml-4">{feature.description}</p>
-                                            <p className="mt-6 ml-4">
-                                                <a href={feature.href} className="text-sm font-semibold leading-6 text-indigo-600">
+                                            <p className="flex-auto">{feature.description}</p>
+                                            <p className="mt-6">
+                                                <a href={feature.href} className="text-sm font-semibold leading-6 text-black dark:text-white">
                                                 Learn more <span aria-hidden="true">→</span>
                                                 </a>
                                             </p>                                                                                        
@@ -275,9 +273,9 @@ export default function Example() {
                <div className="bg-black">
                 <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:justify-between lg:px-8">
                     <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                    Ready to dive in?
+                        Ready to dive in?
                     <br />
-                    Start for free today
+                        Start for free today
                     </h2>
                     <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
                     <a
