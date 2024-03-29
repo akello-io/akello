@@ -14,3 +14,8 @@
 body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, blockquote{
   font-family: 'Work Sans', sans-serif;
 }
+
+html[data-theme='dark'] {
+  background: #000;
+}
+
