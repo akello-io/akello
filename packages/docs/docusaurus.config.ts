@@ -152,6 +152,11 @@ const config: Config = {
               label: 'Storybook',
               to: 'https://storybook.akello.io',
             },
+            {
+              label: 'Status Page',
+              to: 'https://status.akello.io',
+            },
+            
           ],
         },
         {

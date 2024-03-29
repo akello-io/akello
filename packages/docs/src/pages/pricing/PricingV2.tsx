@@ -61,10 +61,10 @@ export default function PricingPage(): JSX.Element {
                 </td>
                 <td>Free</td>
                 <td>
-                  <a>$80/mo</a>
+                  <a>$80 /mo</a>
                 </td>
                 <td>
-                  <a>$150/mo/user</a>
+                  <a>Coming soon</a>
                 </td>
                 <td>
                   <a>Contact us</a>
@@ -82,16 +82,7 @@ export default function PricingPage(): JSX.Element {
                 <td>✔️</td>          
                 <td></td>      
                 <td>✔️</td>                
-              </tr>
-              <tr>
-                <td>Standard MSA</td>
-                <td></td>
-                <td>✔️</td>
-                <td>✔️</td>
-                <td>✔️</td>    
-                <td></td>      
-                <td>✔️</td>                            
-              </tr>
+              </tr>              
               <tr>
                 <td>
                   Billing Reports                  
@@ -150,26 +141,34 @@ export default function PricingPage(): JSX.Element {
                 <td></td>             
                 <td>Contact us</td>   
               </tr>         
-              {/* 
+              
               <tr>
-                <td>SMS (sent)</td>
+                <td>SMS</td>
                 <td></td>
-                <td>1,000 /mo</td>
-                <td>Contact us</td>
-                <td>Contact us</td>
-                <td></td>             
+                <td></td>
+                <td>✔️</td>
+                <td>✔️</td>
+                <td>DIY</td>             
                 <td>Contact us</td>   
               </tr>
               <tr>
-                <td>Secure Video Call (minutes)</td>
+                <td>Telehealth</td>
                 <td></td>
-                <td>2,000 /mo</td>
-                <td>Contact us</td>
-                <td>Contact us</td>
-                <td></td>             
+                <td></td>
+                <td></td>
+                <td>✔️</td>
+                <td>DIY</td>             
                 <td>Contact us</td>   
-              </tr>     
-              */}                            
+              </tr>                   
+              <tr>
+                <td>EHR</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔️</td>                
+                <td>DIY</td>             
+                <td>Contact us</td>   
+              </tr>      
               <tr>
                 <td>Integrations</td>
                 <td>✔️</td>
