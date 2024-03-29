@@ -20,7 +20,7 @@ import { CopyBlock } from 'react-code-blocks';
 
 const features = [
     {
-      name: 'Measurements',
+      name: 'Streamline Measurements',
       description:
       "With Akello, you will have complete visibility with our real time patient monitoring service. You'll receive immediate notifications when patients deviate from their treatment plan.",
       imageSrc: MeasurementImage,
@@ -37,7 +37,7 @@ const features = [
       )
     },
     {
-      name: 'Clinical Models',
+      name: 'Quickly adapt Clinical Models',
       description:
         'Efficiently run clinical models all in one platform. Akello enables you to scale models and equip your clinic to accept value based payments.',
       imageSrc: ClinicalModelsImage,
@@ -54,7 +54,7 @@ const features = [
       )
     },
     {
-        name: 'Team Based Care',
+        name: 'Collaborate effectively',
         description:
           'Akello helps automate workflows for you and your team and supports a wide range of integrations, empowering your organization to do its best work.',
         imageSrc: TeamCollaborationImage,
@@ -203,8 +203,7 @@ export default function Example() {
                             <p className="mt-4 ">
                                 How does Akello work?
                             </p>
-                            <h2 className="text-3xl font-bold tracking-tight  sm:text-4xl">Akello helps you get paid for running MBC</h2>
-                            
+                            <h2 className="text-3xl font-bold tracking-tight  sm:text-4xl">Akello helps you run and scale</h2>                                                        
                             </div>
 
                             <div className="mt-16 space-y-16">

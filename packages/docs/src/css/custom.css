@@ -19,3 +19,10 @@ html[data-theme='dark'] {
   background: #000;
 }
 
+html[data-theme='dark'] .navbar {
+  background: #000;  
+}
+
+html[data-theme='dark'] .footer {
+  background: #000;  
+}
