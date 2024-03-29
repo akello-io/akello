@@ -208,31 +208,29 @@ export default function Example() {
                             </div>
 
                             <div className="mt-16 space-y-16">
-                            {features.map((feature, featureIdx) => (
-                                <div
-                                key={feature.name}
-                                className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8"
-                                >
-                                <div
-                                    className={classNames(
-                                    featureIdx % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8 xl:col-start-9',
-                                    'mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-4'
-                                    )}
-                                >
-                                    <h3 className="text-2xl font-bold ">{feature.name}</h3>
-                                    <p className="mt-2 text-sm ">{feature.description}</p>                                    
-                                    <div className="mt-4">{feature.cta}</div>
-                                </div>
-                                <div
-                                    className={classNames(
-                                    featureIdx % 2 === 0 ? 'lg:col-start-6 xl:col-start-8' : 'lg:col-start-1',
-                                    'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
-                                    )}
-                                >
-                                    <img  src={feature.imageSrc} alt={feature.imageAlt} className="h-96" />
-                                </div>
-                                </div>
-                            ))}
+                                {features.map((feature, featureIdx) => (
+                                    <div
+                                    key={feature.name}
+                                    className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+                                        <div
+                                            className={classNames(
+                                            featureIdx % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8 xl:col-start-9',
+                                            'mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-4'
+                                            )}>
+                                                <h3 className="text-2xl font-bold ">{feature.name}</h3>
+                                                <p className="mt-2 text-sm ">{feature.description}</p>                                    
+                                                <div className="mt-4">{feature.cta}</div>
+                                        </div>
+                                        <div
+                                            className={classNames(
+                                            featureIdx % 2 === 0 ? 'lg:col-start-6 xl:col-start-8' : 'lg:col-start-1',
+                                            'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
+                                            )}
+                                        >
+                                            <img  src={feature.imageSrc} alt={feature.imageAlt} className="max-h-96" />
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                         </div>

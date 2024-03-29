@@ -2,33 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
 
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #393939;
-  --ifm-color-primary-dark: #393939;
-  --ifm-color-primary-darker: #393939;
-  --ifm-color-primary-darkest: #000000;
-  --ifm-color-primary-light: #A8A8A8;
-  --ifm-color-primary-lighter: #A8A8A8;
-  --ifm-color-primary-lightest: #A8A8A8;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;  
+  src: local('Work Sans'), local('WorkSans-Regular'), url(https://fonts.gstatic.com/s/worksans/v7/QGY_z_wNahGAdqQ43Rh3H6V_5zh5b0fcxYR0biEwT5A.woff2) format('woff2');
+  font-display: swap;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #CDCDCD;
-  --ifm-color-primary-dark: #CDCDCD;
-  --ifm-color-primary-darker: #CDCDCD;
-  --ifm-color-primary-darkest: #CDCDCD;
-  --ifm-color-primary-light: #CDCDCD;
-  --ifm-color-primary-lighter: #CDCDCD;
-  --ifm-color-primary-lightest: #CDCDCD;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+body, h1, h2, h3, h4, h5, h6, p, a, ul, ol, li, blockquote{
+  font-family: 'Work Sans', sans-serif;
 }

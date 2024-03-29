@@ -38,6 +38,7 @@
     "@docusaurus/module-type-aliases": "3.1.1",
     "@docusaurus/tsconfig": "3.1.1",
     "@docusaurus/types": "3.1.1",
+    "daisyui": "^4.9.0",
     "typescript": "~5.2.2"
   },
   "browserslist": {
