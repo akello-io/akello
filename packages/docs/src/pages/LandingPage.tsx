@@ -5,7 +5,7 @@ import {
     Cog6ToothIcon,
     FingerPrintIcon,
     LockClosedIcon,
-    ServerIcon,        
+    ServerIcon,
     InboxIcon,
     TrashIcon
 } from '@heroicons/react/20/solid'
@@ -32,10 +32,10 @@ const features = [
                 className="flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
             >
                 <div>
-                    Learn more
-                </div>                                    
-                <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
-            </a>                        
+                    Start with Measurements
+                </div>
+                <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
+            </a>
         </>
       )
     },
@@ -52,10 +52,10 @@ const features = [
                 className="flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
             >
                 <div>
-                Learn more
-                </div>                                    
-                <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
-            </a>                
+                Start with Clinical Models
+                </div>
+                <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
+            </a>
         </>
       )
     },
@@ -72,10 +72,10 @@ const features = [
                     className="flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                 >
                     <div>
-                    Learn more
-                    </div>                                    
-                    <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
-                </a>                 
+                     Start with Team Collaboration
+                    </div>
+                    <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
+                </a>
             </>
           )
     },
@@ -104,7 +104,7 @@ const features = [
       icon: TrashIcon,
     },
   ]
-  
+
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -131,84 +131,91 @@ export default function Example() {
         {
             'name': 'MedFT',
             'link': '/docs/clinical-models/MedFT'
-        }                        
+        }
     ]
 
     return (
         <div className="bg-white dark:bg-black">
             <main>
-                {/* Hero section */}
-                <div className="relative isolate overflow-hidden">
-                    <div className="mx-auto px-6 pb-24 pt-10 sm:pb-40 lg:flex lg:px-24 lg:pt-40">
-                        <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
+                <div
+                className="
+                    w-full
+                    h-full
+                    bg-gradient-to-r
+                    from-pink-500
+                    via-red-500
+                    to-yellow-500
+                    background-animate
+                "
+                >
+                    {/* Hero section */}
+                    <div className="relative isolate overflow-hidden">
+                        <div className="mx-auto px-6 pb-24 pt-10 sm:pb-40 lg:flex lg:px-24 lg:pt-40">
+                            <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
 
-                            
-                            <div className="mt-24 sm:mt-32 lg:mt-16 ">
-                                <a href="https://github.com/akello-io/akello/releases/tag/v0.0.9" className="no-underline flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black dark:bg-slate-800 opacity-70 rounded-full w-fit px-4 text-white">
-                                    <div className='font-bold'>
-                                        Latest updates
-                                    </div>
-                                    <div className='flex flex-row'>
-                                        <div>Just shipped v0.0.9</div>
+
+                                <div className="mt-24 sm:mt-32 lg:mt-16 ">
+                                    <a href="https://github.com/akello-io/akello/releases/tag/v0.0.9" className="no-underline flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black  opacity-70 rounded-full w-fit px-4 text-white">
+                                        <div className='font-bold'>
+                                            Latest updates
+                                        </div>
+                                        <div className='flex flex-row'>
+                                            <div>Just shipped v0.0.9</div>
+                                            <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-6xl text-white">
+                                    Measurement based care infrastructure for everyone
+                                </h1>
+                                <p className="mt-6 text-lg leading-8 text-white">
+                                    A complete platform for clinical teams to run measurement based care models. Get started with Akello for free today.
+                                </p>
+                                <div className="mt-10 flex items-center gap-x-6">
+                                    <a
+                                        href="https://app.akello.io/signup"
+                                        className="flex my-auto rounded-full bg-white px-3.5 py-2 text-sm font-semibold text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                                    >
+                                        <div>
+                                            Get started
+                                        </div>
                                         <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-                                    </div>                                
-                                </a>        
-                            </div>         
+                                    </a>
+                                    <a href="/docs/intro" className='flex my-auto font-semibold text-white'>
+                                        <div>
+                                            Learn more
+                                        </div>
+                                        <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
+                                    </a>
 
-                                        
-                            <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-6xl">
-                                Measurement based care infrastructure for everyone
-                            </h1>
-                            <p className="mt-6 text-lg leading-8">
-                                A complete platform for clinical teams to run measurement based care models. Get started with Akello for free today.
-                            </p>
-                            <div className="mt-10 flex items-center gap-x-6">
-                                <a
-                                    href="https://app.akello.io/signup"
-                                    className="flex my-auto rounded-full bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
-                                >
-                                    <div>
-                                        Get started
-                                    </div>                                    
-                                    <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
-                                </a>
-                                <a href="/docs/intro" className='flex my-auto font-semibold text-black dark:text-white'>
-                                    <div>
-                                        Learn more                                    
-                                    </div>         
-                                    <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-                                </a>
-                                
 
+                                </div>
                             </div>
-                        </div>
-                        <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
-                            <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-                                <img
-                                    src={HeroImg}
-                                    alt="App screenshot"
-                                    className="h-[34rem] "
-                                />
+                            <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
+                                <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+                                    <img
+                                        src={HeroImg}
+                                        alt="App screenshot"
+                                        className="h-[34rem] "
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="bg-ak-blue-200 dark:bg-ak-blue-800 py-24 sm:py-32 ">
+
+
+
+                <div className="bg-ak-blue-600 dark:bg-ak-blue-800 py-4  ">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <h2 className="text-center text-2xl font-semibold leading-8 text-black dark:text-white">
-                            Run evidence-based clinical models
-                        </h2>
-                        <div className="mx-auto mt-10  grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-                            {
-                                models.map((model) => (
-                                    <a className="font-semibold text-2xl text-black dark:text-white col-span-2 max-h-12 w-auto object-contain lg:col-span-1" href={model.link}>                                        
-                                        {model.name}
-                                        <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />                                        
-                                    </a>
-                                ))
-                            }                                                                                                
-                        </div>
+                        <a href='/docs/clinical-models/' className='flex flex-row w-fit my-auto mx-auto text-white'>
+                            <h2 className="text-center my-auto text-xl sm:text-2xl font-semibold leading-8 ">
+                                Run evidence-based clinical models
+                            </h2>
+                            <ChevronRightIcon className="h-10 sm:h-16 w-auto" aria-hidden="true" />
+                        </a>
                     </div>
                     </div>
 
@@ -220,7 +227,7 @@ export default function Example() {
                             <p className="mt-4 ">
                                 How does Akello work?
                             </p>
-                            <h2 className="text-3xl font-bold tracking-tight  sm:text-4xl">Akello helps you run and scale</h2>                                                        
+                            <h2 className="text-3xl font-bold tracking-tight  sm:text-4xl">Akello helps your team run and scale models</h2>
                             </div>
 
                             <div className="mt-16 space-y-16">
@@ -234,7 +241,7 @@ export default function Example() {
                                             'mt-6 lg:col-span-5 lg:row-start-1 lg:mt-0 xl:col-span-4'
                                             )}>
                                                 <h3 className="text-2xl font-bold ">{feature.name}</h3>
-                                                <p className="mt-2 text-lg ">{feature.description}</p>                                    
+                                                <p className="mt-2 text-lg ">{feature.description}</p>
                                                 <div className="mt-4">{feature.cta}</div>
                                         </div>
                                         <div
@@ -262,7 +269,7 @@ export default function Example() {
                             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                                 Explore the Akello platform
                             </h2>
-                            <p className="mt-6 text-lg leading-8 ">                                
+                            <p className="mt-6 text-lg leading-8 ">
                             </p>
                             </div>
                             <div className="mt-16 ">
@@ -271,7 +278,7 @@ export default function Example() {
                                         <div key={feature.name} className="flex flex-col">
                                             <div className='my-auto text-xl font-semibold'>
                                                 {feature.name}
-                                            </div>                                        
+                                            </div>
                                             <p className="flex-auto">{feature.description}</p>
                                             <p className="mt-6">
                                                 <a
@@ -279,17 +286,17 @@ export default function Example() {
                                                     className="flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                                                 >
                                                     <div>
-                                                        Get started
-                                                    </div>                                    
-                                                    <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
-                                                </a>                                                
-                                            </p>                                                                                        
+                                                        Explore
+                                                    </div>
+                                                    <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
+                                                </a>
+                                            </p>
                                         </div>
                                     ))}
                                 </dl>
                         </div>
                     </div>
-                    </div> 
+                    </div>
 
 
                <div className="bg-black dark:bg-red-500">
@@ -306,22 +313,22 @@ export default function Example() {
                     >
                         <div>
                             Get started
-                        </div>                                    
-                        <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
-                    </a>    
+                        </div>
+                        <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
+                    </a>
                     <a href="https://calendly.com/akello-health/30-min-call" className='flex my-auto font-semibold text-white'>
                         <div>
-                            Book a demo                                    
-                        </div>         
+                            Book a demo
+                        </div>
                         <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-                    </a>                    
+                    </a>
                     </div>
                 </div>
-                </div>          
+                </div>
 
 
-                
-               
+
+
             </main>
         </div>
     )
