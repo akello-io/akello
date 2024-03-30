@@ -45,7 +45,7 @@ Our guides are available at [akello.io/docs](/docs), sourced from [Markdown](htt
 
 ### Fix Bugs or Add New Features
 
-If you're fixing a bug in Akello and submit a GitHub Pull Request, we'll review it promptly. 
+If you're fixing a bug in Akello and submit a GitHub Pull Request, we'll review it promptly.
 
 For new feature implementations, start by opening an issue to discuss your ideas, ensuring they align with our roadmap. If your PR isn't incorporated for some reason, feel free to [fork our repository](https://github.com/akello-io/akello/fork) and adapt it in your version.
 
