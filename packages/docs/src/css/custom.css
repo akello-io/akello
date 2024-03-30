@@ -26,3 +26,7 @@ html[data-theme='dark'] .navbar {
 html[data-theme='dark'] .footer {
   background: #000;  
 }
+
+.no-underline {
+  text-decoration-line: none;
+}

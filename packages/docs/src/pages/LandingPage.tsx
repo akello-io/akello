@@ -29,10 +29,13 @@ const features = [
         <>
             <a
                 href="/docs/measurements"
-                className="text-sm font-semibold leading-6 "
+                className="flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
             >
-                Learn more <span aria-hidden="true">→</span>
-            </a>
+                <div>
+                    Learn more
+                </div>                                    
+                <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
+            </a>                        
         </>
       )
     },
@@ -46,10 +49,13 @@ const features = [
         <>
             <a
                 href="/docs/clinical-models"
-                className="text-sm font-semibold leading-6 "
+                className="flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
             >
-                Learn more <span aria-hidden="true">→</span>
-            </a>
+                <div>
+                Learn more
+                </div>                                    
+                <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
+            </a>                
         </>
       )
     },
@@ -63,10 +69,13 @@ const features = [
             <>
                 <a
                     href="/docs/team-based-care"
-                    className="text-sm font-semibold leading-6 "
+                    className="flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                 >
-                    Learn more <span aria-hidden="true">→</span>
-                </a>
+                    <div>
+                    Learn more
+                    </div>                                    
+                    <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
+                </a>                 
             </>
           )
     },
@@ -134,19 +143,21 @@ export default function Example() {
                         <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
 
                             
-                            <div className="mt-24 sm:mt-32 lg:mt-16">
-                                <a href="https://github.com/akello-io/akello/releases/tag/v0.0.9" className="inline-flex hover:no-underline space-x-6">
-                                    <span className="rounded-full px-3 py-1 text-sm font-semibold leading-6  ring-1 ring-inset ">
-                                      Latest updates
-                                    </span>
-                                    <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6">
-                                    <span>Just shipped v0.0.9</span>
-                                    <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-                                  </span>
-                                </a>
-                            </div>                            
+                            <div className="mt-24 sm:mt-32 lg:mt-16 ">
+                                <a href="https://github.com/akello-io/akello/releases/tag/v0.0.9" className="no-underline flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black dark:bg-slate-800 opacity-70 rounded-full w-fit px-4 text-white">
+                                    <div className='font-bold'>
+                                        Latest updates
+                                    </div>
+                                    <div className='flex flex-row'>
+                                        <div>Just shipped v0.0.9</div>
+                                        <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
+                                    </div>                                
+                                </a>        
+                            </div>         
+
+                                        
                             <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-6xl">
-                                Measurement Based Care Infrastructure
+                                Measurement based care infrastructure for everyone
                             </h1>
                             <p className="mt-6 text-lg leading-8">
                                 A complete platform for clinical teams to run measurement based care models. Get started with Akello for free today.
@@ -154,16 +165,21 @@ export default function Example() {
                             <div className="mt-10 flex items-center gap-x-6">
                                 <a
                                     href="https://app.akello.io/signup"
-                                    className="rounded-md bg-black px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                                    className="flex my-auto rounded-full bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                                 >
-                                    Get started
+                                    <div>
+                                        Get started
+                                    </div>                                    
+                                    <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
                                 </a>
-                                <a
-                                    href="/docs/intro"
-                                    className="rounded-md  px-3.5 py-2.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
-                                >
-                                    Learn more
+                                <a href="/docs/intro" className='flex my-auto font-semibold text-black dark:text-white'>
+                                    <div>
+                                        Learn more                                    
+                                    </div>         
+                                    <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
                                 </a>
+                                
+
                             </div>
                         </div>
                         <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
@@ -258,9 +274,15 @@ export default function Example() {
                                             </div>                                        
                                             <p className="flex-auto">{feature.description}</p>
                                             <p className="mt-6">
-                                                <a href={feature.href} className="text-sm font-semibold leading-6  text-white">
-                                                Learn more <span aria-hidden="true">→</span>
-                                                </a>
+                                                <a
+                                                    href={feature.href}
+                                                    className="flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                                                >
+                                                    <div>
+                                                        Get started
+                                                    </div>                                    
+                                                    <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
+                                                </a>                                                
                                             </p>                                                                                        
                                         </div>
                                     ))}
@@ -280,13 +302,19 @@ export default function Example() {
                     <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
                     <a
                         href="https://app.akello.io/signup"
-                        className="rounded-md no-underline bg-ak-blue-500 dark:bg-black px-12 py-3.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                        className="flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                     >
-                        Get started
-                    </a>
-                    <a href="https://calendly.com/akello-health/30-min-call" className="text-sm font-semibold leading-6 text-white">
-                        Book a demo <span aria-hidden="true">→</span>
-                    </a>
+                        <div>
+                            Get started
+                        </div>                                    
+                        <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />                                    
+                    </a>    
+                    <a href="https://calendly.com/akello-health/30-min-call" className='flex my-auto font-semibold text-white'>
+                        <div>
+                            Book a demo                                    
+                        </div>         
+                        <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
+                    </a>                    
                     </div>
                 </div>
                 </div>          
