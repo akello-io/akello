@@ -167,7 +167,7 @@ export default function Example() {
                                 </div>
 
                                 <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-6xl text-white">
-                                    Measurement based care infrastructure for everyone
+                                    Measurement based care infrastructure for absolutely everyone
                                 </h1>
                                 <p className="mt-6 text-lg leading-8 text-white">
                                     A complete platform for clinical teams to run measurement based care models. Get started with Akello for free today.
@@ -208,13 +208,13 @@ export default function Example() {
 
 
 
-                <div className="bg-ak-blue-600 dark:bg-ak-blue-800 py-4  ">
+                <div className="bg-black dark:bg-ak-blue-800 py-4  ">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         <a href='/docs/clinical-models/' className='flex flex-row w-fit my-auto mx-auto text-white'>
                             <h2 className="text-center my-auto text-xl sm:text-2xl font-semibold leading-8 ">
-                                Run evidence-based clinical models
+                            🎉 Learn more about the clinical models
                             </h2>
-                            <ChevronRightIcon className="h-10 sm:h-16 w-auto" aria-hidden="true" />
+                            <ChevronRightIcon className="h-10  w-auto" aria-hidden="true" />
                         </a>
                     </div>
                     </div>
