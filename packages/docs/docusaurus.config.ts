@@ -156,6 +156,10 @@ const config: Config = {
               label: 'Status Page',
               to: 'https://status.akello.io',
             },
+            {
+              label: 'API Reference',
+              to: 'https://api.akello.io/docs/',
+            }
             
           ],
         },

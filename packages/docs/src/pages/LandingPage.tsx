@@ -81,7 +81,7 @@ const features = [
       icon: InboxIcon,
     },
     {
-      name: 'Teams',
+      name: 'Team-Based',
       description:
         'Work collaboratively and effectively by leveraging shared data insights, continuous communication, and specialized roles to dynamically adjust treatments and achieve targeted health outcomes efficiently.',
       href: '/docs/team-based-care',
@@ -133,6 +133,7 @@ export default function Example() {
                     <div className="mx-auto px-6 pb-24 pt-10 sm:pb-40 lg:flex lg:px-24 lg:pt-40">
                         <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
 
+                            
                             <div className="mt-24 sm:mt-32 lg:mt-16">
                                 <a href="https://github.com/akello-io/akello/releases/tag/v0.0.9" className="inline-flex hover:no-underline space-x-6">
                                     <span className="rounded-full px-3 py-1 text-sm font-semibold leading-6  ring-1 ring-inset ">
@@ -143,12 +144,12 @@ export default function Example() {
                                     <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
                                   </span>
                                 </a>
-                            </div>
+                            </div>                            
                             <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-6xl">
                                 Measurement Based Care Infrastructure
                             </h1>
                             <p className="mt-6 text-lg leading-8">
-                                A complete platform for teams to run measurement based care models. Get started with Akello for free today.
+                                A complete platform for clinical teams to run measurement based care models. Get started with Akello for free today.
                             </p>
                             <div className="mt-10 flex items-center gap-x-6">
                                 <a
@@ -177,17 +178,17 @@ export default function Example() {
                     </div>
                 </div>
 
-                <div className="bg-black dark:bg-slate-900 py-24 sm:py-32">
+                <div className="bg-ak-blue-200 dark:bg-ak-blue-800 py-24 sm:py-32 ">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <h2 className="text-center text-lg font-semibold leading-8 text-white ">
-                        Start getting reimbursed for proven healthcare models today.
+                        <h2 className="text-center text-2xl font-semibold leading-8 text-black dark:text-white">
+                            Run evidence-based clinical models
                         </h2>
-                        <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                        <div className="mx-auto mt-10  grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
                             {
                                 models.map((model) => (
-                                    <a className="text-white font-bold text-3xl col-span-2 max-h-12 w-auto object-contain lg:col-span-1" href={model.link}>
+                                    <a className="font-semibold text-2xl text-black dark:text-white col-span-2 max-h-12 w-auto object-contain lg:col-span-1" href={model.link}>                                        
                                         {model.name}
-                                        <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+                                        <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />                                        
                                     </a>
                                 ))
                             }                                                                                                
@@ -197,7 +198,7 @@ export default function Example() {
 
 
 
-                    <div className="">
+                    <div className="bg-white dark:bg-slate-900">
                         <div className="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
                             <div className="mx-auto max-w-3xl text-center">
                             <p className="mt-4 ">
@@ -236,7 +237,7 @@ export default function Example() {
 
 
 
-                    <div className="py-24 sm:py-32 bg-green-200 dark:bg-red-800">
+                    <div className="py-24 sm:py-32 bg-ak-blue-600 dark:bg-ak-blue-900 text-white">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8 ">
                         <div className="mx-auto max-w-2xl lg:mx-0">
                             <div>
@@ -257,7 +258,7 @@ export default function Example() {
                                             </div>                                        
                                             <p className="flex-auto">{feature.description}</p>
                                             <p className="mt-6">
-                                                <a href={feature.href} className="text-sm font-semibold leading-6 text-black dark:text-white">
+                                                <a href={feature.href} className="text-sm font-semibold leading-6  text-white">
                                                 Learn more <span aria-hidden="true">→</span>
                                                 </a>
                                             </p>                                                                                        
@@ -269,7 +270,7 @@ export default function Example() {
                     </div> 
 
 
-               <div className="bg-black">
+               <div className="bg-black dark:bg-red-500">
                 <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:justify-between lg:px-8">
                     <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                         Ready to dive in?
@@ -279,7 +280,7 @@ export default function Example() {
                     <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
                     <a
                         href="https://app.akello.io/signup"
-                        className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="rounded-md no-underline bg-ak-blue-500 dark:bg-black px-12 py-3.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                     >
                         Get started
                     </a>
