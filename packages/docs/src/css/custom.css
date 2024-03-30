@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: 'Work Sans';
-  font-style: normal;  
+  font-style: normal;
   src: local('Work Sans'), local('WorkSans-Regular'), url(https://fonts.gstatic.com/s/worksans/v7/QGY_z_wNahGAdqQ43Rh3H6V_5zh5b0fcxYR0biEwT5A.woff2) format('woff2');
   font-display: swap;
 }
@@ -20,13 +20,30 @@ html[data-theme='dark'] {
 }
 
 html[data-theme='dark'] .navbar {
-  background: #000;  
+  background: #000;
 }
 
 html[data-theme='dark'] .footer {
-  background: #000;  
+  background: #000;
 }
 
-.no-underline {
-  text-decoration-line: none;
+
+
+
+.background-animate {
+  background-size: 400%;
+
+  -webkit-animation: AnimationName 20s ease infinite;
+  -moz-animation: AnimationName 20s ease infinite;
+  animation: AnimationName 20s ease infinite;
+}
+
+@keyframes AnimationName {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
