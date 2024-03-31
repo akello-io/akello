@@ -142,8 +142,8 @@ export default function Example() {
                     w-full
                     h-full
                     bg-gradient-to-r
-                    from-pink-500
-                    via-red-500
+                    from-ak-blue-500
+                    via-ak-red-700
                     to-yellow-500
                     background-animate
                 "
