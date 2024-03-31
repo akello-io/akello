@@ -155,10 +155,14 @@ export default function Example() {
 
 
                                 <div className="mt-24 sm:mt-32 lg:mt-16 ">
-                                    <a href="https://github.com/akello-io/akello/releases/tag/v0.0.9" className="no-underline flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black  opacity-70 rounded-full w-fit px-4 text-white">
-                                        <div className='font-bold'>
-                                            Latest updates
+                                    <a href="https://github.com/akello-io/akello/releases/tag/v0.0.9" className="no-underline flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black  bg-opacity-20 text-opacity-80 rounded-full w-fit px-4 text-white">
+                                        <div className='flex flex-row my-auto space-x-2'>
+                                            <div className='my-auto rounded-full h-3 w-3 bg-green-400'></div>
+                                            <div className='font-bold'>
+                                                Latest updates
+                                            </div>
                                         </div>
+
                                         <div className='flex flex-row'>
                                             <div>Just shipped v0.0.9</div>
                                             <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
@@ -170,7 +174,7 @@ export default function Example() {
                                     Measurement based care infrastructure for absolutely everyone
                                 </h1>
                                 <p className="mt-6 text-lg leading-8 text-white">
-                                    A complete platform for clinical teams to run measurement based care models. Get started with Akello for free today.
+                                    A complete platform for integrated clinical teams to run measurement based care models and receive reimbursements. Get started with Akello now.
                                 </p>
                                 <div className="mt-10 flex items-center gap-x-6">
                                     <a
@@ -178,7 +182,7 @@ export default function Example() {
                                         className="flex my-auto rounded-full bg-white px-3.5 py-2 text-sm font-semibold text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                                     >
                                         <div>
-                                            Get started
+                                            Start now
                                         </div>
                                         <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
                                     </a>
@@ -210,9 +214,9 @@ export default function Example() {
 
                 <div className="bg-black dark:bg-ak-blue-800 py-4  ">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <a href='/docs/clinical-models/' className='flex flex-row w-fit my-auto mx-auto text-white'>
+                        <a href='https://calendly.com/akello-health/30-min-call' className='flex flex-row w-fit my-auto mx-auto text-white'>
                             <h2 className="text-center my-auto text-xl sm:text-2xl font-semibold leading-8 ">
-                            🎉 Learn more about the clinical models
+                            🎉 Want a walkthrough? Book a demo!
                             </h2>
                             <ChevronRightIcon className="h-10  w-auto" aria-hidden="true" />
                         </a>
@@ -304,7 +308,7 @@ export default function Example() {
                     <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                         Ready to dive in?
                     <br />
-                        Start for free today
+                        Start a free evaluation today
                     </h2>
                     <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
                     <a
@@ -312,7 +316,7 @@ export default function Example() {
                         className="flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                     >
                         <div>
-                            Get started
+                            Start now
                         </div>
                         <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
                     </a>
@@ -325,6 +329,68 @@ export default function Example() {
                     </div>
                 </div>
                 </div>
+
+
+
+
+
+
+
+                {/* Content section */}
+                <div className="my-32 overflow-hidden sm:mt-40">
+                        <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
+                            <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:min-w-full lg:max-w-none lg:flex-none lg:gap-y-8">
+                            <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
+                                <h2 className="text-3xl font-bold tracking-tight  sm:text-4xl">Akello is community driven</h2>
+                                <p className="mt-6 text-xl leading-8 ">
+                                We are a community of clinicians, engineers and designers who are passionate about improving healthcare. We are committed to building a platform that is easy to use and helps you deliver the best care to your patients.
+                                </p>
+                                <a
+                                    href="https://discord.gg/WSqNrWBKKw"
+                                    className="flex my-auto rounded-full w-full text-white  bg-ak-red-700  py-3 text-sm font-semibold"
+                                >
+                                    <div className='mx-auto text-xl'>
+                                        Join our Community
+                                    </div>
+
+                                </a>
+
+                            </div>
+                            <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
+                                <div className="w-0 flex-auto lg:ml-auto lg:w-auto lg:flex-none lg:self-end">
+                                <img
+                                    src="https://images.unsplash.com/photo-1670272502246-768d249768ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&q=80"
+                                    alt=""
+                                    className="aspect-[7/5] w-[37rem] max-w-none rounded-2xl bg-gray-50 object-cover"
+                                />
+                                </div>
+                                <div className="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8">
+                                <div className="order-first flex w-64 flex-none justify-end self-end lg:w-auto">
+                                    <img
+                                    src="https://images.unsplash.com/photo-1605656816944-971cd5c1407f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
+                                    alt=""
+                                    className="aspect-[4/3] w-[24rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover"
+                                    />
+                                </div>
+                                <div className="flex w-96 flex-auto justify-end lg:w-auto lg:flex-none">
+                                    <img
+                                    src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&h=842&q=80"
+                                    alt=""
+                                    className="aspect-[7/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover"
+                                    />
+                                </div>
+                                <div className="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
+                                    <img
+                                    src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
+                                    alt=""
+                                    className="aspect-[4/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover"
+                                    />
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
