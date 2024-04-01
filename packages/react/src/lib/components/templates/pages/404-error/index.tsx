@@ -1,13 +1,12 @@
 import { Container, Title, Text, Button, Group } from '@mantine/core';
 import { Illustration } from './404.illustration';
 import classes from './404.module.css';
-import { useNavigate } from 'react-router-dom';
 
 export interface NothingFoundBackgroundProps {
     onBackToHome: () => void;
 }
 
-export const NothingFoundBackground:React.FC<NothingFoundBackgroundProps> = ({onBackToHome}) => {  
+export const NothingFoundBackground:React.FC<NothingFoundBackgroundProps> = ({onBackToHome}) => {
   return (
     <Container className={classes.root}>
       <div className={classes.inner}>
