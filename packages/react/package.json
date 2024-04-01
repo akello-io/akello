@@ -34,7 +34,8 @@
   },
   "devDependencies": {
     "@akello/core": "../core",
-    "@akello/react-hook": "../react-hook"
+    "@akello/react-hook": "../react-hook",
+    "@types/uuid": "^9.0.8"
   },
   "peerDependencies": {
     "@akello/core": "^0.0.8",
@@ -92,6 +93,7 @@
     "preset": "link:@storybook/react-vite/preset",
     "recharts": "^2.12.2",
     "storybook": "^7.6.17",
+    "uuid": "^9.0.1",
     "vite": "^5.1.5",
     "vite-plugin-dts": "^3.7.3",
     "vitest": "^1.3.1",
