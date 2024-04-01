@@ -1,3 +1,3 @@
 export * from './core'
-export * from './insights'
+export * from './reports'
 export * from './pages'
