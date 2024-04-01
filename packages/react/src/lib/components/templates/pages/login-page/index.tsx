@@ -13,7 +13,6 @@ export const LoginPage:React.FC<LoginPageProps> = ({onNavigate}) => {
                 onNavigate('/');
             }}
             onSignupClick={() => {
-                debugger
                 onNavigate('/signup')
             }}
             onForgotPasswordClick={() => {
