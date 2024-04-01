@@ -3,9 +3,9 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Akello',
+  title: 'Akello | Measurement Based Care Platform',
   tagline: 'Open Source Registry for the Collaborative Care Model (CoCM)',
-  favicon: 'img/AkelloLogo.png',  
+  favicon: 'img/AkelloLogo.png',
 
   trailingSlash: true,
 
@@ -33,12 +33,12 @@ const config: Config = {
 
 
   markdown: {
-    format: 'detect'    
+    format: 'detect'
   },
   presets: [
     [
       'classic',
-      {        
+      {
         docs: {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
@@ -83,11 +83,16 @@ const config: Config = {
 
   themeConfig: {
     colorMode: {
-      defaultMode: 'dark',      
+      defaultMode: 'dark',
     },
-    
+
+    metadata: [
+      {name: 'og:description', content: 'Akello is a complete platform for integrated care designed for clinical teams to run measurement based care models.'},
+      {name: 'keyword', content: 'CoCM, Patient Registry, Population Health, Measurement Based Care'},
+    ],
+
     // Replace with your project's social card
-    image: 'img/akello-social.png',    
+    image: 'img/akello-social.png',
     algolia: {
       // The application ID provided by Algolia
       appId: 'ZPW8AHLDRJ',
@@ -114,7 +119,7 @@ const config: Config = {
           to: '/solutions',
           position: 'left',
           label: 'Solutions',
-        },        
+        },
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
@@ -124,7 +129,7 @@ const config: Config = {
         {
           to: 'https://app.akello.io',
           label: 'Sign In',
-          position: 'right',          
+          position: 'right',
           target: '_self',
         },
         {
@@ -160,7 +165,7 @@ const config: Config = {
               label: 'API Reference',
               to: 'https://api.akello.io/docs/',
             }
-            
+
           ],
         },
         {
@@ -200,7 +205,7 @@ const config: Config = {
               to: '/privacy',
             },
             {
-              to: '/pricing',              
+              to: '/pricing',
               label: 'Pricing',
             },
             {
