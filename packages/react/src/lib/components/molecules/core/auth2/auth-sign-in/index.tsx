@@ -7,14 +7,14 @@ import { useAkello } from '@akello/react-hook';
 import { useDisclosure } from '@mantine/hooks';
 
 
-interface LoginPageProps {
+interface LoginComponentProps {
     onSuccess?: (token: string) => void;
     onFail?: (error: any) => void;
     onSignupClick: () => void;
     onForgotPasswordClick: () => void;
 }
 
-export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupClick, onForgotPasswordClick}) => {    
+export const LoginComponent:React.FC<LoginComponentProps> = ({onSuccess, onFail, onSignupClick, onForgotPasswordClick}) => {
     const akello = useAkello();
     const [error, setError] = useState<string | null>(null);
     const [visible, { toggle }] = useDisclosure(false);
@@ -24,29 +24,29 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
         password: Yup.string().required('Required')
     });
 
-    const handleSubmit = (values: { email: string; password: string }) => {        
-        toggle();        
+    const handleSubmit = (values: { email: string; password: string }) => {
+        toggle();
         try {
             akello.login(
                 values.email,
                 values.password,
-                (token: string) => {                      
+                (token: string) => {
                     toggle();
-                    akello.setUserName(values.email);                  
-                    onSuccess && onSuccess(token);                    
+                    akello.setUserName(values.email);
+                    onSuccess && onSuccess(token);
                 },
-                (err: any) => {                    
+                (err: any) => {
                     toggle();
                     setError(err.message);
-                    onFail && onFail(err);                    
+                    onFail && onFail(err);
                 }
             );
-            
-        } catch (err: any) {            
+
+        } catch (err: any) {
             toggle();
             setError(err.message);
-            onFail && onFail(err);            
-        }        
+            onFail && onFail(err);
+        }
     };
 
     const handleOnKeyDown = (e: any) => {
@@ -103,7 +103,7 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
                                         <div className="label text-error">
                                             {errors.password && touched.password ? <div>{errors.password}</div> : null}
                                         </div>
-                                        <Group justify="space-between" mt="lg">                                        
+                                        <Group justify="space-between" mt="lg">
                                             <Anchor component="button" size="sm" onClick={() => onForgotPasswordClick()}>
                                                 Forgot password?
                                             </Anchor>
@@ -117,7 +117,7 @@ export const LoginPage:React.FC<LoginPageProps> = ({onSuccess, onFail, onSignupC
                             </Center>
                         </div>
                     </Box>
-                    
+
                 </Form>
             )}
         </Formik>
