@@ -155,7 +155,12 @@ export default function Example() {
 
 
                                 <div className="mt-24 sm:mt-32 lg:mt-16 ">
-                                    <a href="https://github.com/akello-io/akello/releases/tag/v0.0.9" className="no-underline flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black  bg-opacity-20 text-opacity-80 rounded-full w-fit px-4 text-white">
+                                    <div
+                                        className="no-underline flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black  bg-opacity-20 text-opacity-80 rounded-full w-fit px-4 text-white"
+                                        onClick={() => {
+                                                window.location.href="https://github.com/akello-io/akello/releases/tag/v0.0.9"
+                                            }}>
+
                                         <div className='flex flex-row my-auto space-x-2'>
                                             <div className='my-auto rounded-full h-3 w-3 bg-green-400'></div>
                                             <div className='font-bold'>
@@ -167,7 +172,7 @@ export default function Example() {
                                             <div>Just shipped v0.0.9</div>
                                             <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
 
                                 <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-6xl text-white">
@@ -177,21 +182,27 @@ export default function Example() {
                                     A complete platform for integrated clinical teams to run measurement based care models and receive reimbursements. Get started with Akello now.
                                 </p>
                                 <div className="mt-10 flex items-center gap-x-6">
-                                    <a
-                                        href="https://app.akello.io/signup"
-                                        className="flex my-auto rounded-full bg-white px-3.5 py-2 text-sm font-semibold text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                                    <button
+                                        onClick={() => {
+                                            window.location.href = "https://app.akello.io/signup"
+                                        }}
+                                        className="flex my-auto rounded-full cursor-pointer bg-white px-3.5 py-2 text-sm font-semibold text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                                     >
                                         <div>
                                             Start now
                                         </div>
                                         <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-                                    </a>
-                                    <a href="/docs/intro" className='flex my-auto font-semibold text-white'>
+                                    </button>
+                                    <div
+                                        onClick={() => {
+                                            window.location.href = "/docs/intro"
+                                        }}
+                                        className='flex my-auto font-semibold text-white bg-none cursor-pointer'>
                                         <div>
                                             Learn more
                                         </div>
                                         <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-                                    </a>
+                                    </div>
 
 
                                 </div>
