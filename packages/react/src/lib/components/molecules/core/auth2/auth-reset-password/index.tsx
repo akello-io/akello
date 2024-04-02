@@ -1,8 +1,8 @@
 import {
-    TextInput,    
+    TextInput,
     Paper,
-    Title,    
-    Container,    
+    Title,
+    Container,
     Button,
     Center,
     Group,
@@ -14,7 +14,7 @@ import {IconArrowLeft} from '@tabler/icons-react';
 
 interface ForgotPasswordPageProps {
     onSuccess?: (token: string) => void;
-    onFail?: (error: any) => void;    
+    onFail?: (error: any) => void;
     onLoginClick?: () => void;
     onResetPasswordClick: () => void;
 }
@@ -27,20 +27,20 @@ const handleOnKeyDown = (e: any) => {
     }
 }
 
-export const ForgotPasswordPage:React.FC<ForgotPasswordPageProps> = ({onSuccess, onFail, onResetPasswordClick, onLoginClick}) => {    
-    
+export const ForgotPasswordPageComponent:React.FC<ForgotPasswordPageProps> = ({onSuccess, onFail, onResetPasswordClick, onLoginClick}) => {
+
     return (
         <div className='w-screen'>
             <Center>
                 <Container size={420} my={40}>
                     <Title ta="center">
                         Reset your password
-                    </Title>                    
+                    </Title>
                     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-                        <TextInput 
+                        <TextInput
                             onKeyDown={handleOnKeyDown}
-                            label="Email" placeholder="you@mantine.dev" required 
-                        />                                                                        
+                            label="Email" placeholder="you@mantine.dev" required
+                        />
                         <Group justify="space-between" mt="lg" >
                             {
                                 onLoginClick &&
@@ -52,7 +52,7 @@ export const ForgotPasswordPage:React.FC<ForgotPasswordPageProps> = ({onSuccess,
                                         </Center>
                                     </Anchor>
                                 )
-                            }                            
+                            }
                             <Button className={'bg-primary'} onClick={() => onResetPasswordClick()}>Reset password</Button>
                         </Group>
                     </Paper>

@@ -35,6 +35,7 @@
   "devDependencies": {
     "@akello/core": "../core",
     "@akello/react-hook": "../react-hook",
+    "@types/ua-parser-js": "^0.7.39",
     "@types/uuid": "^9.0.8"
   },
   "peerDependencies": {
@@ -91,8 +92,10 @@
     "husky": "^9.0.11",
     "moment": "^2.30.1",
     "preset": "link:@storybook/react-vite/preset",
+    "react-tailwindcss-datepicker": "^1.6.6",
     "recharts": "^2.12.2",
     "storybook": "^7.6.17",
+    "ua-parser-js": "^1.0.37",
     "uuid": "^9.0.1",
     "vite": "^5.1.5",
     "vite-plugin-dts": "^3.7.3",
