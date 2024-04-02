@@ -22,6 +22,9 @@ dependencies:
   husky:
     specifier: ^9.0.11
     version: 9.0.11
+  json:
+    specifier: ^11.0.0
+    version: 11.0.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -2776,6 +2779,12 @@ packages:
   /json5@2.2.3:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
+    hasBin: true
+    dev: false
+
+  /json@11.0.0:
+    resolution: {integrity: sha512-N/ITv3Yw9Za8cGxuQqSqrq6RHnlaHWZkAFavcfpH/R52522c26EbihMxnY7A1chxfXJ4d+cEFIsyTgfi9GihrA==}
+    engines: {node: '>=0.10.0'}
     hasBin: true
     dev: false
 
