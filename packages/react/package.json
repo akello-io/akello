@@ -39,8 +39,8 @@
     "@types/uuid": "^9.0.8"
   },
   "peerDependencies": {
-    "@akello/core": "^0.0.8",
-    "@akello/react-hook": "^0.0.1",
+    "@akello/core": "^0.0.9",
+    "@akello/react-hook": "^0.0.3",
     "@mantine/core": "^7.5.3",
     "@mantine/hooks": "^7.5.3",
     "autoprefixer": "^10.4.17",
@@ -90,6 +90,7 @@
     "fhir": "^4.12.0",
     "formik": "^2.4.5",
     "husky": "^9.0.11",
+    "json": "^11.0.0",
     "moment": "^2.30.1",
     "preset": "link:@storybook/react-vite/preset",
     "react-tailwindcss-datepicker": "^1.6.6",
