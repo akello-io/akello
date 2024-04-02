@@ -1,6 +1,6 @@
 import { AppShell, Button, UnstyledButton, Text, Burger } from '@mantine/core';
 
-import Logo from '../../../../assets/images/logos/akello/akello-mini-blue.svg';
+// import Logo from '../../../../assets/images/logos/akello/akello-mini-blue.svg';
 
 import { HeaderMenu } from './Menu';
 import { useAkello } from "@akello/react-hook";
@@ -36,7 +36,9 @@ export const Header: React.FC<HeaderProps> = ({ loggedIn, opened, onNavigate, to
             }}
             className='h-8 w-auto my-auto cursor-pointer'
           >
+            {/*
             <img src={Logo} alt='logo' className='h-8 w-auto' />
+            */}
           </div>
           <div className='my-auto'>
             <div className='text-xl font-semibold hidden sm:block'>
@@ -84,7 +86,9 @@ export const Header: React.FC<HeaderProps> = ({ loggedIn, opened, onNavigate, to
       <UnstyledButton onClick={() => {
         onNavigate('/registry');
       }} className='flex h-10 w-auto my-auto'>
+        {/*
         <img src={Logo} alt='logo' className='h-10 w-auto' />
+        */}
       </UnstyledButton>
       <div className='flex w-auto h-10 my-auto'>
         <ThemeToggle />

@@ -47,5 +47,18 @@
     "*.{ts,tsx,js,jsx,json,css,md}": [
       "prettier -w"
     ]
+  },
+  "dependencies": {
+    "@types/fhir": "^0.0.41",
+    "@types/node": "^20.12.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "fhir": "^4.12.0",
+    "fs": "0.0.1-security",
+    "husky": "^9.0.11",
+    "moment": "^2.30.1",
+    "sass": "^1.72.0",
+    "vite": "^5.2.7",
+    "vite-plugin-dts": "^3.8.1",
+    "vitest": "^1.4.0"
   }
 }

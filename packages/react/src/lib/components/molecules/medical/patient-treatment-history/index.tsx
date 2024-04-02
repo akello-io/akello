@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import {PatientRegistry, TreatmentLogScore, Questionnaire} from "@akello/core";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -19,8 +19,8 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
             field: 'date',
             type: 'date',
             headerName: 'Date',
-            width: 160,            
-            valueGetter: (params) => {
+            width: 160,
+            valueGetter: (params: any) => {
                 if(params.row.date) {
                     return new Date(params.row.date)
                 }
@@ -46,7 +46,7 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
             field: 'minutes',
             headerName: 'Minutes',
             width: 160,
-            valueFormatter: ({ value }) => value.toFixed(2)
+            valueFormatter: ({ value }: { value: number }) => value.toFixed(2)
         },
         {
             field: 'no_show',
@@ -67,20 +67,20 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
     // TODO: Consider using the configuration passed into the registry
     if(selectedPatient.treatment_logs.length > 0) {
         score_names.map((score_name) => {
-            const score_filed:GridColDef ={
+            const score_filed: GridColDef = {
                 field: score_name,
                 headerName: score_name,
-                valueGetter:(params)=>{
-                    const element = params.row.scores.find((element: TreatmentLogScore) => element.score_name == score_name)
-                    if(element) {
+                valueGetter: (params: any) => {
+                    const element = params.row.scores.find((element: TreatmentLogScore) => element.score_name == score_name);
+                    if (element) {
                         return element.score_value;
                     } else {
-                        return 0
+                        return 0;
                     }
                 },
                 width: 160,
-            }
-            columns.push(score_filed)
+            };
+            columns.push(score_filed);
         })
     }
 
@@ -94,7 +94,7 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
           mode: 'dark',
         },
       });
-      
+
     const lightTheme = createTheme({
         typography: {
             fontFamily: [
@@ -112,15 +112,15 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
     if(theme == 'dark') {
         muiTheme = darkTheme
     }
-    
+
 
     return (
-        <ThemeProvider theme={muiTheme}>            
-            <Box sx={{ width: '100%' }}>            
+        <ThemeProvider theme={muiTheme}>
+            <Box sx={{ width: '100%' }}>
                 <DataGrid
                     rows={selectedPatient.treatment_logs}
                     columns={columns}
-                    getRowId={(row) => row.date + '-' + row.weeks_in_treatment + '-' + row.visit_type}                    
+                    getRowId={(row: any) => row.date + '-' + row.weeks_in_treatment + '-' + row.visit_type}
                     initialState={{
                         sorting: {
                             sortModel: [{ field: 'date', sort: 'asc' }],

@@ -31,15 +31,17 @@ export default function App() {
   const patient_id = akello.getSelectedPatientRegistry()?.id;
   const navigate = useNavigate();
 
-
+  const onNavigate = (path: string) => {
+    navigate(path);
+  }
 
   if(akello.accessToken == undefined) {
     return (
       <Routes>
-        <Route path={"/"} element={<LoginPage onNavigate={(path: string) => navigate(path)}  />} />
-        <Route path={"/forgot-password"} element={<ForgotPasswordPage  onNavigate={(path: string) => navigate(path)}/>} />
-        <Route path={"/signup"} element={<SignUpPage onNavigate={(path: string) => navigate(path)}/>} />
-        <Route path={"/signup/confirm"} element={<SignUpConfirmPage onNavigate={(path: string) => navigate(path)} />} />
+        <Route path={"/"} element={<LoginPage onNavigate={onNavigate}  />} />
+        <Route path={"/forgot-password"} element={<ForgotPasswordPage  onNavigate={onNavigate}/>} />
+        <Route path={"/signup"} element={<SignUpPage onNavigate={onNavigate}/>} />
+        <Route path={"/signup/confirm"} element={<SignUpConfirmPage onNavigate={onNavigate} />} />
         <Route path={"*"} element={<Navigate to={"/"} />} />
       </Routes>
     )
@@ -51,21 +53,21 @@ export default function App() {
       <Routes>
         {
           akello.getSelectedRegistry() == undefined && (
-            <Route path={"/create-registry"} element={<CreateRegistryPage onNavigate={(path: string) => navigate(path)}  />} />
+            <Route path={"/create-registry"} element={<CreateRegistryPage onNavigate={onNavigate}  />} />
           )
         }
-        <Route path="/" element={<RegistryShell onNavigate={(path: string) => navigate(path)}  pathname={pathname} Outlet={Outlet} />}>
-          <Route index element={<RegistryPage drawerHandlers={drawerHandlers} onNavigate={(path: string) => navigate(path)} patient_id={patient_id} />} />
+        <Route path="/" element={<RegistryShell onNavigate={onNavigate}  pathname={pathname} Outlet={Outlet} />}>
+          <Route index element={<RegistryPage drawerHandlers={drawerHandlers} onNavigate={onNavigate} patient_id={patient_id} />} />
           <Route path="/change-password" element={<ChangePasswordPage />} />
           <Route path="/payment-completed" element={<PaymentCompleted />} />
-          <Route path="/registry" element={<RegistryPage drawerHandlers={drawerHandlers} onNavigate={(path: string) => navigate(path)} patient_id={patient_id} />} />
+          <Route path="/registry" element={<RegistryPage drawerHandlers={drawerHandlers} onNavigate={onNavigate} patient_id={patient_id} />} />
           <Route path="/security" element={<RegistrySecurityPage onNavigate={(path: string) => navigate(path)} />} />
           <Route path="/measurements" element={<MeasurementsPage />} />
-          <Route path='/first-patient' element={<ReferPatientStepper onNavigate={(path: string) => navigate(path)} />} />
-          <Route path="/registry/:patient_id" element={<RegistryPage drawerHandlers={drawerHandlers} onNavigate={(path: string) => navigate(path)} patient_id={patient_id} />} />
+          <Route path='/first-patient' element={<ReferPatientStepper onNavigate={onNavigate} />} />
+          <Route path="/registry/:patient_id" element={<RegistryPage drawerHandlers={drawerHandlers} onNavigate={onNavigate} patient_id={patient_id} />} />
           <Route path={"/reports"} element={<ReportsPage />} />
-          <Route path={"/patient-referral"} element={<PatientReferralPage onNavigate={(path: string) => navigate(path)}  />} />
-          <Route path={"/patient/:patient_id/treatment-session"} element={<PatientSession onNavigate={(path: string) => navigate(path)}  />} />
+          <Route path={"/patient-referral"} element={<PatientReferralPage onNavigate={onNavigate}  />} />
+          <Route path={"/patient/:patient_id/treatment-session"} element={<PatientSession onNavigate={onNavigate}  />} />
           <Route path={"/patient/:patient_id"} element={<PatientDetail onStartSession={() => navigate('/patient/' + (akello.getSelectedPatientRegistry()?.id ?? '') + '/treatment-session')} />} />
         </Route>
         <Route path={"/signup"} element={<Navigate to={"/"} />}  />

@@ -162,6 +162,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({onNavigate, pathname
                     leftSection={<IconLock size="1rem" stroke={1.5} />}
                     active={window.location.pathname === '/security'}
                 />
+                {/*
                 {
 
                     !planTier ? (
@@ -179,6 +180,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({onNavigate, pathname
                         />
                     )
                 }
+                */}
 
                 <Text pl={12} fz="xs" fw={450} mt="sm" >SYSTEM AUDIT</Text>
                 <NavLink

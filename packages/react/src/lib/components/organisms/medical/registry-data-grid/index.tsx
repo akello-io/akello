@@ -1,4 +1,4 @@
-import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridValueGetterParams, GridToolbar} from "@mui/x-data-grid";
+import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridToolbar} from "@mui/x-data-grid";
 import moment from "moment";
 import {PatientRegistry, Questionnaire, TreatmentLog} from "@akello/core";
 import * as React from "react";
@@ -14,7 +14,7 @@ export interface RegistryDataGridProps {
 const default_columns = [
     {
         field: 'patient_flag',
-        headerName: 'Flag',        
+        headerName: 'Flag',
     },
     {
         field: 'patient_mrn',
@@ -33,14 +33,14 @@ const default_columns = [
         field: 'status',
         headerName: 'Status',
         description: 'Patient Status: E - Enrolled, T - Treatment, RPP - Relapse Prevention Plan, D - Deactivated',
-        type: 'string',                
+        type: 'string',
     },
     {
         field: 'initial_assessment',
         headerName: 'I/A',
         description: 'Date of the most recent initial assessment.',
-        type: 'date',                
-        valueGetter: (params) => {
+        type: 'date',
+        valueGetter: (params: any) => {
             if(params.row.initial_assessment) {
                 return new Date(params.row.initial_assessment)
             }
@@ -50,8 +50,8 @@ const default_columns = [
         field: 'last_follow_up',
         headerName: 'F/U',
         description: 'Date of the most recent Follow Up, excluding those marked as no patient contact.',
-        type: 'date',                
-        valueGetter: (params) => {
+        type: 'date',
+        valueGetter: (params: any) => {
             if(params.row.last_follow_up) {
                 return new Date(params.row.last_follow_up)
             }
@@ -61,8 +61,8 @@ const default_columns = [
         field: 'last_psychiatric_consult',
         headerName: 'P/C',
         description: 'Date of most recent Psychiatric Consultation',
-        type: 'date',         
-        valueGetter: (params) => {
+        type: 'date',
+        valueGetter: (params: any) => {
             if(params.row.last_psychiatric_consult) {
                 return new Date(params.row.last_psychiatric_consult)
             }
@@ -72,8 +72,8 @@ const default_columns = [
         field: 'relapse_prevention_plan',
         headerName: 'R/P',
         description: 'Date of most recent Relapse Prevention Plan.',
-        type: 'date',                
-        valueGetter: (params) => {
+        type: 'date',
+        valueGetter: (params: any) => {
             if(params.row.relapse_prevention_plan) {
                 return new Date(params.row.relapse_prevention_plan)
             }
@@ -82,21 +82,21 @@ const default_columns = [
     {
         field: 'total_sessions',
         headerName: '# Session',
-        type: 'string',        
-        valueGetter: (params) => {
+        type: 'string',
+        valueGetter: (params: any) => {
             return params.row.treatment_logs.length
         }
     },
     {
         field: 'payer',
         headerName: 'Payer',
-        type: 'string',        
+        type: 'string',
     },
     {
         field: 'weeks_since_initial_assessment',
         headerName: 'Weeks Since I/A',
-        type: 'number',                
-        valueGetter: (params) => {
+        type: 'number',
+        valueGetter: (params: any) => {
             if(params.row.initial_assessment) {
                 var ia = moment(params.row.initial_assessment);
                 var today = moment();
@@ -109,14 +109,14 @@ const default_columns = [
         field: 'minutes_this_month',
         headerName: 'Minutes this month',
         description: 'The sum of all minutes recorded for the patient during the current calendar month.',
-        type: 'number',                
-        valueGetter: (params) => {
+        type: 'number',
+        valueGetter: (params: any) => {
             let total = 0
             if(params.row.treatment_logs && params.row.treatment_logs.length > 0) {
                 params.row.treatment_logs.map((treatment_log: TreatmentLog) => {
                     total += treatment_log.minutes!
-                })                    
-            }                
+                })
+            }
             return total
         }
     },
@@ -133,14 +133,14 @@ const columnGroupingModel: GridColumnGroupingModel = [
 
 export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, questionnaires, handlePatientClickEvent}) => {
 
-    const [columns, setColumns] = React.useState<GridColDef[]>([])    
+    const [columns, setColumns] = React.useState<GridColDef[]>([])
 
     const akello = useAkello()
     const selectedPatient = akello.getSelectedPatientRegistry()
 
     React.useEffect(() => {
-        let new_columns = [] as GridColDef[]    
-        questionnaires.map((questionnaire) => {            
+        let new_columns = [] as any[]
+        questionnaires.map((questionnaire) => {
             const first_column = {
                 "field": questionnaire.uid + '_first',
                 "headerName": questionnaire.name + ' Initial',
@@ -148,12 +148,12 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "type": "number",
                 "width": 110,
                 "editable": true,
-                valueGetter: (params: GridValueGetterParams<any, any>) => {                 
-                    if (params.row.treatment_logs.length > 0) {                                                                           
+                valueGetter: (params: any) => {
+                    if (params.row.treatment_logs.length > 0) {
                         let element = params.row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(element) {
                             return element.score_value
-                        }                        
+                        }
                     }
                     return 'N/A'
                 }
@@ -165,8 +165,8 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "type": "number",
                 "width": 110,
                 "editable": true,
-                valueGetter: (params: GridValueGetterParams<any, any>) => {
-                    if (params.row.treatment_logs.length > 0) {                        
+                valueGetter: (params: any) => {
+                    if (params.row.treatment_logs.length > 0) {
                         let element = params.row.treatment_logs[params.row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(element) {
                             return element.score_value
@@ -183,8 +183,8 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "type": "number",
                 "width": 110,
                 "editable": true,
-                valueGetter: (params: GridValueGetterParams<any, any>) => {
-                    if (params.row.treatment_logs.length > 0) {                        
+                valueGetter: (params: any) => {
+                    if (params.row.treatment_logs.length > 0) {
                         let first_element = params.row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.name)
                         let last_element = params.row.treatment_logs[params.row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(first_element && last_element) {
@@ -196,14 +196,14 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 }
             }
             new_columns.push(first_column)
-            new_columns.push(last_column)     
-            new_columns.push(delta_column)                           
+            new_columns.push(last_column)
+            new_columns.push(delta_column)
         })
         setColumns([...default_columns, ...new_columns]);
-        
-    }, [patients])   
-    
-    
+
+    }, [patients])
+
+
     const darkTheme = createTheme({
         typography: {
             fontFamily: [
@@ -214,7 +214,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
           mode: 'dark',
         },
       });
-      
+
     const lightTheme = createTheme({
         typography: {
             fontFamily: [
@@ -232,17 +232,16 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
     if(theme == 'dark') {
         muiTheme = darkTheme
     }
-    
+
 
     return (
         <>
             <ThemeProvider theme={muiTheme}>
-                <DataGrid                                
+                <DataGrid
                     onRowClick={handlePatientClickEvent}
                     rows={patients}
-                    getRowId={(row) => row.patient_mrn}
+                    getRowId={(row: any) => row.patient_mrn}
                     columns={columns}
-                    experimentalFeatures={{ columnGrouping: true }}
                     columnGroupingModel={columnGroupingModel}
                     rowSelectionModel={selectedPatient?.patient_mrn}
                     slots={{

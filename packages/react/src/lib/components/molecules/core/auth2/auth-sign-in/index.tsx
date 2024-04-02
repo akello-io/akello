@@ -17,7 +17,7 @@ interface LoginComponentProps {
 export const LoginComponent:React.FC<LoginComponentProps> = ({onSuccess, onFail, onSignupClick, onForgotPasswordClick}) => {
     const akello = useAkello();
     const [error, setError] = useState<string | null>(null);
-    const [visible, { toggle }] = useDisclosure(false);
+    const [visible, loadingHandler] = useDisclosure(false);
 
     const LoginSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Required'),
@@ -25,25 +25,25 @@ export const LoginComponent:React.FC<LoginComponentProps> = ({onSuccess, onFail,
     });
 
     const handleSubmit = (values: { email: string; password: string }) => {
-        toggle();
         try {
+            loadingHandler.open();
             akello.login(
                 values.email,
                 values.password,
                 (token: string) => {
-                    toggle();
+                    loadingHandler.close();
                     akello.setUserName(values.email);
                     onSuccess && onSuccess(token);
                 },
                 (err: any) => {
-                    toggle();
+                    loadingHandler.close();
                     setError(err.message);
                     onFail && onFail(err);
                 }
             );
 
         } catch (err: any) {
-            toggle();
+            loadingHandler.close();
             setError(err.message);
             onFail && onFail(err);
         }

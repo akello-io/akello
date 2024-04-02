@@ -1,18 +1,22 @@
-import {SignUpPage as SignUpPageComponent} from '../../../molecules'
+import {SignUpPageComponent} from '../../../molecules'
 
 
 interface SignUpPageProps {
     onNavigate: (path: string) => void;
 }
 
-const SignUpPage:React.FC<SignUpPageProps> = ({onNavigate}) => {
+export const SignUpPage:React.FC<SignUpPageProps> = ({onNavigate}) => {
 
+
+    debugger;
     return (
         <SignUpPageComponent
-            onLoginClick={() => onNavigate('/')}
-            onSignupSuccess={() => onNavigate('/signup/confirm')}
+            onLoginClick={() => {
+                onNavigate('/')
+            }}
+            onSignupSuccess={() => {
+                onNavigate('/signup/confirm')
+            }}
         />
     )
 };
-
-export default SignUpPage;
