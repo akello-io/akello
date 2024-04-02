@@ -100,10 +100,10 @@ const default_columns = [
         headerName: 'Minutes this month',
         description: 'The sum of all minutes recorded for the patient during the current calendar month.',
         type: 'number',
-        valueGetter: (params: any) => {
+        valueGetter: (value: any, row: any) => {
             let total = 0
-            if(params && params.row.treatment_logs && params.row.treatment_logs.length > 0) {
-                params.row.treatment_logs.map((treatment_log: TreatmentLog) => {
+            if(row.treatment_logs && row.treatment_logs.length > 0) {
+                row.treatment_logs.map((treatment_log: TreatmentLog) => {
                     total += treatment_log.minutes!
                 })
             }
@@ -138,9 +138,9 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "type": "number",
                 "width": 110,
                 "editable": true,
-                valueGetter: (params: any) => {
-                    if (params && params.row.treatment_logs.length > 0) {
-                        let element = params.row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.name)
+                valueGetter: (value: any, row: any) => {
+                    if (row.treatment_logs.length > 0) {
+                        let element = row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(element) {
                             return element.score_value
                         }
@@ -155,9 +155,9 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "type": "number",
                 "width": 110,
                 "editable": true,
-                valueGetter: (params: any) => {
-                    if (params && params.row.treatment_logs.length > 0) {
-                        let element = params.row.treatment_logs[params.row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.name)
+                valueGetter: (value: any, row: any) => {
+                    if (row.treatment_logs.length > 0) {
+                        let element = row.treatment_logs[row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(element) {
                             return element.score_value
                         }
@@ -173,10 +173,10 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "type": "number",
                 "width": 110,
                 "editable": true,
-                valueGetter: (params: any) => {
-                    if (params && params.row.treatment_logs.length > 0) {
-                        let first_element = params.row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.name)
-                        let last_element = params.row.treatment_logs[params.row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.name)
+                valueGetter: (value: any, row: any) => {
+                    if (row.treatment_logs.length > 0) {
+                        let first_element = row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.name)
+                        let last_element = row.treatment_logs[row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(first_element && last_element) {
                             let diff = last_element.score_value - first_element.score_value
                             return diff / first_element.score_value * 100

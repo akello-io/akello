@@ -68,8 +68,8 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
             const score_filed: GridColDef = {
                 field: score_name,
                 headerName: score_name,
-                valueGetter: (params: any) => {
-                    const element = params.row.scores.find((element: TreatmentLogScore) => element.score_name == score_name);
+                valueGetter: (value: any, row: any) => {
+                    const element = row.scores.find((element: TreatmentLogScore) => element.score_name == score_name);
                     if (element) {
                         return element.score_value;
                     } else {
