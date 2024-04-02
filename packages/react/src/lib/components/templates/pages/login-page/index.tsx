@@ -1,21 +1,23 @@
-import { useNavigate } from 'react-router';
-import { LoginPage as LoginPageComponent } from '../../../molecules';
-
-const LoginPage = () => {
-    const navigate = useNavigate();
+import { LoginComponent } from '../../../molecules';
 
 
+interface LoginPageProps {
+    onNavigate: (path: string) => void;
+}
 
+export const LoginPage:React.FC<LoginPageProps> = ({onNavigate}) => {
     return (
-        <LoginPageComponent
+        <LoginComponent
             onSuccess={(token: string) => {
                 console.log('token', token);
-                navigate('/');
+                onNavigate('/');
             }}
-            onSignupClick={() => navigate('/signup')}
-            onForgotPasswordClick={() => navigate('/forgot-password')}
+            onSignupClick={() => {
+                onNavigate('/signup')
+            }}
+            onForgotPasswordClick={() => {
+                onNavigate('/forgot-password')
+            }}
         />
     );
 };
-
-export default LoginPage;

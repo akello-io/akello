@@ -1,7 +1,7 @@
 {
   "name": "@akello/react",
   "private": false,
-  "version": "0.0.21",
+  "version": "0.0.22",
   "packageManager": "pnpm@8.4.0",
   "repository": {
     "type": "git",
@@ -32,14 +32,9 @@
     "prepare": "husky install",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
-  "devDependencies": {
-    "@akello/core": "../core",
-    "@akello/react-hook": "../react-hook",
-    "@types/uuid": "^9.0.8"
-  },
   "peerDependencies": {
-    "@akello/core": "^0.0.8",
-    "@akello/react-hook": "^0.0.1",
+    "@akello/core": "^0.0.9",
+    "@akello/react-hook": "^0.0.3",
     "@mantine/core": "^7.5.3",
     "@mantine/hooks": "^7.5.3",
     "autoprefixer": "^10.4.17",
@@ -60,43 +55,5 @@
     "*.{ts,tsx,js,jsx,json,css,md}": [
       "prettier -w"
     ]
-  },
-  "dependencies": {
-    "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
-    "@headlessui/react": "^1.7.18",
-    "@heroicons/react": "^2.1.1",
-    "@mantine/form": "^7.6.1",
-    "@mantine/modals": "^7.7.1",
-    "@mantine/notifications": "^7.6.2",
-    "@modulz/radix-icons": "^4.0.0",
-    "@mui/icons-material": "^5.15.6",
-    "@mui/lab": "^5.0.0-alpha.162",
-    "@mui/material": "^5.15.10",
-    "@mui/styled-engine": "^5.15.9",
-    "@mui/styled-engine-sc": "^6.0.0-alpha.13",
-    "@mui/types": "^7.2.13",
-    "@mui/x-data-grid": "^6.19.4",
-    "@storybook/react": "^7.6.17",
-    "@storybook/react-vite": "^7.6.17",
-    "@tabler/icons-react": "^2.47.0",
-    "@types/fhir": "^0.0.41",
-    "@types/react": "^18.2.64",
-    "@vitejs/plugin-react": "^4.2.1",
-    "axios": "^1.6.7",
-    "classnames": "^2.5.1",
-    "fhir": "^4.12.0",
-    "formik": "^2.4.5",
-    "husky": "^9.0.11",
-    "moment": "^2.30.1",
-    "preset": "link:@storybook/react-vite/preset",
-    "recharts": "^2.12.2",
-    "storybook": "^7.6.17",
-    "uuid": "^9.0.1",
-    "vite": "^5.1.5",
-    "vite-plugin-dts": "^3.7.3",
-    "vitest": "^1.3.1",
-    "yup": "^1.4.0"
   }
 }
