@@ -71,6 +71,7 @@
     "classnames": "^2.5.1",
     "formik": "^2.4.5",
     "husky": "^9.0.11",
+    "json": "^11.0.0",
     "moment": "^2.30.1",
     "react-tailwindcss-datepicker": "^1.6.6",
     "recharts": "^2.12.3",
