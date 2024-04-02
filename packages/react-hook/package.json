@@ -1,7 +1,7 @@
 {
   "name": "@akello/react-hook",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "packageManager": "pnpm@8.4.0",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "@akello/core": "../core"
   },
   "peerDependencies": {
-    "@akello/core": "^0.0.7",
+    "@akello/core": "^0.0.9",
     "amazon-cognito-identity-js": "^6.3.7",
     "aws-amplify": "^6.0.13",
     "axios": "^1.6.1",
