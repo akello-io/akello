@@ -29,10 +29,11 @@ const handleOnKeyDown = (e: any) => {
 interface SignUpPageProps {
     onLoginClick: () => void;
     onSignupSuccess: () => void;
+    AkelloLogo: any;
 }
 
 
-export const SignUpPageComponent:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSuccess}) => {
+export const SignUpPageComponent:React.FC<SignUpPageProps> = ({AkelloLogo, onLoginClick, onSignupSuccess}) => {
     const [submissionError, setSubmissionError] = useState('');
     const akello = useAkello();
 
@@ -41,9 +42,8 @@ export const SignUpPageComponent:React.FC<SignUpPageProps> = ({onLoginClick, onS
             <Center>
                 <Container size={420} my={40}>
                     <Title ta="center">
-                        {/*
+
                         <Image src={AkelloLogo} alt="Akello Logo" />
-                        */}
 
                         <Text mt={12} size={"xs"} fw={700}>
                             Start for free
