@@ -8,16 +8,16 @@ const columns: GridColDef[] = [
         field: 'stat_date',
         headerName: 'Date',
         width: 110,
-        valueGetter: (params: any) => {
-            return new Date(params.row.stat_date).toLocaleDateString()
+        valueGetter: (stat_date: number) => {
+            return new Date(stat_date).toLocaleDateString()
         }
     },
     {
         field: 'initial_assessment',
         headerName: 'Initial Assessment',
         width: 150,
-        valueGetter: (params: any) => {
-            return new Date(params.row.initial_assessment).toLocaleDateString()
+        valueGetter: (initial_assessment: number) => {
+            return new Date(initial_assessment).toLocaleDateString()
         }
     },
     {
@@ -67,11 +67,11 @@ const columns: GridColDef[] = [
         field: 'cp_npi_visits',
         headerName: 'Problems List',
         width: 200,
-        valueGetter: (params: any) => {
-            if(params.row.cp_npi_visits.length == 0)      {
+        valueGetter: (value: any, row: any) => {
+            if(row.cp_npi_visits.length == 0)      {
                 return ''
             }
-            return params.row.cp_npi_visits.map((item: any) => 'npi: ' + item.cp_npi + '; codes: ' + item.problems).join(' || ')
+            return row.cp_npi_visits.map((item: any) => 'npi: ' + item.cp_npi + '; codes: ' + item.problems).join(' || ')
         }
     }
 ];
@@ -116,7 +116,7 @@ export const BillingReportDataGrid:React.FC<BillingReportDataGridProps> = ({data
         <div className={"w-full"}>
             <ThemeProvider theme={muiTheme}>
                 <DataGrid
-                    getRowId={(row) => row.mrn + row.stat_date}
+                    getRowId={(row: any) => row.mrn + row.stat_date}
                     rows={data}
                     columns={columns}
                     initialState={{
