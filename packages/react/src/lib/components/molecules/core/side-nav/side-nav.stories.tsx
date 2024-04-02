@@ -10,18 +10,17 @@ import {
     ChatBubbleLeftRightIcon,
     HeartIcon,
     TableCellsIcon,
-    UserGroupIcon,   
-    Cog8ToothIcon 
+    UserGroupIcon,
+    Cog8ToothIcon
 } from '@heroicons/react/24/outline'
 
-import AkelloLogoCorner from '../../../../assets/images/logos/akello/akello-corner-logo.svg'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof SideNavigation> = {
   title: 'Molecules/SideNavigation',
   component: SideNavigation,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {    
+  argTypes: {
   },
 }
 export default meta
@@ -44,14 +43,10 @@ iconMap.set("gear", <Cog8ToothIcon className={size} /> )
 export const Primary = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
-const logo = (    
+const logo = (
     <a href={"/"}>
-        <img
-            className=""
-            src={AkelloLogoCorner}
-            alt="Akello Health"
-        />
-    </a>    
+
+    </a>
 )
 
 
@@ -59,8 +54,8 @@ const logo = (
 Primary.args = {
     logo: (<>{logo}</>),
     top_navigation: [
-        {name: "Dashboard", short_name: "Dashboard", icon: <>{iconMap.get('calendar')}</>, is_active: false, navigate: () => {}},  
-        {name: "Registry", short_name: "Registry", icon: <>{iconMap.get('table')}</>, is_active: false, navigate: () => {}},  
+        {name: "Dashboard", short_name: "Dashboard", icon: <>{iconMap.get('calendar')}</>, is_active: false, navigate: () => {}},
+        {name: "Registry", short_name: "Registry", icon: <>{iconMap.get('table')}</>, is_active: false, navigate: () => {}},
         {name: "Team", short_name: "Patients", icon: <>{iconMap.get('team')}</>, is_active: false, navigate: () => {}},
         {name: "Reports", short_name: "Reports", icon: <>{iconMap.get('chart')}</>, is_active: false, navigate: () => {}, toggle_drawer: true},
     ],

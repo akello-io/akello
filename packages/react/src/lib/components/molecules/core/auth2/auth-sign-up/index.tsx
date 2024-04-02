@@ -5,7 +5,6 @@ import { IconArrowRight } from '@tabler/icons-react';
 
 import * as Yup from 'yup';
 import { useAkello } from '@akello/react-hook';
-// import AkelloLogo from '../../../../../assets/images/logos/akello/akello-logo.png';
 
 
 const SignupSchema = Yup.object().shape({
