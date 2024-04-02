@@ -20,10 +20,8 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
             type: 'date',
             headerName: 'Date',
             width: 160,
-            valueGetter: (params: any) => {
-                if(params.row.date) {
-                    return new Date(params.row.date)
-                }
+            valueGetter: (date: any) => {
+                return new Date(date)
             }
         },
         {
@@ -46,7 +44,7 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
             field: 'minutes',
             headerName: 'Minutes',
             width: 160,
-            valueFormatter: ({ value }: { value: number }) => value.toFixed(2)
+            valueFormatter: (value: number) => value.toFixed(2)
         },
         {
             field: 'no_show',

@@ -40,10 +40,8 @@ const default_columns = [
         headerName: 'I/A',
         description: 'Date of the most recent initial assessment.',
         type: 'date',
-        valueGetter: (params: any) => {
-            if(params.row.initial_assessment) {
-                return new Date(params.row.initial_assessment)
-            }
+        valueGetter: (initial_assessment: number) => {
+            return new Date(initial_assessment)
         }
     },
     {
@@ -51,10 +49,8 @@ const default_columns = [
         headerName: 'F/U',
         description: 'Date of the most recent Follow Up, excluding those marked as no patient contact.',
         type: 'date',
-        valueGetter: (params: any) => {
-            if(params.row.last_follow_up) {
-                return new Date(params.row.last_follow_up)
-            }
+        valueGetter: (last_follow_up: number) => {
+            return new Date(last_follow_up)
         }
     },
     {
@@ -62,10 +58,8 @@ const default_columns = [
         headerName: 'P/C',
         description: 'Date of most recent Psychiatric Consultation',
         type: 'date',
-        valueGetter: (params: any) => {
-            if(params.row.last_psychiatric_consult) {
-                return new Date(params.row.last_psychiatric_consult)
-            }
+        valueGetter: (last_psychiatric_consult: number) => {
+            return new Date(last_psychiatric_consult)
         }
     },
     {
@@ -73,18 +67,16 @@ const default_columns = [
         headerName: 'R/P',
         description: 'Date of most recent Relapse Prevention Plan.',
         type: 'date',
-        valueGetter: (params: any) => {
-            if(params.row.relapse_prevention_plan) {
-                return new Date(params.row.relapse_prevention_plan)
-            }
+        valueGetter: (relapse_prevention_plan: number) => {
+            return new Date(relapse_prevention_plan)
         }
     },
     {
         field: 'total_sessions',
         headerName: '# Session',
         type: 'string',
-        valueGetter: (params: any) => {
-            return params.row.treatment_logs.length
+        valueGetter: (total_sessions: any) => {
+            return total_sessions.length
         }
     },
     {
@@ -96,13 +88,11 @@ const default_columns = [
         field: 'weeks_since_initial_assessment',
         headerName: 'Weeks Since I/A',
         type: 'number',
-        valueGetter: (params: any) => {
-            if(params.row.initial_assessment) {
-                var ia = moment(params.row.initial_assessment);
-                var today = moment();
-                var diff = moment.duration(today.diff(ia));
-                return diff.years() * 52 + diff.weeks()
-            }
+        valueGetter: (initial_assessment: number) => {
+            var ia = moment(initial_assessment);
+            var today = moment();
+            var diff = moment.duration(today.diff(ia));
+            return diff.years() * 52 + diff.weeks()
         }
     },
     {
@@ -112,7 +102,7 @@ const default_columns = [
         type: 'number',
         valueGetter: (params: any) => {
             let total = 0
-            if(params.row.treatment_logs && params.row.treatment_logs.length > 0) {
+            if(params && params.row.treatment_logs && params.row.treatment_logs.length > 0) {
                 params.row.treatment_logs.map((treatment_log: TreatmentLog) => {
                     total += treatment_log.minutes!
                 })
@@ -149,7 +139,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "width": 110,
                 "editable": true,
                 valueGetter: (params: any) => {
-                    if (params.row.treatment_logs.length > 0) {
+                    if (params && params.row.treatment_logs.length > 0) {
                         let element = params.row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(element) {
                             return element.score_value
@@ -166,7 +156,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "width": 110,
                 "editable": true,
                 valueGetter: (params: any) => {
-                    if (params.row.treatment_logs.length > 0) {
+                    if (params && params.row.treatment_logs.length > 0) {
                         let element = params.row.treatment_logs[params.row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(element) {
                             return element.score_value
@@ -184,7 +174,7 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 "width": 110,
                 "editable": true,
                 valueGetter: (params: any) => {
-                    if (params.row.treatment_logs.length > 0) {
+                    if (params && params.row.treatment_logs.length > 0) {
                         let first_element = params.row.treatment_logs[0].scores.find((element: any) => element.score_name == questionnaire.name)
                         let last_element = params.row.treatment_logs[params.row.treatment_logs.length - 1].scores.find((element: any) => element.score_name == questionnaire.name)
                         if(first_element && last_element) {

@@ -1,4 +1,4 @@
-import { AppShell, NavLink, Text, em } from '@mantine/core';
+import { NavLink, Text, em } from '@mantine/core';
 import { IconArrowBarUp, IconTable, IconReportAnalytics, IconLock, IconShieldCheck, IconReportMedical, IconBrandMyOppo } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { useDisclosure } from '@mantine/hooks';
@@ -13,12 +13,13 @@ import { modals } from '@mantine/modals';
 
 
 interface RegistryShellProps {
+    AppShell: any;
     onNavigate: (path: string) => void;
     pathname: string;
     Outlet?: any;
 }
 
-export const RegistryShell:React.FC<RegistryShellProps> = ({onNavigate, pathname, Outlet}) => {
+export const RegistryShell:React.FC<RegistryShellProps> = ({AppShell, onNavigate, pathname, Outlet}) => {
     const akello = useAkello();
     const [opened, { toggle }] = useDisclosure();
     const [evaluationModal, evaluationModalHandlers] = useDisclosure(false);
