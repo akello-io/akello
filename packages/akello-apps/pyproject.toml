@@ -3,12 +3,12 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "akello"
-version = "0.0.19"
+name = "akello_apps"
+version = "0.0.1"
 authors = [
   { name="Vijay Selvaraj", email="vijay@akellohealth.com" },
 ]
-description = "FastAPI server akello.io"
+description = "Akello Apps"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
@@ -19,21 +19,6 @@ classifiers = [
 ]
 
 dependencies = [
-    'fastapi',
-    'boto3',
-    'pydantic',
-    'pydantic-settings',
-    'fastapi_cognito',
-    'uvicorn',
-    'requests',
-    'mangum',
-    'aws_lambda_powertools',
-    'stripe',
-    'sendgrid',
-    'aiofiles',
-    'python-multipart',
-    'flatten_json',
-    'jsonschema'
 ]
 
 [project.urls]
