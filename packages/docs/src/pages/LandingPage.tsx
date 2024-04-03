@@ -196,11 +196,11 @@ export default function Example() {
                                     </button>
                                     <div
                                         onClick={() => {
-                                            window.location.href = "/docs/intro"
+                                            window.location.href = "https://calendly.com/akello-health/30-min-call"
                                         }}
                                         className='flex my-auto font-semibold text-white bg-none cursor-pointer'>
                                         <div>
-                                            Learn more
+                                            Contact sales
                                         </div>
                                         <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
                                     </div>
@@ -234,7 +234,7 @@ export default function Example() {
                             <h2 className="text-center my-auto text-xl sm:text-2xl font-semibold leading-8 ">
                             🎉 Book a demo today
                             </h2>
-                            <ChevronRightIcon className="h-10  w-auto" aria-hidden="true" />
+                            <ChevronRightIcon className="h-5  my-auto w-auto" aria-hidden="true" />
                         </div>
                     </div>
                     </div>
