@@ -130,11 +130,12 @@ const config: Config = {
           to: 'https://app.akello.io',
           label: 'Sign In',
           position: 'right',
+          className: 'button',
           target: '_self',
         },
         {
           to: 'https://github.com/akello-io/akello',
-          label: 'GitHub',
+          className: "header-github-link",
           position: 'right',
         }
       ],
