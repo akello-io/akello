@@ -185,12 +185,6 @@ export default function Example() {
                                 <div className="mt-10 flex items-center gap-x-6">
                                     <button
                                         onClick={() => {
-                                            // Send custom event
-                                            gtag("event", "click", {
-                                                "event_category": "social",
-                                                "event_label": "twitter"
-                                            });
-
                                             window.location.href = "https://app.akello.io/signup"
                                         }}
                                         className="flex my-auto rounded-full cursor-pointer bg-white px-3.5 py-2 text-sm font-semibold text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
