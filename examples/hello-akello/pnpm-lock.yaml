@@ -6,20 +6,23 @@ settings:
 
 dependencies:
   '@akello/core':
-    specifier: ^0.0.9
-    version: 0.0.9(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3)
+    specifier: ^0.0.10
+    version: 0.0.10(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3)
   '@akello/react':
-    specifier: ^0.0.22
-    version: 0.0.22(@akello/core@0.0.9)(@akello/react-hook@0.0.3)(@mantine/core@7.7.1)(@mantine/hooks@7.7.1)(autoprefixer@10.4.19)(daisyui@4.9.0)(postcss-preset-mantine@1.13.0)(postcss-simple-vars@7.0.1)(postcss@8.4.38)(react-dom@18.2.0)(react-router-dom@6.22.3)(react-router@6.22.3)(react@18.2.0)(tailwindcss@3.4.3)
+    specifier: ^0.0.23
+    version: 0.0.23(@akello/core@0.0.10)(@akello/react-hook@0.0.4)(@mantine/core@7.7.1)(@mantine/hooks@7.7.1)(autoprefixer@10.4.19)(daisyui@4.9.0)(postcss-preset-mantine@1.13.0)(postcss-simple-vars@7.0.1)(postcss@8.4.38)(react-dom@18.2.0)(react-router-dom@6.22.3)(react-router@6.22.3)(react@18.2.0)(tailwindcss@3.4.3)
   '@akello/react-hook':
-    specifier: ^0.0.3
-    version: 0.0.3(@akello/core@0.0.9)(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3)
+    specifier: ^0.0.4
+    version: 0.0.4(@akello/core@0.0.10)(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3)
   '@mantine/core':
     specifier: ^7.7.1
     version: 7.7.1(@mantine/hooks@7.7.1)(@types/react@18.2.73)(react-dom@18.2.0)(react@18.2.0)
   '@mantine/hooks':
     specifier: ^7.7.1
     version: 7.7.1(react@18.2.0)
+  '@mantine/notifications':
+    specifier: ^7.7.1
+    version: 7.7.1(@mantine/core@7.7.1)(@mantine/hooks@7.7.1)(react-dom@18.2.0)(react@18.2.0)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -81,8 +84,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@akello/core@0.0.9(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3):
-    resolution: {integrity: sha512-Ze2drsCWg/FuXIKNAd1m+Z5NJiji1oY8fPCbrTmFlCfug7VH82mu7j7+xHjLtFqq/S3khEsD94s6coqaSKTuLQ==}
+  /@akello/core@0.0.10(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3):
+    resolution: {integrity: sha512-xCj/TcD1aZfHzB5KGauoZEN0uka2vP5Uiz8fa/J6jACoYNCtN6yUOquYdZq/hEzX1DycbpA+OJ8ij+p8cKA0TQ==}
     engines: {node: '18'}
     peerDependencies:
       amazon-cognito-identity-js: ^6.3.7
@@ -100,8 +103,8 @@ packages:
       tailwindcss: 3.4.3
     dev: false
 
-  /@akello/react-hook@0.0.3(@akello/core@0.0.9)(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3):
-    resolution: {integrity: sha512-9tkRm/kC9RGiD97gOaYJuh726RNN/LeQ8Xnb0j2EMHM3tFO9BeTx+XJAyf2BOdfJEcJ90dOQG05A05y17ePGpQ==}
+  /@akello/react-hook@0.0.4(@akello/core@0.0.10)(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3):
+    resolution: {integrity: sha512-xlvDjPDSeQC0xP8MNCO1i23MHAQKKLnWXq8zjoH8va23uVLJn0in6pLbFHaEoJOKVV7lr+mAL9HKDqi3hR7shg==}
     engines: {node: '18'}
     peerDependencies:
       '@akello/core': ^0.0.9
@@ -112,7 +115,7 @@ packages:
       react-dom: ^18.2.0
       tailwindcss: ^3.4.1
     dependencies:
-      '@akello/core': 0.0.9(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3)
+      '@akello/core': 0.0.10(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3)
       amazon-cognito-identity-js: 6.3.12
       aws-amplify: 6.0.26(aws-cdk-lib@2.135.0)(constructs@10.3.0)
       axios: 1.6.8
@@ -121,8 +124,8 @@ packages:
       tailwindcss: 3.4.3
     dev: false
 
-  /@akello/react@0.0.22(@akello/core@0.0.9)(@akello/react-hook@0.0.3)(@mantine/core@7.7.1)(@mantine/hooks@7.7.1)(autoprefixer@10.4.19)(daisyui@4.9.0)(postcss-preset-mantine@1.13.0)(postcss-simple-vars@7.0.1)(postcss@8.4.38)(react-dom@18.2.0)(react-router-dom@6.22.3)(react-router@6.22.3)(react@18.2.0)(tailwindcss@3.4.3):
-    resolution: {integrity: sha512-kbS6vVB746UMA+VBp6U17UwyncBZpONTFhfNuXlkX19GEnAYJ+nghU+ftJ7oqd/kJIZJrp6KtlnVPi8hs73jKw==}
+  /@akello/react@0.0.23(@akello/core@0.0.10)(@akello/react-hook@0.0.4)(@mantine/core@7.7.1)(@mantine/hooks@7.7.1)(autoprefixer@10.4.19)(daisyui@4.9.0)(postcss-preset-mantine@1.13.0)(postcss-simple-vars@7.0.1)(postcss@8.4.38)(react-dom@18.2.0)(react-router-dom@6.22.3)(react-router@6.22.3)(react@18.2.0)(tailwindcss@3.4.3):
+    resolution: {integrity: sha512-4I2i7zTEm9orgbKFc4M7eVlibcav0RHi6j35CAlOmx5OtDt3MDrRxFnPkuvJowtKLaSEZe6ZmeoAsdY/DttkDw==}
     engines: {node: '18'}
     peerDependencies:
       '@akello/core': ^0.0.9
@@ -140,8 +143,8 @@ packages:
       react-router-dom: ^6.22.3
       tailwindcss: ^3.4.1
     dependencies:
-      '@akello/core': 0.0.9(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3)
-      '@akello/react-hook': 0.0.3(@akello/core@0.0.9)(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3)
+      '@akello/core': 0.0.10(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3)
+      '@akello/react-hook': 0.0.4(@akello/core@0.0.10)(amazon-cognito-identity-js@6.3.12)(aws-amplify@6.0.26)(axios@1.6.8)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.3)
       '@mantine/core': 7.7.1(@mantine/hooks@7.7.1)(@types/react@18.2.73)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/hooks': 7.7.1(react@18.2.0)
       autoprefixer: 10.4.19(postcss@8.4.38)
@@ -1469,6 +1472,30 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@mantine/notifications@7.7.1(@mantine/core@7.7.1)(@mantine/hooks@7.7.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-UGs3r4CU2hy1Vt0TVtdorDufpI7LWCd4P7qZP0US+mXVeeZqHkNTCiwRTwlledhfaIdqERmmQn9OD2lJu8Wblg==}
+    peerDependencies:
+      '@mantine/core': 7.7.1
+      '@mantine/hooks': 7.7.1
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      '@mantine/core': 7.7.1(@mantine/hooks@7.7.1)(@types/react@18.2.73)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 7.7.1(react@18.2.0)
+      '@mantine/store': 7.7.1(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
+    dev: false
+
+  /@mantine/store@7.7.1(react@18.2.0):
+    resolution: {integrity: sha512-dmuCOLCFlVHYhZARFsi5YckFQR2Vr4giOgs0X1hczqCVUnRDRIgRusAO5GjUhQrtNxfN0EWwFywjLdcrLkA6Lg==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -2634,6 +2661,13 @@ packages:
       esutils: 2.0.3
     dev: true
 
+  /dom-helpers@5.2.1:
+    resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
+    dependencies:
+      '@babel/runtime': 7.24.1
+      csstype: 3.1.3
+    dev: false
+
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
@@ -3646,6 +3680,20 @@ packages:
       use-latest: 1.2.1(@types/react@18.2.73)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /react-transition-group@4.4.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
+    peerDependencies:
+      react: '>=16.6.0'
+      react-dom: '>=16.6.0'
+    dependencies:
+      '@babel/runtime': 7.24.1
+      dom-helpers: 5.2.1
+      loose-envify: 1.4.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react@18.2.0:

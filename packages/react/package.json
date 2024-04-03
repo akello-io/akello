@@ -55,37 +55,5 @@
     "*.{ts,tsx,js,jsx,json,css,md}": [
       "prettier -w"
     ]
-  },
-  "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@heroicons/react": "^2.1.3",
-    "@mantine/modals": "^7.7.1",
-    "@mantine/notifications": "^7.7.1",
-    "@modulz/radix-icons": "^4.0.0",
-    "@mui/material": "^5.15.14",
-    "@mui/x-data-grid": "^7.1.0",
-    "@tabler/icons-react": "^3.1.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "Box": "link:@mui/material/Box",
-    "classnames": "^2.5.1",
-    "formik": "^2.4.5",
-    "husky": "^9.0.11",
-    "json": "^11.0.0",
-    "moment": "^2.30.1",
-    "react-tailwindcss-datepicker": "^1.6.6",
-    "recharts": "^2.12.3",
-    "styles": "link:@mui/material/styles",
-    "ua-parser-js": "^1.0.37",
-    "uuid": "^9.0.1",
-    "vite": "^5.2.7",
-    "vite-plugin-dts": "^3.8.1",
-    "vitest": "^1.4.0",
-    "yup": "^1.4.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.74",
-    "@types/ua-parser-js": "^0.7.39",
-    "@types/uuid": "^9.0.8"
   }
 }
