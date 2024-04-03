@@ -47,21 +47,19 @@ export const Header: React.FC<HeaderProps> = ({ Logo, loggedIn, opened, onNaviga
 
         <div className='flex flex-row my-auto space-x-6'>
           {akello.getSelectedRegistry() && (
-            <div
+            <Button
+              variant="filled"
+              color={"cyan"}
+              leftSection={<IconUserPlus size={14} />}
               onClick={() => {
                 const selectedRegistry = akello.getSelectedRegistry();
                 if (selectedRegistry) {
                   onNavigate(`/patient-referral`);
                 }
               }}
-              className='bg-yellow-300 cursor-pointer flex flex-row space-x-3 rounded-xl text-sm py-2 px-6'>
-              <div className='my-auto'>
-                <IconUserPlus size={14} />
-              </div>
-              <div>
+            >
               Refer Patient
-              </div>
-          </div>
+            </Button>
           )}
 
           {!akello.getSelectedRegistry() && (
