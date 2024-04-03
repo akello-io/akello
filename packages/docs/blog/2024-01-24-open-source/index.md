@@ -7,7 +7,7 @@ image: https://source.unsplash.com/woman-in-black-and-white-dress-painting-UwpPe
 ---
 
 
-![image](image.jpg)
+![image](open-source.png)
 
 ---
 
