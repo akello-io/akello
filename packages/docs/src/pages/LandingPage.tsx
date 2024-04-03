@@ -27,15 +27,16 @@ const features = [
       imageAlt: '',
       cta: (
         <>
-            <a
-                href="/docs/measurements"
-                className="flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+            <div
+                onClick={() => window.location.href="/docs/measurements"}
+
+                className="cursor-pointer flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
             >
                 <div>
                     Start with Measurements
                 </div>
                 <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-            </a>
+            </div>
         </>
       )
     },
@@ -47,15 +48,15 @@ const features = [
       imageAlt: '',
       cta: (
         <>
-            <a
-                href="/docs/clinical-models"
-                className="flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+            <div
+                onClick={() => window.location.href="/docs/clinical-models"}
+                className="cursor-pointer flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
             >
                 <div>
-                Start with Clinical Models
+                    Start with Clinical Models
                 </div>
                 <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-            </a>
+            </div>
         </>
       )
     },
@@ -67,15 +68,15 @@ const features = [
         imageAlt: '',
         cta: (
             <>
-                <a
-                    href="/docs/team-based-care"
-                    className="flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                <div
+                    onClick={() => window.location.href="/docs/team-based-care"}
+                    className="cursor-pointer flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                 >
                     <div>
                      Start with Team Collaboration
                     </div>
                     <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-                </a>
+                </div>
             </>
           )
     },
@@ -156,7 +157,7 @@ export default function Example() {
 
                                 <div className="mt-24 sm:mt-32 lg:mt-16 ">
                                     <div
-                                        className="no-underline flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black  bg-opacity-20 text-opacity-80 rounded-full w-fit px-4 text-white"
+                                        className="no-underline cursor-pointer flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black  bg-opacity-20 text-opacity-80 rounded-full w-fit px-4 text-white"
                                         onClick={() => {
                                                 window.location.href="https://github.com/akello-io/akello/releases/tag/v0.0.9"
                                             }}>
@@ -225,12 +226,16 @@ export default function Example() {
 
                 <div className="bg-black dark:bg-ak-blue-800 py-4  ">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <a href='https://calendly.com/akello-health/30-min-call' className='flex flex-row w-fit my-auto mx-auto text-white'>
+                        <div onClick={() => {
+                            window.location.href = 'https://calendly.com/akello-health/30-min-call'
+
+                        }}
+                            className='cursor-pointer flex flex-row w-fit my-auto mx-auto text-white'>
                             <h2 className="text-center my-auto text-xl sm:text-2xl font-semibold leading-8 ">
-                            🎉 Want a walkthrough? Book a demo!
+                            🎉 Book a demo today
                             </h2>
                             <ChevronRightIcon className="h-10  w-auto" aria-hidden="true" />
-                        </a>
+                        </div>
                     </div>
                     </div>
 
@@ -296,15 +301,15 @@ export default function Example() {
                                             </div>
                                             <p className="flex-auto">{feature.description}</p>
                                             <p className="mt-6">
-                                                <a
-                                                    href={feature.href}
-                                                    className="flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                                                <div
+                                                    onClick={() => window.location.href = feature.href}
+                                                    className="cursor-pointer flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                                                 >
                                                     <div>
                                                         Explore
                                                     </div>
                                                     <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-                                                </a>
+                                                </div>
                                             </p>
                                         </div>
                                     ))}
@@ -322,21 +327,21 @@ export default function Example() {
                         Start a free evaluation today
                     </h2>
                     <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
-                    <a
-                        href="https://app.akello.io/signup"
-                        className="flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                    <div
+                        onClick={() => window.location.href = "https://app.akello.io/signup"}
+                        className="cursor-pointer flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                     >
                         <div>
                             Start now
                         </div>
                         <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-                    </a>
-                    <a href="https://calendly.com/akello-health/30-min-call" className='flex my-auto font-semibold text-white'>
+                    </div>
+                    <div onClick={() => window.location.href = "https://calendly.com/akello-health/30-min-call"} className='cursor-pointer flex my-auto font-semibold text-white'>
                         <div>
                             Book a demo
                         </div>
                         <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
-                    </a>
+                    </div>
                     </div>
                 </div>
                 </div>
@@ -356,15 +361,15 @@ export default function Example() {
                                 <p className="mt-6 text-xl leading-8 ">
                                 We are a community of clinicians, engineers and designers who are passionate about improving healthcare. We are committed to building a platform that is easy to use and helps you deliver the best care to your patients.
                                 </p>
-                                <a
-                                    href="https://discord.gg/WSqNrWBKKw"
-                                    className="flex my-auto rounded-full w-full text-white  bg-ak-red-700  py-3 text-sm font-semibold"
+                                <div
+                                    onClick={() => window.location.href = "https://discord.gg/WSqNrWBKKw"}
+                                    className="flex my-auto cursor-pointer rounded-full w-full text-white  bg-ak-red-700  py-3 text-sm font-semibold"
                                 >
                                     <div className='mx-auto text-xl'>
                                         Join our Community
                                     </div>
 
-                                </a>
+                                </div>
 
                             </div>
                             <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">

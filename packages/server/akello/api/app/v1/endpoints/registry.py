@@ -36,19 +36,25 @@ stripe.api_key = os.getenv('STRIPE_API_KEY', None)
 
 
 @router.post("/{registry_id}/payment/{stripe_session_id}", include_in_schema=False)
-async def payment_confirmed(stripe_session_id: str):        
+async def payment_confirmed(stripe_session_id: str):
     item = stripe.checkout.Session.retrieve(stripe_session_id)
     registry_id = item['client_reference_id']
-    stripe_customer_id = item['customer']    
-    RegistryService.set_stripe_customer_id(registry_id, stripe_customer_id)    
+    stripe_customer_id = item['customer']
+    RegistryService.set_stripe_customer_id(registry_id, stripe_customer_id)
 
 
 @router.get("/{registry_id}/subscription")
 async def check_active_subscription(registry_id: str):
-    registry = RegistryService.get_registry(registry_id)    
+    registry = RegistryService.get_registry(registry_id)
     if 'stripe_customer_id' in registry and registry['stripe_customer_id']:
-        subscription = StripePaymentService.get_active_stripe_subscriptions(registry['stripe_customer_id'])[0]    
-        product = StripePaymentService.get_product(subscription['plan']['product'])        
+        subscriptions = StripePaymentService.get_active_stripe_subscriptions(registry['stripe_customer_id'])
+
+        if len(subscriptions) == 0:
+            return False
+
+        subscription = subscriptions[0]
+
+        product = StripePaymentService.get_product(subscription['plan']['product'])
         if subscription['status'] == 'active':
             return product['name']
     return False
@@ -80,7 +86,7 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
 
     questionnaires = ScreenerService.get_screeners()
 
-    # Create the registry and link the user to the registry    
+    # Create the registry and link the user to the registry
     registry_id = RegistryService.create_registry(
         data['name'],
         data['description'],
@@ -142,7 +148,7 @@ async def update_measurements(registry_id: str, request: Request, auth: CognitoT
     """
     UserService.check_registry_access(auth.cognito_id, registry_id)
     payload = await request.json()
-    RegistryService.set_measurements(registry_id, payload)    
+    RegistryService.set_measurements(registry_id, payload)
 
 @router.get("/{registry_id}/team-members")
 async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
@@ -268,7 +274,7 @@ async def record_session(request: Request, registry_id: str, treatment_log: Trea
 
     The function aims to seamlessly integrate treatment session recording into patient management within registries, ensuring data integrity and authorized access.
     """
-    UserService.check_registry_access(auth.cognito_id, registry_id)    
+    UserService.check_registry_access(auth.cognito_id, registry_id)
     RegistryService.add_treatment_log(registry_id, treatment_log.patient_mrn, treatment_log)
     return treatment_log
 

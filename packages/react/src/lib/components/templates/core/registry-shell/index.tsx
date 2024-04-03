@@ -18,9 +18,19 @@ interface RegistryShellProps {
     onNavigate: (path: string) => void;
     pathname: string;
     Outlet?: any;
+    stripe_checkout_url: string;
+    stripe_portal_url: string;
 }
 
-export const RegistryShell:React.FC<RegistryShellProps> = ({Logo, AppShell, onNavigate, pathname, Outlet}) => {
+export const RegistryShell:React.FC<RegistryShellProps> = ({
+        Logo,
+        AppShell,
+        onNavigate,
+        pathname,
+        Outlet,
+        stripe_checkout_url,
+        stripe_portal_url
+    }) => {
     const akello = useAkello();
     const [opened, { toggle }] = useDisclosure();
     const [evaluationModal, evaluationModalHandlers] = useDisclosure(false);
@@ -102,7 +112,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({Logo, AppShell, onNa
                 <Text size={'lg'} fw={700}>For evaluation only</Text>
                 <Text>You are currently using Akello’s evaluation plan. We recommend using this plan to familiarize yourself with Akello’s platform and understand how it can meet your specific needs. If you plan on adding real <span className='font-semibold'>patient data</span> be sure to upgrade to a paid plan, which will include a Business Associate Agreement (BAA).</Text>
                 <Button onClick={() => {
-                    window.location.href = import.meta.env.VITE_STRIPE_CHECKOUT_URL+'?client_reference_id=' + selectedRegistry?.id
+                    window.location.href = stripe_checkout_url +'?client_reference_id=' + selectedRegistry?.id
                 }}>Upgrade Plan</Button>
             </Modal>
             <Header loggedIn={true} Logo={Logo}  opened={opened} toggle={toggle} onNavigate={(path: any) => onNavigate(path) }/>
@@ -166,14 +176,14 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({Logo, AppShell, onNa
 
                     !planTier ? (
                         <NavLink
-                            href={import.meta.env.VITE_STRIPE_CHECKOUT_URL+'?client_reference_id=' + selectedRegistry?.id}
+                            href={stripe_checkout_url + '?client_reference_id=' + selectedRegistry?.id}
                             label="Upgrade Plan"
                             leftSection={<IconArrowBarUp color='red' size="1rem" stroke={1.5} />}
                         />
                     ) : (
                         <NavLink
                             target='_blank'
-                            href={import.meta.env.VITE_STRIPE_CUSTOMER_PORTAL}
+                            href={stripe_portal_url}
                             label="Manage Subscription"
                             leftSection={<IconBrandMyOppo size="1rem" stroke={1.5} />}
                         />
