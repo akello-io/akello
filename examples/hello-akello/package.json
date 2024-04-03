@@ -10,11 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@akello/core": "^0.0.9",
-    "@akello/react": "^0.0.22",
-    "@akello/react-hook": "^0.0.3",
+    "@akello/core": "^0.0.10",
+    "@akello/react": "^0.0.23",
+    "@akello/react-hook": "^0.0.4",
     "@mantine/core": "^7.7.1",
     "@mantine/hooks": "^7.7.1",
+    "@mantine/notifications": "^7.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.22.3",

@@ -1,9 +1,19 @@
 import { Container, Title, Text, Button, Group } from '@mantine/core';
 import { Illustration } from './404.illustration';
-import classes from './404.module.css';
+
 
 export interface NothingFoundBackgroundProps {
     onBackToHome: () => void;
+}
+
+// import classes from './404.module.css';
+const classes = {
+    root: 'nothing-found-background',
+    inner: 'nothing-found-background-inner',
+    image: 'nothing-found-background-image',
+    content: 'nothing-found-background-content',
+    title: 'nothing-found-background-title',
+    description: 'nothing-found-background-description',
 }
 
 export const NothingFoundBackground:React.FC<NothingFoundBackgroundProps> = ({onBackToHome}) => {

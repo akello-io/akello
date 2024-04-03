@@ -1,7 +1,4 @@
 import { AppShell, Button, UnstyledButton, Text, Burger } from '@mantine/core';
-
-import Logo from '../../../../assets/images/logos/akello/akello-mini-blue.svg';
-
 import { HeaderMenu } from './Menu';
 import { useAkello } from "@akello/react-hook";
 import { IconUserPlus, IconPlus } from '@tabler/icons-react';
@@ -9,12 +6,13 @@ import { ThemeToggle } from '../../../molecules/core';
 
 interface HeaderProps {
   loggedIn: boolean;
+  Logo: any;
   opened: boolean;
   onNavigate: (path: string) => void;
   toggle: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ loggedIn, opened, onNavigate, toggle }) => {
+export const Header: React.FC<HeaderProps> = ({ Logo, loggedIn, opened, onNavigate, toggle }) => {
   const akello = useAkello();
 
 
@@ -36,7 +34,9 @@ export const Header: React.FC<HeaderProps> = ({ loggedIn, opened, onNavigate, to
             }}
             className='h-8 w-auto my-auto cursor-pointer'
           >
+
             <img src={Logo} alt='logo' className='h-8 w-auto' />
+
           </div>
           <div className='my-auto'>
             <div className='text-xl font-semibold hidden sm:block'>

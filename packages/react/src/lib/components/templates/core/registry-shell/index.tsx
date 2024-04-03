@@ -1,4 +1,4 @@
-import { AppShell, NavLink, Text, em } from '@mantine/core';
+import { NavLink, Text, em } from '@mantine/core';
 import { IconArrowBarUp, IconTable, IconReportAnalytics, IconLock, IconShieldCheck, IconReportMedical, IconBrandMyOppo } from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { useDisclosure } from '@mantine/hooks';
@@ -13,12 +13,14 @@ import { modals } from '@mantine/modals';
 
 
 interface RegistryShellProps {
+    AppShell: any;
+    Logo: any;
     onNavigate: (path: string) => void;
     pathname: string;
     Outlet?: any;
 }
 
-export const RegistryShell:React.FC<RegistryShellProps> = ({onNavigate, pathname, Outlet}) => {
+export const RegistryShell:React.FC<RegistryShellProps> = ({Logo, AppShell, onNavigate, pathname, Outlet}) => {
     const akello = useAkello();
     const [opened, { toggle }] = useDisclosure();
     const [evaluationModal, evaluationModalHandlers] = useDisclosure(false);
@@ -103,7 +105,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({onNavigate, pathname
                 <Text size={'lg'} fw={700}>For evaluation only</Text>
                 <Text>You are currently using Akello’s evaluation plan. We recommend using this plan to familiarize yourself with Akello’s platform and understand how it can meet your specific needs. If you plan on adding real <span className='font-semibold'>patient data</span> be sure to upgrade to a paid plan, which will include a Business Associate Agreement (BAA).</Text>
             </Modal>
-            <Header loggedIn={true}  opened={opened} toggle={toggle} onNavigate={(path: any) => onNavigate(path) }/>
+            <Header loggedIn={true} Logo={Logo}  opened={opened} toggle={toggle} onNavigate={(path: any) => onNavigate(path) }/>
             <AppShell.Navbar>
                 <Text pl={12} fz="xs" fw={450} mt="sm" >FAVORITES</Text>
                 <NavLink
@@ -162,6 +164,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({onNavigate, pathname
                     leftSection={<IconLock size="1rem" stroke={1.5} />}
                     active={window.location.pathname === '/security'}
                 />
+                {/*
                 {
 
                     !planTier ? (
@@ -179,6 +182,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({onNavigate, pathname
                         />
                     )
                 }
+                */}
 
                 <Text pl={12} fz="xs" fw={450} mt="sm" >SYSTEM AUDIT</Text>
                 <NavLink

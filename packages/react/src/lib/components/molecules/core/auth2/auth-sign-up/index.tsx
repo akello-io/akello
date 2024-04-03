@@ -5,7 +5,7 @@ import { IconArrowRight } from '@tabler/icons-react';
 
 import * as Yup from 'yup';
 import { useAkello } from '@akello/react-hook';
-import AkelloLogo from '../../../../../assets/images/logos/akello/akello-logo.png';
+
 
 const SignupSchema = Yup.object().shape({
     first_name: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
@@ -15,10 +15,6 @@ const SignupSchema = Yup.object().shape({
 });
 
 
-export interface SignUpPageProps {
-    onLoginClick: () => void;
-    onSignupSuccess: () => void;
-}
 
 const handleOnKeyDown = (e: any) => {
     if (e.key === 'Enter') {
@@ -29,19 +25,27 @@ const handleOnKeyDown = (e: any) => {
 }
 
 
-export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSuccess}) => {
+interface SignUpPageProps {
+    onLoginClick: () => void;
+    onSignupSuccess: () => void;
+    AkelloLogo: any;
+}
+
+
+export const SignUpPageComponent:React.FC<SignUpPageProps> = ({AkelloLogo, onLoginClick, onSignupSuccess}) => {
     const [submissionError, setSubmissionError] = useState('');
-    const akello = useAkello();    
+    const akello = useAkello();
 
     return (
         <div className="w-screen">
             <Center>
                 <Container size={420} my={40}>
                     <Title ta="center">
+
                         <Image src={AkelloLogo} alt="Akello Logo" />
-                        
+
                         <Text mt={12} size={"xs"} fw={700}>
-                            Start for free 
+                            Start for free
 
                             <IconArrowRight size={20} className="inline-block ml-2" />
 
@@ -50,9 +54,9 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                             <IconArrowRight size={20} className="inline-block ml-2" />
 
                             Cancel Anytime
-                                                        
-                        </Text>                        
-                        
+
+                        </Text>
+
                     </Title>
                     <Text c="dimmed" size="sm" ta="center" mt={5}>
                         Already have an account?{' '}
@@ -71,12 +75,12 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
                             }}
                             validationSchema={SignupSchema}
                             onSubmit={values => {
-                                akello.signup(values.first_name, values.last_name, values.email, values.password, (user: any) => {                                    
+                                akello.signup(values.first_name, values.last_name, values.email, values.password, (user: any) => {
                                     akello.setUserName(values.email);
                                     //navigate('/signup/confirm');
                                     onSignupSuccess();
-                                }, (err: any) => {   
-                                    console.log(err)                                 
+                                }, (err: any) => {
+                                    console.log(err)
                                     setSubmissionError(err.message);
                                 });
                             }}
@@ -173,5 +177,3 @@ export const SignUpPage:React.FC<SignUpPageProps> = ({onLoginClick, onSignupSucc
         </div>
     );
 };
-
-export default SignUpPage;
