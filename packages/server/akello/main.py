@@ -2,7 +2,6 @@ import os, sys
 from fastapi import FastAPI
 from akello.settings import *
 from akello.api.app.v1.api import router as api_router
-from akello.api.fhir.v1.api import router as fhir_router
 #from akello_apps.metriport.webhooks.metriport_webhook import router as metriport_webhook
 #from akello_apps.typeform.webhooks.typeform_webhook import router as typeform_webhook
 from fastapi.middleware.cors import CORSMiddleware
@@ -58,7 +57,6 @@ def root():
 
 
 app.include_router(api_router, prefix="/v1")
-app.include_router(fhir_router, prefix="/fhir/v1")
 
 #TODO: Should be implemented by apps that extend the base server
 #metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
