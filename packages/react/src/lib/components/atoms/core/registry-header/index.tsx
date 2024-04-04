@@ -48,7 +48,8 @@ export const Header: React.FC<HeaderProps> = ({ Logo, loggedIn, opened, onNaviga
         <div className='flex flex-row my-auto space-x-6'>
           {akello.getSelectedRegistry() && (
             <Button
-              variant="default"
+              variant="filled"
+              color={"cyan"}
               leftSection={<IconUserPlus size={14} />}
               onClick={() => {
                 const selectedRegistry = akello.getSelectedRegistry();
