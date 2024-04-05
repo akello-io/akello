@@ -29,6 +29,7 @@ const features = [
         <>
             <div
                 onClick={() => window.location.href="/docs/measurements"}
+                onKeyDown={() => {}}
 
                 className="cursor-pointer flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
             >
@@ -50,6 +51,7 @@ const features = [
         <>
             <div
                 onClick={() => window.location.href="/docs/clinical-models"}
+                onKeyDown={() => {}}
                 className="cursor-pointer flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
             >
                 <div>
@@ -70,6 +72,7 @@ const features = [
             <>
                 <div
                     onClick={() => window.location.href="/docs/team-based-care"}
+                    onKeyDown={() => {}}
                     className="cursor-pointer flex my-auto rounded-full w-fit bg-black dark:bg-white px-3.5 py-2 text-sm font-semibold text-white dark:text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                 >
                     <div>
@@ -160,7 +163,9 @@ export default function Example() {
                                         className="no-underline cursor-pointer flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black  bg-opacity-20 text-opacity-80 rounded-full w-fit px-4 text-white"
                                         onClick={() => {
                                                 window.location.href="https://github.com/akello-io/akello/releases/tag/v0.0.9"
-                                            }}>
+                                            }}
+                                        onKeyDown={() => {}}
+                                            >
 
                                         <div className='flex flex-row my-auto space-x-2'>
                                             <div className='my-auto rounded-full h-3 w-3 bg-green-400'></div>
@@ -187,6 +192,7 @@ export default function Example() {
                                         onClick={() => {
                                             window.location.href = "https://app.akello.io/signup"
                                         }}
+                                        onKeyDown={() => {}}
                                         className="flex my-auto rounded-full cursor-pointer bg-white px-3.5 py-2 text-sm font-semibold text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                                     >
                                         <div>
@@ -198,6 +204,7 @@ export default function Example() {
                                         onClick={() => {
                                             window.location.href = "https://calendly.com/akello-health/30-min-call"
                                         }}
+                                        onKeyDown={() => {}}
                                         className='flex my-auto font-semibold text-white bg-none cursor-pointer'>
                                         <div>
                                             Contact sales
@@ -226,13 +233,15 @@ export default function Example() {
 
                 <div className="bg-black dark:bg-ak-blue-800 py-4  ">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <div onClick={() => {
-                            window.location.href = 'https://calendly.com/akello-health/30-min-call'
+                        <div
+                            onKeyDown={() => {}}
+                            onClick={() => {
+                                window.location.href = 'https://calendly.com/akello-health/30-min-call'
 
-                        }}
+                            }}
                             className='cursor-pointer flex flex-row w-fit my-auto mx-auto text-white'>
                             <h2 className="text-center my-auto text-xl sm:text-2xl font-semibold leading-8 ">
-                            🎉 Book a demo today
+                                Book a demo
                             </h2>
                             <ChevronRightIcon className="h-5  my-auto w-auto" aria-hidden="true" />
                         </div>
@@ -303,6 +312,7 @@ export default function Example() {
                                             <p className="mt-6">
                                                 <div
                                                     onClick={() => window.location.href = feature.href}
+                                                    onKeyDown={() => {}}
                                                     className="cursor-pointer flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                                                 >
                                                     <div>
@@ -329,6 +339,7 @@ export default function Example() {
                     <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
                     <div
                         onClick={() => window.location.href = "https://app.akello.io/signup"}
+                        onKeyDown={() => {}}
                         className="cursor-pointer flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                     >
                         <div>
@@ -336,7 +347,10 @@ export default function Example() {
                         </div>
                         <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
                     </div>
-                    <div onClick={() => window.location.href = "https://calendly.com/akello-health/30-min-call"} className='cursor-pointer flex my-auto font-semibold text-white'>
+                    <div
+                        onClick={() => window.location.href = "https://calendly.com/akello-health/30-min-call"} className='cursor-pointer flex my-auto font-semibold text-white'
+                        onKeyDown={() => {}}
+                    >
                         <div>
                             Book a demo
                         </div>
@@ -363,6 +377,7 @@ export default function Example() {
                                 </p>
                                 <div
                                     onClick={() => window.location.href = "https://discord.gg/WSqNrWBKKw"}
+                                    onKeyDown={() => {}}
                                     className="flex my-auto cursor-pointer rounded-full w-full text-white  bg-ak-red-700  py-3 text-sm font-semibold"
                                 >
                                     <div className='mx-auto text-xl'>

@@ -5,17 +5,17 @@ import { useState, useEffect } from 'react';
 import { useAkello } from '@akello/react-hook';
 import { notifications } from '@mantine/notifications';
 
-export const MeasurementsPage = () => {
+
+export interface MeasurementsPageProps {
+    measurements: any;
+}
+
+
+export const MeasurementsPage:React.FC<MeasurementsPageProps> = ({ measurements }) => {
     const akello = useAkello();
-    const [measurements, setMeasurements] = useState(akello.getSelectedRegistry()?.measurements)
-    const [selected, setSelected] = useState([])
+    const [_measurements, setMeasurements] = useState(measurements)
 
-    useEffect(() => {
-
-
-    }, [measurements])
-
-    const selections = measurements?.map((measurement) => {
+    const selections = _measurements?.map((measurement: any) => {
         return measurement.name
     })
 
@@ -32,16 +32,16 @@ export const MeasurementsPage = () => {
                         label="Select screeners"
                         placeholder="Pick a screener"
                         defaultValue={
-                            measurements?.filter((measurement) => {
+                            _measurements?.filter((measurement: any) => {
                                 if(measurement.active === true) {
                                     return measurement.name
                                 }
-                            }).map((measurement) => {
+                            }).map((measurement: any) => {
                                 return measurement.name
                             })
                         }
                         onChange={(value) => {
-                            measurements?.map((measurement) => {
+                            _measurements?.map((measurement: any) => {
                                 if(value.includes(measurement.name))
                                 {
                                     measurement.active = true
@@ -51,11 +51,11 @@ export const MeasurementsPage = () => {
                                     measurement.active = false
                                 }
                             })
-                            setMeasurements([...measurements!])
+                            setMeasurements([..._measurements!])
                         }}
                     />
                     <Button  className={'bg-primary'} onClick={() => {
-                        akello.registryService.setMeasurements(akello.getSelectedRegistry()!.id, measurements, (data: any) => {
+                        akello.registryService.setMeasurements(akello.getSelectedRegistry()!.id, _measurements, (data: any) => {
                             console.log('measurements updated')
 
                             notifications.show({
@@ -71,7 +71,7 @@ export const MeasurementsPage = () => {
 
 
             {
-                measurements?.map((measurement) => {
+                _measurements?.map((measurement: any) => {
                     if(measurement.active === true)
                     {
                         return (
@@ -80,12 +80,12 @@ export const MeasurementsPage = () => {
                                     <Text fw={700}> {measurement.name} </Text>
                                     <Stack>
                                         {
-                                            measurement.measurements.map((measurement) => {
+                                            measurement.measurements.map((measurement: any) => {
                                                 return (
                                                     <>
                                                         <Text> {measurement.question} </Text>
                                                         {
-                                                            measurement.responses.map((response) => {
+                                                            measurement.responses.map((response: any) => {
                                                                 return (
                                                                     <Stack>
                                                                         <Text> {response.score} - {response.response} </Text>
