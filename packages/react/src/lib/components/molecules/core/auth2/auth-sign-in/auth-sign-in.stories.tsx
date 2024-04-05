@@ -1,5 +1,5 @@
 import React from 'react'
-import { LoginPage, LoginPageProps } from '.'
+import { LoginComponent, LoginComponentProps } from '.'
 import { objectValuesToControls } from '../../../storybook-utils'
 import { AkelloProvider } from '@akello/react-hook'
 import { Meta } from '@storybook/react'
@@ -10,9 +10,9 @@ import { MantineProvider } from '@mantine/core'
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-const meta: Meta<typeof LoginPage> = {
+const meta: Meta<typeof LoginComponent> = {
   title: 'Molecules/Core/AuthSignIn',
-  component: LoginPage,
+  component: LoginComponent,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
   },
@@ -35,13 +35,13 @@ const config = {
 }
 const akello = new AkelloClient(config)
 
-const Template: StoryFn<typeof LoginPage> = (args: LoginPageProps) => {
+const Template: StoryFn<typeof LoginComponent> = (args: LoginComponentProps) => {
   return (
       <MantineProvider >
         <AkelloProvider akello={akello}>
-          <LoginPage {...args} />
-        </AkelloProvider>          
-      </MantineProvider>    
+          <LoginComponent {...args} />
+        </AkelloProvider>
+      </MantineProvider>
   )
 }
 
@@ -53,5 +53,5 @@ Primary.args = {
     logo: (<></>),
     signed_in: true,
     menu_items: [],
-    theme_swapper: (<></>)    
+    theme_swapper: (<></>)
 }

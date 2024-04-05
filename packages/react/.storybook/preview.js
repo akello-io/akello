@@ -1,14 +1,14 @@
-import type { Preview } from '@storybook/react'
+/** @type { import('@storybook/react').Preview } */
+
 import '../src/lib/tailwind/theme.css'
 import '@mantine/core/styles.css';
 
-const preview: Preview = {
+const preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/,
+        date: /Date$/i,
       },
     },
   },
