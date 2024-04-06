@@ -16,7 +16,10 @@ import ClinicalModelsImage from './landing-page-clinical-models.png'
 import TeamCollaborationImage from './landing-page-team-collaboration.png'
 import { CopyBlock } from 'react-code-blocks';
 import React from 'react'
+import ReactGA from "react-ga4";
 
+
+ReactGA.initialize("G-RW14R2MMT9");
 
 
 const features = [
@@ -193,6 +196,12 @@ export default function Example() {
                                         id='start-now-button'
                                         onClick={() => {
                                             window.location.href = "https://app.akello.io/signup"
+                                            // Send a custom event
+                                            ReactGA.event({
+                                                category: "cta",
+                                                action: "signup",
+                                                label: "Signup Hero", // optional                                                ge
+                                            });
                                         }}
                                         onKeyDown={() => {}}
                                         className="flex my-auto rounded-full cursor-pointer bg-white px-3.5 py-2 text-sm font-semibold text-black shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
