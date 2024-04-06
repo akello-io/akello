@@ -4,10 +4,10 @@ import pathlib
 current_file_path = pathlib.Path(__file__).parent.resolve()
 
 
-def run_docker():        
+def run_docker():
     print("starting docker")
-    resp = os.popen(f"docker-compose down").read()    
-    resp = os.popen(f"docker-compose -f {current_file_path}/../docker-compose.yml up -d ").read()        
+    resp = os.popen(f"docker-compose down").read()
+    resp = os.popen(f"docker-compose -f {current_file_path}/../docker-compose.yml up -d ").read()
     print("running docker")
 
 
@@ -35,12 +35,12 @@ def get_saved_user_pool():
 
 @click.command()
 def setup():
-    # packages_path = os.path.join(current_file_path, '../../../')    
-    # os.system(f"cd {current_file_path}/.. && ls {packages_path}/server/akello/ -all && cp .template.api.env {packages_path}/server/akello/.env")    
-    
+    # packages_path = os.path.join(current_file_path, '../../../')
+    # os.system(f"cd {current_file_path}/.. && ls {packages_path}/server/akello/ -all && cp .template.api.env {packages_path}/server/akello/.env")
+
     run_docker()
     try:
-        
+
         client_id = get_saved_client()
         user_pool_id = get_saved_user_pool()
         print("using saved client and user pool")
@@ -55,6 +55,7 @@ def setup():
     print(f"export AWS_COGNITO_USERPOOL_ID={user_pool_id}")
     print(f"export AWS_COGNITO_APP_CLIENT_ID={client_id}")
     print(f"export AWS_DYNAMODB_TABLE='akello-local'")
+    print(f"export AWS_REGION=us-east-1")
     print(f"export AKELLO_API_URL=http://127.0.0.1:8000/v1")
     print(f"export AKELLO_COGNITO_URL=http://localhost:9229")
     print(f"export AKELLO_DYNAMODB_LOCAL_URL=http://localhost:8001")

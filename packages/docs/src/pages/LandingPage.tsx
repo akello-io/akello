@@ -162,7 +162,7 @@ export default function Example() {
                                     <div
                                         className="no-underline cursor-pointer flex flex-row p-2 text-sm mt-24 sm:mt-32 lg:mt-16 space-x-6 bg-black  bg-opacity-20 text-opacity-80 rounded-full w-fit px-4 text-white"
                                         onClick={() => {
-                                                window.location.href="https://github.com/akello-io/akello/releases/tag/v0.0.9"
+                                                window.location.href="https://github.com/akello-io/akello/releases/tag/v0.0.10"
                                             }}
                                         onKeyDown={() => {}}
                                             >
@@ -175,7 +175,7 @@ export default function Example() {
                                         </div>
 
                                         <div className='flex flex-row'>
-                                            <div>Just shipped v0.0.9</div>
+                                            <div>Just shipped v0.0.10</div>
                                             <ChevronRightIcon className="h-5 w-5 my-auto" aria-hidden="true" />
                                         </div>
                                     </div>
