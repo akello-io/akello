@@ -15,6 +15,7 @@ import MeasurementImage from './landing-page-measurements.png'
 import ClinicalModelsImage from './landing-page-clinical-models.png'
 import TeamCollaborationImage from './landing-page-team-collaboration.png'
 import { CopyBlock } from 'react-code-blocks';
+import React from 'react'
 
 
 
@@ -189,6 +190,7 @@ export default function Example() {
                                 </p>
                                 <div className="mt-10 flex items-center gap-x-6">
                                     <button
+                                        id='start-now-button'
                                         onClick={() => {
                                             window.location.href = "https://app.akello.io/signup"
                                         }}
@@ -338,6 +340,7 @@ export default function Example() {
                     </h2>
                     <div className="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0">
                     <div
+                        id='start-now-button'
                         onClick={() => window.location.href = "https://app.akello.io/signup"}
                         onKeyDown={() => {}}
                         className="cursor-pointer flex my-auto rounded-full w-fit  bg-white px-3.5 py-2 text-sm font-semibold text-black  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
