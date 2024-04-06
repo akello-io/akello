@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "akello"
-version = "0.0.20"
+version = "0.0.21"
 authors = [
   { name="Vijay Selvaraj", email="vijay@akellohealth.com" },
 ]
@@ -33,9 +33,13 @@ dependencies = [
     'aiofiles',
     'python-multipart',
     'flatten_json',
-    'jsonschema'
+    'jsonschema',
+    'click'
 ]
 
 [project.urls]
 Homepage = "https://akello.io"
 Issues = "https://github.com/akello-io/akello/issues"
+
+[project.scripts]
+akello = "akello.cli.akello:cli()"
