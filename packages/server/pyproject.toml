@@ -34,7 +34,8 @@ dependencies = [
     'python-multipart',
     'flatten_json',
     'jsonschema',
-    'click'
+    'click',
+    'faker'
 ]
 
 [project.urls]
