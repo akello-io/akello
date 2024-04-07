@@ -69,10 +69,9 @@ export const MeasurementsPage:React.FC<MeasurementsPageProps> = ({ measurements 
                 </Paper>
             </Container>
 
-
             {
                 _measurements?.map((measurement: any) => {
-                    if(measurement.active === true)
+                    if(measurement.active === true && measurement.type === 'survey')
                     {
                         return (
                             <Container>
