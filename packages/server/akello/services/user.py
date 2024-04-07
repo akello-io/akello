@@ -31,7 +31,7 @@ class UserService(BaseService):
         Raises:
             ClientError: If the query to the database fails.
         """
-        try:            
+        try:
             response = registry_db.query(
                 KeyConditionExpression=Key('partition_key').eq('user:%s' % cognito_user_id)
                                        & Key('sort_key').eq('profile')
@@ -39,8 +39,8 @@ class UserService(BaseService):
             return response['Items']
         except ClientError as e:
             print(e)
-            print(e.response['No item found'])        
-                
+            print(e.response['No item found'])
+
 
     @staticmethod
     def get_user_sessions(cognito_user_id):
@@ -56,10 +56,10 @@ class UserService(BaseService):
         Raises:
             ClientError: If the query to the database fails.
         """
-        try:                        
+        try:
             response = registry_db.query(
-                KeyConditionExpression=Key('partition_key').eq('user-session:%s' % cognito_user_id), 
-                ScanIndexForward=False                                       
+                KeyConditionExpression=Key('partition_key').eq('user-session:%s' % cognito_user_id),
+                ScanIndexForward=False
             )
             return response['Items']
         except ClientError as e:
@@ -79,7 +79,7 @@ class UserService(BaseService):
         Raises:
             ClientError: If saving the session to the database fails.
         """
-        try:            
+        try:
             response = registry_db.put_item(
                 Item={
                     "partition_key": 'user-session:%s' % cognito_user_id,
@@ -88,10 +88,10 @@ class UserService(BaseService):
                     "ip_address": ip_address
                 }
             )
-            status_code = response['ResponseMetadata']['HTTPStatusCode']            
+            status_code = response['ResponseMetadata']['HTTPStatusCode']
             assert status_code == 200
-        except ClientError as e:            
-            print(e)        
+        except ClientError as e:
+            print(e)
 
 
     @staticmethod
@@ -142,25 +142,23 @@ class UserService(BaseService):
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        data = {
-            "contacts": [
-                {
-                    "email": email,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "custom_fields": {                        
+        sg_api_key = os.environ.get('SENDGRID_API_KEY')
+        if sg_api_key:
+            sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+            data = {
+                "contacts": [
+                    {
+                        "email": email,
+                        "first_name": first_name,
+                        "last_name": last_name,
+                        "custom_fields": {
+                        }
                     }
-                }
-            ]
-        }
-        response = sg.client.marketing.contacts.put(
-            request_body=data
-        )
-
-
-
-
+                ]
+            }
+            response = sg.client.marketing.contacts.put(
+                request_body=data
+            )
 
     @staticmethod
     def create_registry_user(registry_id, first_name, last_name, email, user_id, role: UserRole, is_admin: bool):
