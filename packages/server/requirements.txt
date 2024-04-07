@@ -31,6 +31,7 @@ commonmark==0.9.1
 constructs==10.3.0
 cryptography==42.0.4
 dnspython==2.4.2
+docker==7.0.0
 docutils==0.20.1
 ecdsa==0.18.0
 email-validator==2.0.0.post2
@@ -72,6 +73,7 @@ numpy==1.26.4
 orjson==3.9.15
 packaging==23.2
 pandas==2.2.1
+pkginfo==1.10.0
 ply==3.11
 publication==0.0.3
 pyasn1==0.5.0
@@ -120,6 +122,7 @@ starkbank-ecdsa==2.2.0
 starlette==0.35.1
 stripe==8.8.0
 tabulate==0.9.0
+twine==5.0.0
 typeguard==2.13.3
 typer==0.9.0
 typing_extensions==4.8.0

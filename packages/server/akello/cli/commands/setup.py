@@ -2,6 +2,8 @@ import click
 import os, json
 import pathlib
 import subprocess
+import webbrowser
+
 
 current_file_path = pathlib.Path(__file__).parent.resolve()
 
@@ -56,11 +58,11 @@ def is_docker_running():
 
 def is_aws_cli_installed():
     try:
-        subprocess.check_output('aws', shell=True)
+        subprocess.check_output('aws help', shell=True)
         return True
     except:
         print("AWS cli is not installed")
-        return False
+
 
 def run_setup():
     if not is_docker_running():
@@ -105,6 +107,7 @@ def run_setup_env():
     os.environ["AKELLO_COGNITO_URL"] = "http://localhost:9229"
     os.environ["AKELLO_DYNAMODB_LOCAL_URL"] = "http://localhost:8001"
 
+
     akello_ascii = """
                               ██████                                      ████        ████
                         ████████                                 █████████  ██████████
@@ -127,6 +130,7 @@ def run_setup_env():
       █████     █████                                 ██████                                     ███████
     """
 
+
     print(akello_ascii)
     print("\n\n")
     print("Add the following to your .env file")
@@ -140,6 +144,9 @@ def run_setup_env():
     print(f"export AKELLO_DYNAMODB_LOCAL_URL=http://localhost:8001")
     print(f"export STRIPE_API_KEY=xxxx set it manually for now xxxxx")
     print("\n\n")
+
+    print(bcolors.OKBLUE + "API Server is now starting on http://localhost:8000" + bcolors.ENDC)
+
 
 @click.command()
 def setup():

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "akello"
-version = "0.0.21"
+version = "0.0.23"
 authors = [
   { name="Vijay Selvaraj", email="vijay@akellohealth.com" },
 ]
