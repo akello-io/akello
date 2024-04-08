@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "akello"
-version = "0.0.23"
+version = "0.0.24"
 authors = [
   { name="Vijay Selvaraj", email="vijay@akellohealth.com" },
 ]
@@ -34,7 +34,9 @@ dependencies = [
     'python-multipart',
     'flatten_json',
     'jsonschema',
-    'click'
+    'click',
+    'faker',
+    'ollama'
 ]
 
 [project.urls]

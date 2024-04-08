@@ -1,37 +1,25 @@
-import typer
+import click
 import os, random
-from commands.mock.registry import RegistryMock
-from commands.mock.user import UserMock
-from commands.mock.patient import PatientMock
+from akello.cli.commands.mock.registry import RegistryMock
+from akello.cli.commands.mock.user import UserMock
+from akello.cli.commands.mock.patient import PatientMock
 from akello.services.screeners import ScreenerService
 from akello.services.user import UserService
 from akello.services.registry import RegistryService
 from akello.db.connector.dynamodb import client, dynamodb
 from akello.db.models import UserRole, UserRegistry
 from akello.db.types import UserInvite, ContactTypes
+from akello.cli.commands.setup import set_local_env
 from faker import Faker
 import shutil, errno
 
 fake = Faker()
 Faker.seed(0)
-app = typer.Typer()
 
 
-
-
-@app.command("create-app")
-def create_app(name: str):
-    print('Creating akello-app %s' % name)
-    try:
-        shutil.copytree('./akello_apps/_template_app', './akello_apps/%s' % name)
-    except OSError as exc: # python >2.5
-        if exc.errno in (errno.ENOTDIR, errno.EINVAL):
-            shutil.copy(src, dst)
-        else: raise
-
-
-@app.command('mock_registry')
 def mock_registry():
+    set_local_env()
+
     DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
     client.delete_table(TableName=DYNAMODB_TABLE)
 
@@ -91,7 +79,3 @@ def mock_registry():
             for treatment_log in pm.treatment_logs:
                 print(len(pm.treatment_logs))
                 RegistryService.add_treatment_log(pm.patient_registry.id, pm.patient_registry.patient_mrn, treatment_log)
-
-
-if __name__ == "__main__":
-    app()

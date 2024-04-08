@@ -90,7 +90,7 @@ def run_setup():
     print(f"created user pool and client successfully: userpool:{user_pool_id} client:{client_id}")
 
 
-def run_setup_env():
+def set_local_env():
     try:
         client_id = get_saved_client()
         user_pool_id = get_saved_user_pool()
@@ -106,6 +106,12 @@ def run_setup_env():
     os.environ["AKELLO_API_URL"] = "http://127.0.0.1:8000/v1"
     os.environ["AKELLO_COGNITO_URL"] = "http://localhost:9229"
     os.environ["AKELLO_DYNAMODB_LOCAL_URL"] = "http://localhost:8001"
+    return user_pool_id, client_id
+
+
+def run_setup_env():
+
+    user_pool_id, client_id = set_local_env()
 
 
     akello_ascii = """
@@ -154,6 +160,3 @@ def setup():
     # os.system(f"cd {current_file_path}/.. && ls {packages_path}/server/akello/ -all && cp .template.api.env {packages_path}/server/akello/.env")
     run_setup()
 
-@click.command()
-def setup_env():
-   run_setup_env()
