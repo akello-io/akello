@@ -10,9 +10,10 @@ interface HeaderProps {
   opened: boolean;
   onNavigate: (path: string) => void;
   toggle: () => void;
+  signOut: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ Logo, loggedIn, opened, onNavigate, toggle }) => {
+export const Header: React.FC<HeaderProps> = ({ signOut, Logo, loggedIn, opened, onNavigate, toggle }) => {
   const akello = useAkello();
 
 
@@ -74,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({ Logo, loggedIn, opened, onNaviga
             </Button>
           )}
 
-          <HeaderMenu />
+          <HeaderMenu signOut={signOut}/>
         </div>
       </AppShell.Header>
     );
