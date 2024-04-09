@@ -32,16 +32,15 @@ class Settings(BaseSettings):
 
 
 async def local_auth_required(request: Request) -> CognitoTokenCustom:
-    try:        
-        auth_token = request.headers.get('Authorization').replace('Bearer ', '')        
+    try:
+        auth_token = request.headers.get('Authorization').replace('Bearer ', '')
         decoded_token = jwt.get_unverified_claims(auth_token) #NOSONAR
-        decoded_token["email"] = decoded_token["username"]        
+        decoded_token["email"] = decoded_token["username"]
     except Exception as e:
         print(e)
         raise HTTPException(status_code=401, detail="Unauthroized")
     return parse_obj_as(CognitoTokenCustom, decoded_token)
 
 auth_provider = CognitoAuth(
-    settings=CognitoSettings.from_global_settings(Settings()), userpool_name="us",
-    custom_model=CognitoTokenCustom
+    settings=CognitoSettings.from_global_settings(Settings()), userpool_name="us"
 )
