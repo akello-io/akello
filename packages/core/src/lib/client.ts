@@ -26,6 +26,8 @@ export interface AkelloClientInterface {
     handleUnauthenticated(): void;
     getOptions(): AkelloClientOptions;
     getUserName(): string | undefined;
+    getProfileInfo(): any;
+    setProfileInfo(given_name: string, family_name: string, photo: string, email: string): void;
     confirmSignup(
         username: string,
         code: string,
@@ -37,7 +39,7 @@ export interface AkelloClientInterface {
         onSuccess: (result: any) => void,
         onFail: (err: any) => void
     ): void;
-    signup(        
+    signup(
         given_name: string,
         family_name: string,
         username: string,
@@ -52,7 +54,7 @@ export interface AkelloClientInterface {
     financialService: FinancialModelService;
     reportsService: ReportsService;
     accessToken: string | undefined;
-    
+
 }
 
 export interface AkelloClientOptions {
@@ -77,6 +79,10 @@ export interface RequestParam {
 export class AkelloClient extends EventTarget implements AkelloClientInterface {
     private readonly options: AkelloClientOptions;
     private username: string | undefined;
+    private given_name: string | undefined;
+    private family_name: string | undefined;
+    private photo: string | undefined;
+    private email: string | undefined;
     private selectedRegistry: Registry | undefined
     private selectedPatientRegistry: PatientRegistry | undefined
     private readonly storage: ClientStorage;
@@ -104,8 +110,8 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     }
 
 
-    selectRegistry(registry: Registry | undefined) {        
-        this.selectedRegistry = registry;             
+    selectRegistry(registry: Registry | undefined) {
+        this.selectedRegistry = registry;
         this.storage.setObject('selectedRegistry', registry);
     }
 
@@ -114,7 +120,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     }
 
     selectPatient(patientRegistry: PatientRegistry | undefined) {
-        this.selectedPatientRegistry = patientRegistry;    
+        this.selectedPatientRegistry = patientRegistry;
         this.storage.setObject('selectedPatientRegistry', patientRegistry);
     }
 
@@ -141,6 +147,22 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
 
     setUserName(username: string) {
         this.username = username;
+    }
+
+    getProfileInfo() {
+        return {
+            given_name: this.given_name,
+            family_name: this.family_name,
+            photo: this.photo,
+            email: this.email
+        }
+    }
+
+    setProfileInfo(given_name: string, family_name: string, photo: string, email: string) {
+        this.given_name = given_name;
+        this.family_name = family_name;
+        this.photo = photo;
+        this.email = email;
     }
 
     /**
@@ -232,7 +254,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     signup(
         given_name: string,
         family_name: string,
-        username: string,        
+        username: string,
         password: string,
         onSuccess: (user: CognitoUser) => void,
         onFail: (err: any) => void
@@ -257,7 +279,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                 [],
                 (err, result) => {
                     if (err) {
-                        onFail(err);            
+                        onFail(err);
                         return;
                     }
                     this.username = username;
@@ -265,10 +287,10 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                     this.dispatchEvent({ type: 'change' });
                 }
             );
-            
-            
+
+
         } catch (error) {
-            console.log(error);        
+            console.log(error);
         }
     }
 
@@ -285,7 +307,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         password: string,
         onSuccess: (token: string) => void,
         onFail: (err: any) => void
-    ) {        
+    ) {
         const authenticationData = {
             Username: username,
             Password: password
@@ -295,52 +317,52 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
             UserPoolId: this.options.cognitoUserPoolId!,
             ClientId: this.options.cognitoClientId!,
             endpoint: this.options.cognitoEndpoint!
-        };        
+        };
         const userPool = new CognitoUserPool(poolData);
         const userData = {
             Username: username,
             Pool: userPool
-        };        
-        const cognitoUser = new CognitoUser(userData);     
-                
+        };
+        const cognitoUser = new CognitoUser(userData);
+
 
         cognitoUser.setAuthenticationFlowType('USER_PASSWORD_AUTH');
 
-        
+
         cognitoUser.authenticateUser(authenticationDetails, {
-            onSuccess: (result: any) => {                
-                const accessToken = result.getAccessToken().getJwtToken();                
+            onSuccess: (result: any) => {
+                const accessToken = result.getAccessToken().getJwtToken();
 
                 /* Use the idToken for Logins Map when Federating User Pools with identity pools or when passing through an Authorization Header to an API Gateway Authorizer */
                 const idToken = result.idToken.jwtToken;
                 this.accessToken = accessToken;
-                this.username = username;       
-                
+                this.username = username;
+
                 userPool.getCurrentUser()?.getSession((err: any, session: any) => {
                     if (err) {
                         console.log(err);
                         return;
                     }
-                                        
+
                     cognitoUser.getUserAttributes((err: any, result: any) => {
                         if (err) {
                             console.log(err);
                             return;
                         }
-                        console.log(result);         
-                        
+                        console.log(result);
+
 
                         result.forEach((attribute: any) => {
-                            this.storage.setString(attribute.Name, attribute.Value);                            
+                            this.storage.setString(attribute.Name, attribute.Value);
                         });
 
                     });
                 })
-                
-                this.userService.getUser((user) => {                                                            
-                    this.dispatchEvent({ type: 'change' });                    
+
+                this.userService.getUser((user) => {
+                    this.dispatchEvent({ type: 'change' });
                     this.storage.setString('accessToken', accessToken);
-                    onSuccess(accessToken);                                        
+                    onSuccess(accessToken);
                     //this.storage.setString('username', username);
                     //this.storage.setObject('user', user);
                 })
@@ -407,5 +429,14 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         }
         this.storage.clear();
     }
-   
+
+
+    /**
+     * Sets the access token.
+     * @param token
+     */
+    setAccessToken(token: string) {
+        this.accessToken = token;
+    }
+
 }

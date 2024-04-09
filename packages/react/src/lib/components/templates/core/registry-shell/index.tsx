@@ -16,6 +16,7 @@ interface RegistryShellProps {
     AppShell: any;
     Logo: any;
     onNavigate: (path: string) => void;
+    signOut: () => void;
     pathname: string;
     Outlet?: any;
     stripe_checkout_url: string;
@@ -29,7 +30,8 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
         pathname,
         Outlet,
         stripe_checkout_url,
-        stripe_portal_url
+        stripe_portal_url,
+        signOut
     }) => {
     const akello = useAkello();
     const [opened, { toggle }] = useDisclosure();
@@ -115,7 +117,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
                     window.location.href = stripe_checkout_url +'?client_reference_id=' + selectedRegistry?.id
                 }}>Upgrade Plan</Button>
             </Modal>
-            <Header loggedIn={true} Logo={Logo}  opened={opened} toggle={toggle} onNavigate={(path: any) => onNavigate(path) }/>
+            <Header signOut={signOut} loggedIn={true} Logo={Logo}  opened={opened} toggle={toggle} onNavigate={(path: any) => onNavigate(path) }/>
             <AppShell.Navbar>
                 <Text pl={12} fz="xs" fw={450} mt="sm" >FAVORITES</Text>
                 <NavLink

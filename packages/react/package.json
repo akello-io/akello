@@ -35,7 +35,7 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "@akello/core": "^0.0.9",
+    "@akello/core": "../core",
     "@akello/react-hook": "^0.0.3",
     "@mantine/core": "^7.5.3",
     "@mantine/hooks": "^7.5.3",
@@ -59,6 +59,7 @@
     ]
   },
   "dependencies": {
+    "@aws-amplify/ui-react": "^6.1.6",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@heroicons/react": "^2.1.3",
