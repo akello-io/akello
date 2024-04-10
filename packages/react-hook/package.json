@@ -1,7 +1,7 @@
 {
   "name": "@akello/react-hook",
   "private": false,
-  "version": "0.0.4",
+  "version": "0.0.5",
   "packageManager": "pnpm@8.4.0",
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
   "peerDependencies": {
-    "@akello/core": "^0.0.9",
+    "@akello/core": "^0.0.11",
     "amazon-cognito-identity-js": "^6.3.7",
     "aws-amplify": "^6.0.13",
     "axios": "^1.6.1",
