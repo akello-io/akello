@@ -36,7 +36,8 @@ dependencies = [
     'jsonschema',
     'click',
     'faker',
-    'ollama'
+    'ollama',
+    'openai'
 ]
 
 [project.urls]
