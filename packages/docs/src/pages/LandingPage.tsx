@@ -372,12 +372,6 @@ export default function Example() {
                 </div>
                 </div>
 
-
-
-
-
-
-
                 {/* Content section */}
                 <div className="my-32 overflow-hidden sm:mt-40">
                         <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
