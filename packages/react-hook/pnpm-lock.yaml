@@ -5,8 +5,8 @@ overrides:
 
 dependencies:
   '@akello/core':
-    specifier: ^0.0.9
-    version: 0.0.9(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.1)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
+    specifier: ^0.0.11
+    version: 0.0.11(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.1)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1)
   '@vitejs/plugin-react':
     specifier: ^4.2.1
     version: 4.2.1(vite@5.2.7)
@@ -48,8 +48,8 @@ devDependencies:
 
 packages:
 
-  /@akello/core@0.0.9(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.1)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-Ze2drsCWg/FuXIKNAd1m+Z5NJiji1oY8fPCbrTmFlCfug7VH82mu7j7+xHjLtFqq/S3khEsD94s6coqaSKTuLQ==}
+  /@akello/core@0.0.11(amazon-cognito-identity-js@6.3.7)(aws-amplify@6.0.13)(axios@1.6.1)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.1):
+    resolution: {integrity: sha512-/O6DHfMIHRyZC2X8OCwnYX1+zzurnaXIdDL5NYAHsm8IGFSDWOebaUru+1YH+rHxPyLlu7bw2dYgYL38ZwHNNw==}
     engines: {node: '18'}
     peerDependencies:
       amazon-cognito-identity-js: ^6.3.7
@@ -2238,7 +2238,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001607
-      electron-to-chromium: 1.4.730
+      electron-to-chromium: 1.4.731
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
     dev: false
@@ -2424,8 +2424,8 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: false
 
-  /electron-to-chromium@1.4.730:
-    resolution: {integrity: sha512-oJRPo82XEqtQAobHpJIR3zW5YO3sSRRkPz2an4yxi1UvqhsGm54vR/wzTFV74a3soDOJ8CKW7ajOOX5ESzddwg==}
+  /electron-to-chromium@1.4.731:
+    resolution: {integrity: sha512-+TqVfZjpRz2V/5SPpmJxq9qK620SC5SqCnxQIOi7i/U08ZDcTpKbT7Xjj9FU5CbXTMUb4fywbIr8C7cGv4hcjw==}
     dev: false
 
   /emoji-regex@8.0.0:
