@@ -2,17 +2,14 @@ import os, sys
 from fastapi import FastAPI
 from akello.settings import *
 from akello.api.app.v1.api import router as api_router
-#from akello_apps.metriport.webhooks.metriport_webhook import router as metriport_webhook
-#from akello_apps.typeform.webhooks.typeform_webhook import router as typeform_webhook
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 from aws_lambda_powertools import Logger
 from pydantic_settings import BaseSettings
+#from akello_apps.metriport.webhooks.metriport_webhook import router as metriport_webhook
+#from akello_apps.typeform.webhooks.typeform_webhook import router as typeform_webhook
 
 logger = Logger(service="mangum")
-
-
-
 
 class Settings(BaseSettings):
     BASE_URL: str  = "http://localhost:8000"
@@ -54,7 +51,6 @@ app = FastAPI(
 @app.get("/")
 def root():
     return {"message": "api.akello.io"}
-
 
 app.include_router(api_router, prefix="/v1")
 

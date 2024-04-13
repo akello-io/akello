@@ -33,14 +33,12 @@ class UserService(BaseService):
         """
         try:
             response = registry_db.query(
-                KeyConditionExpression=Key('partition_key').eq('user:%s' % cognito_user_id)
-                                       & Key('sort_key').eq('profile')
-            )
+                KeyConditionExpression=Key('partition_key').eq('user:%s' % cognito_user_id) & Key('sort_key').eq(
+                    'profile'))
             return response['Items']
         except ClientError as e:
             print(e)
             print(e.response['No item found'])
-
 
     @staticmethod
     def get_user_sessions(cognito_user_id):
@@ -59,8 +57,7 @@ class UserService(BaseService):
         try:
             response = registry_db.query(
                 KeyConditionExpression=Key('partition_key').eq('user-session:%s' % cognito_user_id),
-                ScanIndexForward=False
-            )
+                ScanIndexForward=False)
             return response['Items']
         except ClientError as e:
             print(e)
@@ -80,19 +77,13 @@ class UserService(BaseService):
             ClientError: If saving the session to the database fails.
         """
         try:
-            response = registry_db.put_item(
-                Item={
-                    "partition_key": 'user-session:%s' % cognito_user_id,
-                    "sort_key": str(Decimal(datetime.datetime.utcnow().timestamp())),
-                    "user_agent": user_agent,
-                    "ip_address": ip_address
-                }
-            )
+            response = registry_db.put_item(Item={"partition_key": 'user-session:%s' % cognito_user_id,
+                "sort_key": str(Decimal(datetime.datetime.utcnow().timestamp())), "user_agent": user_agent,
+                "ip_address": ip_address})
             status_code = response['ResponseMetadata']['HTTPStatusCode']
             assert status_code == 200
         except ClientError as e:
             print(e)
-
 
     @staticmethod
     def update_profile_photo(cognito_user_id, photo_url):
@@ -121,24 +112,13 @@ class UserService(BaseService):
             ClientError: If the user could not be created in the database.
         """
 
-
-
         # This gets created once a user signs up
         # We need to create the user and assign roles to registeries they are linked to
         response = registry_db.put_item(
-            Item={
-                "partition_key": 'user:%s' % cognito_user_id,
-                "sort_key": 'profile',
-                "email": email,
-                "first_name": first_name,
-                "last_name": last_name,
-                "profile_photo": profile_photo,
-                "role": '',
-                "is_admin": False,
-                "date_created": Decimal(datetime.datetime.utcnow().timestamp()),
-                "last_login": Decimal(datetime.datetime.utcnow().timestamp()),
-            }
-        )
+            Item={"partition_key": 'user:%s' % cognito_user_id, "sort_key": 'profile', "email": email,
+                "first_name": first_name, "last_name": last_name, "profile_photo": profile_photo, "role": '',
+                "is_admin": False, "date_created": Decimal(datetime.datetime.utcnow().timestamp()),
+                "last_login": Decimal(datetime.datetime.utcnow().timestamp()), })
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
@@ -146,19 +126,8 @@ class UserService(BaseService):
         if sg_api_key:
             sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
             data = {
-                "contacts": [
-                    {
-                        "email": email,
-                        "first_name": first_name,
-                        "last_name": last_name,
-                        "custom_fields": {
-                        }
-                    }
-                ]
-            }
-            response = sg.client.marketing.contacts.put(
-                request_body=data
-            )
+                "contacts": [{"email": email, "first_name": first_name, "last_name": last_name, "custom_fields": {}}]}
+            response = sg.client.marketing.contacts.put(request_body=data)
 
     @staticmethod
     def create_registry_user(registry_id, first_name, last_name, email, user_id, role: UserRole, is_admin: bool):
@@ -177,24 +146,15 @@ class UserService(BaseService):
         Raises:
             ClientError: If the registry user could not be created.
         """
-        registry_user = RegistryUser(
-            registry_id=registry_id,
-            first_name=first_name,
-            last_name=last_name,
-            email=email,
-            user_id=user_id,
-            role=role,
-            is_admin=is_admin
-        )
+        registry_user = RegistryUser(registry_id=registry_id, first_name=first_name, last_name=last_name, email=email,
+            user_id=user_id, role=role, is_admin=is_admin)
 
         item = json.loads(json.dumps(registry_user.model_dump_json()), parse_float=Decimal)
         item = json.loads(item, parse_float=Decimal)
         item['partition_key'] = 'registry-user:' + registry_id
         item['sort_key'] = 'user:' + user_id
 
-        response = registry_db.put_item(
-            Item=item
-        )
+        response = registry_db.put_item(Item=item)
 
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
@@ -227,9 +187,7 @@ class UserService(BaseService):
         item = json.loads(item, parse_float=Decimal)
         item['partition_key'] = 'user-registry:' + user_id
         item['sort_key'] = 'registry:' + registry_id
-        response = registry_db.put_item(
-            Item=item
-        )
+        response = registry_db.put_item(Item=item)
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
@@ -246,19 +204,14 @@ class UserService(BaseService):
         """
         try:
             response = registry_db.query(
-                KeyConditionExpression=Key('partition_key').eq('user-registry:%s' % cognito_user_id)
-            )
+                KeyConditionExpression=Key('partition_key').eq('user-registry:%s' % cognito_user_id))
             registries = []
             for registry in response['Items']:
                 lookup_key = registry['sort_key']
                 response = registry_db.query(
-                    KeyConditionExpression=Key('partition_key').eq(lookup_key)
-                                           & Key('sort_key').eq('metadata')
-                )
+                    KeyConditionExpression=Key('partition_key').eq(lookup_key) & Key('sort_key').eq('metadata'))
                 assert len(response['Items']) == 1
-                registries.append(
-                    RegistryModel(**response['Items'][0])
-                )
+                registries.append(RegistryModel(**response['Items'][0]))
             return registries
         except ClientError as e:
             print(e)
@@ -277,9 +230,8 @@ class UserService(BaseService):
         try:
             # Look up from registry-user:<registry_id> and user:<cognito_user_id> to see if the user is authorized
             response = registry_db.query(
-                KeyConditionExpression=Key('partition_key').eq('registry-user:%s' % registry_id)
-                                       & Key('sort_key').eq('user:%s' % cognito_user_id)
-            )
+                KeyConditionExpression=Key('partition_key').eq('registry-user:%s' % registry_id) & Key('sort_key').eq(
+                    'user:%s' % cognito_user_id))
 
             if len(response['Items']) != 1:
                 raise Exception('The user is not authorized')

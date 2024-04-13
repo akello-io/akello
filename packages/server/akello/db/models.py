@@ -1,9 +1,10 @@
 import datetime
 import json
 from typing import List, Optional
+
 from akello.db.connector.dynamodb import RegistryDBBaseModel
 from akello.db.types import Measurement, UserRole, FlagTypes, PatientStatysTypes, AkelloApp, TreatmentLog, EventLog, \
-    AuditLog, UserMembershipType, AkelloPlanTier
+    AuditLog, UserMembershipType
 
 
 class OrganizationModel(RegistryDBBaseModel):
@@ -15,7 +16,6 @@ class OrganizationModel(RegistryDBBaseModel):
     description: str
     logo_url: Optional[str] = None
     type: str = 'Organization'
-
 
     @property
     def partition_key(self) -> str:

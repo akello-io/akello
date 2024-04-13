@@ -1,9 +1,8 @@
-import os, json
+import os
 from akello.secrets import get_secret
 from dotenv import load_dotenv
 
 load_dotenv()
-
 
 def set_aws():
     # For AWS environments we want to use secrets configured in AWS Secrets Manager

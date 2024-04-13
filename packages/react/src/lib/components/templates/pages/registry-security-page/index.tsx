@@ -72,6 +72,30 @@ export const RegistrySecurityPage:React.FC<RegistrySecurityPageProps> = ({onNavi
                     </Paper>
                 </Container>
 
+
+                <Container>
+                    <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+                        <Text fw={600}>MFA</Text>
+                        <Group justify="space-between" mt="lg" >
+                            <Button className={'bg-primary'} onClick={() => {
+                                    const profile = akello.getProfileInfo();
+                                    const mfa_preference =   {
+                                            'SoftwareTokenMfaSettings': {
+                                                'Enabled': true,
+                                                'PreferredMfa': true,
+                                            },
+                                            'Username': profile['email'],
+                                            'UserPoolId': akello.getOptions().cognitoUserPoolId,
+                                        }
+                                    akello.userService.setMFAPreference(mfa_preference, (data: any) => {
+                                        console.log(data);
+                                    })
+
+                                }}>Toggle MFA</Button>
+                        </Group>
+                    </Paper>
+                </Container>
+
                 <Container>
                     <Paper withBorder shadow="md" p={30} mt={30} radius="md">
                         <Text fw={600}>Password</Text>

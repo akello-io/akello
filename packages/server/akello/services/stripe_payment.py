@@ -6,16 +6,11 @@ class StripePaymentService(BaseService):
 
     @staticmethod
     def get_active_stripe_subscriptions(stripe_customer_id: str):
-        customer = stripe.Customer.retrieve(
-            stripe_customer_id,
-            expand=['subscriptions']
-        )
+        customer = stripe.Customer.retrieve(stripe_customer_id, expand=['subscriptions'])
         subscriptions = customer['subscriptions']
-        active_subscriptions = [
-            subscription for subscription in subscriptions if subscription['status'] in ['active', 'trialing']
-        ]
+        active_subscriptions = [subscription for subscription in subscriptions if
+            subscription['status'] in ['active', 'trialing']]
         return active_subscriptions
-
 
     @staticmethod
     def get_product(stripe_product_id: str):
@@ -23,9 +18,7 @@ class StripePaymentService(BaseService):
 
     @staticmethod
     def get_price(stripe_price_id: str):
-        return stripe.Price.retrieve(
-            stripe_price_id,
-        )
+        return stripe.Price.retrieve(stripe_price_id, )
 
     @staticmethod
     def get_customer(stripe_customer_id: str = None, email: str = None):
@@ -33,6 +26,4 @@ class StripePaymentService(BaseService):
             return stripe.Customer.retrieve(stripe_customer_id)
 
         if email:
-            return stripe.Customer.search(
-                query=f"email:'{email}'",
-            )
+            return stripe.Customer.search(query=f"email:'{email}'", )

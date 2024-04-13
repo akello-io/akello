@@ -1,7 +1,8 @@
-import boto3
-from unittest.mock import MagicMock
-from pydantic import BaseModel
 import os
+from unittest.mock import MagicMock
+
+import boto3
+from pydantic import BaseModel
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
 DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
@@ -12,7 +13,7 @@ def setup_registry_db():
     if AKELLO_UNIT_TEST == 'TRUE':
         print("using mock dynamodb")
         return MagicMock(), MagicMock(), MagicMock()
-    
+
     if not AKELLO_DYNAMODB_LOCAL_URL:
         print("using real dynamodb")
         client = boto3.client('dynamodb')
@@ -25,10 +26,10 @@ def setup_registry_db():
 
     client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
     dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-    
-    try:            
+
+    try:
         DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
-        #client.delete_table(TableName=DYNAMODB_TABLE)
+        # client.delete_table(TableName=DYNAMODB_TABLE)
         print('creating registry table')
         table = dynamodb.create_table(
             TableName=DYNAMODB_TABLE,
@@ -61,10 +62,12 @@ def setup_registry_db():
     except Exception as e:
         print(e)
         print("tables probably already exist")
-        
+
     return client, dynamodb, dynamodb.Table(DYNAMODB_TABLE)
 
+
 client, dynamodb, registry_db = setup_registry_db()
+
 
 class RegistryDBBaseModel(BaseModel):
     @property

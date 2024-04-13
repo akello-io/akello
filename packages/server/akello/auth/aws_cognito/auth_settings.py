@@ -14,13 +14,8 @@ class Settings(BaseSettings):
     check_expiration: bool = True
     jwt_header_prefix: str = "Bearer"
     jwt_header_name: str = "Authorization"
-    userpools: dict[str, dict[str, Any]] = {
-        "us": {
-            "region": AWS_REGION,
-            "userpool_id": AWS_COGNITO_USERPOOL_ID,
-            "app_client_id": AWS_COGNITO_APP_CLIENT_ID
-        },
-    }
+    userpools: dict[str, dict[str, Any]] = {"us": {"region": AWS_REGION, "userpool_id": AWS_COGNITO_USERPOOL_ID,
+        "app_client_id": AWS_COGNITO_APP_CLIENT_ID}, }
 
 
 class CognitoTokenCustom(BaseModel):

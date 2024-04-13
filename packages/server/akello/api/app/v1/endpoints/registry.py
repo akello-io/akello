@@ -9,7 +9,7 @@ from akello.services.screeners import ScreenerService
 from akello.services.akello_apps import AkelloAppsService
 from akello.decorators.akello_plan_tier import akello_plan_check
 from akello.services.stripe_payment import StripePaymentService
-#from akello_apps.metriport.plugin import MetriportPlugin
+# from akello_apps.metriport.plugin import MetriportPlugin
 from fastapi import Request
 from akello.decorators.mixin import mixin
 import datetime
@@ -18,13 +18,11 @@ import stripe
 
 logger = logging.getLogger('mangum')
 
-#metriport = MetriportPlugin()
+# metriport = MetriportPlugin()
 router = APIRouter()
 
 # Register the mixins based on enabled plugins
 mixins = []
-
-
 
 stripe.api_key = os.getenv('STRIPE_API_KEY', None)
 
@@ -59,6 +57,7 @@ async def check_active_subscription(registry_id: str):
             return product['name']
     return False
 
+
 @router.post("/create")
 async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
     """
@@ -87,20 +86,10 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
     questionnaires = ScreenerService.get_screeners()
 
     # Create the registry and link the user to the registry
-    registry_id = RegistryService.create_registry(
-        data['name'],
-        data['description'],
-        questionnaires,
-        data['integrations'],
-        data['logo_url']
-    )
-    UserService.create_registry_user(
-        registry_id, data['first_name'],
-        data['last_name'],
-        auth.username,
-        auth.cognito_id,
-        UserRole.care_manager,
-        is_admin=True)
+    registry_id = RegistryService.create_registry(data['name'], data['description'], questionnaires,
+        data['integrations'], data['logo_url'])
+    UserService.create_registry_user(registry_id, data['first_name'], data['last_name'], auth.username, auth.cognito_id,
+        UserRole.care_manager, is_admin=True)
     UserService.create_user_registry(auth.cognito_id, registry_id)
 
     # Add additional user invites
@@ -132,6 +121,7 @@ async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth
     registry['role'] = registry_access['role']
     return registry
 
+
 @router.put("/{registry_id}/measurements")
 async def update_measurements(registry_id: str, request: Request, auth: CognitoTokenCustom = Depends(auth_token_check)):
     """
@@ -149,6 +139,7 @@ async def update_measurements(registry_id: str, request: Request, auth: CognitoT
     UserService.check_registry_access(auth.cognito_id, registry_id)
     payload = await request.json()
     RegistryService.set_measurements(registry_id, payload)
+
 
 @router.get("/{registry_id}/team-members")
 async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
@@ -171,7 +162,6 @@ async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom =
     for member in members:
         member['is_user'] = member['email'] == auth.username
     return members
-
 
 
 @router.get("/{registry_id}/patients")
@@ -207,13 +197,9 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
             print(e)
             failed_patients.append(patient)
 
-    return {
-        'is_admin': registry_access['is_admin'],
-        'role': registry_access['role'],
-        'questionnaires': registry_metadata['questionnaires'],
-        'successfully_loaded': successfully_loaded,
-        'failed_patients': failed_patients
-    }
+    return {'is_admin': registry_access['is_admin'], 'role': registry_access['role'],
+        'questionnaires': registry_metadata['questionnaires'], 'successfully_loaded': successfully_loaded,
+        'failed_patients': failed_patients}
 
 
 @router.post("/{registry_id}/refer-patient")
@@ -236,19 +222,12 @@ async def refer_patient(request: Request, registry_id: str, patient_registry: Pa
     The function not only creates a new patient referral but also ensures that the process adheres to the access controls associated with the registry and updates the registry's statistical data to maintain accurate and current records.
     """
     UserService.check_registry_access(auth.cognito_id, registry_id)
-    patient_registry = PatientRegistry(
-        id=registry_id,
-        patient_mrn=patient_registry.patient_mrn,
-        payer=patient_registry.payer,
-        referring_provider_npi=patient_registry.referring_provider_npi,
-        first_name=patient_registry.first_name,
-        last_name=patient_registry.last_name,
-        phone_number=patient_registry.phone_number,
-        email=patient_registry.email,
-        date_of_birth=patient_registry.date_of_birth,
-        treatment_logs=patient_registry.treatment_logs,
-        schema_version='V1',
-    )
+    patient_registry = PatientRegistry(id=registry_id, patient_mrn=patient_registry.patient_mrn,
+        payer=patient_registry.payer, referring_provider_npi=patient_registry.referring_provider_npi,
+        first_name=patient_registry.first_name, last_name=patient_registry.last_name,
+        phone_number=patient_registry.phone_number, email=patient_registry.email,
+        date_of_birth=patient_registry.date_of_birth, treatment_logs=patient_registry.treatment_logs,
+        schema_version='V1', )
     RegistryService.refer_patient(patient_registry)
     RegistryService.update_stats(registry_id)
     return patient_registry

@@ -21,16 +21,9 @@ class RegistryService(BaseService):
         current_timestamp = datetime.datetime.utcnow().timestamp()
         rd = random.Random()
 
-        registry = RegistryModel(
-            id=str(uuid.UUID(int=rd.getrandbits(128))),
-            name=name,
-            description=description,
-            questionnaires=questionnaires,
-            integrations=integrations,
-            logo_url=logo_url,
-            modified_date=current_timestamp,
-            created_date=current_timestamp,
-        )
+        registry = RegistryModel(id=str(uuid.UUID(int=rd.getrandbits(128))), name=name, description=description,
+            questionnaires=questionnaires, integrations=integrations, logo_url=logo_url,
+            modified_date=current_timestamp, created_date=current_timestamp, )
 
         # TODO: Need to generate the Item Object using the data model
         item = json.loads(json.dumps(registry.model_dump_json()), parse_float=Decimal)
@@ -38,9 +31,7 @@ class RegistryService(BaseService):
         item['partition_key'] = 'registry:%s' % item['id']
         item['sort_key'] = 'metadata'
 
-        response = registry_db.put_item(
-            Item=item
-        )
+        response = registry_db.put_item(Item=item)
 
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
@@ -50,21 +41,15 @@ class RegistryService(BaseService):
     def get_registry(registry_id):
 
         try:
-            response = registry_db.get_item(
-                Key={
-                    'partition_key': 'registry:%s' % registry_id,
-                    'sort_key': 'metadata'
-                }
-            )            
+            response = registry_db.get_item(Key={'partition_key': 'registry:%s' % registry_id, 'sort_key': 'metadata'})
         except ClientError as e:
             print(e)
-            print(e.response['No item found'])        
+            print(e.response['No item found'])
 
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
-        
-        return response['Item']                
 
+        return response['Item']
 
     @staticmethod
     def set_stripe_customer_id(registry_id, stripe_customer_id):
@@ -89,11 +74,7 @@ class RegistryService(BaseService):
     def get_patient(registry_id, patient_id):
         try:
             response = registry_db.get_item(
-                Key={
-                    'partition_key': 'registry-patient:%s' % registry_id,
-                    'sort_key': patient_id
-                }
-            )
+                Key={'partition_key': 'registry-patient:%s' % registry_id, 'sort_key': patient_id})
         except ClientError as e:
             print(e)
             print(e.response['No item found'])
@@ -124,10 +105,8 @@ class RegistryService(BaseService):
         item = json.loads(json.dumps(item), parse_float=Decimal)
         item['partition_key'] = patient_registry.partition_key
         item['sort_key'] = patient_registry.sort_key
-        response = registry_db.put_item(
-            Item=item,
-            ConditionExpression='attribute_not_exists(partition_key) AND attribute_not_exists(sort_key)'
-        )
+        response = registry_db.put_item(Item=item,
+            ConditionExpression='attribute_not_exists(partition_key) AND attribute_not_exists(sort_key)')
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
@@ -137,9 +116,7 @@ class RegistryService(BaseService):
         item = json.loads(json.dumps(item), parse_float=Decimal)
         item['partition_key'] = patient_registry.partition_key
         item['sort_key'] = patient_registry.sort_key
-        response = registry_db.put_item(
-            Item=item
-        )
+        response = registry_db.put_item(Item=item)
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
@@ -160,18 +137,13 @@ class RegistryService(BaseService):
                              "weeks_since_initial_assessment = :weeks_since_initial_assessment")
         expression_attribute_values = {
             ':treatment_logs': [json.loads(treatment_log.model_dump_json(), parse_float=Decimal)],
-            ':flag': treatment_log.flag,
-            ':no_show': treatment_log.no_show,
-            ":weeks_since_initial_assessment": 0
-        }
+            ':flag': treatment_log.flag, ':no_show': treatment_log.no_show, ":weeks_since_initial_assessment": 0}
 
         # Conditional updates for specific contact types
-        contact_type_updates = {
-            ContactTypes.follow_up: "last_follow_up",
+        contact_type_updates = {ContactTypes.follow_up: "last_follow_up",
             ContactTypes.initial_assessment: "initial_assessment",
             ContactTypes.psychiatric_consultation: "last_psychiatric_consult",
-            ContactTypes.relapse_prevention: "relapse_prevention_plan",
-        }
+            ContactTypes.relapse_prevention: "relapse_prevention_plan", }
 
         if treatment_log.contact_type in contact_type_updates:
             field_name = contact_type_updates[treatment_log.contact_type]
@@ -180,29 +152,19 @@ class RegistryService(BaseService):
 
         # Execute the update operation
         response = registry_db.update_item(
-            Key={
-                'partition_key': f'registry-patient:{registry_id}',
-                'sort_key': sort_key
-            },
-            UpdateExpression=update_expression,
-            ExpressionAttributeNames={
-                "#treatment_logs": "treatment_logs",
-            },
-            ExpressionAttributeValues=expression_attribute_values,
-            ReturnValues="UPDATED_NEW"
-        )
+            Key={'partition_key': f'registry-patient:{registry_id}', 'sort_key': sort_key},
+            UpdateExpression=update_expression, ExpressionAttributeNames={"#treatment_logs": "treatment_logs", },
+            ExpressionAttributeValues=expression_attribute_values, ReturnValues="UPDATED_NEW")
 
         # Check the response status code
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200, "Failed to update the treatment log."
 
-
     @staticmethod
     def get_members(registry_id):
         try:
             response = registry_db.query(
-                KeyConditionExpression=Key('partition_key').eq('registry-user:%s' % registry_id)
-            )
+                KeyConditionExpression=Key('partition_key').eq('registry-user:%s' % registry_id))
             return response['Items']
         except ClientError as e:
             print(e)
