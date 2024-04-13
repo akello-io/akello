@@ -36,3 +36,6 @@ class OrganizationService(BaseService):
 
     def delete_registry(self):
         pass
+
+    def update_payment_info(self):
+        pass

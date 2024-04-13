@@ -1,6 +1,7 @@
 import datetime
 import json
 from typing import Optional, List
+import uuid
 
 from akello.db.models_v2 import AkelloBaseModel
 from akello.db.models_v2.user import User
@@ -8,8 +9,10 @@ from akello.db.types import FlagTypes, PatientStatysTypes
 
 
 class PatientRegistry(AkelloBaseModel):
-    id: Optional[str] = None
-    patient: User
+    id: str
+    patient_id: str
+    registry_id: str
+
     mrn: str
     referring_npi: Optional[str] = None
     payer: Optional[str] = None
@@ -21,16 +24,27 @@ class PatientRegistry(AkelloBaseModel):
     last_follow_up: Optional[int] = None
     last_psychiatric_consult: Optional[int] = None
     relapse_prevention_plan: Optional[int] = None
+    graduated: Optional[float] = None
 
     # Treatment stats
     total_sessions: Optional[int] = 0
     weeks_since_initial_assessment: Optional[int] = 0
     minutes_this_month: Optional[int] = 0
 
-    # Object Dates
-    created: float = datetime.datetime.utcnow().timestamp()
-    graduated: Optional[float] = None
-    modified: float = datetime.datetime.utcnow().timestamp()
+    def __init__(self, **data):
+        super().__init__(
+            id=str(uuid.uuid4()),
+            **data
+        )
+
+    @property
+    def partition_key(self) -> str:
+        return 'patient-id:%s' % self.patient_id
+
+    @property
+    def sort_key(self) -> str:
+        return 'registry-id:%s' % self.registry_id
+
 
     def toJson(self):
         data = json.loads(self.model_dump_json())
@@ -44,14 +58,6 @@ class PatientRegistry(AkelloBaseModel):
         ## column value: date of consent
         self.add_attribute('approved_provider_id-%s' % self.referring_npi, datetime.datetime.utcnow().timestamp())
         pass
-
-    @property
-    def object_type(self):
-        return 'patient-registry'
-
-    @property
-    def sort_key(self) -> str:
-        return 'patient-mrn:%s' % self.patient_mrn
 
 
 class PatientRegistryLog(AkelloBaseModel):

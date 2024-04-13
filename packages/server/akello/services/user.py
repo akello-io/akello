@@ -20,3 +20,4 @@ class UserService(BaseService):
     # SECURITY RELATED METHODS
     def set_mfa_preferences(self):
         pass
+

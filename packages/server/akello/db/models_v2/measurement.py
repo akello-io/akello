@@ -4,9 +4,15 @@ from akello.db.models_v2 import AkelloBaseModel
 
 
 class Measurement(AkelloBaseModel):
-    id: str = str(uuid.uuid4())
+    id: str
     name: str
     organization_id: str = None
+
+    def __init__(self, **data):
+        super().__init__(
+            id=str(uuid.uuid4()),
+            **data
+        )
 
     @property
     def object_type(self) -> str:
@@ -18,10 +24,16 @@ class Measurement(AkelloBaseModel):
 
 
 class MeasurementQuestion(AkelloBaseModel):
-    id: str = str(uuid.uuid4())
+    id: str
     measurement_id: str
     question: str
     question_type: str
+
+    def __init__(self, **data):
+        super().__init__(
+            id=str(uuid.uuid4()),
+            **data
+        )
 
     @property
     def object_type(self) -> str:
@@ -33,9 +45,15 @@ class MeasurementQuestion(AkelloBaseModel):
 
 
 class MeasurementQuestionOption(AkelloBaseModel):
-    id: str = str(uuid.uuid4())
+    id: str
     question_id: str
     option: str
+
+    def __init__(self, **data):
+        super().__init__(
+            id=str(uuid.uuid4()),
+            **data
+        )
 
     @property
     def object_type(self) -> str:

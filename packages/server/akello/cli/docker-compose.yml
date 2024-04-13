@@ -3,6 +3,7 @@ name: akello-dev
 services:
   dynamodb:
     image: amazon/dynamodb-local
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath .
     ports:
       - "8001:8000"
   cognito-local:

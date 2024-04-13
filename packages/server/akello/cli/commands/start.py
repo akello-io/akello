@@ -23,7 +23,7 @@ class bcolors:
 @click.argument('name')
 def start(name):
     if name == 'server':
-        run_setup()
+        #run_setup()
         run_setup_env()
         uvicorn.run("akello.main:app", host="0.0.0.0", port=8000, reload=True, log_level="debug", proxy_headers=True)
 

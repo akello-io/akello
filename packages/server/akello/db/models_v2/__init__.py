@@ -1,3 +1,5 @@
+import datetime
+
 from botocore.exceptions import ClientError
 from pydantic import BaseModel
 
@@ -5,11 +7,42 @@ from akello.db.connector.dynamodb import registry_db
 
 
 class AkelloBaseModel(BaseModel):
+
+    @property
+    def created_at(self) -> float:
+        return datetime.datetime.utcnow().timestamp()
+
+    @property
+    def modified_at(self) -> float:
+        return datetime.datetime.utcnow().timestamp()
+
     @property
     def partition_key(self) -> str:
-        return '%s:%s' % (self.object_type, self.id)
+        # partition_key = '<object_type>:<id>'
+        raise Exception("partition_key method not implemented")
 
-    def get(self):
+    @staticmethod
+    def get_by_key(partition_key: str, sort_key: str):
+        try:
+            response = registry_db.get_item(
+                Key={'partition_key': partition_key, 'sort_key': sort_key})
+        except ClientError as e:
+            print(e)
+            print(e.response['No item found'])
+
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200
+
+        if 'Item' not in response:
+            return None
+
+        return response['Item']
+
+    def __get(self):
+        """
+        Protected method to get the item from the database
+        """
+
         try:
             response = registry_db.get_item(
                 Key={'partition_key': self.partition_key, 'sort_key': self.sort_key})
@@ -23,20 +56,33 @@ class AkelloBaseModel(BaseModel):
         if 'Item' not in response:
             return None
 
-        return response['Item']
+        for key, value in response['Item'].items():
+            try:
+                setattr(self, key, value)
+            except AttributeError:
+                pass
 
-    def put(self):
+        return self
+
+    def __put(self):
+        """
+        Protected method to put the item in the database
+        """
         response = registry_db.put_item(
             Item={
                 'partition_key': self.partition_key,
                 'sort_key': self.sort_key,
-                **self.dict()
+                **self.model_dump()
             }
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
-    def set_attribute(self, attribute_name: str, attribute_value: any):
+    def __set_attribute(self, attribute_name: str, attribute_value: any):
+        """
+        Protected method to set an attribute in the database
+        """
+
         UpdateExpression = "SET #att_name = :value"
         ExpressionAttributeValues = {
             ':value': attribute_value
@@ -56,7 +102,11 @@ class AkelloBaseModel(BaseModel):
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
-    def append_to_attribute(self, attribute_name: str, attribute_value: any):
+    def __append_to_attribute(self, attribute_name: str, attribute_value: any):
+        """
+        Protected method to append to an attribute in the database
+        """
+
         UpdateExpression = "SET #att_name = list_append(#att_name, :%s)" % attribute_name
         ExpressionAttributeValues = {
             ':%s' % attribute_name: [attribute_value],
@@ -76,7 +126,11 @@ class AkelloBaseModel(BaseModel):
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
 
-    def add_attribute(self, attribute_name: str, attribute_value: any):
+    def __add_attribute(self, attribute_name: str, attribute_value: any):
+        """
+        Protected method to add an attribute in the database
+        """
+
         UpdateExpression = "SET #att_name = :value"
         ExpressionAttributeValues = {
             ':value': attribute_value
