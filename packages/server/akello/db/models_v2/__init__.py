@@ -1,10 +1,19 @@
 from botocore.exceptions import ClientError
 from pydantic import BaseModel
-
+import datetime
 from akello.db.connector.dynamodb import registry_db
 
 
 class AkelloBaseModel(BaseModel):
+
+    @property
+    def created_at(self) -> float:
+        return datetime.datetime.utcnow().timestamp()
+
+    @property
+    def modified_at(self) -> float:
+        return datetime.datetime.utcnow().timestamp()
+
     @property
     def partition_key(self) -> str:
         return '%s:%s' % (self.object_type, self.id)

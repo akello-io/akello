@@ -21,16 +21,13 @@ class PatientRegistry(AkelloBaseModel):
     last_follow_up: Optional[int] = None
     last_psychiatric_consult: Optional[int] = None
     relapse_prevention_plan: Optional[int] = None
+    graduated: Optional[float] = None
 
     # Treatment stats
     total_sessions: Optional[int] = 0
     weeks_since_initial_assessment: Optional[int] = 0
     minutes_this_month: Optional[int] = 0
 
-    # Object Dates
-    created: float = datetime.datetime.utcnow().timestamp()
-    graduated: Optional[float] = None
-    modified: float = datetime.datetime.utcnow().timestamp()
 
     def toJson(self):
         data = json.loads(self.model_dump_json())
