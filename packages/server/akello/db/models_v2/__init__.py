@@ -149,3 +149,23 @@ class AkelloBaseModel(BaseModel):
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
+
+    def __remove_attribute(self, attribute_name: str):
+        """
+        Protected method to remove an attribute in the database
+        """
+
+        UpdateExpression = "REMOVE #att_name"
+        response = registry_db.update_item(
+            Key={
+                'partition_key': self.partition_key,
+                'sort_key': self.sort_key
+            },
+            UpdateExpression=UpdateExpression,
+            ExpressionAttributeNames={
+                "#att_name": attribute_name
+            },
+            ReturnValues="UPDATED_NEW"
+        )
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200

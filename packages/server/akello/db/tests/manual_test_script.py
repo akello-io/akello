@@ -1,8 +1,8 @@
 # used as a local manual test script for testing the database
 from akello.db.models_v2.organization import User
 from akello.db.models_v2.organization import Organization
-from akello.db.models_v2.registry import Registry
 from akello.db.models_v2.user import UserRegistryRole
+from akello.db.models_v2.registry_treatment import RegistryTreatment
 
 test_organization_owner = User()
 
@@ -19,5 +19,12 @@ test_registry_2 = org.create_registry(name='test registry 2', logo='test logo', 
 test_registry_3 = org.create_registry(name='test registry 3', logo='test logo', requesting_user=test_organization_owner)
 
 
+# add a care manager user to the registry
 care_manager_user = User()
 test_registry_1.add_user(user=care_manager_user, role=UserRegistryRole.care_manager, requesting_user=test_organization_owner)
+
+
+# Add a patient to the registry
+# grant a user access to the patient (test access)
+# add treatment log and set scores
+
