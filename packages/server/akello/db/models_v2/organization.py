@@ -1,9 +1,9 @@
 import uuid
 
-from akello.db.connector.dynamodb import RegistryDBBaseModel
+from akello.db.models_v2 import AkelloBaseModel
 
 
-class Organization(RegistryDBBaseModel):
+class Organization(AkelloBaseModel):
     id: str = str(uuid.uuid4())
     name: str
 

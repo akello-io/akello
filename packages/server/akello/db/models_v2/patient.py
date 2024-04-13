@@ -1,40 +1,20 @@
-import json
-import uuid
 import datetime
+import json
 from typing import Optional, List
-from akello.db.connector.dynamodb import RegistryDBBaseModel
+
+from akello.db.models_v2 import AkelloBaseModel
+from akello.db.models_v2.user import User
 from akello.db.types import FlagTypes, PatientStatysTypes
-from pydantic import BaseModel
-
-class PatientProfile(BaseModel):
-    first_name: str
-    last_name: str
-    phone_number: str
-    email: str
-    date_of_birth: str
-    payer: Optional[str] = None
 
 
-class Patient(RegistryDBBaseModel):
-    id: str = str(uuid.uuid4())
-    profile: PatientProfile
-
-    @property
-    def object_type(self) -> str:
-        return 'patient'
-
-    @property
-    def sort_key(self) -> str:
-        return 'meta'
-
-
-class PatientRegistry(RegistryDBBaseModel):
+class PatientRegistry(AkelloBaseModel):
     id: Optional[str] = None
+    patient: User
     mrn: str
     referring_npi: Optional[str] = None
+    payer: Optional[str] = None
     status: PatientStatysTypes = PatientStatysTypes.enrolled
     flags: List[FlagTypes] = []
-    profile: PatientProfile
 
     # Treatment dates
     initial_assessment: Optional[int] = None
@@ -74,7 +54,7 @@ class PatientRegistry(RegistryDBBaseModel):
         return 'patient-mrn:%s' % self.patient_mrn
 
 
-class PatientRegistryLog(RegistryDBBaseModel):
+class PatientRegistryLog(AkelloBaseModel):
 
     @property
     def object_type(self):
@@ -83,4 +63,4 @@ class PatientRegistryLog(RegistryDBBaseModel):
     @property
     def sort_key(self) -> str:
         return 'type:treatment-log:%s' % self.patient_mrn
-        #return 'type:audit-log:%s' % self.patient_mrn
+        # return 'type:audit-log:%s' % self.patient_mrn

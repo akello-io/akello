@@ -1,8 +1,9 @@
 import uuid
-from akello.db.connector.dynamodb import RegistryDBBaseModel
+
+from akello.db.models_v2 import AkelloBaseModel
 
 
-class Measurement(RegistryDBBaseModel):
+class Measurement(AkelloBaseModel):
     id: str = str(uuid.uuid4())
     name: str
     organization_id: str = None
@@ -16,12 +17,11 @@ class Measurement(RegistryDBBaseModel):
         return 'meta'
 
 
-class MeasurementQuestion(RegistryDBBaseModel):
+class MeasurementQuestion(AkelloBaseModel):
     id: str = str(uuid.uuid4())
     measurement_id: str
     question: str
     question_type: str
-    #question_options: list = []
 
     @property
     def object_type(self) -> str:
@@ -32,7 +32,7 @@ class MeasurementQuestion(RegistryDBBaseModel):
         return 'meta'
 
 
-class MeasurementQuestionOption(RegistryDBBaseModel):
+class MeasurementQuestionOption(AkelloBaseModel):
     id: str = str(uuid.uuid4())
     question_id: str
     option: str

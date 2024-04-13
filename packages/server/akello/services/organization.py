@@ -1,7 +1,11 @@
 from akello.services import BaseService
-
+from akello.db.models_v2.organization import Organization
 
 class OrganizationService(BaseService):
+
+    def __init__(self):
+        organization = Organization()
+        organization.get()
 
     # ORGANIZATION RELATED METHODS
     def create(self):
