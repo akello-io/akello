@@ -6,7 +6,7 @@ from akello.services.models.screeners import ScreenerService
 from akello.services.models.user import UserService
 from akello.services.models.registry import RegistryService
 from akello.db.connector.dynamodb import client, dynamodb
-from akello.db.models import UserRole
+from akello.db.models_old import UserRole
 from akello.db.types import UserInvite
 from akello.cli.commands.setup import set_local_env
 from faker import Faker

@@ -8,7 +8,7 @@ from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
 
 from akello.db.connector.dynamodb import registry_db
-from akello.db.models import RegistryModel, TreatmentLog, PatientRegistry
+from akello.db.models_old import RegistryModel, TreatmentLog, PatientRegistry
 from akello.db.types import ContactTypes
 from akello.services import BaseService
 

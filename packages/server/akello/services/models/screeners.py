@@ -2,7 +2,7 @@ import logging
 import os
 import yaml
 
-from akello.db.models import Measurement
+from akello.db.models_old import Measurement
 from akello.services import BaseService
 
 logger = logging.getLogger('mangum')

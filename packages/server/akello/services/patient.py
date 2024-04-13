@@ -1,12 +1,18 @@
-from akello.db.models import PatientRegistry
+from akello.db.models_v2.patient import Patient
+from akello.services import BaseService
 
 
-class Patient:
-    patient_registry: PatientRegistry = None
+class PatientService(BaseService):
+    patient: Patient = None
 
     def __init__(self, patient_id: str):
-        self.patient_id = patient_id
+        self.patient = Patient(patient_id)
 
-    def get_patient(self):
-        self.patient_registry = PatientRegistry.get(partition_key=self.patient_id, sort_key='patient')
-        return self.patient_registry
+    def get(self) -> Patient:
+        return self.patient.get()
+
+    def put(self) -> Patient:
+        return self.patient.put()
+
+    def create(self, patient: Patient) -> Patient:
+        return self.patient.create(patient)

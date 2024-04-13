@@ -5,6 +5,8 @@ from akello.db.connector.dynamodb import RegistryDBBaseModel
 
 class Registry(RegistryDBBaseModel):
     id: str = str(uuid.uuid4())
+    name: str = None
+    logo: str = None
 
     @property
     def object_type(self) -> str:

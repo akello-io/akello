@@ -8,7 +8,7 @@ from botocore.exceptions import ClientError
 from sendgrid import SendGridAPIClient
 
 from akello.db.connector.dynamodb import registry_db
-from akello.db.models import UserRegistry, UserModel, RegistryUser, UserRole, RegistryModel
+from akello.db.models_old import UserRegistry, UserModel, RegistryUser, UserRole, RegistryModel
 from akello.services import BaseService
 
 

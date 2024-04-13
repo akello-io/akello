@@ -1,6 +1,6 @@
 from akello.cli.commands.mock.user import UserMock
 from akello.cli.commands.mock.treatment_log import TreatmentLogMock
-from akello.db.models import PatientRegistry
+from akello.db.models_old import PatientRegistry
 from akello.db.types import ContactTypes
 from akello.services.models.registry import RegistryService
 from akello.services.models.user import UserService

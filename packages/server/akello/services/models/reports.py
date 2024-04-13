@@ -3,7 +3,7 @@ import json
 import logging
 from datetime import datetime
 
-from akello.db.models import PatientRegistry
+from akello.db.models_old import PatientRegistry
 from akello.services import BaseService
 from akello.services.models.registry import RegistryService
 

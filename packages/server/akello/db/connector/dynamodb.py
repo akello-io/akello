@@ -145,3 +145,24 @@ class RegistryDBBaseModel(BaseModel):
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
+
+
+    def add_attribute(self, attribute_name: str, attribute_value: any):
+        UpdateExpression = "SET #att_name = :value"
+        ExpressionAttributeValues = {
+            ':value': attribute_value
+        }
+        response = registry_db.update_item(
+            Key={
+                'partition_key': self.partition_key,
+                'sort_key': self.sort_key
+            },
+            UpdateExpression=UpdateExpression,
+            ExpressionAttributeValues=ExpressionAttributeValues,
+            ExpressionAttributeNames={
+                "#att_name": attribute_name
+            },
+            ReturnValues="UPDATED_NEW"
+        )
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200
