@@ -19,3 +19,5 @@ test_registry_2 = org.create_registry(name='test registry 2', logo='test logo', 
 test_registry_3 = org.create_registry(name='test registry 3', logo='test logo', requesting_user=test_organization_owner)
 
 
+care_manager_user = User()
+test_registry_1.add_user(user=care_manager_user, role=UserRegistryRole.care_manager, requesting_user=test_organization_owner)

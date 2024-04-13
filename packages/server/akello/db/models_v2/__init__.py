@@ -56,7 +56,13 @@ class AkelloBaseModel(BaseModel):
         if 'Item' not in response:
             return None
 
-        return response['Item']
+        for key, value in response['Item'].items():
+            try:
+                setattr(self, key, value)
+            except AttributeError:
+                pass
+
+        return self
 
     def __put(self):
         """
