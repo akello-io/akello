@@ -1,8 +1,8 @@
 import uuid
 
 from akello.db.models_v2 import AkelloBaseModel
-from akello.db.models_v2.registry import Registry, RegistryOrganization
-from akello.db.models_v2.user import User, UserOrganization, UserOrganizationRole
+from akello.db.models_v2.registry import Registry, RegistryOrganization, RegistryUser
+from akello.db.models_v2.user import User, UserOrganization, UserOrganizationRole, UserRegistry, UserRegistryRole
 
 
 class Organization(AkelloBaseModel):
@@ -67,4 +67,15 @@ class Organization(AkelloBaseModel):
             registry_id=registry.id,
             organization_id=self.id
         )._AkelloBaseModel__put()
+
+        UserRegistry(
+            user_id=requesting_user.id,
+            registry_id=registry.id,
+            role=UserRegistryRole.admin
+        )._AkelloBaseModel__put()
+        RegistryUser(
+            user_id=requesting_user.id,
+            registry_id=registry.id
+        )._AkelloBaseModel__put()
+
         return registry
