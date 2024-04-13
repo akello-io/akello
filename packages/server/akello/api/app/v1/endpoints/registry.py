@@ -90,7 +90,7 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
         data['integrations'], data['logo_url'])
     UserService.create_registry_user(registry_id, data['first_name'], data['last_name'], auth.username, auth.cognito_id,
         UserRole.care_manager, is_admin=True)
-    UserService.create_user_registry(auth.cognito_id, registry_id)
+    UserService.link_user_to_registry(auth.cognito_id, registry_id)
 
     # Add additional user invites
     for invited_user in data['invited-users']:

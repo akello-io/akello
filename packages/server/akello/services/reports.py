@@ -1,8 +1,11 @@
-import datetime, json, logging
-from akello.db.models import TreatmentLog, PatientRegistry
+import datetime
+import json
+import logging
+from datetime import datetime
+
+from akello.db.models import PatientRegistry
 from akello.services import BaseService
 from akello.services.registry import RegistryService
-from datetime import datetime
 
 logger = logging.getLogger('mangum')
 
@@ -64,7 +67,7 @@ class ReportsService(BaseService):
                 year = datetime.utcfromtimestamp(treatment_log.date / 1000).year
                 if '%s-%s' % (month, year) not in patient_minute_stats:
                     patient_minute_stats['%s-%s' % (month, year)] = {'minutes': 0, '99492': 0, '99493': 0, '99494': 0,
-                        'cp_npi_visits': [], }
+                                                                     'cp_npi_visits': [], }
                 patient_minute_stats['%s-%s' % (month, year)]['minutes'] += treatment_log.minutes
                 if treatment_log.cp_npi and treatment_log.problems_list:
                     patient_minute_stats['%s-%s' % (month, year)]['cp_npi_visits'].append(
@@ -98,14 +101,14 @@ class ReportsService(BaseService):
             for stat_date in report[mrn]['minute_stats']:
                 r.append(
                     {'first_name': patient['first_name'], 'last_name': patient['last_name'], 'payer': patient['payer'],
-                        'referring_provider_npi': patient['referring_provider_npi'], 'mrn': mrn,
-                        'stat_date': datetime.strptime(stat_date, '%m-%Y').timestamp() * 1000,
-                        'initial_assessment': patient['initial_assessment'],
-                        '99492': report[mrn]['minute_stats'][stat_date]['99492'],
-                        '99493': report[mrn]['minute_stats'][stat_date]['99493'],
-                        '99494': report[mrn]['minute_stats'][stat_date]['99494'],
-                        'total_minutes': report[mrn]['minute_stats'][stat_date]['minutes'],
-                        'cp_npi_visits': report[mrn]['minute_stats'][stat_date]['cp_npi_visits']})
+                     'referring_provider_npi': patient['referring_provider_npi'], 'mrn': mrn,
+                     'stat_date': datetime.strptime(stat_date, '%m-%Y').timestamp() * 1000,
+                     'initial_assessment': patient['initial_assessment'],
+                     '99492': report[mrn]['minute_stats'][stat_date]['99492'],
+                     '99493': report[mrn]['minute_stats'][stat_date]['99493'],
+                     '99494': report[mrn]['minute_stats'][stat_date]['99494'],
+                     'total_minutes': report[mrn]['minute_stats'][stat_date]['minutes'],
+                     'cp_npi_visits': report[mrn]['minute_stats'][stat_date]['cp_npi_visits']})
         result = json.dumps(r, default=str)
         return json.loads(result)
 
@@ -183,5 +186,5 @@ class ReportsService(BaseService):
             payer_distribution.append({'id': idx, 'value': payers[payer], 'label': payer})
 
         return {'treatment': treatment_performance, 'screening': scores, 'payer_distribution': payer_distribution,
-            'patient_status_distribution': {'status': list(status_distribution.keys()),
-                'values': [value for key, value in status_distribution.items()]}}
+                'patient_status_distribution': {'status': list(status_distribution.keys()),
+                                                'values': [value for key, value in status_distribution.items()]}}

@@ -24,7 +24,7 @@ class RegistryMock:
         )
 
     def add_user(self, user: UserMock):
-        UserService.create_user_registry(user.cognito_user_id, self.id)
+        UserService.link_user_to_registry(user.cognito_user_id, self.id)
         RegistryService.update_stats(self.id)
 
     def refer_patient(self, patient_registry: PatientRegistry):

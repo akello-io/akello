@@ -48,7 +48,7 @@ async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_tok
             # TODO: Remove hardcoded value
             last_name='Selvaraj',  # TODO: Remove hardcoded value
             email=invite['email'], user_id=auth.cognito_id, role=invite['role'], is_admin=False)
-        UserService.create_user_registry(auth.cognito_id, invite['registry_id'])
+        UserService.link_user_to_registry(auth.cognito_id, invite['registry_id'])
         RegistryService.update_stats(invite['registry_id'])
 
     return user

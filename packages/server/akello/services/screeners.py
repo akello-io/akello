@@ -1,6 +1,9 @@
-import os, logging, yaml
-from akello.services import BaseService
+import logging
+import os
+import yaml
+
 from akello.db.models import Measurement
+from akello.services import BaseService
 
 logger = logging.getLogger('mangum')
 

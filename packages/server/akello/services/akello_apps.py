@@ -1,6 +1,8 @@
 import logging
-from akello.db.models import AkelloApp, RegistryModel
+
 import yaml
+
+from akello.db.models import AkelloApp, RegistryModel
 from akello.services import BaseService
 from akello.services.registry import RegistryService
 
