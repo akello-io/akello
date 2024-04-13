@@ -25,6 +25,17 @@ test_registry_1.add_user(user=care_manager_user, role=UserRegistryRole.care_mana
 
 
 # Add a patient to the registry
+patient_user = User()
+test_registry_1.add_user(user=patient_user, role=UserRegistryRole.patient, requesting_user=test_organization_owner)
+
 # grant a user access to the patient (test access)
+
 # add treatment log and set scores
+patient_registry_treatment = RegistryTreatment(
+    registry_id=test_registry_1.id,
+    user_id=patient_user.id,
+    mrn='test mrn',
+)
+
+patient_registry_treatment.add_approved_provider(authorized_user=care_manager_user, requesting_user=patient_user)
 
