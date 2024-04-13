@@ -5,7 +5,7 @@ from datetime import datetime
 
 from akello.db.models import PatientRegistry
 from akello.services import BaseService
-from akello.services.registry import RegistryService
+from akello.services.models.registry import RegistryService
 
 logger = logging.getLogger('mangum')
 

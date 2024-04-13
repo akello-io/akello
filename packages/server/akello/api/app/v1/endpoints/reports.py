@@ -1,9 +1,9 @@
 import logging
 from fastapi import APIRouter, Depends
-from akello.services.user import UserService
+from akello.services.models.user import UserService
 from akello.auth.provider import auth_token_check
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
-from akello.services.reports import ReportsService
+from akello.services.models.reports import ReportsService
 from akello.decorators.akello_plan_tier import akello_plan_check
 from akello.db.types import AkelloPlanTier
 

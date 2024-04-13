@@ -1,7 +1,7 @@
 import os
 from unittest import TestCase, mock
 from akello.services.tests import mock_env_configs
-from akello.services.screeners import ScreenerService
+from akello.services.models.screeners import ScreenerService
 
 
 @mock.patch.dict(os.environ, mock_env_configs)

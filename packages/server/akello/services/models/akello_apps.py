@@ -4,7 +4,7 @@ import yaml
 
 from akello.db.models import AkelloApp, RegistryModel
 from akello.services import BaseService
-from akello.services.registry import RegistryService
+from akello.services.models.registry import RegistryService
 
 logger = logging.getLogger('mangum')
 

@@ -2,6 +2,7 @@ import os
 from unittest.mock import MagicMock
 
 import boto3
+from botocore.exceptions import ClientError
 from pydantic import BaseModel
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
@@ -73,6 +74,35 @@ class RegistryDBBaseModel(BaseModel):
     @property
     def partition_key(self) -> str:
         return '%s:%s' % (self.object_type, self.id)
+
+    @staticmethod
+    def get(partition_key, sort_key):
+        try:
+            response = registry_db.get_item(
+                Key={'partition_key': partition_key, 'sort_key': sort_key})
+        except ClientError as e:
+            print(e)
+            print(e.response['No item found'])
+
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200
+
+        if 'Item' not in response:
+            return None
+
+        return response['Item']
+
+
+    def put(self):
+        response = registry_db.put_item(
+            Item={
+                'partition_key': self.partition_key,
+                'sort_key': self.sort_key,
+                **self.dict()
+            }
+        )
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200
 
     @staticmethod
     def set_attribute(partition_key, sort_key, attribute_name: str, attribute_value: any):
