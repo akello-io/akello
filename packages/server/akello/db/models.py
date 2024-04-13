@@ -12,7 +12,7 @@ class OrganizationModel(RegistryDBBaseModel):
     """
     org_id: str
     name: str
-    description: str    
+    description: str
     logo_url: Optional[str] = None
     type: str = 'Organization'
 
@@ -24,7 +24,7 @@ class OrganizationModel(RegistryDBBaseModel):
     @property
     def sort_key(self) -> str:
         return 'metadata'
-    
+
 
 class OrganizationAccountModel(RegistryDBBaseModel):
     """
@@ -72,7 +72,7 @@ class UserModel(RegistryDBBaseModel):
 class UserMembershipModel(RegistryDBBaseModel):
     """
     Represents a user membership in the system. This is the primary model for the user membership.
-    """    
+    """
     user_id: str
     account_id: str = None
     org_id: str = None
@@ -152,11 +152,11 @@ class RegistryUser(RegistryDBBaseModel):
         return 'user:' + self.user_id
 
 
+"""
+TODO: Looks like this is not being used
+Note: User can have multiple emails with different auth providers (e.g., email, gmail, etc.)
 class UserEmail(RegistryDBBaseModel):
-    """
-    Used to map an email to the registry for fast lookups of unique emails
-    TODO: consider doing this with patients as well?
-    """
+
     email: str
     user_id: str
     date_created: int = datetime.datetime.utcnow().timestamp()
@@ -168,6 +168,7 @@ class UserEmail(RegistryDBBaseModel):
     @property
     def sort_key(self) -> str:
         return self.user_id
+"""
 
 
 class RegistryModel(RegistryDBBaseModel):
@@ -178,7 +179,7 @@ class RegistryModel(RegistryDBBaseModel):
     name: str
     description: str
     modified_date: float
-    created_date: float    
+    created_date: float
     members: int = 0
     active_patients: int = 0
     questionnaires: List[Measurement] = None
