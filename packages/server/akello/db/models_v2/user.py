@@ -1,15 +1,21 @@
-import uuid
+from uuid import uuid4
 from enum import Enum
 
 from akello.db.models_v2 import AkelloBaseModel
 
 
 class User(AkelloBaseModel):
-    id: str = str(uuid.uuid4())
+    id: str
+
+    def __init__(self, **data):
+        super().__init__(
+            id=str(uuid4()),
+            **data
+        )
 
     @property
-    def object_type(self) -> str:
-        return 'user'
+    def partition_key(self) -> str:
+        return 'user-id:%s' % self.id
 
     @property
     def sort_key(self) -> str:
@@ -17,6 +23,7 @@ class User(AkelloBaseModel):
 
 
 class UserRegistryRole(str, Enum):
+    admin = 'Admin'
     care_manager = 'Care Manager'
     psychiatrist = 'Psychiatrist'
     physician = 'Physician'
@@ -24,13 +31,13 @@ class UserRegistryRole(str, Enum):
 
 
 class UserRegistry(AkelloBaseModel):
-    id: str
+    user_id: str
     registry_id: str
     role: UserRegistryRole
 
     @property
-    def object_type(self) -> str:
-        return 'user-registry'
+    def partition_key(self) -> str:
+        return 'user-id:%s' % self.user_id
 
     @property
     def sort_key(self) -> str:
@@ -38,15 +45,15 @@ class UserRegistry(AkelloBaseModel):
 
 
 class UserRegistryInvite(AkelloBaseModel):
-    id: str
+    user_id: str
     registry_id: str
     email: str
     role: str
     accepted: bool = False
 
     @property
-    def object_type(self) -> str:
-        return 'user-registry-invite'
+    def partition_key(self) -> str:
+        return 'user-id:%s' % self.user_id
 
     @property
     def sort_key(self) -> str:
@@ -59,13 +66,13 @@ class UserOrganizationRole(str, Enum):
 
 
 class UserOrganization(AkelloBaseModel):
-    id: str
+    user_id: str
     organization_id: str
     role: UserOrganizationRole
 
     @property
-    def object_type(self) -> str:
-        return 'user-organization'
+    def partition_key(self) -> str:
+        return 'user-id:%s' % self.user_id
 
     @property
     def sort_key(self) -> str:
@@ -73,16 +80,16 @@ class UserOrganization(AkelloBaseModel):
 
 
 class UserOrganizationInvite(AkelloBaseModel):
-    id: str
+    user_email: str
     organization_id: str
-    email: str
+    invited_by_user_id: str
     role: str
     accepted: bool = False
 
     @property
-    def object_type(self) -> str:
-        return 'user-organization-invite'
+    def partition_key(self) -> str:
+        return 'user-email:%s' % self.user_email
 
     @property
     def sort_key(self) -> str:
-        return 'organization-id:%s' % self.organization_id
+        return 'invited-organization-id:%s' % self.organization_id
