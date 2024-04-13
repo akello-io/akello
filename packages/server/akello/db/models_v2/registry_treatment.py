@@ -8,11 +8,9 @@ from akello.db.models_v2.user import User
 from akello.db.types import FlagTypes, PatientStatysTypes
 
 
-class PatientRegistry(AkelloBaseModel):
-    id: str
-    patient_id: str
+class RegistryTreatment(AkelloBaseModel):
     registry_id: str
-
+    user_id: str # User ID of the patient
     mrn: str
     referring_npi: Optional[str] = None
     payer: Optional[str] = None
@@ -39,12 +37,11 @@ class PatientRegistry(AkelloBaseModel):
 
     @property
     def partition_key(self) -> str:
-        return 'patient-id:%s' % self.patient_id
+        return 'registry-id:%s' % self.registry_id
 
     @property
     def sort_key(self) -> str:
-        return 'registry-id:%s' % self.registry_id
-
+        return 'treatment-user-id:%s' % self.user_id
 
     def toJson(self):
         data = json.loads(self.model_dump_json())
@@ -52,21 +49,32 @@ class PatientRegistry(AkelloBaseModel):
         data['sort_key'] = self.sort_key
         return data
 
-    def add_approvde_provider(self):
+    def lookup_approved_provider(self, authorized_user: User):
+        ## Check if the authorized user is an approved provider
+        # returns date of approval
+        return self.get_attribute('approved_provider_id-%s' % authorized_user.id)
+
+    def add_approved_provider(self, authorized_user: User, requesting_user: User):
         ## Add a new column for every approvede provider ID
-        ## column name: approved_provider_id-<provider_id>
-        ## column value: date of consent
-        self.add_attribute('approved_provider_id-%s' % self.referring_npi, datetime.datetime.utcnow().timestamp())
-        pass
+        assert requesting_user.id == self.patient_id, 'Only the patient can approve a provider'
+        self.add_attribute('approved_provider_id-%s' % authorized_user.id, datetime.datetime.utcnow().timestamp())
+
+    def remove_approved_provider(self, authorized_user: User):
+        ## Remove the column for the approvede provider ID
+        self.remove_attribute('approved_provider_id-%s' % authorized_user.id)
 
 
-class PatientRegistryLog(AkelloBaseModel):
+class RegistryTreatmentLog(AkelloBaseModel):
+    registry_id: str
+    user_id: str
 
     @property
-    def object_type(self):
-        return 'patient-registry-log'
+    def partition_key(self) -> str:
+        return 'treatment-log::registry-id:%s::user-id%s' % (self.registry_id, self.user_id)
 
     @property
-    def sort_key(self) -> str:
-        return 'type:treatment-log:%s' % self.patient_mrn
-        # return 'type:audit-log:%s' % self.patient_mrn
+    def sort_key(self) -> float:
+        return self.created_at
+
+    def set_scores(self, key: str, value: dict):
+        self.add_attribute(key, value)

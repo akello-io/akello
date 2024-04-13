@@ -24,8 +24,10 @@ class Registry(AkelloBaseModel):
 
     def create(self, requesting_user: User):
         self._AkelloBaseModel__put()
-        UserRegistry(user_id=requesting_user.id, registry_id=self.id,
-                     role=UserRegistryRole.admin)._AkelloBaseModel__put()
+        UserRegistry(
+            user_id=requesting_user.id,
+            registry_id=self.id,
+            role=UserRegistryRole.admin)._AkelloBaseModel__put()
 
     def put(self, is_system: bool = False, requesting_user: User = None):
         """
@@ -45,8 +47,10 @@ class Registry(AkelloBaseModel):
     def add_user(self, user: User, role: UserRegistryRole, requesting_user: User):
         registry_organization = RegistryOrganization(registry_id=self.id)._AkelloBaseModel__get()
 
-        if not UserOrganization(user_id=requesting_user.id, organization_id=registry_organization.organization_id,
-                                role=UserOrganizationRole.admin)._AkelloBaseModel__get():
+        if not UserOrganization(
+                user_id=requesting_user.id,
+                organization_id=registry_organization.organization_id,
+                role=UserOrganizationRole.admin)._AkelloBaseModel__get():
             raise Exception("Only organization admin can add users to registry")
 
         if not UserRegistry(user_id=requesting_user.id, registry_id=self.id,
