@@ -14,6 +14,7 @@ class UserMembershipType(str, Enum):
     account = 'account'
     organization = 'organization'
 
+
 class QuestionResponse(BaseModel):
     id: str
     response: str
@@ -47,6 +48,7 @@ class AkelloPlanTier(str, Enum):
     individual = 'Individual'
     teams = 'Teams'
     enterprise = 'Enterprise'
+
 
 class UserRole(str, Enum):
     care_manager = 'Care Manager'

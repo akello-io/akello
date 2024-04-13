@@ -2,7 +2,7 @@ import os
 from unittest import TestCase, mock
 from unittest.mock import patch
 from akello.services.tests import mock_env_configs
-from akello.services.user import UserService
+from akello.services.models.user import UserService
 
 
 @mock.patch.dict(os.environ, mock_env_configs)

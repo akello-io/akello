@@ -8,7 +8,7 @@ class TestRegistryService(TestCase):
 
     @patch('akello.db.connector.dynamodb.registry_db.put_item')
     def test_create_registry(self, mock_query):
-        from akello.services.registry import RegistryService
+        from akello.services.models.registry import RegistryService
 
         mock_query.return_value = {
             'ResponseMetadata': {

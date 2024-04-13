@@ -3,8 +3,8 @@
 import os
 import json
 
-def load_fhir_data():
 
+def load_fhir_data():
     yourpath = './fhir'
 
     for root, dirs, files in os.walk(yourpath, topdown=False):
@@ -26,8 +26,8 @@ def load_fhir_data():
                             print(resource["resourceType"])
                             print(resource["id"])
                             print(resource["code"]["coding"][0]["code"])
-                            #print(resource["valueQuantity"]["value"])
-                            #print(resource["valueQuantity"]["unit"])
+                            # print(resource["valueQuantity"]["value"])
+                            # print(resource["valueQuantity"]["unit"])
                             print(resource["effectiveDateTime"])
 
                         if resource["resourceType"] == "Condition":
@@ -35,8 +35,7 @@ def load_fhir_data():
                             print(resource["id"])
                             print(resource["code"]["coding"][0]["code"])
                             print(resource["code"]["coding"][0]["display"])
-                            print(resource["onsetDateTime"])
-                            #print(resource["assertedDate"])
+                            print(resource["onsetDateTime"])  # print(resource["assertedDate"])
 
                         if resource["resourceType"] == "MedicationRequest":
                             if 'medicationCodeableConcept' in resource:
@@ -53,7 +52,7 @@ def load_fhir_data():
                             print(resource["id"])
                             print(resource["code"]["coding"][0]["code"])
                             print(resource["code"]["coding"][0]["display"])
-                            #print(resource["performedDateTime"])
+                            # print(resource["performedDateTime"])
                             print(resource["status"])
 
                         if resource["resourceType"] == "FamilyMemberHistory":
@@ -82,9 +81,6 @@ def load_fhir_data():
                             print(resource["onsetDateTime"])
                             print(resource["assertedDate"])
                             print(resource["status"])
-
-
-
 
 
 if __name__ == '__main__':

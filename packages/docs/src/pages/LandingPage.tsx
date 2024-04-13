@@ -242,22 +242,6 @@ export default function Example() {
 
 
 
-                <div className="bg-black dark:bg-ak-blue-800 py-4  ">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <div
-                            onKeyDown={() => {}}
-                            onClick={() => {
-                                window.location.href = 'https://calendly.com/akello-health/30-min-call'
-
-                            }}
-                            className='cursor-pointer flex flex-row w-fit my-auto mx-auto text-white'>
-                            <h2 className="text-center my-auto text-xl sm:text-2xl font-semibold leading-8 ">
-                                Book a demo
-                            </h2>
-                            <ChevronRightIcon className="h-5  my-auto w-auto" aria-hidden="true" />
-                        </div>
-                    </div>
-                    </div>
 
 
 
@@ -371,12 +355,6 @@ export default function Example() {
                     </div>
                 </div>
                 </div>
-
-
-
-
-
-
 
                 {/* Content section */}
                 <div className="my-32 overflow-hidden sm:mt-40">

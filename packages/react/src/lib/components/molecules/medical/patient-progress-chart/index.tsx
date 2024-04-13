@@ -13,14 +13,14 @@ export const PatientProgressChart:React.FC<PatientProgressChartProps> = ({select
 
     let copy = [...selectedPatient.treatment_logs!]
     copy.sort((a, b) => a.weeks_in_treatment > b.weeks_in_treatment ? 1 : -1)
-    selectedPatient.treatment_logs = copy
+    // selectedPatient.treatment_logs = copy
 
     let scores:any = []
 
     let score_names = questionnaires.map((questionnaire) => { return questionnaire.name})
 
 
-    selectedPatient.treatment_logs.map((treatment_log) => {
+    copy.map((treatment_log) => {
 
         if(treatment_log.no_show) {
             // filter out no-shows

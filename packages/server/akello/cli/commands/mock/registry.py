@@ -1,12 +1,10 @@
 from akello.cli.commands.mock.user import UserMock
-from akello.cli.commands.mock.patient import PatientMock
 from akello.cli.commands.mock.treatment_log import TreatmentLogMock
-from akello.db.models import RegistryModel, PatientRegistry
+from akello.db.models_old import PatientRegistry
 from akello.db.types import ContactTypes
-from akello.services.registry import RegistryService
-from akello.services.user import UserService
+from akello.services.models.registry import RegistryService
+from akello.services.models.user import UserService
 from faker import Faker
-import time
 
 fake = Faker()
 Faker.seed(0)
@@ -24,7 +22,7 @@ class RegistryMock:
         )
 
     def add_user(self, user: UserMock):
-        UserService.create_user_registry(user.cognito_user_id, self.id)
+        UserService.link_user_to_registry(user.cognito_user_id, self.id)
         RegistryService.update_stats(self.id)
 
     def refer_patient(self, patient_registry: PatientRegistry):

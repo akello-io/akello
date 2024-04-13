@@ -10,3 +10,4 @@ venv
 .cognito
 .vscode/
 *.tgz
+*.pyc

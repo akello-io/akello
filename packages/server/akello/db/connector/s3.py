@@ -1,8 +1,8 @@
-import aiofiles
 import hashlib
 import os
-import boto3
 
+import aiofiles
+import boto3
 
 
 class Storage():
@@ -32,7 +32,6 @@ class S3StorageLocal(Storage):
 
 
 class S3Storage(Storage):
-
 
     async def set_item(self, key, value):
         resource_bucket = os.getenv('AWS_S3_DOCUMENT_RESOURCE_BUCKET')

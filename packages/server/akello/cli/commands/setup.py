@@ -4,8 +4,8 @@ import pathlib
 import subprocess
 import webbrowser
 
-
 current_file_path = pathlib.Path(__file__).parent.resolve()
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -18,28 +18,35 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
 def run_docker():
     print("starting docker")
     resp = os.popen(f"docker-compose down").read()
-    resp = os.popen(f"COGNITO_PATH={os.getcwd()}/.cognito docker-compose -f {current_file_path}/../docker-compose.yml up -d ").read()
+    resp = os.popen(
+        f"COGNITO_PATH={os.getcwd()}/.cognito docker-compose -f {current_file_path}/../docker-compose.yml up -d ").read()
     print("running docker")
 
 
 def create_user_pool():
-    resp = os.popen("aws --endpoint http://localhost:9229 cognito-idp create-user-pool --pool-name akello --no-cli-pager --output json").read()
+    resp = os.popen(
+        "aws --endpoint http://localhost:9229 cognito-idp create-user-pool --pool-name akello --no-cli-pager --output json").read()
     user_pool_id = json.loads(resp)['UserPool']['Id']
     return user_pool_id
 
+
 def create_user_pool_client(user_pool_id):
-    resp = os.popen(f"aws --endpoint http://localhost:9229 cognito-idp create-user-pool-client --user-pool-id {user_pool_id} --client-name client --output json --no-cli-pager").read()
+    resp = os.popen(
+        f"aws --endpoint http://localhost:9229 cognito-idp create-user-pool-client --user-pool-id {user_pool_id} --client-name client --output json --no-cli-pager").read()
     client_id = json.loads(resp)['UserPoolClient']['ClientId']
     return client_id
+
 
 def get_saved_client():
     # Opening JSON file
     f = open('.cognito/db/clients.json')
     clients = json.load(f)
     return list(clients['Clients'].keys())[0]
+
 
 def get_saved_user_pool():
     for file in os.listdir('.cognito/db'):
@@ -55,6 +62,7 @@ def is_docker_running():
     except:
         print("Docker is not running")
         return False
+
 
 def is_aws_cli_installed():
     try:
@@ -73,7 +81,7 @@ def run_setup():
         print(bcolors.FAIL + "Error: AWS CLI isn't installed" + bcolors.ENDC)
         raise Exception("AWS CLI is not installed")
 
-    run_docker() # setup and run docker
+    run_docker()  # setup and run docker
 
     try:
         # Check if a user pool already exists if so exit
@@ -110,9 +118,7 @@ def set_local_env():
 
 
 def run_setup_env():
-
     user_pool_id, client_id = set_local_env()
-
 
     akello_ascii = """
                               ██████                                      ████        ████
@@ -136,7 +142,6 @@ def run_setup_env():
       █████     █████                                 ██████                                     ███████
     """
 
-
     print(akello_ascii)
     print("\n\n")
     print("Add the following to your .env file")
@@ -159,4 +164,3 @@ def setup():
     # packages_path = os.path.join(current_file_path, '../../../')
     # os.system(f"cd {current_file_path}/.. && ls {packages_path}/server/akello/ -all && cp .template.api.env {packages_path}/server/akello/.env")
     run_setup()
-

@@ -5,7 +5,7 @@ import { BaseService } from './base';
 export class UserService extends BaseService {
 
     constructor(client: AkelloClient) {
-        super(client);        
+        super(client);
     }
 
     async updateProfilePhoto(data: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
@@ -46,7 +46,7 @@ export class UserService extends BaseService {
             }
         });
     }
-    
+
 
     async getUser(onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "user";
@@ -63,7 +63,7 @@ export class UserService extends BaseService {
                 }
             }
         });
-        
+
     }
 
     async getUserSessions(onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
@@ -82,7 +82,7 @@ export class UserService extends BaseService {
             }
         });
     }
-    
+
     async getUserRegistries(onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "user/registries";
         this.apiRequest({
@@ -99,7 +99,24 @@ export class UserService extends BaseService {
             }
         });
     }
-    
+
+    async setMFAPreference(data: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "user/set-mfa";
+        this.apiRequest({
+            api_url: this.client.getOptions().baseUrl!,
+            method: 'post',
+            endpoint: endpoint,
+            token: this.client.accessToken!,
+            payload: data,
+            onSuccess: (resp: any) => {
+                onSuccess(resp)
+            }, onFail: (error: any) => {
+                if(onFail) {
+                    onFail(error)
+                }
+            }
+        });
+    }
+
 
 }
-    
