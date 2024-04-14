@@ -1,14 +1,14 @@
 # used as a local manual test script for testing the database
 from akello.db.models_v2.organization import Organization
-from akello.db.models_v2.user import User, UserRegistryRole
+from akello.db.models_v2.user import User, UserRegistryRole, UserInvite
 from akello.db.models_v2.registry_treatment import RegistryTreatment, RegistryTreatmentLog, RegistryTreatmentLogCommentLog
 import datetime, uuid
 
-test_organization_owner = User(id=str(uuid.uuid4()))
+test_organization_owner = User(id=str(uuid.uuid4()), email='test_org@gmail.com')
 test_organization_owner.put()
-care_manager_user = User(id=str(uuid.uuid4()))
+care_manager_user = User(id=str(uuid.uuid4()), email='test_care_manager_org@gmail.com')
 care_manager_user.put()
-patient_user = User(id=str(uuid.uuid4()))
+patient_user = User(id=str(uuid.uuid4()), email='test_patient_user_org@gmail.com')
 patient_user.put()
 
 # Test user creates an organization
@@ -59,4 +59,17 @@ comment = RegistryTreatmentLogCommentLog(
 )
 comment.put()
 
+
+UserInvite(
+    object_type='registry',
+    object_id=test_registry_1.id,
+    user_email='test@gmail.com',
+    invited_by_user_id=test_organization_owner.id,
+    role=UserRegistryRole.patient
+)._AkelloBaseModel__put()
+
+
+invited_patient = User(id=str(uuid.uuid4()), email='test@gmail.com')
+invites = invited_patient.fetch_invites()
+assert len(invites) == 1
 

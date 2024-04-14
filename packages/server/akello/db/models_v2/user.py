@@ -73,6 +73,21 @@ class User(AkelloBaseModel):
         ta = TypeAdapter(List[UserRegistry])
         return ta.validate_python(registries)
 
+    def fetch_invites(self):
+        # Define the partition key value
+        partition_key_value = f"email:{self.email}"
+
+        # Perform the query
+        response = registry_db.query(
+            KeyConditionExpression=Key('partition_key').eq(partition_key_value) & Key('sort_key').begins_with(
+                'user-invite::'),
+        )
+
+        # Extract invites from the response
+        invites = response.get('Items', [])
+        ta = TypeAdapter(List[UserInvite])
+        return ta.validate_python(invites)
+
 
 class UserRegistryRole(str, Enum):
     admin = 'Admin'
@@ -176,11 +191,12 @@ class UserInvite(AkelloBaseModel):
 
     @property
     def partition_key(self) -> str:
-        return 'user-invite::%s-id:%s' % (self.object_type, self.object_id)
+        return 'email:%s' % self.user_email
 
     @property
     def sort_key(self) -> str:
-        return 'email:%s' % self.user_email
+        return 'user-invite::%s-id:%s' % (self.object_type, self.object_id)
+
 
     def put(self):
         self._AkelloBaseModel__put()

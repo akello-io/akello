@@ -59,7 +59,11 @@ class Organization(AkelloBaseModel):
         if not user_org:
             raise Exception('User is not part of this organization')
 
-        registry = Registry(name=name, logo=logo)
+        registry = Registry(
+            id=str(uuid.uuid4()),
+            name=name,
+            logo=logo
+        )
         registry.create(requesting_user=requesting_user)
 
         # link the registry to the organization
