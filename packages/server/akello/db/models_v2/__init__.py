@@ -40,6 +40,7 @@ class AkelloBaseModel(BaseModel):
         if 'Item' not in response:
             return None
 
+        import pdb;pdb.set_trace()
         return cls(**response['Item'])
 
     def __get(self):

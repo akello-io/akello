@@ -43,6 +43,36 @@ class User(AkelloBaseModel):
         ta = TypeAdapter(List[UserSession])
         return ta.validate_python(sessions)
 
+    def fetch_user_organizations(self):
+        # Define the partition key value
+        partition_key_value = f"user-id:{self.id}"
+
+        # Perform the query
+        response = registry_db.query(
+            KeyConditionExpression=Key('partition_key').eq(partition_key_value) & Key('sort_key').begins_with(
+                'organization-id:'),
+        )
+
+        # Extract organizations from the response
+        organizations = response.get('Items', [])
+        ta = TypeAdapter(List[UserOrganization])
+        return ta.validate_python(organizations)
+
+    def fetch_registries(self):
+        # Define the partition key value
+        partition_key_value = f"user-id:{self.id}"
+
+        # Perform the query
+        response = registry_db.query(
+            KeyConditionExpression=Key('partition_key').eq(partition_key_value) & Key('sort_key').begins_with(
+                'registry-id:'),
+        )
+
+        # Extract registries from the response
+        registries = response.get('Items', [])
+        ta = TypeAdapter(List[UserRegistry])
+        return ta.validate_python(registries)
+
 
 class UserRegistryRole(str, Enum):
     admin = 'Admin'
@@ -130,6 +160,27 @@ class UserSession(AkelloBaseModel):
     @property
     def sort_key(self) -> str:
         return str(self.created_at)
+
+    def put(self):
+        self._AkelloBaseModel__put()
+
+
+class UserInvite(AkelloBaseModel):
+    object_type: str # registry / organization
+    object_id: str # registry_id / organization_id
+    user_email: str
+    user_phone_number: Optional[str] = None
+    invited_by_user_id: str
+    role: str # UserRegistryRole / UserOrganizationRole
+    accepted: bool = False
+
+    @property
+    def partition_key(self) -> str:
+        return 'user-invite::%s-id:%s' % (self.object_type, self.object_id)
+
+    @property
+    def sort_key(self) -> str:
+        return 'email:%s' % self.user_email
 
     def put(self):
         self._AkelloBaseModel__put()

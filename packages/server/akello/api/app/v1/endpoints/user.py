@@ -1,17 +1,12 @@
 import logging
 import os
 import uuid
-from typing import Optional
 
-import boto3
-from boto3 import Session
 from fastapi import APIRouter, Request, Depends
-from pydantic import BaseModel
 
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
-from akello.db.models_v2.user import User, UserSession
-from akello.services.models.user import UserService
+from akello.db.models_v2.user import User, UserSession, UserOrganization
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
 
@@ -45,14 +40,22 @@ async def get_user_sessions(auth: CognitoTokenCustom = Depends(auth_token_check)
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     return user.fetch_user_sessions()
 
+@router.get("/organizations")
+async def get_user_organizations(auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    return user.fetch_user_organizations()
 
-# TODO: Should this be the root API for registry?
-#     api.akello.io/registry -- this gets the list of registeries for current account which
-#     they have access to
 @router.get("/registries")
 async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_check)):
-    return UserService.get_registries(auth.cognito_id)
+    # return UserService.get_registries(auth.cognito_id)
 
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    return user.fetch_registries()
+
+
+
+"""
+TODO: This is a work in progress. The idea is to allow users to set their MFA settings
 
 class MFASettingType(BaseModel):
     Enabled: bool
@@ -77,3 +80,4 @@ async def set_user_mfa(mfa_setting: MFASetting, auth: CognitoTokenCustom = Depen
         response = Session(profile_name='Dev').client('cognito-idp').admin_set_user_mfa_preference(
             **mfa_setting.model_dump(exclude_none=True))
     assert response['ResponseMetadata']['HTTPStatusCode'] == 200
+"""

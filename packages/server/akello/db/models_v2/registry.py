@@ -1,18 +1,16 @@
 from uuid import uuid4
 from akello.db.models_v2 import AkelloBaseModel
 from akello.db.models_v2.user import User, UserRegistry, UserOrganizationRole, UserRegistryRole, UserOrganization
-
+from akello.db.models_v2.user import UserInvite
+from typing import Optional
 
 class Registry(AkelloBaseModel):
     id: str
     name: str = None
-    logo: str = None
+    logo: Optional[str] = None
 
     def __init__(self, **data):
-        super().__init__(
-            id=str(uuid4()),
-            **data
-        )
+        super().__init__(**data)
 
     @property
     def partition_key(self) -> str:
@@ -60,6 +58,14 @@ class Registry(AkelloBaseModel):
         UserRegistry(user_id=user.id, registry_id=self.id, role=role)._AkelloBaseModel__put()
         RegistryUser(user_id=user.id, registry_id=self.id)._AkelloBaseModel__put()
 
+    def invite_patient(self, email: str, invited_by_user: User):
+        UserInvite(
+            object_type='registry',
+            object_id=self.id,
+            user_email=email,
+            invited_by_user_id=invited_by_user.id,
+            role=UserRegistryRole.patient
+        )._AkelloBaseModel__put()
 
 class RegistryOrganization(AkelloBaseModel):
     registry_id: str
