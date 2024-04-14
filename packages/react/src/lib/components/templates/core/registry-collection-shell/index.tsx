@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RegistryShell } from '../registry-shell';
+import { useAkello } from '@akello/react-hook';
 
 interface RegistryCollectionProps {
     AppShell: any;
@@ -14,6 +15,12 @@ interface RegistryCollectionProps {
 
 
 export const RegistryCollectionShell: React.FC<RegistryCollectionProps> = ({AppShell, onNavigate, signOut, pathname, Outlet, stripe_checkout_url, stripe_portal_url}) => {
+
+    const akello = useAkello();
+    if(!akello.getSelectedRegistry()) {
+        return <div>Loading...</div>
+    }
+
     return (
         <>
             <RegistryShell

@@ -152,5 +152,39 @@ export class UserService extends BaseService {
         });
     }
 
+    async getOrganizationUsers(organization_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "organization/" + organization_id + "/users";
+        this.apiRequest({
+            api_url: this.client.getOptions().baseUrl!,
+            method: 'get',
+            endpoint: endpoint,
+            token: this.client.accessToken!,
+            onSuccess: (resp: any) => {
+                onSuccess(resp)
+            }, onFail: (error: any) => {
+                if(onFail) {
+                    onFail(error)
+                }
+            }
+        });
+    }
+
+    async getOrganizationRegistries(organization_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "organization/" + organization_id + "/registries";
+        this.apiRequest({
+            api_url: this.client.getOptions().baseUrl!,
+            method: 'get',
+            endpoint: endpoint,
+            token: this.client.accessToken!,
+            onSuccess: (resp: any) => {
+                onSuccess(resp)
+            }, onFail: (error: any) => {
+                if(onFail) {
+                    onFail(error)
+                }
+            }
+        });
+    }
+
 
 }

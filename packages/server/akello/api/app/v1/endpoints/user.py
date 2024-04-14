@@ -6,7 +6,8 @@ from fastapi import APIRouter, Request, Depends
 
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
-from akello.db.models_v2.user import User, UserSession, UserOrganization
+from akello.db.models_v2.organization import Organization
+from akello.db.models_v2.user import User, UserSession
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
 
@@ -33,43 +34,74 @@ async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_tok
     logger.info('calling get_user: email:%s' % auth.username)
 
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+
+    def _create_organization_registry(user):
+        _organization = Organization(
+            id=str(uuid.uuid4()),
+            created_by=user
+        )
+        _organization.create(requesting_user=user)
+        return _organization.create_registry(name=None, logo=None, requesting_user=user)
+
     if not user:
         # if this is the first time we are seeing the user we create a new user
         logger.info('registering a new User for the first time - %s ' % auth.username)
         user = User(id=auth.cognito_id, first_name=auth.given_name, last_name=auth.family_name, email=auth.username)
         user.put()
         created_user = True
+        selected_registry = _create_organization_registry(user)
+    else:
+        user_organizations = user.fetch_user_organizations()
+        if len(user_organizations) == 0:
+            raise Exception('User does not have any organizations')
+
+        # Currently we select the first organization since we don't support multi organization yet
+        user_organization = user_organizations[0]
+        organization = Organization.get_by_key(Organization, 'organization-id:%s' % user_organization.organization_id,
+                                               'meta')
+        registries = organization.fetch_organization_registries(requesting_user=user)
+
+        # Currently we select the first registry since we don't support multi registry yet
+        if len(registries) == 0:
+            raise Exception('Organization does not have any registries')
+        selected_registry = registries[0]
+
     return {
         'user': user,
         'created_user': created_user,
+        'selected_registry': selected_registry
     }
+
 
 @router.get("/invites")
 async def get_user_invites(auth: CognitoTokenCustom = Depends(auth_token_check)):
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     return user.fetch_invites()
 
+
 @router.get("/organizations")
 async def get_user_organizations(auth: CognitoTokenCustom = Depends(auth_token_check)):
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     return user.fetch_user_organizations()
+
 
 @router.get("/sessions")
 async def get_user_sessions(auth: CognitoTokenCustom = Depends(auth_token_check)):
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     return user.fetch_user_sessions()
 
+
 @router.get("/organizations")
 async def get_user_organizations(auth: CognitoTokenCustom = Depends(auth_token_check)):
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     return user.fetch_user_organizations()
+
 
 @router.get("/registries")
 async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_check)):
     # return UserService.get_registries(auth.cognito_id)
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     return user.fetch_registries()
-
 
 
 """

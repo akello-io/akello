@@ -12,7 +12,8 @@ from akello.db.connector.dynamodb import registry_db
 
 class Registry(AkelloBaseModel):
     id: str
-    name: str = None
+    organization_id: Optional[str] = None
+    name: Optional[str] = None
     logo: Optional[str] = None
 
     def __init__(self, **data):
@@ -49,8 +50,6 @@ class Registry(AkelloBaseModel):
         self._AkelloBaseModel__put()
 
     def add_user(self, user: User, role: UserRegistryRole, requesting_user: User):
-        registry_organization = RegistryOrganization(registry_id=self.id)._AkelloBaseModel__get()
-
         if not UserOrganization(
                 user_id=requesting_user.id,
                 organization_id=registry_organization.organization_id,
@@ -95,18 +94,6 @@ class Registry(AkelloBaseModel):
         sessions = response.get('Items', [])
         ta = TypeAdapter(List[RegistryUser])
         return ta.validate_python(sessions)
-
-class RegistryOrganization(AkelloBaseModel):
-    registry_id: str
-    organization_id: str = None
-
-    @property
-    def partition_key(self) -> str:
-        return 'registry-id:%s' % self.registry_id
-
-    @property
-    def sort_key(self) -> str:
-        return 'organization'
 
 
 class RegistryUser(AkelloBaseModel):

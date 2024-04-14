@@ -22,44 +22,6 @@ export const UserAccountShell:React.FC<UserAccountShellProps> = ({
     stripe_checkout_url,
     stripe_portal_url
 }) => {
-    const akello = useAkello();
-
-    // load all organizations
-    // load all individual registeries
-    // load all invites
-
-    useEffect(() => {
-        akello.userService.getUserRegistries((data: any) => {
-            console.log('user registries', data);
-        })
-
-        akello.userService.getUserOrganizations((data: any) => {
-            console.log('user organizations', data);
-            // akello.selectOrganization(data[0].id);
-        })
-
-        akello.userService.getUserInvites((data: any) => {
-            console.log('user invites', data);
-        })
-
-    })
-
-
-
-    if(!akello.getSelectedOrganization()) {
-        return (
-            <div>
-                <h1>Choose an organization</h1>
-                <button onClick={() => {
-                    const user = new User('test', 'test', 'test', 'test', 'test', 'test');
-                    const org = new Organization('test', 'test', 'test', user);
-                    akello.selectOrganization(org);
-                    akello.dispatchEvent({ type: 'change' });
-
-                }}>set org</button>
-            </div>
-        )
-    }
 
     return (
         <>
