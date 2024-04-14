@@ -2,7 +2,8 @@
 from akello.db.models_v2.organization import User
 from akello.db.models_v2.organization import Organization
 from akello.db.models_v2.user import UserRegistryRole
-from akello.db.models_v2.registry_treatment import RegistryTreatment
+from akello.db.models_v2.registry_treatment import RegistryTreatment, RegistryTreatmentLog, RegistryTreatmentLogCommentLog
+import datetime
 
 test_organization_owner = User()
 
@@ -25,6 +26,36 @@ test_registry_1.add_user(user=care_manager_user, role=UserRegistryRole.care_mana
 
 
 # Add a patient to the registry
+patient_user = User()
+test_registry_1.add_user(user=patient_user, role=UserRegistryRole.patient, requesting_user=test_organization_owner)
+
 # grant a user access to the patient (test access)
+
 # add treatment log and set scores
+patient_registry_treatment = RegistryTreatment(
+    registry_id=test_registry_1.id,
+    user_id=patient_user.id,
+    mrn='test mrn',
+)
+
+patient_registry_treatment.add_approved_provider(authorized_user=care_manager_user, requesting_user=patient_user)
+
+treatment_log = RegistryTreatmentLog(
+    registry_id=test_registry_1.id,
+    user_id=patient_user.id,
+    timestamp=str(datetime.datetime.utcnow().timestamp())
+)
+treatment_log.set_scores(key='PHQ-9', value={'score': 1, 'date': '2021-01-01'})
+treatment_log.set_scores(key='GAD-7', value={'score': 1, 'date': '2021-01-01'})
+
+
+comment = RegistryTreatmentLogCommentLog(
+    registry_id=test_registry_1.id,
+    user_id=patient_user.id,
+    timestamp=str(datetime.datetime.utcnow().timestamp()),
+    comment='test comment',
+    author_user_id=care_manager_user.id
+)
+comment.put()
+
 

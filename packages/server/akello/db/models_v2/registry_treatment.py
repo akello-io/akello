@@ -1,5 +1,6 @@
 import datetime
 import json
+from decimal import Decimal
 from typing import Optional, List
 import uuid
 
@@ -10,7 +11,7 @@ from akello.db.types import FlagTypes, PatientStatysTypes
 
 class RegistryTreatment(AkelloBaseModel):
     registry_id: str
-    user_id: str # User ID of the patient
+    user_id: str  # User ID of the patient
     mrn: str
     referring_npi: Optional[str] = None
     payer: Optional[str] = None
@@ -56,25 +57,52 @@ class RegistryTreatment(AkelloBaseModel):
 
     def add_approved_provider(self, authorized_user: User, requesting_user: User):
         ## Add a new column for every approvede provider ID
-        assert requesting_user.id == self.patient_id, 'Only the patient can approve a provider'
-        self.add_attribute('approved_provider_id-%s' % authorized_user.id, datetime.datetime.utcnow().timestamp())
+        assert requesting_user.id == self.user_id, 'Only the patient can approve a provider'
+        self._AkelloBaseModel__add_attribute('approved_provider_id:%s' % authorized_user.id,
+                                             Decimal(datetime.datetime.utcnow().timestamp()))
 
     def remove_approved_provider(self, authorized_user: User):
         ## Remove the column for the approvede provider ID
-        self.remove_attribute('approved_provider_id-%s' % authorized_user.id)
+        self._AkelloBaseModel__remove_attribute('approved_provider_id-%s' % authorized_user.id)
 
 
 class RegistryTreatmentLog(AkelloBaseModel):
     registry_id: str
     user_id: str
+    timestamp: str
 
     @property
     def partition_key(self) -> str:
         return 'treatment-log::registry-id:%s::user-id%s' % (self.registry_id, self.user_id)
 
     @property
-    def sort_key(self) -> float:
-        return self.created_at
+    def sort_key(self) -> str:
+        return str(self.timestamp)
 
-    def set_scores(self, key: str, value: dict):
-        self.add_attribute(key, value)
+    def put(self):
+        self._AkelloBaseModel__put()
+
+    def set_scores(self, key: str, value: any):
+        self._AkelloBaseModel__add_attribute(key, value)
+
+
+class RegistryTreatmentLogCommentLog(AkelloBaseModel):
+    registry_id: str
+    user_id: str
+    timestamp: str
+    comment: str
+    author_user_id: str
+
+    @property
+    def partition_key(self) -> str:
+        return 'treatment-log-comment::registry-id:%s::user-id%s' % (self.registry_id, self.user_id)
+
+    @property
+    def sort_key(self) -> str:
+        return str(self.timestamp)
+
+    def put(self):
+        self._AkelloBaseModel__put()
+
+
+
