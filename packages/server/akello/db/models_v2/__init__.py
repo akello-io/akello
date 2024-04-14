@@ -1,4 +1,6 @@
 import datetime
+import json
+from decimal import Decimal
 
 from botocore.exceptions import ClientError
 from pydantic import BaseModel
@@ -135,6 +137,7 @@ class AkelloBaseModel(BaseModel):
         ExpressionAttributeValues = {
             ':value': attribute_value
         }
+
         response = registry_db.update_item(
             Key={
                 'partition_key': self.partition_key,
