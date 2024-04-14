@@ -16,6 +16,10 @@ router = APIRouter()
 
 @router.get("")
 async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
+    This should only be called when the user logs in. It will create a new user if the user does not exist
+    """
+
     # log session
     UserSession(
         user_id=auth.cognito_id,
@@ -34,6 +38,15 @@ async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_tok
         user.put()
     return user
 
+@router.get("/invites")
+async def get_user_invites(auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    return user.fetch_user_invites()
+
+@router.get("/organizations")
+async def get_user_organizations(auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    return user.fetch_user_organizations()
 
 @router.get("/sessions")
 async def get_user_sessions(auth: CognitoTokenCustom = Depends(auth_token_check)):
@@ -48,7 +61,6 @@ async def get_user_organizations(auth: CognitoTokenCustom = Depends(auth_token_c
 @router.get("/registries")
 async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_check)):
     # return UserService.get_registries(auth.cognito_id)
-
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     return user.fetch_registries()
 

@@ -74,20 +74,6 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
 
 @router.get("/{registry_id}")
 async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    """
-    Retrieves the details of a specific registry by its ID, along with the access role of the requesting user.
-
-    This method checks if the user, identified by the `auth` parameter, has access to the specified registry and then retrieves the registry's details. It augments the registry details with information about the user's role and whether they are an admin in the context of this registry.
-
-    Parameters:
-    - registry_id (str): The unique identifier of the registry to retrieve.
-    - auth (CognitoTokenCustom): An authentication token for the user, provided by the `auth_token_check` dependency. This token contains user information such as the cognito_id.
-
-    Returns:
-    - dict: A dictionary containing the registry's details, including 'is_admin' and 'role' fields indicating the user's access level and role within the registry.
-
-    The method first checks the user's access to the registry. If access is granted, it fetches the registry's details from the `RegistryService` and appends information about the user's role and admin status before returning this data.
-    """
     registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
     registry = RegistryService.get_registry(registry_id)
     registry['is_admin'] = registry_access['is_admin']
