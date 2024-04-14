@@ -4,7 +4,7 @@ import { useAkello } from "@akello/react-hook";
 import { useDisclosure } from '@mantine/hooks';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Registry } from '@akello/core';
+import { Registry, UserRegistry } from '@akello/core';
 import { Header } from '../../../atoms';
 import { PatientDetail } from '../../../organisms';
 import { useMediaQuery } from '@mantine/hooks';
@@ -14,6 +14,7 @@ import { modals } from '@mantine/modals';
 
 interface RegistryShellProps {
     AppShell: any;
+    registry_id: string;
     Logo: any;
     onNavigate: (path: string) => void;
     signOut: () => void;
@@ -26,6 +27,7 @@ interface RegistryShellProps {
 export const RegistryShell:React.FC<RegistryShellProps> = ({
         Logo,
         AppShell,
+        registry_id,
         onNavigate,
         pathname,
         Outlet,
@@ -43,30 +45,31 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
     useEffect(() => {
 
         akello.userService.getUserRegistries((data) => {
-            const registeries = data.map((registry: any) => {
-                return new Registry(
-                    registry['id'],
-                    registry['name'],
-                    registry['description'],
-                    registry['active_patients'],
-                    registry['members'],
-                    registry['questionnaires'],
-                    {
-                        total_minutes: registry['total_minutes'],
-                        completed_minutes: registry['completed_minutes'],
-                        safety_risk: registry['safety_risk']
-                    }
+            const user_registeries = data.map((user_registry: any) => {
+                return new UserRegistry(
+                    user_registry['user_id'],
+                    user_registry['registry_id'],
+                    user_registry['role'],
+                    user_registry['created_at'],
+                    user_registry['modified_at']
                 );
             });
 
-            if(registeries.length == 0) {
+            if(user_registeries.length == 0) {
                 onNavigate('/create-registry');
             } else {
-                akello.selectRegistry(registeries[0]);
+                console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+                console.log('setting registry to the first one')
+                console.log(user_registeries)
+                akello.selectUserRegistry(user_registeries[0]);
+                // akello.selectRegistry(user_registeries[0]);
                 akello.dispatchEvent({ type: 'change' });
+                akello.dispatchEvent({ type: 'user-account-change-org' });
             }
         });
     }, []);
+
+
 
     useEffect(() => {
         if(akello.getSelectedRegistry() != undefined) {

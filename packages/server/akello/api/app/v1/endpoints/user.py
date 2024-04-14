@@ -20,6 +20,8 @@ async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_tok
     This should only be called when the user logs in. It will create a new user if the user does not exist
     """
 
+    created_user = False
+
     # log session
     UserSession(
         user_id=auth.cognito_id,
@@ -36,12 +38,16 @@ async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_tok
         logger.info('registering a new User for the first time - %s ' % auth.username)
         user = User(id=auth.cognito_id, first_name=auth.given_name, last_name=auth.family_name, email=auth.username)
         user.put()
-    return user
+        created_user = True
+    return {
+        'user': user,
+        'created_user': created_user,
+    }
 
 @router.get("/invites")
 async def get_user_invites(auth: CognitoTokenCustom = Depends(auth_token_check)):
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
-    return user.fetch_user_invites()
+    return user.fetch_invites()
 
 @router.get("/organizations")
 async def get_user_organizations(auth: CognitoTokenCustom = Depends(auth_token_check)):

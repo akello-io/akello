@@ -3,9 +3,9 @@ export class Registry  {
     name: string
     description: string
     patients: number
-    members: RegistryMember[] = []    
+    members: RegistryMember[] = []
     measurements: Questionnaire[] = []
-    stats: any    
+    stats: any
     stripe_customer_id?: string
 
     constructor(
@@ -15,8 +15,8 @@ export class Registry  {
         patients: number,
         members: RegistryMember[],
         measurements: Questionnaire[],
-        stats: any,        
-        stripe_customer_id?: string        
+        stats: any,
+        stripe_customer_id?: string
     ) {
         this.id = id
         this.name = name
@@ -24,10 +24,82 @@ export class Registry  {
         this.patients = patients
         this.members = members
         this.measurements = measurements
-        this.stats = stats        
-        this.stripe_customer_id = stripe_customer_id        
-    }    
+        this.stats = stats
+        this.stripe_customer_id = stripe_customer_id
+    }
 }
+
+
+export class User{
+    id: string
+    email: string
+    first_name: string
+    last_name: string
+    picture: string
+    phone_number: string
+
+    constructor(
+        id: string,
+        email: string,
+        first_name: string,
+        last_name: string,
+        picture: string,
+        phone_number: string
+    ) {
+        this.id = id
+        this.email = email
+        this.first_name = first_name
+        this.last_name = last_name
+        this.picture = picture
+        this.phone_number = phone_number
+    }
+}
+
+
+export class UserRegistry {
+    user_id: string;
+    registry_id: string;
+    role: string;
+    created_at: number;
+    modified_at: number;
+
+    constructor(
+        user_id: string,
+        registry_id: string,
+        role: string,
+        created_at: number,
+        modified_at: number
+    ) {
+        this.user_id = user_id
+        this.registry_id = registry_id
+        this.role = role
+        this.created_at = created_at
+        this.modified_at = modified_at
+    }
+}
+
+export class Organization {
+
+    id: string
+    name: string
+    stripe_customer_id: string
+    created_by: User
+
+    constructor(
+        id: string,
+        name: string,
+        stripe_customer_id: string,
+        created_by: User
+    ) {
+        this.id = id
+        this.name = name
+        this.stripe_customer_id = stripe_customer_id
+        this.created_by = created_by
+    }
+
+
+}
+
 
 export class RegistryMember {
     is_admin: boolean
@@ -108,14 +180,14 @@ export class TreatmentLog {
 }
 
 export class EventLog {
-    id: string    
+    id: string
     system?: string
     data?: any
     created_date: number
     modified_date: number
 
     constructor(
-        id: string,  
+        id: string,
         system: string,
         data: any,
         created_date: number,
@@ -178,7 +250,7 @@ export class Questionnaire {
         type: string,
         active: boolean,
         measurements: any
-    ) { 
+    ) {
         this.uid  = uid
         this.name = name
         this.type = type
@@ -234,7 +306,7 @@ export class PatientRegistry {
     }
 
 }
-    
+
 export class AkelloApp {
     id: string
     group: string

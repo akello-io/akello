@@ -24,7 +24,11 @@ export const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers, onNavi
         drawerHandlers.open()
     })
 
+    console.log('loading registry page >>>>>>>>>>>>>>>>>>>>>>>>>>  ')
+    debugger;
+
     useEffect(() => {
+        debugger;
         if (selectedRegistry) {
             const registryId = selectedRegistry.id;
             if (registryId) {

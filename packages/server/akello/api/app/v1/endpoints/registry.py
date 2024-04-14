@@ -74,6 +74,7 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
 
 @router.get("/{registry_id}")
 async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    #TODO: Refactor this to use the new models
     registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
     registry = RegistryService.get_registry(registry_id)
     registry['is_admin'] = registry_access['is_admin']
@@ -83,6 +84,7 @@ async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth
 
 @router.put("/{registry_id}/measurements")
 async def update_measurements(registry_id: str, request: Request, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    # TODO: Refactor this to use the new models
     UserService.check_registry_access(auth.cognito_id, registry_id)
     payload = await request.json()
     RegistryService.set_measurements(registry_id, payload)
@@ -90,6 +92,7 @@ async def update_measurements(registry_id: str, request: Request, auth: CognitoT
 
 @router.get("/{registry_id}/team-members")
 async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    # TODO: Refactor this to use the new models
     UserService.check_registry_access(auth.cognito_id, registry_id)
     members = RegistryService.get_members(registry_id)
     for member in members:
@@ -99,6 +102,12 @@ async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom =
 
 @router.get("/{registry_id}/patients")
 async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
+    registry_treatments = registry.fetch_patients(requesting_user=user)
+
+
+    """
     registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
     patients = RegistryService.get_patients(registry_id)
     registry_metadata = RegistryService.get_registry(registry_id)
@@ -110,10 +119,14 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
         except Exception as e:
             print(e)
             failed_patients.append(patient)
+    
 
     return {'is_admin': registry_access['is_admin'], 'role': registry_access['role'],
             'questionnaires': registry_metadata['questionnaires'], 'successfully_loaded': successfully_loaded,
             'failed_patients': failed_patients}
+    """
+
+    return registry_treatments
 
 
 class InvitePatientRequest(BaseModel):

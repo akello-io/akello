@@ -25,6 +25,7 @@
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
     "build:lib": "tsc && vite build",
+    "build:lib-dev": "tsc && vite build --mode development",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "vitest",

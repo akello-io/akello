@@ -2,7 +2,13 @@ from uuid import uuid4
 from akello.db.models_v2 import AkelloBaseModel
 from akello.db.models_v2.user import User, UserRegistry, UserOrganizationRole, UserRegistryRole, UserOrganization
 from akello.db.models_v2.user import UserInvite
-from typing import Optional
+from typing import Optional, List
+from boto3.dynamodb.conditions import Key
+from pydantic import TypeAdapter
+from akello.db.connector.dynamodb import registry_db
+
+
+
 
 class Registry(AkelloBaseModel):
     id: str
@@ -66,6 +72,29 @@ class Registry(AkelloBaseModel):
             invited_by_user_id=invited_by_user.id,
             role=UserRegistryRole.patient
         )._AkelloBaseModel__put()
+
+    def fetch_patients(self, requesting_user: User):
+        user_registry = UserRegistry(
+            user_id=requesting_user.id,
+            registry_id=self.id,
+            role=UserRegistryRole.admin
+        )._AkelloBaseModel__get()
+        if not user_registry:
+            raise Exception('User is not part of this registry')
+
+        # Define the partition key value
+        partition_key_value = f"registry-id:{self.id}"
+
+        # Perform the query
+        response = registry_db.query(
+            KeyConditionExpression=Key('partition_key').eq(partition_key_value) & Key('sort_key').begins_with(
+                'treatment-user-id:'),
+        )
+
+        # Extract sessions from the response
+        sessions = response.get('Items', [])
+        ta = TypeAdapter(List[RegistryUser])
+        return ta.validate_python(sessions)
 
 class RegistryOrganization(AkelloBaseModel):
     registry_id: str

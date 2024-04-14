@@ -10,7 +10,7 @@ import { UserService } from './services';
 import { FinancialModelService } from './services/financial_model';
 import { ReportsService } from './services/reports';
 import { ClientStorage } from './storage';
-import { Registry, PatientRegistry } from './models';
+import { Registry, PatientRegistry, UserRegistry, User, Organization } from './models';
 
 
 export const DEFAULT_BASE_URL = 'http://localhost:8000';
@@ -48,6 +48,7 @@ export interface AkelloClientInterface {
         onFail: (err: any) => void
     ): void;
     selectRegistry(registry: Registry): void;
+    selectUserRegistry(userRegistry: UserRegistry): void;
     getSelectedRegistry(): Registry | undefined;
     registryService: RegistryService;
     userService: UserService;
@@ -83,7 +84,9 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     private family_name: string | undefined;
     private photo: string | undefined;
     private email: string | undefined;
+    private selectedOrganization: Organization | undefined;
     private selectedRegistry: Registry | undefined
+    private selectedUserRegistry: UserRegistry | undefined
     private selectedPatientRegistry: PatientRegistry | undefined
     private readonly storage: ClientStorage;
     public readonly registryService: RegistryService;
@@ -105,8 +108,19 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         this.reportsService = new ReportsService(this);
         this.storage = new ClientStorage(localStorage);
         this.accessToken = this.storage.getString('accessToken') ?? undefined;
+        this.selectedOrganization = this.storage.getObject('selectedOrganization') ?? undefined;
         this.selectedRegistry = this.storage.getObject('selectedRegistry') ?? undefined;
+        this.selectedUserRegistry = this.storage.getObject('selectedUserRegistry') ?? undefined;
         this.selectedPatientRegistry = this.storage.getObject('selectedPatientRegistry') ?? undefined;
+    }
+
+
+    selectOrganization(organization: Organization | undefined) {
+        this.selectedOrganization = organization;
+        this.storage.setObject('selectedOrganization', organization);
+    }
+    getSelectedOrganization(): Organization | undefined {
+        return this.selectedOrganization;
     }
 
 
@@ -117,6 +131,15 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
 
     getSelectedRegistry(): Registry | undefined {
         return this.selectedRegistry;
+    }
+
+    getSelectedUserRegistry(): UserRegistry | undefined {
+        return this.selectedUserRegistry;
+    }
+
+    selectUserRegistry(userRegistry: UserRegistry | undefined) {
+        this.selectedUserRegistry = userRegistry;
+        this.storage.setObject('selectedUserRegistry', userRegistry);
     }
 
     selectPatient(patientRegistry: PatientRegistry | undefined) {
@@ -305,7 +328,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     login(
         username: string,
         password: string,
-        onSuccess: (token: string) => void,
+        onSuccess: (token: string, first_login: boolean) => void,
         onFail: (err: any) => void
     ) {
         const authenticationData = {
@@ -359,10 +382,10 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                     });
                 })
 
-                this.userService.getUser((user) => {
+                this.userService.getUser((resp) => {
                     this.dispatchEvent({ type: 'change' });
                     this.storage.setString('accessToken', accessToken);
-                    onSuccess(accessToken);
+                    onSuccess(accessToken, resp.created_user);
                     //this.storage.setString('username', username);
                     //this.storage.setObject('user', user);
                 })
