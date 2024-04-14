@@ -1,16 +1,17 @@
 import logging
 import os
-import boto3
-from fastapi import APIRouter, Request, Depends, UploadFile
-from akello.auth.provider import auth_token_check
-from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
-from akello.db.types import UserInvite
-from akello.services.models.user import UserService
-from akello.services.models.registry import RegistryService
-from akello.db.connector.s3 import S3Storage
-from pydantic import BaseModel
+import uuid
 from typing import Optional
+
+import boto3
 from boto3 import Session
+from fastapi import APIRouter, Request, Depends
+from pydantic import BaseModel
+
+from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
+from akello.auth.provider import auth_token_check
+from akello.db.models_v2.user import User, UserSession
+from akello.services.models.user import UserService
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
 
@@ -18,45 +19,31 @@ logger = logging.getLogger('mangum')
 router = APIRouter()
 
 
-@router.post("/profile_photo")
-async def update_profile_photo(file: UploadFile, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    file_path = await S3Storage().set_item(file.filename, file)
-    return file_path
-
-
 @router.get("")
 async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    UserService.save_user_session(auth.cognito_id, request.headers['user-agent'], request.client.host)
+    # log session
+    UserSession(
+        user_id=auth.cognito_id,
+        session_id=str(uuid.uuid4()),
+        user_agent=request.headers['user-agent'],
+        ip_address=request.client.host
+    ).put()
+
     logger.info('calling get_user: email:%s' % auth.username)
-    user = UserService.get_user(auth.cognito_id)
+
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     if not user:
+        # if this is the first time we are seeing the user we create a new user
         logger.info('registering a new User for the first time - %s ' % auth.username)
-        UserService.create_user(auth.cognito_id, auth.username, auth.given_name, auth.family_name,
-                                None)  # raise Exception('User not found')
-    else:
-        UserService.set_user_active(auth.cognito_id)
-
-    # TODO: WE SHOULD ONLY DO THIS ONCE ON LOGIN
-
-    invites = UserInvite.get_invites(auth.username)
-    print('invites: %s ' % auth.username)
-    print('invites')
-    print(invites)
-    for invite in invites:
-        logger.info('adding user - %s to registry %s ' % (auth.username, invite['registry_id']))
-        UserService.create_registry_user(registry_id=invite['registry_id'], first_name='Vijay',
-            # TODO: Remove hardcoded value
-            last_name='Selvaraj',  # TODO: Remove hardcoded value
-            email=invite['email'], user_id=auth.cognito_id, role=invite['role'], is_admin=False)
-        UserService.link_user_to_registry(auth.cognito_id, invite['registry_id'])
-        RegistryService.update_stats(invite['registry_id'])
-
+        user = User(id=auth.cognito_id, first_name=auth.given_name, last_name=auth.family_name, email=auth.username)
+        user.put()
     return user
 
 
 @router.get("/sessions")
 async def get_user_sessions(auth: CognitoTokenCustom = Depends(auth_token_check)):
-    return UserService.get_user_sessions(auth.cognito_id)
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    return user.fetch_user_sessions()
 
 
 # TODO: Should this be the root API for registry?
