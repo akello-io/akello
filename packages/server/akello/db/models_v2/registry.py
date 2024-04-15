@@ -69,7 +69,10 @@ class Registry(AkelloBaseModel):
             object_id=self.id,
             user_email=email,
             invited_by_user_id=invited_by_user.id,
-            role=UserRegistryRole.patient
+            role=UserRegistryRole.patient,
+            payload={
+                'invited_by': invited_by_user.model_dump()
+            }
         )._AkelloBaseModel__put()
 
     def fetch_patients(self, requesting_user: User):

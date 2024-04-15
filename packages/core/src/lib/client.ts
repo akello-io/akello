@@ -9,6 +9,7 @@ import {
 import { UserService } from './services';
 import { FinancialModelService } from './services/financial_model';
 import { ReportsService } from './services/reports';
+import { PatientService } from './services/patient';
 import { ClientStorage } from './storage';
 import { Registry, PatientRegistry, UserRegistry, User, Organization } from './models';
 
@@ -54,6 +55,7 @@ export interface AkelloClientInterface {
     userService: UserService;
     financialService: FinancialModelService;
     reportsService: ReportsService;
+    patientService: PatientService;
     accessToken: string | undefined;
 
 }
@@ -93,6 +95,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     public readonly userService: UserService;
     public readonly financialService: FinancialModelService;
     public readonly reportsService: ReportsService;
+    public readonly patientService: PatientService;
     accessToken: string | undefined;
 
     /**
@@ -106,6 +109,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         this.userService = new UserService(this);
         this.financialService = new FinancialModelService(this);
         this.reportsService = new ReportsService(this);
+        this.patientService = new PatientService(this);
         this.storage = new ClientStorage(localStorage);
         this.accessToken = this.storage.getString('accessToken') ?? undefined;
         this.selectedOrganization = this.storage.getObject('selectedOrganization') ?? undefined;

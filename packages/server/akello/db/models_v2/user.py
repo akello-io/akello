@@ -2,7 +2,7 @@ from enum import Enum
 from typing import Optional, List
 
 from boto3.dynamodb.conditions import Key
-from pydantic import TypeAdapter
+from pydantic import TypeAdapter, BaseModel
 
 from akello.db.connector.dynamodb import registry_db
 from akello.db.models_v2 import AkelloBaseModel
@@ -73,9 +73,9 @@ class User(AkelloBaseModel):
         ta = TypeAdapter(List[UserRegistry])
         return ta.validate_python(registries)
 
-    def fetch_invites(self):
+    def fetch_invites(self, requesting_email: str):
         # Define the partition key value
-        partition_key_value = f"user-email:{self.email}"
+        partition_key_value = f"user-email:{requesting_email}"
 
         # Perform the query
         response = registry_db.query(
@@ -172,6 +172,7 @@ class UserInvite(AkelloBaseModel):
     invited_by_user_id: str
     role: str # UserRegistryRole / UserOrganizationRole
     accepted: bool = False
+    payload: Optional[dict] = {}
 
     @property
     def partition_key(self) -> str:
@@ -180,7 +181,6 @@ class UserInvite(AkelloBaseModel):
     @property
     def sort_key(self) -> str:
         return 'user-invite::%s-id:%s' % (self.object_type, self.object_id)
-
 
     def put(self):
         self._AkelloBaseModel__put()
