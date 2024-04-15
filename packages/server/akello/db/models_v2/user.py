@@ -184,3 +184,14 @@ class UserInvite(AkelloBaseModel):
 
     def put(self):
         self._AkelloBaseModel__put()
+
+    def to_scrubbed(self):
+        return {
+            'object_type': self.object_type,
+            'object_id': self.object_id,
+            'user_email': self.user_email,
+            'invited_by_user_id': self.invited_by_user_id,
+            'role': self.role,
+            # 'accepted': self.accepted,
+            # 'payload': self.payload
+        }
