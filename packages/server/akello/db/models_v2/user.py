@@ -75,7 +75,7 @@ class User(AkelloBaseModel):
 
     def fetch_invites(self):
         # Define the partition key value
-        partition_key_value = f"email:{self.email}"
+        partition_key_value = f"user-email:{self.email}"
 
         # Perform the query
         response = registry_db.query(
@@ -101,22 +101,6 @@ class UserRegistry(AkelloBaseModel):
     user_id: str
     registry_id: str
     role: UserRegistryRole
-
-    @property
-    def partition_key(self) -> str:
-        return 'user-id:%s' % self.user_id
-
-    @property
-    def sort_key(self) -> str:
-        return 'registry-id:%s' % self.registry_id
-
-
-class UserRegistryInvite(AkelloBaseModel):
-    user_id: str
-    registry_id: str
-    email: str
-    role: str
-    accepted: bool = False
 
     @property
     def partition_key(self) -> str:
@@ -191,7 +175,7 @@ class UserInvite(AkelloBaseModel):
 
     @property
     def partition_key(self) -> str:
-        return 'email:%s' % self.user_email
+        return 'user-email:%s' % self.user_email
 
     @property
     def sort_key(self) -> str:

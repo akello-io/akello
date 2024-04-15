@@ -16,7 +16,6 @@ interface PatientSessionProps {
 
 export const PatientSession:React.FC<PatientSessionProps> = ({onNavigate}) => {
 
-    const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
     const [loaded, setLoaded] = useState(false)
     const [visitType, setVisitType] = useState('')
     const [contactType, setContactType] = useState('')
@@ -44,17 +43,6 @@ export const PatientSession:React.FC<PatientSessionProps> = ({onNavigate}) => {
         </Anchor>
       ));
 
-    useEffect(() => {
-        const selectedRegistryId = akello.getSelectedRegistry()?.id;
-        if (selectedRegistryId) {
-            akello.registryService.getRegistry(selectedRegistryId, (data: any) => {
-                setQuestionnaires(data['questionnaires'].filter((questionnaire: Questionnaire) => questionnaire.active === true))
-                setLoaded(true)
-            }, (error: any) => {
-                console.log(error)
-            })
-        }
-    }, [])
 
     useEffect(() => {
 
@@ -71,7 +59,7 @@ export const PatientSession:React.FC<PatientSessionProps> = ({onNavigate}) => {
 
     useEffect(() => {
         let total_questionnaires_answered = 0
-        questionnaires.map((questionnaire: Questionnaire) => {
+        akello.getSelectedRegistry()?.measurements.map((questionnaire: Questionnaire) => {
             if(questionnaire_responses[questionnaire.uid]) {
                 if(Object.keys(questionnaire_responses[questionnaire.uid].responses).length == questionnaire.measurements.length) {
                     total_questionnaires_answered += 1
@@ -79,7 +67,7 @@ export const PatientSession:React.FC<PatientSessionProps> = ({onNavigate}) => {
             }
         })
 
-        if(total_questionnaires_answered!=0 && total_questionnaires_answered == questionnaires.length) {
+        if(total_questionnaires_answered!=0 && total_questionnaires_answered == akello.getSelectedRegistry()?.measurements.length) {
             setAllQuestionsAnswered(true)
         }
 
@@ -88,36 +76,6 @@ export const PatientSession:React.FC<PatientSessionProps> = ({onNavigate}) => {
     const [mm, setMM] = useState(0)
     const [ss, setSS] = useState(0)
     //const [ms, setMS] = useState(0)
-
-
-
-
-    if(loaded && questionnaires.length == 0) {
-        return (
-            <div className='space-y-4'>
-                <div>
-                    No questionnaires available. Make sure you have measurements and questionnaires set up in the registry.
-                </div>
-
-
-                <Button onClick={() => {
-                    onNavigate('/measurements');
-                }
-                }>
-                    Add measurements
-                </Button>
-            </div>
-        )
-    }
-
-    if(questionnaires.length == 0) {
-        return (
-            <div>
-                Loading...
-            </div>
-        )
-    }
-
 
     const saveTreatmentSession = (no_show?: boolean) => {
         let scores = []
@@ -275,7 +233,7 @@ export const PatientSession:React.FC<PatientSessionProps> = ({onNavigate}) => {
                     showScreeners && (
                         <div>
                             {
-                                questionnaires.map((questionnaire: Questionnaire) => {
+                                 akello.getSelectedRegistry()?.measurements.map((questionnaire: Questionnaire) => {
                                     if(questionnaire['type'] == "survey") {
                                       return (
                                         <QuestionnaireForm

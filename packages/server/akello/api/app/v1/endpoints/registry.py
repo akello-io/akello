@@ -16,8 +16,9 @@ from akello.decorators.mixin import mixin
 from akello.services.models.akello_apps import AkelloAppsService
 from akello.services.models.registry import RegistryService
 from akello.services.models.user import UserService
+from akello.services.models.screeners import ScreenerService
 
-from akello.db.models_v2.registry import Registry
+from akello.db.models_v2.registry import Registry, RegistryUser
 from akello.db.models_v2.user import User
 
 logger = logging.getLogger('mangum')
@@ -75,11 +76,16 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
 @router.get("/{registry_id}")
 async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
     #TODO: Refactor this to use the new models
-    registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
-    registry = RegistryService.get_registry(registry_id)
-    registry['is_admin'] = registry_access['is_admin']
-    registry['role'] = registry_access['role']
-    return registry
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
+    registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry_id, 'user-id:%s' % user.id)
+    if not registry_user:
+        raise Exception('User does not have access to this registry')
+
+    resp = registry.model_dump()
+    resp['measurements'] = ScreenerService.get_screeners()
+
+    return resp
 
 
 @router.put("/{registry_id}/measurements")
@@ -140,20 +146,17 @@ async def invite_patient(registry_id: str, invite: InvitePatientRequest, auth: C
     return {'status': 'success'}
 
 @router.post("/{registry_id}/refer-patient")
-async def refer_patient(request: Request, registry_id: str, patient_registry: PatientRegistry,
-                        auth: CognitoTokenCustom = Depends(auth_token_check)):
-    UserService.check_registry_access(auth.cognito_id, registry_id)
-    patient_registry = PatientRegistry(id=registry_id, patient_mrn=patient_registry.patient_mrn,
-                                       payer=patient_registry.payer,
-                                       referring_provider_npi=patient_registry.referring_provider_npi,
-                                       first_name=patient_registry.first_name, last_name=patient_registry.last_name,
-                                       phone_number=patient_registry.phone_number, email=patient_registry.email,
-                                       date_of_birth=patient_registry.date_of_birth,
-                                       treatment_logs=patient_registry.treatment_logs,
-                                       schema_version='V1', )
-    RegistryService.refer_patient(patient_registry)
-    RegistryService.update_stats(registry_id)
-    return patient_registry
+async def refer_patient(registry_id: str, patient_registry: PatientRegistry, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
+    registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry.id, 'user-id:%s' % user.id)
+    if not registry_user:
+        raise Exception('User does not have access to this registry')
+
+
+    registry.invite_patient(email=patient_registry.email, invited_by_user=user)
+
+
 
 
 @router.post("/{registry_id}/record-session")
