@@ -1,0 +1,3 @@
+
+
+export './patient-registry-grid'

@@ -6,7 +6,7 @@ import { Meta } from '@storybook/react'
 import { StoryFn } from '@storybook/react'
 import { AkelloClient } from '@akello/core'
 import { MantineProvider } from '@mantine/core'
-
+import { akello_client } from '../../../../../../storybook_akello_client'
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -938,24 +938,10 @@ const measurements =  [
     }
   ]
 
-const config = {
-  baseUrl: import.meta.env.VITE_API,
-  cognitoUserPoolId: import.meta.env.VITE_AWS_COGNITO_USERPOOL_ID,
-  cognitoClientId: import.meta.env.VITE_AWS_COGNITO_APP_CLIENT_ID,
-          ...(import.meta.env.VITE_AKELLO_COGNITO_URL && {
-              cognitoEndpoint: import.meta.env.VITE_AKELLO_COGNITO_URL,
-              authenticationFlowType: "USER_PASSWORD_AUTH",
-  }),
-  onUnauthenticated: () => {
-      window.location.href = '/login'
-  }
-}
-const akello = new AkelloClient(config)
-
 const Template: StoryFn<typeof MeasurementsPage> = () => {
   return (
       <MantineProvider >
-        <AkelloProvider akello={akello}>
+        <AkelloProvider akello={akello_client}>
           <MeasurementsPage measurements={measurements} />
         </AkelloProvider>
       </MantineProvider>
