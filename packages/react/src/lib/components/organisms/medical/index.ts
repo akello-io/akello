@@ -1,3 +1,3 @@
 
 
-export './patient-registry-grid'
+export * from './patient-registry-grid'

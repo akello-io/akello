@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridToolbar, GridSingleSelectColDef } from '@mui/x-data-grid';
 import { useAkello } from '@akello/react-hook';
 
 interface PatientRegistryGridProps {
     rows: [],
     measurements: any[]
+    onPatientSelect: (row: any) => void
 }
 
 const columns = [
@@ -66,87 +67,69 @@ const columns = [
     {
         field: 'date_of_birth',
         headerName: 'DOB',
-        type: 'number',
         width: 110,
-        editable: true,
+        editable: true
     },
     {
         field: 'initial_assessment',
         headerName: 'I/A',
-        type: 'number',
         width: 110,
-        editable: true,
+        editable: true
     },
     {
         field: 'last_follow_up',
         headerName: 'L/FU',
-        type: 'number',
-        width: 110,
-        editable: true,
+        width: 110
     },
     {
         field: 'last_psychiatric_consult',
         headerName: 'L/PC',
-        type: 'number',
-        width: 110,
-        editable: true,
+        width: 110
     },
     {
         field: 'relapse_prevention_plan',
         headerName: 'RPP',
-        type: 'number',
-        width: 110,
-        editable: true,
+        width: 110
     },
     {
         field: 'total_sessions',
         headerName: '# Sessions',
-        type: 'number',
-        width: 110,
-        editable: true,
+        width: 110
     },
     {
         field: 'weeks_since_initial_assessment',
         headerName: 'Weeks Since I/A',
-        type: 'number',
         width: 110,
-        editable: true,
+        editable: true
     },
     {
         field: 'minutes_this_month',
         headerName: 'Minutes This Month',
-        type: 'number',
         width: 110,
-        editable: true,
+        editable: true
     },
 ]
 
-export const PatientRegistryGrid:React.FC<PatientRegistryGridProps> = ({rows, measurements}) => {
-    const akello = useAkello();
-
-    const columns_data: GridColDef<any>[] = columns;
+export const PatientRegistryGrid:React.FC<PatientRegistryGridProps> = ({rows, measurements, onPatientSelect}) => {
 
     for(let i = 0; i < measurements.length; i++) {
-        columns_data.push({
+        columns.push({
             field: measurements[i].field + '_initial',
             headerName: measurements[i].headerName + ' Initial',
             width: 110,
-            editable: true,
         })
-        columns_data.push({
+        columns.push({
             field: measurements[i].field + '_last',
             headerName: measurements[i].headerName + ' Last',
-            width: 110,
-            editable: true,
+            width: 110
         })
     }
-
 
     return (
         <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
                 rows={rows}
-                columns={columns_data}
+                columns={columns}
                 initialState={{
                     columns: {
                         columnVisibilityModel: {
@@ -160,10 +143,10 @@ export const PatientRegistryGrid:React.FC<PatientRegistryGridProps> = ({rows, me
                     },
                 }}
                 onRowClick={(event) => {
-                    akello.selectPatient(event.row)
+                    onPatientSelect(event.row)
                 }}
                 slots={{ toolbar: GridToolbar }}
-                getRowId={(row) => row.user_id}
+                getRowId={(row: any) => row.user_id}
                 pageSizeOptions={[5]}
                 checkboxSelection
                 disableRowSelectionOnClick
