@@ -44,7 +44,7 @@ def create_core_table(dynamodb, table_name):
         print("tables probably already exist")
 
 
-def create_measurements_table(dynamodb, table_name):
+def create_timeseries_table(dynamodb, table_name):
     try:
         print('creating timeseries measurements table')
         table = dynamodb.create_table(
@@ -89,7 +89,7 @@ def setup_registry_db():
         print("using real dynamodb")
         client = boto3.client('dynamodb')
         dynamodb = boto3.resource('dynamodb')
-        return client, dynamodb, dynamodb.Table('akello_core'), dynamodb.Table('akello_measurements')
+        return client, dynamodb, dynamodb.Table('akello_core'), dynamodb.Table('akello_timeseries')
 
     # use local dynamodb
     print("using local dynamodb")
@@ -97,9 +97,9 @@ def setup_registry_db():
     dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
 
     create_core_table(dynamodb, 'akello_core')
-    create_measurements_table(dynamodb, 'akello_measurements')
+    create_timeseries_table(dynamodb, 'akello_timeseries')
 
-    return client, dynamodb, dynamodb.Table('akello_core'), dynamodb.Table('akello_measurements')
+    return client, dynamodb, dynamodb.Table('akello_core'), dynamodb.Table('akello_timeseries')
 
 
 client, dynamodb, registry_db, measurements_db = setup_registry_db()
