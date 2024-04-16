@@ -26,7 +26,7 @@ Primary.args = {
         {
             "id": "1f371e53-ed55-2560-bb93-02d8b66bcde2",
             "patient_flag": null,
-            "patient_mrn": "ff",
+            "mrn": "ff",
             "date_created": 1708684622.374724,
             "date_graduated": null,
             "date_modified": 1708684622.374735,
@@ -38,7 +38,7 @@ Primary.args = {
             "date_of_birth": "2024-02-07",
             "treatment_logs": [
                 {
-                    "patient_mrn": "ff",
+                    "mrn": "ff",
                     "provider": null,
                     "no_show": false,
                     "flag": null,
@@ -65,7 +65,7 @@ Primary.args = {
                     "date": 1708656264370
                 },
                 {
-                    "patient_mrn": "ff",
+                    "mrn": "ff",
                     "provider": null,
                     "no_show": false,
                     "flag": null,
@@ -108,7 +108,7 @@ Primary.args = {
         {
             "id": "1f371e53-ed55-2560-bb93-02d8b66bcde2",
             "patient_flag": null,
-            "patient_mrn": "ff",
+            "mrn": "ff",
             "date_created": 1708684622.374724,
             "date_graduated": null,
             "date_modified": 1708684622.374735,
@@ -120,7 +120,7 @@ Primary.args = {
             "date_of_birth": "2024-02-07",
             "treatment_logs": [
                 {
-                    "patient_mrn": "ff",
+                    "mrn": "ff",
                     "provider": null,
                     "no_show": false,
                     "flag": null,
@@ -147,7 +147,7 @@ Primary.args = {
                     "date": 1708656264370
                 },
                 {
-                    "patient_mrn": "ff",
+                    "mrn": "ff",
                     "provider": null,
                     "no_show": false,
                     "flag": null,
@@ -690,5 +690,5 @@ Primary.args = {
             ]
         }
     ],
-    handlePatientClickEvent: () => {}  
+    handlePatientClickEvent: () => {}
 }

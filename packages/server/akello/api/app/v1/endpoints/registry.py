@@ -112,7 +112,6 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
     registry_treatments = registry.fetch_patients(requesting_user=user)
 
-
     """
     registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
     patients = RegistryService.get_patients(registry_id)
@@ -125,14 +124,22 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
         except Exception as e:
             print(e)
             failed_patients.append(patient)
-    
+
 
     return {'is_admin': registry_access['is_admin'], 'role': registry_access['role'],
             'questionnaires': registry_metadata['questionnaires'], 'successfully_loaded': successfully_loaded,
             'failed_patients': failed_patients}
     """
 
-    return registry_treatments
+    return {
+        'is_admin': True,
+        'role': 'admin',
+        'questionnaires': [],
+        'successfully_loaded': registry_treatments,
+        'failed_patients': []
+    }
+
+
 
 
 class InvitePatientRequest(BaseModel):
@@ -153,8 +160,13 @@ async def refer_patient(registry_id: str, patient_registry: PatientRegistry, aut
     if not registry_user:
         raise Exception('User does not have access to this registry')
 
-
-    registry.invite_patient(email=patient_registry.email, invited_by_user=user)
+    registry.invite_patient(email=patient_registry.email, invited_by_user=user, payload={
+        'registry_id': registry_id,
+        'user_id': user.id,
+        'mrn': patient_registry.patient_mrn,
+        'referring_npi': patient_registry.referring_provider_npi,
+        'payer': patient_registry.payer
+    })
 
 
 

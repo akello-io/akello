@@ -46,7 +46,11 @@ async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_tok
     if not user:
         # if this is the first time we are seeing the user we create a new user
         logger.info('registering a new User for the first time - %s ' % auth.username)
-        user = User(id=auth.cognito_id, first_name=auth.given_name, last_name=auth.family_name, email=auth.username)
+        given_name = auth.given_name if hasattr(auth, 'given_name') else None
+        family_name = auth.family_name if hasattr(auth, 'family_name') else None
+        username = auth.username if hasattr(auth, 'username') else None
+
+        user = User(id=auth.cognito_id, first_name=given_name, last_name=family_name, email=username)
         user.put()
         created_user = True
         selected_registry = _create_organization_registry(user)

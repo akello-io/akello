@@ -7,21 +7,21 @@ import { notifications } from '@mantine/notifications';
 
 
 export interface PatientDetailProps {
-    onStartSession: () => void;        
+    onStartSession: () => void;
 }
 
-export const PatientDetail:React.FC<PatientDetailProps> = ({onStartSession}) => {       
-    const akello = useAkello();    
-    const selectedPatient = akello.getSelectedPatientRegistry();        
-    const selectedRegistry = akello.getSelectedRegistry();    
-    
-    
+export const PatientDetail:React.FC<PatientDetailProps> = ({onStartSession}) => {
+    const akello = useAkello();
+    const selectedPatient = akello.getSelectedPatientRegistry();
+    const selectedRegistry = akello.getSelectedRegistry();
+
+
     if(selectedPatient === undefined) {
         return (
             <></>
         )
-    }         
-    
+    }
+
     return (
         <>
             <div className={"space-y-4 h-screen overflow-scroll	"}>
@@ -33,42 +33,42 @@ export const PatientDetail:React.FC<PatientDetailProps> = ({onStartSession}) => 
                             </div>
                             <Anchor size="md" href={"mailto:" + selectedPatient.email} target="_blank">
                                 {selectedPatient.email}
-                            </Anchor>                            
+                            </Anchor>
                             <div className={"text-sm"}>
-                                Referring NPI: {selectedPatient.referring_provider_npi}    
+                                Referring NPI: {selectedPatient.referring_npi}
                             </div>
-                        </div>                          
+                        </div>
                         <div className='flex flex-row space-x-3'>
                             <ThemeIcon>
                                 <IconPhone style={{  width: '70%', height: '70%' }} />
-                            </ThemeIcon>                   
+                            </ThemeIcon>
                             <a className={'text-md'} href={'tel:' + selectedPatient.phone_number}>{selectedPatient.phone_number}</a>
-                        </div>                                            
+                        </div>
                     </div>
                     <div className={"p-2"}>
-                        <div className={"grid grid-cols-2 space-y-6"}>  
-                                                    
+                        <div className={"grid grid-cols-2 space-y-6"}>
+
                             <div className={'col-span-2'}>
                                 <Select
-                                        placeholder="Select patient flag "                                
-                                        clearable                                        
+                                        placeholder="Select patient flag "
+                                        clearable
                                         defaultValue={selectedPatient.flag}
                                         value={selectedPatient.flag}
-                                        data={[                        
+                                        data={[
                                             'Needs Discussion',
                                             'Review with Psychiatrist',
                                             'Safety Risk'
                                         ]}
                                         onChange={(value) => {
                                             const selectedRegistry = akello.getSelectedRegistry();
-                                            const patientMRN = selectedPatient?.patient_mrn;                                            
+                                            const patientMRN = selectedPatient?.mrn;
                                             if (selectedRegistry && patientMRN) {
                                                 const previousSelectedFlagValue = selectedPatient.flag;
                                                 selectedPatient.flag = value !== null ? value : undefined;
                                                 akello.selectPatient(selectedPatient);
                                                 akello.dispatchEvent({ type: 'change' });
 
-                                                akello.registryService.setFlag(selectedRegistry.id, patientMRN, value !== null ? value : '', () => {                                                
+                                                akello.registryService.setFlag(selectedRegistry.id, patientMRN, value !== null ? value : '', () => {
                                                     if (value !== null) {
                                                         notifications.show({
                                                             color: 'green',
@@ -95,33 +95,33 @@ export const PatientDetail:React.FC<PatientDetailProps> = ({onStartSession}) => 
                                                 });
                                             }
 
-                                            
+
                                         }}
-                                    />       
-                            </div>                                                                                 
-                            <SegmentedControl fullWidth data={[                        
+                                    />
+                            </div>
+                            <SegmentedControl fullWidth data={[
                                     'Enrolled',
                                     'Treatment',
                                     'Relapse Prevention Plan',
                                     'Deactivated'
                                 ]}
-                                className='col-span-2' 
+                                className='col-span-2'
                                 defaultValue={selectedPatient.status}
                                 value={selectedPatient.status}
                                 onChange={(value) => {
-                                    const selectedRegistry = akello.getSelectedRegistry();                                    
+                                    const selectedRegistry = akello.getSelectedRegistry();
                                     if (selectedRegistry) {
                                         const previousSelectedStatusValue = selectedPatient.status;
-                                        selectedPatient.status = value;                                            
+                                        selectedPatient.status = value;
                                         akello.selectPatient(selectedPatient);
                                         akello.dispatchEvent({ type: 'change' });
-                                        akello.registryService.setStatus(selectedRegistry.id, selectedPatient.patient_mrn, value, () => {                                            
+                                        akello.registryService.setStatus(selectedRegistry.id, selectedPatient.mrn, value, () => {
                                             notifications.show({
                                                 color: 'green',
                                                 title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Status Changed',
                                                 message: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' has been moved to ' + value,
                                             })
-                                        },  (error: any) => {                                                                                      
+                                        },  (error: any) => {
                                             console.error(error);
                                             selectedPatient.status = previousSelectedStatusValue;
                                             akello.selectPatient(selectedPatient);
@@ -140,13 +140,15 @@ export const PatientDetail:React.FC<PatientDetailProps> = ({onStartSession}) => 
                         </div>
                     </div>
                 </div>
-                <Container size="xs">                    
-                    <Button color={'red'} fullWidth onClick={() => 
-                            onStartSession()                            
+                <Container size="xs">
+                    <Button color={'red'} fullWidth onClick={() =>
+                            onStartSession()
                         }>
                         Start Session
                     </Button>
                 </Container>
+
+                {/*
 
                 {
                     selectedPatient.treatment_logs!.length > 0 && (
@@ -169,12 +171,13 @@ export const PatientDetail:React.FC<PatientDetailProps> = ({onStartSession}) => 
                                     </p>
                                 </div>
                                 <div className={"p-2"}>
-                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements.filter((measurement) => measurement.active === true) ?? []} />                                    
+                                    <PatientTreatmentHistoryDataGrid selectedPatient={selectedPatient} questionnaires={selectedRegistry?.measurements.filter((measurement) => measurement.active === true) ?? []} />
                                 </div>
                             </div>
                         </>
                     )
                 }
+                */}
 
             </div>
         </>

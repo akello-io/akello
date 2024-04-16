@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { PatientRegistry } from "@akello/core";
+import { RegistryTreatment } from "@akello/core";
 import { useAkello } from '@akello/react-hook'
 import { Input, Button, Center, Container, Select, Tooltip } from "@mantine/core"
 import { Notification } from '@mantine/core';
@@ -19,7 +19,7 @@ export const PatientReferralPage:React.FC<PatientReferralPageProps> = ({onNaviga
         initialValues: {
             mrn: '',
             payer: '',
-            referring_provider_npi: '',
+            referring_npi: '',
             firstName: '',
             lastName: '',
             phoneNumber: '',
@@ -31,7 +31,7 @@ export const PatientReferralPage:React.FC<PatientReferralPageProps> = ({onNaviga
                 .required('Required'),
             payer: Yup.string()
                 .required('Required'),
-            referring_provider_npi: Yup.string()
+            referring_npi: Yup.string()
                 .required('Required'),
             firstName: Yup.string()
                 .max(15, 'Must be 15 characters or less')
@@ -44,21 +44,18 @@ export const PatientReferralPage:React.FC<PatientReferralPageProps> = ({onNaviga
             phoneNumber: Yup.string().required('Required')
         }),
         onSubmit: values => {
-            let new_patient = new PatientRegistry(
+            // registry_id: string, mrn: string, referring_npi: string, status: string
+            let new_patient = new RegistryTreatment(
                 akello.getSelectedRegistry()?.id ?? '',
                 values['mrn'],
-                values['firstName'],
-                values['lastName'],
-                values['phoneNumber'],
-                values['email'],
-                values['dob'],
+                values['referring_npi']
             );
-            new_patient.treatment_logs = [];
+            // new_patient.treatment_logs = [];
             new_patient.payer = values['payer'];
-            new_patient.referring_provider_npi = values['referring_provider_npi'];
+            new_patient.referring_npi = values['referring_npi'];
             akello.registryService.referPatient(akello.getSelectedRegistry()?.id ?? '', new_patient, (data) => {
                 console.log(data);
-                onNavigate('/registry/' + new_patient.patient_mrn);
+                onNavigate('/registry/' + new_patient.mrn);
                 akello.selectPatient(new_patient);
             }, (error: any) => {
                 console.log(error);
@@ -96,9 +93,9 @@ export const PatientReferralPage:React.FC<PatientReferralPageProps> = ({onNaviga
                                             </Tooltip>
                                         </div>
                                         <Input
-                                            id="referring_provider_npi"
+                                            id="referring_npi"
                                             type="text"
-                                            {...formik.getFieldProps('referring_provider_npi')}
+                                            {...formik.getFieldProps('referring_npi')}
                                         />
                                         {formik.touched.payer && formik.errors.payer ? (
                                             <div className={"text-error"}>{formik.errors.payer}</div>

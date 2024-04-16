@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {PatientRegistry, Questionnaire} from "@akello/core";
+import {RegistryTreatment, Questionnaire} from "@akello/core";
 import { em, LoadingOverlay, Box } from '@mantine/core';
 import {useAkello, useSelectedRegistry} from "@akello/react-hook"
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
@@ -13,7 +13,7 @@ export interface RegistryPageProps {
 }
 
 export const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers, onNavigate, patient_id}) => {
-    const [patients, setPatients] = useState<PatientRegistry[]>([])
+    const [patients, setPatients] = useState<RegistryTreatment[]>([])
     const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([])
     const akello = useAkello()
     const selectedRegistry = useSelectedRegistry()
@@ -25,24 +25,22 @@ export const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers, onNavi
     })
 
     console.log('loading registry page >>>>>>>>>>>>>>>>>>>>>>>>>>  ')
-    debugger;
 
     useEffect(() => {
-        debugger;
         if (selectedRegistry) {
             const registryId = selectedRegistry.id;
             if (registryId) {
                 open()
                 akello.registryService.getRegistryPatients(registryId, (data) => {
                     close()
-                    const successfully_loaded = data['successfully_loaded'].filter((patient: PatientRegistry) => patient.status !== 'Deactivated')
+                    const successfully_loaded = data['successfully_loaded'].filter((patient: RegistryTreatment) => patient.status !== 'Deactivated')
                     setPatients(successfully_loaded)
                     setQuestionnaires(data['questionnaires'].filter((questionnaire: Questionnaire) => questionnaire.active === true))
                     if(successfully_loaded.length == 0) {
                         onNavigate('/first-patient')
                     } else {
-                        successfully_loaded.forEach((patient: PatientRegistry) => {
-                            if(patient.patient_mrn == patient_id) {
+                        successfully_loaded.forEach((patient: RegistryTreatment) => {
+                            if(patient.mrn == patient_id) {
                                 akello.selectPatient(patient)
                                 akello.dispatchEvent({ type: 'change' });
                             }
@@ -57,13 +55,13 @@ export const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers, onNavi
     }, [akello, selectedRegistry])
 
     const handlePatientClickEvent = (object: any) => {
-        const clickedPatient = object.row as PatientRegistry
+        const clickedPatient = object.row as RegistryTreatment
         akello.selectPatient(clickedPatient)
         akello.dispatchEvent({ type: 'change' });
         if(isMobile) {
-            onNavigate('/patient/'+clickedPatient.patient_mrn)
+            onNavigate('/patient/'+clickedPatient.mrn)
         } else {
-            onNavigate('/registry/'+clickedPatient.patient_mrn)
+            onNavigate('/registry/'+clickedPatient.mrn)
         }
     }
 

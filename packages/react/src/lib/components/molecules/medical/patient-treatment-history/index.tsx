@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import {PatientRegistry, TreatmentLogScore, Questionnaire} from "@akello/core";
+import {RegistryTreatment, TreatmentLogScore, Questionnaire} from "@akello/core";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 
 
 export interface PatientTreatmentHistoryProps {
-    selectedPatient: PatientRegistry,
+    selectedPatient: RegistryTreatment,
     questionnaires: Questionnaire[]
 }
 
@@ -55,14 +55,20 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
 
     let score_names = questionnaires.map((questionnaire) => { return questionnaire.name})
 
+    return (
+        <></>
+    )
+    /*
     if(!selectedPatient.treatment_logs) {
         return (
             <></>
         )
     }
+    */
 
     // Use the first row to determine the data columns.
     // TODO: Consider using the configuration passed into the registry
+    /*
     if(selectedPatient.treatment_logs.length > 0) {
         score_names.map((score_name) => {
             const score_filed: GridColDef = {
@@ -134,4 +140,5 @@ export const PatientTreatmentHistoryDataGrid:React.FC<PatientTreatmentHistoryPro
             </Box>
         </ThemeProvider>
     );
+     */
 }

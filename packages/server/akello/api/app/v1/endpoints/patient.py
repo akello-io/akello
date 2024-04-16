@@ -56,10 +56,14 @@ async def invites(auth: CognitoTokenCustom = Depends(auth_token_check)):
         raise Exception('Email not found in the user attributes')
 
     user_invites = user.fetch_invites(requesting_email=email)
-    return [invite.to_scrubbed() for invite in user_invites if not invite]
+    return [invite.to_scrubbed() for invite in user_invites if not invite.accepted]
 
 @router.put("/invites/accept")
 async def accept_invite(user_invite: UserInvite,  auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user_invite = UserInvite.get_by_key(UserInvite, 'user-email:%s' % user_invite.user_email,
+                                        'user-invite::%s-id:%s' % (user_invite.object_type, user_invite.object_id))
+
+
     if not AKELLO_DYNAMODB_LOCAL_URL:
         response = boto3.client('cognito-idp').admin_get_user(UserPoolId=AWS_COGNITO_USERPOOL_ID,
                                                               Username=auth.username)
@@ -67,10 +71,16 @@ async def accept_invite(user_invite: UserInvite,  auth: CognitoTokenCustom = Dep
         response = Session(profile_name='Dev').client('cognito-idp').admin_get_user(UserPoolId=AWS_COGNITO_USERPOOL_ID,
                                                                                     Username=auth.username)
 
-    assert user_invite.email == response['UserAttributes'][5]['Value'], 'Email does not match the invite'
+    email = None
+    for attribute in response['UserAttributes']:
+        if attribute['Name'] == 'email':
+            email = attribute['Value']
+            break
+
+    assert user_invite.user_email == email, 'Email does not match the invite'
+
 
     user_invite.accepted = True
-    user_invite._AkelloBaseModel__put()
 
     if user_invite.role == UserRegistryRole.patient:
         # Add the patient to the registry in a 'accepted' state
@@ -84,6 +94,7 @@ async def accept_invite(user_invite: UserInvite,  auth: CognitoTokenCustom = Dep
             status=PatientStatysTypes.accepted,
         )._AkelloBaseModel__put()
 
+    user_invite._AkelloBaseModel__put()
     return {
         'status': 'success',
         'message': 'Invite accepted'

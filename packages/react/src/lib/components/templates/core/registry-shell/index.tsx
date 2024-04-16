@@ -206,7 +206,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
                 <Outlet />
             </AppShell.Main>
             <AppShell.Aside>
-                <PatientDetail onStartSession={() => onNavigate('/patient/' + (akello.getSelectedPatientRegistry()?.id ?? '') + '/treatment-session')} />
+                <PatientDetail onStartSession={() => onNavigate('/patient/' + (akello.getSelectedPatientRegistry()?.mrn ?? '') + '/treatment-session')} />
             </AppShell.Aside>
         </AppShell>
     );

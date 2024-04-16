@@ -30,12 +30,6 @@ class RegistryTreatment(AkelloBaseModel):
     weeks_since_initial_assessment: Optional[int] = 0
     minutes_this_month: Optional[int] = 0
 
-    def __init__(self, **data):
-        super().__init__(
-            id=str(uuid.uuid4()),
-            **data
-        )
-
     @property
     def partition_key(self) -> str:
         return 'registry-id:%s' % self.registry_id

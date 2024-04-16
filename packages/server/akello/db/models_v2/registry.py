@@ -2,6 +2,7 @@ from uuid import uuid4
 from akello.db.models_v2 import AkelloBaseModel
 from akello.db.models_v2.user import User, UserRegistry, UserOrganizationRole, UserRegistryRole, UserOrganization
 from akello.db.models_v2.user import UserInvite
+from akello.db.models_v2.registry_treatment import RegistryTreatment
 from typing import Optional, List
 from boto3.dynamodb.conditions import Key
 from pydantic import TypeAdapter
@@ -63,16 +64,14 @@ class Registry(AkelloBaseModel):
         UserRegistry(user_id=user.id, registry_id=self.id, role=role)._AkelloBaseModel__put()
         RegistryUser(user_id=user.id, registry_id=self.id)._AkelloBaseModel__put()
 
-    def invite_patient(self, email: str, invited_by_user: User):
+    def invite_patient(self, email: str, invited_by_user: User, payload: Optional[dict] = None):
         UserInvite(
             object_type='registry',
             object_id=self.id,
             user_email=email,
             invited_by_user_id=invited_by_user.id,
             role=UserRegistryRole.patient,
-            payload={
-                'invited_by': invited_by_user.model_dump()
-            }
+            payload=payload
         )._AkelloBaseModel__put()
 
     def fetch_patients(self, requesting_user: User):
@@ -95,7 +94,7 @@ class Registry(AkelloBaseModel):
 
         # Extract sessions from the response
         sessions = response.get('Items', [])
-        ta = TypeAdapter(List[RegistryUser])
+        ta = TypeAdapter(List[RegistryTreatment])
         return ta.validate_python(sessions)
 
 

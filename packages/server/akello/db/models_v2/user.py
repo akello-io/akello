@@ -171,7 +171,7 @@ class UserInvite(AkelloBaseModel):
     user_phone_number: Optional[str] = None
     invited_by_user_id: str
     role: str # UserRegistryRole / UserOrganizationRole
-    accepted: bool = False
+    accepted: Optional[bool] = None
     payload: Optional[dict] = {}
 
     @property

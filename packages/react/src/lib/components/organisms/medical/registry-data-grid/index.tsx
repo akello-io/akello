@@ -1,12 +1,12 @@
 import {DataGrid, GridColDef, GridColumnGroupingModel, GridEventListener, GridToolbar} from "@mui/x-data-grid";
 import moment from "moment";
-import {PatientRegistry, Questionnaire, TreatmentLog} from "@akello/core";
+import {RegistryTreatment, Questionnaire, TreatmentLog} from "@akello/core";
 import * as React from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useAkello } from "@akello/react-hook";
 
 export interface RegistryDataGridProps {
-    patients: PatientRegistry[]
+    patients: RegistryTreatment[]
     questionnaires: Questionnaire[]
     handlePatientClickEvent: GridEventListener<'rowClick'>
 }
@@ -17,7 +17,7 @@ const default_columns = [
         headerName: 'Flag',
     },
     {
-        field: 'patient_mrn',
+        field: 'mrn',
         headerName: 'MRN',
     },
     {
@@ -230,10 +230,10 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 <DataGrid
                     onRowClick={handlePatientClickEvent}
                     rows={patients}
-                    getRowId={(row: any) => row.patient_mrn}
+                    getRowId={(row: any) => row.mrn}
                     columns={columns}
                     columnGroupingModel={columnGroupingModel}
-                    rowSelectionModel={selectedPatient?.patient_mrn}
+                    rowSelectionModel={selectedPatient?.mrn}
                     slots={{
                         toolbar: GridToolbar,
                     }}

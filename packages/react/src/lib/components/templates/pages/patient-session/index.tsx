@@ -35,7 +35,7 @@ export const PatientSession:React.FC<PatientSessionProps> = ({onNavigate}) => {
     let patient = akello.getSelectedPatientRegistry()
     const items = [
         { title: 'Registry', href: '/registry' },
-        { title: patient?.first_name + ' ' + patient?.last_name, href: '/registry/' + patient?.patient_mrn },
+        { title: patient?.first_name + ' ' + patient?.last_name, href: '/registry/' + patient?.mrn },
         { title: 'Treatment Session', href: '#' },
       ].map((item, index) => (
         <Anchor href={item.href} key={index}>
@@ -95,7 +95,7 @@ export const PatientSession:React.FC<PatientSessionProps> = ({onNavigate}) => {
         if (selectedRegistry) {
             akello.registryService.saveTreatmentSession(selectedRegistry.id, {
                 id: uuidv4(),
-                patient_mrn: akello.getSelectedPatientRegistry()?.patient_mrn ?? '',
+                mrn: akello.getSelectedPatientRegistry()?.mrn ?? '',
                 contact_type: contactType,
                 cp_npi: cpNPI,
                 problems_list: problemsList,
@@ -113,7 +113,7 @@ export const PatientSession:React.FC<PatientSessionProps> = ({onNavigate}) => {
                     message: 'Session completed for ' + patient?.first_name + ' ' + patient?.last_name +'. Total time: ' + mm + ' minutes ' + ss + ' seconds',
                 })
 
-                onNavigate('/registry/' + akello.getSelectedPatientRegistry()?.patient_mrn);
+                onNavigate('/registry/' + akello.getSelectedPatientRegistry()?.mrn);
             });
         }
     }

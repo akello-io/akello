@@ -11,7 +11,7 @@ import { FinancialModelService } from './services/financial_model';
 import { ReportsService } from './services/reports';
 import { PatientService } from './services/patient';
 import { ClientStorage } from './storage';
-import { Registry, PatientRegistry, UserRegistry, User, Organization } from './models';
+import { Registry, RegistryTreatment, UserRegistry, User, Organization } from './models';
 
 
 export const DEFAULT_BASE_URL = 'http://localhost:8000';
@@ -89,7 +89,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     private selectedOrganization: Organization | undefined;
     private selectedRegistry: Registry | undefined
     private selectedUserRegistry: UserRegistry | undefined
-    private selectedPatientRegistry: PatientRegistry | undefined
+    private selectedPatientRegistry: RegistryTreatment | undefined
     private readonly storage: ClientStorage;
     public readonly registryService: RegistryService;
     public readonly userService: UserService;
@@ -146,12 +146,12 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         this.storage.setObject('selectedUserRegistry', userRegistry);
     }
 
-    selectPatient(patientRegistry: PatientRegistry | undefined) {
+    selectPatient(patientRegistry: RegistryTreatment | undefined) {
         this.selectedPatientRegistry = patientRegistry;
         this.storage.setObject('selectedPatientRegistry', patientRegistry);
     }
 
-    getSelectedPatientRegistry(): PatientRegistry | undefined {
+    getSelectedPatientRegistry(): RegistryTreatment | undefined {
         return this.selectedPatientRegistry;
     }
 
