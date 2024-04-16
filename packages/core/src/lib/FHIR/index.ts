@@ -1,1 +1,0 @@
-export {PatientResource} from './PatientResource'

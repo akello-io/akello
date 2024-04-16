@@ -1,5 +1,4 @@
 import { AkelloClient } from '../client';
-import { AkelloApp } from '../models';
 import { BaseService } from './base';
 
 export class RegistryService extends BaseService {
@@ -229,36 +228,5 @@ export class RegistryService extends BaseService {
         });
     }
 
-
-    async getAppConfigs(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/app-configs";
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'get',
-            endpoint: endpoint,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-    }
-
-    async saveAkelloApp(registry_id: string, akello_app: AkelloApp, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/app-configs/" + akello_app.id + "/save"
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'post',
-            endpoint: endpoint,
-            payload: akello_app,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-    }
 
 }

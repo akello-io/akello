@@ -7,7 +7,6 @@ import {
     CognitoUserAttribute
 } from 'amazon-cognito-identity-js';
 import { UserService } from './services';
-import { FinancialModelService } from './services/financial_model';
 import { ReportsService } from './services/reports';
 import { PatientService } from './services/patient';
 import { ClientStorage } from './storage';
@@ -53,7 +52,6 @@ export interface AkelloClientInterface {
     getSelectedRegistry(): Registry | undefined;
     registryService: RegistryService;
     userService: UserService;
-    financialService: FinancialModelService;
     reportsService: ReportsService;
     patientService: PatientService;
     accessToken: string | undefined;
@@ -93,7 +91,6 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     private readonly storage: ClientStorage;
     public readonly registryService: RegistryService;
     public readonly userService: UserService;
-    public readonly financialService: FinancialModelService;
     public readonly reportsService: ReportsService;
     public readonly patientService: PatientService;
     accessToken: string | undefined;
@@ -107,7 +104,6 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         this.options = options ?? {};
         this.registryService = new RegistryService(this);
         this.userService = new UserService(this);
-        this.financialService = new FinancialModelService(this);
         this.reportsService = new ReportsService(this);
         this.patientService = new PatientService(this);
         this.storage = new ClientStorage(localStorage);
@@ -217,7 +213,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
             // Create a new user
             const user = new CognitoUser({ Pool: userPool, Username: username });
 
-            user.confirmRegistration(code, false, (err, result) => {
+            user.confirmRegistration(code, false, (err: any, result: any) => {
                 if (!err) {
                     this.username = username;
                     onSuccess(result);
@@ -256,7 +252,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
             // Create a new user
             const user = new CognitoUser({ Pool: userPool, Username: email });
 
-            user.resendConfirmationCode((err, result) => {
+            user.resendConfirmationCode((err: any, result: any) => {
                 if (err) {
                     onFail(err);
                 } else {
@@ -304,7 +300,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                     new CognitoUserAttribute({ Name: 'family_name', Value: family_name })
                 ],
                 [],
-                (err, result) => {
+                (err: any, result: any) => {
                     if (err) {
                         onFail(err);
                         return;
