@@ -230,10 +230,10 @@ export const RegistryDataGrid:React.FC<RegistryDataGridProps> = ({patients, ques
                 <DataGrid
                     onRowClick={handlePatientClickEvent}
                     rows={patients}
-                    getRowId={(row: any) => row.mrn}
+                    getRowId={(row: any) => row.user_id}
                     columns={columns}
                     columnGroupingModel={columnGroupingModel}
-                    rowSelectionModel={selectedPatient?.mrn}
+                    rowSelectionModel={selectedPatient?.user_id}
                     slots={{
                         toolbar: GridToolbar,
                     }}
