@@ -1,64 +1,33 @@
-import uuid
+from decimal import Decimal
+import datetime
+from pydantic import BaseModel, computed_field
+from akello.db.connector.dynamodb import measurements_db
 
-from akello.db.models_v2 import AkelloBaseModel
+
+class Measurement(BaseModel):
+    user_id: str
+    registry_id: str
+    measurement_group_id: str
+    measure: str
+    value: Decimal
+
+    @property
+    def partition_key(self) -> str:
+        return f'user_id:{self.user_id}::registry-id:{self.registry_id}::group-id:{self.measurement_group_id}::measure:{self.measure}'
+
+    @computed_field
+    @property
+    def timestamp(self) -> Decimal:
+        return Decimal(datetime.datetime.utcnow().timestamp())
 
 
-class Measurement(AkelloBaseModel):
-    id: str
-    name: str
-    organization_id: str = None
-
-    def __init__(self, **data):
-        super().__init__(
-            id=str(uuid.uuid4()),
-            **data
+    def put(self):
+        response = measurements_db.put_item(
+            Item={
+                'partition_key': self.partition_key,
+                'timestamp': self.timestamp,
+                **self.model_dump()
+            }
         )
-
-    @property
-    def object_type(self) -> str:
-        return 'measurement'
-
-    @property
-    def sort_key(self) -> str:
-        return 'meta'
-
-
-class MeasurementQuestion(AkelloBaseModel):
-    id: str
-    measurement_id: str
-    question: str
-    question_type: str
-
-    def __init__(self, **data):
-        super().__init__(
-            id=str(uuid.uuid4()),
-            **data
-        )
-
-    @property
-    def object_type(self) -> str:
-        return 'measurement-question'
-
-    @property
-    def sort_key(self) -> str:
-        return 'meta'
-
-
-class MeasurementQuestionOption(AkelloBaseModel):
-    id: str
-    question_id: str
-    option: str
-
-    def __init__(self, **data):
-        super().__init__(
-            id=str(uuid.uuid4()),
-            **data
-        )
-
-    @property
-    def object_type(self) -> str:
-        return 'measurement-question-option'
-
-    @property
-    def sort_key(self) -> str:
-        return 'meta'
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200

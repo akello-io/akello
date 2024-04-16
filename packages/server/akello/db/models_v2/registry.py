@@ -6,8 +6,8 @@ from akello.db.models_v2.registry_treatment import RegistryTreatment
 from typing import Optional, List
 from boto3.dynamodb.conditions import Key
 from pydantic import TypeAdapter
-from akello.db.connector.dynamodb import registry_db
-
+from akello.db.connector.dynamodb import registry_db, measurements_db
+from akello.db.models_v2.measurement import Measurement
 
 
 
@@ -93,9 +93,25 @@ class Registry(AkelloBaseModel):
         )
 
         # Extract sessions from the response
-        sessions = response.get('Items', [])
+        items = response.get('Items', [])
         ta = TypeAdapter(List[RegistryTreatment])
-        return ta.validate_python(sessions)
+        return ta.validate_python(items)
+
+    def fetch_patient_measurement(self, measure: str,  requesting_user: User):
+        user_registry = UserRegistry(
+            user_id=requesting_user.id,
+            registry_id=self.id,
+            role=UserRegistryRole.admin
+        )._AkelloBaseModel__get()
+        if not user_registry:
+            raise Exception('User is not part of this registry')
+
+        partition_key_value = f'user_id:{user_registry.user_id}::registry-id:{user_registry.registry_id}::measure:{measure}'
+
+        response = measurements_db.query(KeyConditionExpression=Key('partition_key').eq(partition_key_value))
+        items = response.get('Items', [])
+        ta = TypeAdapter(List[Measurement])
+        return ta.validate_python(items)
 
 
 class RegistryUser(AkelloBaseModel):

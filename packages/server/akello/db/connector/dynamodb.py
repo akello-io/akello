@@ -6,15 +6,13 @@ from botocore.exceptions import ClientError
 from pydantic import BaseModel
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
-DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
 AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
 
-
-def create_core_table(dynamodb):
+def create_core_table(dynamodb, table_name):
     try:
         print('creating registry table')
         table = dynamodb.create_table(
-            TableName=DYNAMODB_TABLE,
+            TableName=table_name,
             KeySchema=[
                 {
                     'AttributeName': 'partition_key',
@@ -46,18 +44,18 @@ def create_core_table(dynamodb):
         print("tables probably already exist")
 
 
-def create_measurements_table(dynamodb):
+def create_measurements_table(dynamodb, table_name):
     try:
         print('creating timeseries measurements table')
         table = dynamodb.create_table(
-            TableName=DYNAMODB_TABLE,
+            TableName=table_name,
             KeySchema=[
                 {
                     'AttributeName': 'partition_key',
                     'KeyType': 'HASH'
                 },
                 {
-                    'AttributeName': 'sort_key',
+                    'AttributeName': 'timestamp',
                     'KeyType': 'RANGE'
                 }
             ],
@@ -91,19 +89,22 @@ def setup_registry_db():
         print("using real dynamodb")
         client = boto3.client('dynamodb')
         dynamodb = boto3.resource('dynamodb')
-        return client, dynamodb, dynamodb.Table(DYNAMODB_TABLE)
-
-
+        return client, dynamodb, dynamodb.Table('akello_core'), dynamodb.Table('akello_measurements')
 
     # use local dynamodb
     print("using local dynamodb")
     client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
     dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-    create_core_table(dynamodb)
-    return client, dynamodb, dynamodb.Table(DYNAMODB_TABLE)
+
+    create_core_table(dynamodb, 'akello_core')
+    create_measurements_table(dynamodb, 'akello_measurements')
+
+    return client, dynamodb, dynamodb.Table('akello_core'), dynamodb.Table('akello_measurements')
 
 
-client, dynamodb, registry_db = setup_registry_db()
+client, dynamodb, registry_db, measurements_db = setup_registry_db()
+
+
 
 
 class RegistryDBBaseModel(BaseModel):
@@ -202,3 +203,4 @@ class RegistryDBBaseModel(BaseModel):
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
+

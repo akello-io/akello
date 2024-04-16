@@ -21,6 +21,12 @@ from akello.services.models.screeners import ScreenerService
 from akello.db.models_v2.registry import Registry, RegistryUser, RegistryTreatment
 from akello.db.models_v2.user import User
 
+from akello.db.models_v2.measurement import Measurement
+
+from typing import List
+
+from decimal import Decimal
+
 logger = logging.getLogger('mangum')
 
 router = APIRouter()
@@ -75,7 +81,7 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
 
 @router.get("/{registry_id}")
 async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    #TODO: Refactor this to use the new models
+    # TODO: Refactor this to use the new models
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
     registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry_id, 'user-id:%s' % user.id)
@@ -140,17 +146,18 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
     }
 
 
-
-
 class InvitePatientRequest(BaseModel):
     email: str
 
+
 @router.post("/{registry_id}/invite-patient")
-async def invite_patient(registry_id: str, invite: InvitePatientRequest, auth: CognitoTokenCustom = Depends(auth_token_check)):
+async def invite_patient(registry_id: str, invite: InvitePatientRequest,
+                         auth: CognitoTokenCustom = Depends(auth_token_check)):
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
     registry.invite_patient(email=invite.email, invited_by_user=user)
     return {'status': 'success'}
+
 
 @router.post("/{registry_id}/refer-patient")
 async def refer_patient(registry_id: str, patient_registry: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
@@ -174,8 +181,6 @@ async def refer_patient(registry_id: str, patient_registry: dict, auth: CognitoT
     })
 
 
-
-
 @router.post("/{registry_id}/record-session")
 @mixin(mixins=mixins)
 async def record_session(request: Request, registry_id: str, treatment_log: TreatmentLog,
@@ -185,16 +190,39 @@ async def record_session(request: Request, registry_id: str, treatment_log: Trea
     return treatment_log
 
 
-@router.post("/{registry_id}/patient-attribute")
-async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
+class PatientMeasurements(BaseModel):
+    measurements: List[Measurement]
 
+@router.post("/{registry_id}/patient/{patient_id}/measurement")
+async def set_patient_measurement(registry_id: str, patient_id: str, payload: PatientMeasurements,
+                                  auth: CognitoTokenCustom = Depends(auth_token_check)):
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
     registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry.id, 'user-id:%s' % user.id)
     if not registry_user:
         raise Exception('User does not have access to this registry')
 
-    registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id, 'treatment-user-id:%s' % data['user_id'])
+    for measurement in payload.measurements:
+        Measurement(
+            user_id=user.id,
+            registry_id=registry_id,
+            measure=measurement.measure,
+            measurement_group_id=measurement.measurement_group_id,
+            value=measurement.value
+        ).put()
+    return {'status': 'success'}
+
+
+@router.post("/{registry_id}/patient-attribute")
+async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
+    registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry.id, 'user-id:%s' % user.id)
+    if not registry_user:
+        raise Exception('User does not have access to this registry')
+
+    registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id,
+                                                      'treatment-user-id:%s' % data['user_id'])
 
     # if we are setting the relapse prevention plan, we need to set the date in the registry
     if data['attr_name'] == 'status' and data['attr_value'] == 'Relapse Prevention Plan':
