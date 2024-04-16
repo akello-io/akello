@@ -117,33 +117,7 @@ async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Dep
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
     registry_treatments = registry.fetch_patients(requesting_user=user)
-
-    """
-    registry_access = UserService.check_registry_access(auth.cognito_id, registry_id)
-    patients = RegistryService.get_patients(registry_id)
-    registry_metadata = RegistryService.get_registry(registry_id)
-    successfully_loaded = []
-    failed_patients = []
-    for patient in patients:
-        try:
-            successfully_loaded.append(PatientRegistry(**patient))
-        except Exception as e:
-            print(e)
-            failed_patients.append(patient)
-
-
-    return {'is_admin': registry_access['is_admin'], 'role': registry_access['role'],
-            'questionnaires': registry_metadata['questionnaires'], 'successfully_loaded': successfully_loaded,
-            'failed_patients': failed_patients}
-    """
-
-    return {
-        'is_admin': True,
-        'role': 'admin',
-        'questionnaires': [],
-        'successfully_loaded': registry_treatments,
-        'failed_patients': []
-    }
+    return registry_treatments
 
 
 class InvitePatientRequest(BaseModel):

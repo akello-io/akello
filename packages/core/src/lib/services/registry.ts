@@ -7,23 +7,9 @@ export class RegistryService extends BaseService {
         super(client);
     }
 
-    async completePayment(registry_id: string, stripe_session_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/payment/" + stripe_session_id;
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'post',
-            endpoint: endpoint,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-    }
 
-    async checkSubscription(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/subscription";
+    async getPatients(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "registry/" + registry_id + "/patients";
         const resp = this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'get',
@@ -36,7 +22,6 @@ export class RegistryService extends BaseService {
             }
         });
     }
-
 
     /**
      * Retrieves a registry by its ID.
@@ -59,27 +44,6 @@ export class RegistryService extends BaseService {
         });
     }
 
-    /**
-     * Creates a new registry.
-     * @param payload - The payload for creating the registry.
-     * @param onSuccess - The callback function to be called on successful creation.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async createRegistry(payload: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/create";
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'post',
-            endpoint: endpoint,
-            token: this.client.accessToken!,
-            payload: payload,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-
-            }
-        });
-    }
 
     /**
      * Refers a patient to a registry.
@@ -104,71 +68,7 @@ export class RegistryService extends BaseService {
         });
     }
 
-    /**
-     * Retrieves the members of a registry.
-     * @param registry_id - The ID of the registry.
-     * @param onSuccess - The callback function to be called on successful retrieval.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async getMembers(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/team-members";
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'get',
-            endpoint: endpoint,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-    }
 
-    /**
-     * Retrieves the patients of a registry.
-     * @param registry_id - The ID of the registry.
-     * @param onSuccess - The callback function to be called on successful retrieval.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async getRegistryPatients(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + '/patients' ;
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'get',
-            endpoint: endpoint,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-
-    }
-
-    /**
-     * Saves a treatment session for a registry.
-     * @param registry_id - The ID of the registry.
-     * @param session - The treatment session details.
-     * @param onSuccess - The callback function to be called on successful save.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async saveTreatmentSession(registry_id: string,  session: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/record-session";
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'post',
-            endpoint: endpoint,
-            payload: session,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-    }
 
     async setFlag(registry_id: string, user_id: string, flag: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + "/patient-attribute";

@@ -45,22 +45,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
     const isMobile = useMediaQuery(`(max-width: ${em(880)})`);
     const selectedRegistry = akello.getSelectedRegistry();
 
-    useEffect(() => {
 
-        akello.userService.getUserRegistries((data) => {
-            // get all user registeries
-        });
-    }, []);
-
-    useEffect(() => {
-        if(akello.getSelectedRegistry() != undefined) {
-            akello.registryService.checkSubscription(akello.getSelectedRegistry()!.id, (data: any) => {
-                setPlanTier(data);
-            }, (error: any) => {
-
-            })
-        }
-    }, [])
 
     return (
         <AppShell

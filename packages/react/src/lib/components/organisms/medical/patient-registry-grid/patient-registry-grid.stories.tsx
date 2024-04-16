@@ -48,7 +48,7 @@ const Template: StoryFn<typeof PatientRegistryGrid> = ({rows, measurements}) => 
     return (
         <MantineProvider >
           <AkelloProvider akello={akello_client}>
-            <PatientRegistryGrid  rows={rows} measurements={measurements}/>
+            <PatientRegistryGrid rows={rows} measurements={measurements}/>
           </AkelloProvider>
         </MantineProvider>
     )
