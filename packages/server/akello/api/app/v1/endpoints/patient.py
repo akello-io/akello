@@ -92,6 +92,11 @@ async def accept_invite(user_invite: UserInvite,  auth: CognitoTokenCustom = Dep
             referring_npi=user_invite.payload['referring_npi'],
             payer=user_invite.payload['payer'],
             status=PatientStatysTypes.accepted,
+            first_name=user_invite.payload['first_name'],
+            last_name=user_invite.payload['last_name'],
+            phone_number=user_invite.payload['phone_number'],
+            email=user_invite.payload['email'],
+            date_of_birth=user_invite.payload['date_of_birth']
         )._AkelloBaseModel__put()
 
     user_invite._AkelloBaseModel__put()

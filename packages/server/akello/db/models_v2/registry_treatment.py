@@ -18,6 +18,12 @@ class RegistryTreatment(AkelloBaseModel):
     status: PatientStatysTypes = PatientStatysTypes.enrolled
     flags: List[FlagTypes] = []
 
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    phone_number: Optional[str] = None
+    email: Optional[str] = None
+    date_of_birth: Optional[str] = None
+
     # Treatment dates
     initial_assessment: Optional[int] = None
     last_follow_up: Optional[int] = None

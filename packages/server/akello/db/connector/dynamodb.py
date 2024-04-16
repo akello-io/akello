@@ -10,33 +10,14 @@ DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
 AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
 
 
-def setup_registry_db():
-    if AKELLO_UNIT_TEST == 'TRUE':
-        print("using mock dynamodb")
-        return MagicMock(), MagicMock(), MagicMock()
-
-    if not AKELLO_DYNAMODB_LOCAL_URL:
-        print("using real dynamodb")
-        client = boto3.client('dynamodb')
-        dynamodb = boto3.resource('dynamodb')
-        DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
-        return client, dynamodb, dynamodb.Table(DYNAMODB_TABLE)
-
-    # use local dynamodb
-    print("using local dynamodb")
-
-    client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-    dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-
+def create_core_table(dynamodb):
     try:
-        DYNAMODB_TABLE = os.getenv('AWS_DYNAMODB_TABLE')
-        # client.delete_table(TableName=DYNAMODB_TABLE)
         print('creating registry table')
         table = dynamodb.create_table(
             TableName=DYNAMODB_TABLE,
             KeySchema=[
                 {
-                    'AttributeName': 'partition_key',  # registry_id, auth_user_id
+                    'AttributeName': 'partition_key',
                     'KeyType': 'HASH'
                 },
                 {
@@ -64,6 +45,61 @@ def setup_registry_db():
         print(e)
         print("tables probably already exist")
 
+
+def create_measurements_table(dynamodb):
+    try:
+        print('creating timeseries measurements table')
+        table = dynamodb.create_table(
+            TableName=DYNAMODB_TABLE,
+            KeySchema=[
+                {
+                    'AttributeName': 'partition_key',
+                    'KeyType': 'HASH'
+                },
+                {
+                    'AttributeName': 'sort_key',
+                    'KeyType': 'RANGE'
+                }
+            ],
+            AttributeDefinitions=[
+                {
+                    'AttributeName': 'partition_key',
+                    'AttributeType': 'S'
+                },
+                {
+                    'AttributeName': 'timestamp',
+                    'AttributeType': 'N'
+                },
+            ],
+            ProvisionedThroughput={
+                'ReadCapacityUnits': 10,
+                'WriteCapacityUnits': 10
+            }
+        )
+        print("Table status:", table.table_status)
+    except Exception as e:
+        print(e)
+        print("tables probably already exist")
+
+
+def setup_registry_db():
+    if AKELLO_UNIT_TEST == 'TRUE':
+        print("using mock dynamodb")
+        return MagicMock(), MagicMock(), MagicMock()
+
+    if not AKELLO_DYNAMODB_LOCAL_URL:
+        print("using real dynamodb")
+        client = boto3.client('dynamodb')
+        dynamodb = boto3.resource('dynamodb')
+        return client, dynamodb, dynamodb.Table(DYNAMODB_TABLE)
+
+
+
+    # use local dynamodb
+    print("using local dynamodb")
+    client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+    dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+    create_core_table(dynamodb)
     return client, dynamodb, dynamodb.Table(DYNAMODB_TABLE)
 
 

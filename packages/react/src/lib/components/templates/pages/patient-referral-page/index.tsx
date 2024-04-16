@@ -53,6 +53,12 @@ export const PatientReferralPage:React.FC<PatientReferralPageProps> = ({onNaviga
             // new_patient.treatment_logs = [];
             new_patient.payer = values['payer'];
             new_patient.referring_npi = values['referring_npi'];
+            new_patient.first_name = values['firstName'];
+            new_patient.last_name = values['lastName'];
+            new_patient.phone_number = values['phoneNumber'];
+            new_patient.email = values['email'];
+            new_patient.date_of_birth = values['dob'];
+
             akello.registryService.referPatient(akello.getSelectedRegistry()?.id ?? '', new_patient, (data) => {
                 console.log(data);
                 onNavigate('/registry/' + new_patient.mrn);

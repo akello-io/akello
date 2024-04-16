@@ -18,7 +18,7 @@ from akello.services.models.registry import RegistryService
 from akello.services.models.user import UserService
 from akello.services.models.screeners import ScreenerService
 
-from akello.db.models_v2.registry import Registry, RegistryUser
+from akello.db.models_v2.registry import Registry, RegistryUser, RegistryTreatment
 from akello.db.models_v2.user import User
 
 logger = logging.getLogger('mangum')
@@ -153,19 +153,24 @@ async def invite_patient(registry_id: str, invite: InvitePatientRequest, auth: C
     return {'status': 'success'}
 
 @router.post("/{registry_id}/refer-patient")
-async def refer_patient(registry_id: str, patient_registry: PatientRegistry, auth: CognitoTokenCustom = Depends(auth_token_check)):
+async def refer_patient(registry_id: str, patient_registry: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
     registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry.id, 'user-id:%s' % user.id)
     if not registry_user:
         raise Exception('User does not have access to this registry')
 
-    registry.invite_patient(email=patient_registry.email, invited_by_user=user, payload={
+    registry.invite_patient(email=patient_registry['email'], invited_by_user=user, payload={
         'registry_id': registry_id,
         'user_id': user.id,
-        'mrn': patient_registry.patient_mrn,
-        'referring_npi': patient_registry.referring_provider_npi,
-        'payer': patient_registry.payer
+        'mrn': patient_registry['mrn'],
+        'referring_npi': patient_registry['referring_npi'],
+        'payer': patient_registry['payer'],
+        'first_name': patient_registry['first_name'],
+        'last_name': patient_registry['last_name'],
+        'phone_number': patient_registry['phone_number'],
+        'email': patient_registry['email'],
+        'date_of_birth': patient_registry['date_of_birth'],
     })
 
 
