@@ -61,14 +61,14 @@ export const PatientDetail:React.FC<PatientDetailProps> = ({onStartSession}) => 
                                         ]}
                                         onChange={(value) => {
                                             const selectedRegistry = akello.getSelectedRegistry();
-                                            const patientMRN = selectedPatient?.mrn;
-                                            if (selectedRegistry && patientMRN) {
+                                            const selectedUserId = selectedPatient?.user_id;
+                                            if (selectedRegistry && selectedUserId) {
                                                 const previousSelectedFlagValue = selectedPatient.flag;
                                                 selectedPatient.flag = value !== null ? value : undefined;
                                                 akello.selectPatient(selectedPatient);
                                                 akello.dispatchEvent({ type: 'change' });
 
-                                                akello.registryService.setFlag(selectedRegistry.id, patientMRN, value !== null ? value : '', () => {
+                                                akello.registryService.setFlag(selectedRegistry.id, selectedUserId, value !== null ? value : '', () => {
                                                     if (value !== null) {
                                                         notifications.show({
                                                             color: 'green',
@@ -115,7 +115,7 @@ export const PatientDetail:React.FC<PatientDetailProps> = ({onStartSession}) => 
                                         selectedPatient.status = value;
                                         akello.selectPatient(selectedPatient);
                                         akello.dispatchEvent({ type: 'change' });
-                                        akello.registryService.setStatus(selectedRegistry.id, selectedPatient.mrn, value, () => {
+                                        akello.registryService.setStatus(selectedRegistry.id, selectedPatient.user_id, value, () => {
                                             notifications.show({
                                                 color: 'green',
                                                 title: selectedPatient.first_name + ' ' + selectedPatient.last_name + ' Status Changed',

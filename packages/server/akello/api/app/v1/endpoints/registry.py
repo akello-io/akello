@@ -187,16 +187,20 @@ async def record_session(request: Request, registry_id: str, treatment_log: Trea
 
 @router.post("/{registry_id}/patient-attribute")
 async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    UserService.check_registry_access(auth.cognito_id, registry_id)
+
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
+    registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry.id, 'user-id:%s' % user.id)
+    if not registry_user:
+        raise Exception('User does not have access to this registry')
+
+    registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id, 'treatment-user-id:%s' % data['user_id'])
 
     # if we are setting the relapse prevention plan, we need to set the date in the registry
     if data['attr_name'] == 'status' and data['attr_value'] == 'Relapse Prevention Plan':
         current_time = int(datetime.datetime.utcnow().timestamp() * 1000)
-        PatientRegistry.set_attribute('registry-patient:%s' % registry_id, data['mrn'], 'relapse_prevention_plan',
-                                      current_time)
-
-    PatientRegistry.set_attribute('registry-patient:%s' % registry_id, data['mrn'], data['attr_name'],
-                                  data['attr_value'])
+        registry_treatment._AkelloBaseModel__set_attribute('relapse_prevention_plan', current_time)
+    registry_treatment._AkelloBaseModel__set_attribute(data['attr_name'], data['attr_value'])
 
 
 @router.get("/{registry_id}/app-configs")

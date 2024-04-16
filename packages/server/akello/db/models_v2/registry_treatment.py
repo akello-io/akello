@@ -16,7 +16,7 @@ class RegistryTreatment(AkelloBaseModel):
     referring_npi: Optional[str] = None
     payer: Optional[str] = None
     status: PatientStatysTypes = PatientStatysTypes.enrolled
-    flags: List[FlagTypes] = []
+    flag: Optional[FlagTypes] = None
 
     first_name: Optional[str] = None
     last_name: Optional[str] = None

@@ -44,25 +44,19 @@ export const PatientReferralPage:React.FC<PatientReferralPageProps> = ({onNaviga
             phoneNumber: Yup.string().required('Required')
         }),
         onSubmit: values => {
-            // registry_id: string, mrn: string, referring_npi: string, status: string
-            let new_patient = new RegistryTreatment(
-                akello.getSelectedRegistry()?.id ?? '',
-                values['mrn'],
-                values['referring_npi']
-            );
-            // new_patient.treatment_logs = [];
-            new_patient.payer = values['payer'];
-            new_patient.referring_npi = values['referring_npi'];
-            new_patient.first_name = values['firstName'];
-            new_patient.last_name = values['lastName'];
-            new_patient.phone_number = values['phoneNumber'];
-            new_patient.email = values['email'];
-            new_patient.date_of_birth = values['dob'];
 
-            akello.registryService.referPatient(akello.getSelectedRegistry()?.id ?? '', new_patient, (data) => {
+            akello.registryService.referPatient(akello.getSelectedRegistry()?.id ?? '', {
+                'registry_id': akello.getSelectedRegistry()!.id ,
+                'mrn': values['mrn'],
+                'referring_npi': values['referring_npi'],
+                'payer': values['payer'],
+                'first_name': values['firstName'],
+                'last_name': values['lastName'],
+                'phone_number': values['phoneNumber'],
+                'email': values['email'],
+                'date_of_birth': values['dob'],
+            }, (data) => {
                 console.log(data);
-                onNavigate('/registry/' + new_patient.mrn);
-                akello.selectPatient(new_patient);
             }, (error: any) => {
                 console.log(error);
                 setError(true);

@@ -340,21 +340,23 @@ export class AkelloApp {
 }
 
 
-export class RegistryTreatment {
-    registry_id: string
-    mrn: string
-    referring_npi: string
-    payer?: string
-    status?: string
 
+export class RegistryTreatment {
+
+    registry_id: string
+    user_id: string
+    mrn: string
+    status: string
+    referring_npi: string
+    payer: string
     flag?: string
-    flags: string[] = []
 
     first_name?: string
     last_name?: string
     phone_number?: string
     email?: string
     date_of_birth?: string
+
 
     initial_assessment?: number
     last_follow_up?: number
@@ -368,11 +370,17 @@ export class RegistryTreatment {
 
     constructor(
         registry_id: string,
+        user_id: string,
         mrn: string,
-        referring_npi: string
+        status: string,
+        referring_npi: string,
+        payer: string
     ) {
         this.registry_id = registry_id
+        this.user_id = user_id
         this.mrn = mrn
+        this.status = status
         this.referring_npi = referring_npi
+        this.payer = payer
     }
 }

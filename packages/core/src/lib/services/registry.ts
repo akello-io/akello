@@ -3,9 +3,9 @@ import { AkelloApp } from '../models';
 import { BaseService } from './base';
 
 export class RegistryService extends BaseService {
-    
+
     constructor(client: AkelloClient) {
-        super(client);        
+        super(client);
     }
 
     async completePayment(registry_id: string, stripe_session_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
@@ -67,7 +67,7 @@ export class RegistryService extends BaseService {
      * @param onFail - The callback function to be called on failure.
      */
     async createRegistry(payload: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/create";            
+        const endpoint =  "registry/create";
         const resp = this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'post',
@@ -76,8 +76,8 @@ export class RegistryService extends BaseService {
             payload: payload,
             onSuccess: (resp: any) => {
                 onSuccess(resp)
-            }, onFail: (error: any) => {        
-                
+            }, onFail: (error: any) => {
+
             }
         });
     }
@@ -145,7 +145,7 @@ export class RegistryService extends BaseService {
                 this.handleFail(error, onFail)
             }
         });
-    
+
     }
 
     /**
@@ -171,22 +171,14 @@ export class RegistryService extends BaseService {
         });
     }
 
-    /**
-     * Sets a flag for a patient in a registry.
-     * @param registry_id - The ID of the registry.
-     * @param mrn - The MRN (Medical Record Number) of the patient.
-     * @param flag - The flag to be set.
-     * @param onSuccess - The callback function to be called on successful flag setting.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async setFlag(registry_id: string, mrn: string, flag: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async setFlag(registry_id: string, user_id: string, flag: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + "/patient-attribute";
         const resp = this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'post',
             endpoint: endpoint,
             payload: {
-                mrn: mrn,
+                user_id: user_id,
                 attr_name: 'patient_flag',
                 attr_value: flag
             },
@@ -199,22 +191,15 @@ export class RegistryService extends BaseService {
         });
     }
 
-    /**
-     * Sets the status for a patient in a registry.
-     * @param registry_id - The ID of the registry.
-     * @param mrn - The MRN (Medical Record Number) of the patient.
-     * @param status - The status to be set.
-     * @param onSuccess - The callback function to be called on successful status setting.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async setStatus(registry_id: string,  mrn: string, status: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+
+    async setStatus(registry_id: string,  user_id: string, status: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + "/patient-attribute";
         const resp = this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'post',
             endpoint: endpoint,
             payload: {
-                mrn: mrn,
+                user_id: user_id,
                 attr_name: 'status',
                 attr_value: status
             },
