@@ -14,7 +14,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Header } from '../../../atoms';
 import { useMediaQuery } from '@mantine/hooks';
-import { PatientDetail } from '../../../organisms/medical/patient-detail';
+import { PatientDetailContainer } from '../../medical/patient-detail-container';
+
 
 interface RegistryShellProps {
     AppShell: any;
@@ -62,7 +63,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
                 },
             }}
             aside={{
-                width: akello.getSelectedPatientRegistry() ? 500 : 0,
+                width: akello.getSelectedPatientRegistry() ? 520 : 0,
                 collapsed: {
                     desktop: false,
                     mobile: true,
@@ -159,7 +160,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
             <AppShell.Aside>
                 {
                     akello.getSelectedPatientRegistry() &&  (
-                        <PatientDetail registry_id={akello.getSelectedRegistry()!.id} selectedPatient={akello.getSelectedPatientRegistry()!} />
+                        <PatientDetailContainer selectedPatient={akello.getSelectedPatientRegistry()!} />
                     )
                 }
 

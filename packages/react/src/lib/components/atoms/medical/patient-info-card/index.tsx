@@ -3,13 +3,15 @@ import {Radio , RadioGroup, Text} from '@mantine/core';
 import { Anchor, ThemeIcon } from '@mantine/core';
 import { IconPhone } from "@tabler/icons-react";
 import { RegistryTreatment } from '@akello/core';
-
+import { SessionBtn } from '../session-btn';
 
 export interface PatientInfoCardProps {
     selectedPatient: RegistryTreatment
+    setSessionTimerStarted: (isRunning: boolean) => void
+    onReviewTypeSelect: (reviewType: string) => void
 }
 
-export const PatientInfoCard:React.FC<PatientInfoCardProps> = ({selectedPatient}) => {
+export const PatientInfoCard:React.FC<PatientInfoCardProps> = ({selectedPatient, setSessionTimerStarted, onReviewTypeSelect}) => {
 
     return (
         <>
@@ -24,14 +26,33 @@ export const PatientInfoCard:React.FC<PatientInfoCardProps> = ({selectedPatient}
                     <div className={"text-sm"}>
                         Referring NPI: {selectedPatient.referring_npi}
                     </div>
+
                 </div>
-                <div className='flex flex-row space-x-3'>
-                    <ThemeIcon>
-                        <IconPhone style={{  width: '70%', height: '70%' }} />
-                    </ThemeIcon>
-                    <a className={'text-md'} href={'tel:' + selectedPatient.phone_number}>{selectedPatient.phone_number}</a>
+                <div>
+                    <div className='flex flex-row space-x-3'>
+                        <ThemeIcon size='sm'>
+                            <IconPhone />
+                        </ThemeIcon>
+                        <a className={'text-md'} href={'tel:' + selectedPatient.phone_number}>{selectedPatient.phone_number}</a>
+                    </div>
                 </div>
+
             </div>
+            <div className='p-4'>
+                <SessionBtn onRunning={(
+                    isRunning: boolean
+                ) => {
+                    setSessionTimerStarted(isRunning)
+
+                }}
+
+                onReviewTypeSelect={((reviewType: string) => {
+                    onReviewTypeSelect(reviewType)
+                })}
+                />
+
+            </div>
+
         </>
     )
 

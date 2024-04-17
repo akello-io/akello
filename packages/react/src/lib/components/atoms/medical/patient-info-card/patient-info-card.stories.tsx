@@ -9,7 +9,7 @@ import { Notifications } from '@mantine/notifications';
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-const meta: Meta<typeof SessionBtn> = {
+const meta: Meta<typeof PatientInfoCard> = {
   title: 'Atoms/Medical/PatientInfoCard',
   component: PatientInfoCard,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
@@ -44,7 +44,11 @@ const Template: StoryFn<typeof PatientInfoCard> = ({}) => {
                     date_of_birth: '01/01/1990',
                 }
 
-            } />
+            }
+            onReviewTypeSelect={(reviewType: string) => { }}
+            setSessionTimerStarted={(isRunning: boolean) => {
+             }}
+            />
           </AkelloProvider>
         </MantineProvider>
     )

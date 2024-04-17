@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useStopwatch } from 'react-timer-hook';
 import { Text } from '@mantine/core';
+import { useAkello } from '@akello/react-hook';
 
 
 export interface SessionTimerProps {
@@ -14,9 +15,13 @@ export interface SessionTimerProps {
     isRunning: boolean
   ) => void;
 
+  onRunning: (isRunning: boolean) => void;
+
 }
 
-export const SessionTimer:React.FC<SessionTimerProps> = ({onUpdate}) => {
+export const SessionTimer:React.FC<SessionTimerProps> = ({onRunning, onUpdate}) => {
+
+    const akello = useAkello();
 
     const {
         totalSeconds,
@@ -42,10 +47,15 @@ export const SessionTimer:React.FC<SessionTimerProps> = ({onUpdate}) => {
         )
       }, [seconds])
 
+      useEffect(() => {
+        onRunning(isRunning)
+      }, [isRunning])
+
+
       return (
         <div style={{textAlign: 'center'}}>
           <div>
-                <Text align="center" size='xl' fw={600}>
+                <Text size='md' fw={600}>
                     <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
                 </Text>
 
