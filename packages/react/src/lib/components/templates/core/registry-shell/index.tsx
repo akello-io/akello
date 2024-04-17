@@ -1,4 +1,4 @@
-import { NavLink, Text, em } from '@mantine/core';
+import { ScrollArea, NavLink, Text, em } from '@mantine/core';
 import {
     IconArrowBarUp,
     IconTable,
@@ -157,10 +157,13 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
             <AppShell.Main>
                 <Outlet />
             </AppShell.Main>
-            <AppShell.Aside>
+            <AppShell.Aside >
                 {
                     akello.getSelectedPatientRegistry() &&  (
-                        <PatientDetailContainer selectedPatient={akello.getSelectedPatientRegistry()!} />
+                        <ScrollArea>
+                            <PatientDetailContainer selectedPatient={akello.getSelectedPatientRegistry()!} />
+                        </ScrollArea>
+
                     )
                 }
 
