@@ -6,6 +6,7 @@ from akello.db.models_v2 import AkelloMeasurement, AkelloBaseModel
 class MeasurementValue(AkelloMeasurement):
     user_id: str
     registry_id: str
+    reported_by_user_id: str # user who took the measurement
     measure: str  # PHQ9, GAD7, treatment-session
     value: Decimal
 

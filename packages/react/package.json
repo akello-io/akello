@@ -76,6 +76,7 @@
     "husky": "^9.0.11",
     "moment": "^2.30.1",
     "react-tailwindcss-datepicker": "^1.6.6",
+    "react-timer-hook": "^3.0.7",
     "recharts": "^2.12.3",
     "ua-parser-js": "^1.0.37",
     "uuid": "^9.0.1",

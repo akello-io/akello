@@ -8,7 +8,7 @@ export interface QuestionnaireFieldOption {
     label: string;
 }
 
-interface QuestionnaireFieldProps {
+export interface QuestionnaireFieldProps {
     question: string;
     description: string;
     options: QuestionnaireFieldOption[];
@@ -27,9 +27,12 @@ export const QuestionnaireField:React.FC<QuestionnaireFieldProps> = ({question, 
                 description={description}
                 required
             >
-                {options.map((option) => (
-                    <Radio key={option.value} value={option.value} label={option.label} />
-                ))}
+                <div className='space-y-1'>
+                    {options.map((option) => (
+                        <Radio value={option.value} label={option.label} />
+                    ))}
+                </div>
+
             </RadioGroup>
         </>
     )

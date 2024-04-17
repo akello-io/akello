@@ -159,7 +159,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
             <AppShell.Aside>
                 {
                     akello.getSelectedPatientRegistry() &&  (
-                        <PatientDetail />
+                        <PatientDetail registry_id={akello.getSelectedRegistry()!.id} selectedPatient={akello.getSelectedPatientRegistry()!} />
                     )
                 }
 
