@@ -37,7 +37,8 @@ dependencies = [
     'click',
     'faker',
     'ollama',
-    'openai'
+    'openai',
+    'fhir.resources'
 ]
 
 [project.urls]

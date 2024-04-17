@@ -30,7 +30,6 @@ class AkelloMeasurementBaseModel(BaseModel):
         # partition_key = '<object_type>:<id>'
         raise Exception("partition_key method not implemented")
 
-
     def __put(self):
         """
         Protected method to put the item in the database
@@ -217,3 +216,15 @@ class AkelloBaseModel(BaseModel):
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
+
+
+class AkelloMeasurement(BaseModel):
+
+    @property
+    def partition_key(self) -> str:
+        raise NotImplementedError
+
+    @computed_field
+    @property
+    def timestamp(self) -> Decimal:
+        return Decimal(datetime.datetime.utcnow().timestamp())
