@@ -195,8 +195,7 @@ async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoToken
     if not registry_user:
         raise Exception('User does not have access to this registry')
 
-    registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id,
-                                                      'treatment-user-id:%s' % data['user_id'])
+    registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id, 'treatment-user-id:%s' % data['user_id'])
 
     # if we are setting the relapse prevention plan, we need to set the date in the registry
     if data['attr_name'] == 'status' and data['attr_value'] == 'Relapse Prevention Plan':

@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Header } from '../../../atoms';
 import { useMediaQuery } from '@mantine/hooks';
+import { PatientDetail } from '../../../organisms/medical/patient-detail';
 
 interface RegistryShellProps {
     AppShell: any;
@@ -156,7 +157,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
                 <Outlet />
             </AppShell.Main>
             <AppShell.Aside>
-                <Text>Patient Detail</Text>
+                <PatientDetail />
             </AppShell.Aside>
         </AppShell>
     );
