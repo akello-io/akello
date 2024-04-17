@@ -1,4 +1,3 @@
-from uuid import uuid4
 from akello.db.models_v2 import AkelloBaseModel
 from akello.db.models_v2.user import User, UserRegistry, UserOrganizationRole, UserRegistryRole, UserOrganization
 from akello.db.models_v2.user import UserInvite
@@ -7,7 +6,7 @@ from typing import Optional, List
 from boto3.dynamodb.conditions import Key
 from pydantic import TypeAdapter
 from akello.db.connector.dynamodb import registry_db, measurements_db
-from akello.db.models_v2.measurement import Measurement
+from akello.db.models_v2.types import Measurement
 
 
 
@@ -16,6 +15,7 @@ class Registry(AkelloBaseModel):
     organization_id: Optional[str] = None
     name: Optional[str] = None
     logo: Optional[str] = None
+    measurements_enabled: List[Measurement] = []
 
     def __init__(self, **data):
         super().__init__(**data)
@@ -110,7 +110,7 @@ class Registry(AkelloBaseModel):
 
         response = measurements_db.query(KeyConditionExpression=Key('partition_key').eq(partition_key_value))
         items = response.get('Items', [])
-        ta = TypeAdapter(List[Measurement])
+        ta = TypeAdapter(List[MeasurementValue])
         return ta.validate_python(items)
 
 

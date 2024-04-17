@@ -8,42 +8,6 @@ from pydantic import BaseModel, computed_field
 from akello.db.connector.dynamodb import registry_db, measurements_db
 
 
-class AkelloMeasurementBaseModel(BaseModel):
-
-    @computed_field
-    @property
-    def created_at(self) -> Decimal:
-        return Decimal(datetime.datetime.utcnow().timestamp())
-
-    @computed_field
-    @property
-    def modified_at(self) -> Decimal:
-        return Decimal(datetime.datetime.utcnow().timestamp())
-
-    @property
-    def partition_key(self) -> str:
-        # partition_key = '<object_type>:<id>'
-        raise Exception("partition_key method not implemented")
-
-    @property
-    def sort_key(self) -> str:
-        # partition_key = '<object_type>:<id>'
-        raise Exception("partition_key method not implemented")
-
-    def __put(self):
-        """
-        Protected method to put the item in the database
-        """
-        response = measurements_db.put_item(
-            Item={
-                'partition_key': self.partition_key,
-                'sort_key': self.sort_key,
-                **self.model_dump()
-            }
-        )
-        status_code = response['ResponseMetadata']['HTTPStatusCode']
-        assert status_code == 200
-
 
 class AkelloBaseModel(BaseModel):
 

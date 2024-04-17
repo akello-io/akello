@@ -2,11 +2,10 @@ import datetime
 import json
 from decimal import Decimal
 from typing import Optional, List
-import uuid
 
 from akello.db.models_v2 import AkelloBaseModel
 from akello.db.models_v2.user import User
-from akello.db.types import FlagTypes, PatientStatysTypes
+from akello.db.models_v2.types import FlagTypes, PatientStatus
 
 
 class RegistryTreatment(AkelloBaseModel):
@@ -15,7 +14,7 @@ class RegistryTreatment(AkelloBaseModel):
     mrn: str
     referring_npi: Optional[str] = None
     payer: Optional[str] = None
-    status: PatientStatysTypes = PatientStatysTypes.enrolled
+    status: PatientStatus = PatientStatus.enrolled
     flag: Optional[FlagTypes] = None
 
     first_name: Optional[str] = None

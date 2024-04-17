@@ -21,7 +21,7 @@ from akello.services.models.screeners import ScreenerService
 from akello.db.models_v2.registry import Registry, RegistryUser, RegistryTreatment
 from akello.db.models_v2.user import User
 
-from akello.db.models_v2.measurement import Measurement
+from akello.db.models_v2.measurementvalue import MeasurementValue
 
 from typing import List
 
@@ -165,7 +165,7 @@ async def record_session(request: Request, registry_id: str, treatment_log: Trea
 
 
 class PatientMeasurements(BaseModel):
-    measurements: List[Measurement]
+    measurements: List[MeasurementValue]
 
 @router.post("/{registry_id}/patient/{patient_id}/measurement")
 async def set_patient_measurement(registry_id: str, patient_id: str, payload: PatientMeasurements,
@@ -177,7 +177,7 @@ async def set_patient_measurement(registry_id: str, patient_id: str, payload: Pa
         raise Exception('User does not have access to this registry')
 
     for measurement in payload.measurements:
-        Measurement(
+        MeasurementValue(
             user_id=user.id,
             registry_id=registry_id,
             measure=measurement.measure,

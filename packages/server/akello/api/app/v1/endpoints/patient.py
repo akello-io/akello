@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
 from akello.db.models_v2.registry_treatment import RegistryTreatment
-from akello.db.models_v2.types import PatientStatysTypes
+from akello.db.models_v2.types import PatientStatus
 
 
 import boto3, os
@@ -91,7 +91,7 @@ async def accept_invite(user_invite: UserInvite,  auth: CognitoTokenCustom = Dep
             mrn=user_invite.payload['mrn'],
             referring_npi=user_invite.payload['referring_npi'],
             payer=user_invite.payload['payer'],
-            status=PatientStatysTypes.accepted,
+            status=PatientStatus.accepted,
             first_name=user_invite.payload['first_name'],
             last_name=user_invite.payload['last_name'],
             phone_number=user_invite.payload['phone_number'],

@@ -1,9 +1,11 @@
+import { Measurement } from "./measurement"
 
 export class Registry {
     id: string
     organization_id?: string
     name?: string
     logo?: string
+    measurements_enabled?: Measurement[]
 
     constructor(
         id: string,
