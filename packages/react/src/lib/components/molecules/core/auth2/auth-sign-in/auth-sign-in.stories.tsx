@@ -30,7 +30,7 @@ const config = {
               authenticationFlowType: "USER_PASSWORD_AUTH",
   }),
   onUnauthenticated: () => {
-      window.location.href = '/login'
+      window.location.href = '/'
   }
 }
 const akello = new AkelloClient(config)

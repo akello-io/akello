@@ -10,6 +10,7 @@ export interface RegistryPageProps {
 
 export const RegistryPage:React.FC<RegistryPageProps> = ({drawerHandlers, onNavigate}) => {
 
+
     const akello = useAkello();
     const [patients, setPatients] = useState<any>([])
 

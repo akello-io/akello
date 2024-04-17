@@ -111,6 +111,7 @@ const columns = [
 ]
 
 export const PatientRegistryGrid:React.FC<PatientRegistryGridProps> = ({rows, measurements, onPatientSelect}) => {
+    const akello = useAkello();
 
     for(let i = 0; i < measurements.length; i++) {
         columns.push({
@@ -147,6 +148,7 @@ export const PatientRegistryGrid:React.FC<PatientRegistryGridProps> = ({rows, me
                 }}
                 slots={{ toolbar: GridToolbar }}
                 getRowId={(row: any) => row.user_id}
+                rowSelectionModel={akello.getSelectedPatientRegistry()?.user_id}
                 pageSizeOptions={[5]}
                 checkboxSelection
                 disableRowSelectionOnClick

@@ -62,7 +62,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
                 },
             }}
             aside={{
-                width: pathname.indexOf('registry') != -1 ? 500 : 0,
+                width: akello.getSelectedPatientRegistry() ? 500 : 0,
                 collapsed: {
                     desktop: false,
                     mobile: true,
@@ -157,7 +157,12 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
                 <Outlet />
             </AppShell.Main>
             <AppShell.Aside>
-                <PatientDetail />
+                {
+                    akello.getSelectedPatientRegistry() &&  (
+                        <PatientDetail />
+                    )
+                }
+
             </AppShell.Aside>
         </AppShell>
     );
