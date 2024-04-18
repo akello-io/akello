@@ -15,13 +15,13 @@ export interface SessionTimerProps {
     isRunning: boolean
   ) => void;
 
-  onRunning: (isRunning: boolean) => void;
 
 }
 
-export const SessionTimer:React.FC<SessionTimerProps> = ({onRunning, onUpdate}) => {
+export const SessionTimer:React.FC<SessionTimerProps> = ({onUpdate}) => {
 
     const akello = useAkello();
+    const [timingPatient, setTimingPatient] = React.useState(akello.getSelectedPatientRegistry())
 
     const {
         totalSeconds,
@@ -47,17 +47,18 @@ export const SessionTimer:React.FC<SessionTimerProps> = ({onRunning, onUpdate}) 
         )
       }, [seconds])
 
+
       useEffect(() => {
-        onRunning(isRunning)
-      }, [isRunning])
+        reset()
+      }, [akello.getSelectedPatientRegistry()!.user_id])
 
 
       return (
         <div style={{textAlign: 'center'}}>
           <div>
-                <Text size='md' fw={600}>
+                <div className='font-bold text-6xl'>
                     <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
-                </Text>
+                </div>
 
             </div>
         </div>

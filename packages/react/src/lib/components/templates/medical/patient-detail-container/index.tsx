@@ -23,15 +23,14 @@ export const PatientDetailContainer: React.FC<PatientDetailContainerProps> = ({s
         <div>
 
             <PatientInfoCard
-                selectedPatient={selectedPatient} setSessionTimerStarted={setSessionTimerStarted}
+                selectedPatient={selectedPatient}
                 onReviewTypeSelect={(reviewType: string) => {
                     setReviewType(reviewType)
                 }}
             />
 
-
             {
-                sessionTimerStarted && reviewType === 'Caseload review' && (
+                reviewType === 'Caseload review' && (
                     <>
                         <Tabs defaultValue="first">
                             <Tabs.List>
@@ -45,12 +44,11 @@ export const PatientDetailContainer: React.FC<PatientDetailContainerProps> = ({s
             }
 
             {
-                sessionTimerStarted &&  reviewType === 'Patient Session' && (
+                reviewType === 'Patient Session' && (
 
                     <div className='px-4'>
                         <PatientSessionStepper />
                     </div>
-
 
                 )
             }

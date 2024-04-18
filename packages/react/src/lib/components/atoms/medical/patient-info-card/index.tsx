@@ -7,14 +7,20 @@ import { SessionBtn } from '../session-btn';
 
 export interface PatientInfoCardProps {
     selectedPatient: RegistryTreatment
-    setSessionTimerStarted: (isRunning: boolean) => void
     onReviewTypeSelect: (reviewType: string) => void
 }
 
-export const PatientInfoCard:React.FC<PatientInfoCardProps> = ({selectedPatient, setSessionTimerStarted, onReviewTypeSelect}) => {
+export const PatientInfoCard:React.FC<PatientInfoCardProps> = ({selectedPatient, onReviewTypeSelect}) => {
 
     return (
         <>
+            <div className='p-4'>
+                <SessionBtn
+                    onReviewTypeSelect={((reviewType: string) => {
+                        onReviewTypeSelect(reviewType)
+                    })}
+                />
+            </div>
             <div className={"flex flex-row justify-between border-b border-1 px-3 py-2"}>
                 <div className='flex flex-col'>
                     <div className={"text-xl font-semibold"}>
@@ -38,20 +44,7 @@ export const PatientInfoCard:React.FC<PatientInfoCardProps> = ({selectedPatient,
                 </div>
 
             </div>
-            <div className='p-4'>
-                <SessionBtn onRunning={(
-                    isRunning: boolean
-                ) => {
-                    setSessionTimerStarted(isRunning)
 
-                }}
-
-                onReviewTypeSelect={((reviewType: string) => {
-                    onReviewTypeSelect(reviewType)
-                })}
-                />
-
-            </div>
 
         </>
     )
