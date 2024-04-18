@@ -1,14 +1,22 @@
 from decimal import Decimal
+from enum import Enum
+
 from akello.db.connector.dynamodb import measurements_db
-from akello.db.models_v2 import AkelloMeasurement, AkelloBaseModel
+from akello.db.models_v2 import AkelloMeasurement
+from typing import Optional, List
+
+class MeasurementType(str, Enum):
+    patient_caseload_review_minutes = 'patient_caseload_review_minutes'
+    patient_session_minutes = 'patient_session_minutes'
 
 
 class MeasurementValue(AkelloMeasurement):
     user_id: str
     registry_id: str
-    reported_by_user_id: str # user who took the measurement
-    measure: str  # PHQ9, GAD7, treatment-session
+    reported_by_user_id: str  # user who took the measurement
+    measure: MeasurementType
     value: Decimal
+    client_session: Optional[str] = None
 
     @property
     def partition_key(self) -> str:
