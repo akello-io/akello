@@ -16,7 +16,7 @@ export interface PatientDetailContainerProps {
 export const PatientDetailContainer: React.FC<PatientDetailContainerProps> = ({selectedPatient}) => {
 
     const [sessionTimerStarted, setSessionTimerStarted] = React.useState<boolean>(false)
-    const [reviewType, setReviewType] = React.useState<string>('')
+    const [reviewType, setReviewType] = React.useState<string>('Caseload review')
     // data={['Caseload review', 'Patient Session']}
 
     return (

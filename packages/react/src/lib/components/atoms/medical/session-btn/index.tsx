@@ -5,6 +5,7 @@ import { Switch, Select } from '@mantine/core';
 import { SessionTimer  } from "../session-timer";
 import { notifications } from '@mantine/notifications';
 import { useAkello } from "@akello/react-hook";
+import { RadioGroup, Radio } from '@mantine/core';
 
 
 export interface SessionBtnProps {
@@ -14,7 +15,7 @@ export interface SessionBtnProps {
 export const SessionBtn : React.FC<SessionBtnProps> = ({onReviewTypeSelect}) => {
 
     const akello = useAkello();
-    const [reviewType, setReviewType] = React.useState<string>('')
+    const [reviewType, setReviewType] = React.useState<string>('Caseload review')
 
     return (
         <>
@@ -31,19 +32,20 @@ export const SessionBtn : React.FC<SessionBtnProps> = ({onReviewTypeSelect}) => 
                             window.localStorage.setItem('totalSeconds', totalSeconds.toString())
                     }}/>
 
-                    <Select
-                            required
-                            label="Review type"
-                            description="Select the type of review you want to start"
-                            defaultValue={'Caseload review'}
-                            value={reviewType}
-                            placeholder="Review type"
-                            data={['Caseload review', 'Patient Session']}
-                            onChange={(value: any) => {
-                                onReviewTypeSelect(value!)
-                                setReviewType(value!)
-                            }}
-                        />
+                    <RadioGroup
+                        size="md"
+                        variant="vertical"
+                        defaultValue={'Caseload review'}
+                        value={reviewType}
+                        onChange={(value: any) => {
+                            onReviewTypeSelect(value!)
+                            setReviewType(value!)
+                        }}
+                        required
+                    >
+                        <Radio value="Caseload review" label='Caseload review'/>
+                        <Radio value="Patient Session" label='Patient Session'/>
+                    </RadioGroup>
 
             </div>
         </>
