@@ -4,8 +4,14 @@ import os
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from fastapi import APIRouter, Depends
 from akello.auth.provider import auth_token_check
-from akello.db.models_v2.measurementvalue import MeasurementValue
+from akello.db.models_v2.measurementvalue import MeasurementValue, MeasurementType
 from akello.db.models_v2.user import UserRegistry, UserRegistryRole
+from akello.db.models_v2.registry_treatment import RegistryTreatment
+
+from akello.db.models_v2.user import UserRegistry, UserRegistryRole
+from akello.db.models_v2.registry import Registry
+
+from pydantic import BaseModel
 
 logger = logging.getLogger('mangum')
 router = APIRouter()
@@ -37,3 +43,36 @@ async def save_timelog(payload: MeasurementValue, auth: CognitoTokenCustom = Dep
     }
 
 
+@router.get("/timelog")
+async def get_timelog(user_id: str, registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id, 'treatment-user-id:%s' % user_id)
+    assert registry_treatment, 'User not found in registry'
+
+    session_minutes = registry_treatment.fetch_measurement(MeasurementType.patient_session_minutes)
+    caseload_review_minutes = registry_treatment.fetch_measurement(MeasurementType.patient_caseload_review_minutes)
+
+    registry = Registry(
+        id=registry_id
+    )
+
+    users = registry.fetch_users(requesting_user_id=auth.cognito_id)
+    user_map = {user.id: user for user in users}
+    response = []
+
+    for session_minute in session_minutes:
+        response.append({
+            'measure': MeasurementType.patient_session_minutes,
+            'value': session_minute.value,
+            'reported_by_user_id': user_map[session_minute.reported_by_user_id],
+            'date': session_minute.timestamp
+        })
+
+    for caseload_review_minute in caseload_review_minutes:
+        response.append({
+            'measure': MeasurementType.patient_caseload_review_minutes,
+            'value': caseload_review_minute.value,
+            'reported_by_user_id': user_map[caseload_review_minute.reported_by_user_id],
+            'date': caseload_review_minute.timestamp
+        })
+
+    return response

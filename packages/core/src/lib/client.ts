@@ -11,6 +11,7 @@ import { ReportsService } from './services/reports';
 import { PatientService } from './services/patient';
 import { ClientStorage } from './storage';
 import { Registry, RegistryTreatment, UserRegistry, User, Organization } from './models';
+import { MeasurementService } from './services/measurement';
 
 
 export const DEFAULT_BASE_URL = 'http://localhost:8000';
@@ -50,6 +51,7 @@ export interface AkelloClientInterface {
     selectRegistry(registry: Registry): void;
     selectUserRegistry(userRegistry: UserRegistry): void;
     getSelectedRegistry(): Registry | undefined;
+    measurementService: MeasurementService
     registryService: RegistryService;
     userService: UserService;
     reportsService: ReportsService;
@@ -93,6 +95,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     public readonly userService: UserService;
     public readonly reportsService: ReportsService;
     public readonly patientService: PatientService;
+    public readonly measurementService: MeasurementService
     accessToken: string | undefined;
 
     /**
@@ -106,6 +109,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         this.userService = new UserService(this);
         this.reportsService = new ReportsService(this);
         this.patientService = new PatientService(this);
+        this.measurementService = new MeasurementService(this);
         this.storage = new ClientStorage(localStorage);
         this.accessToken = this.storage.getString('accessToken') ?? undefined;
         this.selectedOrganization = this.storage.getObject('selectedOrganization') ?? undefined;

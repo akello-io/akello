@@ -77,4 +77,5 @@ export class PatientService extends BaseService {
             }
         });
     }
+
 }

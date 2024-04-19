@@ -7,6 +7,13 @@ from akello.db.models_v2 import AkelloBaseModel
 from akello.db.models_v2.user import User
 from akello.db.models_v2.types import FlagTypes, PatientStatus
 
+from akello.db.connector.dynamodb import registry_db, measurements_db
+
+from boto3.dynamodb.conditions import Key
+from pydantic import TypeAdapter
+
+from  akello.db.models_v2.measurementvalue import MeasurementValue, MeasurementType
+
 
 class RegistryTreatment(AkelloBaseModel):
     registry_id: str
@@ -63,3 +70,12 @@ class RegistryTreatment(AkelloBaseModel):
     def remove_approved_provider(self, authorized_user: User):
         ## Remove the column for the approvede provider ID
         self._AkelloBaseModel__remove_attribute('approved_provider_id-%s' % authorized_user.id)
+
+
+    def fetch_measurement(self, measure: MeasurementType):
+        ## Fetch all measurements for this patient
+        partition_key = f'user_id:{self.user_id}::registry-id:{self.registry_id}::measure:{measure}'
+        response = measurements_db.query(KeyConditionExpression=Key('partition_key').eq(partition_key))
+        measurements = response.get('Items', [])
+        ta = TypeAdapter(List[MeasurementValue])
+        return ta.validate_python(measurements)

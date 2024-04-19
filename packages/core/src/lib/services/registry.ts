@@ -128,5 +128,4 @@ export class RegistryService extends BaseService {
         });
     }
 
-
 }

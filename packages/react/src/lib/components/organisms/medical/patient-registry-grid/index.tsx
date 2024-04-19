@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import {GridApi, DataGrid, GridColDef, GridToolbar, GridSingleSelectColDef } from '@mui/x-data-grid';
 import { useAkello } from '@akello/react-hook';
+import { Measurement, MeasureTypes } from '@akello/core';
 
 interface PatientRegistryGridProps {
     rows: [],
@@ -16,9 +17,28 @@ export const PatientRegistryGrid:React.FC<PatientRegistryGridProps> = ({rows, me
 
     const logtime = () => {
         const user_id = akello.getSelectedPatientRegistry()?.user_id
+        const registry_id = akello.getSelectedPatientRegistry()?.registry_id
         const total_seconds = window.localStorage.getItem('totalSeconds')
         console.log('user_id ', user_id)
         console.log('total_seconds ', total_seconds)
+
+        if(registry_id && user_id && total_seconds) {
+            const measure = new Measurement(
+                user_id,
+                registry_id,
+                '',
+                MeasureTypes.patient_caseload_review_minutes,
+                Number(total_seconds)
+            )
+
+            akello.measurementService.logTime(measure, (resp) => {
+                console.log('logTime resp', resp)
+            })
+
+        }
+
+
+
     }
 
     const columns = [

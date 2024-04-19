@@ -1,4 +1,4 @@
-enum MeasureTypes {
+export enum MeasureTypes {
     patient_caseload_review_minutes = 'patient_caseload_review_minutes',
     patient_session_minutes = 'patient_session_minutes'
 };

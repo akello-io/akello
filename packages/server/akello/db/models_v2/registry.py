@@ -74,6 +74,39 @@ class Registry(AkelloBaseModel):
             payload=payload
         )._AkelloBaseModel__put()
 
+    def fetch_users(self, requesting_user_id: str):
+        user_registry = UserRegistry(
+            user_id=requesting_user_id,
+            registry_id=self.id,
+            role=UserRegistryRole.admin
+        )._AkelloBaseModel__get()
+        if not user_registry:
+            raise Exception('User is not part of this registry')
+
+        # Define the partition key value
+        partition_key_value = f"registry-id:{self.id}"
+
+        # Perform the query
+        response = registry_db.query(
+            KeyConditionExpression=Key('partition_key').eq(partition_key_value) & Key('sort_key').begins_with(
+                'user-id:'),
+        )
+
+        # Extract sessions from the response
+        items = response.get('Items', [])
+        ta = TypeAdapter(List[RegistryUser])
+        registry_users = ta.validate_python(items)
+
+
+        users = []
+        for registry_user in registry_users:
+            user = User.get_by_key(User, 'user-id:%s' % registry_user.user_id, 'meta')
+            users.append(user)
+
+        return users
+
+
+
     def fetch_patients(self, requesting_user: User):
         user_registry = UserRegistry(
             user_id=requesting_user.id,

@@ -29,15 +29,6 @@ export const SessionBtn : React.FC<SessionBtnProps> = ({onReviewTypeSelect}) => 
                             days: number,
                             isRunning: boolean
                         ) => {
-                            if(totalSeconds % 10 === 0 && totalSeconds > 0) {
-                                notifications.show({
-                                    title: 'Session Timer',
-                                    message: `You have been in session for ${minutes} minutes`,
-                                    color: 'cyan',
-                                    icon: 'bell',
-                                    autoClose: 500,
-                                });
-                            }
                             window.localStorage.setItem('totalSeconds', totalSeconds.toString())
                     }}/>
 
