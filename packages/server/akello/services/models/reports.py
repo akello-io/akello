@@ -1,10 +1,8 @@
 import datetime
-import json
 import logging
 from datetime import datetime
 
 from akello.services import BaseService
-from akello.services.models.registry import RegistryService
 
 logger = logging.getLogger('mangum')
 

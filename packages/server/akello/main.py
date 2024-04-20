@@ -2,7 +2,6 @@ import os, sys
 from fastapi import FastAPI
 from akello.settings import *
 from akello.api.app.v1.api import router as api_router
-from akello.api.app.v2.api import router as api_router_v2
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 from aws_lambda_powertools import Logger
@@ -54,7 +53,6 @@ def root():
     return {"message": "api.akello.io"}
 
 app.include_router(api_router, prefix="/v1")
-app.include_router(api_router_v2, prefix="/v2")
 
 #TODO: Should be implemented by apps that extend the base server
 #metriport_api_key = os.getenv('METRIPORT_API_KEY', None)
