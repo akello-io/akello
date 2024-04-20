@@ -5,7 +5,7 @@ export class Registry {
     organization_id?: string
     name?: string
     logo?: string
-    measurements_enabled?: Measurement[]
+    measurements?: Measurement[]
 
     constructor(
         id: string,

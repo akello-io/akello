@@ -16,7 +16,7 @@ class Registry(AkelloBaseModel):
     organization_id: Optional[str] = None
     name: Optional[str] = None
     logo: Optional[str] = None
-    measurements_enabled: List[Measurement] = []
+    measurements: List[Measurement] = []
 
     def __init__(self, **data):
         super().__init__(**data)
@@ -131,9 +131,9 @@ class Registry(AkelloBaseModel):
         ta = TypeAdapter(List[RegistryTreatment])
         return ta.validate_python(items)
 
-    def fetch_patient_measurement(self, measure: str,  requesting_user: User):
+    def fetch_patient_measurement(self, measure: str,  requesting_user_id: str):
         user_registry = UserRegistry(
-            user_id=requesting_user.id,
+            user_id=requesting_user_id,
             registry_id=self.id,
             role=UserRegistryRole.admin
         )._AkelloBaseModel__get()
@@ -145,22 +145,6 @@ class Registry(AkelloBaseModel):
         response = measurements_db.query(KeyConditionExpression=Key('partition_key').eq(partition_key_value))
         items = response.get('Items', [])
         ta = TypeAdapter(List[MeasurementValue])
-        return ta.validate_python(items)
-
-    def fetch_registry_measurements(self, requesting_user_id: str):
-        user_registry = UserRegistry(
-            user_id=requesting_user_id,
-            registry_id=self.id,
-            role=UserRegistryRole.admin
-        )._AkelloBaseModel__get()
-        if not user_registry:
-            raise Exception('User is not part of this registry')
-
-        partition_key_value = f"registry-id:{self.id}"
-        response = measurements_db.query(KeyConditionExpression=Key('partition_key').eq(partition_key_value),
-                                         FilterExpression=Attr('sort_key').begins_with('measure-id:'))
-        items = response.get('Items', [])
-        ta = TypeAdapter(List[RegistryMeasurement])
         return ta.validate_python(items)
 
 
@@ -176,16 +160,3 @@ class RegistryUser(AkelloBaseModel):
     def sort_key(self) -> str:
         return 'user-id:%s' % self.user_id
 
-
-class RegistryMeasurement(AkelloBaseModel):
-    registry_id: str
-    measure_id: str
-    measure: Measurement
-
-    @property
-    def partition_key(self) -> str:
-        return 'registry-id:%s' % self.registry_id
-
-    @property
-    def sort_key(self) -> str:
-        return 'measure-id:%s' % self.measure_id

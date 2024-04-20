@@ -18,6 +18,8 @@ from akello.services.models.registry import RegistryService
 from akello.services.models.user import UserService
 from akello.services.models.screeners import ScreenerService
 
+from akello.db.models_v2.types import Measurement
+
 from akello.db.models_v2.registry import Registry, RegistryUser, RegistryTreatment
 from akello.db.models_v2.user import User
 
@@ -26,6 +28,9 @@ from akello.db.models_v2.measurementvalue import MeasurementValue
 from typing import List
 
 from decimal import Decimal
+
+from pydantic import TypeAdapter
+
 
 logger = logging.getLogger('mangum')
 
@@ -87,20 +92,16 @@ async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth
     registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry_id, 'user-id:%s' % user.id)
     if not registry_user:
         raise Exception('User does not have access to this registry')
-
-    resp = registry.model_dump()
-    resp['measurements'] = ScreenerService.get_screeners()
-
-    return resp
+    return registry
 
 
 @router.put("/{registry_id}/measurements")
 async def update_measurements(registry_id: str, request: Request, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    # TODO: Refactor this to use the new models
-    UserService.check_registry_access(auth.cognito_id, registry_id)
+    registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
     payload = await request.json()
-    RegistryService.set_measurements(registry_id, payload)
-
+    ta = TypeAdapter(List[Measurement])
+    registry.measurements = ta.validate_python(payload)
+    registry._AkelloBaseModel__put()
 
 @router.get("/{registry_id}/team-members")
 async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
@@ -220,5 +221,5 @@ async def save_akello_app(registry_id: str, akello_app: AkelloApp,
 @router.get("/{registry_id}/measurements")
 async def get_measurments_for_patient(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
-    measurements = registry.fetch_registry_measurements(requesting_user_id=auth.cognito_id)
+    measurements = registry.fetch_patient_measurement(measure='', requesting_user_id=auth.cognito_id)
     return measurements
