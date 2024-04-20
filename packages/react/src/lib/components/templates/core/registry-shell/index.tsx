@@ -1,19 +1,26 @@
-import { NavLink, Text, em } from '@mantine/core';
-import { IconArrowBarUp, IconTable, IconReportAnalytics, IconLock, IconShieldCheck, IconReportMedical, IconBrandMyOppo } from '@tabler/icons-react';
+import { ScrollArea, NavLink, Text, em } from '@mantine/core';
+import {
+    IconArrowBarUp,
+    IconTable,
+    IconReportAnalytics,
+    IconLock,
+    IconShieldCheck,
+    IconReportMedical,
+    IconBrandMyOppo
+} from '@tabler/icons-react';
 import { useAkello } from "@akello/react-hook";
 import { useDisclosure } from '@mantine/hooks';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Registry } from '@akello/core';
 import { Header } from '../../../atoms';
-import { PatientDetail } from '../../../organisms';
 import { useMediaQuery } from '@mantine/hooks';
-import { Modal, Button } from '@mantine/core';
-import { modals } from '@mantine/modals';
+import { PatientDetailContainer } from '../../medical/patient-detail-container';
+import { useLocation } from 'react-router';
 
 
 interface RegistryShellProps {
     AppShell: any;
+    registry_id: string;
     Logo: any;
     onNavigate: (path: string) => void;
     signOut: () => void;
@@ -26,6 +33,7 @@ interface RegistryShellProps {
 export const RegistryShell:React.FC<RegistryShellProps> = ({
         Logo,
         AppShell,
+        registry_id,
         onNavigate,
         pathname,
         Outlet,
@@ -33,53 +41,12 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
         stripe_portal_url,
         signOut
     }) => {
+
     const akello = useAkello();
     const [opened, { toggle }] = useDisclosure();
-    const [evaluationModal, evaluationModalHandlers] = useDisclosure(false);
     const [planTier, setPlanTier] = useState();
     const isMobile = useMediaQuery(`(max-width: ${em(880)})`);
     const selectedRegistry = akello.getSelectedRegistry();
-
-    useEffect(() => {
-
-        akello.userService.getUserRegistries((data) => {
-            const registeries = data.map((registry: any) => {
-                return new Registry(
-                    registry['id'],
-                    registry['name'],
-                    registry['description'],
-                    registry['active_patients'],
-                    registry['members'],
-                    registry['questionnaires'],
-                    {
-                        total_minutes: registry['total_minutes'],
-                        completed_minutes: registry['completed_minutes'],
-                        safety_risk: registry['safety_risk']
-                    }
-                );
-            });
-
-            if(registeries.length == 0) {
-                onNavigate('/create-registry');
-            } else {
-                akello.selectRegistry(registeries[0]);
-                akello.dispatchEvent({ type: 'change' });
-            }
-        });
-    }, []);
-
-    useEffect(() => {
-        if(akello.getSelectedRegistry() != undefined) {
-            akello.registryService.checkSubscription(akello.getSelectedRegistry()!.id, (data: any) => {
-                setPlanTier(data);
-                if(data !== 'Individual') {
-                    evaluationModalHandlers.open()
-                }
-            }, (error: any) => {
-
-            })
-        }
-    }, [])
 
     return (
         <AppShell
@@ -95,7 +62,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
                 },
             }}
             aside={{
-                width: pathname.indexOf('registry') != -1 ? 500 : 0,
+                width: akello.getSelectedPatientRegistry() ? 520 : 0,
                 collapsed: {
                     desktop: false,
                     mobile: true,
@@ -104,19 +71,6 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
             }}
             padding="md"
         >
-            <Modal
-                opened={evaluationModal}
-                onClose={evaluationModalHandlers.close}
-                title="Evaluation plan"
-                size={"sm"}
-                zIndex={1000}
-            >
-                <Text size={'lg'} fw={700}>For evaluation only</Text>
-                <Text>You are currently using Akello’s evaluation plan. We recommend using this plan to familiarize yourself with Akello’s platform and understand how it can meet your specific needs. If you plan on adding real <span className='font-semibold'>patient data</span> be sure to upgrade to a paid plan, which will include a Business Associate Agreement (BAA).</Text>
-                <Button onClick={() => {
-                    window.location.href = stripe_checkout_url +'?client_reference_id=' + selectedRegistry?.id
-                }}>Upgrade Plan</Button>
-            </Modal>
             <Header signOut={signOut} loggedIn={true} Logo={Logo}  opened={opened} toggle={toggle} onNavigate={(path: any) => onNavigate(path) }/>
             <AppShell.Navbar>
                 <Text pl={12} fz="xs" fw={450} mt="sm" >FAVORITES</Text>
@@ -202,8 +156,16 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
             <AppShell.Main>
                 <Outlet />
             </AppShell.Main>
-            <AppShell.Aside>
-                <PatientDetail onStartSession={() => onNavigate('/patient/' + (akello.getSelectedPatientRegistry()?.id ?? '') + '/treatment-session')} />
+            <AppShell.Aside >
+                {
+                    akello.getSelectedPatientRegistry() &&  (
+                        <ScrollArea>
+                            <PatientDetailContainer registry_id={akello.getSelectedRegistry()!.id} selectedPatient={akello.getSelectedPatientRegistry()!} />
+                        </ScrollArea>
+
+                    )
+                }
+
             </AppShell.Aside>
         </AppShell>
     );

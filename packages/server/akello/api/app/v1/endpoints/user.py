@@ -1,16 +1,13 @@
 import logging
 import os
-import boto3
-from fastapi import APIRouter, Request, Depends, UploadFile
-from akello.auth.provider import auth_token_check
+import uuid
+
+from fastapi import APIRouter, Request, Depends
+
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
-from akello.db.types import UserInvite
-from akello.services.models.user import UserService
-from akello.services.models.registry import RegistryService
-from akello.db.connector.s3 import S3Storage
-from pydantic import BaseModel
-from typing import Optional
-from boto3 import Session
+from akello.auth.provider import auth_token_check
+from akello.db.models_v2.organization import Organization
+from akello.db.models_v2.user import User, UserSession
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
 
@@ -18,54 +15,101 @@ logger = logging.getLogger('mangum')
 router = APIRouter()
 
 
-@router.post("/profile_photo")
-async def update_profile_photo(file: UploadFile, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    file_path = await S3Storage().set_item(file.filename, file)
-    return file_path
-
-
 @router.get("")
 async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    UserService.save_user_session(auth.cognito_id, request.headers['user-agent'], request.client.host)
+    """
+    This should only be called when the user logs in. It will create a new user if the user does not exist
+    """
+
+    created_user = False
+
+    # log session
+    UserSession(
+        user_id=auth.cognito_id,
+        session_id=str(uuid.uuid4()),
+        user_agent=request.headers['user-agent'],
+        ip_address=request.client.host
+    ).put()
+
     logger.info('calling get_user: email:%s' % auth.username)
-    user = UserService.get_user(auth.cognito_id)
+
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+
+    def _create_organization_registry(user):
+        _organization = Organization(
+            id=str(uuid.uuid4()),
+            created_by=user
+        )
+        _organization.create(requesting_user=user)
+        return _organization.create_registry(name=None, logo=None, requesting_user=user)
+
     if not user:
+        # if this is the first time we are seeing the user we create a new user
         logger.info('registering a new User for the first time - %s ' % auth.username)
-        UserService.create_user(auth.cognito_id, auth.username, auth.given_name, auth.family_name,
-                                None)  # raise Exception('User not found')
+        given_name = auth.given_name if hasattr(auth, 'given_name') else None
+        family_name = auth.family_name if hasattr(auth, 'family_name') else None
+        username = auth.username if hasattr(auth, 'username') else None
+
+        user = User(id=auth.cognito_id, first_name=given_name, last_name=family_name, email=username)
+        user.put()
+        created_user = True
+        selected_registry = _create_organization_registry(user)
     else:
-        UserService.set_user_active(auth.cognito_id)
+        user_organizations = user.fetch_user_organizations()
+        if len(user_organizations) == 0:
+            raise Exception('User does not have any organizations')
 
-    # TODO: WE SHOULD ONLY DO THIS ONCE ON LOGIN
+        # Currently we select the first organization since we don't support multi organization yet
+        user_organization = user_organizations[0]
+        organization = Organization.get_by_key(Organization, 'organization-id:%s' % user_organization.organization_id,
+                                               'meta')
+        registries = organization.fetch_organization_registries(requesting_user=user)
 
-    invites = UserInvite.get_invites(auth.username)
-    print('invites: %s ' % auth.username)
-    print('invites')
-    print(invites)
-    for invite in invites:
-        logger.info('adding user - %s to registry %s ' % (auth.username, invite['registry_id']))
-        UserService.create_registry_user(registry_id=invite['registry_id'], first_name='Vijay',
-            # TODO: Remove hardcoded value
-            last_name='Selvaraj',  # TODO: Remove hardcoded value
-            email=invite['email'], user_id=auth.cognito_id, role=invite['role'], is_admin=False)
-        UserService.link_user_to_registry(auth.cognito_id, invite['registry_id'])
-        RegistryService.update_stats(invite['registry_id'])
+        # Currently we select the first registry since we don't support multi registry yet
+        if len(registries) == 0:
+            raise Exception('Organization does not have any registries')
+        selected_registry = registries[0]
 
-    return user
+    return {
+        'user': user,
+        'created_user': created_user,
+        'selected_registry': selected_registry
+    }
+
+
+@router.get("/invites")
+async def get_user_invites(auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    return user.fetch_invites()
+
+
+@router.get("/organizations")
+async def get_user_organizations(auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    return user.fetch_user_organizations()
 
 
 @router.get("/sessions")
 async def get_user_sessions(auth: CognitoTokenCustom = Depends(auth_token_check)):
-    return UserService.get_user_sessions(auth.cognito_id)
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    return user.fetch_user_sessions()
 
 
-# TODO: Should this be the root API for registry?
-#     api.akello.io/registry -- this gets the list of registeries for current account which
-#     they have access to
+@router.get("/organizations")
+async def get_user_organizations(auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    return user.fetch_user_organizations()
+
+
 @router.get("/registries")
 async def get_user_registries(auth: CognitoTokenCustom = Depends(auth_token_check)):
-    return UserService.get_registries(auth.cognito_id)
+    # return UserService.get_registries(auth.cognito_id)
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    return user.fetch_registries()
 
+
+"""
+TODO: This is a work in progress. The idea is to allow users to set their MFA settings
 
 class MFASettingType(BaseModel):
     Enabled: bool
@@ -90,3 +134,4 @@ async def set_user_mfa(mfa_setting: MFASetting, auth: CognitoTokenCustom = Depen
         response = Session(profile_name='Dev').client('cognito-idp').admin_set_user_mfa_preference(
             **mfa_setting.model_dump(exclude_none=True))
     assert response['ResponseMetadata']['HTTPStatusCode'] == 200
+"""

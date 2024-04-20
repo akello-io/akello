@@ -7,10 +7,11 @@ import {
     CognitoUserAttribute
 } from 'amazon-cognito-identity-js';
 import { UserService } from './services';
-import { FinancialModelService } from './services/financial_model';
 import { ReportsService } from './services/reports';
+import { PatientService } from './services/patient';
 import { ClientStorage } from './storage';
-import { Registry, PatientRegistry } from './models';
+import { Registry, RegistryTreatment, UserRegistry, User, Organization } from './models';
+import { MeasurementService } from './services/measurement';
 
 
 export const DEFAULT_BASE_URL = 'http://localhost:8000';
@@ -48,11 +49,13 @@ export interface AkelloClientInterface {
         onFail: (err: any) => void
     ): void;
     selectRegistry(registry: Registry): void;
+    selectUserRegistry(userRegistry: UserRegistry): void;
     getSelectedRegistry(): Registry | undefined;
+    measurementService: MeasurementService
     registryService: RegistryService;
     userService: UserService;
-    financialService: FinancialModelService;
     reportsService: ReportsService;
+    patientService: PatientService;
     accessToken: string | undefined;
 
 }
@@ -83,13 +86,16 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     private family_name: string | undefined;
     private photo: string | undefined;
     private email: string | undefined;
+    private selectedOrganization: Organization | undefined;
     private selectedRegistry: Registry | undefined
-    private selectedPatientRegistry: PatientRegistry | undefined
+    private selectedUserRegistry: UserRegistry | undefined
+    private selectedPatientRegistry: RegistryTreatment | undefined
     private readonly storage: ClientStorage;
     public readonly registryService: RegistryService;
     public readonly userService: UserService;
-    public readonly financialService: FinancialModelService;
     public readonly reportsService: ReportsService;
+    public readonly patientService: PatientService;
+    public readonly measurementService: MeasurementService
     accessToken: string | undefined;
 
     /**
@@ -101,12 +107,24 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         this.options = options ?? {};
         this.registryService = new RegistryService(this);
         this.userService = new UserService(this);
-        this.financialService = new FinancialModelService(this);
         this.reportsService = new ReportsService(this);
+        this.patientService = new PatientService(this);
+        this.measurementService = new MeasurementService(this);
         this.storage = new ClientStorage(localStorage);
         this.accessToken = this.storage.getString('accessToken') ?? undefined;
+        this.selectedOrganization = this.storage.getObject('selectedOrganization') ?? undefined;
         this.selectedRegistry = this.storage.getObject('selectedRegistry') ?? undefined;
+        this.selectedUserRegistry = this.storage.getObject('selectedUserRegistry') ?? undefined;
         this.selectedPatientRegistry = this.storage.getObject('selectedPatientRegistry') ?? undefined;
+    }
+
+
+    selectOrganization(organization: Organization | undefined) {
+        this.selectedOrganization = organization;
+        this.storage.setObject('selectedOrganization', organization);
+    }
+    getSelectedOrganization(): Organization | undefined {
+        return this.selectedOrganization;
     }
 
 
@@ -119,12 +137,21 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
         return this.selectedRegistry;
     }
 
-    selectPatient(patientRegistry: PatientRegistry | undefined) {
+    getSelectedUserRegistry(): UserRegistry | undefined {
+        return this.selectedUserRegistry;
+    }
+
+    selectUserRegistry(userRegistry: UserRegistry | undefined) {
+        this.selectedUserRegistry = userRegistry;
+        this.storage.setObject('selectedUserRegistry', userRegistry);
+    }
+
+    selectPatient(patientRegistry: RegistryTreatment | undefined) {
         this.selectedPatientRegistry = patientRegistry;
         this.storage.setObject('selectedPatientRegistry', patientRegistry);
     }
 
-    getSelectedPatientRegistry(): PatientRegistry | undefined {
+    getSelectedPatientRegistry(): RegistryTreatment | undefined {
         return this.selectedPatientRegistry;
     }
 
@@ -190,7 +217,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
             // Create a new user
             const user = new CognitoUser({ Pool: userPool, Username: username });
 
-            user.confirmRegistration(code, false, (err, result) => {
+            user.confirmRegistration(code, false, (err: any, result: any) => {
                 if (!err) {
                     this.username = username;
                     onSuccess(result);
@@ -229,7 +256,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
             // Create a new user
             const user = new CognitoUser({ Pool: userPool, Username: email });
 
-            user.resendConfirmationCode((err, result) => {
+            user.resendConfirmationCode((err: any, result: any) => {
                 if (err) {
                     onFail(err);
                 } else {
@@ -277,7 +304,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                     new CognitoUserAttribute({ Name: 'family_name', Value: family_name })
                 ],
                 [],
-                (err, result) => {
+                (err: any, result: any) => {
                     if (err) {
                         onFail(err);
                         return;
@@ -305,7 +332,7 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
     login(
         username: string,
         password: string,
-        onSuccess: (token: string) => void,
+        onSuccess: (token: string, first_login: boolean) => void,
         onFail: (err: any) => void
     ) {
         const authenticationData = {
@@ -359,10 +386,10 @@ export class AkelloClient extends EventTarget implements AkelloClientInterface {
                     });
                 })
 
-                this.userService.getUser((user) => {
+                this.userService.getUser((resp) => {
                     this.dispatchEvent({ type: 'change' });
                     this.storage.setString('accessToken', accessToken);
-                    onSuccess(accessToken);
+                    onSuccess(accessToken, resp.created_user);
                     //this.storage.setString('username', username);
                     //this.storage.setObject('user', user);
                 })

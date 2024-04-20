@@ -53,6 +53,13 @@ export const UserInfoCard:React.FC<UserInfoCardProps> = ({signOut}) => {
             </Center>
 
             <Button fullWidth onClick={() => {
+              akello.selectOrganization(undefined)
+              akello.dispatchEvent({ type: 'change' });
+            }} radius="md" mt="xl" size="md" variant="default">
+                Dashboard
+            </Button>
+
+            <Button fullWidth onClick={() => {
               akello.logout()
               signOut()
             }} radius="md" mt="xl" size="md" variant="default">

@@ -1,2 +1,5 @@
-export * from './patient-detail'
-export * from './registry-data-grid'
+
+
+export * from './patient-registry-grid'
+export * from './patient-session'
+export * from './patient-time-log'

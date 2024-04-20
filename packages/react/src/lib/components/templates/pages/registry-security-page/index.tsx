@@ -26,7 +26,7 @@ export const RegistrySecurityPage:React.FC<RegistrySecurityPageProps> = ({onNavi
                     ip: data[i]['ip_address'],
                     auth: data[i]['auth_method'],
                     date: data[i]['date'],
-                    time: moment.unix(data[i]['sort_key']).format("MM/DD/YYYY HH:mm:ss"),
+                    time: moment.unix(data[i]['created_at']).format("MM/DD/YYYY HH:mm:ss"),
                     location: data[i]['location']
                 })
 

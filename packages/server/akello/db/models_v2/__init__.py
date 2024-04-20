@@ -3,28 +3,36 @@ import json
 from decimal import Decimal
 
 from botocore.exceptions import ClientError
-from pydantic import BaseModel
+from pydantic import BaseModel, computed_field
 
-from akello.db.connector.dynamodb import registry_db
+from akello.db.connector.dynamodb import registry_db, measurements_db
+
 
 
 class AkelloBaseModel(BaseModel):
 
+    @computed_field
     @property
-    def created_at(self) -> float:
-        return datetime.datetime.utcnow().timestamp()
+    def created_at(self) -> Decimal:
+        return Decimal(datetime.datetime.utcnow().timestamp())
 
+    @computed_field
     @property
-    def modified_at(self) -> float:
-        return datetime.datetime.utcnow().timestamp()
+    def modified_at(self) -> Decimal:
+        return Decimal(datetime.datetime.utcnow().timestamp())
 
     @property
     def partition_key(self) -> str:
         # partition_key = '<object_type>:<id>'
-        raise Exception("partition_key method not implemented")
+        raise Exception("partition_key property not implemented")
+
+    @property
+    def sort_key(self) -> str:
+        # partition_key = '<object_type>:<id>'
+        raise Exception("sort_key property not implemented")
 
     @staticmethod
-    def get_by_key(partition_key: str, sort_key: str):
+    def get_by_key(cls: any, partition_key: str, sort_key: str):
         try:
             response = registry_db.get_item(
                 Key={'partition_key': partition_key, 'sort_key': sort_key})
@@ -38,7 +46,7 @@ class AkelloBaseModel(BaseModel):
         if 'Item' not in response:
             return None
 
-        return response['Item']
+        return cls(**response['Item'])
 
     def __get(self):
         """
@@ -172,3 +180,15 @@ class AkelloBaseModel(BaseModel):
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
+
+
+class AkelloMeasurement(BaseModel):
+
+    @property
+    def partition_key(self) -> str:
+        raise NotImplementedError
+
+    @computed_field
+    @property
+    def timestamp(self) -> Decimal:
+        return Decimal(datetime.datetime.utcnow().timestamp())

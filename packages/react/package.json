@@ -25,6 +25,7 @@
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
     "build:lib": "tsc && vite build",
+    "build:lib-dev": "tsc && vite build --mode development",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "vitest",
@@ -67,14 +68,17 @@
     "@mantine/notifications": "^7.7.1",
     "@modulz/radix-icons": "^4.0.0",
     "@mui/material": "^5.15.14",
+    "@mui/x-charts": "^7.3.0",
     "@mui/x-data-grid": "^7.1.0",
     "@tabler/icons-react": "^3.1.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "LineChart": "link:@mui/x-charts/LineChart",
     "classnames": "^2.5.1",
     "formik": "^2.4.5",
     "husky": "^9.0.11",
     "moment": "^2.30.1",
     "react-tailwindcss-datepicker": "^1.6.6",
+    "react-timer-hook": "^3.0.7",
     "recharts": "^2.12.3",
     "ua-parser-js": "^1.0.37",
     "uuid": "^9.0.1",
@@ -98,6 +102,7 @@
     "@types/uuid": "^9.0.8",
     "eslint-plugin-storybook": "^0.8.0",
     "prop-types": "^15.8.1",
-    "storybook": "^8.0.5"
+    "storybook": "^8.0.5",
+    "storybook-addon-mock": "^5.0.0"
   }
 }

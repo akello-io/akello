@@ -2,11 +2,17 @@ import datetime
 import json
 from decimal import Decimal
 from typing import Optional, List
-import uuid
 
 from akello.db.models_v2 import AkelloBaseModel
 from akello.db.models_v2.user import User
-from akello.db.types import FlagTypes, PatientStatysTypes
+from akello.db.models_v2.types import FlagTypes, PatientStatus
+
+from akello.db.connector.dynamodb import registry_db, measurements_db
+
+from boto3.dynamodb.conditions import Key
+from pydantic import TypeAdapter
+
+from  akello.db.models_v2.measurementvalue import MeasurementValue, MeasurementType
 
 
 class RegistryTreatment(AkelloBaseModel):
@@ -15,8 +21,14 @@ class RegistryTreatment(AkelloBaseModel):
     mrn: str
     referring_npi: Optional[str] = None
     payer: Optional[str] = None
-    status: PatientStatysTypes = PatientStatysTypes.enrolled
-    flags: List[FlagTypes] = []
+    status: PatientStatus = PatientStatus.enrolled
+    flag: Optional[FlagTypes] = None
+
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    phone_number: Optional[str] = None
+    email: Optional[str] = None
+    date_of_birth: Optional[str] = None
 
     # Treatment dates
     initial_assessment: Optional[int] = None
@@ -29,12 +41,6 @@ class RegistryTreatment(AkelloBaseModel):
     total_sessions: Optional[int] = 0
     weeks_since_initial_assessment: Optional[int] = 0
     minutes_this_month: Optional[int] = 0
-
-    def __init__(self, **data):
-        super().__init__(
-            id=str(uuid.uuid4()),
-            **data
-        )
 
     @property
     def partition_key(self) -> str:
@@ -66,43 +72,10 @@ class RegistryTreatment(AkelloBaseModel):
         self._AkelloBaseModel__remove_attribute('approved_provider_id-%s' % authorized_user.id)
 
 
-class RegistryTreatmentLog(AkelloBaseModel):
-    registry_id: str
-    user_id: str
-    timestamp: str
-
-    @property
-    def partition_key(self) -> str:
-        return 'treatment-log::registry-id:%s::user-id%s' % (self.registry_id, self.user_id)
-
-    @property
-    def sort_key(self) -> str:
-        return str(self.timestamp)
-
-    def put(self):
-        self._AkelloBaseModel__put()
-
-    def set_scores(self, key: str, value: any):
-        self._AkelloBaseModel__add_attribute(key, value)
-
-
-class RegistryTreatmentLogCommentLog(AkelloBaseModel):
-    registry_id: str
-    user_id: str
-    timestamp: str
-    comment: str
-    author_user_id: str
-
-    @property
-    def partition_key(self) -> str:
-        return 'treatment-log-comment::registry-id:%s::user-id%s' % (self.registry_id, self.user_id)
-
-    @property
-    def sort_key(self) -> str:
-        return str(self.timestamp)
-
-    def put(self):
-        self._AkelloBaseModel__put()
-
-
-
+    def fetch_measurement(self, measure: MeasurementType):
+        ## Fetch all measurements for this patient
+        partition_key = f'user_id:{self.user_id}::registry-id:{self.registry_id}::measure:{measure}'
+        response = measurements_db.query(KeyConditionExpression=Key('partition_key').eq(partition_key))
+        measurements = response.get('Items', [])
+        ta = TypeAdapter(List[MeasurementValue])
+        return ta.validate_python(measurements)

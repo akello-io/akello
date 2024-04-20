@@ -1,3 +1,3 @@
-export * from './patient-progress-chart'
-export * from './patient-treatment-history'
-export * from './questionnaire-form'
+export * from './patient-questionnaire'
+export * from './patient-status-selector'
+export * from './patient-session-stepper'

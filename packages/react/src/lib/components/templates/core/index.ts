@@ -1,2 +1,5 @@
+export * from './organization-collection-shell'
+export * from './registry-collection-shell'
 export * from './registry-shell'
+export * from './user-account-shell'
 export * from './welcome-template'

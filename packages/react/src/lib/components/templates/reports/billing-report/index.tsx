@@ -59,7 +59,7 @@ const columns: GridColDef[] = [
         headerName: '99494'
     },
     {
-        field: 'referring_provider_npi',
+        field: 'referring_npi',
         headerName: 'Referring Provider NPI',
         width: 200
     },

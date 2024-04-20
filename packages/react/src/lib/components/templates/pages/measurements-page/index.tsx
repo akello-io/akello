@@ -4,43 +4,46 @@ import { MultiSelect } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { useAkello } from '@akello/react-hook';
 import { notifications } from '@mantine/notifications';
+import { Measurement } from '@akello/core';
 
 
-export interface MeasurementsPageProps {
-    measurements: any;
+interface MeasurementsPageProps {
+    registry_id: string
 }
 
 
-export const MeasurementsPage:React.FC<MeasurementsPageProps> = ({ measurements }) => {
-    const akello = useAkello();
-    const [_measurements, setMeasurements] = useState(measurements)
 
-    const selections = _measurements?.map((measurement: any) => {
-        return measurement.name
-    })
+
+export const MeasurementsPage:React.FC<MeasurementsPageProps> = ({registry_id}) => {
+    const akello = useAkello();
+    const [_measurements, setMeasurements] = useState([])
+
+    useEffect(() => {
+        akello.registryService.getRegistry(registry_id, (data: any) => {
+            setMeasurements(data.measurements)
+        })
+    },[])
+
+
+    if (_measurements.length === 0) {
+        return <div>No measures registered...</div>
+    }
 
     return (
         <div>
-
             <Container>
                 <Paper withBorder shadow="md" p={30} mt={30} radius="md">
                     <MultiSelect
                         checkIconPosition="right"
                         pb={30}
-                        data={selections}
+                        data={_measurements?.map((measurement: any) => measurement.name)}
+                        defaultValue={_measurements?.filter((measurement: any) => measurement.active === true).map((measurement: any) => measurement.name)}
+
+
                         searchable
                         label="Select screeners"
                         placeholder="Pick a screener"
-                        defaultValue={
-                            _measurements?.filter((measurement: any) => {
-                                if(measurement.active === true) {
-                                    return measurement.name
-                                }
-                            }).map((measurement: any) => {
-                                return measurement.name
-                            })
-                        }
-                        onChange={(value) => {
+                        onChange={(value: any) => {
                             _measurements?.map((measurement: any) => {
                                 if(value.includes(measurement.name))
                                 {
@@ -55,15 +58,12 @@ export const MeasurementsPage:React.FC<MeasurementsPageProps> = ({ measurements 
                         }}
                     />
                     <Button  className={'bg-primary'} onClick={() => {
-                        akello.registryService.setMeasurements(akello.getSelectedRegistry()!.id, _measurements, (data: any) => {
-                            console.log('measurements updated')
-
+                        akello.registryService.setMeasurements(registry_id, _measurements, (data: any) => {
                             notifications.show({
                                 title: 'Measurements updated',
                                 message: 'Measurements have been updated',
                                 color: 'green',
                             });
-
                         });
                     }}>Save</Button>
                 </Paper>

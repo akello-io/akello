@@ -9,9 +9,7 @@ export const PaymentCompleted = () => {
   const session_id = searchParams.get('session_id');
 
   useEffect(() => {
-    akello.registryService.completePayment(akello.getSelectedRegistry()!.id, session_id!, (data) => {
-        console.log(data);
-    })
+
   }, [])
 
   return (

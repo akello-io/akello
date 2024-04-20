@@ -1,30 +1,15 @@
 import { AkelloClient } from '../client';
-import { AkelloApp } from '../models';
 import { BaseService } from './base';
 
 export class RegistryService extends BaseService {
-    
+
     constructor(client: AkelloClient) {
-        super(client);        
+        super(client);
     }
 
-    async completePayment(registry_id: string, stripe_session_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/payment/" + stripe_session_id;
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'post',
-            endpoint: endpoint,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-    }
 
-    async checkSubscription(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/subscription";
+    async getPatients(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "registry/" + registry_id + "/patients";
         const resp = this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'get',
@@ -37,7 +22,6 @@ export class RegistryService extends BaseService {
             }
         });
     }
-
 
     /**
      * Retrieves a registry by its ID.
@@ -60,27 +44,6 @@ export class RegistryService extends BaseService {
         });
     }
 
-    /**
-     * Creates a new registry.
-     * @param payload - The payload for creating the registry.
-     * @param onSuccess - The callback function to be called on successful creation.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async createRegistry(payload: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/create";            
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'post',
-            endpoint: endpoint,
-            token: this.client.accessToken!,
-            payload: payload,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {        
-                
-            }
-        });
-    }
 
     /**
      * Refers a patient to a registry.
@@ -105,88 +68,16 @@ export class RegistryService extends BaseService {
         });
     }
 
-    /**
-     * Retrieves the members of a registry.
-     * @param registry_id - The ID of the registry.
-     * @param onSuccess - The callback function to be called on successful retrieval.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async getMembers(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/team-members";
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'get',
-            endpoint: endpoint,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-    }
 
-    /**
-     * Retrieves the patients of a registry.
-     * @param registry_id - The ID of the registry.
-     * @param onSuccess - The callback function to be called on successful retrieval.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async getRegistryPatients(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + '/patients' ;
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'get',
-            endpoint: endpoint,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-    
-    }
 
-    /**
-     * Saves a treatment session for a registry.
-     * @param registry_id - The ID of the registry.
-     * @param session - The treatment session details.
-     * @param onSuccess - The callback function to be called on successful save.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async saveTreatmentSession(registry_id: string,  session: any, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/record-session";
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'post',
-            endpoint: endpoint,
-            payload: session,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-    }
-
-    /**
-     * Sets a flag for a patient in a registry.
-     * @param registry_id - The ID of the registry.
-     * @param mrn - The MRN (Medical Record Number) of the patient.
-     * @param flag - The flag to be set.
-     * @param onSuccess - The callback function to be called on successful flag setting.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async setFlag(registry_id: string, mrn: string, flag: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+    async setFlag(registry_id: string, user_id: string, flag: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + "/patient-attribute";
         const resp = this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'post',
             endpoint: endpoint,
             payload: {
-                mrn: mrn,
+                user_id: user_id,
                 attr_name: 'patient_flag',
                 attr_value: flag
             },
@@ -199,22 +90,15 @@ export class RegistryService extends BaseService {
         });
     }
 
-    /**
-     * Sets the status for a patient in a registry.
-     * @param registry_id - The ID of the registry.
-     * @param mrn - The MRN (Medical Record Number) of the patient.
-     * @param status - The status to be set.
-     * @param onSuccess - The callback function to be called on successful status setting.
-     * @param onFail - The callback function to be called on failure.
-     */
-    async setStatus(registry_id: string,  mrn: string, status: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+
+    async setStatus(registry_id: string,  user_id: string, status: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "registry/" + registry_id + "/patient-attribute";
         const resp = this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'post',
             endpoint: endpoint,
             payload: {
-                mrn: mrn,
+                user_id: user_id,
                 attr_name: 'status',
                 attr_value: status
             },
@@ -245,8 +129,8 @@ export class RegistryService extends BaseService {
     }
 
 
-    async getAppConfigs(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/app-configs";
+    async getMeasurements(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "registry/" + registry_id + "/measurements";
         const resp = this.apiRequest({
             api_url: this.client.getOptions().baseUrl!,
             method: 'get',
@@ -255,23 +139,7 @@ export class RegistryService extends BaseService {
             onSuccess: (resp: any) => {
                 onSuccess(resp)
             }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
-            }
-        });
-    }
-
-    async saveAkelloApp(registry_id: string, akello_app: AkelloApp, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
-        const endpoint =  "registry/" + registry_id + "/app-configs/" + akello_app.id + "/save"
-        const resp = this.apiRequest({
-            api_url: this.client.getOptions().baseUrl!,
-            method: 'post',
-            endpoint: endpoint,
-            payload: akello_app,
-            token: this.client.accessToken!,
-            onSuccess: (resp: any) => {
-                onSuccess(resp)
-            }, onFail: (error: any) => {
-                this.handleFail(error, onFail)
+                onFail!(error)
             }
         });
     }

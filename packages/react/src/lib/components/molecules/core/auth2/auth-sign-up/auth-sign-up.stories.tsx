@@ -30,7 +30,7 @@ const config = {
               authenticationFlowType: "USER_PASSWORD_AUTH",
   }),
   onUnauthenticated: () => {
-      window.location.href = '/login'
+      window.location.href = '/'
   }
 }
 const akello = new AkelloClient(config)
@@ -40,12 +40,12 @@ const Template: StoryFn<typeof SignUpPage> = (args: SignUpPageProps) => {
       <MantineProvider >
         <AkelloProvider akello={akello}>
           <SignUpPage {...args} />
-        </AkelloProvider>          
-      </MantineProvider>    
+        </AkelloProvider>
+      </MantineProvider>
   )
 }
 
 export const Primary = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {        
+Primary.args = {
 }
