@@ -1,20 +1,16 @@
 import logging
 import os
+
 import yaml
+from fastapi import APIRouter, Depends
 
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
-from fastapi import APIRouter, Depends
 from akello.auth.provider import auth_token_check
 from akello.db.models_v2.measurementvalue import MeasurementValue, MeasurementType
-from akello.db.models_v2.user import UserRegistry, UserRegistryRole
-from akello.db.models_v2.registry_treatment import RegistryTreatment
-
-from akello.db.models_v2.user import UserRegistry, UserRegistryRole
 from akello.db.models_v2.registry import Registry
-
+from akello.db.models_v2.registry_treatment import RegistryTreatment
 from akello.db.models_v2.types import Measurement
-
-from pydantic import BaseModel
+from akello.db.models_v2.user import UserRegistry, UserRegistryRole
 
 logger = logging.getLogger('mangum')
 router = APIRouter()
@@ -53,12 +49,15 @@ async def save_timelog(payload: MeasurementValue, auth: CognitoTokenCustom = Dep
     - patient_session_minutes: Decimal
 
     """
-    user_registry = UserRegistry.get_by_key(UserRegistry, 'user-id:%s' % auth.cognito_id, 'registry-id:%s' % payload.registry_id)
+    user_registry = UserRegistry.get_by_key(UserRegistry, 'user-id:%s' % auth.cognito_id,
+                                            'registry-id:%s' % payload.registry_id)
 
     assert user_registry, 'User not found in registry'
     assert user_registry.role == UserRegistryRole.admin, 'User does not have permission to save measurement'
 
-    measurement_value = MeasurementValue(user_id=payload.user_id, registry_id=payload.registry_id, reported_by_user_id=auth.cognito_id, measure=payload.measure, value=payload.value)
+    measurement_value = MeasurementValue(user_id=payload.user_id, registry_id=payload.registry_id,
+                                         reported_by_user_id=auth.cognito_id, measure=payload.measure,
+                                         value=payload.value)
     measurement_value.put()
     return {
         'message': 'Measurement saved'
@@ -67,12 +66,14 @@ async def save_timelog(payload: MeasurementValue, auth: CognitoTokenCustom = Dep
 
 @router.get("/timelog")
 async def get_timelog(user_id: str, registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id, 'treatment-user-id:%s' % user_id)
+    registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id,
+                                                      'treatment-user-id:%s' % user_id)
     assert registry_treatment, 'User not found in registry'
 
     session_minutes = registry_treatment.fetch_measurement(MeasurementType.patient_session_minutes)
     caseload_review_minutes = registry_treatment.fetch_measurement(MeasurementType.patient_caseload_review_minutes)
-    patient_assessment_session_minutes = registry_treatment.fetch_measurement(MeasurementType.patient_assessment_session_minutes)
+    patient_assessment_session_minutes = registry_treatment.fetch_measurement(
+        MeasurementType.patient_assessment_session_minutes)
 
     registry = Registry(
         id=registry_id
