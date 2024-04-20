@@ -216,3 +216,9 @@ async def save_akello_app(registry_id: str, akello_app: AkelloApp,
                           auth: CognitoTokenCustom = Depends(auth_token_check)):
     UserService.check_registry_access(auth.cognito_id, registry_id)
     AkelloAppsService.save_akello_app(registry_id, akello_app)
+
+@router.get("/{registry_id}/measurements")
+async def get_measurments_for_patient(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
+    registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
+    measurements = registry.fetch_registry_measurements(requesting_user_id=auth.cognito_id)
+    return measurements

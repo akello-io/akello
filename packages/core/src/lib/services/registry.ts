@@ -128,4 +128,20 @@ export class RegistryService extends BaseService {
         });
     }
 
+
+    async getMeasurements(registry_id: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        const endpoint =  "registry/" + registry_id + "/measurements";
+        const resp = this.apiRequest({
+            api_url: this.client.getOptions().baseUrl!,
+            method: 'get',
+            endpoint: endpoint,
+            token: this.client.accessToken!,
+            onSuccess: (resp: any) => {
+                onSuccess(resp)
+            }, onFail: (error: any) => {
+                onFail!(error)
+            }
+        });
+    }
+
 }

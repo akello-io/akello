@@ -3,10 +3,11 @@ from akello.db.models_v2.user import User, UserRegistry, UserOrganizationRole, U
 from akello.db.models_v2.user import UserInvite
 from akello.db.models_v2.registry_treatment import RegistryTreatment
 from typing import Optional, List
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Key, Attr
 from pydantic import TypeAdapter
 from akello.db.connector.dynamodb import registry_db, measurements_db
 from akello.db.models_v2.types import Measurement
+from akello.db.models_v2.measurementvalue import MeasurementValue
 
 
 
@@ -146,6 +147,22 @@ class Registry(AkelloBaseModel):
         ta = TypeAdapter(List[MeasurementValue])
         return ta.validate_python(items)
 
+    def fetch_registry_measurements(self, requesting_user_id: str):
+        user_registry = UserRegistry(
+            user_id=requesting_user_id,
+            registry_id=self.id,
+            role=UserRegistryRole.admin
+        )._AkelloBaseModel__get()
+        if not user_registry:
+            raise Exception('User is not part of this registry')
+
+        partition_key_value = f"registry-id:{self.id}"
+        response = measurements_db.query(KeyConditionExpression=Key('partition_key').eq(partition_key_value),
+                                         FilterExpression=Attr('sort_key').begins_with('measure-id:'))
+        items = response.get('Items', [])
+        ta = TypeAdapter(List[RegistryMeasurement])
+        return ta.validate_python(items)
+
 
 class RegistryUser(AkelloBaseModel):
     registry_id: str
@@ -158,3 +175,17 @@ class RegistryUser(AkelloBaseModel):
     @property
     def sort_key(self) -> str:
         return 'user-id:%s' % self.user_id
+
+
+class RegistryMeasurement(AkelloBaseModel):
+    registry_id: str
+    measure_id: str
+    measure: Measurement
+
+    @property
+    def partition_key(self) -> str:
+        return 'registry-id:%s' % self.registry_id
+
+    @property
+    def sort_key(self) -> str:
+        return 'measure-id:%s' % self.measure_id

@@ -4,18 +4,24 @@ import { MultiSelect } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { useAkello } from '@akello/react-hook';
 import { notifications } from '@mantine/notifications';
+import { Measurement } from '@akello/core';
 
 
 
 export const MeasurementsPage = () => {
     const akello = useAkello();
     const [_measurements, setMeasurements] = useState([])
-    const selections: any[] = []
+    const [selected_measurements, setSelectedMeasurements] = useState([])
 
     useEffect(() => {
         akello.measurementService.getMeasurements((data: any) => {
             setMeasurements(data)
         })
+
+        akello.registryService.getMeasurements(akello.getSelectedRegistry()!.id, (data: any) => {
+            setSelectedMeasurements(data)
+        })
+
     },[])
 
     return (

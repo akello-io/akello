@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { RegistryShell } from '../registry-shell';
 import { useAkello } from '@akello/react-hook';
 
+import AkelloLogo from '../../../../assets/akello-blue.svg';
+
 interface RegistryCollectionProps {
     AppShell: any;
     onNavigate: (path: string) => void;
@@ -26,7 +28,7 @@ export const RegistryCollectionShell: React.FC<RegistryCollectionProps> = ({AppS
             <RegistryShell
                     AppShell={AppShell}
                     registry_id={''}
-                    Logo={''}
+                    Logo={AkelloLogo}
                     onNavigate={onNavigate}
                     signOut={signOut}
                     pathname={pathname}
