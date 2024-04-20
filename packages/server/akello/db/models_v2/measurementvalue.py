@@ -9,6 +9,9 @@ class MeasurementType(str, Enum):
     patient_session_minutes = 'patient_session_minutes'
     patient_assessment_session_minutes = 'patient_assessment_session_minutes'
 
+    patient_self_reported_measurement = 'patient_self_reported_measurement'
+    provider_reported_measurement = 'provider_reported_measurement'
+
 
 class MeasurementValue(AkelloMeasurement):
     user_id: str

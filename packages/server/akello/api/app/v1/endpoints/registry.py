@@ -21,7 +21,7 @@ from akello.services.models.screeners import ScreenerService
 from akello.db.models_v2.types import Measurement
 
 from akello.db.models_v2.registry import Registry, RegistryUser, RegistryTreatment
-from akello.db.models_v2.user import User
+from akello.db.models_v2.user import User, UserRegistry, UserRegistryRole
 
 from akello.db.models_v2.measurementvalue import MeasurementValue
 
@@ -222,4 +222,28 @@ async def save_akello_app(registry_id: str, akello_app: AkelloApp,
 async def get_measurments_for_patient(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
     measurements = registry.fetch_patient_measurement(measure='', requesting_user_id=auth.cognito_id)
+    return measurements
+
+
+@router.post("/{registry_id}/patient/{patient_id}/measurements")
+def record_patient_measurement(registry_id: str, patient_id: str, measurement: MeasurementValue,
+                               auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry_id, 'user-id:%s' % user.id)
+    if not registry_user:
+        raise Exception('User does not have access to this registry')
+
+    measurement.user_id = user.id
+    measurement.registry_id = registry_id
+
+
+@router.get("/{registry_id}/patient/{patient_id}/measurements/{measure}")
+def get_patient_measurement(registry_id: str, patient_id: str, measure: str,
+                            auth: CognitoTokenCustom = Depends(auth_token_check)):
+    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
+    user_registry = UserRegistry.get_by_key(UserRegistry, 'user-id:%s' % user.id, 'registry-id:%s' % registry_id)
+    if not user_registry and user_registry.role == UserRegistryRole.admin:
+        raise Exception('User does not have access to this registry')
+
+    measurements = MeasurementValue.get_by_key(MeasurementValue, 'registry-id:%s' % registry_id, 'user-id:%s' % patient_id, 'measure:%s' % measure)
     return measurements

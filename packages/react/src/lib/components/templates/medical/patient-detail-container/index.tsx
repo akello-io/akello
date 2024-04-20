@@ -9,12 +9,14 @@ import { Tabs } from '@mantine/core';
 import { PatientSessionStepper } from "../../../molecules";
 import { PatientTimeLog } from "../../../organisms/medical";
 import { MeasureTypes } from "@akello/core";
+import { PatientProgress } from "../../../organisms/medical/patient-progress";
 
 export interface PatientDetailContainerProps {
     selectedPatient: RegistryTreatment
+    registry_id: string
 }
 
-export const PatientDetailContainer: React.FC<PatientDetailContainerProps> = ({selectedPatient}) => {
+export const PatientDetailContainer: React.FC<PatientDetailContainerProps> = ({selectedPatient, registry_id}) => {
 
     const [sessionTimerStarted, setSessionTimerStarted] = React.useState<boolean>(false)
     const [measureType, setMeasureType] = React.useState<MeasureTypes>(MeasureTypes.patient_caseload_review_minutes)
@@ -43,7 +45,7 @@ export const PatientDetailContainer: React.FC<PatientDetailContainerProps> = ({s
                                 <Tabs.Tab value="time_log">Timelog</Tabs.Tab>
                             </Tabs.List>
                             <Tabs.Panel value="progress">
-                                Gallery tab content
+                                <PatientProgress registry_id={registry_id} />
                             </Tabs.Panel>
 
                             <Tabs.Panel value="treatment_history">

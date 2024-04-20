@@ -160,7 +160,7 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
                 {
                     akello.getSelectedPatientRegistry() &&  (
                         <ScrollArea>
-                            <PatientDetailContainer selectedPatient={akello.getSelectedPatientRegistry()!} />
+                            <PatientDetailContainer registry_id={akello.getSelectedRegistry()!.id} selectedPatient={akello.getSelectedPatientRegistry()!} />
                         </ScrollArea>
 
                     )
