@@ -60,7 +60,7 @@ export const PatientDetailContainer: React.FC<PatientDetailContainerProps> = ({s
             }
 
             {
-                measureType === MeasureTypes.patient_session_minutes && (
+                measureType === MeasureTypes.patient_assessment_session_minutes && (
 
                     <div className='px-4'>
                         <PatientSessionStepper />

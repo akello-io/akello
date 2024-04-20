@@ -46,6 +46,7 @@ export const SessionBtn : React.FC<SessionBtnProps> = ({onReviewTypeSelect}) => 
                     >
                         <Radio value={MeasureTypes.patient_caseload_review_minutes} label='Caseload review'/>
                         <Radio value={MeasureTypes.patient_session_minutes} label='Patient Session'/>
+                        <Radio value={MeasureTypes.patient_assessment_session_minutes} label='Patient Assessment Session'/>
                     </RadioGroup>
 
             </div>

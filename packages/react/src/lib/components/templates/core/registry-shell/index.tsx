@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import { Header } from '../../../atoms';
 import { useMediaQuery } from '@mantine/hooks';
 import { PatientDetailContainer } from '../../medical/patient-detail-container';
+import { useLocation } from 'react-router';
 
 
 interface RegistryShellProps {
@@ -46,8 +47,6 @@ export const RegistryShell:React.FC<RegistryShellProps> = ({
     const [planTier, setPlanTier] = useState();
     const isMobile = useMediaQuery(`(max-width: ${em(880)})`);
     const selectedRegistry = akello.getSelectedRegistry();
-
-
 
     return (
         <AppShell

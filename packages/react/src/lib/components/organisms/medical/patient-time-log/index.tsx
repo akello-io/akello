@@ -20,7 +20,8 @@ export const PatientTimeLog:React.FC<PatientTimeLogProps> = () => {
 
   const measure_name = {
     "patient_caseload_review_minutes": "Caseload Review",
-    "patient_session_minutes": "Session"
+    "patient_session_minutes": "Patient Session",
+    "patient_assessment_session_minutes": "Assessment Session"
   } as any;
 
   useEffect(() => {

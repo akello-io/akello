@@ -1,5 +1,6 @@
 import logging
 import os
+import yaml
 
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from fastapi import APIRouter, Depends
@@ -11,10 +12,31 @@ from akello.db.models_v2.registry_treatment import RegistryTreatment
 from akello.db.models_v2.user import UserRegistry, UserRegistryRole
 from akello.db.models_v2.registry import Registry
 
+from akello.db.models_v2.types import Measurement
+
 from pydantic import BaseModel
 
 logger = logging.getLogger('mangum')
 router = APIRouter()
+
+
+@router.post("/")
+async def get_measurements(auth: CognitoTokenCustom = Depends(auth_token_check)):
+    """
+            Get all screeners from the screener's directory. The client will present to the user to select which screener they want active in a registry.
+            Returns: list of screeners
+            """
+    measurement_list = []
+    measurements = os.listdir('akello/screeners/measurements')
+    for measurement in measurements:
+        if measurement.endswith('.yaml'):
+            with open(f'akello/screeners/measurements/{measurement}') as f:
+                try:
+                    mobj = Measurement(**yaml.safe_load(f))
+                    measurement_list.append(mobj)
+                except yaml.YAMLError as exc:
+                    print(exc)
+    return measurement_list
 
 
 @router.post("/timelog")
@@ -50,6 +72,7 @@ async def get_timelog(user_id: str, registry_id: str, auth: CognitoTokenCustom =
 
     session_minutes = registry_treatment.fetch_measurement(MeasurementType.patient_session_minutes)
     caseload_review_minutes = registry_treatment.fetch_measurement(MeasurementType.patient_caseload_review_minutes)
+    patient_assessment_session_minutes = registry_treatment.fetch_measurement(MeasurementType.patient_assessment_session_minutes)
 
     registry = Registry(
         id=registry_id
@@ -73,6 +96,14 @@ async def get_timelog(user_id: str, registry_id: str, auth: CognitoTokenCustom =
             'value': caseload_review_minute.value,
             'reported_by_user_id': user_map[caseload_review_minute.reported_by_user_id],
             'date': caseload_review_minute.timestamp
+        })
+
+    for patient_assessment_session_minute in patient_assessment_session_minutes:
+        response.append({
+            'measure': MeasurementType.patient_assessment_session_minutes,
+            'value': patient_assessment_session_minute.value,
+            'reported_by_user_id': user_map[patient_assessment_session_minute.reported_by_user_id],
+            'date': patient_assessment_session_minute.timestamp
         })
 
     return response

@@ -7,6 +7,7 @@ from akello.db.models_v2 import AkelloMeasurement
 class MeasurementType(str, Enum):
     patient_caseload_review_minutes = 'patient_caseload_review_minutes'
     patient_session_minutes = 'patient_session_minutes'
+    patient_assessment_session_minutes = 'patient_assessment_session_minutes'
 
 
 class MeasurementValue(AkelloMeasurement):
