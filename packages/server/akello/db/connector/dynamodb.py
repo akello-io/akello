@@ -83,7 +83,7 @@ def create_timeseries_table(dynamodb, table_name):
 def setup_registry_db():
     if AKELLO_UNIT_TEST == 'TRUE':
         print("using mock dynamodb")
-        return MagicMock(), MagicMock(), MagicMock()
+        return MagicMock(), MagicMock(), MagicMock(), MagicMock()
 
     if not AKELLO_DYNAMODB_LOCAL_URL:
         print("using real dynamodb")

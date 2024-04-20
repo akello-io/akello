@@ -1,8 +1,4 @@
-from akello.db.models_old import PatientRegistry, FlagTypes, PatientStatysTypes
-from akello.db.types import FlagTypes, PatientStatysTypes, ContactTypes, VisitTypes, TreatmentLog, TreatmentLogScore
-import random, time
-from datetime import datetime
-
+import random
 from faker import Faker
 
 fake = Faker()
@@ -26,41 +22,11 @@ class PatientMock:
 
     def __init__(self, registry_id, referring_npi) -> None:
         self.treatment_logs = []
-
-        self.patient_registry = PatientRegistry(                        
-            id=registry_id,
-            patient_flag=random.choice([None, FlagTypes.needs_discussion, FlagTypes.review_with_psychiatrist, FlagTypes.safety_risk]),
-            patient_mrn=fake.uuid4(),
-            date_created=int(time.mktime(fake.date_this_year(before_today=True).timetuple())) * 1000,
-            status=random.choices(population=[PatientStatysTypes.enrolled, PatientStatysTypes.treatment,PatientStatysTypes.relapse_prevention_plan,PatientStatysTypes.deactivated,], weights=[ 0.2, 0.4, 0.2, 0.3])[0],
-            referring_provider_npi=referring_npi,
-            payer=random.choices([
-                'UnitedHealth Group',
-                'Anthem, Inc.',
-                'Aetna (CVS Health)',
-                'Cigna',
-                'Humana',
-                'Centene Corporation',
-                'Molina Healthcare',
-                'Blue Cross Blue Shield',
-                'Independence Blue Cross',
-                'Other'
-            ], weights=[
-                0.1, 0.2, 0.3, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1
-            ])[0],
-            first_name=fake.unique.first_name(),
-            last_name=fake.unique.last_name(),
-            phone_number=fake.phone_number(),
-            email=fake.email(),
-            date_of_birth=fake.date()
-        )
-
-        for i in range(random.randint(0, self.max_sessions)):
-            self.add_treatment_log()                    
+        pass
 
     def add_caseload_review(self):
         # Set patient flag
-        self.patient_registry.patient_flag = self.get_patient_flag()
+        pass
 
     def get_contact_type(self):
         contact_type = random.choices(

@@ -11,23 +11,15 @@ from pydantic import BaseModel
 
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
-from akello.db.models_old import AkelloApp, TreatmentLog, PatientRegistry
-from akello.decorators.mixin import mixin
-from akello.services.models.akello_apps import AkelloAppsService
-from akello.services.models.registry import RegistryService
-from akello.services.models.user import UserService
-from akello.services.models.screeners import ScreenerService
 
-from akello.db.models_v2.types import Measurement
+from akello.db.types import Measurement
 
-from akello.db.models_v2.registry import Registry, RegistryUser, RegistryTreatment
-from akello.db.models_v2.user import User, UserRegistry, UserRegistryRole
+from akello.db.models.registry import Registry, RegistryUser, RegistryTreatment
+from akello.db.models.user import User, UserRegistry, UserRegistryRole
 
-from akello.db.models_v2.measurementvalue import MeasurementValue
+from akello.db.models.measurementvalue import MeasurementValue
 
 from typing import List
-
-from decimal import Decimal
 
 from pydantic import TypeAdapter
 
@@ -36,18 +28,8 @@ logger = logging.getLogger('mangum')
 
 router = APIRouter()
 
-# Register the mixins based on enabled plugins
-mixins = []
-
 stripe.api_key = os.getenv('STRIPE_API_KEY', None)
 
-
-@router.post("/{registry_id}/payment/{stripe_session_id}", include_in_schema=False)
-async def payment_confirmed(stripe_session_id: str):
-    item = stripe.checkout.Session.retrieve(stripe_session_id)
-    registry_id = item['client_reference_id']
-    stripe_customer_id = item['customer']
-    RegistryService.set_stripe_customer_id(registry_id, stripe_customer_id)
 
 
 @router.get("/{registry_id}/subscription")
@@ -103,15 +85,6 @@ async def update_measurements(registry_id: str, request: Request, auth: CognitoT
     registry.measurements = ta.validate_python(payload)
     registry._AkelloBaseModel__put()
 
-@router.get("/{registry_id}/team-members")
-async def get_registry_team_members(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    # TODO: Refactor this to use the new models
-    UserService.check_registry_access(auth.cognito_id, registry_id)
-    members = RegistryService.get_members(registry_id)
-    for member in members:
-        member['is_user'] = member['email'] == auth.username
-    return members
-
 
 @router.get("/{registry_id}/patients")
 async def get_registry_patients(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
@@ -156,14 +129,6 @@ async def refer_patient(registry_id: str, patient_registry: dict, auth: CognitoT
     })
 
 
-@router.post("/{registry_id}/record-session")
-@mixin(mixins=mixins)
-async def record_session(request: Request, registry_id: str, treatment_log: TreatmentLog,
-                         auth: CognitoTokenCustom = Depends(auth_token_check)):
-    UserService.check_registry_access(auth.cognito_id, registry_id)
-    RegistryService.add_treatment_log(registry_id, treatment_log.patient_mrn, treatment_log)
-    return treatment_log
-
 
 class PatientMeasurements(BaseModel):
     measurements: List[MeasurementValue]
@@ -205,18 +170,7 @@ async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoToken
     registry_treatment._AkelloBaseModel__set_attribute(data['attr_name'], data['attr_value'])
 
 
-@router.get("/{registry_id}/app-configs")
-async def get_app_configs(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    UserService.check_registry_access(auth.cognito_id, registry_id)
-    app_configs = AkelloAppsService.get_app_configs(registry_id)
-    return [app for app in app_configs]
 
-
-@router.post("/{registry_id}/app-configs/{app_id}/save")
-async def save_akello_app(registry_id: str, akello_app: AkelloApp,
-                          auth: CognitoTokenCustom = Depends(auth_token_check)):
-    UserService.check_registry_access(auth.cognito_id, registry_id)
-    AkelloAppsService.save_akello_app(registry_id, akello_app)
 
 @router.get("/{registry_id}/measurements")
 async def get_measurments_for_patient(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
