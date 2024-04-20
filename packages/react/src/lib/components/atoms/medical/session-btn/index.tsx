@@ -6,16 +6,17 @@ import { SessionTimer  } from "../session-timer";
 import { notifications } from '@mantine/notifications';
 import { useAkello } from "@akello/react-hook";
 import { RadioGroup, Radio } from '@mantine/core';
+import { MeasureTypes } from '@akello/core';
 
 
 export interface SessionBtnProps {
-    onReviewTypeSelect: (reviewType: string) => void;
+    onReviewTypeSelect: (reviewType: MeasureTypes) => void;
 }
 
 export const SessionBtn : React.FC<SessionBtnProps> = ({onReviewTypeSelect}) => {
 
     const akello = useAkello();
-    const [reviewType, setReviewType] = React.useState<string>('Caseload review')
+    const [reviewType, setReviewType] = React.useState<MeasureTypes>(MeasureTypes.patient_caseload_review_minutes)
 
     return (
         <>
@@ -35,16 +36,16 @@ export const SessionBtn : React.FC<SessionBtnProps> = ({onReviewTypeSelect}) => 
                     <RadioGroup
                         size="md"
                         variant="vertical"
-                        defaultValue={'Caseload review'}
+                        defaultValue={MeasureTypes.patient_caseload_review_minutes}
                         value={reviewType}
-                        onChange={(value: any) => {
-                            onReviewTypeSelect(value!)
-                            setReviewType(value!)
+                        onChange={(value: string) => {
+                            onReviewTypeSelect(value as MeasureTypes)
+                            setReviewType(value as MeasureTypes)
                         }}
                         required
                     >
-                        <Radio value="Caseload review" label='Caseload review'/>
-                        <Radio value="Patient Session" label='Patient Session'/>
+                        <Radio value={MeasureTypes.patient_caseload_review_minutes} label='Caseload review'/>
+                        <Radio value={MeasureTypes.patient_session_minutes} label='Patient Session'/>
                     </RadioGroup>
 
             </div>

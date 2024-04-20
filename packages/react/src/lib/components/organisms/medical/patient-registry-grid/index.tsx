@@ -19,15 +19,18 @@ export const PatientRegistryGrid:React.FC<PatientRegistryGridProps> = ({rows, me
         const user_id = akello.getSelectedPatientRegistry()?.user_id
         const registry_id = akello.getSelectedPatientRegistry()?.registry_id
         const total_seconds = window.localStorage.getItem('totalSeconds')
+        const measure_type = window.localStorage.getItem('measureType')
+
+        console.log('measure_type ', measure_type)
         console.log('user_id ', user_id)
         console.log('total_seconds ', total_seconds)
 
-        if(registry_id && user_id && total_seconds) {
+        if(measure_type && registry_id && user_id && total_seconds) {
             const measure = new Measurement(
                 user_id,
                 registry_id,
                 '',
-                MeasureTypes.patient_caseload_review_minutes,
+                MeasureTypes[measure_type as keyof typeof MeasureTypes],
                 Number(total_seconds)
             )
 
@@ -36,8 +39,6 @@ export const PatientRegistryGrid:React.FC<PatientRegistryGridProps> = ({rows, me
             })
 
         }
-
-
 
     }
 

@@ -8,6 +8,7 @@ import { RegistryTreatment } from "@akello/core";
 import { Tabs } from '@mantine/core';
 import { PatientSessionStepper } from "../../../molecules";
 import { PatientTimeLog } from "../../../organisms/medical";
+import { MeasureTypes } from "@akello/core";
 
 export interface PatientDetailContainerProps {
     selectedPatient: RegistryTreatment
@@ -16,21 +17,24 @@ export interface PatientDetailContainerProps {
 export const PatientDetailContainer: React.FC<PatientDetailContainerProps> = ({selectedPatient}) => {
 
     const [sessionTimerStarted, setSessionTimerStarted] = React.useState<boolean>(false)
-    const [reviewType, setReviewType] = React.useState<string>('Caseload review')
-    // data={['Caseload review', 'Patient Session']}
+    const [measureType, setMeasureType] = React.useState<MeasureTypes>(MeasureTypes.patient_caseload_review_minutes)
+
+    useEffect(() => {
+        window.localStorage.setItem('measureType', measureType)
+    }, [measureType])
 
     return (
         <div>
 
             <PatientInfoCard
                 selectedPatient={selectedPatient}
-                onReviewTypeSelect={(reviewType: string) => {
-                    setReviewType(reviewType)
+                onReviewTypeSelect={(measureType: MeasureTypes) => {
+                    setMeasureType(measureType)
                 }}
             />
 
             {
-                reviewType === 'Caseload review' && (
+                measureType === MeasureTypes.patient_caseload_review_minutes && (
                     <>
                         <Tabs defaultValue="progress">
                             <Tabs.List>
@@ -56,7 +60,7 @@ export const PatientDetailContainer: React.FC<PatientDetailContainerProps> = ({s
             }
 
             {
-                reviewType === 'Patient Session' && (
+                measureType === MeasureTypes.patient_session_minutes && (
 
                     <div className='px-4'>
                         <PatientSessionStepper />

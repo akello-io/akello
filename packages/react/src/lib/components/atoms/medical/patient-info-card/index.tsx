@@ -4,10 +4,11 @@ import { Anchor, ThemeIcon } from '@mantine/core';
 import { IconPhone } from "@tabler/icons-react";
 import { RegistryTreatment } from '@akello/core';
 import { SessionBtn } from '../session-btn';
+import { MeasureTypes } from '@akello/core';
 
 export interface PatientInfoCardProps {
     selectedPatient: RegistryTreatment
-    onReviewTypeSelect: (reviewType: string) => void
+    onReviewTypeSelect: (reviewType: MeasureTypes) => void
 }
 
 export const PatientInfoCard:React.FC<PatientInfoCardProps> = ({selectedPatient, onReviewTypeSelect}) => {
@@ -16,7 +17,7 @@ export const PatientInfoCard:React.FC<PatientInfoCardProps> = ({selectedPatient,
         <>
             <div className='p-4'>
                 <SessionBtn
-                    onReviewTypeSelect={((reviewType: string) => {
+                    onReviewTypeSelect={((reviewType: MeasureTypes) => {
                         onReviewTypeSelect(reviewType)
                     })}
                 />
