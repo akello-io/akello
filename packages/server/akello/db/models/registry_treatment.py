@@ -3,16 +3,16 @@ import json
 from decimal import Decimal
 from typing import Optional, List
 
-from akello.db.models_v2 import AkelloBaseModel
-from akello.db.models_v2.user import User
-from akello.db.models_v2.types import FlagTypes, PatientStatus
+from akello.db.models import AkelloBaseModel
+from akello.db.models.user import User
+from akello.db.models.types import FlagTypes, PatientStatus
 
 from akello.db.connector.dynamodb import registry_db, measurements_db
 
 from boto3.dynamodb.conditions import Key
 from pydantic import TypeAdapter
 
-from  akello.db.models_v2.measurementvalue import MeasurementValue, MeasurementType
+from  akello.db.models.measurementvalue import MeasurementValue, MeasurementType
 
 
 class RegistryTreatment(AkelloBaseModel):

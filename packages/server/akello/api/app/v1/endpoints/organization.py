@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends
 
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
-from akello.db.models_v2.organization import Organization
+from akello.db.models.organization import Organization
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
 

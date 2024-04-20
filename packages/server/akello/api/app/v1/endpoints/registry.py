@@ -12,12 +12,12 @@ from pydantic import BaseModel
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
 
-from akello.db.models_v2.types import Measurement
+from akello.db.models.types import Measurement
 
-from akello.db.models_v2.registry import Registry, RegistryUser, RegistryTreatment
-from akello.db.models_v2.user import User, UserRegistry, UserRegistryRole
+from akello.db.models.registry import Registry, RegistryUser, RegistryTreatment
+from akello.db.models.user import User, UserRegistry, UserRegistryRole
 
-from akello.db.models_v2.measurementvalue import MeasurementValue
+from akello.db.models.measurementvalue import MeasurementValue
 
 from typing import List
 

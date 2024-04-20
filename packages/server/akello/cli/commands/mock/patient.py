@@ -1,4 +1,3 @@
-from akello.db.types import FlagTypes, ContactTypes, VisitTypes, TreatmentLog, TreatmentLogScore
 import random
 from faker import Faker
 

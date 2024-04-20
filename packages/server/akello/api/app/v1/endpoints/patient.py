@@ -2,15 +2,15 @@ import logging
 from fastapi import APIRouter, Depends
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
-from akello.db.models_v2.registry_treatment import RegistryTreatment
-from akello.db.models_v2.types import PatientStatus
+from akello.db.models.registry_treatment import RegistryTreatment
+from akello.db.models.types import PatientStatus
 
 
 import boto3, os
 from boto3 import Session
 
 from fastapi import Request
-from akello.db.models_v2.user import User, UserInvite, UserRegistryRole
+from akello.db.models.user import User, UserInvite, UserRegistryRole
 
 logger = logging.getLogger('mangum')
 router = APIRouter()

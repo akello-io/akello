@@ -6,11 +6,11 @@ from fastapi import APIRouter, Depends
 
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
-from akello.db.models_v2.measurementvalue import MeasurementValue, MeasurementType
-from akello.db.models_v2.registry import Registry
-from akello.db.models_v2.registry_treatment import RegistryTreatment
-from akello.db.models_v2.types import Measurement
-from akello.db.models_v2.user import UserRegistry, UserRegistryRole
+from akello.db.models.measurementvalue import MeasurementValue, MeasurementType
+from akello.db.models.registry import Registry
+from akello.db.models.registry_treatment import RegistryTreatment
+from akello.db.models.types import Measurement
+from akello.db.models.user import UserRegistry, UserRegistryRole
 
 logger = logging.getLogger('mangum')
 router = APIRouter()

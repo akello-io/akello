@@ -1,9 +1,9 @@
 import uuid
 
 from typing import Optional, List
-from akello.db.models_v2 import AkelloBaseModel
-from akello.db.models_v2.registry import Registry, RegistryUser
-from akello.db.models_v2.user import User, UserOrganization, UserOrganizationRole, UserRegistry, UserRegistryRole
+from akello.db.models import AkelloBaseModel
+from akello.db.models.registry import Registry, RegistryUser
+from akello.db.models.user import User, UserOrganization, UserOrganizationRole, UserRegistry, UserRegistryRole
 from akello.db.connector.dynamodb import registry_db
 
 from boto3.dynamodb.conditions import Key

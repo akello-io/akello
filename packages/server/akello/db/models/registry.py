@@ -1,13 +1,13 @@
-from akello.db.models_v2 import AkelloBaseModel
-from akello.db.models_v2.user import User, UserRegistry, UserOrganizationRole, UserRegistryRole, UserOrganization
-from akello.db.models_v2.user import UserInvite
-from akello.db.models_v2.registry_treatment import RegistryTreatment
+from akello.db.models import AkelloBaseModel
+from akello.db.models.user import User, UserRegistry, UserOrganizationRole, UserRegistryRole, UserOrganization
+from akello.db.models.user import UserInvite
+from akello.db.models.registry_treatment import RegistryTreatment
 from typing import Optional, List
 from boto3.dynamodb.conditions import Key, Attr
 from pydantic import TypeAdapter
 from akello.db.connector.dynamodb import registry_db, measurements_db
-from akello.db.models_v2.types import Measurement
-from akello.db.models_v2.measurementvalue import MeasurementValue
+from akello.db.models.types import Measurement
+from akello.db.models.measurementvalue import MeasurementValue
 
 
 

@@ -5,7 +5,7 @@ from boto3.dynamodb.conditions import Key
 from pydantic import TypeAdapter, BaseModel
 
 from akello.db.connector.dynamodb import registry_db
-from akello.db.models_v2 import AkelloBaseModel
+from akello.db.models import AkelloBaseModel
 
 
 class User(AkelloBaseModel):

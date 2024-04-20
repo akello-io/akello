@@ -2,7 +2,7 @@ from decimal import Decimal
 from enum import Enum
 
 from akello.db.connector.dynamodb import measurements_db
-from akello.db.models_v2 import AkelloMeasurement
+from akello.db.models import AkelloMeasurement
 
 class MeasurementType(str, Enum):
     patient_caseload_review_minutes = 'patient_caseload_review_minutes'
