@@ -3,7 +3,6 @@ import json
 import logging
 from datetime import datetime
 
-from akello.db.models_old import PatientRegistry
 from akello.services import BaseService
 from akello.services.models.registry import RegistryService
 
@@ -52,6 +51,7 @@ class ReportsService(BaseService):
 
     @staticmethod
     def get_billing_report(registry_id, from_date, to_date):
+        """
         logger.info('running report for registry: %s from: %s to: %s' % (registry_id, from_date, to_date))
 
         report = {}
@@ -111,80 +111,6 @@ class ReportsService(BaseService):
                      'cp_npi_visits': report[mrn]['minute_stats'][stat_date]['cp_npi_visits']})
         result = json.dumps(r, default=str)
         return json.loads(result)
-
-    @staticmethod
-    def get_registry_dashboard(registry_id, from_date, to_date):
         """
-        Generates a dashboard report for a given registry within a specific date range, including information
-        on payer distribution, patient statuses, and treatment performance metrics such as average, median,
-        and maximum treatment weeks.
+        pass
 
-        Parameters:
-        - registry_id: An identifier for the registry whose dashboard report is to be generated.
-        - from_date: The starting timestamp (inclusive) for considering patient treatments.
-        - to_date: The ending timestamp (inclusive) for considering patient treatments.
-
-        Returns:
-        - A dictionary containing structured information about the treatment performance, screening scores,
-        payer distribution, and patient status distribution for the specified registry and date range.
-        """
-
-        patients = RegistryService.get_patients(registry_id)
-
-        payer_distribution = []
-        scores = {}
-        payers = {}
-        status_distribution = {}
-
-        treatment_performance = {'avg_weeks': 0, 'median_weeks': 0, 'max_weeks': 0}
-        list_weeks = []
-        for patient in patients:
-            patient_registry = PatientRegistry(**patient)
-
-            if patient_registry.payer not in payers:
-                payers[patient_registry.payer] = 1
-            else:
-                payers[patient_registry.payer] += 1
-
-            if patient_registry.status.value not in status_distribution:
-                status_distribution[patient_registry.status.value] = 0
-
-            status_distribution[patient_registry.status.value] += 1
-
-            if len(patient_registry.treatment_logs) == 0: continue
-
-            first_treatment_log = patient_registry.treatment_logs[0]
-            last_treatment_log = patient_registry.treatment_logs[-1]
-
-            first_date = datetime.utcfromtimestamp(first_treatment_log.date / 1000)
-            last_date = datetime.utcfromtimestamp(last_treatment_log.date / 1000)
-            treatment_weeks = (last_date - first_date).days / 7
-
-            treatment_performance['avg_weeks'] += treatment_weeks
-            list_weeks.append(treatment_weeks)
-            treatment_performance['max_weeks'] = max(treatment_performance['max_weeks'], treatment_weeks)
-
-            for score in last_treatment_log.scores:
-                if score.score_name not in scores:
-                    scores[score.score_name] = {'avg': score.score_value}
-                else:
-                    scores[score.score_name]['avg'] = scores[score.score_name][
-                                                          'avg'] + score.score_value  # calculate the average
-
-        if len(patients) == 0: return None
-
-        treatment_performance['avg_weeks'] = treatment_performance['avg_weeks'] / len(patients)
-
-        if len(list_weeks) > 0:
-            list_weeks.sort()
-            treatment_performance['median_weeks'] = list_weeks[len(list_weeks) // 2]
-
-        for score in scores:
-            scores[score]['avg'] = scores[score]['avg'] / len(patients)
-
-        for idx, payer in enumerate(payers):
-            payer_distribution.append({'id': idx, 'value': payers[payer], 'label': payer})
-
-        return {'treatment': treatment_performance, 'screening': scores, 'payer_distribution': payer_distribution,
-                'patient_status_distribution': {'status': list(status_distribution.keys()),
-                                                'values': [value for key, value in status_distribution.items()]}}

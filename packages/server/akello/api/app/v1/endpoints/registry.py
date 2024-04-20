@@ -11,12 +11,9 @@ from pydantic import BaseModel
 
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
-from akello.db.models_old import AkelloApp, TreatmentLog, PatientRegistry
-from akello.decorators.mixin import mixin
-from akello.services.models.akello_apps import AkelloAppsService
+
 from akello.services.models.registry import RegistryService
 from akello.services.models.user import UserService
-from akello.services.models.screeners import ScreenerService
 
 from akello.db.models_v2.types import Measurement
 
@@ -156,14 +153,6 @@ async def refer_patient(registry_id: str, patient_registry: dict, auth: CognitoT
     })
 
 
-@router.post("/{registry_id}/record-session")
-@mixin(mixins=mixins)
-async def record_session(request: Request, registry_id: str, treatment_log: TreatmentLog,
-                         auth: CognitoTokenCustom = Depends(auth_token_check)):
-    UserService.check_registry_access(auth.cognito_id, registry_id)
-    RegistryService.add_treatment_log(registry_id, treatment_log.patient_mrn, treatment_log)
-    return treatment_log
-
 
 class PatientMeasurements(BaseModel):
     measurements: List[MeasurementValue]
@@ -205,18 +194,7 @@ async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoToken
     registry_treatment._AkelloBaseModel__set_attribute(data['attr_name'], data['attr_value'])
 
 
-@router.get("/{registry_id}/app-configs")
-async def get_app_configs(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    UserService.check_registry_access(auth.cognito_id, registry_id)
-    app_configs = AkelloAppsService.get_app_configs(registry_id)
-    return [app for app in app_configs]
 
-
-@router.post("/{registry_id}/app-configs/{app_id}/save")
-async def save_akello_app(registry_id: str, akello_app: AkelloApp,
-                          auth: CognitoTokenCustom = Depends(auth_token_check)):
-    UserService.check_registry_access(auth.cognito_id, registry_id)
-    AkelloAppsService.save_akello_app(registry_id, akello_app)
 
 @router.get("/{registry_id}/measurements")
 async def get_measurments_for_patient(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):

@@ -1,5 +1,4 @@
 import datetime
-import json
 import os
 from decimal import Decimal
 
@@ -8,7 +7,6 @@ from botocore.exceptions import ClientError
 from sendgrid import SendGridAPIClient
 
 from akello.db.connector.dynamodb import registry_db
-from akello.db.models_old import UserRegistry, UserModel, RegistryUser, UserRole, RegistryModel
 from akello.services import BaseService
 
 
@@ -25,14 +23,7 @@ class UserService(BaseService):
         Associates a user with a registry.
         """
 
-        registry_user = UserRegistry(user_id=user_id, registry_id=registry_id)
-        item = json.loads(json.dumps(registry_user.model_dump_json()), parse_float=Decimal)
-        item = json.loads(item, parse_float=Decimal)
-        item['partition_key'] = 'user-registry:' + user_id
-        item['sort_key'] = 'registry:' + registry_id
-        response = registry_db.put_item(Item=item)
-        status_code = response['ResponseMetadata']['HTTPStatusCode']
-        assert status_code == 200
+        pass
 
     @staticmethod
     def create_user(cognito_user_id, email, first_name, last_name, profile_photo):
@@ -66,36 +57,6 @@ class UserService(BaseService):
             data = {
                 "contacts": [{"email": email, "first_name": first_name, "last_name": last_name, "custom_fields": {}}]}
             response = sg.client.marketing.contacts.put(request_body=data)
-
-    @staticmethod
-    def create_registry_user(registry_id, first_name, last_name, email, user_id, role: UserRole, is_admin: bool):
-        """
-        Creates a new registry user association in the database.
-
-        Parameters:
-            registry_id (str): The ID of the registry.
-            first_name (str): The first name of the user.
-            last_name (str): The last name of the user.
-            email (str): The email of the user.
-            user_id (str): The user ID.
-            role (UserRole): The role of the user in the registry.
-            is_admin (bool): Indicates if the user is an admin.
-
-        Raises:
-            ClientError: If the registry user could not be created.
-        """
-        registry_user = RegistryUser(registry_id=registry_id, first_name=first_name, last_name=last_name, email=email,
-                                     user_id=user_id, role=role, is_admin=is_admin)
-
-        item = json.loads(json.dumps(registry_user.model_dump_json()), parse_float=Decimal)
-        item = json.loads(item, parse_float=Decimal)
-        item['partition_key'] = 'registry-user:' + registry_id
-        item['sort_key'] = 'user:' + user_id
-
-        response = registry_db.put_item(Item=item)
-
-        status_code = response['ResponseMetadata']['HTTPStatusCode']
-        assert status_code == 200
 
     @staticmethod
     def check_registry_access(cognito_user_id, registry_id):
@@ -174,33 +135,11 @@ class UserService(BaseService):
         Parameters:
             cognito_user_id (str): The Cognito user ID of the user to update.
         """
-        UserModel.set_attribute("user:%s" % cognito_user_id, "profile", "last_login",
-                                Decimal(datetime.datetime.utcnow().timestamp()))
+        pass
 
     @staticmethod
     def get_registries(cognito_user_id):
-        """
-        Creates registry user association in the database.
-
-        Parameters:
-            cognito_user_id (str): The Cognito user ID of the user.
-
-        Raises:
-            ClientError: If the system fails to query the database.
-        """
-        try:
-            response = registry_db.query(
-                KeyConditionExpression=Key('partition_key').eq('user-registry:%s' % cognito_user_id))
-            registries = []
-            for registry in response['Items']:
-                lookup_key = registry['sort_key']
-                response = registry_db.query(
-                    KeyConditionExpression=Key('partition_key').eq(lookup_key) & Key('sort_key').eq('metadata'))
-                assert len(response['Items']) == 1
-                registries.append(RegistryModel(**response['Items'][0]))
-            return registries
-        except ClientError as e:
-            print(e)
+        pass
 
     @staticmethod
     def save_user_session(cognito_user_id, user_agent, ip_address):
@@ -234,4 +173,4 @@ class UserService(BaseService):
             cognito_user_id (str): The Cognito user ID of the user.
             photo_url (str): The new URL of the user's profile photo.
         """
-        UserModel.set_attribute("user:%s" % cognito_user_id, "profile", "profile_photo", photo_url)
+        pass
