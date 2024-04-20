@@ -9,7 +9,7 @@ from akello.auth.provider import auth_token_check
 from akello.db.models.measurementvalue import MeasurementValue, MeasurementType
 from akello.db.models.registry import Registry
 from akello.db.models.registry_treatment import RegistryTreatment
-from akello.db.models.types import Measurement
+from akello.db.types import Measurement
 from akello.db.models.user import UserRegistry, UserRegistryRole
 
 logger = logging.getLogger('mangum')

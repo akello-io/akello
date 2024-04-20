@@ -12,7 +12,7 @@ from pydantic import BaseModel
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
 
-from akello.db.models.types import Measurement
+from akello.db.types import Measurement
 
 from akello.db.models.registry import Registry, RegistryUser, RegistryTreatment
 from akello.db.models.user import User, UserRegistry, UserRegistryRole
@@ -27,9 +27,6 @@ from pydantic import TypeAdapter
 logger = logging.getLogger('mangum')
 
 router = APIRouter()
-
-# Register the mixins based on enabled plugins
-mixins = []
 
 stripe.api_key = os.getenv('STRIPE_API_KEY', None)
 

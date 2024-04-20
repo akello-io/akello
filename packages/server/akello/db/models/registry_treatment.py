@@ -5,9 +5,9 @@ from typing import Optional, List
 
 from akello.db.models import AkelloBaseModel
 from akello.db.models.user import User
-from akello.db.models.types import FlagTypes, PatientStatus
+from akello.db.types import FlagTypes, PatientStatus
 
-from akello.db.connector.dynamodb import registry_db, measurements_db
+from akello.db.connector.dynamodb import measurements_db
 
 from boto3.dynamodb.conditions import Key
 from pydantic import TypeAdapter
