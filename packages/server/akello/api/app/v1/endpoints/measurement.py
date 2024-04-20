@@ -20,7 +20,7 @@ logger = logging.getLogger('mangum')
 router = APIRouter()
 
 
-@router.post("/")
+@router.get("/")
 async def get_measurements(auth: CognitoTokenCustom = Depends(auth_token_check)):
     """
             Get all screeners from the screener's directory. The client will present to the user to select which screener they want active in a registry.

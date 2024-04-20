@@ -9,6 +9,26 @@ export class MeasurementService extends BaseService {
         super(client);
     }
 
+    async getMeasurements(onSuccess: (data: any) => void, registry_id?: string, onFail?: (data: any) =>  void) {
+        let endpoint =  "measurement"
+
+        if(registry_id) {
+            endpoint += "?registry_id=" + registry_id;
+        }
+
+        const resp = this.apiRequest({
+            api_url: this.client.getOptions().baseUrl!,
+            method: 'get',
+            endpoint: endpoint,
+            token: this.client.accessToken!,
+            onSuccess: (resp: any) => {
+                onSuccess(resp)
+            }, onFail: (error: any) => {
+                onFail!(error)
+            }
+        });
+    }
+
     async logTime(measurement: Measurement, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
         const endpoint =  "measurement/timelog";
         const resp = this.apiRequest({

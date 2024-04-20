@@ -6,18 +6,17 @@ import { useAkello } from '@akello/react-hook';
 import { notifications } from '@mantine/notifications';
 
 
-export interface MeasurementsPageProps {
-    measurements: any;
-}
 
-
-export const MeasurementsPage:React.FC<MeasurementsPageProps> = ({ measurements }) => {
+export const MeasurementsPage = () => {
     const akello = useAkello();
-    const [_measurements, setMeasurements] = useState(measurements)
+    const [_measurements, setMeasurements] = useState([])
+    const selections: any[] = []
 
-    const selections = _measurements?.map((measurement: any) => {
-        return measurement.name
-    })
+    useEffect(() => {
+        akello.measurementService.getMeasurements((data: any) => {
+            setMeasurements(data)
+        })
+    },[])
 
     return (
         <div>
@@ -27,7 +26,7 @@ export const MeasurementsPage:React.FC<MeasurementsPageProps> = ({ measurements 
                     <MultiSelect
                         checkIconPosition="right"
                         pb={30}
-                        data={selections}
+                        data={_measurements?.map((measurement: any) => { return measurement.name })}
                         searchable
                         label="Select screeners"
                         placeholder="Pick a screener"
