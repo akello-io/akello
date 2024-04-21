@@ -1,0 +1,1 @@
+reference: https://github.com/aws-samples/lambda-hexagonal-architecture-sample
