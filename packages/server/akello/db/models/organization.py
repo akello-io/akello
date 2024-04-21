@@ -31,25 +31,25 @@ class Organization(AkelloBaseModel):
 
     def create(self, requesting_user: User):
         self.id = str(uuid.uuid4())
-        self._AkelloBaseModel__put()
+        self.put()
         assert self.created_by == requesting_user
         UserOrganization(
             user_id=requesting_user.id,
             organization_id=self.id,
             role=UserOrganizationRole.admin
-        )._AkelloBaseModel__put()
+        ).put()
 
     def put(self, requesting_user: User):
         user_org = UserOrganization(
             user_id=requesting_user.id,
             organization_id=self.id,
             role=UserOrganizationRole.admin
-        )._AkelloBaseModel__get()
+        ).get()
 
         if not user_org:
             raise Exception('User is not part of this organization')
 
-        self._AkelloBaseModel__put()
+        self.put()
 
     def create_registry(self, requesting_user: User, name: str = None, logo: str = None):
         """
@@ -60,7 +60,7 @@ class Organization(AkelloBaseModel):
             user_id=requesting_user.id,
             organization_id=self.id,
             role=UserOrganizationRole.admin
-        )._AkelloBaseModel__get()
+        ).get()
 
         if not user_org:
             raise Exception('User is not part of this organization')
@@ -76,17 +76,17 @@ class Organization(AkelloBaseModel):
         OrganizationRegistry(
             registry_id=registry.id,
             organization_id=self.id
-        )._AkelloBaseModel__put()
+        ).put()
 
         UserRegistry(
             user_id=requesting_user.id,
             registry_id=registry.id,
             role=UserRegistryRole.admin
-        )._AkelloBaseModel__put()
+        ).put()
         RegistryUser(
             user_id=requesting_user.id,
             registry_id=registry.id
-        )._AkelloBaseModel__put()
+        ).put()
 
         return registry
 
@@ -95,7 +95,7 @@ class Organization(AkelloBaseModel):
             user_id=requesting_user.id,
             organization_id=self.id,
             role=UserOrganizationRole.admin
-        )._AkelloBaseModel__get()
+        ).get()
 
         if not user_org:
             raise Exception('User is not part of this organization')
@@ -126,4 +126,3 @@ class OrganizationRegistry(AkelloBaseModel):
     @property
     def sort_key(self) -> str:
         return 'registry-id:%s' % self.registry_id
-

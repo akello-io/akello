@@ -96,9 +96,9 @@ async def accept_invite(user_invite: UserInvite,  auth: CognitoTokenCustom = Dep
             phone_number=user_invite.payload['phone_number'],
             email=user_invite.payload['email'],
             date_of_birth=user_invite.payload['date_of_birth']
-        )._AkelloBaseModel__put()
+        ).put()
 
-    user_invite._AkelloBaseModel__put()
+    user_invite.put()
     return {
         'status': 'success',
         'message': 'Invite accepted'
@@ -122,7 +122,7 @@ async def decline_invite(user_invite: UserInvite,  auth: CognitoTokenCustom = De
 
     assert user_invite.user_email == user_email, 'Email does not match the invite'
     user_invite.accepted = False
-    user_invite._AkelloBaseModel__put()
+    user_invite.put()
 
     return {
         'status': 'success',

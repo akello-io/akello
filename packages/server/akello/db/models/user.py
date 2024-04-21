@@ -24,10 +24,6 @@ class User(AkelloBaseModel):
     def sort_key(self) -> str:
         return 'meta'
 
-    def put(self):
-        # TODO: verify security
-        self._AkelloBaseModel__put()
-
     def fetch_user_sessions(self):
         # Define the partition key value
         partition_key_value = f"user-id:{self.id}"
@@ -160,9 +156,6 @@ class UserSession(AkelloBaseModel):
     def sort_key(self) -> str:
         return str(self.created_at)
 
-    def put(self):
-        self._AkelloBaseModel__put()
-
 
 class UserInvite(AkelloBaseModel):
     object_type: str # registry / organization
@@ -181,9 +174,6 @@ class UserInvite(AkelloBaseModel):
     @property
     def sort_key(self) -> str:
         return 'user-invite::%s-id:%s' % (self.object_type, self.object_id)
-
-    def put(self):
-        self._AkelloBaseModel__put()
 
     def to_scrubbed(self):
         return {

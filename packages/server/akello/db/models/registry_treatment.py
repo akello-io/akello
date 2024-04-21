@@ -64,12 +64,12 @@ class RegistryTreatment(AkelloBaseModel):
     def add_approved_provider(self, authorized_user: User, requesting_user: User):
         ## Add a new column for every approvede provider ID
         assert requesting_user.id == self.user_id, 'Only the patient can approve a provider'
-        self._AkelloBaseModel__add_attribute('approved_provider_id:%s' % authorized_user.id,
+        self.add_attribute('approved_provider_id:%s' % authorized_user.id,
                                              Decimal(datetime.datetime.utcnow().timestamp()))
 
     def remove_approved_provider(self, authorized_user: User):
         ## Remove the column for the approvede provider ID
-        self._AkelloBaseModel__remove_attribute('approved_provider_id-%s' % authorized_user.id)
+        self.remove_attribute('approved_provider_id-%s' % authorized_user.id)
 
 
     def fetch_measurement(self, measure: MeasurementType):
