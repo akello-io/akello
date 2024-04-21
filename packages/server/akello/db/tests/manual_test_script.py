@@ -48,7 +48,7 @@ UserInvite(
     user_email='test@gmail.com',
     invited_by_user_id=test_organization_owner.id,
     role=UserRegistryRole.patient
-)._AkelloBaseModel__put()
+).put()
 
 invited_patient = User(id=str(uuid.uuid4()), email='test@gmail.com')
 invites = invited_patient.fetch_invites()

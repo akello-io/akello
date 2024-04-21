@@ -30,11 +30,11 @@ class Registry(AkelloBaseModel):
         return 'meta'
 
     def create(self, requesting_user: User):
-        self._AkelloBaseModel__put()
+        self.put()
         UserRegistry(
             user_id=requesting_user.id,
             registry_id=self.id,
-            role=UserRegistryRole.admin)._AkelloBaseModel__put()
+            role=UserRegistryRole.admin).put()
 
     def put(self, is_system: bool = False, requesting_user: User = None):
         """
@@ -45,25 +45,25 @@ class Registry(AkelloBaseModel):
                 raise Exception("Requesting user is required")
 
             user_registry = UserRegistry(user_id=requesting_user.id, registry_id=self.id,
-                                         role=UserRegistryRole.care_manager)._AkelloBaseModel__get()
+                                         role=UserRegistryRole.care_manager).get()
             if not user_registry:
                 raise Exception("User not registered to this registry")
 
-        self._AkelloBaseModel__put()
+        self.put()
 
     def add_user(self, user: User, role: UserRegistryRole, requesting_user: User):
         if not UserOrganization(
                 user_id=requesting_user.id,
                 organization_id=registry_organization.organization_id,
-                role=UserOrganizationRole.admin)._AkelloBaseModel__get():
+                role=UserOrganizationRole.admin).get():
             raise Exception("Only organization admin can add users to registry")
 
         if not UserRegistry(user_id=requesting_user.id, registry_id=self.id,
-                            role=UserRegistryRole.admin)._AkelloBaseModel__get():
+                            role=UserRegistryRole.admin).get():
             raise Exception("Only registry admin can add users to registry")
 
-        UserRegistry(user_id=user.id, registry_id=self.id, role=role)._AkelloBaseModel__put()
-        RegistryUser(user_id=user.id, registry_id=self.id)._AkelloBaseModel__put()
+        UserRegistry(user_id=user.id, registry_id=self.id, role=role).put()
+        RegistryUser(user_id=user.id, registry_id=self.id).put()
 
     def invite_patient(self, email: str, invited_by_user: User, payload: Optional[dict] = None):
         UserInvite(
@@ -73,14 +73,14 @@ class Registry(AkelloBaseModel):
             invited_by_user_id=invited_by_user.id,
             role=UserRegistryRole.patient,
             payload=payload
-        )._AkelloBaseModel__put()
+        ).put()
 
     def fetch_users(self, requesting_user_id: str):
         user_registry = UserRegistry(
             user_id=requesting_user_id,
             registry_id=self.id,
             role=UserRegistryRole.admin
-        )._AkelloBaseModel__get()
+        ).get()
         if not user_registry:
             raise Exception('User is not part of this registry')
 
@@ -113,7 +113,7 @@ class Registry(AkelloBaseModel):
             user_id=requesting_user.id,
             registry_id=self.id,
             role=UserRegistryRole.admin
-        )._AkelloBaseModel__get()
+        ).get()
         if not user_registry:
             raise Exception('User is not part of this registry')
 
@@ -136,7 +136,7 @@ class Registry(AkelloBaseModel):
             user_id=requesting_user_id,
             registry_id=self.id,
             role=UserRegistryRole.admin
-        )._AkelloBaseModel__get()
+        ).get()
         if not user_registry:
             raise Exception('User is not part of this registry')
 

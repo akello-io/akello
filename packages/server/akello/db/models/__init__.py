@@ -48,6 +48,21 @@ class AkelloBaseModel(BaseModel):
 
         return cls(**response['Item'])
 
+    def get(self):
+        return self.__get()
+
+    def put(self):
+        self.__put()
+
+    def set_attribute(self, attribute_name: str, attribute_value: any):
+        self.set_attribute(attribute_name, attribute_value)
+
+    def append_to_attribute(self, attribute_name: str, attribute_value: any):
+        self.append_to_attribute(attribute_name, attribute_value)
+
+    def remove_attribute(self, attribute_name: str):
+        self.remove_attribute(attribute_name)
+
     def __get(self):
         """
         Protected method to get the item from the database

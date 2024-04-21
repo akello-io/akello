@@ -83,7 +83,7 @@ async def update_measurements(registry_id: str, request: Request, auth: CognitoT
     payload = await request.json()
     ta = TypeAdapter(List[Measurement])
     registry.measurements = ta.validate_python(payload)
-    registry._AkelloBaseModel__put()
+    registry.put()
 
 
 @router.get("/{registry_id}/patients")
@@ -166,8 +166,8 @@ async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoToken
     # if we are setting the relapse prevention plan, we need to set the date in the registry
     if data['attr_name'] == 'status' and data['attr_value'] == 'Relapse Prevention Plan':
         current_time = int(datetime.datetime.utcnow().timestamp() * 1000)
-        registry_treatment._AkelloBaseModel__set_attribute('relapse_prevention_plan', current_time)
-    registry_treatment._AkelloBaseModel__set_attribute(data['attr_name'], data['attr_value'])
+        registry_treatment.set_attribute('relapse_prevention_plan', current_time)
+    registry_treatment.set_attribute(data['attr_name'], data['attr_value'])
 
 
 
