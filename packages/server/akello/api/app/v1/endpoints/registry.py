@@ -68,12 +68,7 @@ async def create_registry(data: dict, auth: CognitoTokenCustom = Depends(auth_to
 
 @router.get("/{registry_id}")
 async def get_registry(registry_id: str, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    # TODO: Refactor this to use the new models
-    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
-    registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry_id, 'user-id:%s' % user.id)
-    if not registry_user:
-        raise Exception('User does not have access to this registry')
     return registry
 
 
@@ -111,10 +106,6 @@ async def invite_patient(registry_id: str, invite: InvitePatientRequest,
 async def refer_patient(registry_id: str, patient_registry: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
-    registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry.id, 'user-id:%s' % user.id)
-    if not registry_user:
-        raise Exception('User does not have access to this registry')
-
     registry.invite_patient(email=patient_registry['email'], invited_by_user=user, payload={
         'registry_id': registry_id,
         'user_id': user.id,
@@ -136,15 +127,9 @@ class PatientMeasurements(BaseModel):
 @router.post("/{registry_id}/patient/{patient_id}/measurement")
 async def set_patient_measurement(registry_id: str, patient_id: str, payload: PatientMeasurements,
                                   auth: CognitoTokenCustom = Depends(auth_token_check)):
-    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
-    registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
-    registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry.id, 'user-id:%s' % user.id)
-    if not registry_user:
-        raise Exception('User does not have access to this registry')
-
     for measurement in payload.measurements:
         MeasurementValue(
-            user_id=user.id,
+            user_id=patient_id,
             registry_id=registry_id,
             measure=measurement.measure,
             measurement_group_id=measurement.measurement_group_id,
@@ -155,12 +140,6 @@ async def set_patient_measurement(registry_id: str, patient_id: str, payload: Pa
 
 @router.post("/{registry_id}/patient-attribute")
 async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
-    registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
-    registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry.id, 'user-id:%s' % user.id)
-    if not registry_user:
-        raise Exception('User does not have access to this registry')
-
     registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id, 'treatment-user-id:%s' % data['user_id'])
 
     # if we are setting the relapse prevention plan, we need to set the date in the registry
@@ -182,22 +161,13 @@ async def get_measurments_for_patient(registry_id: str, auth: CognitoTokenCustom
 @router.post("/{registry_id}/patient/{patient_id}/measurements")
 def record_patient_measurement(registry_id: str, patient_id: str, measurement: MeasurementValue,
                                auth: CognitoTokenCustom = Depends(auth_token_check)):
-    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
-    registry_user = RegistryUser.get_by_key(RegistryUser, 'registry-id:%s' % registry_id, 'user-id:%s' % user.id)
-    if not registry_user:
-        raise Exception('User does not have access to this registry')
-
-    measurement.user_id = user.id
+    measurement.user_id = auth.cognito_id
     measurement.registry_id = registry_id
+    measurement.put()
 
 
 @router.get("/{registry_id}/patient/{patient_id}/measurements/{measure}")
 def get_patient_measurement(registry_id: str, patient_id: str, measure: str,
                             auth: CognitoTokenCustom = Depends(auth_token_check)):
-    user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
-    user_registry = UserRegistry.get_by_key(UserRegistry, 'user-id:%s' % user.id, 'registry-id:%s' % registry_id)
-    if not user_registry and user_registry.role == UserRegistryRole.admin:
-        raise Exception('User does not have access to this registry')
-
     measurements = MeasurementValue.get_by_key(MeasurementValue, 'registry-id:%s' % registry_id, 'user-id:%s' % patient_id, 'measure:%s' % measure)
     return measurements
