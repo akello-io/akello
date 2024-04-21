@@ -35,12 +35,10 @@ class AccessControlMiddleware(BaseHTTPMiddleware):
         if resource == 'measurement':
             if request_method == 'POST':
                 body = await request.body()
-                print(body)
                 payload = json.loads(body)
                 measurement_value = MeasurementValue(**payload)
             if request_method == 'GET':
                 registry_id = request.query_params.get('registry_id')
-                target_user_id = request.query_params.get('user_id')
                 if not has_access_to_registry(user_id, registry_id):
                     raise Exception('User does not have access to this registry')
 
