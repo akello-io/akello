@@ -27,5 +27,11 @@ async def get_user(user_id: str):
     user = DynamoDBProductsQueryService('User', client).get(user_id)
     return user
 
+
+@app.post("/")
+async def create_user(user: User):
+    DynamoDBProductsQueryService('User', client).create(user)
+    return user
+
 handler = Mangum(app)
 
