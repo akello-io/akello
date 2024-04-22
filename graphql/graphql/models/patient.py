@@ -2,7 +2,7 @@ import strawberry
 from typing import Optional
 from models.registry import Registry
 
-from models.common import BaseUser
+from models.base import BaseUser
 
 @strawberry.type
 class Patient(BaseUser):

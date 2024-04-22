@@ -6,4 +6,3 @@ from typing import List, Union, Optional
 class Organization:
     id: str
     name: str
-    registries: Optional[Registry]
