@@ -2,8 +2,8 @@ from typing import Optional
 
 from mypy_boto3_dynamodb import client
 
-from user.domain.model.user import User
-from user.domain.ports import user_query_service
+from domain.model.user import User
+from domain.ports.inbound import user_query_service
 
 
 class DynamoDBProductsQueryService(user_query_service.UserQueryService):

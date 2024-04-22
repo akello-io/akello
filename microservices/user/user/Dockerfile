@@ -14,11 +14,16 @@ ENV POETRY_NO_INTERACTION=1 \
 
 COPY poetry.lock pyproject.toml ./
 
+
+RUN poetry install
+RUN rm -rf $POETRY_CACHE_DIR
+
 COPY ./ ./
 
 RUN poetry install
 
 
-CMD ["entrypoints.api.main.handler"]
+
+CMD ["poetry", "run", "uvicorn", "entrypoints.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 EXPOSE 8000

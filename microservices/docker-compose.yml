@@ -1,8 +1,17 @@
 version: "3"
 services:
   user:
+    environment:
+      DYNAMODB_URL: ${DYNAMODB_URL}
+      AWS_REGION: ${AWS_REGION}
+      AWS_PROFILE: ${AWS_PROFILE}
     build:
-      context: ./user
+      context: ./user/user
       dockerfile: ./Dockerfile
     ports:
       - "8000:8000"
+    volumes:
+      - ~/.aws/:/root/.aws:ro
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
