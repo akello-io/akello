@@ -23,7 +23,6 @@ COPY ./ ./
 RUN poetry install
 
 
-
-CMD ["poetry", "run", "uvicorn", "user.entrypoints.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["poetry", "run", "uvicorn", "organization.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 EXPOSE 8000

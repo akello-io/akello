@@ -7,7 +7,6 @@
     "exclude": [
       "README.md",
       "cdk*.json",
-      "**/cdk.out/**",
       "requirements*.txt",
       "source.bat",
       "**/__init__.py",

@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 from user.domain.commands import create_user_command
 from user.domain.model import user
-from user.domain.ports import user_query_service
+from microservices.user.user.domain.ports.inbound import user_query_service
 
 
 def handle_create_user_command(
