@@ -1,3 +1,4 @@
+import requests
 import strawberry
 from models.user import User
 from models.organization import Organization
@@ -9,14 +10,14 @@ class UserQuery:
     async def select(
             self,
             info,
-            id: str,
-            email: str,
-            org_id: str,
+            user_id: str
     ) -> User:
         filed_selections  = {selection.name for field in info.selected_fields for selection in field.selections}
 
+        response = requests.get('http://localhost:8000/%s' % user_id)
+
         # step 1: API call to the user service
-        user = User(id='1', email='test1'), User(id='2', email='test2')
+        user = User(**response.json())
 
 
         if 'organizations' in filed_selections:

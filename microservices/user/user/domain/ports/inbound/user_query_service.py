@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from domain.model.user import User
+from user.domain.model.user import User
 
 
 class UserQueryService(ABC):

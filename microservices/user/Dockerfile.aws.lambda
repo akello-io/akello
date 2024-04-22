@@ -30,4 +30,4 @@ RUN poetry install
 COPY ./ ./
 
 
-CMD ["entrypoints.api.main.handler"]
+CMD ["user.entrypoints.api.main.handler"]

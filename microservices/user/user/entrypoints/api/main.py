@@ -1,8 +1,8 @@
 import boto3
 import os
 
-from adapters.dynamodb_query_service import DynamoDBProductsQueryService
-from domain.model.user import User
+from user.adapters.dynamodb_query_service import DynamoDBProductsQueryService
+from user.domain.model.user import User
 
 DYNAMODB_URL = os.getenv('DYNAMODB_URL')
 
