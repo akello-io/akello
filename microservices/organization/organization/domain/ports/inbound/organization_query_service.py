@@ -1,0 +1,19 @@
+from abc import ABC, abstractmethod
+from typing import Optional
+
+from organization.domain.model.organization import Organization
+
+
+class OrganizationQueryService(ABC):
+
+    @abstractmethod
+    def get(self, organization_id: str) -> Optional[Organization]:
+        ...
+
+    @abstractmethod
+    def set(self, organization: Organization) -> None:
+        ...
+
+    @abstractmethod
+    def create(self, organization: Organization) -> None:
+        ...
