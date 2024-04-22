@@ -21,6 +21,7 @@ akello/
 ├── examples               # end-to-end examples using akello packages
 ├── graphql                # graphql server for all microservices
 ├── microservices
+│   ├── authorizer         # authorizes requests to resources
 │   ├── user
 │   ├── organization
 │   ├── registry
@@ -30,7 +31,6 @@ akello/
 │   ├── docs               # docs hosted under docs.akello.io
 │   ├── react              # React components and storybook
 │   ├── react-hook         # React hooks
-│   ├── server             # Fast API Server
 ```
 
 ## Contributing
