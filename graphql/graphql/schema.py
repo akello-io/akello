@@ -5,10 +5,11 @@ from models.patient import Patient
 from models.organization import Organization
 
 from resolvers.patient_resolver import get_patient
-from resolvers.organization_resolver import get_organization
 from queries.user_query import UserQuery
+from queries.organization_query import OrganizationQuery
 
 from mutations.user import UserMutations
+from mutations.organization import OrganizationMutations
 
 
 
@@ -19,12 +20,17 @@ class Query:
     def user(self) -> UserQuery:
         return UserQuery()
 
+
+    @strawberry.field
+    def organization(self) -> OrganizationQuery:
+        return OrganizationQuery()
+
     patient: Patient = strawberry.field(resolver=get_patient)
-    organization: Organization = strawberry.field(resolver=get_organization)
 
 @strawberry.type
 class Mutation:
     create_user = UserMutations.create_user
+    create_organization = OrganizationMutations.create_organization
 
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
