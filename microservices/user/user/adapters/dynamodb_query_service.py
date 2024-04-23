@@ -31,7 +31,7 @@ class DynamoDBOrganizationQueryService(user_query_service.UserQueryService):
         self._dynamodb_client.put_item(
             TableName=self._table_name,
             Item={
-                'partition_key': user.id,
+                'partition_key': 'user-id:%s' % user.id,
                 'sort_key': 'meta',
                 **user.dict()
             }
@@ -41,7 +41,7 @@ class DynamoDBOrganizationQueryService(user_query_service.UserQueryService):
         self._dynamodb_client.put_item(
             TableName=self._table_name,
             Item={
-                'partition_key': user.id,
+                'partition_key': 'user-id:%s' % user.id,
                 'sort_key': 'meta',
                 **user.dict()
             }

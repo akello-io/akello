@@ -1,7 +1,7 @@
 import boto3
 import os
 
-from user.adapters.dynamodb_query_service import DynamoDBOrganizationQueryService
+from user.adapters import dynamodb_query_service
 from user.domain.model.user import User
 
 DYNAMODB_URL = os.getenv('DYNAMODB_URL')
@@ -19,17 +19,17 @@ from mangum import Mangum
 
 app = FastAPI()
 
+user_query_service = dynamodb_query_service.DynamoDBOrganizationQueryService('akello-core', client)
+
 
 @app.get("/{user_id}")
 async def get_user(user_id: str):
-    user = DynamoDBOrganizationQueryService('akello-core', client).get(user_id)
-    return user
+    return user_query_service.get(user_id)
 
 
 @app.post("/")
 async def create_user(user: User):
-    DynamoDBOrganizationQueryService('akello-core', client).create(user)
-    return user
+    return user_query_service.create(user)
 
 handler = Mangum(app)
 

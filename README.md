@@ -18,7 +18,6 @@ Full open source code to run akello.io's infrastructure and apps. The backend se
 akello/
 ├── agent                  # automated workflows / AI enablement
 ├── eventbus               # rules for all events
-├── examples               # end-to-end examples using akello packages
 ├── graphql                # graphql server for all microservices
 ├── microservices
 │   ├── authorizer         # authorizes requests to resources
