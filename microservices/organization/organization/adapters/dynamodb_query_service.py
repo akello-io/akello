@@ -6,7 +6,7 @@ from organization.domain.model.organization import Organization
 from organization.domain.ports.inbound import organization_query_service
 
 
-class DynamoDBProductsQueryService(organization_query_service.OrganizationQueryService):
+class DynamoDBOrganizationQueryService(organization_query_service.OrganizationQueryService):
 
     def __init__(self, table_name: str, dynamodb_client: client.DynamoDBClient):
         self._table_name = table_name
