@@ -6,7 +6,7 @@ from models.organization import Organization
 
 def get_user(user_id: str) -> User:
 
-    response = requests.get('http://localhost:8000/%s' % user_id)
+    response = requests.get('http://host.docker.internal:8010/%s' % user_id)
 
     if response.status_code != 200:
         raise Exception('User not found')
@@ -18,3 +18,8 @@ def get_user(user_id: str) -> User:
     return user
 
 
+def create_user(id: str, email: str) -> None:
+    response = requests.post('http://host.docker.internal:8010', json={'id': id, 'email': email})
+
+    if response.status_code != 200:
+        raise Exception('Failed to create the user')

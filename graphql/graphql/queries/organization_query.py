@@ -13,7 +13,7 @@ class OrganizationQuery:
     ) -> Organization:
         filed_selections  = {selection.name for field in info.selected_fields for selection in field.selections}
 
-        response = requests.get('http://localhost:8005/%s' % organization_id)
+        response = requests.get('http://host.docker.internal:8011/%s' % organization_id)
 
         if not response.json():
             raise Exception('Organization not found')
