@@ -8,6 +8,7 @@ from user.domain.ports.inbound import user_query_service
 
 class DynamoDBOrganizationQueryService(user_query_service.UserQueryService):
 
+
     def __init__(self, table_name: str, dynamodb_client: client.DynamoDBClient):
         self._table_name = table_name
         self._dynamodb_client = dynamodb_client
@@ -18,7 +19,7 @@ class DynamoDBOrganizationQueryService(user_query_service.UserQueryService):
         resp = self._dynamodb_client.get_item(
             TableName=self._table_name,
             Key={
-                'partition_key': user_id,
+                'partition_key': 'user-id:%s' % user_id,
                 'sort_key': 'meta'
             }
         )

@@ -18,7 +18,8 @@ class DynamoDBOrganizationQueryService(organization_query_service.OrganizationQu
         resp = self._dynamodb_client.get_item(
             TableName=self._table_name,
             Key={
-                'id': organization_id
+                'partition_key': 'organization-id:%s' % organization_id,
+                'sort_key': 'meta'
             }
         )
 
@@ -28,11 +29,20 @@ class DynamoDBOrganizationQueryService(organization_query_service.OrganizationQu
     def create(self, organization: Organization) -> None:
         self._dynamodb_client.put_item(
             TableName=self._table_name,
-            Item=organization.dict()
+            Item={
+                'partition_key': 'organization-id:%s' % organization.id,
+                'sort_key': 'meta',
+                **organization.dict()
+
+            }
         )
 
     def set(self, organization: Organization) -> None:
         self._dynamodb_client.put_item(
             TableName=self._table_name,
-            Item=organization.dict()
+            Item={
+                'partition_key': 'organization-id:%s' % organization.id,
+                'sort_key': 'meta',
+                **organization.dict()
+            }
         )

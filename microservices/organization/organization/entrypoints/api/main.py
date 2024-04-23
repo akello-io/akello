@@ -25,13 +25,13 @@ app = FastAPI()
 
 @app.get("/{organization_id}")
 async def get_organization(organization_id: str):
-    organization = DynamoDBOrganizationQueryService('Organization', client).get(organization_id)
+    organization = DynamoDBOrganizationQueryService('akello-core', client).get(organization_id)
     return organization
 
 
 @app.post("/")
 async def create_organization(organization: Organization):
-    DynamoDBOrganizationQueryService('Organization', client).create(organization)
+    DynamoDBOrganizationQueryService('akello-core', client).create(organization)
     return organization
 
 handler = Mangum(app)
