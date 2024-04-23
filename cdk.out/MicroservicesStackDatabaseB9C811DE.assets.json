@@ -1,0 +1,19 @@
+{
+  "version": "36.0.0",
+  "files": {
+    "0cc4a19224d893ca79edbeedf734e7342ac9becfc1982cf94917f012ea034f8c": {
+      "source": {
+        "path": "MicroservicesStackDatabaseB9C811DE.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "0cc4a19224d893ca79edbeedf734e7342ac9becfc1982cf94917f012ea034f8c.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
