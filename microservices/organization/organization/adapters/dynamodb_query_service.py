@@ -3,6 +3,7 @@ from typing import Optional
 from mypy_boto3_dynamodb import client
 
 from organization.domain.model.organization import Organization
+from organization.domain.model.organization_user import OrganizationUser
 from organization.domain.ports.inbound import organization_query_service
 
 
@@ -18,7 +19,8 @@ class DynamoDBOrganizationQueryService(organization_query_service.OrganizationQu
         resp = self._dynamodb_client.get_item(
             TableName=self._table_name,
             Key={
-                'id': organization_id
+                'partition_key': 'organization-id:%s' % organization_id,
+                'sort_key': 'meta'
             }
         )
 
@@ -28,11 +30,32 @@ class DynamoDBOrganizationQueryService(organization_query_service.OrganizationQu
     def create(self, organization: Organization) -> None:
         self._dynamodb_client.put_item(
             TableName=self._table_name,
-            Item=organization.dict()
+            Item={
+                'partition_key': 'organization-id:%s' % organization.id,
+                'sort_key': 'meta',
+                **organization.dict()
+
+            }
         )
 
     def set(self, organization: Organization) -> None:
         self._dynamodb_client.put_item(
             TableName=self._table_name,
-            Item=organization.dict()
+            Item={
+                'partition_key': 'organization-id:%s' % organization.id,
+                'sort_key': 'meta',
+                **organization.dict()
+            }
         )
+
+    def invite_user(self, organization_invite: OrganizationUser):
+        self._dynamodb_client.put_item(
+            TableName=self._table_name,
+            Item={
+                'partition_key': 'organization-id:%s' % organization_invite.organization_id,
+                'sort_key': 'email-invite:%s' % organization_invite.email,
+                **organization_invite.dict()
+
+            }
+        )
+
