@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "infra"
+version = "0.1.0"
+description = ""
+authors = ["Vijay Selvaraj <vijay.selvaraj@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aws-cdk-lib = "^2.138.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -24,7 +24,3 @@ class OrganizationQuery:
             pass
 
         return organization
-
-
-
-

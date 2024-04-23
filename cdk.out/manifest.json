@@ -1,0 +1,249 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "MicroservicesStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "MicroservicesStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "MicroservicesStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "MicroservicesStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/528b276f96783bb2c7ab22d6e13635e1d4eddda47e5a16123936da7e0c9ca437.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "MicroservicesStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "MicroservicesStack.assets"
+      ],
+      "metadata": {
+        "/MicroservicesStack/akello-core": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "akellocore2C67D056"
+            }
+          }
+        ],
+        "/MicroservicesStack/akello-core/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "akellocore2C67D056"
+          }
+        ],
+        "/MicroservicesStack/akello-measurements": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "akellomeasurements6D72561B"
+            }
+          }
+        ],
+        "/MicroservicesStack/akello-measurements/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "akellomeasurements6D72561B"
+          }
+        ],
+        "/MicroservicesStack/fn-user-microservice/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "fnusermicroserviceServiceRole6DDC6B9D"
+          }
+        ],
+        "/MicroservicesStack/fn-user-microservice/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "fnusermicroserviceServiceRoleDefaultPolicyBAB4E40D"
+          }
+        ],
+        "/MicroservicesStack/fn-user-microservice/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "fnusermicroservice0FA092C3"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiF4B92DF8"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiDeployment84BF65F61ccca3d3cec53cf29dda2afe19a1e50a"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiDeploymentStageprod469CEF2A"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiEndpointDCD94136"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Default/{id}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiidE0D8FDB2"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Default/{id}/GET/ApiPermission.MicroservicesStackuserserviceapiFD4806BA.GET..{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiidGETApiPermissionMicroservicesStackuserserviceapiFD4806BAGETid166E243A"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Default/{id}/GET/ApiPermission.Test.MicroservicesStackuserserviceapiFD4806BA.GET..{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiidGETApiPermissionTestMicroservicesStackuserserviceapiFD4806BAGETid0E473AE5"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Default/{id}/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiidGET1CD46899"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Default/user/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiuserCCF67539"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Default/user/POST/ApiPermission.MicroservicesStackuserserviceapiFD4806BA.POST..user": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiuserPOSTApiPermissionMicroservicesStackuserserviceapiFD4806BAPOSTuser182E8FC2"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Default/user/POST/ApiPermission.Test.MicroservicesStackuserserviceapiFD4806BA.POST..user": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiuserPOSTApiPermissionTestMicroservicesStackuserserviceapiFD4806BAPOSTuser150907B1"
+          }
+        ],
+        "/MicroservicesStack/user-service-api/Default/user/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "userserviceapiuserPOST2BAE4D27"
+          }
+        ],
+        "/MicroservicesStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/MicroservicesStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/MicroservicesStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/MicroservicesStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "MicroservicesStack"
+    },
+    "DatabaseStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "DatabaseStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "DatabaseStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "DatabaseStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/82292c23a66b6dbc5cd9b0e345a267e32fd849723d9616426030999ea6557152.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "DatabaseStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "DatabaseStack.assets"
+      ],
+      "metadata": {
+        "/DatabaseStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/DatabaseStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/DatabaseStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/DatabaseStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "DatabaseStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

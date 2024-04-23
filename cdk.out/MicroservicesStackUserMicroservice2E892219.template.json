@@ -1,0 +1,536 @@
+{
+ "Resources": {
+  "fnusermicroserviceServiceRole6DDC6B9D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "MicroservicesStack/UserMicroservice/fn-user-microservice/ServiceRole/Resource"
+   }
+  },
+  "fnusermicroservice0FA092C3": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "ImageUri": {
+      "Fn::Sub": "${AWS::AccountId}.dkr.ecr.${AWS::Region}.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-${AWS::Region}:43acb0135470e9986e1d9a2951a26c11e90c15460a880a45190d02fe9dd86c35"
+     }
+    },
+    "FunctionName": "fn-user-microservice",
+    "PackageType": "Image",
+    "Role": {
+     "Fn::GetAtt": [
+      "fnusermicroserviceServiceRole6DDC6B9D",
+      "Arn"
+     ]
+    },
+    "Timeout": 15
+   },
+   "DependsOn": [
+    "fnusermicroserviceServiceRole6DDC6B9D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "MicroservicesStack/UserMicroservice/fn-user-microservice/Resource",
+    "aws:asset:path": "asset.43acb0135470e9986e1d9a2951a26c11e90c15460a880a45190d02fe9dd86c35",
+    "aws:asset:dockerfile-path": "Dockerfile.aws.lambda",
+    "aws:asset:property": "Code.ImageUri"
+   }
+  },
+  "userserviceapiF4B92DF8": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Name": "user-service-api"
+   },
+   "Metadata": {
+    "aws:cdk:path": "MicroservicesStack/UserMicroservice/user-service-api/Resource"
+   }
+  },
+  "userserviceapiDeployment84BF65F6e66fea34e8665f4ba20698f52e852616": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "Automatically created by the RestApi construct",
+    "RestApiId": {
+     "Ref": "userserviceapiF4B92DF8"
+    }
+   },
+   "DependsOn": [
+    "userserviceapiUserGETDD2E46CC",
+    "userserviceapiUserB1497F98"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "MicroservicesStack/UserMicroservice/user-service-api/Deployment/Resource"
+   }
+  },
+  "userserviceapiDeploymentStageprod469CEF2A": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "userserviceapiDeployment84BF65F6e66fea34e8665f4ba20698f52e852616"
+    },
+    "RestApiId": {
+     "Ref": "userserviceapiF4B92DF8"
+    },
+    "StageName": "prod"
+   },
+   "Metadata": {
+    "aws:cdk:path": "MicroservicesStack/UserMicroservice/user-service-api/DeploymentStage.prod/Resource"
+   }
+  },
+  "userserviceapiUserB1497F98": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "userserviceapiF4B92DF8",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "User",
+    "RestApiId": {
+     "Ref": "userserviceapiF4B92DF8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MicroservicesStack/UserMicroservice/user-service-api/Default/User/Resource"
+   }
+  },
+  "userserviceapiUserGETApiPermissionMicroservicesStackUserMicroserviceuserserviceapiBFAE639DGETUserCF42B369": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "fnusermicroservice0FA092C3",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "userserviceapiF4B92DF8"
+       },
+       "/",
+       {
+        "Ref": "userserviceapiDeploymentStageprod469CEF2A"
+       },
+       "/GET/User"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MicroservicesStack/UserMicroservice/user-service-api/Default/User/GET/ApiPermission.MicroservicesStackUserMicroserviceuserserviceapiBFAE639D.GET..User"
+   }
+  },
+  "userserviceapiUserGETApiPermissionTestMicroservicesStackUserMicroserviceuserserviceapiBFAE639DGETUserAF52A691": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "fnusermicroservice0FA092C3",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "userserviceapiF4B92DF8"
+       },
+       "/test-invoke-stage/GET/User"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MicroservicesStack/UserMicroservice/user-service-api/Default/User/GET/ApiPermission.Test.MicroservicesStackUserMicroserviceuserserviceapiBFAE639D.GET..User"
+   }
+  },
+  "userserviceapiUserGETDD2E46CC": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "fnusermicroservice0FA092C3",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "userserviceapiUserB1497F98"
+    },
+    "RestApiId": {
+     "Ref": "userserviceapiF4B92DF8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "MicroservicesStack/UserMicroservice/user-service-api/Default/User/GET/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WP3U7DMAyFn2X3rWHdDbdjExISiKk8wOSlpnhtfpS4mqqq706SDlGu/Pn45MSuYLt7gscN3kKpmq7s+QLTp6Dqiiidpx71pUGYjlZ15F81tvQyGCVsTXH4Mms+kdccQuzmglHDVNue0iDVuSDlzxgCSYBV2D4paQY1ORtYrB+fMVCBjlsUuuEI01teoqYge8c58Y5Hcr0dNRlJ6qqLF7T57wWi3w5eUU7+be5BC7+TfNsmSQvN858v75iC2LTJ8TGIG+Tf88gHaxqWfP1pjBHmYQfbCqrNNTCXfjDCmqBe6g8lYjEvdwEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "MicroservicesStack/UserMicroservice/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "userserviceapiEndpointDCD94136": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "userserviceapiF4B92DF8"
+      },
+      ".execute-api.",
+      {
+       "Ref": "AWS::Region"
+      },
+      ".",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "userserviceapiDeploymentStageprod469CEF2A"
+      },
+      "/"
+     ]
+    ]
+   }
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-2"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
