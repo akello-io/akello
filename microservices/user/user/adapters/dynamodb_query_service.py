@@ -6,7 +6,7 @@ from user.domain.model.user import User
 from user.domain.ports.inbound import user_query_service
 
 
-class DynamoDBProductsQueryService(user_query_service.UserQueryService):
+class DynamoDBOrganizationQueryService(user_query_service.UserQueryService):
 
     def __init__(self, table_name: str, dynamodb_client: client.DynamoDBClient):
         self._table_name = table_name
