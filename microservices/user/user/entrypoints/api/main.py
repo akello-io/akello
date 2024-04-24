@@ -31,5 +31,14 @@ async def get_user(user_id: str):
 async def create_user(user: User):
     return user_query_service.create(user)
 
+@app.get("/{user_id}/organization")
+async def get_organizations(user_id: str):
+    return user_query_service.get_organizations(user_id)
+
+@app.post("/{user_id}/organization")
+async def add_organization(user_id: str, organization_id: str):
+    user_query_service.add_organization(user_id, organization_id)
+    return None
+
 handler = Mangum(app)
 

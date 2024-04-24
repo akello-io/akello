@@ -6,4 +6,4 @@ from typing import List, Union, Optional
 class Organization:
     id: str
     name: str
-    stripe_customer_id: Optional[str] = None
+    status: str

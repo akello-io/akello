@@ -21,7 +21,3 @@ class OrganizationQueryService(ABC):
     @abstractmethod
     def invite_user(self, organization_id: str, email: str) -> None:
         ...
-
-    @abstractmethod
-    def get_invites(self, organization_id: str, filters: dict) -> list:
-        ...

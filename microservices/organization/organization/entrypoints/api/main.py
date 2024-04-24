@@ -19,29 +19,19 @@ response = client.list_tables()
 
 from fastapi import FastAPI
 from mangum import Mangum
+from typing import Optional
 
 app = FastAPI()
 
 
+organization_query_service = DynamoDBOrganizationQueryService('akello-core', client)
 @app.post("/")
-async def create_organization(organization: Organization):
-    DynamoDBOrganizationQueryService('akello-core', client).create(organization)
-    return organization
+async def create_organization(organization: Organization) -> None:
+    organization_query_service.create(organization)
 
 @app.get("/{organization_id}")
-async def get_organization(organization_id: str):
-    organization = DynamoDBOrganizationQueryService('akello-core', client).get(organization_id)
-    return organization
-
-
-@app.post("/{organization_id}/user/{email}/invite")
-async def invie_user(organization_id: str, email: str):
-    pass
-
-
-@app.post("/{organization_id}/user/{user_id}/add")
-async def invie_user(organization_id: str, user_id: str):
-    pass
+async def get_organization(organization_id: str) -> Optional[Organization]:
+    return organization_query_service.get(organization_id)
 
 
 

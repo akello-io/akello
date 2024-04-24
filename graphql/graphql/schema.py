@@ -30,7 +30,9 @@ class Query:
 @strawberry.type
 class Mutation:
     create_user = UserMutations.create_user
+    add_organization = UserMutations.add_organization
     create_organization = OrganizationMutations.create_organization
+
 
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
