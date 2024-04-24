@@ -19,9 +19,9 @@ class UserQueryService(ABC):
         ...
 
     @abstractmethod
-    def get_organizations(self, user_id: str) -> List[str]:
+    def get_organization(self, user_id: str, organization_id: Optional[str]) -> List[str]:
         ...
 
     @abstractmethod
-    def add_organization(self, user: User, organization_id: str) -> None:
+    def add_organization(self, user_id: str, organization_id: str) -> None:
         ...

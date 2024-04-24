@@ -61,12 +61,20 @@ class DynamoDBOrganizationQueryService(user_query_service.UserQueryService):
             }
         )
 
-    def get_organizations(self, user_id: str) -> Optional[str]:
-        """Gets a user from the DynamoDB table."""
+    def get_organization(self, user_id: str, organization_id: Optional[str]) -> Optional[str]:
+
+        if organization_id:
+            resp = self._dynamodb_client.get_item(
+                TableName=self._table_name,
+                Key={
+                    'partition_key': 'user-id:%s' % user_id,
+                    'sort_key': 'organization-id:%s' % organization_id
+                }
+            )
+            return [resp['Item']['organization_id'] if 'Item' in resp else None]
 
         resp = self._dynamodb_client.query(
             TableName=self._table_name,
             KeyConditionExpression=Key('partition_key').eq('user-id:%s' % user_id) & Key('sort_key').begins_with('organization-id:')
         )
-
         return [item['organization_id'] for item in resp['Items']] if 'Items' in resp else None

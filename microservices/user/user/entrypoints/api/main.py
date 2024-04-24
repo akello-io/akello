@@ -17,28 +17,31 @@ client = ddb.meta.client
 from fastapi import FastAPI
 from mangum import Mangum
 
+from user.domain import commands
+from user.domain.command_handlers import create_user_command_handler, get_user_command_handler, create_user_organization_handler, get_user_organization_handler
+
 app = FastAPI()
-
 user_query_service = dynamodb_query_service.DynamoDBOrganizationQueryService('akello-core', client)
-
 
 @app.get("/{user_id}")
 async def get_user(user_id: str):
-    return user_query_service.get(user_id)
-
+    command = commands.get_user_command.GetUserCommand(user_id=user_id)
+    return get_user_command_handler.handle_get_user_command(command, user_query_service)
 
 @app.post("/")
 async def create_user(user: User):
-    return user_query_service.create(user)
+    comand = commands.create_user_command.CreateUserCommand(**user.model_dumps())
+    return create_user_command_handler.handle_create_user_command(comand, user_query_service)
 
 @app.get("/{user_id}/organization")
 async def get_organizations(user_id: str):
-    return user_query_service.get_organizations(user_id)
+    command = commands.get_user_organization.GetUserOrganizationCommand(user_id=user_id, organization_id=None)
+    return get_user_organization_handler.handle_get_user_organization_command(command, user_query_service)
 
 @app.post("/{user_id}/organization")
 async def add_organization(user_id: str, organization_id: str):
-    user_query_service.add_organization(user_id, organization_id)
-    return None
+    command = commands.add_organization_command.AddOrganizationCommand(user_id=user_id, organization_id=organization_id)
+    return create_user_organization_handler.handle_add_organization_command(command, user_query_service)
 
 handler = Mangum(app)
 

@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class CreateUserCommand(BaseModel):
-    user_id: str
+    id: str
     email: str
     first_name: Optional[str] = None
     last_name: Optional[str] = None
