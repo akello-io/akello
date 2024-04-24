@@ -16,6 +16,7 @@ class DynamoDBOrganizationQueryService(organization_query_service.OrganizationQu
     def get(self, organization_id: str) -> Optional[Organization]:
         """Gets a organization from the DynamoDB table."""
 
+
         resp = self._dynamodb_client.get_item(
             TableName=self._table_name,
             Key={
