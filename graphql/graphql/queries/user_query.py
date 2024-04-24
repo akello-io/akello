@@ -14,7 +14,7 @@ class UserQuery:
     ) -> User:
         filed_selections  = {selection.name for field in info.selected_fields for selection in field.selections}
 
-        response = requests.get('http://localhost:8000/%s' % user_id)
+        response = requests.get('http://host.docker.internal:8010/%s' % user_id)
 
         # step 1: API call to the user service
         user = User(**response.json())
