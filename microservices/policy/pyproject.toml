@@ -7,6 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+fastapi = "^0.110.2"
+uvicorn = "^0.29.0"
+aws-lambda-powertools = "^2.37.0"
+mangum = "^0.17.0"
+jmespath = "^1.0.1"
 
 
 [build-system]
