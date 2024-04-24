@@ -2,4 +2,4 @@ from pydantic import BaseModel
 
 
 class GetUserCommand(BaseModel):
-    id: str
+    user_id: str

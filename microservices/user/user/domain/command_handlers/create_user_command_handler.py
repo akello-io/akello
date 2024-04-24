@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 from user.domain.commands import create_user_command
 from user.domain.model import user
-from microservices.user.user.domain.ports.inbound import user_query_service
+from user.domain.ports.inbound import user_query_service
 
 
 def handle_create_user_command(
@@ -21,7 +21,10 @@ def handle_create_user_command(
         lastUpdateDate=current_time,
     )
 
-    with user_query_service:
-        user_query_service.create(user_obj)
+    user_query_service.create(user_obj)
+
+
+    ## TODO: Create a user policy for DynamoDB on user-id resources
+    # user-id can access user-id resources
 
     return id

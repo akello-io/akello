@@ -1,9 +1,9 @@
 from typing import Optional
 import logging
 
-from policy.domain.ports.inbound import user_policy_query_service
+from microservices.policy.policy.domain.ports.inbound import user_policy_service
 
-class IAMService(user_policy_query_service.UserQueryService):
+class IAMService(user_policy_service.UserQueryService):
 
     def __init__(self):
         self.logger = logging.getLogger(__name__)
