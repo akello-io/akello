@@ -7,7 +7,7 @@
 
 <h3></h3>
 
-> ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw) and checkout [akello.io](https://akello.io)
+> ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw), review Roadmap [here](https://github.com/orgs/akello-io/projects/12) and checkout [akello.io](https://akello.io)
 
 Full open source code to run akello.io's infrastructure and apps. The backend services code is written in Python and all front-end code is built suing React and Typescript.
 
