@@ -13,7 +13,6 @@ def handle_create_user_organization_command(
 
     user_query_service.add_organization(user_id=command.user_id, user_organization_id=command.user_organization_id)
 
-
     ## TODO: Create a user policy for DynamoDB on user-id resources
     # user-id can access user-id resources
 

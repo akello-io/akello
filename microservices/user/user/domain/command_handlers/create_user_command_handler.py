@@ -23,7 +23,6 @@ def handle_create_user_command(
 
     user_query_service.create(user_obj)
 
-
     ## TODO: Create a user policy for DynamoDB on user-id resources
     # user-id can access user-id resources
 
