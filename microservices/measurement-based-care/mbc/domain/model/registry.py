@@ -6,6 +6,7 @@ class Registry(BaseModel):
     id: str
     name: str
     description: str
+    workflow: dict[str, dict] # registry_state & substates
     created_at: float
 
 
@@ -22,6 +23,8 @@ class Patient(BaseModel):
     user_id: str
     created_at: float
     is_enabled: bool
+
+    state: str
 
     baseline_measurements: dict[str, Measurement]
     latest_measurements: dict[str, Measurement]
