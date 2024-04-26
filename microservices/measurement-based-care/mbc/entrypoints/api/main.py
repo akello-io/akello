@@ -1,7 +1,9 @@
 import os, sys
 from aws_lambda_powertools import Logger
-from mbc.entrypoints.api.app.v1.api import router as api_router
+from mbc.entrypoints.api.v1.api import router as api_router
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
+
 from mangum import Mangum
 
 logger = Logger(service="mangum")
