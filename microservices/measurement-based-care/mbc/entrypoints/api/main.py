@@ -1,13 +1,10 @@
-import os, sys
 from aws_lambda_powertools import Logger
-from mbc.entrypoints.api.v1.api import router as api_router
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-
+from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
+from mbc.entrypoints.api.v1.api import router as api_router
 
 logger = Logger(service="mangum")
-
 
 app = FastAPI(
     title="Akello",
@@ -18,9 +15,11 @@ app = FastAPI(
     redoc_url=None
 )
 
+
 @app.get("/")
 def root():
     return {"message": "Measurement Based Care Microservice"}
+
 
 app.include_router(api_router, prefix="/v1")
 
