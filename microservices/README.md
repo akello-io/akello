@@ -1,6 +1,12 @@
 
-Reference: https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/structure-a-python-project-in-hexagonal-architecture-using-aws-lambda.html
 
+
+
+
+
+
+```mermaid
+Reference: https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/structure-a-python-project-in-hexagonal-architecture-using-aws-lambda.html
 
 service/  # application code
 |--- adapters/  # implementation of the ports defined in the domain
@@ -19,3 +25,5 @@ service/  # application code
      |--- tests/  # domain tests
 |--- libraries/  # 3rd party libraries used by the Lambda function
 infra/  # infrastructure code
+
+```
