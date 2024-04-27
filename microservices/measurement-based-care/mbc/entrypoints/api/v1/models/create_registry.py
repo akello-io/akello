@@ -38,10 +38,10 @@ class CreateRegistry(BaseModel):
                             }
                           ],
                           "intervention": {
-                            "categories": [
+                            "intervention_category_types": [
                               {
                                 "id": "caseload_review",
-                                "name": "Caseload Review"
+                                "name": "Caseload Review",
                               },
                               {
                                 "id": "registry_review",
@@ -52,7 +52,7 @@ class CreateRegistry(BaseModel):
                                 "name": "Brief Intervention"
                               }
                             ],
-                            "types": [
+                            "intervention_types": [
                               {
                                 "id": "initial_assessment",
                                 "name": "Initial Assessment"
