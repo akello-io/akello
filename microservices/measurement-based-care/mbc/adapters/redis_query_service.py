@@ -1,9 +1,12 @@
-from mbc.domain.ports.patient_query_service import PatientQueryService
-from mbc.domain.model.patient import Patient
-from typing import List
+from abc import ABC
 from datetime import datetime
+from typing import List
 
-class RedisatientQueryService(PatientQueryService):
+from mbc.domain.model.patient import Patient
+from mbc.domain.ports.patient_query_service import PatientQueryService
+
+
+class RedisQueryService(PatientQueryService, ABC):
 
     def get_patient(self, patient_id: str) -> Patient:
         pass
