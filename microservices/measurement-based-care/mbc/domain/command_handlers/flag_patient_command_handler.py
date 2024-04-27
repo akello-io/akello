@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 from mbc.domain.commands.flag_patient_command import FlagPatientCommand
 from mbc.domain.ports.patient_query_service import PatientQueryService
-from mbc.domain.state_machine.patient_state_machine import CoCMPatientStateMachine
+from mbc.domain.patient_state_machine.patient_state_machine import CoCMPatientStateMachine
 
 
 def handle_flag_patient_command(

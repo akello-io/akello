@@ -1,3 +1,0 @@
-
-def action():
-    print("action")
