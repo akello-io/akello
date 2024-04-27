@@ -51,7 +51,7 @@ class CoCMPatientStateMachine:
         self.before_transition()
         print("Before treatment transition")
 
-    def before_relapse_prevntion_transition(self):
+    def before_relapse_prevention_transition(self):
         self.before_transition()
         print("Before relapse_prevntion transition")
 
@@ -66,15 +66,15 @@ class CoCMPatientStateMachine:
         self.after_transition()
         print("After treatment transition")
 
-    def after_case_load_review(self):
+    def after_caseload_review(self):
         self.after_transition()
-        print("After case load review")
+        print("After caseload review")
 
     def after_patient_session(self):
         self.after_transition()
         print("After patient session")
 
-    def after_relapse_prevntion_transition(self):
+    def after_relapse_prevention_transition(self):
         self.after_transition()
         print("After relapse_prevntion transition")
 
@@ -113,3 +113,23 @@ class CoCMPatientStateMachine:
 
 
 # import pdb;pdb.set_trace()
+
+
+patient = CoCMPatientStateMachine('123', None)
+
+print('=========> accept')
+patient.accept()
+print('=========> flag')
+patient.action_flag_safety_risk()
+print('=========> flag')
+patient.action_flag_needs_discussion()
+print('=========> flag')
+patient.action_flag_psychiatric_consult()
+print('=========> action')
+patient.action_caseload_review()
+print('=========> action')
+patient.action_patient_session()
+print('=========> graduate')
+patient.graduate()
+print('=========> discharge')
+patient.discharge()
