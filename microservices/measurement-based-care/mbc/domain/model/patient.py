@@ -1,0 +1,14 @@
+from pydantic import BaseModel
+from mbc.domain.model.measurement import Measurement
+
+class Patient(BaseModel):
+    registry_id: str
+    user_id: str
+    created_at: float
+    is_enabled: bool = True
+
+    state: str = "referred"
+
+    baseline_measurements: dict[str, Measurement] = {}
+    latest_measurements: dict[str, Measurement] = {}
+    dates_of_interaction: dict[str, float] =  {}

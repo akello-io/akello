@@ -55,16 +55,10 @@ This service is responsible for managing the questionnaire system. It allows use
 * Syncs data to EHR
 * Stores in FHIR data format
 
-
-
 --------
-
 Template for the microservices structure
 
-
 ```
-Reference: https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/structure-a-python-project-in-hexagonal-architecture-using-aws-lambda.html
-
 service/  # application code
 |--- adapters/  # implementation of the ports defined in the domain
      |--- tests/  # adapter unit tests
@@ -75,7 +69,6 @@ service/  # application code
 |--- domain/  # domain to implement business logic using hexagonal architecture
      |--- command_handlers/  # handlers used to execute commands on the domain
      |--- commands/  # commands on the domain
-     |--- events/  # events triggered via the domain
      |--- exceptions/  # exceptions defined on the domain
      |--- model/  # domain model
      |--- ports/  # abstractions used for external communication
@@ -83,3 +76,8 @@ service/  # application code
 |--- libraries/  # 3rd party libraries used by the Lambda function
 infra/  # infrastructure code
 ```
+
+* [Hexagonal Architecture](https://www.arnaudlanglade.com/hexagonal-architecture-by-example/)
+* [Project structure reference](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/structure-a-python-project-in-hexagonal-architecture-using-aws-lambda.html)
+* [Understanding Commands and Command Handler Pattern](https://www.arnaudlanglade.com/command-handler-patterns/#:~:text=A%20command%20is%20an%20object,behavior%20(a%20data%20structure))
+
