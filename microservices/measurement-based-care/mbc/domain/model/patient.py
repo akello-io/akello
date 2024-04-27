@@ -7,6 +7,8 @@ class Patient(BaseModel):
     created_at: float
     is_enabled: bool = True
 
+    flags: dict[str, bool] = {}
+
     state: str = "referred"
 
     baseline_measurements: dict[str, Measurement] = {}
