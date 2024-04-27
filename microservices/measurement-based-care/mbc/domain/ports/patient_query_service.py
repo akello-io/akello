@@ -1,4 +1,4 @@
-from mbc.domain.models.patient import Patient
+from mbc.domain.model.patient import Patient
 from abc import ABC, abstractmethod
 from typing import Optional, List
 

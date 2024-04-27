@@ -17,5 +17,4 @@ class DynamoDBPatientQueryService(PatientQueryService):
     def get_patients_by_dob(self, dob: datetime) -> List[Patient]:
         pass
 
-    def get_pat
 

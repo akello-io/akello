@@ -1,6 +1,5 @@
 from transitions import Machine
 from mbc.domain.model.patient import Patient
-from mbc.adapters.dynamodb_query_service import DynamoDBPatientQueryService
 
 patient_conf = {
     'name': 'patient',
@@ -34,7 +33,7 @@ patient_conf = {
 }
 
 
-class PatientStateMachine:
+class PatientStateMachineDynamic:
     name: str
     patient: Patient
     states: list[str]
@@ -56,30 +55,4 @@ class PatientStateMachine:
     def get_next_states(self):
         return [state for state in self.machine.get_triggers(self.state) if not state.startswith('to_')]
 
-    @staticmethod
-    def generate_machine(patient: Patient):
-        return PatientStateMachine(
-            name=patient_conf['name'],
-            patient=patient.user_id,
-            initial_state=patient_conf['initial'],
-            states=patient_conf['states'],
-            transitions=patient_conf['transitions']
-        )
 
-class PatientStateMachineManager:
-
-    patient: Patient
-    state_machine: PatientStateMachine
-
-    def __init__(self, patient_id: str):
-        self.patient = DynamoDBPatientQueryService.get_patient('patient_id')
-        self.state_machine = PatientStateMachine.generate_machine(self.patient)
-
-    def flag_patient(self):
-        pass
-
-    def accept_to_program(self):
-        pass
-
-    def graduate_patient(self):
-        pass
