@@ -1,6 +1,9 @@
 from transitions import Machine, EventData
 
 from mbc.domain.model.patient import Patient
+from mbc.domain.patient_state_machine.conditions.has_concented import has_concented_condition_handler
+from mbc.domain.patient_state_machine.conditions.has_measurement_value import has_measurement_value
+from mbc.domain.patient_state_machine.models.condition import Condition
 from mbc.domain.patient_state_machine.state import State
 from mbc.domain.ports.patient_query_service import PatientQueryService
 
@@ -17,28 +20,29 @@ class CoCMPatientStateMachine:
 
     def check_transition(self, event: EventData):
         destination_state = self.registered_states[event.transition.dest]
-        for condition in destination_state.conditions:
-            if not condition.handler(condition.command):
+
+        for prerequisite in destination_state.prerequisites:
+            if not prerequisite.handler(**prerequisite.params):
                 return False
         return True
 
-    def on_enter(self, event: EventData):
-        print(f"Triggered event '{event.event.name}'")
 
-    def on_enter_treatment(self, event: EventData):
-        print("Entering treatment")
-        self.on_enter(event)
-        self.patient.state = 'treatment'
-        for event_fn in event.state.event_functions:
-            if event_fn.trigger == event.event.name:
-                event_fn.run()
+def has_consent_condition(*args, **kwargs) -> Condition:
+    return Condition(
+        params=kwargs,
+        handler=has_concented_condition_handler
+    )
 
-    def on_enter_relapse_prevntion(self, event: EventData):
-        print("Entering relapse_prevntion")
-        self.on_enter(event)
-        self.patient.state = 'relapse_prevention'
 
-    def on_enter_discharged(self, event: EventData):
-        print("Entering discharged")
-        self.on_enter(event)
-        self.patient.state = 'discharged'
+def has_moderate_depression(*args, **kwargs) -> Condition:
+    return Condition(
+        params={'assessment_name': 'phq-9', 'assessment_value_gte': 15},
+        handler=has_measurement_value
+    )
+
+
+def is_below_depression_threshold(*args, **kwargs) -> Condition:
+    return Condition(
+        params={'assessment_name': 'phq-9', 'assessment_value_lte': 4},
+        handler=has_measurement_value
+    )
