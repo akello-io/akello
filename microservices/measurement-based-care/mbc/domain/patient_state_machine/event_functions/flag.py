@@ -1,4 +1,4 @@
-from .event import EventFn
+from . import EventFn
 
 def action(*args, **kwargs):
     print('fire flag event action')

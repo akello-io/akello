@@ -1,6 +1,7 @@
 from transitions import EventData
 
 from mbc.domain.patient_state_machine.event_functions.flag import flag_event
+from mbc.domain.patient_state_machine.event_functions.billable import billable_event
 from mbc.domain.patient_state_machine.patient_state_machine import has_consent_condition, has_moderate_depression
 from mbc.domain.patient_state_machine.state import State
 
@@ -22,13 +23,12 @@ def on_enter_treatment(event: EventData):
 
 fn_map = {
     'flag_event': flag_event,
+    'billable_event': billable_event,
     'has_consent_condition': has_consent_condition(),
-    'has_moderate_depression': has_moderate_depression()
-}
-
-callback_map = {
+    'has_moderate_depression': has_moderate_depression(),
     'on_enter_treatment': on_enter_treatment
 }
+
 
 
 def build_state(name: str, prerequisites: list = [], event_functions: list = [], callbacks: list[CallbackObject] = []):
@@ -36,5 +36,5 @@ def build_state(name: str, prerequisites: list = [], event_functions: list = [],
     event_fn = [fn_map[event_function] for event_function in event_functions]
     state = State(name=name, prerequisites=prerequisite_fn, event_functions=event_fn)
     for callback in callbacks:
-        state.add_callback(callback['event'], callback_map[callback['fn']])
+        state.add_callback(callback['event'], fn_map[callback['fn']])
     return state

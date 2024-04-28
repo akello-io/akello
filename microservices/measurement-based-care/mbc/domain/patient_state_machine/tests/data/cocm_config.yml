@@ -12,6 +12,7 @@ workflow:
       - has_moderate_depression
       event_functions:
       - flag_event
+      - billable_event
       callbacks:
       - event: enter
         fn: on_enter_treatment
