@@ -8,19 +8,19 @@ from mbc.domain.ports.patient_query_service import PatientQueryService
 class DynamoDBPatientQueryService(PatientQueryService):
 
     def create_patient(self, patient: Patient) -> Patient:
-        pass
+        raise Exception("Not implemented")
 
     def put_patient(self, patient: Patient) -> Patient:
-        pass
+        raise Exception("Not implemented")
 
     def get_patient(self, patient_id: str) -> Patient:
-        pass
+        raise Exception("Not implemented")
 
     def get_patients(self) -> List[Patient]:
-        pass
+        raise Exception("Not implemented")
 
     def get_patients_by_name(self, name: str) -> List[Patient]:
-        pass
+        raise Exception("Not implemented")
 
     def get_patients_by_dob(self, dob: datetime) -> List[Patient]:
-        pass
+        raise Exception("Not implemented")

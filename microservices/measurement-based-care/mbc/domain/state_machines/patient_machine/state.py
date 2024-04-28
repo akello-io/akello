@@ -9,7 +9,7 @@ class State(BaseState):
     prerequisites: list[Condition] = []
     event_functions: list[EventFn] = []
 
-    def __init__(self, name, prerequisites=[], event_functions=[]):
+    def __init__(self, name, prerequisites=None, event_functions=None):
         super(State, self).__init__(name)
-        self.prerequisites = prerequisites
-        self.event_functions = event_functions
+        self.prerequisites = prerequisites or []
+        self.event_functions = event_functions or []

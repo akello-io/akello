@@ -56,7 +56,15 @@ def build_event_fn(name: str, fn: callable, params: dict = {}):
     return CallbackObject(name=name, fn=fn, params=params)
 
 
-def build_state(name: str, prerequisites: list = [], event_functions: list = [], callbacks: list[CallbackObject] = []):
+def build_state(name: str, prerequisites: list = None, event_functions: list = None, callbacks: list[CallbackObject] = None):
+
+    if not prerequisites:
+        prerequisites = []
+    if not event_functions:
+        event_functions = []
+    if not callbacks:
+        callbacks = []
+
     prerequisite_fn = [fn_map[prerequisite] for prerequisite in prerequisites]
     event_fns = [fn_map[event_function] for event_function in event_functions]
     state = State(name=name, prerequisites=prerequisite_fn, event_functions=event_fns)
