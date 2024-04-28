@@ -1,61 +1,86 @@
 from mbc.adapters.dynamodb_query_service import DynamoDBPatientQueryService
 from mbc.domain.model.patient import Patient
-from mbc.domain.patient_state_machine.conditions.has_completed_assessment import \
-    has_completed_assessment_condition_handler, HasCompletedAssessmentCondition
-from mbc.domain.patient_state_machine.event_functions.event import EventFn
-from mbc.domain.patient_state_machine.models.condition import Condition
 from mbc.domain.patient_state_machine.patient_state_machine import CoCMPatientStateMachine
-from mbc.domain.patient_state_machine.state import State
-from mbc.domain.ports.patient_query_service import PatientQueryService
+from mbc.domain.patient_state_machine.utils import build_state
 
-has_consent_condition = Condition(
-    name='has_consent',
-    command=HasCompletedAssessmentCondition(
-        patient_id='patient_id',
-        patient_query_service=PatientQueryService,
-        assessment_name='consent'
-    ),
-    handler=has_completed_assessment_condition_handler
-)
-
-
-def event_action(*args, **kwargs):
-    print('custom flag event')
-
-
-accept_event = EventFn('accept', event_action)
-flag_event = EventFn('flag', event_action, params={'flag': 'flag'})
-billable_event = EventFn('billable', event_action)
-
-referred_state = State(name='referred', conditions=[has_consent_condition])
-treatment_state = State(name='treatment', conditions=[has_consent_condition], event_functions=[flag_event])
-relapse_prevention_state = State(name='relapse_prevention')
-discharged_state = State(name='discharged')
-
-registered_states = {
-    referred_state.name: referred_state,
-    treatment_state.name: treatment_state,
-    relapse_prevention_state.name: relapse_prevention_state,
-    discharged_state.name: discharged_state
+config = {
+    'states': {
+        'referred': {
+            'prerequisites': ['has_consent_condition'],
+            'event_functions': ['flag_event']
+        },
+        'treatment': {
+            'prerequisites': ['has_consent_condition', 'has_moderate_depression'],
+            'event_functions': ['flag_event'],
+            'callbacks': [{
+                'event': 'enter',
+                'fn': 'on_enter_treatment'
+            }]
+        },
+        'relapse_prevention': {
+            'prerequisites': [],
+            'event_functions': []
+        },
+        'discharged': {
+            'prerequisites': [],
+            'event_functions': []
+        }
+    },
+    'transitions': [
+        {
+            'trigger': 'accept',
+            'source': 'referred',
+            'target': 'treatment',
+            'conditions': ['check_transition']
+        },
+        {
+            'trigger': 'flag',
+            'source': 'treatment',
+            'target': 'treatment',
+        },
+        {
+            'trigger': 'billable',
+            'source': 'treatment',
+            'target': 'treatment',
+        },
+        {
+            'trigger': 'graduate',
+            'source': 'treatment',
+            'target': 'relapse_prevention',
+            'conditions': ['check_transition']
+        },
+        {
+            'trigger': 'discharge',
+            'source': '*',
+            'target': 'discharged',
+        }
+    ]
 }
 
-model_patient = Patient(registry_id='123', user_id='456', created_at=3)
-machine = CoCMPatientStateMachine(model_patient, DynamoDBPatientQueryService(),
-                                  states=[referred_state, treatment_state, relapse_prevention_state, discharged_state])
+states = [
+    build_state(
+        state,
+        prerequisites=config['states'][state]['prerequisites'],
+        event_functions=config['states'][state]['event_functions'],
+        callbacks=config['states'][state].get('callbacks', [])
+    ) for state in config['states']]
+machine = CoCMPatientStateMachine(
+    Patient(registry_id='123', user_id='456', created_at=3),
+    DynamoDBPatientQueryService(),
+    states=states
+)
 
-machine.machine.add_transition('accept', referred_state, treatment_state, conditions=['check_transition'])
-machine.machine.add_transition('flag', treatment_state, treatment_state)
-machine.machine.add_transition('billable', treatment_state, treatment_state)
-machine.machine.add_transition('graduate', treatment_state, relapse_prevention_state)
-machine.machine.add_transition('discharge', '*', discharged_state)
+for transition in config['transitions']:
+    if transition['source'] == '*':
+        machine.machine.add_transition(transition['trigger'], '*', transition['target'],
+                                       conditions=transition.get('conditions', []))
+    else:
+        machine.machine.add_transition(transition['trigger'], transition['source'], transition['target'],
+                                       conditions=transition.get('conditions', []))
 
-print('=========> accept')
 machine.accept()
 machine.flag(type='safety-risk', value=True)
 machine.billable(type='caseload-review', minutes=3)
 machine.billable(type='patient-session', minutes=3)
-print('=========> graduate')
 machine.graduate()
-print('=========> discharge')
 machine.discharge()
-print(machine.patient)
