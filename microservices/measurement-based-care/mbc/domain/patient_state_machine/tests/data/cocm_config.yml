@@ -3,19 +3,19 @@ workflow:
   states:
     referred:
       prerequisites:
-      - has_consent_condition
+        - has_consent_condition
       event_functions:
-      - flag_event
+        - flag_event
     treatment:
       prerequisites:
-      - has_consent_condition
-      - has_moderate_depression
+        - has_consent_condition
+        - has_moderate_depression
       event_functions:
-      - flag_event
-      - billable_event
+        - flag_event
+        - billable_event
       callbacks:
-      - event: enter
-        fn: on_enter_treatment
+        - event: enter
+          fn: on_enter_treatment
     relapse_prevention:
       prerequisites: []
       event_functions: []
@@ -23,22 +23,22 @@ workflow:
       prerequisites: []
       event_functions: []
   transitions:
-  - trigger: accept
-    source: referred
-    target: treatment
-    conditions:
-    - check_transition
-  - trigger: flag
-    source: treatment
-    target: treatment
-  - trigger: billable
-    source: treatment
-    target: treatment
-  - trigger: graduate
-    source: treatment
-    target: relapse_prevention
-    conditions:
-    - check_transition
-  - trigger: discharge
-    source: "*"
-    target: discharged
+    - trigger: accept
+      source: referred
+      target: treatment
+      conditions:
+        - check_transition
+    - trigger: flag
+      source: treatment
+      target: treatment
+    - trigger: billable
+      source: treatment
+      target: treatment
+    - trigger: graduate
+      source: treatment
+      target: relapse_prevention
+      conditions:
+        - check_transition
+    - trigger: discharge
+      source: "*"
+      target: discharged

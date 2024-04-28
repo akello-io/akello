@@ -1,6 +1,6 @@
 from . import EventFn
 
 def action(*args, **kwargs):
-    print('fire flag event action')
+    print(f'fire flag event action {args} {kwargs}')
 
 flag_event = EventFn('flag', action)

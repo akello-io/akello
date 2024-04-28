@@ -7,8 +7,8 @@ class HasConcentedCondition:
         self.patient_query_service = patient_query_service
 
 
-def has_concented_condition_handler(*args, **kwargs) -> bool:
+def has_consented_condition_handler(*args, **kwargs) -> bool:
     # query patient assessments where assessment name matches the input assessment name
     # for each assessment, check if it matches the conditions
-    print(f"Checking completed assessment condition... {args} {kwargs}")
+    print(f"Checking consent... {args} {kwargs}")
     return True
