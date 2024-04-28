@@ -1,7 +1,7 @@
 from transitions import State as BaseState
 
-from mbc.domain.patient_state_machine.event_functions import EventFn
-from mbc.domain.patient_state_machine.models.condition import Condition
+from mbc.domain.state_machines.patient_machine.event_functions import EventFn
+from mbc.domain.state_machines.patient_machine.models import Condition
 
 
 class State(BaseState):

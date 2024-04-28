@@ -1,11 +1,11 @@
 from transitions import EventData
 
-from mbc.domain.patient_state_machine.conditions.has_concented import has_consented_condition_handler
-from mbc.domain.patient_state_machine.conditions.has_measurement_value import has_measurement_value
-from mbc.domain.patient_state_machine.event_functions.billable import billable_event
-from mbc.domain.patient_state_machine.event_functions.flag import flag_event
-from mbc.domain.patient_state_machine.models.condition import Condition
-from mbc.domain.patient_state_machine.state import State
+from mbc.domain.state_machines.patient_machine.conditions.has_concented import has_consented_condition_handler
+from mbc.domain.state_machines.patient_machine.conditions.has_measurement_value import has_measurement_value
+from mbc.domain.state_machines.patient_machine.event_functions import billable_event
+from mbc.domain.state_machines.patient_machine.event_functions.flag import flag_event
+from mbc.domain.state_machines.patient_machine.models import Condition
+from mbc.domain.state_machines.patient_machine.state import State
 
 
 class CallbackObject:

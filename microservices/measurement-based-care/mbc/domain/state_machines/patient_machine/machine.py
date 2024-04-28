@@ -1,11 +1,11 @@
 from transitions import Machine, EventData
 
 from mbc.domain.model.patient import Patient
-from mbc.domain.patient_state_machine.state import State
+from mbc.domain.state_machines.patient_machine.state import State
 from mbc.domain.ports.patient_query_service import PatientQueryService
 
 
-class CoCMPatientStateMachine:
+class PatientStateMachine:
     patient: Patient
     patient_query_service: PatientQueryService
 
