@@ -55,13 +55,13 @@ class AkelloBaseModel(BaseModel):
         self.__put()
 
     def set_attribute(self, attribute_name: str, attribute_value: any):
-        self.set_attribute(attribute_name, attribute_value)
+        raise NotImplementedError
 
     def append_to_attribute(self, attribute_name: str, attribute_value: any):
-        self.append_to_attribute(attribute_name, attribute_value)
+        raise NotImplementedError
 
     def remove_attribute(self, attribute_name: str):
-        self.remove_attribute(attribute_name)
+        raise NotImplementedError
 
     def __get(self):
         """
