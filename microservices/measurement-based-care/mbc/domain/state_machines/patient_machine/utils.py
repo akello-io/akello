@@ -38,10 +38,6 @@ def is_below_depression_threshold(*args, **kwargs) -> Condition:
     )
 
 
-def on_enter_treatment(event: EventData):
-    for event_fn in event.state.event_functions:
-        if event_fn.trigger == event.event.name:
-            event_fn.run(**event.kwargs)
 
 
 fn_map = {
@@ -49,7 +45,6 @@ fn_map = {
     'billable_event': billable_event,
     'has_consent_condition': has_consent_condition(),
     'has_moderate_depression': has_moderate_depression(),
-    'on_enter_treatment': on_enter_treatment
 }
 
 def build_event_fn(name: str, fn: callable, params: dict = {}):

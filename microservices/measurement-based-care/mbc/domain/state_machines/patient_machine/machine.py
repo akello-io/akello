@@ -24,3 +24,14 @@ class PatientStateMachine:
             if not prerequisite.handler(**prerequisite.params):
                 return False
         return True
+
+    def before_transition(self, event: EventData):
+        print(f"Before transition to '{event.transition.dest}' triggered by event '{event.event.name}'")
+        self.patient.state = event.transition.dest
+
+        for event_fn in event.state.event_functions:
+            if event_fn.trigger == event.event.name:
+                event_fn.run(self.patient, event)
+
+        return True
+
