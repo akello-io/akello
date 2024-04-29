@@ -31,7 +31,7 @@ class PatientStateMachine:
 
         for event_fn in event.state.event_functions:
             if event_fn.trigger == event.event.name:
-                event_fn.run(self.patient, event)
+                event_fn.run(self.patient, self.patient_query_service, event)
 
         return True
 
