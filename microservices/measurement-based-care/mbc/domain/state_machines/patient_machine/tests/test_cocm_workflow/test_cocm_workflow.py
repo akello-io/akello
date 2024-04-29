@@ -1,17 +1,20 @@
 import unittest
 
+import transitions.core
 import yaml
 
+from transitions.core import MachineError
 from unittest.mock import patch
 from mbc.adapters.dynamodb_query_service import DynamoDBPatientQueryService
 from mbc.domain.model.patient import Patient
 from mbc.domain.state_machines.patient_machine.machine import PatientStateMachine
 from mbc.domain.state_machines.patient_machine.utils import build_state
 
+
 class TestStringMethods(unittest.TestCase):
 
     def setUp(self) -> None:
-        with open('./data/cocm_config.yml') as f:
+        with open('test_cocm_workflow_config.yml') as f:
             config = yaml.safe_load(f)
             config = config['workflow']
 
@@ -33,14 +36,18 @@ class TestStringMethods(unittest.TestCase):
         for transition in config['transitions']:
             if transition['source'] == '*':
                 self.machine.machine.add_transition(transition['trigger'], '*', transition['target'],
-                                               conditions=transition.get('conditions', []), before=transition.get('before', []))
+                                                    conditions=transition.get('conditions', []),
+                                                    before=transition.get('before', []))
             else:
                 self.machine.machine.add_transition(transition['trigger'], transition['source'], transition['target'],
-                                               conditions=transition.get('conditions', []), before=transition.get('before', []))
-
+                                                    conditions=transition.get('conditions', []),
+                                                    before=transition.get('before', []))
 
     def test_reject_referral(self):
         self.machine.discharge()
+
+        with self.assertRaises(MachineError):
+            self.machine.accept()
 
     def test_accept_into_program(self):
         self.machine.accept()
@@ -58,6 +65,7 @@ class TestStringMethods(unittest.TestCase):
     def test_billable(self, mock_billable):
         self.machine.accept()
         self.machine.billable(type='caseload-review', minutes=3)
+        assert self.machine.patient.state == 'treatment'
         assert mock_billable.called_once_with(type='caseload-review', minutes=3)
 
     def test_graduate(self):
@@ -67,9 +75,5 @@ class TestStringMethods(unittest.TestCase):
 
     def test_discharge(self):
         self.machine.accept()
-        self.machine.flag(type='safety-risk', value=True)
-        self.machine.billable(type='caseload-review', minutes=3)
-        self.machine.billable(type='patient-session', minutes=3)
-        self.machine.graduate()
         self.machine.discharge()
-
+        assert self.machine.patient.state == 'discharged'
