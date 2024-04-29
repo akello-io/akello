@@ -8,7 +8,7 @@ logger = Logger(service="mangum")
 
 app = FastAPI(
     title="Akello",
-    description="API's for all of Akello's core services",
+    description="API for Measurement Based Care Microservice",
     version="1.0",
     docs_url='/docs',
     openapi_url='/openapi.json',

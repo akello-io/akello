@@ -1,9 +1,9 @@
 import logging
 
 from fastapi import APIRouter
+
 from mbc.entrypoints.api.v1.models.create_registry import CreateRegistry
 from mbc.entrypoints.api.v1.models.refer_patient import ReferPatient
-
 
 logger = logging.getLogger('mangum')
 router = APIRouter()
