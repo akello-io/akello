@@ -16,3 +16,7 @@ class RegistryQueryService(ABC):
     @abstractmethod
     def create_registry(self, registry: Registry) -> Optional[Registry]:
         ...
+
+    @abstractmethod
+    def get_registry(self, registry_id: str) -> Optional[Registry]:
+        ...
