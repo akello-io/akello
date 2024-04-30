@@ -1,98 +1,14 @@
-import os
-import boto3
-from typing import Optional, List
+from typing import Optional
+
+from mbc.adapters.internal.dynamodb import *
 from mbc.domain.model.registry import RegistryUser, Registry
 from mbc.domain.ports.registry_query_service import RegistryQueryService
 
-AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
+AKELLO_DYNAMODB_LOCAL_URL = os.getenv('DYNAMODB_URL')
 AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
-
-AKELLO_DYNAMODB_LOCAL_URL = 'http://host.docker.internal:8001'
-
-# use local dynamodb
-print("using local dynamodb")
-client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-
-
-def create_core_table(db, table_name):
-    try:
-        print('creating registry table')
-        table = db.create_table(
-            TableName=table_name,
-            KeySchema=[
-                {
-                    'AttributeName': 'partition_key',
-                    'KeyType': 'HASH'
-                },
-                {
-                    'AttributeName': 'sort_key',
-                    'KeyType': 'RANGE'
-                }
-            ],
-            AttributeDefinitions=[
-                {
-                    'AttributeName': 'partition_key',
-                    'AttributeType': 'S'
-                },
-                {
-                    'AttributeName': 'sort_key',
-                    'AttributeType': 'S'
-                },
-            ],
-            ProvisionedThroughput={
-                'ReadCapacityUnits': 10,
-                'WriteCapacityUnits': 10
-            }
-        )
-        print("Table status:", table.table_status)
-    except Exception as e:
-        print(e)
-        print("tables probably already exist")
-
-
-def create_timeseries_table(db, table_name):
-    try:
-        print('creating timeseries measurements table')
-        table = db.create_table(
-            TableName=table_name,
-            KeySchema=[
-                {
-                    'AttributeName': 'partition_key',
-                    'KeyType': 'HASH'
-                },
-                {
-                    'AttributeName': 'timestamp',
-                    'KeyType': 'RANGE'
-                }
-            ],
-            AttributeDefinitions=[
-                {
-                    'AttributeName': 'partition_key',
-                    'AttributeType': 'S'
-                },
-                {
-                    'AttributeName': 'timestamp',
-                    'AttributeType': 'N'
-                },
-            ],
-            ProvisionedThroughput={
-                'ReadCapacityUnits': 10,
-                'WriteCapacityUnits': 10
-            }
-        )
-        print("Table status:", table.table_status)
-    except Exception as e:
-        print(e)
-        print("tables probably already exist")
-
-
-create_core_table(dynamodb, 'akello_core')
-create_timeseries_table(dynamodb, 'akello_timeseries')
 
 
 class DynamoDBRegistryQueryService(RegistryQueryService):
-
 
     def __init__(self):
         self.client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
