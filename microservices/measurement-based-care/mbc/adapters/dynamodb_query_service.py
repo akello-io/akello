@@ -1,11 +1,8 @@
 import os
-from datetime import datetime
-from typing import List
-
 import boto3
-
-from mbc.domain.model.patient import Patient
-from mbc.domain.ports.patient_query_service import PatientQueryService
+from typing import Optional, List
+from mbc.domain.model.registry import RegistryUser
+from mbc.domain.ports.registry_query_service import RegistryQueryService
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
 AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
@@ -94,7 +91,7 @@ create_core_table(dynamodb, 'akello_core')
 create_timeseries_table(dynamodb, 'akello_timeseries')
 
 
-class DynamoDBPatientQueryService(PatientQueryService):
+class DynamoDBRegistryQueryService(RegistryQueryService):
 
 
     def __init__(self):
@@ -102,29 +99,14 @@ class DynamoDBPatientQueryService(PatientQueryService):
         self.dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
         self.table = self.dynamodb.Table('akello_core')
 
-    def create_patient(self, patient: Patient) -> Patient:
-        return self.put_patient(patient)
-
-    def put_patient(self, patient: Patient) -> Patient:
+    def add_registry_user(self, registry_user: RegistryUser) -> Optional[RegistryUser]:
         response = self.table.put_item(
             Item={
-                'partition_key': 'patient',
-                'sort_key': patient.user_id,
-                **patient.model_dump()
+                'partition_key': 'registry-id:%s' % registry_user.registry_id,
+                'sort_key': 'user-id:%s' % registry_user.user_id,
+                **registry_user.model_dump()
             }
         )
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
-        return patient
-
-    def get_patient(self, patient_id: str) -> Patient:
-        response = self.table.get_item(
-            Key={
-                'partition_key': 'patient',
-                'sort_key': patient_id
-            }
-        )
-        item = response.get('Item')
-        if item is None:
-            return None
-        return Patient.model_load(item)
+        return registry_user
