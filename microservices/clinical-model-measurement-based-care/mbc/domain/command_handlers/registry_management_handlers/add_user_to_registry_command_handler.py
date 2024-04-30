@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from mbc.domain.commands.add_user_to_registry_command import AddUserToRegistryCommand
+from mbc.domain.commands.registry_management.add_user_to_registry_command import AddUserToRegistryCommand
 from mbc.adapters.dynamodb_query_service import DynamoDBRegistryQueryService
 from mbc.domain.model.registry import RegistryUser
 

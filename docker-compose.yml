@@ -21,7 +21,7 @@ services:
       AWS_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
     build:
-      context: ./microservices/measurement-based-care
+      context: ./microservices/clinical-model-measurement-based-care
       dockerfile: ./Dockerfile
     ports:
       - "8010:8000"
