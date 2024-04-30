@@ -1,6 +1,6 @@
 from transitions import State as BaseState
 
-from mbc.domain.state_machines.patient_machine.event_functions import EventFn
+from mbc.domain.state_machines.patient_machine.events import EventFn
 from mbc.domain.state_machines.patient_machine.models.condition import Condition
 
 

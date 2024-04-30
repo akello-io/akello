@@ -4,6 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 from mbc.entrypoints.api.v1.api import router as api_router
 
+from mbc.adapters.dynamodb_query_service import *
+
+
 logger = Logger(service="mangum")
 
 app = FastAPI(

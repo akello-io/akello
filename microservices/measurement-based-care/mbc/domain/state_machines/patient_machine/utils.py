@@ -1,11 +1,9 @@
-from transitions import EventData
-
 from mbc.domain.state_machines.patient_machine.conditions.has_concented import has_consented_condition_handler
 from mbc.domain.state_machines.patient_machine.conditions.has_measurement_value import has_measurement_value
-from mbc.domain.state_machines.patient_machine.event_functions.billable import billable_event
-from mbc.domain.state_machines.patient_machine.event_functions.flag import flag_event
+from mbc.domain.state_machines.patient_machine.events.billable import billable_event
+from mbc.domain.state_machines.patient_machine.events.flag import flag_event
 from mbc.domain.state_machines.patient_machine.models.condition import Condition
-from mbc.domain.state_machines.patient_machine.state import State
+from mbc.domain.state_machines.patient_machine.models.state import State
 
 
 class CallbackObject:
@@ -38,8 +36,6 @@ def is_below_depression_threshold(*args, **kwargs) -> Condition:
     )
 
 
-
-
 fn_map = {
     'flag_event': flag_event,
     'billable_event': billable_event,
@@ -47,12 +43,13 @@ fn_map = {
     'has_moderate_depression': has_moderate_depression(),
 }
 
+
 def build_event_fn(name: str, fn: callable, params: dict = {}):
     return CallbackObject(name=name, fn=fn, params=params)
 
 
-def build_state(name: str, prerequisites: list = None, event_functions: list = None, callbacks: list[CallbackObject] = None):
-
+def build_state(name: str, prerequisites: list = None, event_functions: list = None,
+                callbacks: list[CallbackObject] = None):
     if not prerequisites:
         prerequisites = []
     if not event_functions:
