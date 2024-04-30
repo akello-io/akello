@@ -110,3 +110,15 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
         return registry_user
+
+    def get_registry_user(self, registry_id: str, user_id: str) -> Optional[RegistryUser]:
+        response = self.table.get_item(
+            Key={
+                'partition_key': 'registry-id:%s' % registry_id,
+                'sort_key': 'user-id:%s' % user_id
+            }
+        )
+        item = response.get('Item')
+        if item:
+            return RegistryUser(**item)
+        return None
