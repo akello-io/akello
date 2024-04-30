@@ -6,7 +6,6 @@ from pydantic import BaseModel, EmailStr
 class CreateRegistry(BaseModel):
     name: str
     description: str
-    workflow: dict[str, dict]
 
     model_config = {
         "json_schema_extra": {

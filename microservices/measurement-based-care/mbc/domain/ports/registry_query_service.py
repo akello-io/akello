@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List
-from mbc.domain.model.registry import RegistryUser
+from mbc.domain.model.registry import RegistryUser, Registry
 
 
 class RegistryQueryService(ABC):
@@ -11,4 +11,8 @@ class RegistryQueryService(ABC):
 
     @abstractmethod
     def get_registry_user(self, registry_id: str, user_id: str) -> Optional[RegistryUser]:
+        ...
+
+    @abstractmethod
+    def create_registry(self, registry: Registry) -> Optional[Registry]:
         ...

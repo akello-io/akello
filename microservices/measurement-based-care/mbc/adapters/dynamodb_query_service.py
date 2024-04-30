@@ -1,7 +1,7 @@
 import os
 import boto3
 from typing import Optional, List
-from mbc.domain.model.registry import RegistryUser
+from mbc.domain.model.registry import RegistryUser, Registry
 from mbc.domain.ports.registry_query_service import RegistryQueryService
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('AKELLO_DYNAMODB_LOCAL_URL')
@@ -122,3 +122,15 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
         if item:
             return RegistryUser(**item)
         return None
+
+    def create_registry(self, registry: Registry) -> Optional[Registry]:
+        response = self.table.put_item(
+            Item={
+                'partition_key': 'registry-id:%s' % registry.id,
+                'sort_key': 'meta',
+                **registry.model_dump()
+            }
+        )
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200
+        return registry

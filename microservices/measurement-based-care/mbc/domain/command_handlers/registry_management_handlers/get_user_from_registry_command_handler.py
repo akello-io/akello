@@ -1,7 +1,7 @@
 from typing import Optional
 
 from mbc.adapters.dynamodb_query_service import DynamoDBRegistryQueryService
-from mbc.domain.commands.get_user_from_registry_command import GetUserFromRegistryCommand
+from mbc.domain.commands.registry_management.get_user_from_registry_command import GetUserFromRegistryCommand
 from mbc.domain.model.registry import RegistryUser
 
 
