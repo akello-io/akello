@@ -1,18 +1,18 @@
 from transitions import Machine, EventData
 
-from mbc.domain.model.patient import Patient
+from mbc.domain.model.registry import RegistryUser
 from mbc.domain.state_machines.patient_machine.models.state import State
-from mbc.domain.ports.patient_query_service import PatientQueryService
+from mbc.domain.ports.registry_query_service import RegistryQueryService
 
 
-class PatientStateMachine:
-    patient: Patient
-    patient_query_service: PatientQueryService
+class RegistryPatientStateMachine:
+    registry_user: RegistryUser
+    registry_query_service: RegistryQueryService
 
-    def __init__(self, patient: Patient, patient_query_service: PatientQueryService, states: list[State]) -> None:
+    def __init__(self, registry_user: RegistryUser, patient_query_service: RegistryQueryService, states: list[State]) -> None:
         self.patient_query_service = patient_query_service
-        self.patient = patient
-        self.machine = Machine(model=self, states=states, initial=patient.state, send_event=True)
+        self.registry_user = registry_user
+        self.machine = Machine(model=self, states=states, initial=registry_user.state, send_event=True)
         self.registered_states = {state.name: state for state in states}
 
     def check_transition(self, event: EventData):
@@ -27,11 +27,11 @@ class PatientStateMachine:
 
     def before_transition(self, event: EventData):
         print(f"Before transition to '{event.transition.dest}' triggered by event '{event.event.name}'")
-        self.patient.state = event.transition.dest
+        self.registry_user.state = event.transition.dest
 
         for event_fn in event.state.event_functions:
             if event_fn.trigger == event.event.name:
-                event_fn.run(self.patient, self.patient_query_service, event)
+                event_fn.run(self.registry_user, self.patient_query_service, event)
 
         return True
 

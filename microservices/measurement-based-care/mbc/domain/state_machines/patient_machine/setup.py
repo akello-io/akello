@@ -1,5 +1,5 @@
-from mbc.adapters.dynamodb_query_service import DynamoDBPatientQueryService
-from mbc.domain.model.patient import Patient
+from mbc.adapters.dynamodb_query_service import DynamoDBRegistryQueryService
+from mbc.domain.model.user import Patient
 from mbc.domain.state_machines.patient_machine.machine import PatientStateMachine
 from mbc.domain.state_machines.patient_machine.utils import build_state
 
@@ -15,7 +15,7 @@ def setup_machine(config: dict):
 
     machine = PatientStateMachine(
         Patient(registry_id='123', user_id='456', created_at=3),
-        DynamoDBPatientQueryService(),
+        DynamoDBRegistryQueryService(),
         states=states
     )
 

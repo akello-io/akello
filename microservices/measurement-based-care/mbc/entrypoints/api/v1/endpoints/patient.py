@@ -10,7 +10,6 @@ router = APIRouter()
 async def get_patient(patient_id: str):
     return None
 
-
 @router.put("/{patient_id}/flag/{flag}")
 async def flag_patient(patient_id: str, flag: str):
     return None
