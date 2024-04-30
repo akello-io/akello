@@ -3,7 +3,6 @@ from mbc.domain.model.patient import Patient
 from mbc.domain.state_machines.patient_machine.machine import PatientStateMachine
 from mbc.domain.state_machines.patient_machine.utils import build_state
 
-
 def setup_machine(config: dict):
     states = []
     for state in config['states']:
