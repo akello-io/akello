@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "authorizer"
+name = "akello-account"
 version = "0.1.0"
 description = ""
 authors = ["Vijay Selvaraj <vijay.selvaraj@gmail.com>"]
@@ -7,7 +7,6 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pydantic = "^2.7.0"
 
 
 [build-system]
