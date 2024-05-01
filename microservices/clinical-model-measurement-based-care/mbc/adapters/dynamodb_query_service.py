@@ -62,3 +62,17 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
         if item:
             return Registry(**item)
         return None
+
+    def update_registry(self, registry: Registry) -> Optional[Registry]:
+        response = self.table.put_item(
+            Item={
+                'partition_key': 'registry-id:%s' % registry.id,
+                'sort_key': 'meta',
+                **registry.model_dump()
+            }
+        )
+        status_code = response['ResponseMetadata']['HTTPStatusCode']
+        assert status_code == 200
+        return registry
+
+
