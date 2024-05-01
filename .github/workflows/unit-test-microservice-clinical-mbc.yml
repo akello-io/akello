@@ -14,7 +14,7 @@ jobs:
       - name: Update pip
         run: python -m pip install --upgrade pip
       - name: Install Poetry
-        run: pip install poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
       - name: Install dependencies
         working-directory: microservices/clinical-model-measurement-based-care
         run: poetry install
