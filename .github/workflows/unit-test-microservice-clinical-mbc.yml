@@ -13,6 +13,8 @@ jobs:
           python-version: 3.12.3
       - name: Update pip
         run: python -m pip install --upgrade pip
+      - name: Install Poetry
+        run: pip install poetry
       - name: Install dependencies
         working-directory: microservices/clinical-model-measurement-based-care
         run: poetry install
