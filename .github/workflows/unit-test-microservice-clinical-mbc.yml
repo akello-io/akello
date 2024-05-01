@@ -1,7 +1,7 @@
 name: Unit Test Microservice Clinical Measurement Based Care
 on: [push]
 env:
-  AKELLO_UNIT_TEST: 'TRUE'
+  AKELLO_UNIT_TEST: true
   AWS_REGION: 'us-east-1'
 jobs:
   unit-tests:
