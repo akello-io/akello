@@ -1,5 +1,5 @@
 import os
-
+from unittest.mock import MagicMock
 import boto3
 
 DYNAMODB_URL = os.getenv('DYNAMODB_URL')
@@ -7,8 +7,13 @@ AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
 
 # use local dynamodb
 print("using local dynamodb: %s " % DYNAMODB_URL)
-client = boto3.client('dynamodb', endpoint_url=DYNAMODB_URL)
-dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_URL)
+
+if AKELLO_UNIT_TEST:
+    client = MagicMock()
+    dynamodb = MagicMock()
+else:
+    client = boto3.client('dynamodb', endpoint_url=DYNAMODB_URL)
+    dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_URL)
 
 
 def create_core_table(db, table_name):
