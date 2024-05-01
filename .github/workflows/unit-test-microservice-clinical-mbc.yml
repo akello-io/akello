@@ -26,5 +26,5 @@ jobs:
         run: poetry install
       - name: Run unit tests
         working-directory: microservices/clinical-model-measurement-based-care
-        run: python -m unittest
+        run: poetry run python -m unittest
 
