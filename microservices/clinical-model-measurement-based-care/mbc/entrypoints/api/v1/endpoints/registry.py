@@ -15,7 +15,7 @@ logger = logging.getLogger('mangum')
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("/{registry_id}")
 async def get_registry(registry_id: str):
     query_service = DynamoDBRegistryQueryService()
     command = GetRegistryCommand(registry_id=registry_id)
@@ -34,6 +34,6 @@ async def create_registry(registry: CreateRegistry):
     return registry
 
 
-@router.put("/")
+@router.put("/{registry_id}")
 async def update_registry(payload: dict):
     return None
