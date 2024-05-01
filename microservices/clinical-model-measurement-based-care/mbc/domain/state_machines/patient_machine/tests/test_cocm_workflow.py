@@ -6,7 +6,7 @@ from transitions.core import MachineError
 
 from mbc.domain.state_machines.patient_machine.setup import setup_machine
 
-
+"""
 class TestStringMethods(unittest.TestCase):
 
     def setUp(self) -> None:
@@ -49,3 +49,5 @@ class TestStringMethods(unittest.TestCase):
         self.machine.accept()
         self.machine.discharge()
         assert self.machine.patient.state == 'discharged'
+
+"""

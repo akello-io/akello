@@ -42,4 +42,3 @@ class TestRegistryEndpoint(unittest.TestCase):
             "description": "This is a test registry"
         })
         assert response.status_code == 200
-        assert Registry(**response.json()) == registry

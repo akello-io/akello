@@ -1,12 +1,12 @@
 from transitions import EventData
 
-from mbc.domain.model.user import Patient
-from mbc.domain.ports.user_query_service import UserQueryService
+from mbc.domain.model.registry import RegistryUser
+from mbc.domain.ports.registry_query_service import RegistryQueryService
 
 from . import EventFn
 
 
-def action(patient: Patient, patient_query_service: UserQueryService, event: EventData):
+def action(patient: RegistryUser, patient_query_service: RegistryQueryService, event: EventData):
     print(f'fire flag event action {event}')
     patient.flags[event.kwargs['type']] = event.kwargs['value']
 
