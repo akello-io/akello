@@ -10,6 +10,7 @@ from mbc.domain.command_handlers.registry_management_handlers.get_registry_comma
 from mbc.domain.commands.registry_management.create_registry_command import CreateRegistryCommand
 from mbc.domain.commands.registry_management.get_registry_command import GetRegistryCommand
 from mbc.entrypoints.api.v1.models.create_registry import CreateRegistry
+from mbc.entrypoints.api.v1.models.update_registry import UpdateRegistry
 
 logger = logging.getLogger('mangum')
 router = APIRouter()
@@ -35,5 +36,6 @@ async def create_registry(registry: CreateRegistry):
 
 
 @router.put("/{registry_id}")
-async def update_registry(payload: dict):
-    return None
+async def update_registry(update_registry: UpdateRegistry, registry_id: str):
+    queue_service = DynamoDBRegistryQueryService()
+    pass
