@@ -1,0 +1,22 @@
+name: Unit Test Microservice Clinical Measurement Based Care
+on: [push]
+env:
+  AKELLO_UNIT_TEST: 'TRUE'
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.12.3
+      - name: Update pip
+        run: python -m pip install --upgrade pip
+      - name: Install dependencies
+        working-directory: microservices/clinical-model-measurement-based-care
+        run: poetry install
+      - name: Run unit tests
+        working-directory: microservices/clinical-model-measurement-based-care
+        run: python -m unittest
+

@@ -1,6 +1,6 @@
 from mbc.adapters.dynamodb_query_service import DynamoDBRegistryQueryService
-from mbc.domain.model.user import Patient
-from mbc.domain.state_machines.patient_machine.machine import PatientStateMachine
+from mbc.domain.model.registry import RegistryUser
+from mbc.domain.state_machines.patient_machine.machine import RegistryPatientStateMachine
 from mbc.domain.state_machines.patient_machine.utils import build_state
 
 def setup_machine(config: dict):
@@ -13,8 +13,8 @@ def setup_machine(config: dict):
             callbacks=config['states'][state].get('callbacks', [])
         ))
 
-    machine = PatientStateMachine(
-        Patient(registry_id='123', user_id='456', created_at=3),
+    machine = RegistryPatientStateMachine(
+        RegistryUser(registry_id='123', user_id='456', created_at=3),
         DynamoDBRegistryQueryService(),
         states=states
     )
