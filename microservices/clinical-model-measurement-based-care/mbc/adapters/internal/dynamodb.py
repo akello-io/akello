@@ -83,5 +83,6 @@ def create_timeseries_table(db, table_name):
         print("tables probably already exist")
 
 
-create_core_table(dynamodb, 'akello_core')
-create_timeseries_table(dynamodb, 'akello_timeseries')
+if not AKELLO_UNIT_TEST:
+    create_core_table(dynamodb, 'akello_core')
+    create_timeseries_table(dynamodb, 'akello_timeseries')

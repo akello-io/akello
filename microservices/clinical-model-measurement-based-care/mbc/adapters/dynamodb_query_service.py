@@ -1,5 +1,7 @@
 from typing import Optional
 
+from unittest.mock import MagicMock
+
 from mbc.adapters.internal.dynamodb import *
 from mbc.domain.model.registry import RegistryUser, Registry
 from mbc.domain.ports.registry_query_service import RegistryQueryService
@@ -11,8 +13,14 @@ AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
 class DynamoDBRegistryQueryService(RegistryQueryService):
 
     def __init__(self):
-        self.client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-        self.dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+
+        if not AKELLO_UNIT_TEST:
+            self.client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+            self.dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+        else:
+            self.client = MagicMock()
+            self.dynamodb = MagicMock()
+
         self.table = self.dynamodb.Table('akello_core')
 
     def add_registry_user(self, registry_user: RegistryUser) -> Optional[RegistryUser]:
