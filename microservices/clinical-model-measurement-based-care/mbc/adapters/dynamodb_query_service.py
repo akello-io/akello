@@ -1,5 +1,4 @@
 from typing import Optional
-
 from unittest.mock import MagicMock
 
 from mbc.adapters.internal.dynamodb import *
@@ -14,12 +13,13 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
 
     def __init__(self):
 
-        if not AKELLO_UNIT_TEST:
-            self.client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-            self.dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-        else:
+        if AKELLO_UNIT_TEST:
             self.client = MagicMock()
             self.dynamodb = MagicMock()
+        else:
+            self.client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+            self.dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+            
 
         self.table = self.dynamodb.Table('akello_core')
 
@@ -82,5 +82,3 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
         status_code = response['ResponseMetadata']['HTTPStatusCode']
         assert status_code == 200
         return registry
-
-
