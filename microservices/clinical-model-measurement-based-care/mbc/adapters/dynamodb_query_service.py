@@ -14,12 +14,12 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
     def __init__(self):
 
         if AKELLO_UNIT_TEST:
-            self.client = MagicMock()
+            #self.client = MagicMock()
             self.dynamodb = MagicMock()
         else:
-            self.client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+            #self.client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
             self.dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
-            
+
 
         self.table = self.dynamodb.Table('akello_core')
 

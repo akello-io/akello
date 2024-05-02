@@ -1,3 +1,4 @@
+import os
 import unittest
 from unittest.mock import patch
 
@@ -5,13 +6,15 @@ from fastapi.testclient import TestClient
 
 from mbc.domain.model.registry import Registry
 from mbc.entrypoints.api.main import app
+from mbc.adapters import patch_query_service
 
 client = TestClient(app)
 
 
+
 class TestRegistryEndpoint(unittest.TestCase):
 
-    @patch('mbc.adapters.dynamodb_query_service.DynamoDBRegistryQueryService.create_registry')
+    @patch(f'{patch_query_service}.create_registry')
     def test_create_registry(self, mock_create_registry):
         registry = Registry(id="123", name="Test Registry", description="This is a test registry",
                             created_at=1234567890.1234567890)
@@ -23,7 +26,7 @@ class TestRegistryEndpoint(unittest.TestCase):
         assert response.status_code == 200
         assert Registry(**response.json()) == registry
 
-    @patch('mbc.adapters.dynamodb_query_service.DynamoDBRegistryQueryService.get_registry')
+    @patch(f'{patch_query_service}.get_registry')
     def test_get_registry(self, mock_get_registry):
         registry = Registry(id="123", name="Test Registry", description="This is a test registry",
                             created_at=1234567890.1234567890)
@@ -32,7 +35,7 @@ class TestRegistryEndpoint(unittest.TestCase):
         assert response.status_code == 200
         assert Registry(**response.json()) == registry
 
-    @patch('mbc.adapters.dynamodb_query_service.DynamoDBRegistryQueryService.update_registry')
+    @patch(f'{patch_query_service}.update_registry')
     def test_update_registry(self, mock_update_registry):
         registry = Registry(id="123", name="Test Registry", description="This is a test registry",
                             created_at=1234567890.1234567890)
