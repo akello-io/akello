@@ -1,5 +1,14 @@
 version: "3"
 services:
+  redis:
+      image: redis:6.2-alpine
+      restart: always
+      ports:
+        - '6379:6379'
+      command: redis-server
+      network_mode: bridge
+      volumes:
+        - cache:/data
   cognito-local:
     image: jagregory/cognito-local:latest
     volumes:
@@ -29,6 +38,8 @@ services:
       DYNAMODB_URL: ${DYNAMODB_URL}
       AWS_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
+    depends_on:
+      - redis
     build:
       context: ./microservices/clinical-model-measurement-based-care
       dockerfile: ./Dockerfile
@@ -39,3 +50,7 @@ services:
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
+
+volumes:
+  cache:
+    driver: local

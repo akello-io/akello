@@ -9,11 +9,12 @@ AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
 print("using local dynamodb: %s " % DYNAMODB_URL)
 
 if AKELLO_UNIT_TEST:
-    client = MagicMock()
+    #client = MagicMock()
     dynamodb = MagicMock()
 else:
-    client = boto3.client('dynamodb', endpoint_url=DYNAMODB_URL)
-    dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_URL)
+    #client = boto3.client('dynamodb', endpoint_url=DYNAMODB_URL)
+    #dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_URL)
+    pass
 
 
 def create_core_table(db, table_name):
@@ -87,7 +88,9 @@ def create_timeseries_table(db, table_name):
         print(e)
         print("tables probably already exist")
 
-
+"""
 if not AKELLO_UNIT_TEST:
     create_core_table(dynamodb, 'akello_core')
     create_timeseries_table(dynamodb, 'akello_timeseries')
+ 
+"""

@@ -20,6 +20,7 @@ langchain-community = "^0.0.34"
 ollama = "^0.1.9"
 boto3 = "^1.34.94"
 botocore = "^1.34.94"
+redis = "^5.0.4"
 
 
 [build-system]
