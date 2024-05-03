@@ -1,7 +1,8 @@
 import logging
 
 from fastapi import APIRouter
-import boto3
+
+from mbc.adapters import dynamodb_unit_of_work
 from mbc.adapters import query_service
 from mbc.domain.command_handlers.registry_management_handlers.create_registry_command_handler import \
     handle_create_registry_command
@@ -9,12 +10,10 @@ from mbc.domain.command_handlers.registry_management_handlers.get_registry_comma
     handle_get_registry_command
 from mbc.domain.commands.registry_management.create_registry_command import CreateRegistryCommand
 from mbc.domain.commands.registry_management.get_registry_command import GetRegistryCommand
+from mbc.entrypoints.api import config
 from mbc.entrypoints.api.v1.models.create_registry import CreateRegistry
 from mbc.entrypoints.api.v1.models.update_registry import UpdateRegistry
 
-from mbc.adapters import dynamodb_unit_of_work
-
-from mbc.entrypoints.api import config
 logger = logging.getLogger('mangum')
 
 router = APIRouter()
@@ -22,25 +21,22 @@ app_config = config.AppConfig(**config.config)
 
 from infra.dynamodb import dynamodb as dynamodb_client
 
-"""
-dynamodb_client = boto3.resource(
-    "dynamodb", region_name=config.AppConfig.get_default_region()
-)
-"""
-
 unit_of_work = dynamodb_unit_of_work.DynamoDBUnitOfWork(
     config.AppConfig.get_table_name(), dynamodb_client.meta.client
 )
 
 @router.get("/{registry_id}")
-async def get_registry(registry_id: str):
+async def get(registry_id: str):
     command = GetRegistryCommand(registry_id=registry_id)
-    registry = handle_get_registry_command(command, query_service)
+    registry = handle_get_registry_command(
+        command=command,
+        patient_query_service=query_service
+    )
     return registry
 
 
 @router.post("/")
-async def create_registry(registry: CreateRegistry):
+async def create(registry: CreateRegistry):
     command = CreateRegistryCommand(
         name=registry.name,
         description=registry.description
@@ -52,5 +48,5 @@ async def create_registry(registry: CreateRegistry):
 
 
 @router.put("/{registry_id}")
-async def update_registry(update_registry: UpdateRegistry, registry_id: str):
+async def update(update_registry: UpdateRegistry, registry_id: str):
     pass

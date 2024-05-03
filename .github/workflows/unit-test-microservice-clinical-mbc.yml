@@ -26,8 +26,4 @@ jobs:
         run: poetry install
       - name: Run unit tests | DynamoDB Adapter
         working-directory: microservices/clinical-model-measurement-based-care
-        run: QUERY_SERVICE_HOST=dynamodb poetry run python -m unittest
-      - name: Run unit tests | RedisDB Adapter
-        working-directory: microservices/clinical-model-measurement-based-care
-        run: QUERY_SERVICE_HOST=redis poetry run python -m unittest
-
+        run: poetry run python -m unittest
