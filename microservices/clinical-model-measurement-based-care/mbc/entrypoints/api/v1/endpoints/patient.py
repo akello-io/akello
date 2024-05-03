@@ -2,14 +2,25 @@ import logging
 
 from fastapi import APIRouter
 
-from mbc.adapters import query_service
 from mbc.domain.command_handlers.registry_management_handlers.add_user_to_registry_command_handler import \
     handle_add_user_to_registry_command
 from mbc.domain.commands.registry_management.add_user_to_registry_command import AddUserToRegistryCommand
 from mbc.entrypoints.api.v1.models.refer_patient import ReferPatient
+from mbc.adapters import dynamodb_unit_of_work
+from mbc.entrypoints.api import config
+from infra.dynamodb import dynamodb as dynamodb_client
+
 
 logger = logging.getLogger('mangum')
 router = APIRouter()
+
+app_config = config.AppConfig(**config.config)
+
+
+unit_of_work = dynamodb_unit_of_work.DynamoDBUnitOfWork(
+    config.AppConfig.get_table_name(), dynamodb_client.meta.client
+)
+
 
 @router.post("/refer")
 async def refer_patient(registry_id: str, referral: ReferPatient):
@@ -18,7 +29,9 @@ async def refer_patient(registry_id: str, referral: ReferPatient):
         user_id=referral.user_id,
         role='patient'
     )
-    handle_add_user_to_registry_command(command, query_service)
+    handle_add_user_to_registry_command(
+        command=command,
+        unit_of_work=unit_of_work)
 
 
 @router.get("/{patient_id}")

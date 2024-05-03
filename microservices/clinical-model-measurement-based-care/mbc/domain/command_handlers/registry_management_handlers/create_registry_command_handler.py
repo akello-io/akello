@@ -1,12 +1,10 @@
-from datetime import datetime, timezone
 import uuid
+from datetime import datetime, timezone
+from decimal import Decimal
 
 from mbc.domain.commands.registry_management.create_registry_command import CreateRegistryCommand
-from mbc.domain.ports.registry_query_service import RegistryQueryService
-from mbc.domain.model.registry import RegistryUser, Registry
+from mbc.domain.model.registry import Registry
 from mbc.domain.ports import unit_of_work
-
-from decimal import Decimal
 
 
 def handle_create_registry_command(
