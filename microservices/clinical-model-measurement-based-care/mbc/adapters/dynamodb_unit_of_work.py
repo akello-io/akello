@@ -28,8 +28,11 @@ class DynamoDBRegistryRepository(
 
     def update_attributes(self, registry_id: str, **kwargs) -> None:
         """Updates arbitraty attributes of the product in DynamoDB table."""
+        update_expression_names = {
+            f"#{key}": key for key in kwargs.keys()
+        }
         update_expression_setters = [
-            f"{key}=:p{idx}" for idx, (key, value) in enumerate(kwargs.items())
+            f"#{key}=:p{idx}" for idx, (key, value) in enumerate(kwargs.items())
         ]
         update_values = {
             f":p{idx}": value for idx, (key, value) in enumerate(kwargs.items())
@@ -38,7 +41,8 @@ class DynamoDBRegistryRepository(
             expression={
                 "UpdateExpression": f"set {', '.join(update_expression_setters)}",
                 "ExpressionAttributeValues": update_values,
-                "ConditionExpression": "(attribute_exists(PK) AND attribute_exists(SK))",
+                "ExpressionAttributeNames": update_expression_names,
+                "ConditionExpression": "(attribute_exists(partition_key) AND attribute_exists(sort_key))",
             },
             key=self.generate_registry_key(registry_id)
         )
@@ -80,8 +84,11 @@ class DynamoDBRegistryUserRepository(
 
     def update_attributes(self, registry_id: str, user_id: str, **kwargs) -> None:
         """Updates arbitraty attributes of the product in DynamoDB table."""
+        update_expression_names = {
+            f"#{key}": key for key in kwargs.keys()
+        }
         update_expression_setters = [
-            f"{key}=:p{idx}" for idx, (key, value) in enumerate(kwargs.items())
+            f"#{key}=:p{idx}" for idx, (key, value) in enumerate(kwargs.items())
         ]
         update_values = {
             f":p{idx}": value for idx, (key, value) in enumerate(kwargs.items())
@@ -90,7 +97,8 @@ class DynamoDBRegistryUserRepository(
             expression={
                 "UpdateExpression": f"set {', '.join(update_expression_setters)}",
                 "ExpressionAttributeValues": update_values,
-                "ConditionExpression": "(attribute_exists(PK) AND attribute_exists(SK))",
+                "ExpressionAttributeNames": update_expression_names,
+                "ConditionExpression": "(attribute_exists(partition_key) AND attribute_exists(sort_key))",
             },
             key=self.generate_registry_user_key(registry_id=registry_id, user_id=user_id)
         )

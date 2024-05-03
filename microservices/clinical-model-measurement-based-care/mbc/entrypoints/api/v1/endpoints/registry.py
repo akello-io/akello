@@ -8,8 +8,11 @@ from mbc.domain.command_handlers.registry_management_handlers.create_registry_co
     handle_create_registry_command
 from mbc.domain.command_handlers.registry_management_handlers.get_registry_command_handler import \
     handle_get_registry_command
+from mbc.domain.command_handlers.registry_management_handlers.update_registry_command_handlers import \
+    handle_update_registry_command
 from mbc.domain.commands.registry_management.create_registry_command import CreateRegistryCommand
 from mbc.domain.commands.registry_management.get_registry_command import GetRegistryCommand
+from mbc.domain.commands.registry_management.update_registry_command import UpdateRegistryCommand
 from mbc.entrypoints.api import config
 from mbc.entrypoints.api.v1.models.create_registry import CreateRegistry
 from mbc.entrypoints.api.v1.models.update_registry import UpdateRegistry
@@ -49,4 +52,13 @@ async def create(registry: CreateRegistry):
 
 @router.put("/{registry_id}")
 async def update(update_registry: UpdateRegistry, registry_id: str):
-    pass
+    command = UpdateRegistryCommand(
+        registry_id=registry_id,
+        name=update_registry.name,
+        description=update_registry.description,
+    )
+    registry = handle_update_registry_command(
+        command=command,
+        unit_of_work=unit_of_work
+    )
+    return registry
