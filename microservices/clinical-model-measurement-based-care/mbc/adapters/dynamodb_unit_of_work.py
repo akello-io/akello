@@ -1,0 +1,91 @@
+import enum
+
+import typing
+from mypy_boto3_dynamodb import client
+from mbc.adapters.internal import dynamodb_base
+from mbc.domain.model.registry import Registry
+from mbc.domain.ports import unit_of_work
+
+
+class DBPrefix(enum.Enum):
+    REGISTRY = "REGISTRY"
+    REGISTRY_USER = "REGISTRYUSER"
+
+
+class DynamoDBRegistryRepository(
+    dynamodb_base.DynamoDBRepository, unit_of_work.RegistryRepository
+):
+    """Registry DynamoDB repository."""
+
+    def __init__(self, table_name, context: dynamodb_base.DynamoDBContext):
+        super().__init__(table_name, context)
+
+    def create(self, registry: Registry) -> None:
+        self.add_generic_item(
+            item=registry.model_dump(),
+            key=self.generate_registry_key(registry.id))
+
+    def update_attributes(self, registry_id: str, **kwargs) -> None:
+        """Updates arbitraty attributes of the product in DynamoDB table."""
+        update_expression_setters = [
+            f"{key}=:p{idx}" for idx, (key, value) in enumerate(kwargs.items())
+        ]
+        update_values = {
+            f":p{idx}": value for idx, (key, value) in enumerate(kwargs.items())
+        }
+        self.update_generic_item(
+            expression={
+                "UpdateExpression": f"set {', '.join(update_expression_setters)}",
+                "ExpressionAttributeValues": update_values,
+                "ConditionExpression": "(attribute_exists(PK) AND attribute_exists(SK))",
+            },
+            key=self.generate_registry_key(registry_id)
+        )
+
+    def get(self, registry_id: str) -> Registry:
+        key = self.generate_registry_key(registry_id)
+        request = self._create_get_request(key)
+        registry_dict = self._context.get_generic_item(request)
+        return (
+            Registry(**registry_dict)
+        )
+
+    def delete(self, registry_id: str) -> None:
+        key = self.generate_registry_key(registry_id)
+        self.delete_generic_item(key=key)
+
+    @staticmethod
+    def generate_registry_key(registry_id: str) -> dict:
+        """Generates primary key for registry item."""
+        return {
+            "partition_key": f"{DBPrefix.REGISTRY.value}#{registry_id}",
+            "sort_key": f"{DBPrefix.REGISTRY.value}#{registry_id}",
+        }
+
+
+class DynamoDBUnitOfWork(unit_of_work.UnitOfWork):
+
+    registry: DynamoDBRegistryRepository
+
+    def __init__(self, table_name: str, dynamodb_client: client.DynamoDBClient):
+        self._dynamo_db_client = dynamodb_client
+        self._table_name = table_name
+        self._context: typing.Optional[dynamodb_base.DynamoDBContext] = None
+
+    def commit(self) -> None:
+        """Commits up to 25 changes to the DynamoDB table in a single transaction."""
+        if self._context:
+            self._context.commit()
+
+    def __enter__(self) -> typing.Any:
+        self._context = dynamodb_base.DynamoDBContext(
+            dynamodb_client=self._dynamo_db_client
+        )
+        self.registry = DynamoDBRegistryRepository(
+            table_name=self._table_name, context=self._context
+        )
+        return self
+
+    def __exit__(self, *args) -> None:
+        self._context = None
+        self.registry = None  # type: ignore

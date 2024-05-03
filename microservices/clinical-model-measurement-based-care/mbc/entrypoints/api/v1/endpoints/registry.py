@@ -1,7 +1,7 @@
 import logging
 
 from fastapi import APIRouter
-
+import boto3
 from mbc.adapters import query_service
 from mbc.domain.command_handlers.registry_management_handlers.create_registry_command_handler import \
     handle_create_registry_command
@@ -12,10 +12,25 @@ from mbc.domain.commands.registry_management.get_registry_command import GetRegi
 from mbc.entrypoints.api.v1.models.create_registry import CreateRegistry
 from mbc.entrypoints.api.v1.models.update_registry import UpdateRegistry
 
+from mbc.adapters import dynamodb_unit_of_work
+
+from mbc.entrypoints.api import config
 logger = logging.getLogger('mangum')
 
 router = APIRouter()
+app_config = config.AppConfig(**config.config)
 
+from infra.dynamodb import dynamodb as dynamodb_client
+
+"""
+dynamodb_client = boto3.resource(
+    "dynamodb", region_name=config.AppConfig.get_default_region()
+)
+"""
+
+unit_of_work = dynamodb_unit_of_work.DynamoDBUnitOfWork(
+    config.AppConfig.get_table_name(), dynamodb_client.meta.client
+)
 
 @router.get("/{registry_id}")
 async def get_registry(registry_id: str):
@@ -30,7 +45,9 @@ async def create_registry(registry: CreateRegistry):
         name=registry.name,
         description=registry.description
     )
-    registry = handle_create_registry_command(command, query_service)
+    registry = handle_create_registry_command(
+        command=command,
+        unit_of_work=unit_of_work)
     return registry
 
 
