@@ -44,10 +44,9 @@ async def create(registry: CreateRegistry):
         name=registry.name,
         description=registry.description
     )
-    registry = handle_create_registry_command(
+    handle_create_registry_command(
         command=command,
         unit_of_work=unit_of_work)
-    return registry
 
 
 @router.put("/{registry_id}")
@@ -57,8 +56,7 @@ async def update(update_registry: UpdateRegistry, registry_id: str):
         name=update_registry.name,
         description=update_registry.description,
     )
-    registry = handle_update_registry_command(
+    handle_update_registry_command(
         command=command,
         unit_of_work=unit_of_work
     )
-    return registry

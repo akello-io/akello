@@ -18,7 +18,6 @@ class DynamoDBContext:
             self._dynamo_db_client.transact_write_items(TransactItems=self._db_items)
             self._db_items = []
         except Exception as e:
-            import pdb;pdb.set_trace()
             print(e)
             raise repository_exception.RepositoryException(
                 "Failed to commit a transaction to DynamoDB."
