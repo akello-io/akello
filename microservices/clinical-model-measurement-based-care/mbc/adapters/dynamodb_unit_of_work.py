@@ -7,7 +7,8 @@ from mbc.adapters.internal import dynamodb_base
 from mbc.domain.model.registry import Registry, RegistryUser
 from mbc.domain.model.measurement import Measurement
 from mbc.domain.ports import unit_of_work
-
+from decimal import Decimal
+import json
 
 class DBPrefix(enum.Enum):
     REGISTRY = "REGISTRY"
@@ -135,9 +136,11 @@ class DynamoDBMeasurementRepository(
         super().__init__(table_name, context)
 
     def add(self, measurement: Measurement) -> None:
+
+        item = json.loads(measurement.model_dump_json(), parse_float=Decimal)
         self.add_generic_item(
-            item=measurement.model_dump(),
-            key=self.generate_measurement_key(measurement.id)
+            item=item,
+            key=self.generate_measurement_key(measurement.measurement_id)
         )
 
     def update_attributes(self, measurement_id: str, **kwargs) -> None:
@@ -163,6 +166,7 @@ class DynamoDBMeasurementRepository(
 class DynamoDBUnitOfWork(unit_of_work.UnitOfWork):
     registry: DynamoDBRegistryRepository
     registry_user: DynamoDBRegistryUserRepository
+    measurement: DynamoDBMeasurementRepository
 
     def __init__(self, table_name: str, dynamodb_client: client.DynamoDBClient):
         self._dynamo_db_client = dynamodb_client
@@ -183,6 +187,10 @@ class DynamoDBUnitOfWork(unit_of_work.UnitOfWork):
         )
 
         self.registry_user = DynamoDBRegistryUserRepository(
+            table_name=self._table_name, context=self._context
+        )
+
+        self.measurement = DynamoDBMeasurementRepository(
             table_name=self._table_name, context=self._context
         )
 

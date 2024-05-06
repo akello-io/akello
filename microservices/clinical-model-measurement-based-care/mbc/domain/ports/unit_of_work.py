@@ -57,6 +57,7 @@ class MeasurementRepository(ABC):
 class UnitOfWork(ABC):
     registry: RegistryRepository
     registry_user: RegistryUserRepository
+    measurement: MeasurementRepository
 
     @abstractmethod
     def commit(self) -> None:
