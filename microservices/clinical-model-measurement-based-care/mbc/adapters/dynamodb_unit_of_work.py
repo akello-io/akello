@@ -5,12 +5,14 @@ from mypy_boto3_dynamodb import client
 
 from mbc.adapters.internal import dynamodb_base
 from mbc.domain.model.registry import Registry, RegistryUser
+from mbc.domain.model.measurement import Measurement
 from mbc.domain.ports import unit_of_work
 
 
 class DBPrefix(enum.Enum):
     REGISTRY = "REGISTRY"
     USER = "USER"
+    MEASUREMENT = "MEASUREMENT"
 
 
 class DynamoDBRegistryRepository(
@@ -122,6 +124,40 @@ class DynamoDBRegistryUserRepository(
             "partition_key": f"{DBPrefix.REGISTRY.value}#{registry_id}",
             "sort_key": f"{DBPrefix.USER.value}#{user_id}",
         }
+
+
+class DynamoDBMeasurementRepository(
+    dynamodb_base.DynamoDBRepository, unit_of_work.MeasurementRepository
+):
+    """Measurement DynamoDB repository."""
+
+    def __init__(self, table_name, context: dynamodb_base.DynamoDBContext):
+        super().__init__(table_name, context)
+
+    def add(self, measurement: Measurement) -> None:
+        self.add_generic_item(
+            item=measurement.model_dump(),
+            key=self.generate_measurement_key(measurement.id)
+        )
+
+    def update_attributes(self, measurement_id: str, **kwargs) -> None:
+        """Updates"""
+        raise Exception("Not implemented")
+
+    def get(self, measurement_id: str) -> Measurement:
+        raise Exception("Not implemented")
+
+    def delete(self, measurement_id: str) -> None:
+        raise Exception("Not implemented")
+
+    @staticmethod
+    def generate_measurement_key(measurement_id: str) -> dict:
+        """Generates primary key for measurement item."""
+        return {
+            "partition_key": f"{DBPrefix.MEASUREMENT.value}#{measurement_id}",
+            "sort_key": f"{DBPrefix.MEASUREMENT.value}#{measurement_id}",
+        }
+
 
 
 class DynamoDBUnitOfWork(unit_of_work.UnitOfWork):

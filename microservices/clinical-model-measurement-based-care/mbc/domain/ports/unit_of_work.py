@@ -2,6 +2,7 @@ import typing
 from abc import ABC, abstractmethod
 
 from mbc.domain.model.registry import Registry, RegistryUser
+from mbc.domain.model.measurement import Measurement
 
 
 class RegistryRepository(ABC):
@@ -35,6 +36,21 @@ class RegistryUserRepository(ABC):
 
     @abstractmethod
     def delete(self, registry_id: str, user_id: str) -> None:
+        ...
+
+
+class MeasurementRepository(ABC):
+
+    @abstractmethod
+    def add(self, measurement: Measurement) -> None:
+        ...
+
+    @abstractmethod
+    def update_attributes(self, measurement_id: str, **kwargs) -> None:
+        ...
+
+    @abstractmethod
+    def delete(self, measurement_id: str) -> None:
         ...
 
 
