@@ -11,9 +11,13 @@ logger = logging.getLogger('mangum')
 router = APIRouter()
 
 @router.get("/{user_id}")
-async def get_registry_user(registry_id: str, user_id: str):
+async def get_user(registry_id: str, user_id: str):
     command = GetUserFromRegistryCommand(
         registry_id=registry_id,
         user_id=user_id
     )
     return handle_get_user_from_registry_command(command, query_service)
+
+@router.post("/{user_id}")
+async def add_user(registry_id: str, user_id: str):
+    pass

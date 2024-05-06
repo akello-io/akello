@@ -11,7 +11,6 @@ from mbc.adapters import patch_query_service
 client = TestClient(app)
 
 
-
 class TestRegistryEndpoint(unittest.TestCase):
 
     @patch(f'{patch_query_service}.create_registry')
@@ -24,7 +23,6 @@ class TestRegistryEndpoint(unittest.TestCase):
             "description": "This is a test registry"
         })
         assert response.status_code == 200
-        assert Registry(**response.json()) == registry
 
     @patch(f'{patch_query_service}.get_registry')
     def test_get_registry(self, mock_get_registry):

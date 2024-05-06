@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 from mbc.entrypoints.api.v1.api import router as api_router
-
+from infra.dynamodb import *
 from mbc.adapters.dynamodb_query_service import *
 
 

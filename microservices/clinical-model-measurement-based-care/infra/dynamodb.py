@@ -13,7 +13,7 @@ if AKELLO_UNIT_TEST:
     dynamodb = MagicMock()
 else:
     #client = boto3.client('dynamodb', endpoint_url=DYNAMODB_URL)
-    #dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_URL)
+    dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_URL)
     pass
 
 
@@ -88,9 +88,8 @@ def create_timeseries_table(db, table_name):
         print(e)
         print("tables probably already exist")
 
-"""
+
 if not AKELLO_UNIT_TEST:
     create_core_table(dynamodb, 'akello_core')
     create_timeseries_table(dynamodb, 'akello_timeseries')
- 
-"""
+

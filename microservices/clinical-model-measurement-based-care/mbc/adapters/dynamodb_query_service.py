@@ -1,7 +1,6 @@
 from typing import Optional
-from unittest.mock import MagicMock
 
-from mbc.adapters.internal.dynamodb import *
+from infra.dynamodb import *
 from mbc.domain.model.registry import RegistryUser, Registry
 from mbc.domain.ports.registry_query_service import RegistryQueryService
 
