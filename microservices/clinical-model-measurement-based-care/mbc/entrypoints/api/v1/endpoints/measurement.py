@@ -1,12 +1,12 @@
 import logging
-from mbc.domain.command_handlers.measurement.add_measurement_command_handler import handle_add_measurement_command
-from mbc.domain.commands.measurement.add_measurement_command import AddMeasurementCommand
-from mbc.adapters import dynamodb_unit_of_work
-from infra.dynamodb import dynamodb as dynamodb_client
-from mbc.entrypoints.api import config
-
 
 from fastapi import APIRouter
+
+from infra.dynamodb import dynamodb as dynamodb_client
+from mbc.adapters import dynamodb_unit_of_work
+from mbc.domain.command_handlers.measurement.add_measurement_command_handler import handle_add_measurement_command
+from mbc.domain.commands.measurement.add_measurement_command import AddMeasurementCommand
+from mbc.entrypoints.api import config
 
 logger = logging.getLogger('mangum')
 router = APIRouter()
@@ -18,7 +18,6 @@ unit_of_work = dynamodb_unit_of_work.DynamoDBUnitOfWork(
 
 @router.post("/")
 async def add_measurement(registry_id: str, patient_id: str, measurement: dict):
-
     handle_add_measurement_command(
         command=AddMeasurementCommand(
             measurement_id=measurement['measurement_id'],
@@ -32,11 +31,11 @@ async def add_measurement(registry_id: str, patient_id: str, measurement: dict):
     )
 
 
-
 @router.get("/")
-async def get_measurements(registry_id: str, patient_id: str, type: str, start_date: str=None, end_date: str=None):
+async def get_measurements(registry_id: str, patient_id: str, type: str, start_date: str = None, end_date: str = None):
     pass
 
+
 @router.get("/{type}")
-async def get_measurement(registry_id: str, patient_id: str, type: str, start_date: str=None, end_date: str=None):
+async def get_measurement(registry_id: str, patient_id: str, type: str, start_date: str = None, end_date: str = None):
     pass
