@@ -5,6 +5,5 @@ class AddMeasurementCommand(BaseModel):
     user_id: str
     registry_id: str
     measurement_id: str
-    label: str
     value: float
     measured_at: float

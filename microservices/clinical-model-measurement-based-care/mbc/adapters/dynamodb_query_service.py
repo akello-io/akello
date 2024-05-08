@@ -1,7 +1,9 @@
-from typing import Optional
+from typing import Optional, List
 
 from infra.dynamodb import *
+from mbc.domain.model.measurement import Measurement
 from mbc.domain.model.registry import RegistryUser, Registry
+from mbc.domain.ports.measurement_query_service import MeasurementQueryService
 from mbc.domain.ports.registry_query_service import RegistryQueryService
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('DYNAMODB_URL')
@@ -13,26 +15,13 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
     def __init__(self):
 
         if AKELLO_UNIT_TEST:
-            #self.client = MagicMock()
+            # self.client = MagicMock()
             self.dynamodb = MagicMock()
         else:
-            #self.client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+            # self.client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
             self.dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
 
-
         self.table = self.dynamodb.Table('akello_core')
-
-    def add_registry_user(self, registry_user: RegistryUser) -> Optional[RegistryUser]:
-        response = self.table.put_item(
-            Item={
-                'partition_key': 'registry-id:%s' % registry_user.registry_id,
-                'sort_key': 'user-id:%s' % registry_user.user_id,
-                **registry_user.model_dump()
-            }
-        )
-        status_code = response['ResponseMetadata']['HTTPStatusCode']
-        assert status_code == 200
-        return registry_user
 
     def get_registry_user(self, registry_id: str, user_id: str) -> Optional[RegistryUser]:
         response = self.table.get_item(
@@ -46,18 +35,6 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
             return RegistryUser(**item)
         return None
 
-    def create_registry(self, registry: Registry) -> Optional[Registry]:
-        response = self.table.put_item(
-            Item={
-                'partition_key': 'registry-id:%s' % registry.id,
-                'sort_key': 'meta',
-                **registry.model_dump()
-            }
-        )
-        status_code = response['ResponseMetadata']['HTTPStatusCode']
-        assert status_code == 200
-        return registry
-
     def get_registry(self, registry_id: str) -> Optional[Registry]:
         response = self.table.get_item(
             Key={
@@ -70,14 +47,24 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
             return Registry(**item)
         return None
 
-    def update_registry(self, registry: Registry) -> Optional[Registry]:
-        response = self.table.put_item(
-            Item={
-                'partition_key': 'registry-id:%s' % registry.id,
-                'sort_key': 'meta',
-                **registry.model_dump()
-            }
+
+class DynamoDBMeasurementQueryService(MeasurementQueryService):
+
+    def __init__(self):
+
+        if AKELLO_UNIT_TEST:
+            # self.client = MagicMock()
+            self.dynamodb = MagicMock()
+        else:
+            # self.client = boto3.client('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+            self.dynamodb = boto3.resource('dynamodb', endpoint_url=AKELLO_DYNAMODB_LOCAL_URL)
+
+        self.table = self.dynamodb.Table('akello_measurements')
+
+
+    def get_measurement(self, registry_id: str, user_id: str, measurement_id: str, start_date: float, end_date: float) -> List[Measurement]:
+        response = self.table.query(
+            KeyConditionExpression=Key('partition_key').eq('user-id:%s' % user_id) & Key('sort_key').between('timestamp:%s' % start_date, 'timestamp:%s' % end_date)
         )
-        status_code = response['ResponseMetadata']['HTTPStatusCode']
-        assert status_code == 200
-        return registry
+        items = response.get('Items')
+        return [Measurement(**item) for item in items]
