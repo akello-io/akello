@@ -1,14 +1,15 @@
 import enum
+import json
 import typing
+from decimal import Decimal
 
 from mypy_boto3_dynamodb import client
 
 from mbc.adapters.internal import dynamodb_base
-from mbc.domain.model.registry import Registry, RegistryUser
 from mbc.domain.model.measurement import Measurement
+from mbc.domain.model.registry import Registry, RegistryUser
 from mbc.domain.ports import unit_of_work
-from decimal import Decimal
-import json
+
 
 class DBPrefix(enum.Enum):
     REGISTRY = "REGISTRY"
@@ -136,7 +137,6 @@ class DynamoDBMeasurementRepository(
         super().__init__(table_name, context)
 
     def add(self, measurement: Measurement) -> None:
-
         item = json.loads(measurement.model_dump_json(), parse_float=Decimal)
         self.add_generic_item(
             item=item,
@@ -160,7 +160,6 @@ class DynamoDBMeasurementRepository(
             "partition_key": f"{DBPrefix.MEASUREMENT.value}#{measurement_id}",
             "sort_key": f"{DBPrefix.MEASUREMENT.value}#{measurement_id}",
         }
-
 
 
 class DynamoDBUnitOfWork(unit_of_work.UnitOfWork):

@@ -19,7 +19,6 @@ class TestMeasurementEndpoint(unittest.TestCase):
         patient_id= "456"
         measurement = {
             "measurement_id": "789",
-            "label": "Test Measurement",
             "value": 123,
             "measured_at": 1234567890.1234567890
         }

@@ -6,7 +6,7 @@ from mbc.domain.model.measurement import Measurement
 from mbc.domain.ports import unit_of_work
 
 
-def handle_add_measurement_command(
+def handle_get_measurement_command(
         command: AddMeasurementCommand,
         unit_of_work: unit_of_work.UnitOfWork
 ) -> bool:

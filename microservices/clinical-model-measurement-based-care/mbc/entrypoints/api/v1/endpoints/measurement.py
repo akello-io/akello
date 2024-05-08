@@ -23,7 +23,6 @@ async def add_measurement(registry_id: str, patient_id: str, measurement: dict):
             measurement_id=measurement['measurement_id'],
             registry_id=registry_id,
             user_id=patient_id,
-            label=measurement['label'],
             value=measurement['value'],
             measured_at=measurement['measured_at']
         ),
@@ -32,7 +31,7 @@ async def add_measurement(registry_id: str, patient_id: str, measurement: dict):
 
 
 @router.get("/")
-async def get_measurements(registry_id: str, patient_id: str, type: str, start_date: str = None, end_date: str = None):
+async def get_measurements(registry_id: str, patient_id: str, start_date: str = None, end_date: str = None):
     pass
 
 
