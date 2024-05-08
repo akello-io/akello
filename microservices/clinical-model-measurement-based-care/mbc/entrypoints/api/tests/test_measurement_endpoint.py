@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
-from mbc.adapters import patch_measurement_unit_of_work
+from mbc.adapters import patch_unit_of_work
 from mbc.entrypoints.api.main import app
 
 client = TestClient(app)
@@ -11,7 +11,7 @@ client = TestClient(app)
 
 class TestMeasurementEndpoint(unittest.TestCase):
 
-    @patch(f'{patch_measurement_unit_of_work}.commit')
+    @patch(f'{patch_unit_of_work}.commit')
     def test_add_measurement(self, mock_unit_of_work_commit):
         mock_unit_of_work_commit.return_value = None
 
