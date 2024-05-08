@@ -14,11 +14,9 @@ client = TestClient(app)
 
 class TestRegistryEndpoint(unittest.TestCase):
 
-    @patch(f'{patch_registry_query_service}.create_registry')
+    @patch(f'{patch_unit_of_work}.commit')
     def test_create_registry(self, mock_create_registry):
-        registry = Registry(id="123", name="Test Registry", description="This is a test registry",
-                            created_at=1234567890.1234567890)
-        mock_create_registry.return_value = registry
+        mock_create_registry.return_value = None
         response = client.post("/v1/registry", json={
             "name": "Test Registry",
             "description": "This is a test registry"
@@ -36,9 +34,7 @@ class TestRegistryEndpoint(unittest.TestCase):
 
     @patch(f'{patch_unit_of_work}.commit')
     def test_update_registry(self, mock_update_registry):
-        registry = Registry(id="123", name="Test Registry", description="This is a test registry",
-                            created_at=1234567890.1234567890)
-        mock_update_registry.return_value = registry
+        mock_update_registry.return_value = None
         response = client.put("/v1/registry/123", json={
             "name": "Test Registry",
             "description": "This is a test registry"
