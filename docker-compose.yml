@@ -1,5 +1,10 @@
 version: "3"
 services:
+  dynamodb:
+    image: amazon/dynamodb-local
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath .
+    ports:
+      - "8001:8000"
   measurement-based-care:
     environment:
       DYNAMODB_URL: ${DYNAMODB_URL}

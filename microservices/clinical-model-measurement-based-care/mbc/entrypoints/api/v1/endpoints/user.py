@@ -10,6 +10,7 @@ from mbc.domain.commands.registry_management.get_user_from_registry_command impo
 logger = logging.getLogger('mangum')
 router = APIRouter()
 
+# TODO: Needs a unittest
 @router.get("/{user_id}")
 async def get_user(registry_id: str, user_id: str):
     command = GetUserFromRegistryCommand(
