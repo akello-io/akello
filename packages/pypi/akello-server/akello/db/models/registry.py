@@ -36,10 +36,8 @@ class Registry(AkelloBaseModel):
             registry_id=self.id,
             role=UserRegistryRole.admin).put()
 
-    def put(self, is_system: bool = False, requesting_user: User = None):
-        """
-        Protected method to put the item in the database
-        """
+    """
+    def put(self, is_system: bool = False, requesting_user: User = None):        
         if not is_system:
             if not requesting_user:
                 raise Exception("Requesting user is required")
@@ -50,6 +48,7 @@ class Registry(AkelloBaseModel):
                 raise Exception("User not registered to this registry")
 
         self.put()
+    """
 
     def add_user(self, user: User, role: UserRegistryRole, requesting_user: User):
         if not UserOrganization(

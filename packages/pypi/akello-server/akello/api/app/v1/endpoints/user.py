@@ -57,7 +57,11 @@ async def get_user(request: Request, auth: CognitoTokenCustom = Depends(auth_tok
     else:
         user_organizations = user.fetch_user_organizations()
         if len(user_organizations) == 0:
-            raise Exception('User does not have any organizations')
+            return {
+                'user': user,
+                'created_user': created_user,
+                'selected_registry': _create_organization_registry(user)
+            }
 
         # Currently we select the first organization since we don't support multi organization yet
         user_organization = user_organizations[0]
