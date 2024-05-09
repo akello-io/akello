@@ -1,11 +1,13 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, Field
+
 
 
 
 class CreateRegistry(BaseModel):
-    name: str
-    description: str
+    name: str = Field(..., title="Name of the registry", description="Name of the registry")
+    description: str = Field(..., title="Description of the registry", description="Description of the registry")
 
     model_config = {
         "json_schema_extra": {

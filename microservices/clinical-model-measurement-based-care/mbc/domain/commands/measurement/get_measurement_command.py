@@ -1,10 +1,9 @@
 from pydantic import BaseModel
 
 
-class Measurement(BaseModel):
+class GetMeasurementCommand(BaseModel):
     user_id: str
     registry_id: str
     measurement_id: str
-    value: float
-    measured_at: float
-    created_at: float
+    start_date: float
+    end_date: float
