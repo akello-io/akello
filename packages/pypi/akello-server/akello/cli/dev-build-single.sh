@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo '>>>>>>>>>>  CORE'
-cd packages/core
+cd packages/npm/core
 
 echo $PWD
 rm -rf node_modules
@@ -14,10 +14,10 @@ pnpm build:lib
 ech $PWD
 # pnpm pack
 rm -rf node_modules
-cd ../../
+cd ../../../
 
 echo '>>>>>>>>>>  REACT HOOK'
-cd packages/react-hook
+cd packages/npm/react-hook
 rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml
@@ -25,10 +25,10 @@ rm pnpm-lock.yaml
 pnpm i
 pnpm build:lib
 # pnpm pack
-cd ../../
+cd ../../../
 
 echo '>>>>>>>>>>  REACT'
-cd packages/react
+cd packages/npm/react
 rm -rf node_modules
 rm -rf dist
 rm pnpm-lock.yaml
@@ -37,4 +37,4 @@ pnpm i
 pnpm build:lib
 # pnpm pack
 # rm -rf node_modules
-cd ../../
+cd ../../../
