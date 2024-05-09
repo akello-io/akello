@@ -44,9 +44,10 @@ async def create(registry: CreateRegistry):
         name=registry.name,
         description=registry.description
     )
-    handle_create_registry_command(
+    ret = handle_create_registry_command(
         command=command,
         unit_of_work=unit_of_work)
+    return ret
 
 
 @router.put("/{registry_id}")
