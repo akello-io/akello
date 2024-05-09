@@ -6,6 +6,7 @@ from mbc.domain.command_handlers.registry_management_handlers.add_user_to_regist
     handle_add_user_to_registry_command
 from mbc.domain.commands.registry_management.add_user_to_registry_command import AddUserToRegistryCommand
 from mbc.entrypoints.api.v1.models.refer_patient import ReferPatient
+from mbc.domain.model.registry import RegistryUser
 from mbc.adapters import dynamodb_unit_of_work
 from mbc.entrypoints.api import config
 from infra.dynamodb import dynamodb as dynamodb_client
@@ -35,8 +36,8 @@ async def refer_patient(registry_id: str, referral: ReferPatient):
 
 
 @router.get("/{patient_id}")
-async def get_patient(patient_id: str):
-    return None
+async def get_patient(patient_id: str) -> RegistryUser:
+    raise Exception("Not implemented")
 
 
 @router.put("/{patient_id}/flag/{flag}")
