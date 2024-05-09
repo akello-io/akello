@@ -11,18 +11,17 @@ from mbc.adapters import dynamodb_unit_of_work
 from mbc.entrypoints.api import config
 from infra.dynamodb import dynamodb as dynamodb_client
 
-
 logger = logging.getLogger('mangum')
 router = APIRouter()
 
 app_config = config.AppConfig(**config.config)
-
 
 unit_of_work = dynamodb_unit_of_work.DynamoDBUnitOfWork(
     config.AppConfig.get_table_name(), dynamodb_client.meta.client
 )
 
 
+# TODO: Needs a unittest
 @router.post("/refer")
 async def refer_patient(registry_id: str, referral: ReferPatient):
     command = AddUserToRegistryCommand(
