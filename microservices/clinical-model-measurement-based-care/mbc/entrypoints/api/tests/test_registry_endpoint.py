@@ -22,6 +22,7 @@ class TestRegistryEndpoint(unittest.TestCase):
             "description": "This is a test registry"
         })
         assert response.status_code == 200
+        assert response.json() == True
 
     @patch(f'{patch_registry_query_service}.get_registry')
     def test_get_registry(self, mock_get_registry):
