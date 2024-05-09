@@ -10,6 +10,9 @@ from mbc.domain.model.registry import RegistryUser
 from mbc.adapters import dynamodb_unit_of_work
 from mbc.entrypoints.api import config
 from infra.dynamodb import dynamodb as dynamodb_client
+from mbc.domain.command_handlers.registry_management_handlers.get_user_from_registry_command_handler import handle_get_user_from_registry_command
+from mbc.domain.commands.registry_management.get_user_from_registry_command import GetUserFromRegistryCommand
+from mbc.adapters import query_service
 
 logger = logging.getLogger('mangum')
 router = APIRouter()
@@ -35,8 +38,15 @@ async def refer_patient(registry_id: str, referral: ReferPatient):
 
 
 @router.get("/{patient_id}")
-async def get_patient(patient_id: str) -> RegistryUser:
-    raise Exception("Not implemented")
+async def get_patient(registry_id: str, patient_id: str) -> RegistryUser:
+
+    #TODO: This is currently the same as the get user endpoint
+    # If the patient is requested from the patient endpoint we should attribute extra data to the patient
+    command = GetUserFromRegistryCommand(
+        registry_id=registry_id,
+        user_id=patient_id
+    )
+    return handle_get_user_from_registry_command(command, query_service)
 
 
 @router.put("/{patient_id}/flag/{flag}")
