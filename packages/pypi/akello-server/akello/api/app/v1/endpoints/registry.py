@@ -2,26 +2,20 @@ import datetime
 import logging
 import os
 import uuid
+from typing import List
 
 import stripe
 from fastapi import APIRouter, Depends
 from fastapi import Request
-
 from pydantic import BaseModel
+from pydantic import TypeAdapter
 
 from akello.auth.aws_cognito.auth_settings import CognitoTokenCustom
 from akello.auth.provider import auth_token_check
-
-from akello.db.types import Measurement
-
-from akello.db.models.registry import Registry, RegistryUser, RegistryTreatment
-from akello.db.models.user import User, UserRegistry, UserRegistryRole
-
 from akello.db.models.measurementvalue import MeasurementValue
-
-from typing import List
-
-from pydantic import TypeAdapter
+from akello.db.models.registry import Registry, RegistryTreatment, RegistryUser
+from akello.db.models.user import User, UserRegistry, UserRegistryRole
+from akello.db.types import Measurement
 
 
 logger = logging.getLogger('mangum')
@@ -29,7 +23,6 @@ logger = logging.getLogger('mangum')
 router = APIRouter()
 
 stripe.api_key = os.getenv('STRIPE_API_KEY', None)
-
 
 
 @router.get("/{registry_id}/subscription")
@@ -106,6 +99,42 @@ async def invite_patient(registry_id: str, invite: InvitePatientRequest,
 async def refer_patient(registry_id: str, patient_registry: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
+
+    user = User(
+        id=patient_registry['email'],
+        email=patient_registry['email'],
+        first_name=patient_registry['first_name'],
+        last_name=patient_registry['last_name'],
+        phone_number=patient_registry['phone_number'],
+    )
+    user.put()
+
+    user_registry = UserRegistry(
+        user_id=user.id,
+        registry_id=registry.id,
+        role=UserRegistryRole.patient
+    )
+    user_registry.put()
+
+    registry_user = RegistryUser(
+        user_id=user.id,
+        registry_id=registry.id,
+    )
+    registry_user.put()
+
+    registry_treatment = RegistryTreatment(
+        registry_id=registry.id,
+        user_id=user.id,
+        referring_npi=patient_registry['referring_npi'],
+        payer=patient_registry['payer'],
+        mrn=patient_registry['mrn'],
+        date_of_birth=patient_registry['date_of_birth']
+    )
+    registry_treatment.put()
+
+
+    """
+
     registry.invite_patient(email=patient_registry['email'], invited_by_user=user, payload={
         'registry_id': registry_id,
         'user_id': user.id,
@@ -118,11 +147,12 @@ async def refer_patient(registry_id: str, patient_registry: dict, auth: CognitoT
         'email': patient_registry['email'],
         'date_of_birth': patient_registry['date_of_birth'],
     })
-
+    """
 
 
 class PatientMeasurements(BaseModel):
     measurements: List[MeasurementValue]
+
 
 @router.post("/{registry_id}/patient/{patient_id}/measurement")
 async def set_patient_measurement(registry_id: str, patient_id: str, payload: PatientMeasurements,
@@ -140,15 +170,14 @@ async def set_patient_measurement(registry_id: str, patient_id: str, payload: Pa
 
 @router.post("/{registry_id}/patient-attribute")
 async def set_patient_attribute(registry_id: str, data: dict, auth: CognitoTokenCustom = Depends(auth_token_check)):
-    registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id, 'treatment-user-id:%s' % data['user_id'])
+    registry_treatment = RegistryTreatment.get_by_key(RegistryTreatment, 'registry-id:%s' % registry_id,
+                                                      'treatment-user-id:%s' % data['user_id'])
 
     # if we are setting the relapse prevention plan, we need to set the date in the registry
     if data['attr_name'] == 'status' and data['attr_value'] == 'Relapse Prevention Plan':
         current_time = int(datetime.datetime.utcnow().timestamp() * 1000)
         registry_treatment.set_attribute('relapse_prevention_plan', current_time)
     registry_treatment.set_attribute(data['attr_name'], data['attr_value'])
-
-
 
 
 @router.get("/{registry_id}/measurements")
@@ -169,5 +198,6 @@ def record_patient_measurement(registry_id: str, patient_id: str, measurement: M
 @router.get("/{registry_id}/patient/{patient_id}/measurements/{measure}")
 def get_patient_measurement(registry_id: str, patient_id: str, measure: str,
                             auth: CognitoTokenCustom = Depends(auth_token_check)):
-    measurements = MeasurementValue.get_by_key(MeasurementValue, 'registry-id:%s' % registry_id, 'user-id:%s' % patient_id, 'measure:%s' % measure)
+    measurements = MeasurementValue.get_by_key(MeasurementValue, 'registry-id:%s' % registry_id,
+                                               'user-id:%s' % patient_id, 'measure:%s' % measure)
     return measurements
