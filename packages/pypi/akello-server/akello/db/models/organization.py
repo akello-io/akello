@@ -1,13 +1,13 @@
 import uuid
-
 from typing import Optional, List
-from akello.db.models import AkelloBaseModel
-from akello.db.models.registry import Registry, RegistryUser
-from akello.db.models.user import User, UserOrganization, UserOrganizationRole, UserRegistry, UserRegistryRole
-from akello.db.connector.dynamodb import registry_db
 
 from boto3.dynamodb.conditions import Key
 from pydantic import TypeAdapter
+
+from akello.db.connector.dynamodb import registry_db
+from akello.db.models import AkelloBaseModel
+from akello.db.models.registry import Registry, RegistryUser
+from akello.db.models.user import User, UserOrganization, UserOrganizationRole, UserRegistry, UserRegistryRole
 
 
 class Organization(AkelloBaseModel):
@@ -31,25 +31,13 @@ class Organization(AkelloBaseModel):
 
     def create(self, requesting_user: User):
         self.id = str(uuid.uuid4())
-        self.put(requesting_user=requesting_user)
+        self.put()
         assert self.created_by == requesting_user
         UserOrganization(
             user_id=requesting_user.id,
             organization_id=self.id,
             role=UserOrganizationRole.admin
         ).put()
-
-    def put(self, requesting_user: User):
-        user_org = UserOrganization(
-            user_id=requesting_user.id,
-            organization_id=self.id,
-            role=UserOrganizationRole.admin
-        ).get()
-
-        if not user_org:
-            raise Exception('User is not part of this organization')
-
-        self.put(requesting_user=requesting_user)
 
     def create_registry(self, requesting_user: User, name: str = None, logo: str = None):
         """
@@ -99,7 +87,6 @@ class Organization(AkelloBaseModel):
 
         if not user_org:
             raise Exception('User is not part of this organization')
-
 
         partition_key_value = 'organization-id:%s' % self.id
 
