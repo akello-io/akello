@@ -100,35 +100,11 @@ async def refer_patient(registry_id: str, patient_registry: dict, auth: CognitoT
     user = User.get_by_key(User, 'user-id:%s' % auth.cognito_id, 'meta')
     registry = Registry.get_by_key(Registry, 'registry-id:%s' % registry_id, 'meta')
 
-    user = User(
-        id=patient_registry['email'],
-        email=patient_registry['email'],
-        first_name=patient_registry['first_name'],
-        last_name=patient_registry['last_name'],
-        phone_number=patient_registry['phone_number'],
-    )
-    user.put()
-
-    user_registry = UserRegistry(
-        user_id=user.id,
-        registry_id=registry.id,
-        role=UserRegistryRole.patient
-    )
-    user_registry.put()
-
-    registry_user = RegistryUser(
-        user_id=user.id,
-        registry_id=registry.id,
-    )
-    registry_user.put()
-
     registry_treatment = RegistryTreatment(
         registry_id=registry.id,
-        user_id=user.id,
+        user_id=patient_registry['mrn'],
         referring_npi=patient_registry['referring_npi'],
-        payer=patient_registry['payer'],
-        mrn=patient_registry['mrn'],
-        date_of_birth=patient_registry['date_of_birth']
+        mrn=patient_registry['mrn']
     )
     registry_treatment.put()
 

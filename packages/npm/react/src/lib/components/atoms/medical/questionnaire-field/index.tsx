@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 
 export interface QuestionnaireFieldOption {
-    value: string;
+    value: number;
     label: string;
 }
 
@@ -28,8 +28,8 @@ export const QuestionnaireField:React.FC<QuestionnaireFieldProps> = ({question, 
                 required
             >
                 <div className='space-y-1'>
-                    {options.map((option) => (
-                        <Radio value={option.value} label={option.label} />
+                    {options.map((option, index) => (
+                        <Radio key={index} value={option.value} label={option.label} />
                     ))}
                 </div>
 
