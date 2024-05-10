@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Stepper, Button, Group } from '@mantine/core';
 import { Select, TextInput} from '@mantine/core';
 import { PatientQuestionnaire } from '../patient-questionnaire';
@@ -9,28 +9,33 @@ export interface PatientSessionStepperProps {
 
 export const PatientSessionStepper: React.FC<PatientSessionStepperProps> = () => {
     const [active, setActive] = useState(0);
+    const [answers, setAnswers] = useState({});
     const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
     const options = [
         {
             label: 'None at all',
-            value: '0'
+            value: 0
         },
         {
             label: 'Several days',
-            value: '1'
+            value: 1
         },
         {
             label: 'More than half the days',
-            value: '2'
+            value: 2
         },
         {
             label: 'Nearly every day',
-            value: '3'
+            value: 3
         }
-
     ]
+
+    useEffect(() => {
+        console.log(answers)
+    }, [active])
+
 
     return (
       <div className='h-screen'>
@@ -77,54 +82,54 @@ export const PatientSessionStepper: React.FC<PatientSessionStepperProps> = () =>
                         options: options,
                         onSelect: (value) => console.log(value)
                     },
-                {
-                    question: 'Feeling down, depressed, or hopeless?',
-                    description: '',
-                    options: options,
-                    onSelect: (value) => console.log(value)
-                },
-                {
-                    question: 'Trouble falling or staying asleep, or sleeping too much?',
-                    description: '',
-                    options: options,
-                    onSelect: (value) => console.log(value)
-                },
-                {
-                    question: 'Feeling tired or having little energy?',
-                    description: '',
-                    options: options,
-                    onSelect: (value) => console.log(value)
-                },
-                {
-                    question: 'Poor appetite or overeating?',
-                    description: '',
-                    options: options,
-                    onSelect: (value) => console.log(value)
-                },
-                {
-                    question: 'Feeling bad about yourself - or that you are a failure or have let yourself or your family down?',
-                    description: '',
-                    options: options,
-                    onSelect: (value) => console.log(value)
-                },
-                {
-                    question: 'Trouble concentrating on things, such as reading the newspaper or watching television?',
-                    description: '',
-                    options: options,
-                    onSelect: (value) => console.log(value)
-                },
-                {
-                    question: 'Moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?',
-                    description: '',
-                    options: options,
-                    onSelect: (value) => console.log(value)
-                },
-                {
-                    question: 'Thoughts that you would be better off dead, or of hurting yourself in some way?',
-                    description: '',
-                    options: options,
-                    onSelect: (value) => console.log(value)
-                }
+                    {
+                        question: 'Feeling down, depressed, or hopeless?',
+                        description: '',
+                        options: options,
+                        onSelect: (value) => console.log(value)
+                    },
+                    {
+                        question: 'Trouble falling or staying asleep, or sleeping too much?',
+                        description: '',
+                        options: options,
+                        onSelect: (value) => console.log(value)
+                    },
+                    {
+                        question: 'Feeling tired or having little energy?',
+                        description: '',
+                        options: options,
+                        onSelect: (value) => console.log(value)
+                    },
+                    {
+                        question: 'Poor appetite or overeating?',
+                        description: '',
+                        options: options,
+                        onSelect: (value) => console.log(value)
+                    },
+                    {
+                        question: 'Feeling bad about yourself - or that you are a failure or have let yourself or your family down?',
+                        description: '',
+                        options: options,
+                        onSelect: (value) => console.log(value)
+                    },
+                    {
+                        question: 'Trouble concentrating on things, such as reading the newspaper or watching television?',
+                        description: '',
+                        options: options,
+                        onSelect: (value) => console.log(value)
+                    },
+                    {
+                        question: 'Moving or speaking so slowly that other people could have noticed? Or the opposite - being so fidgety or restless that you have been moving around a lot more than usual?',
+                        description: '',
+                        options: options,
+                        onSelect: (value) => console.log(value)
+                    },
+                    {
+                        question: 'Thoughts that you would be better off dead, or of hurting yourself in some way?',
+                        description: '',
+                        options: options,
+                        onSelect: (value) => console.log(value)
+                    }
             ]} />
 
 

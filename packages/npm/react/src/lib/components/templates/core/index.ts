@@ -1,3 +1,4 @@
+export * from './metriport-registry-shell'
 export * from './organization-collection-shell'
 export * from './registry-collection-shell'
 export * from './user-account-shell'

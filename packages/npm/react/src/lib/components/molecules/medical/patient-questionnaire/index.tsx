@@ -10,7 +10,6 @@ interface PatientQuestionnaireProps {
 
 
 export const PatientQuestionnaire:React.FC<PatientQuestionnaireProps> = ({questions}) => {
-    const [value, setValue] = useState<string>('')
 
     return (
         <>
@@ -22,7 +21,7 @@ export const PatientQuestionnaire:React.FC<PatientQuestionnaireProps> = ({questi
                             question={question.question}
                             description={question.description}
                             options={question.options}
-                            onSelect={(value) => setValue(value)}
+                            onSelect={question.onSelect}
                         />
                     )
                 })
