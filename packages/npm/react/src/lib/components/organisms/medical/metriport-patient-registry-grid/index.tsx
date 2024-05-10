@@ -4,7 +4,7 @@ import {GridApi, DataGrid, GridColDef, GridToolbar, GridSingleSelectColDef } fro
 import { useAkello } from '@akello/react-hook';
 import { Measurement, MeasureTypes } from '@akello/core';
 
-interface MetriportPatientRegistryGridProps {
+export interface MetriportPatientRegistryGridProps {
     rows: [],
     measurements: any[]
     onPatientSelect: (row: any) => void
@@ -27,11 +27,19 @@ export const MetriportPatientRegistryGrid:React.FC<MetriportPatientRegistryGridP
             field: 'status',
             headerName: 'Status',
             width: 90,
+            renderCell: (params: any) => {
+                return (
+                    <div className='my-4 rounded-full animate-pulse w-5 h-5 bg-green-600' />
+
+                )
+
+              }
         },
         {
-            field: 'referring_npi',
-            headerName: 'Referring NPI',
-            width: 90,
+            field: 'nlp_score',
+            headerName: 'NLP Score',
+            width: 110,
+            editable: true
         },
         {
             field: 'first_name',
@@ -63,6 +71,7 @@ export const MetriportPatientRegistryGrid:React.FC<MetriportPatientRegistryGridP
             width: 110,
             editable: true
         },
+
     ]
 
 
