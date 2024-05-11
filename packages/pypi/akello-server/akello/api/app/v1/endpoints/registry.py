@@ -109,23 +109,6 @@ async def refer_patient(registry_id: str, patient_registry: dict, auth: CognitoT
     registry_treatment.put()
 
 
-    """
-
-    registry.invite_patient(email=patient_registry['email'], invited_by_user=user, payload={
-        'registry_id': registry_id,
-        'user_id': user.id,
-        'mrn': patient_registry['mrn'],
-        'referring_npi': patient_registry['referring_npi'],
-        'payer': patient_registry['payer'],
-        'first_name': patient_registry['first_name'],
-        'last_name': patient_registry['last_name'],
-        'phone_number': patient_registry['phone_number'],
-        'email': patient_registry['email'],
-        'date_of_birth': patient_registry['date_of_birth'],
-    })
-    """
-
-
 class PatientMeasurements(BaseModel):
     measurements: List[MeasurementValue]
 
