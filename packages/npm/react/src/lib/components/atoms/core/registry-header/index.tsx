@@ -53,6 +53,7 @@ export const Header: React.FC<HeaderProps> = ({ signOut, Logo, loggedIn, opened,
               color={"cyan"}
               leftSection={<IconUserPlus size={14} />}
               onClick={() => {
+                akello.selectPatient(undefined);
                 const selectedRegistry = akello.getSelectedRegistry();
                 if (selectedRegistry) {
                   onNavigate(`/patient-referral`);
