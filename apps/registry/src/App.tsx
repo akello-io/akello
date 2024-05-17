@@ -1,17 +1,38 @@
+import {
+  ReportsPage,
+  RegistrySecurityPage,
+  ReferPatientStepper,
+  PatientReferralPage,
+  RegistryShell,
+  UserAccountShell,
+  RegistryCollectionShell,
+  NothingFoundBackground,
+  ChangePasswordPage,
+  PaymentCompleted,
+  MeasurementsPage,
+} from '@akello/react';
+import { Registry } from '@akello/core';
+
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+import { Outlet } from 'react-router-dom'
 import React from 'react';
+import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { Amplify } from 'aws-amplify';
 import { ThemeProvider } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import { RegistryPage } from '@akello/react';
+import { AkelloClient } from '@akello/client';
 import './App.css';
 import {
   withAuthenticator,
   useAuthenticator,
 } from '@aws-amplify/ui-react';
+import { useAkello } from '@akello/react-hook';
 
 
 
-debugger;
 Amplify.configure({
   Auth: {
     Cognito: {
@@ -74,9 +95,59 @@ const theme = {
   ],
 };
 
+async function currentSession(akello: AkelloClient) {
+  try {
+    const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
+
+    akello.setAccessToken(accessToken?.toString())
+
+    akello.setProfileInfo(
+      idToken!.payload.given_name,
+      idToken!.payload.family_name,
+      idToken!.payload.picture,
+      idToken!.payload.email
+    )
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 const App = () => {
+  const [tokenLoaded, setTokenLoaded] = React.useState(false);
   const [themeMode, setThemeMode] = useState('');
   const { authStatus } = useAuthenticator(context => [context.authStatus]);
+  const { pathname } = useLocation();
+  const akello = useAkello();
+  const navigate = useNavigate();
+  const patient_id = akello.getSelectedPatientRegistry()?.id;
+
+
+  useEffect(() => {
+    currentSession(akello).then(() => {
+      setTokenLoaded(true)
+    })
+  })
+
+  useEffect(() => {
+    if(!tokenLoaded) {
+      return;
+    }
+    akello.userService.getUser((data: any) => {
+
+      akello.registryService.getRegistry(data.selected_registry.registry_id, (registry_data: any) => {
+          const registry = new Registry(registry_data.id, registry_data.organization_id, registry_data.name, registry_data.logo)
+          akello.selectRegistry(registry);
+          akello.dispatchEvent({ type: 'change' });
+
+
+      }, (error: any) => {
+          console.log(error)
+      })
+    })
+  }, [tokenLoaded])
+
+
 
   useEffect(() => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -95,6 +166,13 @@ const App = () => {
     };
   }, []);
 
+
+
+  if(!tokenLoaded) {
+    return <></>
+  }
+
+
   if(authStatus === 'configuring') {
     return <></>
   }
@@ -105,11 +183,21 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme} colorMode={themeMode}>
-      <div className="App">
-        <header className="App-header">
-          Test
-        </header>
-      </div>
+      <Routes>
+          <Route path="/" element={
+                    <>
+                       <UserAccountShell
+                        navigate={navigate}
+                        pathname={pathname}
+                        Outlet={Outlet}
+                        signOut={() => {}}
+                        stripe_checkout_url={import.meta.env.VITE_STRIPE_CHECKOUT_URL}
+                        stripe_portal_url={import.meta.env.VITE_STRIPE_CUSTOMER_PORTAL}
+                      />
+                    </>}>
+                    <Route index element={<RegistryPage drawerHandlers={() => {}} onNavigate={(path: string) => navigate(path)} patient_id={patient_id} />} />
+            </Route>
+      </Routes>
     </ThemeProvider>
   );
 };

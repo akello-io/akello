@@ -69,16 +69,6 @@ export interface AkelloClientOptions {
     onUnauthenticated?: () => void;
 }
 
-export interface RequestParam {
-    api_url: string;
-    method: string;
-    endpoint: string;
-    token: string;
-    payload?: any;
-    onSuccess: (resp: any) => void;
-    onFail?: (resp: any) => void;
-}
-
 export class AkelloClient extends EventTarget implements AkelloClientInterface {
     private readonly options: AkelloClientOptions;
     private username: string | undefined;
