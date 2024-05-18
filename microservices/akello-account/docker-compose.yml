@@ -1,0 +1,17 @@
+version: "3"
+services:
+  measurement-based-care:
+    environment:
+      DYNAMODB_URL: ${DYNAMODB_URL}
+      AWS_REGION: ${AWS_REGION}
+      AWS_PROFILE: ${AWS_PROFILE}
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - "8009:8000"
+    volumes:
+      - ~/.aws/:/root/.aws:ro
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
