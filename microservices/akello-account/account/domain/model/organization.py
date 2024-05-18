@@ -7,3 +7,6 @@ class Organization(BaseModel):
     name: str
     created_at: str
     updated_at: str
+
+    class Config:
+        orm_mode = True
