@@ -6,6 +6,9 @@ services:
     ports:
       - "8001:8000"
   graphql:
+    environment:
+      SERVICE_API_ACCOUNT: ${SERVICE_API_ACCOUNT}
+      SERVICE_API_MEASUREMENT_BASED_CARE: ${SERVICE_API_MEASUREMENT_BASED_CARE}
     build:
       context: ./graphql
       dockerfile: ./Dockerfile

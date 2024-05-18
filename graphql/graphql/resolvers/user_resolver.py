@@ -6,7 +6,7 @@ from models.organization import Organization
 
 def get_user(user_id: str) -> User:
 
-    response = requests.get('http://host.docker.internal:8010/%s' % user_id)
+    response = requests.get('http://host.docker.internal:8009/%s' % user_id)
 
     if response.status_code != 200:
         raise Exception('User not found')
