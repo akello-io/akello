@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { MetriportRegistryShell } from '../metriport-registry-shell';
+import { RegistryShell } from '../registry-shell';
 import { useAkello } from '@akello/react-hook';
 
 import AkelloLogo from '../../../../assets/akello-blue.svg';
@@ -25,7 +26,7 @@ export const RegistryCollectionShell: React.FC<RegistryCollectionProps> = ({AppS
 
     return (
         <>
-            <MetriportRegistryShell
+            <RegistryShell
                     AppShell={AppShell}
                     registry_id={''}
                     Logo={AkelloLogo}
