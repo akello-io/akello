@@ -11,6 +11,10 @@ fastapi = "^0.111.0"
 mangum = "^0.17.0"
 aws-lambda-powertools = "^2.38.1"
 jmespath = "^1.0.1"
+pycognito = "^2024.5.1"
+fastapi-cognito = "^2.4.2"
+pydantic-settings = "^2.2.1"
+pydantic = "^2.7.1"
 
 
 [build-system]
