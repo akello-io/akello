@@ -26,7 +26,7 @@ services:
       AWS_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
     build:
-      context: ./microservices/akello-account
+      context: ./microservices/account
       dockerfile: ./Dockerfile
     ports:
       - "8009:8000"
