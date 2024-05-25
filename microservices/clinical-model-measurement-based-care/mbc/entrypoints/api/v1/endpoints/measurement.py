@@ -30,6 +30,8 @@ async def add_measurement(registry_id: str, patient_id: str, measurement: dict):
     )
 
 
+## get by what? must have measureId,
+## get list of registry id , patient_id
 @router.get("/")
 async def get_measurements(registry_id: str, patient_id: str, start_date: str = None, end_date: str = None):
     pass
