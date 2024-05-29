@@ -3,7 +3,6 @@ from typing import Any, List
 from mypy_boto3_dynamodb import client, type_defs
 
 
-# TODO: no transaction exception!
 
 class DynamoDBContext:
     """Transactional context manager for DynamoDB."""

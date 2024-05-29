@@ -3,17 +3,26 @@ from unittest.mock import MagicMock
 import boto3
 
 DYNAMODB_URL = os.getenv('DYNAMODB_URL')
-AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
-
-# use local dynamodb
-print("using local dynamodb: %s " % DYNAMODB_URL)
+AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST') == "True"
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 
 if AKELLO_UNIT_TEST:
     #client = MagicMock()
     dynamodb = MagicMock()
+    # use magicMock
+    print("using magicMock")
 else:
     #client = boto3.client('dynamodb', endpoint_url=DYNAMODB_URL)
-    dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_URL)
+    #dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_URL)
+    # use local dynamodb
+    dynamodb = boto3.resource(
+        'dynamodb',
+        endpoint_url=DYNAMODB_URL,
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    )
+    print("using local dynamodb: %s " % DYNAMODB_URL)
     pass
 
 

@@ -2,7 +2,6 @@ import enum
 import json
 import typing
 
-
 from account.domain.model.organization import Organization
 from account.domain.model.user import User
 from account.domain.ports import unit_of_work
@@ -21,25 +20,18 @@ class DynamoDBUserRepository(unit_of_work.UserRepository, DynamoDBRepository):
         super().__init__(table_name, context)
 
     def create(self, user: User) -> None:
-        pass
+        self.add_generic_item(item=user.model_dump(),
+                              key=self.generate_user_key(user.id))
+
 
     def update_attributes(self, user_id: str, **kwargs) -> User:
         pass
 
     def get(self, user_id: str) -> User:
-        #key = self.generate_user_key(user_id)
-        #request = self._create_get_request(key)
-        #user_dict = self._context.get_generic_item(request)
-        mock_user = User(**{
-            "id": "1",
-            "name": "fake1",
-            "email": "fake1@gmail.com",
-            "enabled": True,
-            "created_at": "100",
-            "updated_at": "101"
-        })
-        return mock_user
-        #return User(**user_dict)
+        key = self.generate_user_key(user_id)
+        request = self._create_get_request(key)
+        user_dict = self._context.get_generic_item(request)
+        return User(**user_dict)
 
     def delete(self, user_id: str) -> None:
         pass
@@ -48,8 +40,8 @@ class DynamoDBUserRepository(unit_of_work.UserRepository, DynamoDBRepository):
     def generate_user_key(user_id: str) -> dict:
         """Generates primary key for registry item."""
         return {
-            "partition_key": f"{DBPrefix.ORGANIZATION.value}#{user_id}",
-            "sort_key": f"{DBPrefix.ORGANIZATION.value}#{user_id}",
+            "partition_key": f"{DBPrefix.USER.value}#{user_id}",
+            "sort_key": f"{DBPrefix.USER.value}#{user_id}",
         }
 
 
