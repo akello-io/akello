@@ -2,7 +2,7 @@ from aws_lambda_powertools import Logger
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
-
+from account.entrypoints.api.v1.api import router
 
 logger = Logger(service="mangum")
 
@@ -20,6 +20,8 @@ app = FastAPI(
 def root():
     return {"message": "Account Microservice"}
 
+
+app.include_router(router, prefix="/v1")
 
 app.add_middleware(
     CORSMiddleware,
