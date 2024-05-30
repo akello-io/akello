@@ -77,6 +77,14 @@ service/  # application code
 infra/  # infrastructure code
 ```
 
+## Unit Test
+```mermaid
+export AKELLO_UNIT_TEST=True
+poetry shell
+python -m unittest
+```
+
+
 * [Hexagonal Architecture](https://www.arnaudlanglade.com/hexagonal-architecture-by-example/)
 * [Project structure reference](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/structure-a-python-project-in-hexagonal-architecture-using-aws-lambda.html)
 * [Understanding Commands and Command Handler Pattern](https://www.arnaudlanglade.com/command-handler-patterns/#:~:text=A%20command%20is%20an%20object,behavior%20(a%20data%20structure))

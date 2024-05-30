@@ -99,7 +99,7 @@ PyYAML==6.0.1
 readme-renderer==42.0
 recommonmark==0.7.1
 referencing==0.33.0
-requests==2.31.0
+requests==2.32.0
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
 rich==13.6.0
