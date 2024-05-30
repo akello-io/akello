@@ -213,17 +213,17 @@ validation = ["fastjsonschema (>=2.14.5,<3.0.0)"]
 
 [[package]]
 name = "boto3"
-version = "1.34.111"
+version = "1.34.113"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "boto3-1.34.111-py3-none-any.whl", hash = "sha256:d6a8e77db316c6e1d9a25f77c795ed1e0a8bc621f863ce26d04b2225d30f2dce"},
-    {file = "boto3-1.34.111.tar.gz", hash = "sha256:8f18d212b9199dbbd9d596dd5929685b583ac938c60cceeac2e045c0c5d10323"},
+    {file = "boto3-1.34.113-py3-none-any.whl", hash = "sha256:7e59f0a848be477a4c98a90e7a18a0e284adfb643f7879d2b303c5f493661b7a"},
+    {file = "boto3-1.34.113.tar.gz", hash = "sha256:009cd143509f2ff4c37582c3f45d50f28c95eed68e8a5c36641206bdb597a9ea"},
 ]
 
 [package.dependencies]
-botocore = ">=1.34.111,<1.35.0"
+botocore = ">=1.34.113,<1.35.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -232,13 +232,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.34.111"
+version = "1.34.113"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "botocore-1.34.111-py3-none-any.whl", hash = "sha256:e10affb7f372d50da957260adf2753a3f153bf90abe6910e11f09d1e443b5515"},
-    {file = "botocore-1.34.111.tar.gz", hash = "sha256:0e0fb9b605c46393d5c7c69bd516b36058334bdc8f389e680c6efcf0727f25db"},
+    {file = "botocore-1.34.113-py3-none-any.whl", hash = "sha256:8ca87776450ef41dd25c327eb6e504294230a5756940d68bcfdedc4a7cdeca97"},
+    {file = "botocore-1.34.113.tar.gz", hash = "sha256:449912ba3c4ded64f21d09d428146dd9c05337b2a112e15511bf2c4888faae79"},
 ]
 
 [package.dependencies]
@@ -251,27 +251,23 @@ crt = ["awscrt (==0.20.9)"]
 
 [[package]]
 name = "caio"
-version = "0.9.13"
+version = "0.9.17"
 description = "Asynchronous file IO for Linux MacOS or Windows."
 optional = false
-python-versions = ">=3.7, <4"
+python-versions = "<4,>=3.7"
 files = [
-    {file = "caio-0.9.13-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:a921c0514ea2bb161d9d9c4940d409a2431cc6bab89abbf20fb16fdc6964f650"},
-    {file = "caio-0.9.13-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:0a04bcac15b0c18057ec57dd9666c4d5c1058958a8db5191b46a1e54931c4a6e"},
-    {file = "caio-0.9.13-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:18307046421f4a8cac85c3d84aa941ab283fbbf0e57f0e5f81a306a057668f43"},
-    {file = "caio-0.9.13-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:789f8b55f4a2b46be14361df3ac8d14b6c8f0a3730badd70cb1b7778fcdc7039"},
-    {file = "caio-0.9.13-cp311-cp311-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a914684bad2a757cf013ae88d785d81659a3add1885bad60cd20bfbd3068bd5a"},
-    {file = "caio-0.9.13-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:a6577cec932011db441a87bb35051a0ae8c6f970ea1af165cef3106746ae9a52"},
-    {file = "caio-0.9.13-cp37-cp37m-macosx_11_0_x86_64.whl", hash = "sha256:e13c1b882f1c16bc15441d4cfe3e7e6b58b66cb5cf07a0ce46103ff9d0c1d16b"},
-    {file = "caio-0.9.13-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:114d6c158dc592849532fd0992cbfb85430f4f6e48323a3990c39e4741f81a25"},
-    {file = "caio-0.9.13-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:9c5f115c6b5e032f00f35d5da69f27322272b1cb8d51a21da1c2444bd1926beb"},
-    {file = "caio-0.9.13-cp38-cp38-macosx_11_0_x86_64.whl", hash = "sha256:48f2c32f67923c728f4b79e03e4a0fc8dc175aa079a1e301773ab7d6baaa571f"},
-    {file = "caio-0.9.13-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9b7b6eafa11a446dced3cd10342140e618acb548b513aaf3a1fa4c86451d3856"},
-    {file = "caio-0.9.13-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:b1e4252b783ad25f15eeff6e412f7e9ec9409e7b4a81fd2893dc1ce1819385ff"},
-    {file = "caio-0.9.13-cp39-cp39-macosx_11_0_x86_64.whl", hash = "sha256:a07c9933543d18f98525f34a786700134403f13050a5bd22a642629e2ab410d4"},
-    {file = "caio-0.9.13-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a090ab82f21b310b56fa6afe04b3be92a0d1577a2e57127b61426c9dd6df34be"},
-    {file = "caio-0.9.13-py3-none-any.whl", hash = "sha256:582cbfc6e203d1dedf662ba972a94db6e744fe0b6bb9e02922b0f86803006fc9"},
-    {file = "caio-0.9.13.tar.gz", hash = "sha256:26f1e08a442bef4526a66142ea4e325e22dca8f040800aecb3caf8fae0589e98"},
+    {file = "caio-0.9.17-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:3f69395fdd45c115b2ef59732e3c8664722a2b51de2d6eedb3d354b2f5f3be3c"},
+    {file = "caio-0.9.17-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3028b746e9ec7f6d6ebb386a7fd8caf0eebed5d6e6b4f18c8ef25861934b1673"},
+    {file = "caio-0.9.17-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:079730a353bbde03796fab681e969472eace09ffbe5000e584868a7fe389ba6f"},
+    {file = "caio-0.9.17-cp311-cp311-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:549caa51b475877fe32856a26fe937366ae7a1c23a9727005b441db9abb12bcc"},
+    {file = "caio-0.9.17-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:0ddb253b145a53ecca76381677ce465bc5efeaecb6aaf493fac43ae79659f0fb"},
+    {file = "caio-0.9.17-cp312-cp312-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b3e320b0ea371c810359934f8e8fe81777c493cc5fb4d41de44277cbe7336e74"},
+    {file = "caio-0.9.17-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:a39a49e279f82aa022f0786339d45d9550b5aa3e46eec7d08e0f351c503df0a5"},
+    {file = "caio-0.9.17-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b3e96925b9f15f43e6ef1d42a83edfd937eb11a984cb6ef7c10527e963595497"},
+    {file = "caio-0.9.17-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:fca916240597005d2b734f1442fa3c3cfb612bf46e0978b5232e5492a371de38"},
+    {file = "caio-0.9.17-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:40bd0afbd3491d1e407bcf74e3a9e9cc67a7f290ed29518325194184d63cc2b6"},
+    {file = "caio-0.9.17-py3-none-any.whl", hash = "sha256:c55d4dc6b3a36f93237ecd6360e1c131c3808bc47d4191a130148a99b80bb311"},
+    {file = "caio-0.9.17.tar.gz", hash = "sha256:8f30511526814d961aeef389ea6885273abe6c655f1e08abbadb95d12fdd9b4f"},
 ]
 
 [package.extras]
@@ -1127,6 +1123,20 @@ files = [
 ]
 
 [[package]]
+name = "mypy-boto3-dynamodb"
+version = "1.34.113"
+description = "Type annotations for boto3.DynamoDB 1.34.113 service generated with mypy-boto3-builder 7.24.0"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "mypy_boto3_dynamodb-1.34.113-py3-none-any.whl", hash = "sha256:8a621851432ce6cdd9664e61527c0a36e89da06fc158187e1c9438d115020e59"},
+    {file = "mypy_boto3_dynamodb-1.34.113.tar.gz", hash = "sha256:470bd3f8d9d66cee92f5e5212000a735cb9f9ba67b1cb04d4dafe0f0c152bf85"},
+]
+
+[package.dependencies]
+typing-extensions = {version = ">=4.1.0", markers = "python_version < \"3.12\""}
+
+[[package]]
 name = "orjson"
 version = "3.10.3"
 description = "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy"
@@ -1509,13 +1519,13 @@ files = [
 
 [[package]]
 name = "requests"
-version = "2.32.2"
+version = "2.32.3"
 description = "Python HTTP for Humans."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "requests-2.32.2-py3-none-any.whl", hash = "sha256:fc06670dd0ed212426dfeb94fc1b983d917c4f9847c863f313c9dfaaffb7c23c"},
-    {file = "requests-2.32.2.tar.gz", hash = "sha256:dd951ff5ecf3e3b3aa26b40703ba77495dab41da839ae72ef3c8e5d8e2433289"},
+    {file = "requests-2.32.3-py3-none-any.whl", hash = "sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6"},
+    {file = "requests-2.32.3.tar.gz", hash = "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760"},
 ]
 
 [package.dependencies]
@@ -2102,4 +2112,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "3b4fa2a1a5b571744eb6dba8eebf91af396ac2b646faab7bfd557c1af18c3ffb"
+content-hash = "76bccdaf46300dd7e96f9cc1819185b1ba66a833847d999712fbef092fb36335"
