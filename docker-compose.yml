@@ -51,6 +51,24 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
+  registry-app:
+    environment:
+        DYNAMODB_URL: ${DYNAMODB_URL}
+        AWS_REGION: ${AWS_REGION}
+        AWS_PROFILE: ${AWS_PROFILE}
+    build:
+      context: ./
+      dockerfile: ./apps/registry/Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ~/.aws/:/root/.aws:ro
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+
+
 volumes:
   cache:
     driver: local
