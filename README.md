@@ -20,11 +20,8 @@ akello/
 ├── eventbus               # rules for all events
 ├── graphql                # graphql server for all microservices
 ├── microservices
-│   ├── authorizer         # authorizes requests to resources
-│   ├── user
-│   ├── organization
-│   ├── registry
-│   ├── measurement
+│   ├── akello-account     # account service
+│   ├── clinical-model-measurement-based-care
 ├── packages
 │   ├── core               # data models and API utilities
 │   ├── docs               # docs hosted under docs.akello.io
