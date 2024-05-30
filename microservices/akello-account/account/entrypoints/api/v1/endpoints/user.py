@@ -6,7 +6,7 @@ from account.domain.command_handlers.user.get_user_command_handler import handle
 from account.domain.commands.user.add_user_command import AddUserCommand
 from account.domain.commands.user.get_user_command import GetUserCommand
 from account.entrypoints.api import config
-from account.adapters.dynamodb_initiation import dynamodb as dynamodb_client
+from infra.dynamodb import dynamodb as dynamodb_client
 from account.entrypoints.api.v1.models.create_user import CreateUser
 
 # TODO : no logger here
