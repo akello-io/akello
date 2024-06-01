@@ -1,0 +1,70 @@
+{
+  "name": "@akello/core",
+  "private": false,
+  "version": "0.0.11",
+  "packageManager": "pnpm@8.4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IgnacioNMiranda/vite-component-library-template"
+  },
+  "main": "./dist/core.umd.js",
+  "module": "./dist/core.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/core.es.js",
+      "require": "./dist/core.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "build:lib": "tsc && vite build",
+    "build:lib-dev": "tsc && vite build --mode development",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix",
+    "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
+    "test": "vitest",
+    "test:cov": "vitest run --coverage",
+    "prepare": "husky install",
+    "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
+  },
+  "peerDependencies": {
+    "amazon-cognito-identity-js": "^6.3.7",
+    "aws-amplify": "^6.0.13",
+    "axios": "^1.6.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,css,md}": [
+      "prettier -w"
+    ]
+  },
+  "dependencies": {
+    "@types/fhir": "^0.0.41",
+    "@vitejs/plugin-react": "^4.2.1",
+    "amazon-cognito-identity-js": "^6.3.12",
+    "axios": "^1.6.8",
+    "fhir": "^4.12.0",
+    "fs": "0.0.1-security",
+    "husky": "^9.0.11",
+    "moment": "^2.30.1",
+    "sass": "^1.72.0",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.2.7",
+    "vite-plugin-dts": "^3.8.1",
+    "vitest": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.3"
+  }
+}
