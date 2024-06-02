@@ -1,20 +1,20 @@
 {
-  "name": "akello-account",
+  "name": "@akello/account",
   "private": false,
-  "version": "2.0.4",
+  "version": "0.0.1",
   "packageManager": "pnpm@8.4.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/IgnacioNMiranda/vite-component-library-template"
   },
-  "main": "./dist/vite-component-library-template.umd.js",
-  "module": "./dist/vite-component-library-template.es.js",
+  "main": "./dist/account.umd.js",
+  "module": "./dist/account.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/vite-component-library-template.es.js",
-      "require": "./dist/vite-component-library-template.umd.js"
+      "import": "./dist/account.es.js",
+      "require": "./dist/account.umd.js"
     },
     "./dist/style.css": "./dist/style.css"
   },
@@ -32,6 +32,7 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
   "dependencies": {
+    "axios": "^1.7.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
