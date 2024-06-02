@@ -35,13 +35,13 @@ services:
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
-  measurement-based-care:
+  registry-service:
     environment:
       DYNAMODB_URL: ${DYNAMODB_URL}
       AWS_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
     build:
-      context: ./microservices/clinical-model-measurement-based-care
+      context: ./microservices/registry
       dockerfile: ./Dockerfile
     ports:
       - "8010:8000"

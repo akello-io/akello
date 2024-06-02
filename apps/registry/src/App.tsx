@@ -12,6 +12,7 @@ import {
   MeasurementsPage,
 } from '@akello/react';
 import { Registry } from '@akello/core';
+import { AccountService } from '@akello/account';
 
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router';
@@ -25,6 +26,7 @@ import '@aws-amplify/ui-react/styles.css';
 import { RegistryPage } from '@akello/react';
 import { AkelloClient } from '@akello/client';
 import './App.css';
+
 import {
   withAuthenticator,
   useAuthenticator,
@@ -167,7 +169,6 @@ const App = () => {
   }, []);
 
 
-
   if(!tokenLoaded) {
     return <></>
   }
@@ -180,6 +181,7 @@ const App = () => {
   if(authStatus !== 'authenticated') {
     return <>not authenticated</>
   }
+
 
   return (
     <ThemeProvider theme={theme} colorMode={themeMode}>
