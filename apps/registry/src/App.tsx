@@ -10,7 +10,11 @@ import {
 
 
 
-const App = () => {
+interface AppProps {
+  isPassedToWithAuthenticator: boolean;
+}
+
+const App:React.FC<AppProps> = () => {
   const [themeMode, setThemeMode] = useState('');
   const { authStatus } = useAuthenticator(context => [context.authStatus]);
 
@@ -49,13 +53,4 @@ const App = () => {
 };
 
 export default withAuthenticator(App);
-
-export async function getStaticProps() {
-  return {
-    props: {
-      isPassedToWithAuthenticator: true,
-    },
-  };
-}
-
 

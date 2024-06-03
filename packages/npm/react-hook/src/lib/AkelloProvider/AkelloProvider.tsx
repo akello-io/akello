@@ -7,11 +7,10 @@ export interface AkelloProviderProps {
   readonly children: ReactNode;
 }
 
-
 export const AkelloProvider = (props: AkelloProviderProps): JSX.Element => {
   const akello = props.akello;
-  
-  const [state, setState] = useState({ 
+
+  const [state, setState] = useState({
     loading: false,
     isAuthenticated: akello.accessToken !== undefined,
     username: akello.getUserName(),
@@ -19,7 +18,7 @@ export const AkelloProvider = (props: AkelloProviderProps): JSX.Element => {
   });
 
   useEffect(() => {
-    const eventListener = (): void => {            
+    const eventListener = (): void => {
       setState({
         ...state,
         isAuthenticated: akello.accessToken !== undefined,
@@ -31,7 +30,7 @@ export const AkelloProvider = (props: AkelloProviderProps): JSX.Element => {
     akello.addEventListener('change', eventListener);
     return () => akello.removeEventListener('change', eventListener);
   }, [akello, state]);
- 
+
   const akelloContext = useMemo(
     () => ({
       ...state,

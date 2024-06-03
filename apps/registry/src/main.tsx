@@ -37,7 +37,6 @@ Amplify.configure({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
       <BrowserRouter>
-
         <AkelloProvider akello={akello}>
           <Authenticator.Provider>
             <App isPassedToWithAuthenticator={true} />
