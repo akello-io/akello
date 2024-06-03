@@ -10,9 +10,7 @@ COPY ./packages ./packages
 WORKDIR /apps/registry
 
 RUN rm -rf node_modules
-
 RUN pnpm i
-
 
 EXPOSE 5173
 

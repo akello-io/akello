@@ -19,14 +19,13 @@ services:
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
-
   accounts-service:
     environment:
       DYNAMODB_URL: ${DYNAMODB_URL}
       AWS_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
     build:
-      context: ./microservices/akello-account
+      context: ./microservices/account
       dockerfile: ./Dockerfile
     ports:
       - "8009:8000"
@@ -66,8 +65,6 @@ services:
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
-
-
 
 volumes:
   cache:

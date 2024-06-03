@@ -24,6 +24,6 @@ RUN poetry install
 
 
 
-CMD ["poetry", "run", "uvicorn", "mbc.entrypoints.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["poetry", "run", "uvicorn", "registry.entrypoints.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 EXPOSE 8000
