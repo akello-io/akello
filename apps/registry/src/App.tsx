@@ -46,7 +46,12 @@ const App:React.FC<AppProps> = () => {
   return (
     <ThemeProvider theme={theme} colorMode={themeMode}>
       <Routes>
-          <Route path="/" element={<>root</>} />
+          <Route path="/" element={<>
+            <div className="text-8xl font-bold underline">
+              Hello world!
+            </div>
+            <div className='bg-green-200 font-semibold'>root</div>
+          </>} />
       </Routes>
     </ThemeProvider>
   );
