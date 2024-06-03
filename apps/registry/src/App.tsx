@@ -10,7 +10,11 @@ import {
 
 
 
-const App = () => {
+interface AppProps {
+  isPassedToWithAuthenticator: boolean;
+}
+
+const App:React.FC<AppProps> = () => {
   const [themeMode, setThemeMode] = useState('');
   const { authStatus } = useAuthenticator(context => [context.authStatus]);
 
@@ -42,20 +46,16 @@ const App = () => {
   return (
     <ThemeProvider theme={theme} colorMode={themeMode}>
       <Routes>
-          <Route path="/" element={<>root</>} />
+          <Route path="/" element={<>
+            <div className="text-8xl font-bold underline">
+              Hello world!
+            </div>
+            <div className='bg-green-200 font-semibold'>root</div>
+          </>} />
       </Routes>
     </ThemeProvider>
   );
 };
 
 export default withAuthenticator(App);
-
-export async function getStaticProps() {
-  return {
-    props: {
-      isPassedToWithAuthenticator: true,
-    },
-  };
-}
-
 
