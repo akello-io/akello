@@ -8,6 +8,8 @@ import {
   useAuthenticator,
 } from '@aws-amplify/ui-react';
 
+import {AccountService} from '@akello/account';
+
 
 
 interface AppProps {
@@ -42,6 +44,22 @@ const App:React.FC<AppProps> = () => {
   if(authStatus !== 'authenticated') {
     return <>not authenticated</>
   }
+
+  /////////////////////////
+  // DBUG - test the account service
+  const accountService = new AccountService()
+  accountService.getAccount(
+    "ACCESS_TOKEN",
+    "ACCOUNT_ID",
+    (data: any) => {
+      console.log(data);
+    },
+    (error: any) => {
+      console.log(error);
+    }
+  )
+  /////////////////////////
+
 
   return (
     <ThemeProvider theme={theme} colorMode={themeMode}>
