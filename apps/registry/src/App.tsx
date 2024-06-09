@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { ThemeProvider } from '@aws-amplify/ui-react';
+import { fetchAuthSession } from '@aws-amplify/auth';
+
 import { theme } from './theme';
 import '@aws-amplify/ui-react/styles.css';
 import {
@@ -16,7 +18,7 @@ interface AppProps {
 
 const App:React.FC<AppProps> = () => {
   const [themeMode, setThemeMode] = useState('');
-  const { authStatus } = useAuthenticator(context => [context.authStatus]);
+  const { authStatus, user } = useAuthenticator(context => [context.authStatus]);
 
   useEffect(() => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -42,6 +44,19 @@ const App:React.FC<AppProps> = () => {
   if(authStatus !== 'authenticated') {
     return <>not authenticated</>
   }
+
+  // Function to print access token and id token
+  const printAccessTokenAndIdToken = async () => {
+    try {
+      const session = await fetchAuthSession();   // Fetch the authentication session
+      console.log('Access Token:', session.tokens!.accessToken.toString());
+      console.log('ID Token:', session.tokens!.idToken!.toString());
+    }
+    catch (e) { console.log(e); }
+  };
+
+  printAccessTokenAndIdToken()
+
 
   /////////////////////////
   // DBUG - test the account service
