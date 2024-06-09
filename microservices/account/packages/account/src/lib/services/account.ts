@@ -1,19 +1,26 @@
 
 import { BaseService } from './base';
 
-// set values from environment variables
-const BASE_URL = import.meta.env.VITE_API_URL;
 
-export interface IAccountService {
+export  interface IAccountService {
     getAccount(accessToken: string, accountId: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void): void;
 }
 
 export class AccountService extends BaseService implements IAccountService {
+    baseURL: string;
+
+    constructor(
+        baseURL: string
+    ) {
+        super();
+        this.baseURL = baseURL;
+    }
 
     async getAccount(accessToken: string, accountId: string, onSuccess: (data: any) => void, onFail?: (data: any) =>  void) {
+        // set values from environment variables
         const endpoint =  "account/" + accountId;
         this.apiRequest({
-            api_url: BASE_URL!,
+            api_url: this.baseURL,
             method: 'get',
             endpoint: endpoint,
             token: accessToken!,
