@@ -10,8 +10,6 @@ import {
 
 import {AccountService} from '@akello/account';
 
-
-
 interface AppProps {
   isPassedToWithAuthenticator: boolean;
 }
@@ -47,7 +45,9 @@ const App:React.FC<AppProps> = () => {
 
   /////////////////////////
   // DBUG - test the account service
-  const accountService = new AccountService()
+  const accountService = new AccountService(
+      import.meta.env.VITE_MICROSERVICE_ACCOUNT_API
+  );
   accountService.getAccount(
     "ACCESS_TOKEN",
     "ACCOUNT_ID",

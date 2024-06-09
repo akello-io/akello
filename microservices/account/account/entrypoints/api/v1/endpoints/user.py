@@ -11,6 +11,7 @@ from account.entrypoints.api.v1.models.create_user import CreateUser
 
 # TODO : no logger here
 
+
 router = APIRouter()
 app_config = config.AppConfig(**config.config)
 unit_of_work = dynamodb_unit_of_work.DynamoDBUnitOfWork(
