@@ -5,7 +5,6 @@ RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 COPY ./apps/registry /apps/registry
 COPY ./.env /apps/registry/.env.local
 COPY ./microservices /microservices
-COPY ./packages /packages
 
 
 WORKDIR /microservices/account/packages/account

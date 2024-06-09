@@ -10,9 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@akello/core": "link:../../packages/npm/core",
-    "@akello/react": "link:../../packages/npm/react",
-    "@akello/react-hook": "link:../../packages/npm/react-hook",
     "@aws-amplify/auth": "^6.3.2",
     "@aws-amplify/ui-react": "^6.1.11",
     "aws-amplify": "^6.3.2",
