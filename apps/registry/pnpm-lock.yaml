@@ -8,15 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@akello/core':
-        specifier: link:../../packages/npm/core
-        version: link:../../packages/npm/core
-      '@akello/react':
-        specifier: link:../../packages/npm/react
-        version: link:../../packages/npm/react
-      '@akello/react-hook':
-        specifier: link:../../packages/npm/react-hook
-        version: link:../../packages/npm/react-hook
       '@aws-amplify/auth':
         specifier: ^6.3.2
         version: 6.3.4(@aws-amplify/core@6.3.1)
@@ -48,6 +39,12 @@ importers:
       '@akello/account':
         specifier: link:../../microservices/account/packages/account
         version: link:../../microservices/account/packages/account
+      '@akello/core':
+        specifier: link:../../packages/npm-core
+        version: link:../../packages/npm-core
+      '@akello/react-hook':
+        specifier: link:../../packages/npm-react-hook
+        version: link:../../packages/npm-react-hook
       '@types/react':
         specifier: ^18.2.66
         version: 18.3.3

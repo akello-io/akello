@@ -3,9 +3,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { Authenticator } from '@aws-amplify/ui-react';
-// import { akello } from './client.ts'
+import { akello } from './client.ts'
 import { BrowserRouter } from 'react-router-dom';
 import { Amplify } from 'aws-amplify';
+import { AkelloProvider } from '@akello/react-hook'
+
 
 
 Amplify.configure({
@@ -36,9 +38,11 @@ Amplify.configure({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
       <BrowserRouter>
-        <Authenticator.Provider>
-          <App isPassedToWithAuthenticator={true} />
-        </Authenticator.Provider>
+        <AkelloProvider akello={akello}>
+          <Authenticator.Provider>
+            <App isPassedToWithAuthenticator={true} />
+          </Authenticator.Provider>
+        </AkelloProvider>
       </BrowserRouter>
   </React.StrictMode>,
 )
