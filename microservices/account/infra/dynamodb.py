@@ -8,14 +8,9 @@ AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 
 if AKELLO_UNIT_TEST:
-    #client = MagicMock()
     dynamodb = MagicMock()
-    # use magicMock
     print("using magicMock")
 else:
-    #client = boto3.client('dynamodb', endpoint_url=DYNAMODB_URL)
-    #dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_URL)
-    # use local dynamodb
     dynamodb = boto3.resource(
         'dynamodb',
         endpoint_url=DYNAMODB_URL,
@@ -23,7 +18,6 @@ else:
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
     )
     print("using local dynamodb: %s " % DYNAMODB_URL)
-    pass
 
 
 def create_core_table(db, table_name):
@@ -50,12 +44,35 @@ def create_core_table(db, table_name):
                     'AttributeName': 'sort_key',
                     'AttributeType': 'S'
                 },
+                {
+                    'AttributeName': 'email',
+                    'AttributeType': 'S'  # Ensure email is defined as String (S)
+                }
+            ],
+            GlobalSecondaryIndexes=[
+                {
+                    'IndexName': 'EmailIndex',
+                    'KeySchema': [
+                        {
+                            'AttributeName': 'email',
+                            'KeyType': 'HASH'
+                        }
+                    ],
+                    'Projection': {
+                        'ProjectionType': 'ALL'
+                    },
+                    'ProvisionedThroughput': {
+                        'ReadCapacityUnits': 10,
+                        'WriteCapacityUnits': 10
+                    }
+                }
             ],
             ProvisionedThroughput={
                 'ReadCapacityUnits': 10,
                 'WriteCapacityUnits': 10
             }
         )
+        table.wait_until_exists()
         print("Table status:", table.table_status)
     except Exception as e:
         print(e)

@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from account.adapters import dynamodb_unit_of_work
 from account.domain.command_handlers.user.add_user_command_handler import handle_add_user_command
@@ -31,11 +31,18 @@ async def get(user_id: str):
 
 @router.post("/")
 async def create(user: CreateUser):
-    command = AddUserCommand(
-        name=user.name,
-        email=user.email
-    )
-    ret = handle_add_user_command(
-        command=command,
-        unit_of_work=unit_of_work)
-    return ret
+    try:
+        command = AddUserCommand(
+            name=user.name,
+            email=user.email
+        )
+        ret = handle_add_user_command(
+            command=command,
+            unit_of_work=unit_of_work)
+        return ret
+
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        # Handle generic exception
+        raise HTTPException(status_code=500, detail="Internal server error.")

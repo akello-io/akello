@@ -1,7 +1,7 @@
 import enum
 import json
 import typing
-
+import traceback
 from account.domain.model.organization import Organization
 from account.domain.model.user import User
 from account.domain.ports import unit_of_work
@@ -20,9 +20,10 @@ class DynamoDBUserRepository(unit_of_work.UserRepository, DynamoDBRepository):
         super().__init__(table_name, context)
 
     def create(self, user: User) -> None:
+        if self._email_exists(user.email):
+            raise ValueError("Email already exists")
         self.add_generic_item(item=user.model_dump(),
                               key=self.generate_user_key(user.id))
-
 
     def update_attributes(self, user_id: str, **kwargs) -> User:
         pass
@@ -43,6 +44,22 @@ class DynamoDBUserRepository(unit_of_work.UserRepository, DynamoDBRepository):
             "partition_key": f"{DBPrefix.USER.value}#{user_id}",
             "sort_key": f"{DBPrefix.USER.value}#{user_id}",
         }
+
+    def _email_exists(self, email: str) -> bool:
+        request = {
+            'TableName': self._table_name,
+            'IndexName': 'EmailIndex',
+            'KeyConditionExpression': 'email = :email',
+            'ExpressionAttributeValues': {
+                ':email': email
+            }
+        }
+        try:
+            items = self._context.query_items(request)
+            return len(items) > 0
+        except Exception as e:
+            print(f"Error querying email existence: {e}")
+            raise
 
 
 class DynamoDBOrganizationRepository(unit_of_work.OrganizationRepository, DynamoDBRepository):

@@ -35,6 +35,14 @@ class DynamoDBContext:
 
         return item["Item"] if "Item" in item else None
 
+    def query_items(self, request: dict) -> Any:
+        """
+        Queries items from DynamoDB based on key conditions.
+        """
+        print(request)
+        response = self._dynamo_db_client.query(**request)
+        return response.get("Items", [])
+
 
 class DynamoDBRepository:
     """Generic DynamoDB repository."""
