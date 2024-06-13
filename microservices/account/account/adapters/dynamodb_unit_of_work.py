@@ -25,13 +25,40 @@ class DynamoDBUserRepository(unit_of_work.UserRepository, DynamoDBRepository):
         self.add_generic_item(item=user.model_dump(),
                               key=self.generate_user_key(user.id))
 
-    def update_attributes(self, user_id: str, **kwargs) -> User:
-        pass
+    def update_attributes(self, user_id: str, **kwargs) -> None:
+        orginal_user = self.get(user_id)
+        if 'email' in kwargs:
+            email = kwargs['email']
+            if (orginal_user != email) & self._email_exists(email):
+                raise ValueError("Email already exists")
+        try:
+            update_expression_names = {
+                f"#{key}": key for key in kwargs.keys()
+            }
+            update_expression_setters = [
+                f"#{key}=:p{idx}" for idx, (key, value) in enumerate(kwargs.items())
+            ]
+            update_values = {
+                f":p{idx}": value for idx, (key, value) in enumerate(kwargs.items())
+            }
+            self.update_generic_item(
+                expression={
+                    "UpdateExpression": f"set {', '.join(update_expression_setters)}",
+                    "ExpressionAttributeValues": update_values,
+                    "ExpressionAttributeNames": update_expression_names,
+                    "ConditionExpression": "(attribute_exists(partition_key) AND attribute_exists(sort_key))",
+                },
+                key=self.generate_user_key(user_id)
+            )
+        except Exception as e:
+            raise ValueError(e)
 
     def get(self, user_id: str) -> User:
         key = self.generate_user_key(user_id)
         request = self._create_get_request(key)
         user_dict = self._context.get_generic_item(request)
+        if user_dict is None:
+            raise ValueError(f"User {user_id} does not exist")
         return User(**user_dict)
 
     def delete(self, user_id: str) -> None:
@@ -44,6 +71,7 @@ class DynamoDBUserRepository(unit_of_work.UserRepository, DynamoDBRepository):
             "partition_key": f"{DBPrefix.USER.value}#{user_id}",
             "sort_key": f"{DBPrefix.USER.value}#{user_id}",
         }
+
 
     def _email_exists(self, email: str) -> bool:
         request = {
