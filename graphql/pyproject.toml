@@ -8,7 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 strawberry-graphql = {extras = ["debug-server"], version = "^0.227.2"}
-requests = "^2.32.0"
+requests = "^2.32.3"
 fastapi = "^0.110.2"
 
 
