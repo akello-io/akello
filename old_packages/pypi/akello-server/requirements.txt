@@ -22,7 +22,7 @@ bs4==0.0.2
 build==1.0.3
 caio==0.9.13
 cattrs==23.1.2
-certifi==2023.7.22
+certifi==2024.7.4
 cffi==1.16.0
 charset-normalizer==3.3.0
 click==8.1.7
@@ -99,7 +99,7 @@ PyYAML==6.0.1
 readme-renderer==42.0
 recommonmark==0.7.1
 referencing==0.33.0
-requests==2.32.0
+requests==2.32.3
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
 rich==13.6.0
@@ -134,7 +134,7 @@ typing-extensions==4.8.0
 tzdata==2024.1
 ua-parser==0.18.0
 ujson==5.8.0
-urllib3==1.26.18
+urllib3==1.26.19
 user-agents==2.2.0
 uvicorn==0.23.2
 watchfiles==0.20.0
