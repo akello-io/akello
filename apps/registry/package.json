@@ -22,8 +22,8 @@
   },
   "devDependencies": {
     "@akello/account": "link:../../microservices/account/packages/account",
-    "@akello/core": "link:../../packages/npm-core",
-    "@akello/react-hook": "link:../../packages/npm-react-hook",
+    "@akello/core": "link:../../packages/npm/core",
+    "@akello/react-hook": "link:../../packages/npm/react-hook",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

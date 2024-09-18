@@ -15,13 +15,13 @@ RUN rm -rf node_modules
 RUN pnpm i
 RUN pnpm build:lib
 
-WORKDIR /packages/npm-core
+WORKDIR /packages/npm/core
 RUN rm -rf dist
 RUN rm -rf node_modules
 RUN pnpm i
 RUN pnpm build:lib
 
-WORKDIR /packages/npm-react-hook
+WORKDIR /packages/npm/react-hook
 RUN rm -rf dist
 RUN rm -rf node_modules
 RUN pnpm i
