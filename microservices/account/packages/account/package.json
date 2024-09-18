@@ -32,7 +32,7 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
   "dependencies": {
-    "axios": "^1.7.2",
+    "axios": "^1.7.4",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -66,13 +66,13 @@
     "jsdom": "22.1.0",
     "json": "11.0.0",
     "lint-staged": "13.2.3",
-    "postcss": "8.4.27",
+    "postcss": "8.4.31",
     "prettier": "3.0.1",
     "prop-types": "15.8.1",
     "storybook": "7.2.2",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6",
-    "vite": "4.4.9",
+    "vite": "4.5.5",
     "vite-plugin-dts": "3.5.1",
     "vitest": "0.34.1"
   },
