@@ -5,7 +5,7 @@ from fastapi import APIRouter
 from registry.domain.command_handlers.registry_management_handlers.add_user_to_registry_command_handler import \
     handle_add_user_to_registry_command
 from registry.domain.commands.registry_management.add_user_to_registry_command import AddUserToRegistryCommand
-from registry.entrypoints.api.v1.models.refer_patient import ReferPatient
+from registry.entrypoints.api.v2.models.refer_patient import ReferPatient
 from registry.domain.model.registry import RegistryUser
 from registry.adapters import dynamodb_unit_of_work
 from registry.entrypoints.api import config

@@ -14,8 +14,8 @@ from registry.domain.commands.registry_management.create_registry_command import
 from registry.domain.commands.registry_management.get_registry_command import GetRegistryCommand
 from registry.domain.commands.registry_management.update_registry_command import UpdateRegistryCommand
 from registry.entrypoints.api import config
-from registry.entrypoints.api.v1.models.create_registry import CreateRegistry
-from registry.entrypoints.api.v1.models.update_registry import UpdateRegistry
+from registry.entrypoints.api.v2.models.create_registry import CreateRegistry
+from registry.entrypoints.api.v2.models.update_registry import UpdateRegistry
 
 logger = logging.getLogger('mangum')
 
