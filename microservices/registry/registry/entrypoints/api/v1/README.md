@@ -1,0 +1,1 @@
+V1 - migrate existing Akello CoCM endpoints to v1 and make sure the hexagonal architecture works
