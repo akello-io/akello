@@ -24,7 +24,7 @@ def root():
     return {"message": "Measurement Based Care Microservice"}
 
 
-app.include_router(api_router, prefix="/v1")
+app.include_router(api_router, prefix="/v2")
 
 app.add_middleware(
     CORSMiddleware,
