@@ -4,6 +4,10 @@ services:
     command: -jar DynamoDBLocal.jar -sharedDb -dbPath .
     ports:
       - "8001:8000"
+  cognito:
+    image: jagregory/cognito-local
+    ports:
+      - "8002:9229"
   graphql:
     environment:
       SERVICE_API_ACCOUNT: ${SERVICE_API_ACCOUNT}
@@ -50,7 +54,6 @@ services:
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
-
   registry-app:
     environment:
         DYNAMODB_URL: ${DYNAMODB_URL}
@@ -66,7 +69,6 @@ services:
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
-
 volumes:
   cache:
     driver: local
