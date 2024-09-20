@@ -1,8 +1,6 @@
-
 # Measurement Based Care (MBC) Microservice
 
 Service to run any MBC type clinical model. Our first use-case is the Collaborative Care Model (CoCM).
-
 
 ## MBC Abstractions
 Generally, MBC is a process of using patient data to inform clinical decisions. The data can be collected from a variety of sources, including patient-reported outcomes, clinician assessments, and administrative data. The data is then used to inform clinical decisions, such as treatment planning, monitoring, and evaluation. The MBC service provides a set of abstractions to support this process, including:
@@ -45,7 +43,7 @@ Generally, MBC is a process of using patient data to inform clinical decisions. 
 # Workflows
 
 ```mermaid
-step:    
+step:
     name: str
     status: str
     data:
