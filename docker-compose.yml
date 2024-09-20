@@ -21,7 +21,7 @@ services:
   accounts-service:
     environment:
       DYNAMODB_URL: ${DYNAMODB_URL}
-      AWS_REGION: ${AWS_REGION}
+      AWS_DEFAULT_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
     build:
       context: ./microservices/account
@@ -36,7 +36,7 @@ services:
   registry-service:
     environment:
       DYNAMODB_URL: ${DYNAMODB_URL}
-      AWS_REGION: ${AWS_REGION}
+      AWS_DEFAULT_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
     build:
       context: ./microservices/registry
