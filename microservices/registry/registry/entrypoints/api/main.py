@@ -2,7 +2,7 @@ from aws_lambda_powertools import Logger
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
-from registry.entrypoints.api.v2.api import router as api_router
+from registry.entrypoints.api.v1.api import router as api_router
 from infra.dynamodb import *
 from registry.adapters.dynamodb_query_service import *
 
@@ -24,7 +24,7 @@ def root():
     return {"message": "Measurement Based Care Microservice"}
 
 
-app.include_router(api_router, prefix="/v2")
+app.include_router(api_router, prefix="/v1")
 
 app.add_middleware(
     CORSMiddleware,

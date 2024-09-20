@@ -1,10 +1,14 @@
 from typing import Optional, List
 
+from boto3.dynamodb.conditions import Attr
+
 from infra.dynamodb import *
 from registry.domain.model.measurement import Measurement
 from registry.domain.model.registry import RegistryUser, Registry
 from registry.domain.ports.measurement_query_service import MeasurementQueryService
 from registry.domain.ports.registry_query_service import RegistryQueryService
+
+from .utils import DBPrefix
 
 AKELLO_DYNAMODB_LOCAL_URL = os.getenv('DYNAMODB_URL')
 AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
@@ -26,7 +30,7 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
     def get_registry_user(self, registry_id: str, user_id: str) -> Optional[RegistryUser]:
         response = self.table.get_item(
             Key={
-                'partition_key': 'registry-id:%s' % registry_id,
+                'partition_key': '%s:%s' % (DBPrefix.REGISTRY.value, registry_id),
                 'sort_key': 'user-id:%s' % user_id
             }
         )
@@ -38,13 +42,24 @@ class DynamoDBRegistryQueryService(RegistryQueryService):
     def get_registry(self, registry_id: str) -> Optional[Registry]:
         response = self.table.get_item(
             Key={
-                'partition_key': 'registry-id:%s' % registry_id,
+                'partition_key': '%s:%s' % (DBPrefix.REGISTRY.value, registry_id),
                 'sort_key': 'meta'
             }
         )
         item = response.get('Item')
         if item:
             return Registry(**item)
+        return None
+
+    def list_registeries(self) -> Optional[List[Registry]]:
+
+        response = self.table.scan(
+            FilterExpression=Attr('partition_key').begins_with(DBPrefix.REGISTRY.value)
+        )
+
+        items = response.get('Items')
+        if items:
+            return [Registry(**item) for item in items]
         return None
 
 

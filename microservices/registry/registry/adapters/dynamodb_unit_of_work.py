@@ -1,4 +1,3 @@
-import enum
 import json
 import typing
 from decimal import Decimal
@@ -10,11 +9,7 @@ from registry.domain.model.measurement import Measurement
 from registry.domain.model.registry import Registry, RegistryUser
 from registry.domain.ports import unit_of_work
 
-
-class DBPrefix(enum.Enum):
-    REGISTRY = "REGISTRY"
-    USER = "USER"
-    MEASUREMENT = "MEASUREMENT"
+from .utils import DBPrefix
 
 
 class DynamoDBRegistryRepository(
