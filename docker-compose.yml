@@ -30,6 +30,7 @@ services:
       - "8009:8000"
     volumes:
       - ~/.aws/:/root/.aws:ro
+      - ./microservices/account:/app
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -45,6 +46,7 @@ services:
       - "8010:8000"
     volumes:
       - ~/.aws/:/root/.aws:ro
+      - ./microservices/registry:/app
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
