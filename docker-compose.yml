@@ -7,7 +7,7 @@ services:
   cognito:
     image: jagregory/cognito-local
     ports:
-      - "8002:9229"
+      - "9229:9229"
   graphql:
     environment:
       SERVICE_API_ACCOUNT: ${SERVICE_API_ACCOUNT}
