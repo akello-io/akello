@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  vite-app:
+    build: .
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
