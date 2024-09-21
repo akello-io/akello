@@ -54,6 +54,22 @@ services:
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
+  vision-service-app:
+    environment:
+      DYNAMODB_URL: ${DYNAMODB_URL}
+      AWS_DEFAULT_REGION: ${AWS_REGION}
+      AWS_PROFILE: ${AWS_PROFILE}
+    build:
+      context: ./microservices/vision
+      dockerfile: ./React-Dockerfile
+    ports:
+      - "8011:5173"
+    volumes:
+      - ~/.aws/:/root/.aws:ro
+      - ./microservices/vision:/app
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   registry-app:
     environment:
         DYNAMODB_URL: ${DYNAMODB_URL}
