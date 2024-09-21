@@ -45,7 +45,7 @@ async def create(registry: CreateRegistry):
 @router.get("/")
 async def list():
     """
-    Test13 Handles the GET request to list all registries the user has access to.
+    Handles the GET request to list all registries the user has access to.
 
     Returns:
         List of Registry objects the user has access to.
