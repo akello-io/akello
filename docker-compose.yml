@@ -1,90 +1,29 @@
 services:
   dynamodb:
-    image: amazon/dynamodb-local
-    command: -jar DynamoDBLocal.jar -sharedDb -dbPath .
-    ports:
-      - "8001:8000"
+    extends:
+      file: ./environments/dev/docker-compose.yml
+      service: dynamodb
   cognito:
-    image: jagregory/cognito-local
-    ports:
-      - "9229:9229"
+    extends:
+      file: ./environments/dev/docker-compose.yml
+      service: cognito
   graphql:
-    environment:
-      SERVICE_API_ACCOUNT: ${SERVICE_API_ACCOUNT}
-      SERVICE_API_MEASUREMENT_BASED_CARE: ${SERVICE_API_MEASUREMENT_BASED_CARE}
-    build:
-      context: ./graphql
-      dockerfile: ./Dockerfile
-    ports:
-      - "8000:8000"
-    volumes:
-      - ~/.aws/:/root/.aws:ro
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    extends:
+      file: ./environments/dev/docker-compose.yml
+      service: graphql
   accounts-service:
-    environment:
-      DYNAMODB_URL: ${DYNAMODB_URL}
-      AWS_DEFAULT_REGION: ${AWS_REGION}
-      AWS_PROFILE: ${AWS_PROFILE}
-    build:
-      context: ./microservices/account
-      dockerfile: ./Dockerfile
-    ports:
-      - "8009:8000"
-    volumes:
-      - ~/.aws/:/root/.aws:ro
-      - ./microservices/account:/app
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    extends:
+      file: ./environments/dev/docker-compose.yml
+      service: accounts-service
   registry-service:
-    environment:
-      DYNAMODB_URL: ${DYNAMODB_URL}
-      AWS_DEFAULT_REGION: ${AWS_REGION}
-      AWS_PROFILE: ${AWS_PROFILE}
-    build:
-      context: ./microservices/registry
-      dockerfile: ./Dockerfile
-    ports:
-      - "8010:8000"
-    volumes:
-      - ~/.aws/:/root/.aws:ro
-      - ./microservices/registry:/app
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  vision-service-app:
-    environment:
-      DYNAMODB_URL: ${DYNAMODB_URL}
-      AWS_DEFAULT_REGION: ${AWS_REGION}
-      AWS_PROFILE: ${AWS_PROFILE}
-    build:
-      context: ./microservices/vision
-      dockerfile: ./React-Dockerfile
-    ports:
-      - "8011:5173"
-    volumes:
-      - ~/.aws/:/root/.aws:ro
-      - ./microservices/vision:/app
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    extends:
+      file: ./environments/dev/docker-compose.yml
+      service: registry-service
+  neuro-service-app:
+    extends:
+      file: ./environments/dev/docker-compose.yml
+      service: neuro-service-app
   registry-app:
-    environment:
-        DYNAMODB_URL: ${DYNAMODB_URL}
-        AWS_REGION: ${AWS_REGION}
-        AWS_PROFILE: ${AWS_PROFILE}
-    build:
-      context: ./
-      dockerfile: ./apps/registry/Dockerfile
-    ports:
-      - "5173:5173"
-    volumes:
-      - ~/.aws/:/root/.aws:ro
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-volumes:
-  cache:
-    driver: local
+    extends:
+      file: ./environments/dev/docker-compose.yml
+      service: registry-app
