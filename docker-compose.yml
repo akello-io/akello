@@ -19,6 +19,10 @@ services:
     extends:
       file: ./environments/dev/docker-compose.yml
       service: registry-service
+  neuro-service:
+    extends:
+      file: ./environments/dev/docker-compose.yml
+      service: neuro-service
   neuro-service-app:
     extends:
       file: ./environments/dev/docker-compose.yml

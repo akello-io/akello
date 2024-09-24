@@ -6,9 +6,10 @@ authors = ["Vijay Selvaraj <vijay.selvaraj@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
-pydantic = "^2.9.2"
+python = "^3.11"
 fastapi = "^0.115.0"
+uvicorn = "^0.30.6"
+mangum = "^0.18.0"
 
 
 [build-system]

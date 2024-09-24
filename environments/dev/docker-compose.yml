@@ -54,6 +54,22 @@ services:
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
+  neuro-service:
+    environment:
+      DYNAMODB_URL: ${DYNAMODB_URL}
+      AWS_DEFAULT_REGION: ${AWS_REGION}
+      AWS_PROFILE: ${AWS_PROFILE}
+    build:
+      context: ../../microservices/neuro
+      dockerfile: ./Dockerfile
+    ports:
+      - "8011:8000"
+    volumes:
+      - ~/.aws/:/root/.aws:ro
+      - ../../microservices/neuro:/app
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   neuro-service-app:
     environment:
       DYNAMODB_URL: ${DYNAMODB_URL}
@@ -63,7 +79,7 @@ services:
       context: ../../microservices/neuro
       dockerfile: ./React-Dockerfile
     ports:
-      - "8011:5173"
+      - "8012:5173"
     volumes:
       - ~/.aws/:/root/.aws:ro
       - ../../microservices/neuro:/app
