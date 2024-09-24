@@ -86,6 +86,22 @@ services:
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"
+  auth-service:
+    environment:
+      DYNAMODB_URL: ${DYNAMODB_URL}
+      AWS_DEFAULT_REGION: ${AWS_REGION}
+      AWS_PROFILE: ${AWS_PROFILE}
+    build:
+      context: ../../microservices/auth
+      dockerfile: ./Dockerfile
+    ports:
+      - "8013:8000"
+    volumes:
+      - ~/.aws/:/root/.aws:ro
+      - ../../microservices/auth:/app
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   registry-app:
     environment:
         DYNAMODB_URL: ${DYNAMODB_URL}
