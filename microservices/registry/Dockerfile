@@ -5,7 +5,7 @@ FROM python:3.11.2-slim
 ARG env
 
 # Install system dependencies and create a non-root user
-RUN apt-get update && apt-get install -y curl \
+RUN apt-get update && apt-get install -y --no-install-recommends curl \
     && groupadd -r appuser && useradd --no-log-init -r -g appuser appuser \
     && rm -rf /var/lib/apt/lists/*
 
