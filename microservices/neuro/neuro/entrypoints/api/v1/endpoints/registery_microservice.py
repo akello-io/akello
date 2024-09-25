@@ -1,16 +1,10 @@
 from neuro.adapters.cognito_adapter import CognitoAdapter
 from neuro.domain.command_handlers.register_microservice_handler import RegisterMicroserviceHandler
-from neuro.domain.commands.register_microservice_command import RegisterMicroserviceCommand
+from neuro.domain.commands.registration.register_microservice_command import RegisterMicroserviceCommand
 
 from fastapi import APIRouter, Depends
-from fastapi_cognito import CognitoToken
-
-from neuro.entrypoints.api import config
-from neuro.entrypoints.api.config import cognito_us
-
 
 router = APIRouter()
-app_config = config.AppConfig(**config.config)
 
 
 # Instantiate the adapter and handler
