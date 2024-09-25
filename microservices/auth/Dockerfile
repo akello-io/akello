@@ -14,7 +14,7 @@ RUN poetry config virtualenvs.create false \
 
 RUN rm -rf $POETRY_CACHE_DIR
 
-COPY ./ ./
+COPY ./auth ./
 
 RUN poetry install
 
