@@ -597,17 +597,17 @@ full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7
 
 [[package]]
 name = "strawberry-graphql"
-version = "0.227.2"
+version = "0.243.0"
 description = "A library for creating GraphQL APIs"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "strawberry_graphql-0.227.2-py3-none-any.whl", hash = "sha256:f03ecdd75ff8855be5dbd87f552a7f9a2f7891b0c1054b6f7c22a934523964c8"},
-    {file = "strawberry_graphql-0.227.2.tar.gz", hash = "sha256:c65ddc1d3c6b9dac9987360261920f2938fdab84260074d5f677a7272a75c9b5"},
+    {file = "strawberry_graphql-0.243.0-py3-none-any.whl", hash = "sha256:c187fa8445dd6ecba5b2e5f62ac11eb34fb561501adf609173d227bf2038ed50"},
+    {file = "strawberry_graphql-0.243.0.tar.gz", hash = "sha256:30251eff232ca049d339061f26aee864b34d32d1af0c22abb66385ddadec3404"},
 ]
 
 [package.dependencies]
-graphql-core = ">=3.2.0,<3.3.0"
+graphql-core = ">=3.2.0,<3.4.0"
 libcst = {version = ">=0.4.7", optional = true, markers = "extra == \"debug\" or extra == \"debug-server\" or extra == \"cli\""}
 pygments = {version = ">=2.3,<3.0", optional = true, markers = "extra == \"debug-server\" or extra == \"cli\""}
 python-dateutil = ">=2.7.0,<3.0.0"
@@ -635,7 +635,6 @@ pydantic = ["pydantic (>1.6.1)"]
 pyinstrument = ["pyinstrument (>=4.0.0)"]
 quart = ["quart (>=0.19.3)"]
 sanic = ["sanic (>=20.12.2)"]
-starlite = ["starlite (>=1.48.0)"]
 
 [[package]]
 name = "typer"
@@ -703,4 +702,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "ddc29ecdbedc9d3d9177db28bc72c29198c7aee19912dc7a7e2463873da7eca5"
+content-hash = "a260faddcc91e77147516ea16a5f00090a3815c0baf2bdfb8ea7be55f78dc5f8"
