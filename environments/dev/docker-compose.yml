@@ -27,13 +27,14 @@ services:
       DYNAMODB_URL: ${DYNAMODB_URL}
       AWS_DEFAULT_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
+      POETRY_CACHE_DIR: /app/.cache/pypoetry
     build:
       context: ../../microservices/account
       dockerfile: ./Dockerfile
     ports:
       - "8009:8000"
     volumes:
-      - ~/.aws/:/root/.aws:ro
+      - ~/.aws:/home/appuser/.aws:ro
       - ../../microservices/account:/app
     network_mode: bridge
     extra_hosts:
@@ -43,13 +44,14 @@ services:
       DYNAMODB_URL: ${DYNAMODB_URL}
       AWS_DEFAULT_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
+      POETRY_CACHE_DIR: /app/.cache/pypoetry
     build:
       context: ../../microservices/registry
       dockerfile: ./Dockerfile
     ports:
       - "8010:8000"
     volumes:
-      - ~/.aws/:/root/.aws:ro
+      - ~/.aws:/home/appuser/.aws:ro
       - ../../microservices/registry:/app
     network_mode: bridge
     extra_hosts:
@@ -59,6 +61,7 @@ services:
       DYNAMODB_URL: ${DYNAMODB_URL}
       AWS_DEFAULT_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
+      POETRY_CACHE_DIR: /app/.cache/pypoetry
     build:
       context: ../../microservices/neuro
       dockerfile: ./Dockerfile
@@ -75,13 +78,14 @@ services:
       DYNAMODB_URL: ${DYNAMODB_URL}
       AWS_DEFAULT_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
+      POETRY_CACHE_DIR: /app/.cache/pypoetry
     build:
       context: ../../microservices/neuro
       dockerfile: ./React-Dockerfile
     ports:
       - "8012:5173"
     volumes:
-      - ~/.aws/:/root/.aws:ro
+      - ~/.aws:/home/appuser/.aws:ro
       - ../../microservices/neuro:/app
     network_mode: bridge
     extra_hosts:
@@ -91,13 +95,14 @@ services:
       DYNAMODB_URL: ${DYNAMODB_URL}
       AWS_DEFAULT_REGION: ${AWS_REGION}
       AWS_PROFILE: ${AWS_PROFILE}
+      POETRY_CACHE_DIR: /app/.cache/pypoetry
     build:
       context: ../../microservices/auth
       dockerfile: ./Dockerfile
     ports:
       - "8013:8000"
     volumes:
-      - ~/.aws/:/root/.aws:ro
+      - ~/.aws:/home/appuser/.aws:ro
       - ../../microservices/auth:/app
     network_mode: bridge
     extra_hosts:
@@ -107,13 +112,14 @@ services:
         DYNAMODB_URL: ${DYNAMODB_URL}
         AWS_REGION: ${AWS_REGION}
         AWS_PROFILE: ${AWS_PROFILE}
+        POETRY_CACHE_DIR: /app/.cache/pypoetry
     build:
       context:  ../../
       dockerfile: ./apps/registry/Dockerfile
     ports:
       - "5173:5173"
     volumes:
-      - ~/.aws/:/root/.aws:ro
+      - ~/.aws:/home/appuser/.aws:ro
     network_mode: bridge
     extra_hosts:
       - "host.docker.internal:host-gateway"

@@ -1,23 +1,28 @@
 import os
 from unittest.mock import MagicMock
 import boto3
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 DYNAMODB_URL = os.getenv('DYNAMODB_URL')
-AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST') == "True"
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AKELLO_UNIT_TEST = os.getenv('AKELLO_UNIT_TEST')
+
+AWS_PROFILE = os.getenv('AWS_PROFILE')
+
+# use local dynamodb
+logger.info("Using local DynamoDB: %s", DYNAMODB_URL)
+logger.info("Using AWS Profile: %s", AWS_PROFILE)
+
 
 if AKELLO_UNIT_TEST:
+    #client = MagicMock()
     dynamodb = MagicMock()
-    print("using magicMock")
 else:
-    dynamodb = boto3.resource(
-        'dynamodb',
-        endpoint_url=DYNAMODB_URL,
-        aws_access_key_id=AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-    )
-    print("using local dynamodb: %s " % DYNAMODB_URL)
+    #client = boto3.client('dynamodb', endpoint_url=DYNAMODB_URL)
+    dynamodb = boto3.resource('dynamodb', endpoint_url=DYNAMODB_URL)
 
 
 def create_core_table(db, table_name):
