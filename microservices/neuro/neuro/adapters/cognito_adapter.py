@@ -1,12 +1,14 @@
 # app/adapters/cognito_adapter.py
 import boto3
 from botocore.exceptions import ClientError
-from app.domain.ports.auth_provider_port import AuthProviderPort
+from neuro.domain.ports.auth_provider_port import AuthProviderPort
 
 class CognitoAdapter(AuthProviderPort):
-    def __init__(self, user_pool_id, region_name='us-west-2'):
+    def __init__(self, user_pool_id, region_name='us-east-1'):
         self.user_pool_id = user_pool_id
-        self.client = boto3.client('cognito-idp', region_name=region_name)
+
+        session = boto3.Session(profile_name='Dev')
+        self.client = session.client('cognito-idp', region_name=region_name)
 
     def register_service(self, app_client_name: str) -> dict:
         try:

@@ -68,7 +68,7 @@ services:
     ports:
       - "8011:8000"
     volumes:
-      - ~/.aws/:/root/.aws:ro
+      - ~/.aws:/home/appuser/.aws:ro
       - ../../microservices/neuro:/app
     network_mode: bridge
     extra_hosts:
