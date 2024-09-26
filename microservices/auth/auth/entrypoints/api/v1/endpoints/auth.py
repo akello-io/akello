@@ -1,46 +1,10 @@
 from fastapi import APIRouter, Depends
-from fastapi_cognito import CognitoToken
-
-from pydantic import BaseModel
-
-from typing import Optional, Dict
 from auth.entrypoints.api import config
-from auth.entrypoints.api.config import cognito_us
-
+from auth.entrypoints.api.v1.models import AuthRequest, AuthResponse, AssumeRoleRequest, AssumeRoleResponse, VerifyTokenRequest, VerifyTokenResponse, UserDetailsResponse
 
 router = APIRouter()
 app_config = config.AppConfig(**config.config)
 
-
-
-# Pydantic Models
-class AuthRequest(BaseModel):
-    username: str
-    password: str
-
-class AuthResponse(BaseModel):
-    token: str
-
-class AssumeRoleRequest(BaseModel):
-    roleArn: str
-
-class AssumeRoleResponse(BaseModel):
-    accessKeyId: str
-    secretAccessKey: str
-    sessionToken: str
-    expiration: str
-
-class VerifyTokenRequest(BaseModel):
-    token: str
-
-class VerifyTokenResponse(BaseModel):
-    valid: bool
-    claims: Optional[Dict[str, str]] = None
-
-class UserDetailsResponse(BaseModel):
-    username: str
-    roles: list
-    permissions: list
 
 # Mock JWT generation and verification (replace with real logic)
 def create_jwt(username: str) -> str:
