@@ -1,10 +1,19 @@
-from fastapi import APIRouter, Depends
-from auth.entrypoints.api import config
-from auth.entrypoints.api.v1.models import AuthRequest, AuthResponse, AssumeRoleRequest, AssumeRoleResponse, VerifyTokenRequest, VerifyTokenResponse, UserDetailsResponse
+from fastapi import APIRouter, Depends, HTTPException
+from auth.entrypoints.api.v1.models import (
+    AuthRequest, AuthResponse,
+    AssumeRoleRequest, AssumeRoleResponse,
+    VerifyTokenRequest, VerifyTokenResponse,
+    UserDetailsResponse
+)
+import boto3
 
 router = APIRouter()
-app_config = config.AppConfig(**config.config)
 
+
+# Mock user database
+users_db = {
+    "testuser": {"password": "password123", "roles": ["admin"], "permissions": ["dynamodb:read", "dynamodb:write"]}
+}
 
 # Mock JWT generation and verification (replace with real logic)
 def create_jwt(username: str) -> str:
@@ -12,6 +21,12 @@ def create_jwt(username: str) -> str:
 
 def verify_jwt(token: str) -> bool:
     return token.startswith("mock-jwt")
+
+# Dependency for verifying JWT
+def get_current_user(token: str = Depends(create_jwt)):
+    if not verify_jwt(token):
+        raise HTTPException(status_code=403, detail="Invalid or expired token")
+    return {"username": "testuser"}  # Mocked user retrieval
 
 # Endpoint: Authenticate user
 @router.post("/auth/login", response_model=AuthResponse)
@@ -25,11 +40,7 @@ async def login(auth_request: AuthRequest):
 
 # Endpoint: Assume AWS Role
 @router.post("/auth/assume-role", response_model=AssumeRoleResponse)
-async def assume_role(assume_role_request: AssumeRoleRequest, token: str = Depends(create_jwt)):
-    # Validate the token (assuming a simple mock validation here)
-    if not verify_jwt(token):
-        raise HTTPException(status_code=403, detail="Invalid or expired token")
-
+async def assume_role(assume_role_request: AssumeRoleRequest, token: str = Depends(get_current_user)):
     # Call AWS STS to assume role
     sts_client = boto3.client('sts')
     assumed_role_object = sts_client.assume_role(
@@ -54,11 +65,7 @@ async def verify_token(request: VerifyTokenRequest):
 
 # Endpoint: Get User Details
 @router.get("/auth/user-details", response_model=UserDetailsResponse)
-async def get_user_details(token: str = Depends(create_jwt)):
-    # Mock validation and user details retrieval
-    if not verify_jwt(token):
-        raise HTTPException(status_code=403, detail="Invalid or expired token")
-
+async def get_user_details(token: str = Depends(get_current_user)):
     return UserDetailsResponse(
         username="testuser",
         roles=["admin", "user"],
