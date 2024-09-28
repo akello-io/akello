@@ -12,6 +12,13 @@
 Full open source code to run akello.io's infrastructure and apps. The backend services code is written in Python and all front-end code is built suing React and Typescript.
 
 
+### Install and Run Akello
+```
+git clone git@github.com:akello-io/akello.git
+cd akello
+docker-compose up
+```
+
 ## Overview of the Repo
 
 ```sh
