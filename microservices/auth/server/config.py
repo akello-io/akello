@@ -9,7 +9,9 @@ from supertokens_python import (
 
 # this is the location of the SuperTokens core.
 supertokens_config = SupertokensConfig(
-    connection_uri="https://try.supertokens.com")
+    connection_uri='http://supertokens:3567',
+    api_key='someKey'
+)
 
 app_info = InputAppInfo(
     app_name="Supertokens",
