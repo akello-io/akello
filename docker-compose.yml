@@ -1,37 +1,14 @@
-services:
-  dynamodb:
+services:  
+  supertokens:
     extends:
       file: ./environments/dev/docker-compose.yml
-      service: dynamodb
-  cognito:
+      service: supertokens
+
+  supertokens-db:
     extends:
       file: ./environments/dev/docker-compose.yml
-      service: cognito
-  graphql:
-    extends:
-      file: ./environments/dev/docker-compose.yml
-      service: graphql
-  accounts-service:
-    extends:
-      file: ./environments/dev/docker-compose.yml
-      service: accounts-service
-  registry-service:
-    extends:
-      file: ./environments/dev/docker-compose.yml
-      service: registry-service
-  neuro-service:
-    extends:
-      file: ./environments/dev/docker-compose.yml
-      service: neuro-service
-  neuro-service-app:
-    extends:
-      file: ./environments/dev/docker-compose.yml
-      service: neuro-service-app
-  auth-service:
-    extends:
-      file: ./environments/dev/docker-compose.yml
-      service: auth-service
-  registry-app:
-    extends:
-      file: ./environments/dev/docker-compose.yml
-      service: registry-app
+      service: supertokens-db
+
+networks:
+  supertokens_network:
+    driver: bridge      

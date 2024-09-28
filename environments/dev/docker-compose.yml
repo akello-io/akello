@@ -1,128 +1,42 @@
-services:
-  dynamodb:
-    image: amazon/dynamodb-local
-    command: -jar DynamoDBLocal.jar -sharedDb -dbPath .
-    ports:
-      - "8001:8000"
-  cognito:
-    image: jagregory/cognito-local
-    ports:
-      - "9229:9229"
-  graphql:
+version: '3'
+
+services:  
+  db-supertokens:
+    image: 'postgres:latest'
     environment:
-      SERVICE_API_ACCOUNT: ${SERVICE_API_ACCOUNT}
-      SERVICE_API_MEASUREMENT_BASED_CARE: ${SERVICE_API_MEASUREMENT_BASED_CARE}
-    build:
-      context: ../../graphql
-      dockerfile: ./Dockerfile
+      POSTGRES_USER: supertokens_user 
+      POSTGRES_PASSWORD: somePassword 
+      POSTGRES_DB: db-supertokens
     ports:
-      - "8000:8000"
-    volumes:
-      - ~/.aws/:/root/.aws:ro
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  accounts-service:
+      - 5432:5432
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'supertokens_user', '-d', 'db-supertokens']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  supertokens:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql:9.2.2
+    depends_on:
+      db-supertokens:
+        condition: service_healthy
+    ports:
+      - 3567:3567
     environment:
-      DYNAMODB_URL: ${DYNAMODB_URL}
-      AWS_DEFAULT_REGION: ${AWS_REGION}
-      AWS_PROFILE: ${AWS_PROFILE}
-      POETRY_CACHE_DIR: /app/.cache/pypoetry
-    build:
-      context: ../../microservices/account
-      dockerfile: ./Dockerfile
-    ports:
-      - "8009:8000"
-    volumes:
-      - ~/.aws:/home/appuser/.aws:ro
-      - ../../microservices/account:/app
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  registry-service:
-    environment:
-      DYNAMODB_URL: ${DYNAMODB_URL}
-      AWS_DEFAULT_REGION: ${AWS_REGION}
-      AWS_PROFILE: ${AWS_PROFILE}
-      POETRY_CACHE_DIR: /app/.cache/pypoetry
-    build:
-      context: ../../microservices/registry
-      dockerfile: ./Dockerfile
-    ports:
-      - "8010:8000"
-    volumes:
-      - ~/.aws:/home/appuser/.aws:ro
-      - ../../microservices/registry:/app
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  neuro-service:
-    environment:
-      DYNAMODB_URL: ${DYNAMODB_URL}
-      AWS_DEFAULT_REGION: ${AWS_REGION}
-      AWS_PROFILE: ${AWS_PROFILE}
-      POETRY_CACHE_DIR: /app/.cache/pypoetry
-    build:
-      context: ../../microservices/neuro
-      dockerfile: ./Dockerfile
-    ports:
-      - "8011:8000"
-    volumes:
-      - ~/.aws:/home/appuser/.aws:ro
-      - ../../microservices/neuro:/app
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  neuro-service-app:
-    environment:
-      DYNAMODB_URL: ${DYNAMODB_URL}
-      AWS_DEFAULT_REGION: ${AWS_REGION}
-      AWS_PROFILE: ${AWS_PROFILE}
-      POETRY_CACHE_DIR: /app/.cache/pypoetry
-    build:
-      context: ../../microservices/neuro
-      dockerfile: ./React-Dockerfile
-    ports:
-      - "8012:5173"
-    volumes:
-      - ~/.aws:/home/appuser/.aws:ro
-      - ../../microservices/neuro:/app
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  auth-service:
-    environment:
-      DYNAMODB_URL: ${DYNAMODB_URL}
-      AWS_DEFAULT_REGION: ${AWS_REGION}
-      AWS_PROFILE: ${AWS_PROFILE}
-      POETRY_CACHE_DIR: /app/.cache/pypoetry
-    build:
-      context: ../../microservices/auth
-      dockerfile: ./Dockerfile
-    ports:
-      - "8013:8000"
-    volumes:
-      - ~/.aws:/home/appuser/.aws:ro
-      - ../../microservices/auth:/app
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  registry-app:
-    environment:
-        DYNAMODB_URL: ${DYNAMODB_URL}
-        AWS_REGION: ${AWS_REGION}
-        AWS_PROFILE: ${AWS_PROFILE}
-        POETRY_CACHE_DIR: /app/.cache/pypoetry
-    build:
-      context:  ../../
-      dockerfile: ./apps/registry/Dockerfile
-    ports:
-      - "5173:5173"
-    volumes:
-      - ~/.aws:/home/appuser/.aws:ro
-    network_mode: bridge
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-volumes:
-  cache:
-    driver: local
+      POSTGRESQL_CONNECTION_URI: "postgresql://supertokens_user:somePassword@db-supertokens:5432/db-supertokens"
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test: >
+        bash -c 'exec 3<>/dev/tcp/127.0.0.1/3567 && echo -e "GET /hello HTTP/1.1\r\nhost: 127.0.0.1:3567\r\nConnection: close\r\n\r\n" >&3 && cat <&3 | grep "Hello"'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  app_network:
+    driver: bridge
