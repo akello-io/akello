@@ -46,6 +46,8 @@ services:
     ports:
       - "3001:3001"
     restart: always
+    networks:
+      - app_network
   auth-app:
     build:
       context: ../../microservices/auth/app
@@ -53,6 +55,8 @@ services:
     container_name: auth-app
     ports:
       - "3000:3000"
+    networks:
+      - app_network
     restart: always    
 networks:
   app_network:
