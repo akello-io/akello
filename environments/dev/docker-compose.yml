@@ -40,12 +40,20 @@ services:
       retries: 5  
   auth-api:
     build:
-      context: ../../microservices/auth
+      context: ../../microservices/auth/server
       dockerfile: Dockerfile
-    container_name: auth
+    container_name: auth-api
     ports:
       - "3001:3001"
     restart: always
+  auth-app:
+    build:
+      context: ../../microservices/auth/app
+      dockerfile: Dockerfile
+    container_name: auth-app
+    ports:
+      - "3000:3000"
+    restart: always    
 networks:
   app_network:
     driver: bridge
