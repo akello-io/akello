@@ -1,13 +1,14 @@
 [tool.poetry]
-name = "akello"
+name = "auth"
 version = "0.1.0"
 description = ""
 authors = ["Vijay Selvaraj <vijay.selvaraj@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-aws-cdk-lib = "^2.138.0"
+python = "^3.12"
+fastapi = "^0.115.0"
+uvicorn = "^0.31.0"
 supertokens-python = "^0.24.3"
 
 
