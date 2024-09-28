@@ -1,14 +1,15 @@
 version: '3'
 
-services:  
+services:
+  # PostgreSQL database for Supertokens
   db-supertokens:
-    image: 'postgres:latest'
+    image: postgres:latest
     environment:
-      POSTGRES_USER: supertokens_user 
-      POSTGRES_PASSWORD: somePassword 
+      POSTGRES_USER: supertokens_user
+      POSTGRES_PASSWORD: somePassword
       POSTGRES_DB: db-supertokens
     ports:
-      - 5432:5432
+      - "5432:5432"
     networks:
       - app_network
     restart: unless-stopped
@@ -18,13 +19,14 @@ services:
       timeout: 5s
       retries: 5
 
+  # Supertokens server
   supertokens:
     image: registry.supertokens.io/supertokens/supertokens-postgresql:9.2.2
     depends_on:
       db-supertokens:
         condition: service_healthy
     ports:
-      - 3567:3567
+      - "3567:3567"
     environment:
       POSTGRESQL_CONNECTION_URI: "postgresql://supertokens_user:somePassword@db-supertokens:5432/db-supertokens"
     networks:
@@ -32,11 +34,18 @@ services:
     restart: unless-stopped
     healthcheck:
       test: >
-        bash -c 'exec 3<>/dev/tcp/127.0.0.1/3567 && echo -e "GET /hello HTTP/1.1\r\nhost: 127.0.0.1:3567\r\nConnection: close\r\n\r\n" >&3 && cat <&3 | grep "Hello"'
+        bash -c 'exec 3<>/dev/ttcp/127.0.0.1/3567 && echo -e "GET /hello HTTP/1.1\r\nhost: 127.0.0.1:3567\r\nConnection: close\r\n\r\n" >&3 && cat <&3 | grep "Hello"'
       interval: 10s
       timeout: 5s
-      retries: 5
-
+      retries: 5  
+  auth-api:
+    build:
+      context: ../../microservices/auth
+      dockerfile: Dockerfile
+    container_name: auth
+    ports:
+      - "3001:3001"
+    restart: always
 networks:
   app_network:
     driver: bridge
