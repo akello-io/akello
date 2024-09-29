@@ -1,6 +1,9 @@
 # Use an official Node.js runtime as the parent image
 FROM node:18-alpine
 
+# Install curl and any required system dependencies using apk for Alpine Linux
+RUN apk add --no-cache curl
+
 # Set the working directory inside the container
 WORKDIR /app
 

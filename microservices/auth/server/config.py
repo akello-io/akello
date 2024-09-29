@@ -2,6 +2,7 @@ from supertokens_python import init, InputAppInfo, SupertokensConfig
 from supertokens_python.recipe import emailpassword, thirdparty, passwordless, session, dashboard
 from supertokens_python.recipe.passwordless import ContactEmailOrPhoneConfig
 from supertokens_python.recipe.thirdparty.provider import ProviderInput, ProviderConfig, ProviderClientConfig
+from supertokens_python.recipe import jwt
 from supertokens_python import (
     InputAppInfo,
     SupertokensConfig,
@@ -24,6 +25,7 @@ framework = "fastapi"
 # recipeList contains all the modules that you want to
 # use from SuperTokens. See the full list here: https://supertokens.com/docs/guides
 recipe_list = [
+    jwt.init(),
     session.init(),
     emailpassword.init(),
     passwordless.init(
