@@ -10,7 +10,7 @@ curl -X PUT --data '{
   "Name": "'"$SERVICE_NAME"'",
   "Port": '"$SERVICE_PORT"',
   "Check": {
-    "HTTP": "http://localhost:'"$SERVICE_PORT"'/health",
+    "HTTP": "http://auth-api:'"$SERVICE_PORT"'/health",
     "Interval": "10s"
   }
 }' $CONSUL_ADDR/v1/agent/service/register

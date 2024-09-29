@@ -23,6 +23,12 @@ init(
 app = FastAPI(title="SuperTokens example")
 app.add_middleware(get_middleware())
 
+@app.get("/health")
+async def health():
+    return {
+        "status": "OK"
+    }
+
 @app.get("/sessioninfo")    
 async def secure_api(s: SessionContainer = Depends(verify_session())):
     return {
