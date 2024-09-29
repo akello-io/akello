@@ -73,7 +73,7 @@ services:
     command: >
       sh -c "./consul-register.sh auth-api auth-api-1 3001 http://consul:8500 && poetry run uvicorn app:app --host 0.0.0.0 --port 3001"
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:3001/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:3001/health || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3
