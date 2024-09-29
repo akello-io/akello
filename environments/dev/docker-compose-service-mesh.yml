@@ -14,3 +14,7 @@ services:
       - app_network
     command: "agent -dev -client=0.0.0.0"
     restart: unless-stopped
+
+networks:
+  app_network:
+    external: true
