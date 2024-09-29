@@ -38,6 +38,21 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5  
+      
+  # Consul service
+  consul:
+    image: consul:1.14.6
+    container_name: consul
+    ports:
+      - "8500:8500"
+      - "8600:8600/udp"
+    environment:
+      CONSUL_BIND_INTERFACE: eth0
+    networks:
+      - app_network
+    command: "agent -dev -client=0.0.0.0"
+    restart: unless-stopped    
+
   auth-api:
     build:
       context: ../../microservices/auth/server
@@ -48,6 +63,13 @@ services:
     restart: always
     networks:
       - app_network
+    environment:
+      CONSUL_HTTP_ADDR: "http://consul:8500"
+      # Optionally register the service with Consul
+      SERVICE_NAME: "auth-api"
+      SERVICE_ID: "auth-api-1"
+      SERVICE_PORT: 3001
+
   auth-app:
     build:
       context: ../../microservices/auth/app
@@ -58,6 +80,13 @@ services:
     networks:
       - app_network
     restart: always    
+    environment:
+      CONSUL_HTTP_ADDR: "http://consul:8500"
+      # Optionally register the service with Consul
+      SERVICE_NAME: "auth-app"
+      SERVICE_ID: "auth-app-1"
+      SERVICE_PORT: 3000
+
 networks:
   app_network:
     driver: bridge

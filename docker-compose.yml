@@ -1,24 +1,31 @@
 version: '3'
 
-services:
-  # PostgreSQL database for Supertokens
+services:  
   db-supertokens:
     extends:
       file: ./environments/dev/docker-compose.yml
       service: db-supertokens
-  # Supertokens server
+    
   supertokens:
     extends:
       file: ./environments/dev/docker-compose.yml
       service: supertokens
+    
+  consul:
+    extends:
+      file: ./environments/dev/docker-compose.yml
+      service: consul
+      
   auth-api:
     extends:
       file: ./environments/dev/docker-compose.yml
       service: auth-api
+    
   auth-app:
     extends:
       file: ./environments/dev/docker-compose.yml
       service: auth-app    
+
 networks:
   app_network:
     driver: bridge

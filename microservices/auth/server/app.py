@@ -45,7 +45,6 @@ async def get_tenants():
         "tenants": tenantsList,
     }
 
-
 app = CORSMiddleware(
     app=app,
     allow_origins=[config.app_info.website_domain],
