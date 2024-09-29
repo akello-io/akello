@@ -1,0 +1,16 @@
+version: '3'
+
+services:    
+  # Consul service
+  consul:
+    image: consul:1.14.6
+    container_name: consul
+    ports:
+      - "8500:8500"
+      - "8600:8600/udp"
+    environment:
+      CONSUL_BIND_INTERFACE: eth0
+    networks:
+      - app_network
+    command: "agent -dev -client=0.0.0.0"
+    restart: unless-stopped

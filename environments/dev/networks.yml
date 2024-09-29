@@ -1,0 +1,16 @@
+# network.yml
+version: '3'
+services:
+  dummy:
+    image: alpine
+    command: ["sleep", "3600"]
+    networks:
+      - temporal-network
+      - app_network
+networks:
+  temporal-network:
+    driver: bridge
+    name: temporal-network
+  app_network:
+    driver: bridge
+    name: app_network
