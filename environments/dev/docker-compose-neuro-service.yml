@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  neuro-service:
+    environment:
+      DYNAMODB_URL: ${DYNAMODB_URL}
+      AWS_DEFAULT_REGION: ${AWS_REGION}
+      AWS_PROFILE: ${AWS_PROFILE}
+      POETRY_CACHE_DIR: /app/.cache/pypoetry
+    build:
+      context: ../../
+      dockerfile: microservices/neuro/Dockerfile  # Keep relative to the build context
+    ports:
+      - "8011:8000"
+    volumes:
+      - ~/.aws:/home/appuser/.aws:ro
+      - ../../microservices/neuro:/app/microservices/neuro  # Only mount neuro service, not entire /app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

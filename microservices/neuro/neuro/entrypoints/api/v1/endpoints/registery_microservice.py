@@ -4,7 +4,11 @@ from neuro.domain.commands.registration.register_microservice_command import Reg
 
 from fastapi import APIRouter, Depends
 
+from core.auth import auth_middleware
+
 router = APIRouter()
+
+
 
 
 # Instantiate the adapter and handler
