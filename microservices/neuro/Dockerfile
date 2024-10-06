@@ -23,11 +23,18 @@ COPY poetry.lock pyproject.toml ./
 RUN poetry config virtualenvs.create false \
     && poetry install --no-dev --no-interaction --no-ansi
 
+# Install uvicorn explicitly to ensure it's available (in case Poetry has issues)
+RUN python -m pip install uvicorn
+
 # Clear Poetry's cache to reduce image size
 RUN rm -rf $POETRY_CACHE_DIR
 
 # Copy the rest of the application code
-COPY ./neuro ./
+COPY ./microservices/neuro /app/microservices/neuro
+COPY ./packages /app/packages
+
+# Debug: Verify that core exists inside /app/packages
+RUN ls -R /app/packages
 
 # Change ownership of the /app directory to the non-root user
 RUN chown -R appuser:appuser /app
