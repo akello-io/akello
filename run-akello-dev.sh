@@ -1,5 +1,7 @@
 #!/bin/bash
 
+docker network create --driver bridge temporal-network
+docker network create --driver bridge app_network
 
 docker-compose \
     -f environments/dev/networks.yml \
