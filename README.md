@@ -9,31 +9,28 @@
 
 > ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw), review Roadmap [here](https://github.com/orgs/akello-io/projects/12) and checkout [akello.io](https://akello.io)
 
-Full open source code to run akello.io's infrastructure and apps. The backend services code is written in Python and all front-end code is built suing React and Typescript.
+Akello utilizes a microservices architecture for high extensibility and implements a standardized message bus to enable seamless service communication and data synchronization. Akello allows you to integrate multiple systems, including external open-source projects, ensuring consistent and efficient data syncing across all services.
 
 
 ### Install and Run Akello
 ```
 git clone git@github.com:akello-io/akello.git
 cd akello
-docker-compose up
+./dev-server.sh
 ```
 
 ## Overview of the Repo
 
 ```sh
 akello/
-├── agent                  # automated workflows / AI enablement
-├── eventbus               # rules for all events
-├── graphql                # graphql server for all microservices
 ├── microservices
-│   ├── akello-account     # account service
-│   ├── clinical-model-measurement-based-care
+│   ├── account       # account service
+│   ├── auth          # supertoken auth service
+│   ├── huggingface   # microservice integrating huggingface models
+│   ├── neurology     # BCI, eye tracking data services
+│   ├── registry      # Run a clinical trial across a patient population
 ├── packages
-│   ├── core               # data models and API utilities
-│   ├── docs               # docs hosted under docs.akello.io
-│   ├── react              # React components and storybook
-│   ├── react-hook         # React hooks
+│   ├── core          # core python lbiraries
 ```
 
 ## Contributing
