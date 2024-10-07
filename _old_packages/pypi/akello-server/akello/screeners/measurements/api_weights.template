@@ -1,3 +1,0 @@
----
- name: "Score using an API"
- api: "http://localhost:5000/api/v1/score"
