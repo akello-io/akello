@@ -8,19 +8,14 @@
 
 > ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw)
 
-Akello is an open-source platform designed to streamline the integration of diverse healthcare services via microservices. It offers **flexibility** and **scalability**, empowering developers and organizations to build robust infrastructures quickly and securely.
+Akello is an open-source platform that simplifies healthcare service integration using microservices. It offers flexibility, scalability, and strong security for developers building healthcare infrastructures.
 
-At the heart of Akello’s service integration is a **secure message bus** that enables seamless communication between microservices. The message bus automates workflows and event handling, allowing services to trigger actions across the platform while ensuring security and data integrity. This is particularly critical in healthcare, where sensitive data and complex systems need to interoperate without compromising safety.
+- **Secure message bus** for efficient microservice communication and workflow automation
+- **Robust security** with identity management, token-based authentication, encryption, and zero-trust architecture
+- **Interoperability** with healthcare standards like FHIR, SNOMED, LOINC, and DICOM
+- **Scalable, modular design** to meet evolving infrastructure needs
+- **Community-driven** platform encouraging contributions for continuous improvement
 
-## Why Akello?
-
-Akello is not just a development framework—it's a comprehensive solution to unify disparate healthcare services. Designed to support everything from patient management systems to AI-driven diagnostics, Akello places interoperability and security at the forefront, ensuring:
-
-- **Security**: With centralized identity and access management, token-based authentication, encryption for both data at rest and in transit, and a zero-trust architecture, Akello ensures robust protection of sensitive healthcare data. Service-level access control allows microservices to define their data accessibility rules within this secure framework.
-- **Interoperability**: Easily integrate healthcare standards such as FHIR, SNOMED, LOINC, and DICOM, ensuring seamless communication across systems.
-- **Scalability**: Akello's modular, flexible architecture allows your system to grow without compromise, adapting to the evolving needs of healthcare infrastructure.
-- **Message-Driven Architecture**: Akello's message bus acts as the backbone of service interaction, enabling services to connect effortlessly, monitor events, and automate workflows based on triggers—making your system responsive and dynamic.
-- **Community-Driven**: Akello thrives through community involvement, inviting contributions from developers, healthcare professionals, and enthusiasts to continually enhance the platform.
 
 ---
 
