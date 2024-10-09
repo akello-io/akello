@@ -7,9 +7,20 @@
 
 <h3></h3>
 
-> ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw), review Roadmap [here](https://github.com/orgs/akello-io/projects/12) and checkout [akello.io](https://akello.io)
 
-Akello utilizes a microservices architecture for high extensibility and implements a standardized message bus to enable seamless service communication and data synchronization. Akello allows you to integrate multiple systems, including external open-source projects, ensuring consistent and efficient data syncing across all services.
+Akello is an open-source platform designed to integrate diverse healthcare services seamlessly using a microservices architecture. It features a secure message bus that facilitates the efficient and reliable passing of events between services, ensuring a flexible and scalable infrastructure for healthcare applications.
+
+### Akello's platform comes with the following integrated out of the box:
+
+- **User Account management**: A robust system for managing user accounts, including role-based access control, user profiles, and permissions, ensuring secure and compliant handling of sensitive healthcare data.
+
+- **Authentication Service**: A built-in authentication service that supports industry-standard protocols like OAuth and SAML, providing secure user login and session management across healthcare applications.
+
+- **Workflow management**: A flexible workflow engine to orchestrate complex clinical processes and healthcare operations, enabling seamless coordination between services and ensuring efficient patient care delivery.
+
+- **Population Health management**: Tools to support population health initiatives by aggregating and analyzing health data across different sources, helping healthcare providers make informed decisions to improve patient outcomes and reduce costs.
+
+- **AI data pipeline processing**: Integrated AI pipelines that enable the processing of large volumes of healthcare data, providing advanced analytics, insights, and automation for clinical decision support and other healthcare applications.
 
 
 ### Install and Run Akello
