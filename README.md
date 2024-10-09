@@ -31,7 +31,7 @@ To get up and running with Akello, clone the repository and launch the developme
 git clone git@github.com:akello-io/akello.git
 cd akello
 ./dev-server.sh
-
+```
 
 ## Overview of the Repo
 
