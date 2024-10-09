@@ -18,5 +18,6 @@ docker-compose \
     -f environments/dev/docker-compose-temporal.yml  \
     -f environments/dev/docker-compose-supertokens.yml  \
     -f environments/dev/docker-compose-sensor-service.yml  \
+    -f environments/dev/docker-compose-emqx.yml  \
     -p akello \
     up --build --force-recreate
