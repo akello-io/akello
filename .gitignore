@@ -13,3 +13,6 @@ venv
 *.pyc
 
 cdk.out
+
+
+kafka-data
