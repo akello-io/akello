@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 fastapi = "^0.115.0"
 uvicorn = "^0.31.0"
+aiokafka = "^0.11.0"
 
 
 [build-system]
