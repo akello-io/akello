@@ -8,9 +8,6 @@
 
 > ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw)
 
-
-**Akello** – A modular, secure platform to simplify healthcare service integration using microservices.
-
 Akello is an open-source platform designed to streamline the integration of diverse healthcare services via microservices. It offers **flexibility** and **scalability**, empowering developers and organizations to build robust infrastructures quickly and securely.
 
 At the heart of Akello’s service integration is a **secure message bus** that enables seamless communication between microservices. The message bus automates workflows and event handling, allowing services to trigger actions across the platform while ensuring security and data integrity. This is particularly critical in healthcare, where sensitive data and complex systems need to interoperate without compromising safety.
