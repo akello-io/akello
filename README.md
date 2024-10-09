@@ -9,16 +9,28 @@
 > ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw)
 
 
-Akello is an open-source platform built to seamlessly integrate diverse healthcare services through a microservices architecture. With its secure message bus, Akello ensures efficient and reliable event communication between services, creating a flexible, scalable infrastructure. It's designed to deliver healthcare data infrastructure for absolutely everyone.
+**Akello** is an open-source platform designed to streamline the integration of diverse healthcare services via microservices. It offers **flexibility** and **scalability**, empowering developers and organizations to build robust infrastructures quickly and securely.
 
+Through its **secure message bus**, Akello facilitates seamless communication between services, ensuring efficient event handling and action triggers across your applications. This is particularly important for handling healthcare data, where security and data integrity are critical.
 
+### Why Akello?
 
-### Get Started
-```
+Akello is not just a development framework—it's a solution to **unify disparate healthcare services**. With an architecture that supports everything from **patient management systems** to **AI-driven diagnostics**, Akello brings interoperability to the forefront, ensuring:
+
+- **Security**: With service-level access control, all microservices define their data accessibility rules.
+- **Interoperability**: Easily integrate standards like **FHIR**, **SNOMED**, **LOINC**, and **DICOM**.
+- **Scalability**: Modular and flexible, allowing your system to grow without compromise.
+- **Community-Driven**: Akello thrives through community involvement, and we invite contributions from developers, healthcare experts, and enthusiasts.
+
+---
+
+### Get Started with Akello
+To get up and running with Akello, clone the repository and launch the development server:
+
+```sh
 git clone git@github.com:akello-io/akello.git
 cd akello
 ./dev-server.sh
-```
 
 
 ## Overview of the Repo
@@ -34,6 +46,18 @@ akello/
 ├── packages
 │   ├── core          # core python lbiraries
 ```
+
+Each microservice is designed to be self-contained, making it easier to develop, test, and deploy specific functionalities. New microservices can be added without disrupting the existing architecture, making Akello an ideal choice for modular application development.
+
+
+## Message Bus
+The message bus is the backbone of Akello’s service integration. It allows you to:
+
+Add new services and connect them effortlessly.
+- Monitor and react to events happening across the platform.
+- Automate workflows based on these events, making your system responsive and dynamic.
+- Each service retains full control over its data by defining secure access for other services through the message bus.
+
 
 ## Contributing
 
