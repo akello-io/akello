@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  neuro-service:
+  sensor-service:
     environment:
       POETRY_CACHE_DIR: /app/.cache/pypoetry
     build:
       context: ../../
-      dockerfile: microservices/neurology/Dockerfile
+      dockerfile: microservices/sensor/Dockerfile
     ports:
       - "8011:8000"
     volumes:
-      - ../../microservices/neurology:/app/microservices/neurology
+      - ../../microservices/sensor:/app/microservices/sensor
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:

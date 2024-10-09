@@ -20,7 +20,7 @@ RUN poetry config virtualenvs.in-project true
 WORKDIR /app
 
 # Copy pyproject.toml and poetry.lock files
-COPY ./microservices/neurology/pyproject.toml ./microservices/neurology/poetry.lock ./
+COPY ./microservices/sensor/pyproject.toml ./microservices/sensor/poetry.lock ./
 
 # Change ownership of the /app directory to the non-root user
 RUN chown -R appuser:appuser /app
@@ -32,10 +32,10 @@ USER appuser
 RUN poetry install --no-root
 
 # Copy the rest of the application code
-COPY ./microservices/neurology .
+COPY ./microservices/sensor .
 
 # Expose the application port
 EXPOSE 8000
 
 # Start the application using Uvicorn directly
-CMD ["poetry", "run", "uvicorn", "neurology.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["poetry", "run", "uvicorn", "sensor.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
