@@ -10,14 +10,8 @@
 
 Akello is an open-source platform designed to integrate diverse healthcare services seamlessly using a microservices architecture. It features a secure message bus that facilitates the efficient and reliable passing of events between services, ensuring a flexible and scalable infrastructure for healthcare applications.
 
-### Install and Run Akello
-```
-git clone git@github.com:akello-io/akello.git
-cd akello
-./dev-server.sh
-```
 
-**Akello's platform comes with the following integrated out of the box:**
+**Out of the box, Akello includes the following:**
 
 - **User Account management**: A robust system for managing user accounts, including role-based access control, user profiles, and permissions, ensuring secure and compliant handling of sensitive healthcare data.
 
@@ -28,6 +22,14 @@ cd akello
 - **Population Health management**: Tools to support population health initiatives by aggregating and analyzing health data across different sources, helping healthcare providers make informed decisions to improve patient outcomes and reduce costs.
 
 - **AI data pipeline processing**: Integrated AI pipelines that enable the processing of large volumes of healthcare data, providing advanced analytics, insights, and automation for clinical decision support and other healthcare applications.
+
+
+### Get Started
+```
+git clone git@github.com:akello-io/akello.git
+cd akello
+./dev-server.sh
+```
 
 
 ## Overview of the Repo
