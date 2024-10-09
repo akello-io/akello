@@ -13,14 +13,16 @@
 
 Through its **secure message bus**, Akello facilitates seamless communication between services, ensuring efficient event handling and action triggers across your applications. This is particularly important for handling healthcare data, where security and data integrity are critical.
 
-### Why Akello?
 
-Akello is not just a development framework—it's a solution to **unify disparate healthcare services**. With an architecture that supports everything from **patient management systems** to **AI-driven diagnostics**, Akello brings interoperability to the forefront, ensuring:
+## Why Akello?
 
-- **Security**: With service-level access control, all microservices define their data accessibility rules.
-- **Interoperability**: Easily integrate standards like **FHIR**, **SNOMED**, **LOINC**, and **DICOM**.
-- **Scalability**: Modular and flexible, allowing your system to grow without compromise.
-- **Community-Driven**: Akello thrives through community involvement, and we invite contributions from developers, healthcare experts, and enthusiasts.
+Akello is not just a development framework—it's a comprehensive solution to unify disparate healthcare services. Designed to support everything from patient management systems to AI-driven diagnostics, Akello places interoperability and security at the forefront, ensuring:
+
+- **Security**: With centralized identity and access management, token-based authentication, encryption for both data at rest and in transit, and a zero-trust architecture, Akello ensures robust protection of sensitive healthcare data. Service-level access control allows microservices to define their data accessibility rules within this secure framework.  
+- **Interoperability**: Easily integrate healthcare standards such as FHIR, SNOMED, LOINC, and DICOM, ensuring seamless communication across systems.
+- **Scalability**: Akello's modular, flexible architecture allows your system to grow without compromise, adapting to the evolving needs of healthcare infrastructure.
+- **Community-Driven**: Akello thrives through community involvement, inviting contributions from developers, healthcare professionals, and enthusiasts to continually enhance the platform.
+
 
 ---
 
