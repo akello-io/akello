@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cp environments/dev/env.template environments/dev/.env
+
 # Create networks if they don't already exist
 docker network inspect temporal-network >/dev/null 2>&1 || \
     docker network create --driver bridge temporal-network
