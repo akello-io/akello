@@ -38,14 +38,16 @@ cd akello
 
 ```sh
 akello/
+├── environments
+│   ├── dev
+│   └── test
 ├── microservices
 │   ├── account       # account service
 │   ├── auth          # supertoken auth service
 │   ├── huggingface   # microservice integrating huggingface models
-│   ├── neurology     # BCI, eye tracking data services
-│   ├── registry      # Run a clinical trial across a patient population
-├── packages
-│   ├── core          # core python lbiraries
+│   └── sensor        # BCI, eye tracking data services
+└── packages
+    └── core          # core python lbiraries
 ```
 
 Each microservice is designed to be self-contained, making it easier to develop, test, and deploy specific functionalities. New microservices can be added without disrupting the existing architecture, making Akello an ideal choice for modular application development.

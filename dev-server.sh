@@ -17,6 +17,6 @@ docker-compose \
     -f environments/dev/docker-compose-service-mesh.yml  \
     -f environments/dev/docker-compose-temporal.yml  \
     -f environments/dev/docker-compose-supertokens.yml  \
-    -f environments/dev/docker-compose-neuro-service.yml  \
+    -f environments/dev/docker-compose-sensor-service.yml  \
     -p akello \
     up --build --force-recreate
