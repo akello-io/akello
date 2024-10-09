@@ -4,7 +4,6 @@
     <img src="/assets/akello-logo.png" alt="Akello Logo" height="50"/>
   </picture>
 </a>
-app
 <h3></h3>
 
 > ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw)
