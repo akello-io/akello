@@ -53,7 +53,7 @@ Each microservice is designed to be self-contained, making it easier to develop,
 ## Message Bus
 The message bus is the backbone of Akello’s service integration. It allows you to:
 
-Add new services and connect them effortlessly.
+- Add new services and connect them effortlessly.
 - Monitor and react to events happening across the platform.
 - Automate workflows based on these events, making your system responsive and dynamic.
 - Each service retains full control over its data by defining secure access for other services through the message bus.
