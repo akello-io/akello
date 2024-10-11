@@ -20,7 +20,7 @@ RUN poetry config virtualenvs.in-project true
 WORKDIR /app
 
 # Copy pyproject.toml and poetry.lock files
-COPY ./microservices/sensor/pyproject.toml ./microservices/sensor/poetry.lock ./
+COPY ./microservices/sensor_data_service/pyproject.toml ./microservices/sensor_data_service/poetry.lock ./
 
 # Change ownership of the /app directory to the non-root user
 RUN chown -R appuser:appuser /app
@@ -32,7 +32,7 @@ USER appuser
 RUN poetry install --no-root
 
 # Copy the rest of the application code
-COPY ./microservices/sensor .
+COPY ./microservices/sensor_data_service .
 
 # Expose the application port
 EXPOSE 8000

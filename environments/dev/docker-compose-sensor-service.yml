@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  sensor-service:
+  sensor-data-service:
     environment:
       POETRY_CACHE_DIR: /app/.cache/pypoetry
     build:
       context: ../../
-      dockerfile: microservices/sensor/Dockerfile
+      dockerfile: microservices/sensor_data_service/Dockerfile
     ports:
       - "8011:8000"
     volumes:
-      - ../../microservices/sensor:/app/microservices/sensor
+      - ../../microservices/sensor_data_service:/app/microservices/sensor_data_service
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
