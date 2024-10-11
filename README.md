@@ -32,18 +32,25 @@ cd akello
 
 ```sh
 akello
+.
 ├── assets                   # Contains static assets such as images, files, or other media.
+├── clusters                 # Cluster configuration for different domains and workloads.
+│   ├── ai-ml-cluster        # Dedicated to AI/ML services for handling machine learning tasks.
+│   ├── common               # Shared infrastructure or services used across multiple clusters.
+│   ├── core-services-cluster # Manages core services like authentication, workflows, and essential services.
+│   └── iot-cluster          # Handles IoT data and services, focusing on sensor data ingestion and processing.
+├── deployment-scripts       # Scripts for deploying services, clusters, and managing infrastructure.
 ├── environments             # Configuration for different deployment environments.
 │   ├── dev                  # Development environment configuration files.
 │   └── test                 # Test environment configuration files.
 ├── microservices            # Collection of microservices that handle distinct features.
 │   ├── auth_service         # Authentication service using Supertokens.
 │   ├── care_navigator_orchestrator  # Orchestrates workflows for patient care navigation.
-│   ├── ml_model_service      # Handles machine learning models, such as AI/ML for health services.
-│   ├── patient_manager       # Manages patient-related data and operations.
-│   ├── provider_manager      # Manages healthcare provider-related data and operations.
-│   ├── sensor_data_service   # Ingests and processes data from sensors (e.g., wearables, medical devices).
-│   └── user_account_manager  # Manages user accounts, including patients and care providers.
+│   ├── ml_model_service     # Handles machine learning models, such as AI/ML for health services.
+│   ├── patient_manager      # Manages patient-related data and operations.
+│   ├── provider_manager     # Manages healthcare provider-related data and operations.
+│   ├── sensor_data_service  # Ingests and processes data from sensors (e.g., wearables, medical devices).
+│   └── user_account_manager # Manages user accounts, including patients and care providers.
 └── packages                 # Core shared libraries and modules.
     └── core                 # Core Python libraries used across services.
 ```
