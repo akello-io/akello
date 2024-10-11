@@ -6,7 +6,6 @@
 </a>
 <h3></h3>
 
-> ✨ Join our Discord [here](https://discord.gg/WSqNrWBKKw)
 
 Akello is an open-source platform that simplifies healthcare service integration using microservices. It offers flexibility, scalability, and strong security for developers building healthcare infrastructures.
 
@@ -32,17 +31,21 @@ cd akello
 ## Overview of the Repo
 
 ```sh
-akello/
-├── environments
-│   ├── dev
-│   └── test
-├── microservices
-│   ├── account       # Account service
-│   ├── auth          # Supertokens auth service
-│   ├── huggingface   # Microservice integrating Hugging Face models
-│   └── sensor        # Ingest data from sensors (e.g., BCI, blood pressure, wearables)
-└── packages
-    └── core          # Core Python libraries
+akello
+├── assets                   # Contains static assets such as images, files, or other media.
+├── environments             # Configuration for different deployment environments.
+│   ├── dev                  # Development environment configuration files.
+│   └── test                 # Test environment configuration files.
+├── microservices            # Collection of microservices that handle distinct features.
+│   ├── auth_service         # Authentication service using Supertokens.
+│   ├── care_navigator_orchestrator  # Orchestrates workflows for patient care navigation.
+│   ├── ml_model_service      # Handles machine learning models, such as AI/ML for health services.
+│   ├── patient_manager       # Manages patient-related data and operations.
+│   ├── provider_manager      # Manages healthcare provider-related data and operations.
+│   ├── sensor_data_service   # Ingests and processes data from sensors (e.g., wearables, medical devices).
+│   └── user_account_manager  # Manages user accounts, including patients and care providers.
+└── packages                 # Core shared libraries and modules.
+    └── core                 # Core Python libraries used across services.
 ```
 
 Each microservice is designed to be self-contained, making it easier to develop, test, and deploy specific functionalities. New microservices can be added without disrupting the existing architecture, making Akello an ideal choice for modular application development.

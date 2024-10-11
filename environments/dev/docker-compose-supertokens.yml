@@ -40,11 +40,11 @@ services:
       retries: 5
 
   # Auth App service
-  auth-app:
+  auth-service-app:
     build:
-      context: ../../microservices/auth/app
+      context: ../../microservices/auth_service/app
       dockerfile: Dockerfile
-    container_name: auth-app    
+    container_name: auth-service-app    
     ports:
       - "3000:3000"
     networks:
@@ -52,24 +52,24 @@ services:
     restart: always    
     environment:
       CONSUL_HTTP_ADDR: "http://consul:8500"
-      SERVICE_NAME: "auth-app"
-      SERVICE_ID: "auth-app-1"
+      SERVICE_NAME: "auth-service-app"
+      SERVICE_ID: "auth-service-app-1"
       SERVICE_PORT: 3000
     volumes:
       - ./consul-register.sh:/usr/src/app/consul-register.sh
     command: >
-      sh -c "./consul-register.sh auth-app auth-app-1 3000 http://consul:8500 && npm start"
+      sh -c "./consul-register.sh auth-service-app auth-service-app-1 3000 http://consul:8500 && npm start"
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:3000/health || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3
 
-  auth-api:
+  auth-service-api:
     build:
-      context: ../../microservices/auth/server
+      context: ../../microservices/auth_service/server
       dockerfile: Dockerfile
-    container_name: auth-api    
+    container_name: auth-service-api    
     ports:
       - "3001:3001"
     restart: always
@@ -77,13 +77,13 @@ services:
       - app_network
     environment:
       CONSUL_HTTP_ADDR: "http://consul:8500"
-      SERVICE_NAME: "auth-api"
-      SERVICE_ID: "auth-api-1"
+      SERVICE_NAME: "auth-service-api"
+      SERVICE_ID: "auth-service-api-1"
       SERVICE_PORT: 3001
     volumes:
       - ./consul-register.sh:/usr/src/app/consul-register.sh
     command: >
-      sh -c "./consul-register.sh auth-api auth-api-1 3001 http://consul:8500 && poetry run uvicorn app:app --host 0.0.0.0 --port 3001"
+      sh -c "./consul-register.sh auth-service-api auth-service-api-1 3001 http://consul:8500 && poetry run uvicorn app:app --host 0.0.0.0 --port 3001"
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://127.0.0.1:3001/health || exit 1"]
       interval: 30s

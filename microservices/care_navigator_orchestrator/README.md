@@ -14,6 +14,6 @@ care_navigator/
 ├── config/
 │   ├── settings.py                     # Configuration settings for Temporal and other services
 ├── Dockerfile                          # Dockerfile to containerize the microservice
-├── requirements.txt                    # List of dependencies (e.g., Temporal SDK, FastAPI, etc.)
+├── pyproject.toml                    # List of dependencies (e.g., Temporal SDK, FastAPI, etc.)
 ├── README.md                           # Documentation for the care_navigator microservice
 ```

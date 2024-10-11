@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "care-provider"
+name = "provider"
 version = "0.1.0"
 description = ""
 authors = ["Vijay Selvaraj <vijay.selvaraj@gmail.com>"]
