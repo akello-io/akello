@@ -7,13 +7,13 @@
 <h3></h3>
 
 
-**Akello is an open-source modular infrastructure platform designed to simplify healthcare service integration with microservices.** It provides developers with the flexibility, scalability, and security needed to build modern healthcare systems.
+**Akello** is an open-source healthcare operating system built for interoperability and AI-driven data processing. It supports healthcare standards like FHIR, SNOMED, LOINC, and DICOM, making data exchange more efficient. With AI integration, it helps process and analyze healthcare data more effectively.
 
-- **Secure message bus** for seamless microservice communication and workflow automation
-- **Advanced security** features, including identity management, token-based authentication, encryption, and a zero-trust architecture
-- **Interoperability** with healthcare standards such as FHIR, SNOMED, LOINC, and DICOM
-- **Scalable, modular design** to adapt to growing and evolving healthcare infrastructure requirements
-- **Community-driven development** that fosters collaboration and continuous innovation
+- **Interoperability** with established healthcare standards
+- **AI-driven data processing** for better data handling and analysis
+- **Secure infrastructure** with strong security protocols
+- **Modular design** to adapt to changing system needs
+- **Community-driven development** for continuous updates and improvements
 
 
 ---
