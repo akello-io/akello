@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 broker = 'localhost'  # Replace with your broker address (EMQX broker address)
 port = 1883  # Default MQTT port for EMQX
 topic = "sensors/temperature/device1"  # Topic to subscribe to
-
+ 
 # Callback function when a message is received
 def on_message(client, userdata, message):
     print(f"Received message: {message.payload.decode()} on topic: {message.topic}")
