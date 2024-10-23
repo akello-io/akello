@@ -2,7 +2,7 @@ version: '3'
 
 services:
   emqx1:
-    image: emqx/emqx-enterprise:5.8.0
+    image: emqx/emqx:5.8.0
     container_name: emqx1
     environment:
       - EMQX_NODE__NAME=emqx@node1.emqx.com
@@ -27,7 +27,7 @@ services:
       - ./emqx1_data:/opt/emqx/data
 
   emqx2:
-    image: emqx/emqx-enterprise:5.8.0
+    image: emqx/emqx:5.8.0
     container_name: emqx2
     environment:
       - EMQX_NODE__NAME=emqx@node2.emqx.com
