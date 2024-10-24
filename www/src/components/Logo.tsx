@@ -12,17 +12,12 @@ export function Logomark({
   invert?: boolean
   filled?: boolean
 }) {
-  let id = useId()
-
   return (
     <Image
       src={akello}
       alt="Logo"
       sizes="100vw"
-      width={0}
-      height={0}
       style={{ width: '100px', height: 'auto' }} // optional
-      {...props}
     />
   )
 }
@@ -47,7 +42,6 @@ export function Logo({
       height={0}
       sizes="100vw"
       style={{ width: '100px', height: 'auto' }} // optional
-      {...props}
     />
   );
 }
