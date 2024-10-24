@@ -15,6 +15,9 @@ import { unifiedConditional } from 'unified-conditional'
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   output: 'export', // Enable static export
+  images: {
+    unoptimized: true, // Disable image optimization for static export
+  },
 }
 
 function remarkMDXLayout(source, metaName) {
@@ -42,16 +45,16 @@ function remarkMDXLayout(source, metaName) {
   }
 }
 
-export default async function config() {
-  let highlighter = await shiki.getHighlighter({
-    theme: 'css-variables',
-  })
+const withMDX = nextMDX({
+  extension: /\.mdx$/,
+  options: {
+    recmaPlugins: [recmaImportImages],
+    rehypePlugins: async () => {
+      const highlighter = await shiki.getHighlighter({
+        theme: 'css-variables',
+      })
 
-  let withMDX = nextMDX({
-    extension: /\.mdx$/,
-    options: {
-      recmaPlugins: [recmaImportImages],
-      rehypePlugins: [
+      return [
         [rehypeShiki, { highlighter }],
         [
           remarkRehypeWrap,
@@ -61,24 +64,24 @@ export default async function config() {
             end: ':root > mdxJsxFlowElement',
           },
         ],
-      ],
-      remarkPlugins: [
-        remarkGfm,
-        remarkUnwrapImages,
+      ]
+    },
+    remarkPlugins: [
+      remarkGfm,
+      remarkUnwrapImages,
+      [
+        unifiedConditional,
         [
-          unifiedConditional,
-          [
-            new RegExp(`^${escapeStringRegexp(path.resolve('src/app/blog'))}`),
-            [[remarkMDXLayout, '@/app/blog/wrapper', 'article']],
-          ],
-          [
-            new RegExp(`^${escapeStringRegexp(path.resolve('src/app/work'))}`),
-            [[remarkMDXLayout, '@/app/work/wrapper', 'caseStudy']],
-          ],
+          new RegExp(`^${escapeStringRegexp(path.resolve('src/app/blog'))}`),
+          [[remarkMDXLayout, '@/app/blog/wrapper', 'article']],
+        ],
+        [
+          new RegExp(`^${escapeStringRegexp(path.resolve('src/app/work'))}`),
+          [[remarkMDXLayout, '@/app/work/wrapper', 'caseStudy']],
         ],
       ],
-    },
-  })
+    ],
+  },
+})
 
-  return withMDX(nextConfig)
-}
+export default withMDX(nextConfig)
