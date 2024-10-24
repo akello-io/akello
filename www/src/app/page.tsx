@@ -73,7 +73,7 @@ function CaseStudies({
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-        We believe advanced insights hold the key to transforming healthcare’s toughest challenges. While technology drives innovation, it also creates complexity, and that's where Akello comes in—turning challenges into opportunities.
+          .....
         </p>
       </SectionIntro>
       <Container className="mt-16">
