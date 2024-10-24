@@ -1,5 +1,5 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+# Simple workflow for deploying a Next.js app to GitHub Pages
+name: Deploy Next.js app to Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -22,32 +22,37 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Ensure you use a compatible Node.js version for Next.js
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
         working-directory: ./www
 
-      - name: Build Vite Project
+      - name: Build Next.js app
         run: npm run build
+        working-directory: ./www
+
+      - name: Export Next.js static site
+        run: npm run export
         working-directory: ./www
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the build output directory
-          path: './www/dist'
+          # Upload the build output directory, which will be .next/export for Next.js exports
+          path: './www/out'
 
       - name: Deploy to GitHub Pages
         id: deployment
