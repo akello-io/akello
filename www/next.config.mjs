@@ -14,6 +14,7 @@ import { unifiedConditional } from 'unified-conditional'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  output: 'export', // Enable static export
 }
 
 function remarkMDXLayout(source, metaName) {
