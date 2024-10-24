@@ -34,7 +34,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Ensure you use a compatible Node.js version for Next.js
+          node-version: '18'  # Ensure you use a compatible Node.js version for Next.js
 
       - name: Install dependencies
         run: npm install
@@ -44,14 +44,10 @@ jobs:
         run: npm run build
         working-directory: ./www
 
-      - name: Export Next.js static site
-        run: npm run export
-        working-directory: ./www
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the build output directory, which will be .next/export for Next.js exports
+          # Upload the build output directory (./out for static export)
           path: './www/out'
 
       - name: Deploy to GitHub Pages
