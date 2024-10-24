@@ -69,13 +69,11 @@ function CaseStudies({
   return (
     <>
       <SectionIntro
-        title="Harnessing technology for a brighter future"
+        title="Empowering Healthcare with Insightful Technology"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          We believe technology is the answer to the world’s greatest
-          challenges. It’s also the cause, so we find ourselves in bit of a
-          catch 22 situation.
+        We believe advanced insights hold the key to transforming healthcare’s toughest challenges. While technology drives innovation, it also creates complexity, and that's where Akello comes in—turning challenges into opportunities.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -185,30 +183,13 @@ export default async function Home() {
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
-            Unlock Deeper Patient Insights for Personalized Care
+            Accelerating Global Healthcare Innovation
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            Akello empowers healthcare professionals with actionable insights, helping to tailor treatments based on individual patient health data for improved outcomes
+            Akello streamlines interoperability across international standards like FHIR, transforming IoT data into clinical insights. We empower healthcare professionals to deliver personalized, connected care with ease, driving better outcomes across borders.
           </p>
         </FadeIn>
       </Container>
-
-      <Clients />
-
-      <CaseStudies caseStudies={caseStudies} />
-
-      <Testimonial
-        className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Phobia', logo: logoPhobiaDark }}
-      >
-        The team at Studio went above and beyond with our onboarding, even
-        finding a way to access the user’s microphone without triggering one of
-        those annoying permission dialogs.
-      </Testimonial>
-
-      <Services />
-
-      <ContactSection />
     </>
   )
 }
