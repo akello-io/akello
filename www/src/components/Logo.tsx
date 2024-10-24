@@ -1,6 +1,5 @@
 import { useId } from 'react'
 import Image from 'next/image';
-import akello from "../images/logos/akello.png"
 
 import clsx from 'clsx'
 
@@ -14,10 +13,10 @@ export function Logomark({
 }) {
   return (
     <Image
-      src={akello}
+      src={"/images/logos/akello.png"}
       alt="Logo"
-      sizes="100vw"
-      style={{ width: '100px', height: 'auto' }} // optional
+      width={100}
+      height={100}
     />
   )
 }
@@ -35,13 +34,10 @@ export function Logo({
 }) {
   return (
     <Image
-      src={akello}
+      src={"/images/logos/akello.png"}
       alt="Logo"
-      className={className}
-      width={0}
-      height={0}
-      sizes="100vw"
-      style={{ width: '100px', height: 'auto' }} // optional
+      width={100}
+      height={100}
     />
   );
 }
